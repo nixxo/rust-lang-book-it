@@ -2,7 +2,7 @@
 
 [Il Linguaggio di Programmazione Rust](title-page.md)
 [Prefazione](foreword.md)
-[Introduction](ch00-00-introduction.md)
+[Introduzione](ch00-00-introduction.md)
 
 ## Getting started
 
