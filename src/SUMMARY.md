@@ -7,7 +7,7 @@
 ## Primi Passi
 
 - [Primi Passi](ch01-00-getting-started.md)
-  - [Installation](ch01-01-installation.md)
+  - [Installazione](ch01-01-installation.md)
   - [Hello, World!](ch01-02-hello-world.md)
   - [Hello, Cargo!](ch01-03-hello-cargo.md)
 
