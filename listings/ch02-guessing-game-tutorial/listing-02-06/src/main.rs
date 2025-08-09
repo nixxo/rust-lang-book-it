@@ -4,31 +4,31 @@ use std::io;
 use rand::Rng;
 
 fn main() {
-    println!("Guess the number!");
+    println!("Indovina il numero!");
 
-    let secret_number = rand::thread_rng().gen_range(1..=100);
+    let numero_segreto = rand::thread_rng().gen_range(1..=100);
 
     loop {
-        println!("Please input your guess.");
+        println!("Inserisci la tua ipotesi.");
 
-        let mut guess = String::new();
+        let mut ipotesi = String::new();
 
         io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line");
+            .read_line(&mut ipotesi)
+            .expect("Errore di lettura");
 
-        let guess: u32 = match guess.trim().parse() {
+        let ipotesi: u32 = match ipotesi.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
         };
 
-        println!("You guessed: {guess}");
+        println!("Hai ipotizzato: {ipotesi}");
 
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small!"),
-            Ordering::Greater => println!("Too big!"),
+        match ipotesi.cmp(&numero_segreto) {
+            Ordering::Less => println!("Troppo piccolo!"),
+            Ordering::Greater => println!("Troppo grande!"),
             Ordering::Equal => {
-                println!("You win!");
+                println!("Hai indovinato!");
                 break;
             }
         }
