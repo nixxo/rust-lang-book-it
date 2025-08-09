@@ -7,27 +7,27 @@ use rand::Rng;
 fn main() {
     // --snip--
     // ANCHOR_END: here
-    println!("Guess the number!");
+    println!("Indovina il numero!");
 
-    let secret_number = rand::thread_rng().gen_range(1..=100);
+    let numero_segreto = rand::thread_rng().gen_range(1..=100);
 
-    println!("The secret number is: {secret_number}");
+    println!("Il numero segreto è: {numero_segreto}");
 
-    println!("Please input your guess.");
+    println!("Inserisci la tua ipotesi.");
 
-    let mut guess = String::new();
+    let mut ipotesi = String::new();
 
     io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read line");
+        .read_line(&mut ipotesi)
+        .expect("Errore di lettura");
     // ANCHOR: here
 
-    println!("You guessed: {guess}");
+    println!("Hai ipotizzato: {ipotesi}");
 
-    match guess.cmp(&secret_number) {
-        Ordering::Less => println!("Too small!"),
-        Ordering::Greater => println!("Too big!"),
-        Ordering::Equal => println!("You win!"),
+    match ipotesi.cmp(&numero_segreto) {
+        Ordering::Less => println!("Troppo piccolo!"),
+        Ordering::Greater => println!("Troppo grande!"),
+        Ordering::Equal => println!("Hai indovinato!"),
     }
 }
 // ANCHOR_END: here
