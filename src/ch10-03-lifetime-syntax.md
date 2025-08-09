@@ -97,7 +97,7 @@ Here, `x` has the lifetime `'b`, which in this case is larger than `'a`. This
 means `r` can reference `x` because Rust knows that the reference in `r` will
 always be valid while `x` is valid.
 
-Now that you know where the lifetimes of references are and how Rust analyzes
+Now that you know what the lifetimes of references are and how Rust analyzes
 lifetimes to ensure references will always be valid, let’s explore generic
 lifetimes of parameters and return values in the context of functions.
 
@@ -210,13 +210,13 @@ This code should compile and produce the result we want when we use it with the
 `main` function in Listing 10-19.
 
 The function signature now tells Rust that for some lifetime `'a`, the function
-takes two parameters, both of which are string slices that live at least as
-long as lifetime `'a`. The function signature also tells Rust that the string
-slice returned from the function will live at least as long as lifetime `'a`.
-In practice, it means that the lifetime of the reference returned by the
-`longest` function is the same as the smaller of the lifetimes of the values
-referred to by the function arguments. These relationships are what we want
-Rust to use when analyzing this code.
+takes two parameters, both of which are string slices that live at least as long
+as lifetime `'a`. The function signature also tells Rust that the string slice
+returned from the function will live at most as long as lifetime `'a`. In
+practice, it means that the lifetime of the reference returned by the `longest`
+function is less than or the same as the smaller of the lifetimes of the values
+referred to by the function arguments. These relationships are what we want Rust
+to use when analyzing this code.
 
 Remember, when we specify the lifetime parameters in this function signature,
 we’re not changing the lifetimes of any values passed in or returned. Rather,

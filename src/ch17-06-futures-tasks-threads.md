@@ -2,9 +2,9 @@
 
 As we saw in [Chapter 16][ch16]<!-- ignore -->, threads provide one approach to
 concurrency. We’ve seen another approach in this chapter: using async with
-futures and streams. If you‘re wondering when to choose method over the other,
-the answer is: it depends! And in many cases, the choice isn’t threads _or_
-async but rather threads _and_ async.
+futures and streams. If you‘re wondering when to choose one method over the
+other, the answer is: it depends! And in many cases, the choice isn’t threads
+_or_ async but rather threads _and_ async.
 
 Many operating systems have supplied threading-based concurrency models for
 decades now, and many programming languages support them as a result. However,
@@ -133,7 +133,5 @@ Next, we’ll talk about idiomatic ways to model problems and structure solution
 as your Rust programs get bigger. In addition, we’ll discuss how Rust’s idioms
 relate to those you might be familiar with from object-oriented programming.
 
-[ch16]: http://localhost:3000/ch16-00-concurrency.html
-[combining-futures]: ch17-03-more-futures.html#building-our-own-async-abstractions
-[streams]: ch17-04-streams.html#composing-streams
+[ch16]: ch16-00-concurrency.html
 [ch21]: ch21-00-final-project-a-web-server.html

@@ -117,7 +117,7 @@ async blocks compile to anonymous futures, we can put each loop in an async
 block and have the runtime run them both to completion using the `trpl::join`
 function.
 
-In the section [Waiting for All Threads to Finishing Using `join`
+In the section [Waiting for All Threads to Finish Using `join`
 Handles][join-handles]<!-- ignore -->, we showed how to use the `join` method on
 the `JoinHandle` type returned when you call `std::thread::spawn`. The
 `trpl::join` function is similar, but for futures. When you give it two futures,
@@ -274,7 +274,7 @@ there are still a couple of problems. For one thing, the messages do not arrive
 at half-second intervals. They arrive all at once, 2 seconds (2,000
 milliseconds) after we start the program. For another, this program never exits!
 Instead, it waits forever for new messages. You will need to shut it down using
-<span class="keystroke">ctrl-c</span>.
+<kbd>ctrl</kbd>-<kbd>c</kbd>.
 
 Let’s start by examining why the messages come in all at once after the full
 delay, rather than coming in with delays between each one. Within a given async

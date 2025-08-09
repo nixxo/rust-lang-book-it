@@ -215,7 +215,7 @@ for 200 milliseconds, this should affect half of the messages.
 To sleep between messages in the `get_messages` function without blocking, we
 need to use async. However, we can’t make `get_messages` itself into an async
 function, because then we’d return a `Future<Output = Stream<Item = String>>`
-instead of a `Stream<Item = String>>`. The caller would have to await
+instead of a `Stream<Item = String>`. The caller would have to await
 `get_messages` itself to get access to the stream. But remember: everything in a
 given future happens linearly; concurrency happens _between_ futures. Awaiting
 `get_messages` would require it to send all the messages, including the sleep
@@ -345,8 +345,8 @@ which is longer than the other durations we are using. Here, we create a
 through the stream, and pin it so that it’s safe to do so. That gets us _almost_
 to where we need to be. Everything type checks. If you run this, though, there
 will be two problems. First, it will never stop! You’ll need to stop it with
-<span class="keystroke">ctrl-c</span>. Second, the messages from the English
-alphabet will be buried in the midst of all the interval counter messages:
+<kbd>ctrl</kbd>-<kbd>c</kbd>. Second, the messages from the English alphabet
+will be buried in the midst of all the interval counter messages:
 
 <!-- Not extracting output because changes to this output aren't significant;
 the changes are likely to be due to the tasks running differently rather than
