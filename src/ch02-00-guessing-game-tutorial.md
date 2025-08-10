@@ -539,7 +539,7 @@ successivo è aggiornare _src/main.rs_, come mostrato nel Listato 2-3.
 
 Per prima cosa aggiungiamo la riga `use rand::Rng;`. Il _trait_ `Rng` definisce
 i metodi che i generatori di numeri casuali implementano e questo _trait_ deve
-essere campo di applicazione (in _scope_ d'ora in poi), per poter utilizzare
+essere nell'ambito di utilizzo (in _scope_ d'ora in poi), per poter utilizzare
 tali metodi. Il Capitolo 10 tratterà in dettaglio i _trait_.
 
 Nella prima riga, chiamiamo la funzione `rand::thread_rng` che ci fornisce il
@@ -697,13 +697,13 @@ let ipotesi: u32 = ipotesi.trim().parse().expect("Inserisci un numero!");
 ```
 
 Creiamo una variabile di nome `ipotesi`. Ma aspetta, il programma non ha già una
-variabile di nome `ipotesi`? Sì, ma Rust ci permette di _mettere in ombra_ il
+variabile di nome `ipotesi`? Sì, ma Rust ci permette di _mettere in ombra_, il
 valore precedente di `ipotesi` con uno nuovo. Lo _Shadowing_ ci permette di
-riutilizzare il nome della variabile `ipotesi` invece di costringerci a creare
-due variabili uniche, come `ipotesi_str` e `ipotesi`, per esempio. Ne parleremo
-in modo più dettagliato nel [Capitolo 3][shadowing]<!-- ignore -->, ma per ora,
-sappi che questa funzione è spesso usata quando vuoi convertire un valore da un
-_type_ ad un altro.
+riutilizzare il nome della variabile `ipotesi` invece di
+costringerci a creare due variabili uniche, come `ipotesi_str` e `ipotesi`, per
+esempio. Ne parleremo in modo più dettagliato nel [Capitolo 3][shadowing]<!--
+ignore -->, ma per ora, sappi che questa funzione è spesso usata quando vuoi
+convertire un valore da un _type_ ad un altro.
 
 Leghiamo questa nuova variabile all'espressione `ipotesi.trim().parse()`.
 L'`ipotesi` nell'espressione si riferisce alla variabile `ipotesi` originale che
