@@ -1,12 +1,12 @@
 $ cargo run
-   Compiling variables v0.1.0 (file:///projects/variables)
+   Compiling variabili v0.1.0 (file:///progetti/variabili)
 error[E0308]: mismatched types
- --> src/main.rs:3:14
+ --> src/main.rs:4:13
   |
-2 |     let mut spaces = "   ";
-  |                      ----- expected due to this value
-3 |     spaces = spaces.len();
-  |              ^^^^^^^^^^^^ expected `&str`, found `usize`
+3 |     let mut spazi = "   ";
+  |                     ----- expected due to this value
+4 |     spazi = spazi.len();
+  |             ^^^^^^^^^^^ expected `&str`, found `usize`
 
 For more information about this error, try `rustc --explain E0308`.
-error: could not compile `variables` (bin "variables") due to 1 previous error
+error: could not compile `variabili` (bin "variabili") due to 1 previous error

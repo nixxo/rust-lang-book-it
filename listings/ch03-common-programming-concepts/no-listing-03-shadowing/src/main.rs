@@ -5,8 +5,8 @@ fn main() {
 
     {
         let x = x * 2;
-        println!("The value of x in the inner scope is: {x}");
+        println!("Il valore di x nello scope interno è: {x}");
     }
 
-    println!("The value of x is: {x}");
+    println!("Il valore di x è: {x}");
 }

@@ -1,11 +1,11 @@
 $ cargo run
-   Compiling variables v0.1.0 (file:///projects/variables)
+   Compiling variabili v0.1.0 (file:///progetti/variabili)
 error[E0384]: cannot assign twice to immutable variable `x`
  --> src/main.rs:4:5
   |
 2 |     let x = 5;
   |         - first assignment to `x`
-3 |     println!("The value of x is: {x}");
+3 |     println!("Il valore di x è: {x}");
 4 |     x = 6;
   |     ^^^^^ cannot assign twice to immutable variable
   |
@@ -15,4 +15,4 @@ help: consider making this binding mutable
   |         +++
 
 For more information about this error, try `rustc --explain E0384`.
-error: could not compile `variables` (bin "variables") due to 1 previous error
+error: could not compile `variabili` (bin "variabili") due to 1 previous error
