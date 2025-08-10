@@ -52,8 +52,7 @@ _hello_world.rs_ piuttosto che _helloworld.rs_.
 Ora apri il file _main.rs_ che hai appena creato e inserisci il codice del
 Listato 1-1.
 
-<Listing number="1-1" file-name="main.rs" caption="Un programma che stampa
-`Hello, world!`">
+<Listing number="1-1" file-name="main.rs" caption="Un programma che stampa `Hello, world!`">
 
 ```rust
 fn main() {

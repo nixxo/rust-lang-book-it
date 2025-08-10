@@ -74,8 +74,7 @@ dell'utente, lo elaborerà e verificherà che l'input sia nella forma prevista.
 Per iniziare, permetteremo al giocatore di inserire un'ipotesi. Inserisci il
 codice del Listato 2-1 in _src/main.rs_.
 
-<Listing number="2-1" file-name="src/main.rs" caption="Codice che riceve
-l'ipotesi dall'utente e la stampa">
+<Listing number="2-1" file-name="src/main.rs" caption="Codice che riceve l'ipotesi dall'utente e la stampa">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch02-guessing-game-tutorial/listing-02-01/src/main.rs:all}}
@@ -391,8 +390,7 @@ rm Cargo.lock
 cargo clean
 cargo build -->
 
-<Listing number="2-2" caption="L'output dall'esecuizione di `cargo build` dopo
-l'aggiunt a del crate rand come dipendenza">
+<Listing number="2-2" caption="L'output dall'esecuizione di `cargo build` dopo l'aggiunt a del crate rand come dipendenza">
 
 ```console
 $ cargo build
@@ -531,8 +529,7 @@ progetti più piccoli che sono assemblati da una serie di pacchetti.
 Iniziamo a usare `rand` per generare un numero da indovinare. Il passo
 successivo è aggiornare _src/main.rs_, come mostrato nel Listato 2-3.
 
-<Listing number="2-3" file-name="src/main.rs" caption="Aggiunta del codice per
-generare un numero casuale">
+<Listing number="2-3" file-name="src/main.rs" caption="Aggiunta del codice per generare un numero casuale">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch02-guessing-game-tutorial/listing-02-03/src/main.rs:all}}
@@ -609,8 +606,7 @@ Ora che abbiamo l'input dell'utente e un numero casuale, possiamo confrontarli.
 Questo passo è mostrato nel Listato 2-4. Nota che questo codice non è
 compilabile per il momento, come spiegheremo.
 
-<Listing number="2-4" file-name="src/main.rs" caption="Gestione Handling the
-possible return values of comparing two numbers">
+<Listing number="2-4" file-name="src/main.rs" caption="Gestione Handling the possible return values of comparing two numbers">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch02-guessing-game-tutorial/listing-02-04/src/main.rs:here}}
@@ -870,8 +866,7 @@ modo che il gioco ignori un valore non numerico in modo che l'utente possa
 continuare a indovinare. Possiamo farlo modificando la riga in cui `ipotesi`
 viene convertito da `String` in `u32`, come mostrato nel Listato 2-5.
 
-<Listing number="2-5" file-name="src/main.rs" caption="Ignorare un valore non
-numerico e continuare a chiedere un'ipotesi anziché terminare il programma">
+<Listing number="2-5" file-name="src/main.rs" caption="Ignorare un valore non numerico e continuare a chiedere un'ipotesi anziché terminare il programma">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch02-guessing-game-tutorial/listing-02-05/src/main.rs:here}}
@@ -941,8 +936,7 @@ Ricorda che il programma continua a stampare il numero segreto. Questo funziona
 bene per testare il funzionamento, ma rovina il gioco. Eliminiamo il `println!`
 che produce il numero segreto. Il Listato 2-6 mostra il codice finale.
 
-<Listing number="2-6" file-name="src/main.rs" caption="Codice finale del gioco
-completo">
+<Listing number="2-6" file-name="src/main.rs" caption="Codice finale del gioco completo">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch02-guessing-game-tutorial/listing-02-06/src/main.rs}}

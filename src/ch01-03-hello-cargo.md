@@ -63,8 +63,7 @@ new --vcs=git`.
 Apri _Cargo.toml_ nell'editor di testo che preferisci. Dovrebbe assomigliare al
 codice del Listato 1-2.
 
-<Listing number="1-2" file-name="Cargo.toml" caption="Contenuto di *Cargo.toml*
-generato da `cargo new`">
+<Listing number="1-2" file-name="Cargo.toml" caption="Contenuto di *Cargo.toml* generato da `cargo new`">
 
 ```toml
 [package]
