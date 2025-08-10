@@ -961,7 +961,7 @@ come funzionano gli _enum_.
 
 [prelude]: https://doc.rust-lang.org/stable/std/prelude/index.html
 [variables-and-mutability]:
-    ch03-01-variables-and-mutability.html#variables-and-mutability
+    ch03-01-variables-and-mutability.html#variabili-e-mutabilità
 [comments]: ch03-04-comments.html
 [string]: https://doc.rust-lang.org/stable/std/string/struct.String.html
 [iostdin]: https://doc.rust-lang.org/stable/std/io/struct.Stdin.html

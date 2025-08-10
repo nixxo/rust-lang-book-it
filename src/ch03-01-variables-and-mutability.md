@@ -37,8 +37,8 @@ che vuoi; non significano che non sei un buon programmatore! Anche ai Rustaceani
 più esperti escon fuori errori del compilatore.
 
 Hai ricevuto il messaggio di errore `` cannot assign twice to immutable variable
-`x` `` perché hai cercato di assegnare un secondo valore alla variabile
-immutabile `x`.
+`` perché hai cercato di assegnare un secondo valore alla variabile immutabile
+`x`.
 
 È importante che ci vengano segnalati errori in tempo di compilazione quando si
 tenta di modificare un valore che è stato definito immutabile, perché proprio
@@ -114,8 +114,8 @@ prevede l'uso di maiuscole con trattini bassi tra le parole. Il compilatore è i
 grado di valutare il risultato di un'operazione in fase di compilazione, il che
 ci permette di scegliere di scrivere questo valore in un modo più facile da
 capire e da verificare, piuttosto che impostare questa costante al valore
-10.800. Consulta la sezione [Rust Reference's section on constant
-evaluation][const-eval] per maggiori informazioni sulle operazioni che possono
+10.800. Consulta la sezione [Valutazione delle costanti (in
+inglese)][const-eval] per maggiori informazioni sulle operazioni che possono
 essere utilizzate quando si dichiarano le costanti.
 
 Le costanti sono valide per tutto il tempo di esecuzione di un programma,
@@ -198,7 +198,7 @@ L'errore dice che non è consentito mutare il _type_ di una variabile:
 Ora che abbiamo visto il funzionamento delle variabili, passiamo in rassegna le
 varie tipologie di dato, _type_, che possono essere.
 
-[comparing-the-guess-to-the-secret-number]: ch02-00-guessing-game-tutorial.html#confrontare-l-ipotesi-con-il-numero-segreto
+[comparing-the-guess-to-the-secret-number]: ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
 [data-types]: ch03-02-data-types.html#datatype---tipi-di-dato
-[memorizzare-i-valori-con-le-variabili]: ch02-00-guessing-game-tutorial.html#storing-values-with-variables
+[memorizzare-i-valori-con-le-variabili]: ch02-00-guessing-game-tutorial.html#memorizzare-i-valori-con-le-variabili
 [const-eval]: https://doc.rust-lang.org/stable/reference/const_eval.html
