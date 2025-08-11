@@ -5,7 +5,7 @@ on:
     tags:
       - 'ch*'
   #  branches: ["it-translation"]
-  #workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,8 +15,8 @@ jobs:
       contents: write  # To push a branch 
       pull-requests: write  # To create a PR from that branch
     env:
-      # MDBOOK_VERSION: '0.4.52'
-      MDBOOK_VERSION: '0.4.45'
+      MDBOOK_VERSION: '0.4.52'
+      # MDBOOK_VERSION: '0.4.45'
     steps:
     - uses: actions/checkout@master
     - name: Update rustup
