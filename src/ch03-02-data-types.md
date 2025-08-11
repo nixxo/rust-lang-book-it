@@ -346,7 +346,7 @@ the end of the array. Say you run this code, similar to the guessing game in
 Chapter 2, to get an array index from the user:
 Vediamo cosa succede se cerchi di accedere a un elemento di un array che si trova oltre la fine dell'array stesso. Supponiamo di eseguire questo codice, simile al gioco di indovinelli del Capitolo 2, per ottenere un indice dell'array dall'utente:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust,ignore,panics
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-15-invalid-array-access/src/main.rs}}
