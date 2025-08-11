@@ -1,7 +1,7 @@
 fn main() {
-    another_function(5);
+    altra_funzione(5);
 }
 
-fn another_function(x: i32) {
+fn altra_funzione(x: i32) {
     println!("Il valore di x è: {x}");
 }

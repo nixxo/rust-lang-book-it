@@ -1,6 +1,6 @@
 $ cargo run
-   Compiling functions v0.1.0 (file:///projects/functions)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.28s
-     Running `target/debug/functions`
+   Compiling funzioni v0.1.0 (file:///progetti/funzioni)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.37s
+     Running `target/debug/funzioni`
 Hello, world!
-Another function.
+Un'altra funzione.
