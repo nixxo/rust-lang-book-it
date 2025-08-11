@@ -1,5 +1,5 @@
 $ cargo run
-   Compiling branches v0.1.0 (file:///projects/branches)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.31s
-     Running `target/debug/branches`
-condition was false
+   Compiling ramificazioni v0.1.0 (file:///progetti/ramificazioni)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.38s
+     Running `target/debug/ramificazioni`
+condizione era falsa

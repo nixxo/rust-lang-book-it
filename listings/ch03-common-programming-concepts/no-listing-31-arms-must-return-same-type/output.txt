@@ -1,12 +1,12 @@
 $ cargo run
-   Compiling branches v0.1.0 (file:///projects/branches)
+   Compiling ramificazioni v0.1.0 (file:///progetti/ramificazioni)
 error[E0308]: `if` and `else` have incompatible types
- --> src/main.rs:4:44
+ --> src/main.rs:4:45
   |
-4 |     let number = if condition { 5 } else { "six" };
-  |                                 -          ^^^^^ expected integer, found `&str`
-  |                                 |
-  |                                 expected because of this
+4 |     let numero = if condizione { 5 } else { "sei" };
+  |                                  -          ^^^^^ expected integer, found `&str`
+  |                                  |
+  |                                  expected because of this
 
 For more information about this error, try `rustc --explain E0308`.
-error: could not compile `branches` (bin "branches") due to 1 previous error
+error: could not compile `ramificazioni` (bin "ramificazioni") due to 1 previous error

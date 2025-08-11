@@ -1,126 +1,128 @@
-## Control Flow
+## Flusso di controllo
 
-The ability to run some code depending on whether a condition is `true` and to
-run some code repeatedly while a condition is `true` are basic building blocks
-in most programming languages. The most common constructs that let you control
-the flow of execution of Rust code are `if` expressions and loops.
+La possibilità di eseguire del codice a seconda che una condizione sia `vera` e
+di eseguire ripetutamente del codice finché una data condizione è `vera` sono
+elementi fondamentali della maggior parte dei linguaggi di programmazione. I
+costrutti più comuni che ti permettono di controllare il flusso di esecuzione
+del codice di Rust sono le espressioni `if` e i loop.
 
-### `if` Expressions
+### L'espressione `if`
 
-An `if` expression allows you to branch your code depending on conditions. You
-provide a condition and then state, “If this condition is met, run this block
-of code. If the condition is not met, do not run this block of code.”
+Un'espressione `if` (`se` in italiano) ti permette di ramificare il tuo codice a
+seconda delle condizioni. Fornisci una condizione e poi dici: "Se questa
+condizione è soddisfatta, esegui questo blocco di codice. Se la condizione non è
+soddisfatta, non eseguire questo blocco di codice"
 
-Create a new project called _branches_ in your _projects_ directory to explore
-the `if` expression. In the _src/main.rs_ file, input the following:
+Crea un nuovo progetto chiamato _ramificazioni_ nella tua directory _progetti_
+per sperimentare con l'espressione `if`. Nel file _src/main.rs_, inserisci
+quanto segue:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-26-if-true/src/main.rs}}
 ```
 
-All `if` expressions start with the keyword `if`, followed by a condition. In
-this case, the condition checks whether or not the variable `number` has a
-value less than 5. We place the block of code to execute if the condition is
-`true` immediately after the condition inside curly brackets. Blocks of code
-associated with the conditions in `if` expressions are sometimes called _arms_,
-just like the arms in `match` expressions that we discussed in the [“Comparing
-the Guess to the Secret Number”][comparing-the-guess-to-the-secret-number]<!--
-ignore --> section of Chapter 2.
+Tutte le espressioni `if` iniziano con la parola chiave `if`, seguita da una
+condizione. In questo caso, la condizione verifica se la variabile `numero` ha o
+meno un valore inferiore a 5. Il blocco di codice da eseguire se la condizione è
+`true` viene posizionato subito dopo la condizione, all'interno di parentesi
+graffe. I blocchi di codice associati alle condizioni nelle espressioni `if`
+possono esser viste come dei _rami_, proprio come i _rami_ nelle espressioni
+`match` di cui abbiamo parlato nella sezione ["Confrontare l'ipotesi con il
+numero segreto"][confrontare-lipotesi-con-il-numero-segreto]<!-- ignore --> del
+Capitolo 2.
 
-Optionally, we can also include an `else` expression, which we chose to do
-here, to give the program an alternative block of code to execute should the
-condition evaluate to `false`. If you don’t provide an `else` expression and
-the condition is `false`, the program will just skip the `if` block and move on
-to the next bit of code.
+Opzionalmente, possiamo anche includere un'espressione `else` (_altrimenti_ in
+italiano), come abbiamo scelto di fare in questo caso, per dare al programma un
+blocco di codice alternativo da eseguire nel caso in cui la condizione sia
+valutata `false`. Se non fornisci un'espressione `else` e la condizione è
+`false`, il programma salterà il blocco `if` e passerà alla parte di codice
+successiva.
 
-Try running this code; you should see the following output:
+Prova a eseguire questo codice; dovresti vedere il seguente risultato:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-26-if-true/output.txt}}
 ```
 
-Let’s try changing the value of `number` to a value that makes the condition
-`false` to see what happens:
+Proviamo a cambiare il valore di `numero` con un valore che renda la condizione
+`false` per vedere cosa succede:
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-27-if-false/src/main.rs:here}}
 ```
 
-Run the program again, and look at the output:
+Esegui nuovamente il programma e guarda l'output:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-27-if-false/output.txt}}
 ```
 
-It’s also worth noting that the condition in this code _must_ be a `bool`. If
-the condition isn’t a `bool`, we’ll get an error. For example, try running the
-following code:
+Vale anche la pena di notare che la condizione in questo codice _deve_ essere un
+`bool`. Se la condizione non è un `bool`, otterremo un errore. Ad esempio, prova
+a eseguire il seguente codice:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-28-if-condition-must-be-bool/src/main.rs}}
 ```
 
-The `if` condition evaluates to a value of `3` this time, and Rust throws an
-error:
+Questa volta la condizione `if` valuta un valore di `3` e Rust lancia un errore:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-28-if-condition-must-be-bool/output.txt}}
 ```
 
-The error indicates that Rust expected a `bool` but got an integer. Unlike
-languages such as Ruby and JavaScript, Rust will not automatically try to
-convert non-Boolean types to a Boolean. You must be explicit and always provide
-`if` with a Boolean as its condition. If we want the `if` code block to run
-only when a number is not equal to `0`, for example, we can change the `if`
-expression to the following:
+L'errore indica che Rust si aspettava un `bool` ma ha ottenuto un numero intero.
+A differenza di linguaggi come Ruby e JavaScript, Rust non cercherà
+automaticamente di convertire i _type_ non booleani in booleani. Devi essere
+esplicito e fornire sempre un `if` con un booleano come condizione. Se vogliamo
+che il blocco di codice `if` venga eseguito solo quando un numero non è uguale a
+`0`, ad esempio, possiamo modificare l'espressione `if` nel seguente modo:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-29-if-not-equal-0/src/main.rs}}
 ```
 
-Running this code will print `number was something other than zero`.
+L'esecuzione di questo codice stamperà `numero era qualcosa di diverso da zero`.
 
-#### Handling Multiple Conditions with `else if`
+#### Gestione di condizioni multiple con `else if`
 
-You can use multiple conditions by combining `if` and `else` in an `else if`
-expression. For example:
+Puoi utilizzare condizioni multiple combinando `if` e `else` in un'espressione `else if`. Ad esempio:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-30-else-if/src/main.rs}}
 ```
 
-This program has four possible paths it can take. After running it, you should
-see the following output:
+Questo programma ha quattro possibili _rami_. Dopo averlo eseguito, dovresti vedere il seguente output:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-30-else-if/output.txt}}
 ```
+Quando questo programma viene eseguito, controlla ogni espressione `if` a turno
+ed esegue il primo corpo per il quale la condizione è valutata `true`. Nota che
+anche se 6 è divisibile per 2, non vediamo l'output `numero è divisibile per 2`,
+né vediamo il testo `numero non è divisibile per 4, 3 o 2` del blocco `else`.
+Questo perché Rust esegue il blocco solo per la prima condizione `true` e una
+volta che ne trova una, le restanti non vengono controllate.
 
-When this program executes, it checks each `if` expression in turn and executes
-the first body for which the condition evaluates to `true`. Note that even
-though 6 is divisible by 2, we don’t see the output `number is divisible by 2`,
-nor do we see the `number is not divisible by 4, 3, or 2` text from the `else`
-block. That’s because Rust only executes the block for the first `true`
-condition, and once it finds one, it doesn’t even check the rest.
+L'uso di troppe espressioni `else if` può rendere il codice un po' confusionario
+e difficile da leggere, quindi se ne hai più di una, potresti valutare di
+riscrivere il codice. Il Capitolo 6 descrive un potente costrutto di
+ramificazione di Rust chiamato `match` per gestire casi del genere.
 
-Using too many `else if` expressions can clutter your code, so if you have more
-than one, you might want to refactor your code. Chapter 6 describes a powerful
-Rust branching construct called `match` for these cases.
+#### Utilizzo di `if` in una dichiarazione `let`
 
-#### Using `if` in a `let` Statement
+Dato che `if` è un'espressione, possiamo usarla a destra di una dichiarazione
+`let` per assegnare il risultato a una variabile, come nel Listato 3-2.
 
-Because `if` is an expression, we can use it on the right side of a `let`
-statement to assign the outcome to a variable, as in Listing 3-2.
-
-<Listing number="3-2" file-name="src/main.rs" caption="Assigning the result of an `if` expression to a variable">
+<Listing number="3-2" file-name="src/main.rs" caption="Assegnazione del risultato di un'espressione `if` as una variabile">
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/listing-03-02/src/main.rs}}
@@ -128,43 +130,44 @@ statement to assign the outcome to a variable, as in Listing 3-2.
 
 </Listing>
 
-The `number` variable will be bound to a value based on the outcome of the `if`
-expression. Run this code to see what happens:
+La variabile `numero` sarà legata a un valore basato sul risultato
+dell'espressione `if`. Esegui questo codice per vedere cosa succede:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/listing-03-02/output.txt}}
 ```
 
-Remember that blocks of code evaluate to the last expression in them, and
-numbers by themselves are also expressions. In this case, the value of the
-whole `if` expression depends on which block of code executes. This means the
-values that have the potential to be results from each arm of the `if` must be
-the same type; in Listing 3-2, the results of both the `if` arm and the `else`
-arm were `i32` integers. If the types are mismatched, as in the following
-example, we’ll get an error:
+Ricorda che i blocchi di codice valutano l'ultima espressione in essi contenuta
+e i numeri da soli sono anch'essi espressioni. In questo caso, il valore
+dell'intera espressione `if` dipende da quale blocco di codice viene eseguito.
+Ciò significa che i valori che possono essere i risultati di ogni _ramo_ di `if`
+devono essere dello stesso tipo; nel Listato 3-2, i risultati sia del _ramo_
+`if` che del _ramo_ `else` erano numeri interi `i32`. Se i _type_ non sono
+corrispondenti, come nell'esempio seguente, otterremo un errore:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-31-arms-must-return-same-type/src/main.rs}}
 ```
 
-When we try to compile this code, we’ll get an error. The `if` and `else` arms
-have value types that are incompatible, and Rust indicates exactly where to
-find the problem in the program:
+Quando proviamo a compilare questo codice, otterremo un errore: i _rami_ `if` e
+`else` hanno _type_ incompatibili e Rust indica esattamente dove trovare il
+problema nel programma:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-31-arms-must-return-same-type/output.txt}}
 ```
 
-The expression in the `if` block evaluates to an integer, and the expression in
-the `else` block evaluates to a string. This won’t work because variables must
-have a single type, and Rust needs to know at compile time what type the
-`number` variable is, definitively. Knowing the type of `number` lets the
-compiler verify the type is valid everywhere we use `number`. Rust wouldn’t be
-able to do that if the type of `number` was only determined at runtime; the
-compiler would be more complex and would make fewer guarantees about the code
-if it had to keep track of multiple hypothetical types for any variable.
+L'espressione nel blocco `if` ritorna un _integer_ e l'espressione nel blocco
+`else` ritorna una stringa. Questo non funziona perché le variabili devono avere
+un _type_ univoco e Rust ha bisogno di sapere in fase di compilazione che di che
+_type_ è la variabile `numero`, in modo definitivo. Conoscere il _type_ di
+`numero` permette al compilatore di verificare che il _type_ sia valido ovunque
+si utilizzi `numero`. Rust non sarebbe in grado di farlo se il _type_ di
+`numero` fosse determinato solo in fase di esecuzione; il compilatore sarebbe
+più complesso e darebbe meno garanzie sul codice se dovesse tenere traccia dei
+più disparati _type_ possibili per ogni variabile.
 
 ### Repetition with Loops
 
@@ -220,7 +223,7 @@ where the code was in the loop when it received the interrupt signal.
 Fortunately, Rust also provides a way to break out of a loop using code. You
 can place the `break` keyword within the loop to tell the program when to stop
 executing the loop. Recall that we did this in the guessing game in the
-[“Quitting After a Correct Guess”][quitting-after-a-correct-guess]<!-- ignore
+[“Uscita dopo un'ipotesi corretta”][uscita-dopo-unipotesi-corretta]<!-- ignore
 --> section of Chapter 2 to exit the program when the user won the game by
 guessing the correct number.
 
@@ -386,5 +389,5 @@ do the following:
 When you’re ready to move on, we’ll talk about a concept in Rust that _doesn’t_
 commonly exist in other programming languages: ownership.
 
-[comparing-the-guess-to-the-secret-number]: ch02-00-guessing-game-tutorial.html#comparing-the-guess-to-the-secret-number
-[quitting-after-a-correct-guess]: ch02-00-guessing-game-tutorial.html#quitting-after-a-correct-guess
+[confrontare-lipotesi-con-il-numero-segreto]: ch02-00-guessing-game-tutorial.html#cconfrontare-lipotesi-con-il-numero-segreto
+[uscita-dopo-unipotesi-corretta]: ch02-00-guessing-game-tutorial.html#uscita-dopo-unipotesi-corretta

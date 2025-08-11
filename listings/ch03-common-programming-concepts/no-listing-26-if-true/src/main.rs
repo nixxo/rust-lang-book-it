@@ -1,9 +1,9 @@
 fn main() {
-    let number = 3;
+    let numero = 3;
 
-    if number < 5 {
-        println!("condition was true");
+    if numero < 5 {
+        println!("condizione era vera");
     } else {
-        println!("condition was false");
+        println!("condizione era falsa");
     }
 }
