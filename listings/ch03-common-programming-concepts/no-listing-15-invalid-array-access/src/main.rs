@@ -3,20 +3,20 @@ use std::io;
 fn main() {
     let a = [1, 2, 3, 4, 5];
 
-    println!("Please enter an array index.");
+    println!("Digita un indice dell'array.");
 
-    let mut index = String::new();
+    let mut indice = String::new();
 
     io::stdin()
-        .read_line(&mut index)
-        .expect("Failed to read line");
+        .read_line(&mut indice)
+        .expect("Errore di lettura");
 
-    let index: usize = index
+    let indice: usize = indice
         .trim()
         .parse()
-        .expect("Index entered was not a number");
+        .expect("L'indice inserito non è un numero");
 
-    let element = a[index];
+    let elemento = a[indice];
 
-    println!("The value of the element at index {index} is: {element}");
+    println!("Il valore dell'elemento all'indice {indice} è: {elemento}");
 }

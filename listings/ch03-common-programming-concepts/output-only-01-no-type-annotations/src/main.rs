@@ -1,3 +1,5 @@
 fn main() {
-    let guess = "42".parse().expect("Not a number!");
+    // ANCHOR: main
+    let ipotesi: u32 = "42".parse().expect("Non è un numero!");
+    // ANCHOR_END: main
 }

@@ -1,5 +1,5 @@
 fn main() {
     let c = 'z';
-    let z: char = 'ℤ'; // with explicit type annotation
-    let heart_eyed_cat = '😻';
+    let z: char = 'ℤ'; // con specificazione del type
+    let gattino_innamorato = '😻';
 }
