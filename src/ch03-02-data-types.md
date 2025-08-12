@@ -1,7 +1,7 @@
 ## Datatype - Tipi di dato
 
-Ogni valore in Rust è di un dato con un certo _type_, il che dice a Rust che
-tipo di dati vengono specificati in modo che sappia come lavorare con quei dati.
+Ogni valore in Rust è di un determinato _type_, il che dice a Rust che tipo di
+dati vengono specificati in modo che sappia come lavorare con quei dati.
 Esamineremo due sottoinsiemi di tipi di dati: scalare e composto. Tieni presente
 che Rust è un linguaggio _tipizzato staticamente_, il che significa che deve
 conoscere il _type_ di tutte le variabili in fase di compilazione. Il
@@ -53,19 +53,19 @@ dichiarare il _type_ di un valore intero.
 | 32-bit    | `i32`     | `u32`       |
 | 64-bit    | `i64`     | `u64`       |
 | 128-bit   | `i128`    | `u128`      |
-| in base all'architettura | `isize` | `usize`  |
+| in base all'architettura | `isize` | `usize` |
 
-Ogni variante può essere con segno o senza e ha una dimensione esplicita. _Con
-segno_ e _senza segno_ si riferisce alla possibilità che il numero sia negativo,
-in altre parole, se il numero deve avere un segno con sé (con segno) o se sarà
-sempre e solo positivo e potrà quindi essere rappresentato senza segno (senza
-segno). È come scrivere numeri su carta: quando il segno conta, un numero viene
-indicato con il segno più o con il segno meno; tuttavia, quando è lecito
-ritenere che il numero sia positivo, viene visualizzato senza segno. I numeri
-con segno vengono memorizzati utilizzando la rappresentazione del [complemento a
-due][complemento-a-due]<!-- ignore -->.
+Ogni variante può essere con segno o senza e ha una dimensione esplicita. Con
+_segno_ e _senza segno_ si riferisce alla possibilità che il numero sia
+negativo, in altre parole, se il numero deve avere un segno con sé (_signed_ in
+inglese) o se sarà sempre e solo positivo e potrà quindi essere rappresentato
+senza segno (_unsigned_ in inglese). È come scrivere numeri su carta: quando il
+segno conta, un numero viene indicato con il segno più o con il segno meno;
+tuttavia, quando è lecito ritenere che il numero sia positivo, viene
+visualizzato senza segno. I numeri con segno vengono memorizzati utilizzando la
+rappresentazione del [complemento a due][complemento-a-due]<!-- ignore -->.
 
-Ogni variante con segnoa può memorizzare numeri da -(2<sup>n - 1</sup>) a
+Ogni variante con segno può memorizzare numeri da -(2<sup>n - 1</sup>) a
 2<sup>n - 1</sup> - 1 inclusi, dove _n_ è il numero di bit che la variante
 utilizza. Quindi un `i8` può memorizzare numeri da -(2<sup>7</sup>) a
 2<sup>7</sup> - 1, il che equivale a -128 a 127. Le varianti senza segno possono
@@ -131,7 +131,7 @@ _type integer_ di default è `i32`. La situazione principale in cui puoi usare
 #### Type a Virgola Mobile
 
 Rust ha anche due _type_ primitivi per i _numeri in virgola mobile_, abbreviato
-_float_ in i nglese, che sono numeri con punti decimali. I _type_ in virgola
+_float_ in inglese, che sono numeri con punti decimali. I _type_ in virgola
 mobile di Rust sono `f32` e `f64`, rispettivamente di 32 e 64 bit. Il tipo
 predefinito è `f64` perché sulle CPU moderne ha più o meno la stessa velocità di
 `f32` ma è in grado di garantire una maggiore precisione. Tutti i _type_ in

@@ -7,7 +7,7 @@ stimoli che Rust ti dà per scrivere il tuo codice in modo da sfruttare la
 sicurezza e la facilità di concorrenza che Rust offre. Tuttavia, hai ancora la
 possibilità di rendere le tue variabili mutabili. Esploriamo come e perché Rust
 ti incoraggia a favorire l'immutabilità e perché a volte potresti voler
-rinunciare.
+rinunciare a questa cosa.
 
 Quando una variabile è immutabile, una volta che un valore è legato a un nome,
 non è più possibile cambiarlo. Per vederlo con mano, genera un nuovo progetto
@@ -34,7 +34,7 @@ Questo esempio mostra come il compilatore ti aiuta a trovare gli errori nei tuoi
 programmi. Gli errori del compilatore possono essere frustranti, ma in realtà
 significano solo che il tuo programma non sta ancora facendo in modo sicuro ciò
 che vuoi; non significano che non sei un buon programmatore! Anche ai Rustaceani
-più esperti escon fuori errori del compilatore.
+più esperti appaiono errori del compilatore.
 
 Hai ricevuto il messaggio di errore `` cannot assign twice to immutable variable
 `` perché hai cercato di assegnare un secondo valore alla variabile immutabile
@@ -76,7 +76,7 @@ Quando eseguiamo il programma ora, otteniamo questo:
 
 Siamo autorizzati a cambiare il valore legato a `x` da `5` a `6` quando si usa
 `mut`. In definitiva, decidere se usare la mutabilità o meno dipende da te e da
-ciò che ritieni più chiaro in quella particolare situazione.
+ciò che ritieni più utile in quella particolare situazione.
 
 ### Costanti
 
@@ -172,7 +172,7 @@ L'altra differenza tra `mut` e lo _shadowing_ è che, poiché stiamo
 effettivamente creando una nuova variabile quando usiamo di nuovo la parola
 chiave `let`, possiamo cambiare il _type_ del valore ma riutilizzare lo stesso
 nome. Ad esempio, supponiamo che il nostro programma chieda a un utente di
-mostrare quanti spazi vuole tra un testo e l'altro inserendo dei caratteri di
+scriverci quanti spazi vuole tra un testo e l'altro inserendo dei caratteri di
 spazio, e poi vogliamo memorizzare questo input come un numero:
 
 ```rust
