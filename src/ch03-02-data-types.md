@@ -164,15 +164,15 @@ dichiarazione `let`:
 
 Ogni espressione in queste dichiarazioni utilizza un operatore matematico e
 valuta un singolo valore, che viene poi legato a una variabile. [Appendice
-B][appendice_b]<!-- ignora --> contiene un elenco di tutti gli operatori che
+B][appendice_b]<!-- ignore --> contiene un elenco di tutti gli operatori che
 Rust mette a disposizione.
 
 #### Il Type Booleano
 
-As in most other programming languages, a Boolean type in Rust has two possible
-values: `true` and `false`. Booleans are one byte in size. The Boolean type in
-Rust is specified using `bool`. For example:
-Come nella maggior parte degli altri linguaggi di programmazione, un _type_ booleano in Rust ha due valori possibili: _vero_ o _falso_ (`true` e `false` rispettivamente d'ora in poi). I booleani hanno la dimensione di un byte. Il _type_ booleano in Rust viene specificato con `bool`. Ad esempio:
+Come nella maggior parte degli altri linguaggi di programmazione, un _type_
+booleano in Rust ha due valori possibili: _vero_ o _falso_ (`true` e `false`
+rispettivamente d'ora in poi). I booleani hanno la dimensione di un byte. Il
+_type_ booleano in Rust viene specificato con `bool`. Ad esempio:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -180,11 +180,15 @@ Come nella maggior parte degli altri linguaggi di programmazione, un _type_ bool
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-08-boolean/src/main.rs}}
 ```
 
-Il modo principale per utilizzare i valori booleani è attraverso i condizionali, come ad esempio un'espressione `if`. Tratteremo il funzionamento delle espressioni `if` in Rust nella sezione ["Flusso di controllo"][control-flow]<!-- ignore -->.
+Il modo principale per utilizzare i valori booleani è attraverso i condizionali,
+come ad esempio un'espressione `if`. Tratteremo il funzionamento delle
+espressioni `if` in Rust nella sezione ["Struttura di
+controllo"][control-flow]<!-- ignore -->.
 
 #### Il Type Carattere
 
-Il _type_ carattere (`char` d'ota in poi) di Rust è il tipo alfabetico più primitivo del linguaggio. Ecco alcuni esempi di dichiarazione di valori `char`:
+Il _type_ carattere (`char` d'ota in poi) di Rust è il tipo alfabetico più
+primitivo del linguaggio. Ecco alcuni esempi di dichiarazione di valori `char`:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -207,7 +211,8 @@ stringhe"][strings]<!-- ignore --> nel Capitolo 8.
 
 ### I Type Composti
 
-I _type composti_ possono raggruppare più valori in un unico _type_. Rust ha due _type_ composti primitivi: le tuple e gli array.
+I _type composti_ possono raggruppare più valori in un unico _type_. Rust ha due
+_type_ composti primitivi: le tuple e gli array.
 
 #### Il Type Tupla
 
@@ -337,14 +342,16 @@ utilizzando l’indicizzazione, in questo modo:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-14-array-indexing/src/main.rs}}
 ```
 
-In questo esempio, la variabile denominata `primo` otterrà il valore `1` perché è il valore all'indice `[0]` dell'array. La variabile denominata `secondo` otterrà il valore `2` dall'indice `[1]` dell'array.
+In questo esempio, la variabile denominata `primo` otterrà il valore `1` perché
+è il valore all'indice `[0]` dell'array. La variabile denominata `secondo`
+otterrà il valore `2` dall'indice `[1]` dell'array.
 
 ##### Accesso all'elemento dell'array non valido
 
-Let’s see what happens if you try to access an element of an array that is past
-the end of the array. Say you run this code, similar to the guessing game in
-Chapter 2, to get an array index from the user:
-Vediamo cosa succede se cerchi di accedere a un elemento di un array che si trova oltre la fine dell'array stesso. Supponiamo di eseguire questo codice, simile al gioco di indovinelli del Capitolo 2, per ottenere un indice dell'array dall'utente:
+Vediamo cosa succede se cerchi di accedere a un elemento di un array che si
+trova oltre la fine dell'array stesso. Supponiamo di eseguire questo codice,
+simile al gioco di indovinelli del Capitolo 2, per ottenere un indice dell'array
+dall'utente:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -388,7 +395,8 @@ consentire l'accesso alla memoria e continuare. Il [Capitolo
 errori di Rust e di come puoi scrivere codice leggibile e sicuro che non va in
 _panic_ né consente l'accesso non valido alla memoria.
 
-[confrontare-lipotesi-con-il-numero-segreto]: ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
+[confrontare-lipotesi-con-il-numero-segreto]:
+    ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
 [complemento-a-due]: https://it.wikipedia.org/wiki/Complemento_a_due
 [ieee-754]: https://it.wikipedia.org/wiki/IEEE_754
 [control-flow]: ch03-05-control-flow.html#control-flow

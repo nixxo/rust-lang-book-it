@@ -130,8 +130,8 @@ passare direttamente al Capitolo 3, tornando al Capitolo 2 quando vorrai
 lavorare su un progetto applicando i dettagli che hai imparato.
 
 Il Capitolo 5 parla di strutture e metodi, mentre il Capitolo 6 tratta le
-enumerazioni, le espressioni `match` e il costrutto del flusso di controllo `if
-let`. Utilizzerai le strutture e le enumerazioni per creare tipologie
+enumerazioni, le espressioni `match` e il costrutto della struttura di controllo
+`if let`. Utilizzerai le strutture e le enumerazioni per creare tipologie
 personalizzate in Rust.
 
 Nel Capitolo 7 imparerai a conoscere il sistema di moduli di Rust, le regole di

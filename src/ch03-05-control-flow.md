@@ -1,4 +1,4 @@
-## Flusso di controllo
+## Struttura di controllo
 
 La possibilità di eseguire del codice a seconda che una condizione sia `vera` e
 di eseguire ripetutamente del codice finché una data condizione è `vera` sono
@@ -92,7 +92,8 @@ L'esecuzione di questo codice stamperà `numero era qualcosa di diverso da zero`
 
 #### Gestione di condizioni multiple con `else if`
 
-Puoi utilizzare condizioni multiple combinando `if` e `else` in un'espressione `else if`. Ad esempio:
+Puoi utilizzare condizioni multiple combinando `if` e `else` in un'espressione
+`else if`. Ad esempio:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -100,7 +101,8 @@ Puoi utilizzare condizioni multiple combinando `if` e `else` in un'espressione `
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-30-else-if/src/main.rs}}
 ```
 
-Questo programma ha quattro possibili _rami_. Dopo averlo eseguito, dovresti vedere il seguente output:
+Questo programma ha quattro possibili _rami_. Dopo averlo eseguito, dovresti
+vedere il seguente output:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-30-else-if/output.txt}}
@@ -219,7 +221,9 @@ ancora!
 
 Il simbolo `^C` rappresenta quand hai premuto <kbd>ctrl</kbd>-<kbd>c</kbd>.
 
-Potresti vedere o meno la parola `ancora!` stampata dopo la `^C`, a seconda di dove si trovava il codice nel ciclo quando ha ricevuto il segnale di interruzione.
+Potresti vedere o meno la parola `ancora!` stampata dopo la `^C`, a seconda di
+dove si trovava il codice nel ciclo quando ha ricevuto il segnale di
+interruzione.
 
 Fortunatamente, Rust offre anche un modo per uscire da un ciclo utilizzando del
 codice. Puoi inserire la parola chiave `break` all'interno del ciclo per
@@ -307,7 +311,9 @@ condizione risulta `true`, il codice viene eseguito; altrimenti, esce dal ciclo.
 
 #### Eseguire un ciclo su una collezione `for`
 
-Puoi scegliere di utilizzare il costrutto `while` per eseguire un ciclo sugli elementi di una collezione, come un array. Ad esempio, il ciclo nel Listato 3-4 stampa ogni elemento dell'array `a`.
+Puoi scegliere di utilizzare il costrutto `while` per eseguire un ciclo sugli
+elementi di una collezione, come un array. Ad esempio, il ciclo nel Listato 3-4
+stampa ogni elemento dell'array `a`.
 
 <Listing number="3-4" file-name="src/main.rs" caption="Passare in rassegna gli elementi di una collezione con un ciclo `while`">
 
@@ -397,5 +403,7 @@ operazioni:
 Quando sarai pronto per andare avanti, parleremo di un concetto di Rust che non
 esiste in altri linguaggi di programmazione: la _ownership_.
 
-[confrontare-lipotesi-con-il-numero-segreto]: ch02-00-guessing-game-tutorial.html#cconfrontare-lipotesi-con-il-numero-segreto
-[uscita-dopo-unipotesi-corretta]: ch02-00-guessing-game-tutorial.html#uscita-dopo-unipotesi-corretta
+[confrontare-lipotesi-con-il-numero-segreto]:
+    ch02-00-guessing-game-tutorial.html#cconfrontare-lipotesi-con-il-numero-segreto
+[uscita-dopo-unipotesi-corretta]:
+    ch02-00-guessing-game-tutorial.html#uscita-dopo-unipotesi-corretta

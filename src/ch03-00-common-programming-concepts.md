@@ -7,8 +7,9 @@ hanno molti punti in comune. Nessuno dei concetti presentati in questo capitolo
 convenzioni per l'utilizzo di questi concetti.
 
 In particolare, imparerai a conoscere le variabili, i tipi di base, le funzioni,
-i commenti e il flusso di controllo. Questi fondamenti saranno presenti in ogni
-programma di Rust e impararli presto ti darà una base solida da cui partire.
+i commenti e la struttura di controllo. Questi fondamenti saranno presenti in
+ogni programma di Rust e impararli presto ti darà una base solida da cui
+partire.
 
 > #### Parole chiave
 >

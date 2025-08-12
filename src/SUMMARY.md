@@ -18,7 +18,7 @@
   - [Datatype - Tipi di dato](ch03-02-data-types.md)
   - [Funzioni](ch03-03-how-functions-work.md)
   - [Commenti](ch03-04-comments.md)
-  - [Flusso di controllo](ch03-05-control-flow.md)
+  - [Struttura di controllo](ch03-05-control-flow.md)
 
 - [Understanding Ownership](ch04-00-understanding-ownership.md)
   - [What is Ownership?](ch04-01-what-is-ownership.md)

@@ -606,7 +606,7 @@ Ora che abbiamo l'input dell'utente e un numero casuale, possiamo confrontarli.
 Questo passo è mostrato nel Listato 2-4. Nota che questo codice non è
 compilabile per il momento, come spiegheremo.
 
-<Listing number="2-4" file-name="src/main.rs" caption="Gestione Handling the possible return values of comparing two numbers">
+<Listing number="2-4" file-name="src/main.rs" caption="Gestione dei possibili risultati della comparazione di due numeri">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch02-guessing-game-tutorial/listing-02-04/src/main.rs:here}}
@@ -699,11 +699,11 @@ let ipotesi: u32 = ipotesi.trim().parse().expect("Inserisci un numero!");
 Creiamo una variabile di nome `ipotesi`. Ma aspetta, il programma non ha già una
 variabile di nome `ipotesi`? Sì, ma Rust ci permette di _mettere in ombra_, il
 valore precedente di `ipotesi` con uno nuovo. Lo _Shadowing_ ci permette di
-riutilizzare il nome della variabile `ipotesi` invece di
-costringerci a creare due variabili uniche, come `ipotesi_str` e `ipotesi`, per
-esempio. Ne parleremo in modo più dettagliato nel [Capitolo 3][shadowing]<!--
-ignore -->, ma per ora, sappi che questa funzione è spesso usata quando vuoi
-convertire un valore da un _type_ ad un altro.
+riutilizzare il nome della variabile `ipotesi` invece di costringerci a creare
+due variabili uniche, come `ipotesi_str` e `ipotesi`, per esempio. Ne parleremo
+in modo più dettagliato nel [Capitolo 3][shadowing]<!-- ignore -->, ma per ora,
+sappi che questa funzione è spesso usata quando vuoi convertire un valore da un
+_type_ ad un altro.
 
 Leghiamo questa nuova variabile all'espressione `ipotesi.trim().parse()`.
 L'`ipotesi` nell'espressione si riferisce alla variabile `ipotesi` originale che
