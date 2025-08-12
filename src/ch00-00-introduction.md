@@ -131,8 +131,8 @@ lavorare su un progetto applicando i dettagli che hai imparato.
 
 Il Capitolo 5 parla di strutture e metodi, mentre il Capitolo 6 tratta le
 enumerazioni, le espressioni `match` e il costrutto della struttura di controllo
-`if let`. Utilizzerai le strutture e le enumerazioni per creare tipologie
-personalizzate in Rust.
+`if let`. Utilizzerai le strutture e le enumerazioni per creare _type_
+personalizzati in Rust.
 
 Nel Capitolo 7 imparerai a conoscere il sistema di moduli di Rust, le regole di
 visibità per l'organizzazione del codice e la sua Application Programming

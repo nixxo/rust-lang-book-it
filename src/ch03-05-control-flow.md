@@ -1,4 +1,4 @@
-## Struttura di controllo
+## Controllo del flusso
 
 La possibilità di eseguire del codice a seconda che una condizione sia `vera` e
 di eseguire ripetutamente del codice finché una data condizione è `vera` sono

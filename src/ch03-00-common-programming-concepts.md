@@ -6,10 +6,10 @@ hanno molti punti in comune. Nessuno dei concetti presentati in questo capitolo
 è esclusivo di Rust, ma li discuteremo nel contesto di Rust e spiegheremo le
 convenzioni per l'utilizzo di questi concetti.
 
-In particolare, imparerai a conoscere le variabili, i tipi di base, le funzioni,
-i commenti e la struttura di controllo. Questi fondamenti saranno presenti in
-ogni programma di Rust e impararli presto ti darà una base solida da cui
-partire.
+In particolare, imparerai a conoscere le variabili, i _type_ di base, le
+funzioni, i commenti e le strutture di controllo. Questi fondamenti saranno
+presenti in ogni programma di Rust e impararli presto ti darà una base solida da
+cui partire.
 
 > #### Parole chiave
 >

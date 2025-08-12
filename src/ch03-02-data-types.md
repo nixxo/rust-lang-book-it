@@ -182,8 +182,8 @@ _type_ booleano in Rust viene specificato con `bool`. Ad esempio:
 
 Il modo principale per utilizzare i valori booleani è attraverso i condizionali,
 come ad esempio un'espressione `if`. Tratteremo il funzionamento delle
-espressioni `if` in Rust nella sezione ["Struttura di
-controllo"][control-flow]<!-- ignore -->.
+espressioni `if` in Rust nella sezione ["Controllo del
+flusso"][control-flow]<!-- ignore -->.
 
 #### Il Type Carattere
 

@@ -954,10 +954,10 @@ Rust: `let`, `match`, le funzioni, l'uso di _crate_ esterni e altro ancora. Nei
 prossimi capitoli imparerai a conoscere questi concetti in modo più dettagliato.
 Il Capitolo 3 tratta i concetti che la maggior parte dei linguaggi di
 programmazione possiede, come le variabili, i tipi di dati e le funzioni, e
-mostra come utilizzarli in Rust. Il Capitolo 4 esplora il controllo esclusivo,
-una caratteristica che rende Rust diverso dagli altri linguaggi. Il Capitolo 5
-parla delle strutture e della sintassi dei metodi, mentre il Capitolo 6 spiega
-come funzionano gli _enum_.
+mostra come utilizzarli in Rust. Il Capitolo 4 esplora la _ownership_
+(_controllo esclusivo_), una caratteristica che rende Rust diverso dagli altri
+linguaggi. Il Capitolo 5 parla delle strutture e della sintassi dei metodi,
+mentre il Capitolo 6 spiega come funzionano gli _enum_.
 
 [prelude]: https://doc.rust-lang.org/stable/std/prelude/index.html
 [variables-and-mutability]:
