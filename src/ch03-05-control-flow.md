@@ -169,33 +169,35 @@ si utilizzi `numero`. Rust non sarebbe in grado di farlo se il _type_ di
 più complesso e darebbe meno garanzie sul codice se dovesse tenere traccia dei
 più disparati _type_ possibili per ogni variabile.
 
-### Repetition with Loops
+### Ripetizione con i cicli
 
-It’s often useful to execute a block of code more than once. For this task,
-Rust provides several _loops_, which will run through the code inside the loop
-body to the end and then start immediately back at the beginning. To experiment
-with loops, let’s make a new project called _loops_.
+Spesso è utile eseguire un blocco di codice più di una volta. Per questo
+compito, Rust mette a disposizione diversi _cicli_ (_loop_ in inglese), che
+eseguono il codice all'interno del corpo del ciclo fino alla fine e poi
+ripartono immediatamente dall'inizio. Per sperimentare con i cicli, creiamo un
+nuovo progetto chiamato _cicli_.
 
-Rust has three kinds of loops: `loop`, `while`, and `for`. Let’s try each one.
+Rust mette a disposizione tre tipologie di ciclo: `loop`, `while` e `for`.
+Proviamo ciascuno di essi.
 
-#### Repeating Code with `loop`
+#### Ripetizione del codice con `loop
 
-The `loop` keyword tells Rust to execute a block of code over and over again
-forever or until you explicitly tell it to stop.
+La parola chiave `loop` dice a Rust di eseguire un blocco di codice più e più
+volte per sempre o finché non gli dici esplicitamente di fermarsi.
 
-As an example, change the _src/main.rs_ file in your _loops_ directory to look
-like this:
+A titolo di esempio, modifica il file _src/main.rs_ nella tua cartella _cicli_
+in questo modo:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-32-loop/src/main.rs}}
 ```
 
-When we run this program, we’ll see `again!` printed over and over continuously
-until we stop the program manually. Most terminals support the keyboard shortcut
-<kbd>ctrl</kbd>-<kbd>c</kbd> to interrupt a program that is stuck in a continual
-loop. Give it a try:
+Quando eseguiamo questo programma, vedremo `ancora!` stampato in continuazione
+fino a quando non interromperemo il programma manualmente. La maggior parte dei
+terminali supporta la scorciatoia da tastiera <kbd>ctrl</kbd>-<kbd>c</kbd> per
+interrompere un programma che è bloccato in un ciclo continuo. Provaci:
 
 <!-- manual-regeneration
 cd listings/ch03-common-programming-concepts/no-listing-32-loop
@@ -205,89 +207,93 @@ CTRL-C
 
 ```console
 $ cargo run
-   Compiling loops v0.1.0 (file:///projects/loops)
+   Compiling cicli v0.1.0 (file:///progetti/cicli)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.08s
-     Running `target/debug/loops`
-again!
-again!
-again!
-again!
-^Cagain!
+     Running `target/debug/cicli`
+ancora!
+ancora!
+ancora!
+ancora!
+^Ccicli!
 ```
 
-The symbol `^C` represents where you pressed <kbd>ctrl</kbd>-<kbd>c</kbd>.
+Il simbolo `^C` rappresenta quand hai premuto <kbd>ctrl</kbd>-<kbd>c</kbd>.
 
-You may or may not see the word `again!` printed after the `^C`, depending on
-where the code was in the loop when it received the interrupt signal.
+Potresti vedere o meno la parola `ancora!` stampata dopo la `^C`, a seconda di dove si trovava il codice nel ciclo quando ha ricevuto il segnale di interruzione.
 
-Fortunately, Rust also provides a way to break out of a loop using code. You
-can place the `break` keyword within the loop to tell the program when to stop
-executing the loop. Recall that we did this in the guessing game in the
-[“Uscita dopo un'ipotesi corretta”][uscita-dopo-unipotesi-corretta]<!-- ignore
---> section of Chapter 2 to exit the program when the user won the game by
-guessing the correct number.
+Fortunatamente, Rust offre anche un modo per uscire da un ciclo utilizzando del
+codice. Puoi inserire la parola chiave `break` all'interno del ciclo per
+indicare al programma quando interrompere l'esecuzione del ciclo. Ricorda che
+abbiamo fatto questo nel gioco di indovinelli nella sezione ["Uscita dopo
+un'ipotesi corretta"][uscita-dopo-unipotesi-corretta]<!-- ignore --> del
+Capitolo 2 per uscire dal programma quando l'utente indovinava il numero
+corretto.
 
-We also used `continue` in the guessing game, which in a loop tells the program
-to skip over any remaining code in this iteration of the loop and go to the
-next iteration.
+Nel gioco di indovinelli abbiamo usato anche `continue`, che in un ciclo indica
+al programma di saltare tutto il codice rimanente in questa iterazione del ciclo
+e di passare all'iterazione successiva.
 
-#### Returning Values from Loops
+#### Restituzione di valori dai cicli
 
-One of the uses of a `loop` is to retry an operation you know might fail, such
-as checking whether a thread has completed its job. You might also need to pass
-the result of that operation out of the loop to the rest of your code. To do
-this, you can add the value you want returned after the `break` expression you
-use to stop the loop; that value will be returned out of the loop so you can
-use it, as shown here:
+Uno degli utilizzi di un `loop` è quello di riprovare un'operazione che sai che
+potrebbe fallire, come ad esempio controllare se un _thread_ ha completato il
+suo lavoro. Potresti anche aver bisogno di passare il risultato di questa
+operazione al di fuori del ciclo al resto del tuo codice. Per farlo, puoi
+aggiungere il valore che vuoi che venga restituito dopo l'espressione `break`
+che utilizzi per interrompere il loop; quel valore verrà restituito al di fuori
+del loop in modo da poterlo utilizzare, come mostrato qui:
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-33-return-value-from-loop/src/main.rs}}
 ```
+Prima del ciclo, dichiariamo una variabile chiamata `contatore` e la
+inizializziamo a `0`. Poi dichiariamo una variabile chiamata `risultato` per
+contenere il valore restituito dal ciclo. A ogni iterazione del ciclo,
+aggiungiamo `1` alla variabile `contatore` e poi controlliamo se `contatore` è
+uguale a `10`. Quando lo è, usiamo la parola chiave `break` con il valore
+`contatore * 2`. Dopo il ciclo, usiamo un punto e virgola per terminare
+l'istruzione che assegna il valore a `risultato`. Infine, stampiamo il valore in
+`risultato`, che in questo caso è `20`.
 
-Before the loop, we declare a variable named `counter` and initialize it to
-`0`. Then we declare a variable named `result` to hold the value returned from
-the loop. On every iteration of the loop, we add `1` to the `counter` variable,
-and then check whether the `counter` is equal to `10`. When it is, we use the
-`break` keyword with the value `counter * 2`. After the loop, we use a
-semicolon to end the statement that assigns the value to `result`. Finally, we
-print the value in `result`, which in this case is `20`.
+Puoi anche usare `return` all'interno di un ciclo. Mentre `break` esce solo dal
+ciclo corrente, `return` esce sempre dalla funzione corrente.
 
-You can also `return` from inside a loop. While `break` only exits the current
-loop, `return` always exits the current function.
+#### Etichette di loop per disambiguare tra cicli multipli
 
-#### Loop Labels to Disambiguate Between Multiple Loops
-
-If you have loops within loops, `break` and `continue` apply to the innermost
-loop at that point. You can optionally specify a _loop label_ on a loop that
-you can then use with `break` or `continue` to specify that those keywords
-apply to the labeled loop instead of the innermost loop. Loop labels must begin
-with a single quote. Here’s an example with two nested loops:
+Se hai un ciclo annidati all'interno di un altro ciclo, `break` e `continue` si
+applicano al loop più interno in quel momento. Puoi specificare facoltativamente
+un'_etichetta loop_ (_loop label_) su uno specifico ciclo per poi usare con
+`break` o `continue` quell'etichetta per specificare a quale ciclo applicare
+l'istruzione. Le _loop label_ devono iniziare con una virgoletta singola. Ecco
+un esempio con due loop annidati:
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-32-5-loop-labels/src/main.rs}}
 ```
 
-The outer loop has the label `'counting_up`, and it will count up from 0 to 2.
-The inner loop without a label counts down from 10 to 9. The first `break` that
-doesn’t specify a label will exit the inner loop only. The `break
-'counting_up;` statement will exit the outer loop. This code prints:
+Il ciclo esterno ha la _label_ `'aumenta_conteggio` e conta da 0 a 2. Il ciclo
+interno senza _label_ conta da 10 a 9. Il primo `break` che non specifica una
+_label_ esce solo dal ciclo interno. L'istruzione `break 'aumenta_conteggio;`
+esce dal ciclo esterno. Questo codice stamperà:
 
 ```console
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-32-5-loop-labels/output.txt}}
 ```
 
-#### Conditional Loops with `while`
+#### I cicli condizionali con `while`
 
-A program will often need to evaluate a condition within a loop. While the
-condition is `true`, the loop runs. When the condition ceases to be `true`, the
-program calls `break`, stopping the loop. It’s possible to implement behavior
-like this using a combination of `loop`, `if`, `else`, and `break`; you could
-try that now in a program, if you’d like. However, this pattern is so common
-that Rust has a built-in language construct for it, called a `while` loop. In
-Listing 3-3, we use `while` to loop the program three times, counting down each
-time, and then, after the loop, print a message and exit.
+Spesso un programma ha bisogno di valutare una condizione all'interno di un
+ciclo. Quando la condizione è `true`, il ciclo viene eseguito. Quando la
+condizione cessa di essere `true`, il programma chiama `break`, interrompendo il
+ciclo. È possibile implementare un comportamento del genere utilizzando una
+combinazione di `loop`, `if`, `else` e `break`; se vuoi, puoi provare a farlo in
+un programma. Tuttavia, questo schema è così comune che Rust ha un costrutto di
+linguaggio incorporato per questi casi, chiamato ciclo `while` (_finché_ in
+italiano). Nel Listato 3-3, usiamo `while` per eseguire il ciclo del programma
+tre volte, contando alla rovescia ogni volta, e poi, dopo il ciclo, stampiamo un
+messaggio e usciamo.
 
-<Listing number="3-3" file-name="src/main.rs" caption="Using a `while` loop to run code while a condition evaluates to `true`">
+<Listing number="3-3" file-name="src/main.rs" caption="Utilizzo di un ciclo `while` per eseguire codice finché la condizione è `true`">
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/listing-03-03/src/main.rs}}
@@ -295,17 +301,15 @@ time, and then, after the loop, print a message and exit.
 
 </Listing>
 
-This construct eliminates a lot of nesting that would be necessary if you used
-`loop`, `if`, `else`, and `break`, and it’s clearer. While a condition
-evaluates to `true`, the code runs; otherwise, it exits the loop.
+Questo costrutto elimina un sacco di annidamenti che sarebbero necessari se
+usassi `loop`, `if`, `else` e `break`, ed è di più semplice lettura. Finchè una
+condizione risulta `true`, il codice viene eseguito; altrimenti, esce dal ciclo.
 
-#### Looping Through a Collection with `for`
+#### Eseguire un ciclo su una collezione `for`
 
-You can choose to use the `while` construct to loop over the elements of a
-collection, such as an array. For example, the loop in Listing 3-4 prints each
-element in the array `a`.
+Puoi scegliere di utilizzare il costrutto `while` per eseguire un ciclo sugli elementi di una collezione, come un array. Ad esempio, il ciclo nel Listato 3-4 stampa ogni elemento dell'array `a`.
 
-<Listing number="3-4" file-name="src/main.rs" caption="Looping through each element of a collection using a `while` loop">
+<Listing number="3-4" file-name="src/main.rs" caption="Passare in rassegna gli elementi di una collezione con un ciclo `while`">
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/listing-03-04/src/main.rs}}
@@ -313,30 +317,32 @@ element in the array `a`.
 
 </Listing>
 
-Here, the code counts up through the elements in the array. It starts at index
-`0`, and then loops until it reaches the final index in the array (that is,
-when `index < 5` is no longer `true`). Running this code will print every
-element in the array:
+In questo caso, il codice conteggia tutti gli elementi dell'_array_: inizia
+dall'indice `0` e poi esegue un ciclo fino a raggiungere l'ultimo indice
+dell'_array_ (cioè quando `indice < 5` non è più `true`). L'esecuzione di questo
+codice stamperà ogni elemento dell'array:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/listing-03-04/output.txt}}
 ```
 
-All five array values appear in the terminal, as expected. Even though `index`
-will reach a value of `5` at some point, the loop stops executing before trying
-to fetch a sixth value from the array.
+Tutti e cinque i valori dell'_array_ appaiono nel terminale, come previsto.
+Anche se `indice` raggiungerà un valore di `5` a un certo punto, il ciclo viene
+bloccato prima che si tenti di leggere un sesto elemento dell'_array_.
 
-However, this approach is error prone; we could cause the program to panic if
-the index value or test condition is incorrect. For example, if you changed the
-definition of the `a` array to have four elements but forgot to update the
-condition to `while index < 4`, the code would panic. It’s also slow, because
-the compiler adds runtime code to perform the conditional check of whether the
-index is within the bounds of the array on every iteration through the loop.
+Tuttavia, questo approccio è incline all'errore; potremmo causare il _panic_ del
+programma se il valore dell'indice o la condizione di test non sono corretti.
+Per esempio, se cambiassi la definizione dell'array `a` per avere quattro
+elementi, ma dimenticassi di aggiornare la condizione a `while indice < 4`, il
+codice andrebbe in _panic_. È anche lento, perché il compilatore aggiunge codice
+di runtime per eseguire il controllo condizionale per verificare se l'indice è
+entro i limiti dell'array a ogni iterazione del ciclo.
 
-As a more concise alternative, you can use a `for` loop and execute some code
-for each item in a collection. A `for` loop looks like the code in Listing 3-5.
+Come alternativa più concisa, puoi usare un ciclo `for` ed eseguire del codice
+per ogni elemento di una collezione. Un ciclo `for` assomiglia al codice del
+Listato 3-5.
 
-<Listing number="3-5" file-name="src/main.rs" caption="Looping through each element of a collection using a `for` loop">
+<Listing number="3-5" file-name="src/main.rs" caption="Passare in rassegna gli elementi di una collezione con un ciclo `for`">
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/listing-03-05/src/main.rs}}
@@ -344,50 +350,52 @@ for each item in a collection. A `for` loop looks like the code in Listing 3-5.
 
 </Listing>
 
-When we run this code, we’ll see the same output as in Listing 3-4. More
-importantly, we’ve now increased the safety of the code and eliminated the
-chance of bugs that might result from going beyond the end of the array or not
-going far enough and missing some items. Machine code generated from `for`
-loops can be more efficient as well, because the index doesn’t need to be
-compared to the length of the array at every iteration.
+Quando eseguiamo questo codice, vedremo lo stesso risultato del Listato 3-4. Ma,
+cosa più importante, abbiamo aumentato la sicurezza del codice ed eliminato la
+possibilità di bug che potrebbero derivare dall'andare oltre la fine dell'array
+o dal non accedere ad ogni elemento dell'array. Il codice macchina generato dai
+cicli `for` può essere anche più efficiente, perché l'indice non deve essere
+confrontato con la lunghezza dell'array a ogni iterazione.
 
-Using the `for` loop, you wouldn’t need to remember to change any other code if
-you changed the number of values in the array, as you would with the method
-used in Listing 3-4.
+Utilizzando il ciclo `for`, non dovrai ricordarti di modificare altro codice se
+cambierai il numero di valori nell'array, come invece faresti con il metodo
+`while` usato nel Listato 3-4.
 
-The safety and conciseness of `for` loops make them the most commonly used loop
-construct in Rust. Even in situations in which you want to run some code a
-certain number of times, as in the countdown example that used a `while` loop
-in Listing 3-3, most Rustaceans would use a `for` loop. The way to do that
-would be to use a `Range`, provided by the standard library, which generates
-all numbers in sequence starting from one number and ending before another
-number.
+La sicurezza e la concisione dei cicli `for` li rendono il costrutto di ciclo
+più usato in Rust. Anche nelle situazioni in cui vuoi eseguire un certo numero
+di volte il codice, come nell'esempio del conto alla rovescia che utilizzava un
+ciclo `while` nel Listato 3-3, la maggior parte dei Rustaceani userebbe un ciclo
+`for`. Il modo per farlo sarebbe quello di usare un `Range`, fornito dalla
+libreria standard, che genera tutti i numeri in sequenza partendo da un numero e
+finendo prima di un altro numero.
 
-Here’s what the countdown would look like using a `for` loop and another method
-we’ve not yet talked about, `rev`, to reverse the range:
+Ecco come apparirebbe il conto alla rovescia utilizzando un ciclo `for` e un
+altro metodo di cui non abbiamo ancora parlato, `rev`, per invertire
+l'intervallo.
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-34-for-range/src/main.rs}}
 ```
 
-This code is a bit nicer, isn’t it?
+Questo codice è un po' più carino, vero?
 
-## Summary
+## Riassunto
 
-You made it! This was a sizable chapter: you learned about variables, scalar
-and compound data types, functions, comments, `if` expressions, and loops! To
-practice with the concepts discussed in this chapter, try building programs to
-do the following:
+Ce l'hai fatta! Questo capitolo è stato molto impegnativo: hai imparato a
+conoscere le variabili, i _type_ di dati scalari e composti, le funzioni, i
+commenti, le espressioni `if` e i cicli! Per esercitarti con i concetti discussi
+in questo capitolo, prova a costruire dei programmi per eseguire le seguenti
+operazioni:
 
-- Convert temperatures between Fahrenheit and Celsius.
-- Generate the *n*th Fibonacci number.
-- Print the lyrics to the Christmas carol “The Twelve Days of Christmas,”
-  taking advantage of the repetition in the song.
+- Convertire le temperature tra Fahrenheit e Celsius.
+- Generare l'*n*esimo numero di Fibonacci.
+- Stampare il testo del canto natalizio "The Twelve Days of Christmas",
+  sfruttando la ripetizione della canzone.
 
-When you’re ready to move on, we’ll talk about a concept in Rust that _doesn’t_
-commonly exist in other programming languages: ownership.
+Quando sarai pronto per andare avanti, parleremo di un concetto di Rust che non
+esiste in altri linguaggi di programmazione: la _ownership_.
 
 [confrontare-lipotesi-con-il-numero-segreto]: ch02-00-guessing-game-tutorial.html#cconfrontare-lipotesi-con-il-numero-segreto
 [uscita-dopo-unipotesi-corretta]: ch02-00-guessing-game-tutorial.html#uscita-dopo-unipotesi-corretta

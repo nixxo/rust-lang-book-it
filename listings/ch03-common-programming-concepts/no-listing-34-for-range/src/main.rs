@@ -1,6 +1,6 @@
 fn main() {
-    for number in (1..4).rev() {
-        println!("{number}!");
+    for numero in (1..4).rev() {
+        println!("{numero}!");
     }
-    println!("LIFTOFF!!!");
+    println!("PARTENZA!!!");
 }

@@ -1,11 +1,11 @@
 fn main() {
-    let mut number = 3;
+    let mut numero = 3;
 
-    while number != 0 {
-        println!("{number}!");
+    while numero != 0 {
+        println!("{numero}!");
 
-        number -= 1;
+        numero -= 1;
     }
 
-    println!("LIFTOFF!!!");
+    println!("PARTENZA!!!");
 }

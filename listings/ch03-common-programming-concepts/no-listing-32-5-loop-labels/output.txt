@@ -1,13 +1,13 @@
 $ cargo run
-   Compiling loops v0.1.0 (file:///projects/loops)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.58s
-     Running `target/debug/loops`
-count = 0
-remaining = 10
-remaining = 9
-count = 1
-remaining = 10
-remaining = 9
-count = 2
-remaining = 10
-End count = 2
+   Compiling cicli v0.1.0 (file:///progetti/cicli)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.35s
+     Running `target/debug/cicli`
+conteggio = 0
+rimanente = 10
+rimanente = 9
+conteggio = 1
+rimanente = 10
+rimanente = 9
+conteggio = 2
+rimanente = 10
+Fine conteggio = 2
