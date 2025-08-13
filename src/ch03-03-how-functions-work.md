@@ -129,7 +129,7 @@ Nel Listato 3-1, `let y = 6;` è una dichiarazione.
 </Listing>
 
 Anche la definizione di una funzione è una dichiarazione; l'intero esempio
-precedente è, di per sé, una dichiarazione (Come vedremo più avanti, però,
+precedente è, di per sé, una dichiarazione. (Come vedremo più avanti, però,
 chiamare una funzione non è una dichiarazione)
 
 Le dichiarazioni non restituiscono valori. Pertanto, non puoi assegnare una
@@ -168,7 +168,7 @@ definire tramite parentesi graffe un nuovo _scope_ ad esempio:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-20-blocks-are-expressions/src/main.rs}}
 ```
 
-This expression:
+Questa espressione:
 
 ```rust,ignore
 {
@@ -189,7 +189,7 @@ prossimo paragrafo sui volori di ritorno delle funzioni e le espressioni.
 Le funzioni possono restituire dei valori al codice che le chiama. Non assegnamo
 un nome ai valori di ritorno, ma dobbiamo esplicitarne il _type_ dopo una
 freccia (`->`). In Rust, il valore di ritorno della funzione è sinonimo del
-valore dell'espressione finale nel blocco del corpo di una funzione. Puoi far
+valore dell'espressione finale nel blocco del corpo della funzione. Puoi far
 ritornare un valore anche in anticipo alla funzione usando la parola chiave
 `return` e specificando un valore, ma la maggior parte delle funzioni
 restituisce l'ultima espressione in modo implicito. Ecco un esempio di funzione
@@ -211,9 +211,9 @@ questo:
 {{#include ../listings/ch03-common-programming-concepts/no-listing-21-function-return-values/output.txt}}
 ```
 
-Il `5` in `cinque` è il valore di ritorno della funzione, motivo per cui il tipo
-di ritorno è `i32`. Esaminiamo il tutto più in dettaglio. Ci sono due elementi
-importanti: innanzitutto, la riga `let x = cinque();` mostra che stiamo
+Il `5` in `cinque` è il valore di ritorno della funzione, motivo per cui il
+_type_ di ritorno è `i32`. Esaminiamo il tutto più in dettaglio. Ci sono due
+elementi importanti: innanzitutto, la riga `let x = cinque();` mostra che stiamo
 utilizzando il valore di ritorno di una funzione per inizializzare una
 variabile. Poiché la funzione `cinque` restituisce un `5`, questa riga è uguale
 alla seguente:

@@ -4,7 +4,7 @@ La possibilità di eseguire del codice a seconda che una condizione sia `vera` e
 di eseguire ripetutamente del codice finché una data condizione è `vera` sono
 elementi fondamentali della maggior parte dei linguaggi di programmazione. I
 costrutti più comuni che ti permettono di controllare il flusso di esecuzione
-del codice di Rust sono le espressioni `if` e i loop.
+del codice in Rust sono le espressioni `if` e i cicli.
 
 ### L'espressione `if`
 
@@ -33,7 +33,7 @@ possono esser viste come dei _rami_, proprio come i _rami_ nelle espressioni
 numero segreto"][confrontare-lipotesi-con-il-numero-segreto]<!-- ignore --> del
 Capitolo 2.
 
-Opzionalmente, possiamo anche includere un'espressione `else` (_altrimenti_ in
+Opzionalmente, possiamo anche includere un'espressione `else` (`altrimenti` in
 italiano), come abbiamo scelto di fare in questo caso, per dare al programma un
 blocco di codice alternativo da eseguire nel caso in cui la condizione sia
 valutata `false`. Se non fornisci un'espressione `else` e la condizione è
@@ -78,9 +78,10 @@ Questa volta la condizione `if` valuta un valore di `3` e Rust lancia un errore:
 L'errore indica che Rust si aspettava un `bool` ma ha ottenuto un numero intero.
 A differenza di linguaggi come Ruby e JavaScript, Rust non cercherà
 automaticamente di convertire i _type_ non booleani in booleani. Devi essere
-esplicito e fornire sempre un `if` con un booleano come condizione. Se vogliamo
-che il blocco di codice `if` venga eseguito solo quando un numero non è uguale a
-`0`, ad esempio, possiamo modificare l'espressione `if` nel seguente modo:
+esplicito e fornire sempre ad `if` un'espressione booleana come condizione. Se
+vogliamo che il blocco di codice `if` venga eseguito solo quando un numero non è
+uguale a `0`, ad esempio, possiamo modificare l'espressione `if` nel seguente
+modo:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -163,7 +164,7 @@ problema nel programma:
 
 L'espressione nel blocco `if` ritorna un _integer_ e l'espressione nel blocco
 `else` ritorna una stringa. Questo non funziona perché le variabili devono avere
-un _type_ univoco e Rust ha bisogno di sapere in fase di compilazione che di che
+un _type_ univoco e Rust ha bisogno di sapere in fase di compilazione di che
 _type_ è la variabile `numero`, in modo definitivo. Conoscere il _type_ di
 `numero` permette al compilatore di verificare che il _type_ sia valido ovunque
 si utilizzi `numero`. Rust non sarebbe in grado di farlo se il _type_ di
@@ -182,7 +183,7 @@ nuovo progetto chiamato _cicli_.
 Rust mette a disposizione tre tipologie di ciclo: `loop`, `while` e `for`.
 Proviamo ciascuno di essi.
 
-#### Ripetizione del codice con `loop
+#### Ripetizione del codice con `loop`
 
 La parola chiave `loop` dice a Rust di eseguire un blocco di codice più e più
 volte per sempre o finché non gli dici esplicitamente di fermarsi.
@@ -219,7 +220,7 @@ ancora!
 ^Ccicli!
 ```
 
-Il simbolo `^C` rappresenta quand hai premuto <kbd>ctrl</kbd>-<kbd>c</kbd>.
+Il simbolo `^C` rappresenta quando hai premuto <kbd>ctrl</kbd>-<kbd>c</kbd>.
 
 Potresti vedere o meno la parola `ancora!` stampata dopo la `^C`, a seconda di
 dove si trovava il codice nel ciclo quando ha ricevuto il segnale di
@@ -231,7 +232,7 @@ indicare al programma quando interrompere l'esecuzione del ciclo. Ricorda che
 abbiamo fatto questo nel gioco di indovinelli nella sezione ["Uscita dopo
 un'ipotesi corretta"][uscita-dopo-unipotesi-corretta]<!-- ignore --> del
 Capitolo 2 per uscire dal programma quando l'utente indovinava il numero
-corretto.
+segreto.
 
 Nel gioco di indovinelli abbiamo usato anche `continue`, che in un ciclo indica
 al programma di saltare tutto il codice rimanente in questa iterazione del ciclo
@@ -244,8 +245,8 @@ potrebbe fallire, come ad esempio controllare se un _thread_ ha completato il
 suo lavoro. Potresti anche aver bisogno di passare il risultato di questa
 operazione al di fuori del ciclo al resto del tuo codice. Per farlo, puoi
 aggiungere il valore che vuoi che venga restituito dopo l'espressione `break`
-che utilizzi per interrompere il loop; quel valore verrà restituito al di fuori
-del loop in modo da poterlo utilizzare, come mostrato qui:
+che utilizzi per interrompere il ciclo; quel valore verrà restituito al di fuori
+del ciclo in modo da poterlo utilizzare, come mostrato qui:
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-33-return-value-from-loop/src/main.rs}}
@@ -262,14 +263,14 @@ l'istruzione che assegna il valore a `risultato`. Infine, stampiamo il valore in
 Puoi anche usare `return` all'interno di un ciclo. Mentre `break` esce solo dal
 ciclo corrente, `return` esce sempre dalla funzione corrente.
 
-#### Etichette di loop per disambiguare tra cicli multipli
+#### Etichette di loop per distinguere tra cicli multipli
 
 Se hai un ciclo annidati all'interno di un altro ciclo, `break` e `continue` si
 applicano al loop più interno in quel momento. Puoi specificare facoltativamente
-un'_etichetta loop_ (_loop label_) su uno specifico ciclo per poi usare con
-`break` o `continue` quell'etichetta per specificare a quale ciclo applicare
-l'istruzione. Le _loop label_ devono iniziare con una virgoletta singola. Ecco
-un esempio con due loop annidati:
+un'_etichetta_ (_loop label_) su uno specifico ciclo per poi usare con `break` o
+`continue` quell'etichetta per specificare a quale ciclo applicare l'istruzione.
+Le _loop label_ devono iniziare con una virgoletta singola. Ecco un esempio con
+due cicli annidati:
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-32-5-loop-labels/src/main.rs}}
@@ -309,7 +310,7 @@ Questo costrutto elimina un sacco di annidamenti che sarebbero necessari se
 usassi `loop`, `if`, `else` e `break`, ed è di più semplice lettura. Finchè una
 condizione risulta `true`, il codice viene eseguito; altrimenti, esce dal ciclo.
 
-#### Eseguire un ciclo su una collezione `for`
+#### Eseguire un ciclo su una collezione con `for`
 
 Puoi scegliere di utilizzare il costrutto `while` per eseguire un ciclo sugli
 elementi di una collezione, come un array. Ad esempio, il ciclo nel Listato 3-4
