@@ -74,7 +74,10 @@ elif [[ "$mode" == "list" ]]; then
     fi
 
     for fname in "${markdown_sources[@]}"; do
-        command=$(aspell --ignore 3 --personal="$dict_path" "$mode" < "$fname")
+        # aspell
+        # command=$(aspell --ignore 3 --personal="$dict_path" "$mode" < "$fname")
+        # hunspell
+        command=$(hunspell -l -d en_US,it_IT -p="$dict_path" "$fname")
         if [[ -n "$command" ]]; then
             for error in $command; do
                 # FIXME: find more correct way to get line number
