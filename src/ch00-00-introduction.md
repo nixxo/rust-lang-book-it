@@ -135,7 +135,7 @@ enumerazioni, le espressioni `match` e il costrutto della struttura di controllo
 personalizzati in Rust.
 
 Nel Capitolo 7 imparerai a conoscere il sistema di moduli di Rust, le regole di
-visibità per l'organizzazione del codice e la sua Application Programming
+visibilità per l'organizzazione del codice e la sua Application Programming
 Interface (API) pubblica. Il Capitolo 8 tratta alcune strutture di dati comuni
 che la libreria standard mette a disposizione, come vettori, stringhe e mappe
 hash. Il Capitolo 9 esplora la filosofia e le tecniche di gestione degli errori
@@ -179,7 +179,7 @@ formato meno strutturato. L'**Appendice A** tratta delle parole chiave di Rust,
 l'**Appendice B** degli operatori e dei simboli di Rust, l'**Appendice C** dei
 _traits_ derivabili forniti dalla libreria standard, l'**Appendice D** di alcuni
 utili strumenti di sviluppo e l'**Appendice E** delle varie edizioni di Rust.
-Nell'**Appendice F** puoi trovare un'elenco delle traduzioni del libro, mentre
+Nell'**Appendice F** puoi trovare un elenco delle traduzioni del libro, mentre
 nell'**Appendice G** si parlerà di come viene realizzato Rust e di cosa sia la
 nightly Rust.
 
