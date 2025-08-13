@@ -554,7 +554,7 @@ Rust’s official guide to the subject, the [Rustonomicon][nomicon].
 
 [dangling-references]: ch04-02-references-and-borrowing.html#dangling-references
 [ABI]: ../reference/items/external-blocks.html#abi
-[differences-between-variables-and-constants]: ch03-01-variables-and-mutability.html#constants
+[differences-between-variables-and-constants]: ch03-01-variables-and-mutability.html#costanti
 [extensible-concurrency-with-the-send-and-sync-traits]: ch16-04-extensible-concurrency-sync-and-send.html#extensible-concurrency-with-the-send-and-sync-traits
 [the-slice-type]: ch04-03-slices.html#the-slice-type
 [unions]: ../reference/items/unions.html
