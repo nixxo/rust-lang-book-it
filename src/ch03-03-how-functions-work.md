@@ -17,18 +17,18 @@ funzione:
 ```
 
 In Rust definiamo una funzione inserendo `fn` seguito dal nome della funzione e
-da una serie di parentesi. Le parentesi graffe indicano al compilatore dove
-inizia e finisce il corpo della funzione.
+da una serie di parentesi tonde. Le parentesi graffe indicano al compilatore
+dove inizia e finisce il corpo della funzione.
 
 Possiamo chiamare qualsiasi funzione che abbiamo definito inserendo il suo nome
-seguito da una serie di parentesi. Poiché `altra_funzione` è definita nel
+seguito da una serie di parentesi tonde. Poiché `altra_funzione` è definita nel
 programma, può essere chiamata dall'interno della funzione `main`. Nota che
 abbiamo definito `altra_funzione` _dopo_ la funzione `main` nel codice sorgente;
 avremmo potuto definirla anche prima. A Rust non interessa dove definisci le tue
 funzioni, ma solo che siano definite in una parte del codice che sia "visibile",
 in _scope_, al chiamante.
 
-Cominciamo un nuovo progetto binario chiamato _functioni_ per esplorare
+Cominciamo un nuovo progetto binario chiamato _funzioni_ per esplorare
 ulteriormente le funzioni. Inserisci l'esempio `altra_funzione` in _src/main.rs_
 ed eseguilo. Dovresti vedere il seguente output:
 
@@ -71,7 +71,7 @@ contenente `x` nella stringa di formato.
 Nelle firme delle funzioni è _obbligatorio_ dichiarare il _type_ di ogni
 parametro. Si tratta di una decisione deliberata nel design di Rust: richiedere
 le annotazioni sul _type_ nelle definizioni delle funzioni significa che il
-compilatore non ha quasi mai bisogno di usarle in altre parti del codice per
+compilatore non ha quasi mai bisogno che tu le usi in altre parti del codice per
 capire a quale _type_ ti riferisci. In questo modo il compilatore potrà anche
 dare messaggi di errore più utili se sa quali _type_ si aspetta la funzione.
 

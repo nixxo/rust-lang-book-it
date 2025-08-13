@@ -57,8 +57,8 @@ dichiarare il _type_ di un valore intero.
 
 Ogni variante può essere con segno o senza e ha una dimensione esplicita. Con
 _segno_ e _senza segno_ si riferisce alla possibilità che il numero sia
-negativo, in altre parole, se il numero deve avere un segno con sé (_signed_ in
-inglese) o se sarà sempre e solo positivo e potrà quindi essere rappresentato
+negativo. In altre parole, se il numero _deve_ avere un segno con sé (_signed_
+in inglese) o se sarà sempre e solo positivo e potrà quindi essere rappresentato
 senza segno (_unsigned_ in inglese). È come scrivere numeri su carta: quando il
 segno conta, un numero viene indicato con il segno più o con il segno meno;
 tuttavia, quando è lecito ritenere che il numero sia positivo, viene
@@ -167,7 +167,7 @@ valuta un singolo valore, che viene poi legato a una variabile. [Appendice
 B][appendice_b]<!-- ignore --> contiene un elenco di tutti gli operatori che
 Rust mette a disposizione.
 
-#### Il Type Booleano
+#### Type Booleano
 
 Come nella maggior parte degli altri linguaggi di programmazione, un _type_
 booleano in Rust ha due valori possibili: _vero_ o _falso_ (`true` e `false`
@@ -187,7 +187,7 @@ flusso"][control-flow]<!-- ignore -->.
 
 #### Type Carattere
 
-Il _type_ carattere (`char` d'ota in poi) di Rust è il tipo alfabetico più
+Il _type_ carattere (`char` d'ora in poi) di Rust è il tipo alfabetico più
 primitivo del linguaggio. Ecco alcuni esempi di dichiarazione di valori `char`:
 
 <span class="filename">File: src/main.rs</span>
@@ -204,10 +204,10 @@ all'ASCII. Le lettere accentate, i caratteri cinesi, giapponesi e coreani, le
 emoji e gli spazi a larghezza zero sono tutti valori `char` validi in Rust. I
 valori scalari Unicode vanno da `U+0000` a `U+D7FF` e da `U+E000` a `U+10FFFF`
 inclusi. Tuttavia, un "carattere" non è un concetto vero e proprio in Unicode,
-quindi la tua concettualizzazione umano di cosa sia un "carattere" potrebbe non
-corrispondere a cosa sia un `char` in Rust. Discuteremo questo argomento in
-dettaglio in ["Memorizzazione del testo codificato UTF-8 con le
-stringhe"][strings]<!-- ignore --> nel Capitolo 8.
+quindi quello che tu potresti concettualmente pensare essere un "carattere"
+potrebbe non corrispondere a cosa sia effettivamente un `char` in Rust.
+Discuteremo questo argomento in dettaglio in ["Memorizzazione del testo
+codificato UTF-8 con le stringhe"][strings]<!-- ignore --> nel Capitolo 8.
 
 ### I Type Composti
 
@@ -219,8 +219,8 @@ _type_ composti primitivi: le tuple e gli array.
 Una _tupla_ è un modo generale per raggruppare una serie di valori di tipo
 diverso in un unico _type_ composto. Le _tuple_ hanno una lunghezza fissa: una
 volta dichiarate, non possono crescere o diminuire di dimensione. Creiamo una
-tupla scrivendo un elenco di valori separati da virgole all'interno di
-parentesi. Ogni posizione nella tupla ha un _type_ e i _type_ dei diversi valori
+tupla scrivendo un elenco di valori separati da virgole all'interno di parentesi
+tonde. Ogni posizione nella tupla ha un _type_ e i _type_ dei diversi valori
 nella tupla non devono essere necessariamente gli stessi. In questo esempio
 abbiamo aggiunto annotazioni del _type_ opzionali:
 
@@ -247,8 +247,8 @@ variabili separate, `x`, `y` e `z`. Questa operazione è chiamata
 _destrutturazione_ perché spezza la singola tupla in tre parti. Infine, il
 programma stampa il valore di `y`, che è `6,4`.
 
-Possiamo anche accedere direttamente a un elemento tupla utilizzando un punto
-(`.`) seguito dall’indice del valore a cui vogliamo accedere. Ad esempio:
+Possiamo anche accedere direttamente a un elemento della tupla utilizzando un
+punto (`.`) seguito dall’indice del valore a cui vogliamo accedere. Ad esempio:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -258,15 +258,12 @@ Possiamo anche accedere direttamente a un elemento tupla utilizzando un punto
 
 Questo programma crea la tupla `x` e poi accede a ogni elemento della tupla
 utilizzando i rispettivi indici. Come nella maggior parte dei linguaggi di
-programmazione, il primo indice di una tupla è 0. La tupla senza valori ha un
-nome speciale, _unit_. Questo valore e il suo _type_ corrispondente sono
-entrambi scritti `()` e rappresentano un valore vuoto o un _type_ di ritorno
-vuoto. Le espressioni restituiscono implicitamente il valore _unit_ se non
-restituiscono nessun altro valore. La _tuple_ senza valori ha un nome speciale,
-unità. Questo valore e il tipo cor- rispondente sono entrambi scritti () e
-rappresentano un valore vuoto o un tipo restituito vuoto. Le espressioni
-restituiscono implicitamente il valore unitario se non restituiscono nessun
-altro valore.
+programmazione, il primo indice di una tupla è 0.
+
+La tupla senza valori ha un nome speciale, _unit_. Questo valore e il suo _type_
+corrispondente sono entrambi scritti `()` e rappresentano un valore vuoto o un
+_type_ di ritorno vuoto. Le espressioni restituiscono implicitamente il valore
+_unit_ se non restituiscono nessun altro valore.
 
 #### Type Array
 
@@ -290,8 +287,8 @@ come gli altri _type_ che abbiamo visto finora, piuttosto che sull'_heap_
 4][stack-and-heap]<!-- ignore -->) o quando vuoi assicurarti di avere sempre un
 numero fisso di elementi. Un array, però, non è flessibile come il _type
 vettore_ (_vector_ d'ora in poi). Un _vector_ è un _type_ simile, che consente
-la collezione di dati, fornito dalla libreria standard ma che _è_ autorizzato a
-crescere o a ridursi di dimensioni perché il suo contenuto risiede sull'_heap_.
+la collezione di dati, fornito dalla libreria standard ma che è autorizzato a
+crescere o a ridursi di dimensione perché il suo contenuto risiede sull'_heap_.
 Se non sei sicuro se usare un array o un _vector_, è probabile che tu debba
 usare un _vector_. Il [Capitolo 8][vectors]<!-- ignore --> tratta i _vector_ in
 modo più dettagliato.
@@ -313,14 +310,12 @@ elemento, il punto e virgola e il numero di elementi dell'array, in questo modo:
 let a: [i32; 5] = [1, 2, 3, 4, 5];
 ```
 
-Here, `i32` is the type of each element. After the semicolon, the number `5`
-indicates the array contains five elements.
-
 In questo caso, `i32` è il _type_ di ogni elemento. Dopo il punto e virgola, il
-numero `5` indica che l'array contiene cinque elementi. Puoi anche inizializzare
-un array in modo che contenga lo stesso valore per ogni elemento specificando il
-valore iniziale, seguito da un punto e virgola, e poi la lunghezza dell'array
-tra parentesi quadre, come mostrato qui:
+numero `5` indica che l'array contiene cinque elementi.
+
+Puoi anche inizializzare un array in modo che contenga lo stesso valore per ogni
+elemento specificando il valore iniziale, seguito da un punto e virgola, e poi
+la lunghezza dell'array tra parentesi quadre, come mostrato qui:
 
 ```rust
 let a = [3; 5];
@@ -376,8 +371,8 @@ index out of bounds: the len is 5 but the index is 10
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ```
 
-Il programma ha generato un errore _durante l'esecuzione_, _at runtime_ in
-inglese, nel momento in cui ha utilizzato un valore non valido nell'operazione
+Il programma ha generato un errore _durante l'esecuzione_ (_at runtime_ in
+inglese) nel momento in cui ha utilizzato un valore non valido nell'operazione
 di indicizzazione. Il programma è uscito con un messaggio di errore e non ha
 eseguito l'istruzione finale `println!`. Quando si tenta di accedere a un
 elemento utilizzando l'indicizzazione, Rust controlla che l'indice specificato
