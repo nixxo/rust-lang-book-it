@@ -302,5 +302,5 @@ documentation](../std/prelude/index.html#other-preludes)<!-- ignore --> for more
 information on that pattern.
 
 [ch14-pub-use]: ch14-02-publishing-to-crates-io.html#exporting-a-convenient-public-api-with-pub-use
-[rand]: ch02-00-guessing-game-tutorial.html#generating-a-random-number
+[rand]: ch02-00-guessing-game-tutorial.html#generare-un-numero-casuale
 [writing-tests]: ch11-01-writing-tests.html#how-to-write-tests

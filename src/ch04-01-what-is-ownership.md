@@ -516,7 +516,7 @@ But this is too much ceremony and a lot of work for a concept that should be
 common. Luckily for us, Rust has a feature for using a value without
 transferring ownership, called _references_.
 
-[data-types]: ch03-02-data-types.html#data-types
+[data-types]: ch03-02-data-types.html#datatype---tipi-di-dato
 [ch8]: ch08-02-strings.html
 [traits]: ch10-02-traits.html
 [derivable-traits]: appendix-03-derivable-traits.html

@@ -68,4 +68,4 @@ name as the package. A package can have multiple binary crates by placing files
 in the _src/bin_ directory: each file will be a separate binary crate.
 
 [modules]: ch07-02-defining-modules-to-control-scope-and-privacy.html
-[rand]: ch02-00-guessing-game-tutorial.html#generating-a-random-number
+[rand]: ch02-00-guessing-game-tutorial.html#generare-un-numero-casuale

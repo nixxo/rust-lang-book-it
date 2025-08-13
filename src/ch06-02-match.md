@@ -255,5 +255,5 @@ There’s more about patterns and matching that we’ll cover in [Chapter
 `if let` syntax, which can be useful in situations where the `match` expression
 is a bit wordy.
 
-[tuples]: ch03-02-data-types.html#the-tuple-type
+[tuples]: ch03-02-data-types.html#type-tupla
 [ch19-00-patterns]: ch19-00-patterns.html

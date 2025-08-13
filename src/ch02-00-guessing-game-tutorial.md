@@ -797,7 +797,7 @@ L'utente può sempre interrompere il programma utilizzando la scorciatoia da
 tastiera <kbd>ctrl</kbd>-<kbd>c</kbd>. Ma c'è un altro modo per sfuggire a
 questo mostro insaziabile, come accennato nella discussione su `parse` in
 ["Confrontare l'ipotesi con il numero
-segreto"](#confrontare-l-ipotesi-con-il-numero-segreto)<!-- ignore -->: se
+segreto"](#confrontare-lipotesi-con-il-numero-segreto)<!-- ignore -->: se
 l'utente inserisce una risposta non numerica, il programma si blocca. Possiamo
 approfittarne per consentire all'utente di uscire, come mostrato qui:
 
@@ -980,4 +980,4 @@ mentre il Capitolo 6 spiega come funzionano gli _enum_.
 [match]: ch06-02-match.html
 [shadowing]: ch03-01-variables-and-mutability.html#shadowing
 [parse]: https://doc.rust-lang.org/stable/std/primitive.str.html#method.parse
-[integers]: ch03-02-data-types.html#integer-types
+[integers]: ch03-02-data-types.html#type-intero

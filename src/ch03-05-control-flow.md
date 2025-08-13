@@ -404,6 +404,6 @@ Quando sarai pronto per andare avanti, parleremo di un concetto di Rust che non
 esiste in altri linguaggi di programmazione: la _ownership_.
 
 [confrontare-lipotesi-con-il-numero-segreto]:
-    ch02-00-guessing-game-tutorial.html#cconfrontare-lipotesi-con-il-numero-segreto
+    ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
 [uscita-dopo-unipotesi-corretta]:
     ch02-00-guessing-game-tutorial.html#uscita-dopo-unipotesi-corretta

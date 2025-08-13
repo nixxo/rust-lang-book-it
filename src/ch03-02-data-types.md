@@ -28,7 +28,7 @@ vogliamo utilizzare:
 
 Potrai vedere annotazioni di _type_ diverso per altri tipi di dati.
 
-### Type Scalare
+### I Type Scalari
 
 Un _type scalare_ rappresenta un singolo valore. Rust ha quattro _type_ scalari
 primari: numeri interi, numeri in virgola mobile, booleani e caratteri. Potresti
@@ -185,7 +185,7 @@ come ad esempio un'espressione `if`. Tratteremo il funzionamento delle
 espressioni `if` in Rust nella sezione ["Controllo del
 flusso"][control-flow]<!-- ignore -->.
 
-#### Il Type Carattere
+#### Type Carattere
 
 Il _type_ carattere (`char` d'ota in poi) di Rust è il tipo alfabetico più
 primitivo del linguaggio. Ecco alcuni esempi di dichiarazione di valori `char`:
@@ -214,7 +214,7 @@ stringhe"][strings]<!-- ignore --> nel Capitolo 8.
 I _type composti_ possono raggruppare più valori in un unico _type_. Rust ha due
 _type_ composti primitivi: le tuple e gli array.
 
-#### Il Type Tupla
+#### Type Tupla
 
 Una _tupla_ è un modo generale per raggruppare una serie di valori di tipo
 diverso in un unico _type_ composto. Le _tuple_ hanno una lunghezza fissa: una
@@ -268,7 +268,7 @@ rappresentano un valore vuoto o un tipo restituito vuoto. Le espressioni
 restituiscono implicitamente il valore unitario se non restituiscono nessun
 altro valore.
 
-#### Il Type Array
+#### Type Array
 
 Un altro modo per avere una collezione di valori multipli è un _array_. A
 differenza di una tupla, ogni elemento di un array deve avere lo stesso _type_.
@@ -330,7 +330,7 @@ L'array chiamato `a` conterrà `5` elementi che saranno tutti impostati
 inizialmente al valore `3`. Questo equivale a scrivere `let a = [3, 3, 3, 3,
 3];` ma in modo più conciso.
 
-##### Accessing Array Elements
+##### Accesso agli elementi dell'array
 
 Un array è un singolo blocco di memoria di dimensione fissa e nota che può
 essere allocato nello _stack_. Puoi accedere agli elementi di un array
@@ -399,7 +399,7 @@ _panic_ né consente l'accesso non valido alla memoria.
     ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
 [complemento-a-due]: https://it.wikipedia.org/wiki/Complemento_a_due
 [ieee-754]: https://it.wikipedia.org/wiki/IEEE_754
-[control-flow]: ch03-05-control-flow.html#control-flow
+[control-flow]: ch03-05-control-flow.html#controllo-del-flusso
 [strings]: ch08-02-strings.html#storing-utf-8-encoded-text-with-strings
 [stack-and-heap]: ch04-01-what-is-ownership.html#the-stack-and-the-heap
 [vectors]: ch08-01-vectors.html
