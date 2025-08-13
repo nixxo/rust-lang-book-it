@@ -96,7 +96,7 @@ altri _crates_ per questo progetto, ma lo faremo nel primo progetto del Capitolo
 
 Ora apri _src/main.rs_ e dai un'occhiata:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust
 fn main() {

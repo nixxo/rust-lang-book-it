@@ -83,7 +83,7 @@ $ cargo run -- to poem.txt > output.txt
 We won’t see any output to the terminal, and _output.txt_ will contain our
 results:
 
-<span class="filename">Filename: output.txt</span>
+<span class="filename">File: output.txt</span>
 
 ```text
 Are you nobody, too?

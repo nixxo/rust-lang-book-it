@@ -117,7 +117,7 @@ ignore the `Doc-tests` output.
 Let’s start to customize the test to our own needs. First, change the name of
 the `it_works` function to a different name, such as `exploration`, like so:
 
-<span class="filename">Filename: src/lib.rs</span>
+<span class="filename">File: src/lib.rs</span>
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-01-changing-test-name/src/lib.rs}}
@@ -234,7 +234,7 @@ supposed to return `true`, so our test should pass. Let’s find out!
 It does pass! Let’s add another test, this time asserting that a smaller
 rectangle cannot hold a larger rectangle:
 
-<span class="filename">Filename: src/lib.rs</span>
+<span class="filename">File: src/lib.rs</span>
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-02-adding-another-rectangle-test/src/lib.rs:here}}
@@ -366,7 +366,7 @@ idea of what the problem is with the code.
 For example, let’s say we have a function that greets people by name and we
 want to test that the name we pass into the function appears in the output:
 
-<span class="filename">Filename: src/lib.rs</span>
+<span class="filename">File: src/lib.rs</span>
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-05-greeter/src/lib.rs}}

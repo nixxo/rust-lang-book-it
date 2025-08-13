@@ -296,7 +296,7 @@ want to use. If the name has been used, you will need to find another name and
 edit the `name` field in the _Cargo.toml_ file under the `[package]` section to
 use the new name for publishing, like so:
 
-<span class="filename">Filename: Cargo.toml</span>
+<span class="filename">File: Cargo.toml</span>
 
 ```toml
 [package]
@@ -334,7 +334,7 @@ The [Linux Foundation’s Software Package Data Exchange (SPDX)][spdx] lists the
 identifiers you can use for this value. For example, to specify that you’ve
 licensed your crate using the MIT License, add the `MIT` identifier:
 
-<span class="filename">Filename: Cargo.toml</span>
+<span class="filename">File: Cargo.toml</span>
 
 ```toml
 [package]
@@ -356,7 +356,7 @@ by `OR` to have multiple licenses for your project.
 With a unique name, the version, your description, and a license added, the
 _Cargo.toml_ file for a project that is ready to publish might look like this:
 
-<span class="filename">Filename: Cargo.toml</span>
+<span class="filename">File: Cargo.toml</span>
 
 ```toml
 [package]

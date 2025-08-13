@@ -43,7 +43,7 @@ operations that borrow, we can move the `String` values from the iterator into
 
 Open your I/O project’s _src/main.rs_ file, which should look like this:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch13-functional-features/listing-12-24-reproduced/src/main.rs:ch13}}

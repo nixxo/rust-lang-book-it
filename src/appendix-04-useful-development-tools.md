@@ -31,7 +31,7 @@ compiler warnings that have a clear way to correct the problem that’s likely
 what you want. You’ve probably seen compiler warnings before. For example,
 consider this code:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust
 fn main() {
@@ -71,7 +71,7 @@ $ cargo fix
 When we look at _src/main.rs_ again, we’ll see that `cargo fix` has changed the
 code:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust
 fn main() {

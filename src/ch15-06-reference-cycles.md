@@ -149,7 +149,7 @@ To start, we’ll build a tree with nodes that know about their child nodes.
 We’ll create a struct named `Node` that holds its own `i32` value as well as
 references to its children `Node` values:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-27/src/main.rs:here}}
@@ -198,7 +198,7 @@ So instead of `Rc<T>`, we’ll make the type of `parent` use `Weak<T>`,
 specifically a `RefCell<Weak<Node>>`. Now our `Node` struct definition looks
 like this:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-28/src/main.rs:here}}

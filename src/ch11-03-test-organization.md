@@ -35,7 +35,7 @@ that they shouldn’t be included in the compiled result.
 Recall that when we generated the new `adder` project in the first section of
 this chapter, Cargo generated this code for us:
 
-<span class="filename">Filename: src/lib.rs</span>
+<span class="filename">File: src/lib.rs</span>
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/listing-11-01/src/lib.rs}}
@@ -175,7 +175,7 @@ extract them into a common module. For example, if we create _tests/common.rs_
 and place a function named `setup` in it, we can add some code to `setup` that
 we want to call from multiple test functions in multiple test files:
 
-<span class="filename">Filename: tests/common.rs</span>
+<span class="filename">File: tests/common.rs</span>
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-12-shared-test-code-problem/tests/common.rs}}
@@ -218,7 +218,7 @@ After we’ve created _tests/common/mod.rs_, we can use it from any of the
 integration test files as a module. Here’s an example of calling the `setup`
 function from the `it_adds_two` test in _tests/integration_test.rs_:
 
-<span class="filename">Filename: tests/integration_test.rs</span>
+<span class="filename">File: tests/integration_test.rs</span>
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-13-fix-shared-test-code-problem/tests/integration_test.rs}}

@@ -158,7 +158,7 @@ listing as arguments all tests you do want to run, you can instead annotate the
 time-consuming tests using the `ignore` attribute to exclude them, as shown
 here:
 
-<span class="filename">Filename: src/lib.rs</span>
+<span class="filename">File: src/lib.rs</span>
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-11-ignore-a-test/src/lib.rs:here}}

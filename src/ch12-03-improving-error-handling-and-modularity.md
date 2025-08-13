@@ -420,7 +420,7 @@ have some error-handling code here! Let’s rectify that problem now.
 We’ll check for errors and handle them using a technique similar to one we used
 with `Config::build` in Listing 12-10, but with a slight difference:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">File: src/main.rs</span>
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch12-an-io-project/no-listing-01-handling-errors-in-main/src/main.rs:here}}

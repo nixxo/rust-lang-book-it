@@ -30,7 +30,7 @@ members to the workspace. We also make a point to use the latest and greatest
 version of Cargo’s resolver algorithm in our workspace by setting the
 `resolver` value to `"3"`.
 
-<span class="filename">Filename: Cargo.toml</span>
+<span class="filename">File: Cargo.toml</span>
 
 ```toml
 {{#include ../listings/ch14-more-about-cargo/no-listing-01-workspace/add/Cargo.toml}}
@@ -107,7 +107,7 @@ $ cargo new add_one --lib
 The top-level _Cargo.toml_ will now include the _add_one_ path in the `members`
 list:
 
-<span class="filename">Filename: Cargo.toml</span>
+<span class="filename">File: Cargo.toml</span>
 
 ```toml
 {{#include ../listings/ch14-more-about-cargo/no-listing-02-workspace-with-two-crates/add/Cargo.toml}}
@@ -131,7 +131,7 @@ Your _add_ directory should now have these directories and files:
 
 In the _add_one/src/lib.rs_ file, let’s add an `add_one` function:
 
-<span class="filename">Filename: add_one/src/lib.rs</span>
+<span class="filename">File: add_one/src/lib.rs</span>
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch14-more-about-cargo/no-listing-02-workspace-with-two-crates/add/add_one/src/lib.rs}}
@@ -141,7 +141,7 @@ Now we can have the `adder` package with our binary depend on the `add_one`
 package that has our library. First, we’ll need to add a path dependency on
 `add_one` to _adder/Cargo.toml_.
 
-<span class="filename">Filename: adder/Cargo.toml</span>
+<span class="filename">File: adder/Cargo.toml</span>
 
 ```toml
 {{#include ../listings/ch14-more-about-cargo/no-listing-02-workspace-with-two-crates/add/adder/Cargo.toml:6:7}}
@@ -215,7 +215,7 @@ so we can use the `rand` crate in the `add_one` crate:
 * ch07-04-bringing-paths-into-scope-with-the-use-keyword.md
 -->
 
-<span class="filename">Filename: add_one/Cargo.toml</span>
+<span class="filename">File: add_one/Cargo.toml</span>
 
 ```toml
 {{#include ../listings/ch14-more-about-cargo/no-listing-03-workspace-with-external-dependency/add/add_one/Cargo.toml:6:7}}
@@ -293,7 +293,7 @@ as possible.
 For another enhancement, let’s add a test of the `add_one::add_one` function
 within the `add_one` crate:
 
-<span class="filename">Filename: add_one/src/lib.rs</span>
+<span class="filename">File: add_one/src/lib.rs</span>
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch14-more-about-cargo/no-listing-04-workspace-with-tests/add/add_one/src/lib.rs}}
