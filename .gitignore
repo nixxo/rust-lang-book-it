@@ -1,4 +1,6 @@
 book/
+linkcheck/
+linkchecker/
 *~
 .idea
 .DS_Store
