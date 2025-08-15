@@ -1,23 +1,23 @@
 fn main() {
-    let s = String::from("hello");  // s comes into scope
+    let s = String::from("hello"); // `s` entra nello scope
 
-    takes_ownership(s);             // s's value moves into the function...
-                                    // ... and so is no longer valid here
+    prende_ownership(s);           // il valore di `s` viene spostato nella funzione...
+                                   // ... e quindi qui smette di esser valido
 
-    let x = 5;                      // x comes into scope
+    let x = 5;                     // `x` entra nello scope
 
-    makes_copy(x);                  // Because i32 implements the Copy trait,
-                                    // x does NOT move into the function,
-                                    // so it's okay to use x afterward.
+    duplica(x);                    // Siccome i32 implementa il tratto Copy,
+                                   // `x` NON viene spostato nella funzione,
+                                   // quindi dopo può ancora essere usata.
 
-} // Here, x goes out of scope, then s. However, because s's value was moved,
-  // nothing special happens.
+}   // Qui, `x` esce dallo scope, ed anche `s`. Tuttavia, siccome il valore di `s`
+    // era stato spostato, non succede nulla di particolare.
 
-fn takes_ownership(some_string: String) { // some_string comes into scope
-    println!("{some_string}");
-} // Here, some_string goes out of scope and `drop` is called. The backing
-  // memory is freed.
+fn prende_ownership(una_stringa: String) { // `una_stringa` entra nello scope
+    println!("{una_stringa}");
+}   // Qui, `una_stringa` esce dallo scope e `drop` viene chiamato.
+    // La memoria corrispondente viene rilasciata.
 
-fn makes_copy(some_integer: i32) { // some_integer comes into scope
-    println!("{some_integer}");
-} // Here, some_integer goes out of scope. Nothing special happens.
+fn duplica(un_integer: i32) { // `un_integer` entra nello scope
+    println!("{un_integer}");
+}   // Qui, `un_integer` esce dallo scope. Non succede nulla di particolare.
