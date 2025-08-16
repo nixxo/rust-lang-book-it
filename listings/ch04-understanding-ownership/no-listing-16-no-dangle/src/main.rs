@@ -1,10 +1,10 @@
 fn main() {
-    let string = no_dangle();
+    let stringa = non_pendente();
 }
 
 // ANCHOR: here
-fn no_dangle() -> String {
-    let s = String::from("hello");
+fn non_pendente() -> String {
+    let s = String::from("ciao");
 
     s
 }

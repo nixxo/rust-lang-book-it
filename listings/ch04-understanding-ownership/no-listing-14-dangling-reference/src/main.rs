@@ -1,9 +1,9 @@
 fn main() {
-    let reference_to_nothing = dangle();
+    let reference_a_nulla = pendente();
 }
 
-fn dangle() -> &String {
-    let s = String::from("hello");
+fn pendente() -> &String {
+    let s = String::from("ciao");
 
     &s
 }

@@ -1,14 +1,14 @@
 fn main() {
-    let s1 = String::from("hello");
+    let s1 = String::from("ciao");
 
-    let len = calculate_length(&s1);
+    let lung = calcola_lunghezza(&s1);
 
-    println!("The length of '{s1}' is {len}.");
+    println!("La lunghezza di '{s1}' è {lung}.");
 }
 
 // ANCHOR: here
-fn calculate_length(s: &String) -> usize { // s is a reference to a String
+fn calcola_lunghezza(s: &String) -> usize { // `s` è una reference as una String
     s.len()
-} // Here, s goes out of scope. But because s does not have ownership of what
-  // it refers to, the String is not dropped.
+} // Qui, `s` esce dallo scope. Ma siccome `s` non ha ownership di quello
+  // a cui fa riferimento, i valori di String non vengono cancellati
 // ANCHOR_END: here

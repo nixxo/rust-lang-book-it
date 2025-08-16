@@ -1,13 +1,13 @@
 fn main() {
-    let reference_to_nothing = dangle();
+    let reference_a_nulla = pendente();
 }
 
 // ANCHOR: here
-fn dangle() -> &String { // dangle returns a reference to a String
+fn pendente() -> &String { // pendente ritorna un reference a String
 
-    let s = String::from("hello"); // s is a new String
+    let s = String::from("ciao"); // `s` è una String nuova
 
-    &s // we return a reference to the String, s
-} // Here, s goes out of scope and is dropped, so its memory goes away.
-  // Danger!
+    &s // ritorniamo un reference alla String `s`
+} // Qui `s` esce dallo scope e viene cancellata, così come la memora assegnatale.
+  // Pericolo!
   // ANCHOR_END: here

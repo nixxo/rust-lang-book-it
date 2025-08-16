@@ -1,15 +1,15 @@
 // ANCHOR: all
 fn main() {
     // ANCHOR: here
-    let s1 = String::from("hello");
+    let s1 = String::from("ciao");
 
-    let len = calculate_length(&s1);
+    let lung = calcola_lunghezza(&s1);
     // ANCHOR_END: here
 
-    println!("The length of '{s1}' is {len}.");
+    println!("La lunghezza di '{s1}' è {lung}.");
 }
 
-fn calculate_length(s: &String) -> usize {
+fn calcola_lunghezza(s: &String) -> usize {
     s.len()
 }
 // ANCHOR_END: all

@@ -528,7 +528,7 @@ nel Listato 4-5
 Ma questa è una procedura inutilmente complessa e richiede molto lavoro per un
 concetto che dovrebbe essere comune. Fortunatamente per noi, Rust ha una
 funzione che consente di utilizzare un valore senza trasferirne la _ownership_,
-chiamata _referenza_.
+chiamata _riferimento_ (_reference_ in inglese).
 
 [data-types]: ch03-02-data-types.html#datatype---tipi-di-dato
 [ch8]: ch08-02-strings.html

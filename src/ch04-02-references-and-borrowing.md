@@ -1,16 +1,18 @@
-## References and Borrowing
+## _Reference_ e _Borrowing_
 
-The issue with the tuple code in Listing 4-5 is that we have to return the
-`String` to the calling function so we can still use the `String` after the
-call to `calculate_length`, because the `String` was moved into
-`calculate_length`. Instead, we can provide a reference to the `String` value.
-A _reference_ is like a pointer in that it’s an address we can follow to access
-the data stored at that address; that data is owned by some other variable.
-Unlike a pointer, a reference is guaranteed to point to a valid value of a
-particular type for the life of that reference.
+Il problema con il codice nel Listato 4-5 è che dobbiamo restituire la `String`
+alla funzione chiamante in modo da poter ancora utilizzare la `String` dopo la
+chiamata a `calcola_lunghezza`, perché la `String` è stata spostata in
+`calcola_lunghezza`. Possiamo invece fornire un riferimento al valore `String`.
+Un riferimento è come un puntatore in quanto è un indirizzo che possiamo seguire
+per accedere ai dati archiviati a quell’indirizzo di memoria; la _ownership_ di
+quei dati appartiene ad un'altra variabile.  differenza di un puntatore, è
+garantito che una _reference_ punti a un valore valido di un certo _type_ finchè
+la _reference_ è ancora valida.
 
-Here is how you would define and use a `calculate_length` function that has a
-reference to an object as a parameter instead of taking ownership of the value:
+Ecco come definiresti e utilizzeresti una funzione `calcola_lunghezza` che abbia
+una _reference_ ad un oggetto come parametro invece di assumere la _ownership_
+del valore:
 
 <Listing file-name="src/main.rs">
 
@@ -20,56 +22,56 @@ reference to an object as a parameter instead of taking ownership of the value:
 
 </Listing>
 
-First, notice that all the tuple code in the variable declaration and the
-function return value is gone. Second, note that we pass `&s1` into
-`calculate_length` and, in its definition, we take `&String` rather than
-`String`. These ampersands represent _references_, and they allow you to refer
-to some value without taking ownership of it. Figure 4-6 depicts this concept.
+Innanzitutto, nota che tutto il codice che dichiarava e ritornava la variabile
+tupla è sparito. In secondo luogo, nota che passiamo `&s1` a `calcola_lunghezza`
+e, nella sua definizione del parametro, prendiamo `&String` anziché `String`. Il
+carattere `&` (_E commerciale_) rappresenta il _reference_ e consente di fare
+riferimento a un valore senza prenderne la _ownership_.
 
-<img alt="Three tables: the table for s contains only a pointer to the table
-for s1. The table for s1 contains the stack data for s1 and points to the
-string data on the heap." src="img/trpl04-06.svg" class="center" />
+La Figura 4-6 illustra questo concetto.
 
-<span class="caption">Figure 4-6: A diagram of `&String s` pointing at `String
-s1`</span>
+<img alt="Tre tabelle: la tabella per s contiene solo un puntatore alla tabella per s1. L atabella per s1 contiene i dati sullo stack per s1 e punta ai dati della stringa nell'heap." src="img/trpl04-06.svg" class="center" />
 
-> Note: The opposite of referencing by using `&` is _dereferencing_, which is
-> accomplished with the dereference operator, `*`. We’ll see some uses of the
-> dereference operator in Chapter 8 and discuss details of dereferencing in
-> Chapter 15.
+<span class="caption">Figura 4-6: Schema di `&String s` che punta a `String s1`</span>
 
-Let’s take a closer look at the function call here:
+> Nota: l'opposto della referenziazione tramite l'uso di `&` è la
+> _dereferenziazione_, che si realizza con l'operatore di deferenziazione `*`
+> (_deference operator_). Vedremo alcuni usi dell'operatore di dereferenziazione
+> nel Capitolo 8 e discuteremo i dettagli della dereferenziazione nel Capitolo
+> 15.
+
+Diamo un'occhiata più da vicino alla chiamata di funzione:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-07-reference/src/main.rs:here}}
 ```
 
-The `&s1` syntax lets us create a reference that _refers_ to the value of `s1`
-but does not own it. Because the reference does not own it, the value it points
-to will not be dropped when the reference stops being used.
-
-Likewise, the signature of the function uses `&` to indicate that the type of
-the parameter `s` is a reference. Let’s add some explanatory annotations:
+La sintassi `&s1` ci permette di creare un _reference_ che punta al valore di
+`s1` ma non li _possiede_. Poiché il _reference_ non li _possiede_, il valore a
+cui punta non verrà abbandonato quando il _reference_ smette di essere
+utilizzato. Allo stesso modo, la firma della funzione utilizza `&` per indicare
+che il _type_ del parametro `s` è un _reference_. Aggiungiamo alcune annotazioni
+esplicative:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-08-reference-with-annotations/src/main.rs:here}}
 ```
 
-The scope in which the variable `s` is valid is the same as any function
-parameter’s scope, but the value pointed to by the reference is not dropped
-when `s` stops being used, because `s` doesn’t have ownership. When functions
-have references as parameters instead of the actual values, we won’t need to
-return the values in order to give back ownership, because we never had
-ownership.
+Lo _scope_ in cui la variabile `s` è valida è lo stesso dello _scope_ di
+qualsiasi parametro di funzione, ma il valore a cui punta il _referecence_ non
+viene eliminato quando `s` smette di essere utilizzato, perché `s` non ha la
+_ownership_. Quando le funzioni hanno _reference_ come parametri anziché valori
+effettivi, non avremo bisogno di restituire i valori per restituire la
+_ownership_, perché non abbiamo mai avuto la _ownership_.
 
-We call the action of creating a reference _borrowing_. As in real life, if a
-person owns something, you can borrow it from them. When you’re done, you have
-to give it back. You don’t own it.
+L'azione di creare un _reference_ viene chiamata _borrowing_ (_fare un prestito_
+in italiano). Come nella vita reale, se una persona possiede qualcosa, puoi
+chiedergliela in prestito. Quando hai finito, devi restituirla. Non la possiedi.
 
-So, what happens if we try to modify something we’re borrowing? Try the code in
-Listing 4-6. Spoiler alert: it doesn’t work!
+Quindi, cosa succede se proviamo a modificare qualcosa che abbiamo in prestito?
+Prova il codice nel Listato 4-6. Avviso spoiler: non funziona!
 
-<Listing number="4-6" file-name="src/main.rs" caption="Attempting to modify a borrowed value">
+<Listing number="4-6" file-name="src/main.rs" caption="Tentativo di modifica di un valore in prestito">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-06/src/main.rs}}
@@ -77,19 +79,20 @@ Listing 4-6. Spoiler alert: it doesn’t work!
 
 </Listing>
 
-Here’s the error:
+Ecco l'errore:
 
 ```console
 {{#include ../listings/ch04-understanding-ownership/listing-04-06/output.txt}}
 ```
+Così come le variabili sono immutabili per impostazione predefinita, lo sono
+anche i _reference_. Non possiamo modificare qualcosa a cui abbiamo un
+riferimento.
 
-Just as variables are immutable by default, so are references. We’re not
-allowed to modify something we have a reference to.
+### Reference mutabili
 
-### Mutable References
-
-We can fix the code from Listing 4-6 to allow us to modify a borrowed value
-with just a few small tweaks that use, instead, a _mutable reference_:
+Possiamo correggere il codice del Listato 4-6 per permetterci di modificare un
+valore preso in prestito con alcune piccole modifiche che utilizzano, invece, un
+_reference mutabile_:
 
 <Listing file-name="src/main.rs">
 
@@ -99,14 +102,14 @@ with just a few small tweaks that use, instead, a _mutable reference_:
 
 </Listing>
 
-First we change `s` to be `mut`. Then we create a mutable reference with `&mut
-s` where we call the `change` function, and update the function signature to
-accept a mutable reference with `some_string: &mut String`. This makes it very
-clear that the `change` function will mutate the value it borrows.
-
-Mutable references have one big restriction: if you have a mutable reference to
-a value, you can have no other references to that value. This code that
-attempts to create two mutable references to `s` will fail:
+Per prima cosa rendiamo `s` mutabile con `mut`. Poi creiamo un _reference_
+mutabile con `&mut s` dove chiamiamo la funzione `cambia` e aggiorniamo la firma
+della funzione in modo che accetti un _reference_ mutabile con `una_stringa:
+&mut String`. In questo modo è molto chiaro che la funzione `cambia` muterà il
+valore che prende in prestito. I _reference_ mutabili hanno una grande
+restrizione: se hai un _reference_ mutabile a un valore, non puoi avere altri
+_reference_ a quel valore. Questo codice che tenta di creare due _reference_
+mutabili a `s` fallirà:
 
 <Listing file-name="src/main.rs">
 
@@ -116,93 +119,98 @@ attempts to create two mutable references to `s` will fail:
 
 </Listing>
 
-Here’s the error:
+Ecco l'errore:
 
 ```console
 {{#include ../listings/ch04-understanding-ownership/no-listing-10-multiple-mut-not-allowed/output.txt}}
 ```
 
-This error says that this code is invalid because we cannot borrow `s` as
-mutable more than once at a time. The first mutable borrow is in `r1` and must
-last until it’s used in the `println!`, but between the creation of that
-mutable reference and its usage, we tried to create another mutable reference
-in `r2` that borrows the same data as `r1`.
+L'errore dice che questo codice non è valido perché non possiamo avere più di un
+_reference_ mutabile alla volta ad `s`. Il primo _reference_ mutabile è in `r1`
+e deve durare fino a quando non viene utilizzato nel `println!`, ma tra la
+creazione di quel _reference_ mutabile e il suo utilizzo, abbiamo cercato di
+creare un altro _referene_ mutabile in `r2` che prende in prestito gli stessi
+dati di `r1`.
 
-The restriction preventing multiple mutable references to the same data at the
-same time allows for mutation but in a very controlled fashion. It’s something
-that new Rustaceans struggle with because most languages let you mutate
-whenever you’d like. The benefit of having this restriction is that Rust can
-prevent data races at compile time. A _data race_ is similar to a race
-condition and happens when these three behaviors occur:
+La restrizione che impedisce più _reference_ mutabili agli stessi dati
+contemporaneamente consente la mutazione ma in modo molto controllato. È
+qualcosa con cui chi comincia a programmare in Rust fatica perché la maggior
+parte dei linguaggi ti consente di mutare quando vuoi. Il vantaggio di avere
+questa restrizione è che Rust può prevenire conflitti di accesso ai dati, _data
+race_, in fase di compilazione. Una _data race_ è simile a una condizione di
+competizione e si verifica quando si verificano questi tre comportamenti:
 
-- Two or more pointers access the same data at the same time.
-- At least one of the pointers is being used to write to the data.
-- There’s no mechanism being used to synchronize access to the data.
+- Due o più puntatori accedono contemporaneamente agli stessi dati.
+- Almeno uno dei puntatori viene utilizzato per scrivere nei dati.
+- Non viene utilizzato alcun meccanismo per sincronizzare l’accesso ai dati
 
-Data races cause undefined behavior and can be difficult to diagnose and fix
-when you’re trying to track them down at runtime; Rust prevents this problem by
-refusing to compile code with data races!
+I _data race_ causano comportamenti non programmati e possono essere difficili
+da diagnosticare e risolvere quando si cerca di individuarli in _runtime_; Rust
+previene questo problema rifiutando di compilare codice contenente _data race_!
 
-As always, we can use curly brackets to create a new scope, allowing for
-multiple mutable references, just not _simultaneous_ ones:
+Come sempre, possiamo usare le parentesi graffe per creare uno _scope_ nuovo,
+consentendo di avere più _reference_ mutabili, ma non _simultanee_:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-11-muts-in-separate-scopes/src/main.rs:here}}
 ```
 
-Rust enforces a similar rule for combining mutable and immutable references.
-This code results in an error:
+Rust applica una regola simile per combinare _reference_ mutabili e immutabili.
+Questo codice genera un errore:
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-12-immutable-and-mutable-not-allowed/src/main.rs:here}}
 ```
 
-Here’s the error:
+Ecco l'errore:
 
 ```console
 {{#include ../listings/ch04-understanding-ownership/no-listing-12-immutable-and-mutable-not-allowed/output.txt}}
 ```
 
-Whew! We _also_ cannot have a mutable reference while we have an immutable one
-to the same value.
+Wow! Non possiamo nemmeno avere un _reference_ mutabile mentre ne abbiamo uno
+immutabile allo stesso valore.
 
-Users of an immutable reference don’t expect the value to suddenly change out
-from under them! However, multiple immutable references are allowed because no
-one who is just reading the data has the ability to affect anyone else’s
-reading of the data.
+Chi userà un _reference_ immutabile non si aspetta certo che il valore cambi
+improvvisamente! Tuttavia, sono consentiti _reference_ multipli immutabili
+perché nessuno che stia leggendo i dati ha la possibilità di influenzare la
+lettura dei dati da parte di altri.
 
-Note that a reference’s scope starts from where it is introduced and continues
-through the last time that reference is used. For instance, this code will
-compile because the last usage of the immutable references is in the `println!`,
-before the mutable reference is introduced:
+Nota che lo _scope_ di un _reference_ inizia dal punto in cui viene introdotto e
+continua fino all'ultima volta che viene utilizzato. Ad esempio, questo codice
+verrà compilato perché l'ultimo utilizzo dei _reference_ immutabili avviene nel
+`println!`, prima che venga introdotto il _reference_ mutabile:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-13-reference-scope-ends/src/main.rs:here}}
 ```
 
-The scopes of the immutable references `r1` and `r2` end after the `println!`
-where they are last used, which is before the mutable reference `r3` is
-created. These scopes don’t overlap, so this code is allowed: the compiler can
-tell that the reference is no longer being used at a point before the end of
-the scope.
+Gli _scope_ dei _reference_ immutabili `r1` e `r2` terminano dopo il `println!`
+in cui sono stati utilizzati per l'ultima volta, ovvero prima che venga creato
+il _refeerence_ mutabile `r3`. Questi _scope_ non si sovrappongono, quindi
+questo codice è consentito: il compilatore capisce che il _reference_ non verrà
+più utilizzato in nessun altro punto prima della fine dello _scope_.
 
-Even though borrowing errors may be frustrating at times, remember that it’s
-the Rust compiler pointing out a potential bug early (at compile time rather
-than at runtime) and showing you exactly where the problem is. Then you don’t
-have to track down why your data isn’t what you thought it was.
+Anche se a volte gli errori  di _borrowing_ possono essere frustranti, ricorda
+che è il compilatore di Rust a segnalare un potenziale bug in anticipo (in fase
+di compilazione e non in fase di esecuzione) e a mostrarti esattamente dove si
+trova il problema. In questo modo non dovrai cercare di capire perché i tuoi
+dati non sono quelli che pensavi fossero.
 
-### Dangling References
+### _Reference_ pendenti
 
-In languages with pointers, it’s easy to erroneously create a _dangling
-pointer_—a pointer that references a location in memory that may have been
-given to someone else—by freeing some memory while preserving a pointer to that
-memory. In Rust, by contrast, the compiler guarantees that references will
-never be dangling references: if you have a reference to some data, the
-compiler will ensure that the data will not go out of scope before the
-reference to the data does.
+Nei linguaggi con puntatori, è facile creare erroneamente un _puntatore
+pendente_, cioé un puntatore che fa riferimento a una posizione in memoria non
+più valido, perché quella momoria assegnata a quella variabile è stata liberata,
+ma non si è provveduto a cancellar anche il puntatore che per l'appunto rimane
+_pendente_ puntando a qualcosa che non è più disponibile. In Rust, al contrario,
+il compilatore garantisce che i _reference_ non saranno diverranno mai
+_pendenti_: se si ha un _reference_ ad alcuni dati, il compilatore si assicurerà
+che i dati non escano dallo _scope_ prima che lo faccia il _reference_ a quie
+dati.
 
-Let’s try to create a dangling reference to see how Rust prevents them with a
-compile-time error:
+Proviamo a creare un _reference_ _pendente_ per vedere come Rust li previene
+segnalando un errore in fase di compilazione:
 
 <Listing file-name="src/main.rs">
 
@@ -212,23 +220,26 @@ compile-time error:
 
 </Listing>
 
-Here’s the error:
+Ecco l'errore:
 
 ```console
 {{#include ../listings/ch04-understanding-ownership/no-listing-14-dangling-reference/output.txt}}
 ```
-
-This error message refers to a feature we haven’t covered yet: lifetimes. We’ll
-discuss lifetimes in detail in Chapter 10. But, if you disregard the parts
-about lifetimes, the message does contain the key to why this code is a problem:
+Questo messaggio di errore si riferisce a una funzionalità che non abbiamo
+ancora trattato: la longevità (_lifetime_ d'ora in poi). Parleremo in dettaglio
+della _lifetime_ nel Capitolo 10. Ma, se trascuriamo le parti relative alla
+_lifetime, il messaggio contiene la chiave del motivo per cui questo codice è un
+problema:
 
 ```text
 this function's return type contains a borrowed value, but there is no value
 for it to be borrowed from
+
+(traduzione: il type di ritorno di questa funzione contiene un valore in prestito, ma non c'è alcun valore da cui prenderlo in prestito)
 ```
 
-Let’s take a closer look at exactly what’s happening at each stage of our
-`dangle` code:
+Diamo un'occhiata più da vicino a cosa succede esattamente in ogni fase della
+nostra funzione `pendente`:
 
 <Listing file-name="src/main.rs">
 
@@ -238,26 +249,28 @@ Let’s take a closer look at exactly what’s happening at each stage of our
 
 </Listing>
 
-Because `s` is created inside `dangle`, when the code of `dangle` is finished,
-`s` will be deallocated. But we tried to return a reference to it. That means
-this reference would be pointing to an invalid `String`. That’s no good! Rust
-won’t let us do this.
+Poiché `s` viene creato all'interno di `pendente`, quando il codice di
+`pendente` sarà terminato, `s` e la memoria ad essa assegnata verranno
+rilasciate. Ma abbiamo cercato di restituire un _reference_ a questa memoria.
+Ciò significa che questo _reference_ punterebbe a una `String` non valida.
+Questo non va bene! Rust non ci permette di farlo.
 
-The solution here is to return the `String` directly:
+La soluzione è restituire direttamente la `String`:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-16-no-dangle/src/main.rs:here}}
 ```
 
-This works without any problems. Ownership is moved out, and nothing is
-deallocated.
+Questo funziona senza problemi: la _ownership_ viene spostata all'esterno e non
+viene rialssciato nulla.
 
-### The Rules of References
+### Le regole dei _reference_
 
-Let’s recap what we’ve discussed about references:
+Ricapitoliamo quello che abbiamo detto sui _reference_:
 
-- At any given time, you can have _either_ one mutable reference _or_ any
-  number of immutable references.
-- References must always be valid.
+- In un dato momento, puoi avere o un singolo _reference_ mutabile o un numero
+qualsiasi di _reference_ immutabili.
+- I _reference_ devono essere sempre validi.
 
-Next, we’ll look at a different kind of reference: slices.
+Successivamente, analizzeremo un altra tipologia di _reference_: le _sezioni_
+(_slice_ in inglese).

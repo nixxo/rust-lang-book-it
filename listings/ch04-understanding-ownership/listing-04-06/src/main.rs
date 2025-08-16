@@ -1,9 +1,9 @@
 fn main() {
     let s = String::from("hello");
 
-    change(&s);
+    cambia(&s);
 }
 
-fn change(some_string: &String) {
-    some_string.push_str(", world");
+fn cambia(una_stringa: &String) {
+    una_stringa.push_str(", world");
 }
