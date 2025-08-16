@@ -1,4 +1,4 @@
-## Cos'è la _ownership_?
+## Cos'è la _Ownership_?
 
 La _ownership_ è un insieme di regole che disciplinano la gestione della memoria
 da parte di un programma Rust. Tutti i programmi devono gestire il modo in cui

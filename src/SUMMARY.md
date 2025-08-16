@@ -20,8 +20,8 @@
   - [Commenti](ch03-04-comments.md)
   - [Controllo del flusso](ch03-05-control-flow.md)
 
-- [Understanding Ownership](ch04-00-understanding-ownership.md)
-  - [What is Ownership?](ch04-01-what-is-ownership.md)
+- [Capire la _Ownership_](ch04-00-understanding-ownership.md)
+  - [Cos'è la _Ownership_?](ch04-01-what-is-ownership.md)
   - [References and Borrowing](ch04-02-references-and-borrowing.md)
   - [The Slice Type](ch04-03-slices.md)
 

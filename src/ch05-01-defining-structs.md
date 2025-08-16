@@ -296,5 +296,5 @@ paste above
 add `> ` before every line -->
 
 [tuples]: ch03-02-data-types.html#type-tupla
-[move]: ch04-01-what-is-ownership.html#variables-and-data-interacting-with-move
-[copy]: ch04-01-what-is-ownership.html#stack-only-data-copy
+[move]: ch04-01-what-is-ownership.html#interazione-tra-variabili-e-dati-con-move
+[copy]: ch04-01-what-is-ownership.html#duplicazione-di-dati-sullo-stack

@@ -396,7 +396,7 @@ _panic_ né consente l'accesso non valido alla memoria.
 [ieee-754]: https://it.wikipedia.org/wiki/IEEE_754
 [control-flow]: ch03-05-control-flow.html#controllo-del-flusso
 [strings]: ch08-02-strings.html#storing-utf-8-encoded-text-with-strings
-[stack-and-heap]: ch04-01-what-is-ownership.html#the-stack-and-the-heap
+[stack-and-heap]: ch04-01-what-is-ownership.html#lo-stack-e-lheap
 [vectors]: ch08-01-vectors.html
 [errori-irrecuperabili-con-panic]: ch09-01-unrecoverable-errors-with-panic.html
 [appendice_b]: appendix-02-operators.md
