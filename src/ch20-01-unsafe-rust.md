@@ -552,7 +552,7 @@ you have written upholds Rust’s rules.
 For a much deeper exploration of how to work effectively with unsafe Rust, read
 Rust’s official guide to the subject, the [Rustonomicon][nomicon].
 
-[dangling-references]: ch04-02-references-and-borrowing.html#dangling-references
+[dangling-references]: ch04-02-references-and-borrowing.html#reference-pendenti
 [ABI]: ../reference/items/external-blocks.html#abi
 [differences-between-variables-and-constants]: ch03-01-variables-and-mutability.html#costanti
 [extensible-concurrency-with-the-send-and-sync-traits]: ch16-04-extensible-concurrency-sync-and-send.html#extensible-concurrency-with-the-send-and-sync-traits
