@@ -1,69 +1,64 @@
-## Appendix A: Keywords
+## Appendice A: Parole chiave
 
-The following list contains keywords that are reserved for current or future
-use by the Rust language. As such, they cannot be used as identifiers (except
-as raw identifiers as we’ll discuss in the “[Raw
-Identifiers][raw-identifiers]<!-- ignore -->” section). Identifiers are names
-of functions, variables, parameters, struct fields, modules, crates, constants,
-macros, static values, attributes, types, traits, or lifetimes.
+Il seguente elenco contiene parole chiave che sono riservate per l'uso attuale o
+futuro del linguaggio Rust. In quanto tali, non possono essere utilizzate come
+identificatori (tranne che come _identificatori grezzi_, come discuteremo nella
+sezione [dedicata][raw-identifiers]<!-- ignore -->). Gli identificatori sono
+nomi di funzioni, variabili, parametri, elementi di struct, moduli, _crate_,
+costanti, macro, valori statici, attributi, _type_, _traits_ o _lifetime_.
 
 [raw-identifiers]: #raw-identifiers
 
-### Keywords Currently in Use
+### Parole chiave attualmente in uso
 
-The following is a list of keywords currently in use, with their functionality
-described.
+Di seguito è riportato un elenco di parole chiave attualmente in uso, con la loro funzionalità descritta.
 
-- `as` - perform primitive casting, disambiguate the specific trait containing
-  an item, or rename items in `use` statements
-- `async` - return a `Future` instead of blocking the current thread
-- `await` - suspend execution until the result of a `Future` is ready
-- `break` - exit a loop immediately
-- `const` - define constant items or constant raw pointers
-- `continue` - continue to the next loop iteration
-- `crate` - in a module path, refers to the crate root
-- `dyn` - dynamic dispatch to a trait object
-- `else` - fallback for `if` and `if let` control flow constructs
-- `enum` - define an enumeration
-- `extern` - link an external function or variable
-- `false` - Boolean false literal
-- `fn` - define a function or the function pointer type
-- `for` - loop over items from an iterator, implement a trait, or specify a
-  higher-ranked lifetime
-- `if` - branch based on the result of a conditional expression
-- `impl` - implement inherent or trait functionality
-- `in` - part of `for` loop syntax
-- `let` - bind a variable
-- `loop` - loop unconditionally
-- `match` - match a value to patterns
-- `mod` - define a module
-- `move` - make a closure take ownership of all its captures
-- `mut` - denote mutability in references, raw pointers, or pattern bindings
-- `pub` - denote public visibility in struct fields, `impl` blocks, or modules
-- `ref` - bind by reference
-- `return` - return from function
-- `Self` - a type alias for the type we are defining or implementing
-- `self` - method subject or current module
-- `static` - global variable or lifetime lasting the entire program execution
-- `struct` - define a structure
-- `super` - parent module of the current module
-- `trait` - define a trait
-- `true` - Boolean true literal
-- `type` - define a type alias or associated type
-- `union` - define a [union][union]<!-- ignore -->; is only a keyword when used
-  in a union declaration
-- `unsafe` - denote unsafe code, functions, traits, or implementations
-- `use` - bring symbols into scope; specify precise captures for generic and
-  lifetime bounds
-- `where` - denote clauses that constrain a type
-- `while` - loop conditionally based on the result of an expression
+- `as` - eseguire un casting primitivo, disambiguare il _trait_ specifico che contiene un elemento o rinominare elementi nelle dichiarazioni `use`
+- `async` - restituire un `Future` invece di bloccare il _thread_ corrente
+- `await` - sospendere l'esecuzione fino a quando il risultato di un `Future` è pronto
+- `break` - uscire immediatamente da un ciclo
+- `const` - definire elementi costanti o puntatori raw costanti
+- `continue` - continuare all'iterazione successiva del ciclo
+- `crate` - in un percorso di modulo, si riferisce alla radice del crate
+- `dyn` - dispatch dinamico a un oggetto _trait_
+- `else` - alternativa per i costrutti di controllo di flusso `if` e `if let`
+- `enum` - definire un'enumerazione
+- `extern` - collegare una funzione o una variabile esterna
+- `false` - letterale booleano falso
+- `fn` - definire una funzione o il tipo di puntatore a funzione
+- `for` - iterare su elementi da un iteratore, implementare un _trait_ o specificare una _lifetime_ di rango superiore
+- `if` - ramificazione in base al risultato di un'espressione condizionale
+- `impl` - implementare funzionalità innate o di _trait_
+- `in` - parte della sintassi del ciclo `for`
+- `let` - inizializzare una variabile
+- `loop` - ciclo senza condizioni
+- `match` - abbinare un valore a _pattern_
+- `mod` - definire un modulo
+- `move` - fare in modo che una _closure_ prenda possesso di tutte le sue catture
+- `mut` - denotare mutabilità in _reference_, puntatori raw o binding di _pattern_
+- `pub` - denotare visibilità pubblica nei campi delle strutture, nei blocchi `impl` o nei moduli
+- `ref` - inizializzare per _reference_
+- `return` - ritorno dalla funzione
+- `Self` - un alias di _type_ per il _type_ che stiamo definendo o implementando
+- `self` - soggetto del metodo o modulo corrente
+- `static` - variabile globale o _lifetime_ che dura per l'intera esecuzione del programma
+- `struct` - definire una struttura
+- `super` - modulo genitore del modulo corrente
+- `trait` - definire un _trait_
+- `true` - letterale booleano vero
+- `type` - definire un alias di _type_ o un _type_ associato
+- `union` - definire un'[unione][union]<!-- ignore -->; è solo una parola chiave quando utilizzata in una dichiarazione di unione
+- `unsafe` - denotare codice, funzioni, _trait_ o implementazioni non sicure
+- `use` - portare simboli in _scope_; specificare catture precise per vincoli generici e di _lifetime_
+- `where` - denotare clausole che vincolano un _type_
+- `while` - ciclo condizionato al risultato di un'espressione
 
 [union]: https://doc.rust-lang.org/stable/reference/items/unions.html
 
-### Keywords Reserved for Future Use
+### Parole chiave riservate per usi futuri
 
-The following keywords do not yet have any functionality but are reserved by
-Rust for potential future use.
+Le seguenti parole chiave non hanno ancora alcuna funzionalità ma sono riservate
+da Rust per un potenziale uso futuro.
 
 - `abstract`
 - `become`
@@ -80,41 +75,41 @@ Rust for potential future use.
 - `virtual`
 - `yield`
 
-### Raw Identifiers
+### Identificatori grezzi
 
-_Raw identifiers_ are the syntax that lets you use keywords where they wouldn’t
-normally be allowed. You use a raw identifier by prefixing a keyword with `r#`.
-
-For example, `match` is a keyword. If you try to compile the following function
-that uses `match` as its name:
+Gli _Identificatori grezzi_ (_raw identifiers_) sono la sintassi che ti permette
+di utilizzare parole chiave dove normalmente non sarebbero consentite. Utilizzi
+un identificatore grezzo anteponendo a una parola chiave il prefisso `r#`. Ad
+esempio, `match` è una parola chiave. Se provi a compilare la seguente funzione
+che utilizza `match` come nome:
 
 <span class="filename">File: src/main.rs</span>
 
 ```rust,ignore,does_not_compile
-fn match(needle: &str, haystack: &str) -> bool {
-    haystack.contains(needle)
+fn match(ago: &str, pagliaio: &str) -> bool {
+    pagliaio.contains(ago)
 }
 ```
 
-you’ll get this error:
+otterrai questo errore:
 
 ```text
 error: expected identifier, found keyword `match`
  --> src/main.rs:4:4
   |
-4 | fn match(needle: &str, haystack: &str) -> bool {
+4 | fn match(ago: &str, pagliaio: &str) -> bool {
   |    ^^^^^ expected identifier, found keyword
 ```
 
-The error shows that you can’t use the keyword `match` as the function
-identifier. To use `match` as a function name, you need to use the raw
-identifier syntax, like this:
+L'errore indica che non è possibile utilizzare la parola chiave `match` come
+identificatore di funzione. Per utilizzare `match` come nome di funzione, devi
+utilizzare la sintassi dell'_identificatore grezzo_, in questo modo:
 
 <span class="filename">File: src/main.rs</span>
 
 ```rust
-fn r#match(needle: &str, haystack: &str) -> bool {
-    haystack.contains(needle)
+fn r#match(ago: &str, pagliaio: &str) -> bool {
+    pagliaio.contains(ago)
 }
 
 fn main() {
@@ -122,18 +117,22 @@ fn main() {
 }
 ```
 
-This code will compile without any errors. Note the `r#` prefix on the function
-name in its definition as well as where the function is called in `main`.
+Questo codice verrà compilato senza errori. Nota il prefisso `r#` sul nome della
+funzione nella sua definizione e il punto in cui la funzione viene chiamata in
+`main`.
 
-Raw identifiers allow you to use any word you choose as an identifier, even if
-that word happens to be a reserved keyword. This gives us more freedom to choose
-identifier names, as well as lets us integrate with programs written in a
-language where these words aren’t keywords. In addition, raw identifiers allow
-you to use libraries written in a different Rust edition than your crate uses.
-For example, `try` isn’t a keyword in the 2015 edition but is in the 2018, 2021,
-and 2024 editions. If you depend on a library that is written using the 2015
-edition and has a `try` function, you’ll need to use the raw identifier syntax,
-`r#try` in this case, to call that function from your code on later editions.
-See [Appendix E][appendix-e]<!-- ignore --> for more information on editions.
+Gli _identificatori grezzi_ ti permettono di utilizzare qualsiasi parola che
+scegli come identificatore, anche se si tratta di una parola chiave riservata.
+Questo ci dà maggiore libertà nella scelta dei nomi degli identificatori e ci
+permette di integrarci con programmi scritti in un linguaggio in cui queste
+parole non sono parole chiave. Inoltre, gli _identificatori grezzi_ ti
+permettono di utilizzare librerie scritte in un'edizione di Rust diversa da
+quella utilizzata dal tuo crate. Per esempio, `try` non è una parola chiave
+nell'edizione 2015, ma lo è nelle edizioni 2018, 2021 e 2024. Se dipendi da una
+libreria scritta con l'edizione 2015 e che ha una funzione `try`, dovrai
+utilizzare la sintassi dell'identificatore grezzo, `r#try` in questo caso, per
+richiamare quella funzione dal tuo codice nelle edizioni successive. Per
+ulteriori informazioni sulle edizioni, consulta [Appendice E][appendix-e]<!--
+ignore -->.
 
 [appendix-e]: appendix-05-editions.html

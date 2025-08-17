@@ -1,10 +1,10 @@
-## Appendix F: Translations of the Book
+## Appendice F: Traduzioni del Libro
 
-For resources in languages other than English. Most are still in progress; see
-[the Translations label][label] to help or let us know about a new translation!
+Per le risorse in lingue diverse dall'inglese, la maggior parte sono ancora in traduzione; consulta [l'etichetta Traduzioni][label] per aiutarci o segnalarci una nuova traduzione!
 
 [label]: https://github.com/rust-lang/book/issues?q=is%3Aopen+is%3Aissue+label%3ATranslations
 
+- [Original English](https://github.com/rust-lang/book)
 - [Português](https://github.com/rust-br/rust-book-pt-br) (BR)
 - [Português](https://github.com/nunojesus/rust-book-pt-pt) (PT)
 - 简体中文: [KaiserY/trpl-zh-cn](https://github.com/KaiserY/trpl-zh-cn), [gnu4cn/rust-lang-Zh_CN](https://github.com/gnu4cn/rust-lang-Zh_CN)

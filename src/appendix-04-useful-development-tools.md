@@ -1,35 +1,37 @@
-## Appendix D - Useful Development Tools
+## Appendice D - Utili Strumenti di sviluppo
 
-In this appendix, we talk about some useful development tools that the Rust
-project provides. We’ll look at automatic formatting, quick ways to apply
-warning fixes, a linter, and integrating with IDEs.
+In questa appendice parliamo di alcuni utili strumenti di sviluppo che il progetto Rust mette a disposizione: la formattazione automatica, i modi rapidi per applicare le correzioni degli avvisi, un linter e l'integrazione con gli IDE.
 
-### Automatic Formatting with `rustfmt`
+### Formattazione automatica con `rustfmt
 
-The `rustfmt` tool reformats your code according to the community code style.
-Many collaborative projects use `rustfmt` to prevent arguments about which
-style to use when writing Rust: everyone formats their code using the tool.
+Lo strumento `rustfmt` riformatta il tuo codice secondo lo stile di codice della
+comunità. Molti progetti collaborativi utilizzano `rustfmt` per evitare
+discussioni su quale stile utilizzare quando si scrive Rust: tutti formattano il
+loro codice utilizzando lo strumento.
 
-Rust installations include `rustfmt` by default, so you should already have the
-programs `rustfmt` and `cargo-fmt` on your system. These two commands are
-analogous to `rustc` and `cargo` in that `rustfmt` allows finer-grained control
-and `cargo-fmt` understands conventions of a project that uses Cargo. To format
-any Cargo project, enter the following:
+Le installazioni di Rust includono `rustfmt` come impostazione predefinita,
+quindi dovresti già avere i programmi `rustfmt` e `cargo-fmt` sul tuo sistema.
+Questi due comandi hanno lo stesso rapporto che esiste tre `rustc` e `cargo`,
+nel senso che `rustfmt` è il _formattatore_ vero e proprio mentre `cargo-fmt`
+usa e comprende le convenzioni di un progetto che utilizza Cargo per quanto
+riguarda la forattazione di quel progetto. Per formattare un qualsiasi progetto,
+inserisci quanto segue:
 
 ```console
 $ cargo fmt
 ```
 
-Running this command reformats all the Rust code in the current crate. This
-should only change the code style, not the code semantics. For more information
-on `rustfmt`, see [its documentation][rustfmt].
+L'esecuzione di questo comando riformatta tutto il codice Rust nel _crate_
+corrente. Questo dovrebbe cambiare solo lo stile del codice, non la sua
+semantica. Per maggiori informazioni su `rustfmt`, consulta [la sua
+documentazione][rustfmt].
 
-### Fix Your Code with `rustfix`
+### Correggi il tuo codice con `rustfix
 
-The `rustfix` tool is included with Rust installations and can automatically fix
-compiler warnings that have a clear way to correct the problem that’s likely
-what you want. You’ve probably seen compiler warnings before. For example,
-consider this code:
+Lo strumento `rustfix` è incluso nelle installazioni di Rust ed è in grado di
+correggere automaticamente gli avvertimenti del compilatore in cui è specificato
+in modo preciso come quell'errore vada risolto. Probabilmente hai già visto
+degli avvertimenti del compilatore. Per esempio, considera questo codice:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -40,12 +42,12 @@ fn main() {
 }
 ```
 
-Here, we’re defining the variable `x` as mutable, but we never actually mutate
-it. Rust warns us about that:
+In questo caso, stiamo definendo la variabile `x` come mutabile, ma in realtà
+non la mutiamo mai. Rust ci avverte di questo:
 
 ```console
 $ cargo build
-   Compiling myprogram v0.1.0 (file:///projects/myprogram)
+   Compiling mioprogramma v0.1.0 (file:///progetti/mioprogramma)
 warning: variable does not need to be mutable
  --> src/main.rs:2:9
   |
@@ -57,19 +59,18 @@ warning: variable does not need to be mutable
   = note: `#[warn(unused_mut)]` on by default
 ```
 
-The warning suggests that we remove the `mut` keyword. We can automatically
-apply that suggestion using the `rustfix` tool by running the command `cargo
-fix`:
+L'avviso suggerisce di rimuovere la parola chiave `mut`. Possiamo applicare
+automaticamente questo suggerimento utilizzando lo strumento `rustfix` eseguendo
+il comando `cargo fix`:
 
 ```console
 $ cargo fix
-    Checking myprogram v0.1.0 (file:///projects/myprogram)
+    Checking mioprogramma v0.1.0 (file:///progetti/mioprogramma)
       Fixing src/main.rs (1 fix)
     Finished dev [unoptimized + debuginfo] target(s) in 0.59s
 ```
 
-When we look at _src/main.rs_ again, we’ll see that `cargo fix` has changed the
-code:
+Se guardiamo di nuovo _src/main.rs_, vedremo che `cargo fix` ha modificato il codice:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -79,26 +80,28 @@ fn main() {
     println!("{x}");
 }
 ```
+La variabile `x` è ora immutabile e l'avviso non appare più.
 
-The variable `x` is now immutable, and the warning no longer appears.
+Puoi anche usare il comando `cargo fix` per far passare il tuo codice tra
+diverse edizioni di Rust. Le edizioni sono trattate nell'[Appendice
+E][editions].
 
-You can also use the `cargo fix` command to transition your code between
-different Rust editions. Editions are covered in [Appendix E][editions].
+### Altri strumenti di analisi del codice con Clippy
 
-### More Lints with Clippy
+Lo strumento _Clippy_ è una raccolta di strumenti di analisi, _lint_ in inglese,
+per analizzare il tuo codice in modo da individuare gli errori più comuni e
+migliorare il tuo codice Rust. Clippy è incluso nelle installazioni standard di
+Rust.
 
-The Clippy tool is a collection of lints to analyze your code so you can catch
-common mistakes and improve your Rust code. Clippy is included with standard
-Rust installations.
-
-To run Clippy’s lints on any Cargo project, enter the following:
+Per eseguire i _lint_ di Clippy su qualsiasi progetto Cargo, inserisci quanto
+segue:
 
 ```console
 $ cargo clippy
 ```
 
-For example, say you write a program that uses an approximation of a
-mathematical constant, such as pi, as this program does:
+Ad esempio, supponiamo di scrivere un programma che utilizza un'approssimazione
+di una costante matematica, come il pi greco, come fa questo programma:
 
 <Listing file-name="src/main.rs">
 
@@ -106,13 +109,13 @@ mathematical constant, such as pi, as this program does:
 fn main() {
     let x = 3.1415;
     let r = 8.0;
-    println!("the area of the circle is {}", x * r * r);
+    println!("l'area del cerchio è {}", x * r * r);
 }
 ```
 
 </Listing>
 
-Running `cargo clippy` on this project results in this error:
+Eseguendo `cargo clippy` su questo progetto si ottiene questo errore:
 
 ```text
 error: approximate value of `f{32, 64}::consts::PI` found
@@ -126,11 +129,11 @@ error: approximate value of `f{32, 64}::consts::PI` found
   = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#approx_constant
 ```
 
-This error lets you know that Rust already has a more precise `PI` constant
-defined, and that your program would be more correct if you used the constant
-instead. You would then change your code to use the `PI` constant.
+Questo errore ti informa che in Rust c'è già definita una costante `PI` più
+precisa e che il tuo programma sarebbe più corretto se usassi questa costante.
+Dovresti quindi modificare il tuo codice per usare la costante `PI`.
 
-The following code doesn’t result in any errors or warnings from Clippy:
+Il codice seguente non produce alcun errore o avviso da parte di Clippy:
 
 <Listing file-name="src/main.rs">
 
@@ -138,31 +141,32 @@ The following code doesn’t result in any errors or warnings from Clippy:
 fn main() {
     let x = std::f64::consts::PI;
     let r = 8.0;
-    println!("the area of the circle is {}", x * r * r);
+    println!("l'area del cerchio è {}", x * r * r);
 }
 ```
 
 </Listing>
 
-For more information on Clippy, see [its documentation][clippy].
+Per maggiori informazioni su Clippy, consulta [la sua documentazione][clippy].
 
-### IDE Integration Using `rust-analyzer`
+### Integrazione nell'IDE con `rust-analyzer
 
-To help with IDE integration, the Rust community recommends using
-[`rust-analyzer`][rust-analyzer]<!-- ignore -->. This tool is a set of
-compiler-centric utilities that speak [Language Server Protocol][lsp]<!--
-ignore -->, which is a specification for IDEs and programming languages to
-communicate with each other. Different clients can use `rust-analyzer`, such as
-[the Rust analyzer plug-in for Visual Studio Code][vscode].
+Per aiutare l'integrazione con l'IDE, la comunità di Rust raccomanda l'uso di
+[`rust-analyzer`][rust-analyzer]<!-- ignore -->. Questo strumento è un insieme
+di utility incentrate sul compilatore che _parlano_ in [Language Server
+Protocol][lsp]<!-- ignore -->, che è una specifica per gli IDE e i linguaggi di
+programmazione per comunicare tra loro. Diversi client possono usare
+`rust-analyzer`, come ad esempio [il plug-in Rust Analyzer per Visual Studio
+Code][vscode].
 
-Visit the `rust-analyzer` project’s [home page][rust-analyzer]<!-- ignore -->
-for installation instructions, then install the language server support in your
-particular IDE. Your IDE will gain capabilities such as autocompletion, jump to
-definition, and inline errors.
+Visita la [home page] del progetto `rust-analyzer`[rust-analyzer]<!-- ignore -->
+per le istruzioni di installazione, quindi installa il supporto per il server
+linguistico nel tuo IDE specifico. Il tuo IDE otterrà funzionalità come
+l'autocompletamento, il salto alla definizione e gli errori in linea.
 
-[rustfmt]: https://github.com/rust-lang/rustfmt
+[rustfmt]: https://rust-lang.github.io/rustfmt/
 [editions]: appendix-05-editions.md
-[clippy]: https://github.com/rust-lang/rust-clippy
+[clippy]: https://doc.rust-lang.org/clippy/
 [rust-analyzer]: https://rust-analyzer.github.io
 [lsp]: http://langserver.org/
 [vscode]: https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
