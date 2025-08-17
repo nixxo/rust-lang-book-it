@@ -947,7 +947,7 @@ che produce il numero segreto. Il Listato 2-6 mostra il codice finale.
 A questo punto, hai costruito con successo il gioco dell'indovinello:
 complimenti!
 
-## Riassunto
+## Riepilogo
 
 Questo progetto è stato un modo pratico per introdurti a molti nuovi concetti di
 Rust: `let`, `match`, le funzioni, l'uso di _crate_ esterni e altro ancora. Nei

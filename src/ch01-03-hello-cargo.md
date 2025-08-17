@@ -255,7 +255,7 @@ $ cargo build
 
 Per maggiori informazioni su Cargo, consulta la [documentazione][cargo].
 
-## Riassunto
+## Riepilogo
 
 Sei già partito alla grande nel tuo viaggio assieme a Rust! In questo capitolo
 hai imparato a..:

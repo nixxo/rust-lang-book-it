@@ -388,7 +388,7 @@ l'intervallo.
 
 Questo codice è un po' più carino, vero?
 
-## Riassunto
+## Riepilogo
 
 Ce l'hai fatta! Questo capitolo è stato molto impegnativo: hai imparato a
 conoscere le variabili, i _type_ di dati scalari e composti, le funzioni, i
