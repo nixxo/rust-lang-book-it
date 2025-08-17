@@ -1,8 +1,8 @@
-fn first_word(s: &String) -> usize {
+fn prima_parola(s: &String) -> usize {
     let bytes = s.as_bytes();
 
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
+    for (i, &lettera) in bytes.iter().enumerate() {
+        if lettera == b' ' {
             return i;
         }
     }
@@ -14,11 +14,11 @@ fn first_word(s: &String) -> usize {
 fn main() {
     let mut s = String::from("hello world");
 
-    let word = first_word(&s); // word will get the value 5
+    let parola = prima_parola(&s); // `parola` riceverà il valore 5
 
-    s.clear(); // this empties the String, making it equal to ""
+    s.clear(); // questo svuota la String, rendendola uguale a ""
 
-    // word still has the value 5 here, but s no longer has any content that we
-    // could meaningfully use with the value 5, so word is now totally invalid!
+    // `parola` mantiene ancora il valore di 5, ma `s` non contiene più quello a cui
+    // quel 5 si riferisce, quindi `parola` è adesso considerabile come non valida!
 }
 // ANCHOR_END: here

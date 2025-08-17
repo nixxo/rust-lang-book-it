@@ -1,14 +1,14 @@
 // ANCHOR: here
-fn first_word(s: &String) -> usize {
+fn prima_parola(s: &String) -> usize {
     // ANCHOR: as_bytes
     let bytes = s.as_bytes();
     // ANCHOR_END: as_bytes
 
     // ANCHOR: iter
-    for (i, &item) in bytes.iter().enumerate() {
+    for (i, &lettera) in bytes.iter().enumerate() {
         // ANCHOR_END: iter
         // ANCHOR: inside_for
-        if item == b' ' {
+        if lettera == b' ' {
             return i;
         }
     }

@@ -23,7 +23,7 @@
 - [Capire la _Ownership_](ch04-00-understanding-ownership.md)
   - [Cos'è la _Ownership_?](ch04-01-what-is-ownership.md)
   - [Reference e Borrowing](ch04-02-references-and-borrowing.md)
-  - [The Slice Type](ch04-03-slices.md)
+  - [Il _Type_ Slice](ch04-03-slices.md)
 
 - [Using Structs to Structure Related Data](ch05-00-structs.md)
   - [Defining and Instantiating Structs](ch05-01-defining-structs.md)

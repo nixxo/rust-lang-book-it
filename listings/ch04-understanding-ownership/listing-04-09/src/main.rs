@@ -1,10 +1,10 @@
 // ANCHOR: here
-fn first_word(s: &str) -> &str {
+fn prima_parola(s: &str) -> &str {
     // ANCHOR_END: here
     let bytes = s.as_bytes();
 
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
+    for (i, &lettera) in bytes.iter().enumerate() {
+        if lettera == b' ' {
             return &s[0..i];
         }
     }
@@ -14,24 +14,24 @@ fn first_word(s: &str) -> &str {
 
 // ANCHOR: usage
 fn main() {
-    let my_string = String::from("hello world");
+    let mia_stringa = String::from("hello world");
 
-    // `first_word` works on slices of `String`s, whether partial or whole.
-    let word = first_word(&my_string[0..6]);
-    let word = first_word(&my_string[..]);
-    // `first_word` also works on references to `String`s, which are equivalent
-    // to whole slices of `String`s.
-    let word = first_word(&my_string);
+    // `prima_parola` funziona con slice di `String`, parziali o intere.
+    let parola = prima_parola(&mia_stringa[0..6]);
+    let parola = prima_parola(&mia_stringa[..]);
+    // `prima_parola` funziona anche con reference a `String`, che corrisponde
+    // a una slice intera di `String`.
+    let parola = prima_parola(&mia_stringa);
 
-    let my_string_literal = "hello world";
+    let mia_stringa_literal = "hello world";
 
-    // `first_word` works on slices of string literals, whether partial or
-    // whole.
-    let word = first_word(&my_string_literal[0..6]);
-    let word = first_word(&my_string_literal[..]);
+    // `prima_parola` funziona con slice di lettrali di stringhe,
+    // parziali o intere.
+    let parola = prima_parola(&mia_stringa_literal[0..6]);
+    let parola = prima_parola(&mia_stringa_literal[..]);
 
-    // Because string literals *are* string slices already,
-    // this works too, without the slice syntax!
-    let word = first_word(my_string_literal);
+    // E siccome i letterali di stringa *sono* già degli slice,
+    // funziona pure così, senza usare la sintassi degli slice!
+    let parola = prima_parola(mia_stringa_literal);
 }
 // ANCHOR_END: usage

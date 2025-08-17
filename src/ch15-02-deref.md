@@ -194,7 +194,7 @@ Because the substitution of the `*` operator does not recurse infinitely, we
 end up with data of type `i32`, which matches the `5` in `assert_eq!` in
 Listing 15-9.
 
-### Implicit Deref Coercions with Functions and Methods
+### De-referenziazione forzata implicita in Funzioni e Metodi
 
 _Deref coercion_ converts a reference to a type that implements the `Deref`
 trait into a reference to another type. For example, deref coercion can convert

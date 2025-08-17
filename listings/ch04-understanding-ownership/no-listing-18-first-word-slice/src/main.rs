@@ -1,9 +1,9 @@
 // ANCHOR: here
-fn first_word(s: &String) -> &str {
+fn prima_parola(s: &String) -> &str {
     let bytes = s.as_bytes();
 
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
+    for (i, &lettera) in bytes.iter().enumerate() {
+        if lettera == b' ' {
             return &s[0..i];
         }
     }
