@@ -58,7 +58,7 @@ described.
 - `where` - denote clauses that constrain a type
 - `while` - loop conditionally based on the result of an expression
 
-[union]: ../reference/items/unions.html
+[union]: https://doc.rust-lang.org/stable/reference/items/unions.html
 
 ### Keywords Reserved for Future Use
 

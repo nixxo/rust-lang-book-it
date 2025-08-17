@@ -321,6 +321,6 @@ does just this when used with enums: it will run different code depending on
 which variant of the enum it has, and that code can use the data inside the
 matching value.
 
-[IpAddr]: ../std/net/enum.IpAddr.html
-[option]: ../std/option/enum.Option.html
-[docs]: ../std/option/enum.Option.html
+[IpAddr]: https://doc.rust-lang.org/stable/std/net/enum.IpAddr.html
+[option]: https://doc.rust-lang.org/stable/std/option/enum.Option.html
+[docs]: https://doc.rust-lang.org/stable/std/option/enum.Option.html

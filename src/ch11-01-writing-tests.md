@@ -535,7 +535,7 @@ when we run our tests and explore the different options we can use with `cargo
 test`.
 
 [concatenation-with-the--operator-or-the-format-macro]: ch08-02-strings.html#concatenation-with-the--operator-or-the-format-macro
-[bench]: ../unstable-book/library-features/test.html
+[bench]: https://doc.rust-lang.org/stable/unstable-book/library-features/test.html
 [ignoring]: ch11-02-running-tests.html#ignoring-some-tests-unless-specifically-requested
 [subset]: ch11-02-running-tests.html#running-a-subset-of-tests-by-name
 [controlling-how-tests-are-run]: ch11-02-running-tests.html#controlling-how-tests-are-run

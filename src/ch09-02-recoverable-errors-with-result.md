@@ -531,4 +531,4 @@ cases.
 
 [handle_failure]: ch02-00-guessing-game-tutorial.html#gestione-dei-potenziali-errori-con-result
 [trait-objects]: ch18-02-trait-objects.html#using-trait-objects-that-allow-for-values-of-different-types
-[termination]: ../std/process/trait.Termination.html
+[termination]: https://doc.rust-lang.org/stable/std/process/trait.Termination.html

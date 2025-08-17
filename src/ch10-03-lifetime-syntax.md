@@ -613,5 +613,5 @@ the [Rust Reference][reference]. But next, you’ll learn how to write tests in
 Rust so you can make sure your code is working the way it should.
 
 [references-and-borrowing]: ch04-02-references-and-borrowing.html#reference-e-borrowing
-[string-slices-as-parameters]: ch04-03-slices.html#string-slices-as-parameters
-[reference]: ../reference/index.html
+[string-slices-as-parameters]: ch04-03-slices.html#string-slice-come-parametri
+[reference]: https://doc.rust-lang.org/stable/reference/index.html

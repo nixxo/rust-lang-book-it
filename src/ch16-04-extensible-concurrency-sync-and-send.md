@@ -90,4 +90,4 @@ other languages. Concurrent programming is no longer a concept to be afraid of:
 go forth and make your programs concurrent, fearlessly!
 
 [sharing-a-mutext-between-multiple-threads]: ch16-03-shared-state.html#sharing-a-mutext-between-multiple-threads
-[nomicon]: ../nomicon/index.html
+[nomicon]: https://doc.rust-lang.org/stable/nomicon/index.html

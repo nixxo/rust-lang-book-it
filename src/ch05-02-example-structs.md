@@ -238,7 +238,7 @@ defined on our `Rectangle` type.
 
 [the-tuple-type]: ch03-02-data-types.html#type-tupla
 [app-c]: appendix-03-derivable-traits.md
-[println]: ../std/macro.println.html
-[dbg]: ../std/macro.dbg.html
+[println]: https://doc.rust-lang.org/stable/std/macro.println.html
+[dbg]: https://doc.rust-lang.org/stable/std/macro.dbg.html
 [err]: ch12-06-writing-to-stderr-instead-of-stdout.html
-[attributes]: ../reference/attributes.html
+[attributes]: https://doc.rust-lang.org/stable/reference/attributes.html

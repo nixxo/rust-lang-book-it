@@ -255,6 +255,6 @@ valid.
 Let’s move on to the next collection type: `String`!
 
 [data-types]: ch03-02-data-types.html#datatype---tipi-di-dato
-[nomicon]: ../nomicon/vec/vec.html
-[vec-api]: ../std/vec/struct.Vec.html
+[nomicon]: https://doc.rust-lang.org/stable/nomicon/vec/vec.html
+[vec-api]: https://doc.rust-lang.org/stable/std/vec/struct.Vec.html
 [deref]: ch15-02-deref.html#following-the-pointer-to-the-value-with-the-dereference-operator
