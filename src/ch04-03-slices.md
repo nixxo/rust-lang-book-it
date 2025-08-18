@@ -1,8 +1,9 @@
 ## Il _Type_ _Slice_
 
-Gli _slice_ (_sezioni_, _fette_, _porzioni_ in italiano) ti permettono di fare riferimento (un _reference_) a una sequenza
-contigua di elementi in una [collezione](ch08-00-common-collections.md). Uno
-_slice_ è una tipologia di _reference_, quindi non ha _ownership_.
+Le _slice_ (_sezioni_, _fette_, _porzioni_ in italiano) ti permettono di fare
+riferimento (un _reference_) a una sequenza contigua di elementi in una
+[collezione](ch08-00-common-collections.md). Una _slice_ è una tipologia di
+_reference_, quindi non ha _ownership_.
 
 Ecco un piccolo problema di programmazione: scrivi una funzione che prenda una
 stringa di parole separate da spazi e restituisca la prima parola che trova in
@@ -10,13 +11,13 @@ quella stringa. Se la funzione non trova uno spazio nella stringa, l'intera
 stringa deve essere considerata come una sola parola, quindi deve essere
 restituita l'intera stringa.
 
-> Nota: Ai fini dell'introduzione agli _slice_ di stringhe, stiamo assumendo
+> Nota: Ai fini dell'introduzione alle _slice_ di stringhe, stiamo assumendo
 > solo caratteri ASCII in questa sezione; una discussione più approfondita sulla
 > gestione di UTF-8 si trova nella sezione [“Memorizzazione del testo codificato
 > UTF-8 con le stringhe”][strings] del Capitolo 8.
 
 Lavoriamo su come scrivere la firma di questa funzione senza usare _slice_ per
-ora, per comprendere il problema che gli _slice_ risolveranno:
+ora, per comprendere il problema che le _slice_ risolveranno:
 
 ```rust,ignore
 fn prima_parola(s: &String) -> ?
@@ -38,9 +39,9 @@ indicato da uno spazio. Proviamo a farlo, come mostrato nel Listato 4-7.
 
 </Listing>
 
-Poiché dobbiamo esaminare l'elemento `String` elemento per elemento e
-controllare se un valore è uno spazio, convertiremo la nostra `String` in un
-array di byte usando il metodo `as_bytes`.
+Poiché dobbiamo esaminare la `String` elemento per elemento e controllare se un
+valore è uno spazio, convertiremo la nostra `String` in un array di byte usando
+il metodo `as_bytes`.
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-07/src/main.rs:as_bytes}}
@@ -106,16 +107,15 @@ fn seconda_parola(s: &String) -> (usize, usize) {
 ```
 
 Ora stiamo tracciando un indice di partenza _e_ un indice di fine, e abbiamo
-ancora altri valori che sono stati calcolati da dati in uno determinato stato,
-ma che non sono per nulla _legati_ a quello stato in qualche modo. Abbiamo tre
+ancora altri valori che sono stati calcolati da dati in un determinato stato, ma
+che non sono per nulla _legati_ a quello stato in qualche modo. Abbiamo tre
 variabili non correlate e indipendenti che noi dobbiamo mantenere in sincronia.
 
-Fortunatamente, Rust ha una soluzione a questo problema: gli _slice_ di
-stringhe.
+Fortunatamente, Rust ha una soluzione a questo problema: le _slice_ di stringhe.
 
-### String Slice
+### String _Slice_
 
-Uno _string slice_ è un _reference_ a una sequenza contigua degli elementi di
+Una _string slice_ è un _reference_ a una sequenza contigua degli elementi di
 una `String`, e appare così:
 
 ```rust
@@ -123,14 +123,14 @@ una `String`, e appare così:
 ```
 
 Invece di un _reference_ all'intera `String`, `hello` è un _reference_ a una
-porzione della `String`, specificata con l'aggiunta di `[0..5]`. Creiamo gli
+porzione della `String`, specificata con l'aggiunta di `[0..5]`. Creiamo le
 _slice_ usando un intervallo all'interno delle parentesi quadre specificando
 `[indice_inizio..indice_fine]`, dove _`indice_inizio`_ è la prima posizione
-nello _slice_ e _`indice_fine`_ è l'ultima posizione nello _slice_ più uno .
-Internamente, la struttura dati dello _slice_ memorizza la posizione iniziale e
-la lunghezza dello _slice_, che corrisponde a _`indice_fine`_ meno
+nella _slice_ e _`indice_fine`_ è l'ultima posizione nella _slice_ più uno.
+Internamente, la struttura dati della _slice_ memorizza la posizione iniziale e
+la lunghezza della _slice_, che corrisponde a _`indice_fine`_ meno
 _`indice_inizio`_. Quindi, nel caso di `let world = &s[6..11];`, `world` sarebbe
-uno _slice_ che contiene un puntatore al byte all'indice 6 di `w` con un valore
+una _slice_ che contiene un puntatore al byte all'indice 6 di `w` con un valore
 di lunghezza di `5`.
 
 La Figura 4-7 mostra questo in un diagramma.
@@ -151,7 +151,7 @@ let slice = &s[0..2];
 let slice = &s[..2];
 ```
 
-Allo stesso modo, se il tuo _slice_ include l'ultimo byte della `String`, puoi omettere il numero finale. Ciò significa che questi sono equivalenti:
+Allo stesso modo, se la tua _slice_ include l'ultimo byte della `String`, puoi omettere il numero finale. Ciò significa che questi sono equivalenti:
 
 ```rust
 let s = String::from("hello");
@@ -162,7 +162,7 @@ let slice = &s[3..len];
 let slice = &s[3..];
 ```
 
-Puoi anche omettere entrambi i valori per prendere uno _slice_ dell'intera stringa. Quindi questi sono equivalenti:
+Puoi anche omettere entrambi i valori per prendere una _slice_ dell'intera stringa. Quindi questi sono equivalenti:
 
 ```rust
 let s = String::from("hello");
@@ -173,13 +173,13 @@ let slice = &s[0..len];
 let slice = &s[..];
 ```
 
-> Nota: Gli indici di intervallo degli _slice_ di stringa devono trovarsi in
+> Nota: Gli indici di intervallo delle _slice_ di stringa devono trovarsi in
 > posizioni valide tenendo conto anche dei caratteri UTF-8. Se tenti di creare
-> uno _slice_ nel mezzo di un carattere multibyte, il tuo programma terminerà
+> una _slice_ nel mezzo di un carattere multibyte, il tuo programma terminerà
 > con un errore.
 
 Tenendo presente tutte queste informazioni, riscriviamo `prima_parola` per
-restituire uno _slice_. Il _type_ che indica lo _slice_ di stringa è scritto
+restituire una _slice_. Il _type_ che indica la _slice_ di stringa è scritto
 come `&str`:
 
 <Listing file-name="src/main.rs">
@@ -192,28 +192,27 @@ come `&str`:
 
 Otteniamo l'indice per la fine della parola nello stesso modo in cui lo abbiamo
 fatto nel Listato 4-7, cercando la prima occorrenza di uno spazio. Quando
-troviamo uno spazio, restituiamo uno _slice_ di stringa usando l'inizio della
+troviamo uno spazio, restituiamo una _slice_ di stringa usando l'inizio della
 stringa e l'indice dello spazio come indici di inizio e fine.
 
-Ora, quando chiamiamo `prima_parola`, otteniamo un singolo valore che è legato ai dati sottostanti. Il valore è composto da un _reference_ al punto di partenza dello _slice_ e dal numero di elementi nello _slice_.
+Ora, quando chiamiamo `prima_parola`, otteniamo un singolo valore che è legato ai dati sottostanti. Il valore è composto da un _reference_ al punto di partenza della _slice_ e dal numero di elementi nella _slice_.
 
-Restituire uno _slice_ funzionerebbe anche per una funzione `seconda_parola`:
+Restituire una _slice_ funzionerebbe anche per una funzione `seconda_parola`:
 
 ```rust,ignore
 fn seconda_parola(s: &String) -> &str {
 ```
 
 Ora abbiamo una funzione più semplice in cui è molto più difficile succedano
-cose strane perché il compilatore garantirà che i _reference_ nella `String`
+cose strane perché il compilatore garantirà che i _reference_ alla `String`
 rimangano validi. Ricordi il bug nel programma nel Listato 4-8, quando abbiamo
 ottenuto l'indice per la fine della prima parola ma poi abbiamo svuotato la
 stringa, rendendo il nostro indice non valido? Quel codice era logicamente
 errato ma non mostrava immediatamente errori. I problemi si sarebbero
 manifestati più tardi se avessimo continuato a cercare di usare l'indice della
-prima parola con una stringa svuotata. Gli _slice_ rendono questo bug
-impossibile e ci fanno sapere che abbiamo un problema con il nostro codice molto
-prima. Usare la versione _slice_ di `prima_parola` genererà un errore di
-compilazione:
+prima parola con una stringa svuotata. Le _slice_ rendono questo bug impossibile
+e ci fanno sapere che abbiamo un problema con il nostro codice molto prima.
+Usare la versione _slice_ di `prima_parola` genererà un errore di compilazione:
 
 <Listing file-name="src/main.rs">
 
@@ -232,44 +231,44 @@ Ecco l'errore del compilatore:
 Ricorda le regole di _borrowing_: se abbiamo un _reference_ immutabile a
 qualcosa, non possiamo anche prendere un _reference_ mutabile. Poiché `clear`
 deve troncare la `String`, ha bisogno di ottenere un _reference_ mutabile. Il
-`println!` dopo la chiamata a `clear` utilizza il _reference_ in `parola`,
-quindi il _reference_ immutabile deve essere ancora attivo a quel punto. Rust
-vieta che il _reference_ mutabile in `clear` e il _reference_ immutabile in
-`parola` esistano contemporaneamente, e la compilazione fallisce. Non solo Rust
-ha reso la nostra funzione più facile da usare, ma ha anche eliminato un'intera
-classe di errori durante la compilazione!
+`println!` dopo la chiamata a `clear` utilizza il _reference_ a `parola`, quindi
+il _reference_ immutabile deve essere ancora attivo a quel punto. Rust vieta che
+il _reference_ mutabile in `clear` e il _reference_ immutabile a `parola`
+esistano contemporaneamente, e la compilazione fallisce. Non solo Rust ha reso
+la nostra funzione più facile da usare, ma ha anche eliminato un'intera classe
+di errori durante la compilazione!
 
 <!-- Old heading. Do not remove or links may break. -->
 <a id="string-literals-are-slices"></a>
 
-### Letterali di stringa come Slice
+### Letterali di stringa come _Slice_
 
 Ricordi che abbiamo parlato dei letterali di stringhe memorizzati all'interno
-del binario? Ora che abbiamo scoperto gli _slice_, possiamo comprendere
+del binario? Ora che abbiamo scoperto le _slice_, possiamo comprendere
 correttamente i letterali di stringhe:
 
 ```rust
 let s = "Hello, world!";
 ```
 
-Il _type_ di `s` qui è `&str`: è uno _slice_ che punta a quel punto specifico
-del binario. Questo è anche il motivo per cui i letterali di stringhe sono
+Il _type_ di `s` qui è `&str`: è una _slice_ che punta a quel punto specifico
+nel binario. Questo è anche il motivo per cui i letterali di stringhe sono
 immutabili; `&str` è un _reference_ immutabile.
 
 ### String _Slice_ come Parametri
 
-Sapendo che puoi avere _slice_ di literals e di valori `String`, arriviamo a un
+Sapendo che puoi avere _slice_ di litterali e di valori `String`, arriviamo a un
 ulteriore miglioramento per `prima_parola`, e cioè la sua firma:
 
 ```rust,ignore
 fn prima_parola(s: &String) -> &str {
 ```
 
-Un Rustaceano più esperto scriverebbe invece la firma come mostrata nel Listato
+Un Rustacean più esperto scriverebbe invece la firma come mostrata nel Listato
 4-9, perché ci permette di usare la stessa funzione sia su valori `&String` che
 su valori `&str`.
 
-<Listing number="4-9" caption="Migliorare la funzione `prima_parola` utilizzando uno string slice come type del parametro `s`">
+<Listing number="4-9" caption="Migliorare la funzione `prima_parola` utilizzando una string slice come type del parametro `s`">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-09/src/main.rs:here}}
@@ -277,13 +276,13 @@ su valori `&str`.
 
 </Listing>
 
-Se abbiamo uno string _slice_, possiamo passarlo direttamente. Se abbiamo una
-`String`, possiamo passare uno _slice_ della `String` o un _reference_ alla
+Se abbiamo una string _slice_, possiamo passarlo direttamente. Se abbiamo una
+`String`, possiamo passare una _slice_ della `String` o un _reference_ alla
 `String`. Questa flessibilità sfrutta la _deref coercions_ (_de-referenziazione
 forzata_), una funzionalità che tratteremo nella sezione [“De-referenziazione
 forzata implicita in Funzioni e Metodi”][deref-coercions] del Capitolo 15.
 
-Definire una funzione che come parametro prende uno string _slice_ invece di un
+Definire una funzione che come parametro prende una string _slice_ invece di un
 _reference_ a una `String` rende la nostra funzione più generica e utile senza
 perdere alcuna funzionalità:
 
@@ -297,7 +296,7 @@ perdere alcuna funzionalità:
 
 ### Altri _Slice_
 
-Gli string _slice_, come puoi immaginare, sono specifici per le stringhe. Ma c'è
+Le string _slice_, come puoi immaginare, sono specifici per le stringhe. Ma c'è
 anche un tipo di _slice_ più generale. Considera questo array:
 
 ```rust
@@ -315,7 +314,7 @@ let slice = &a[1..3];
 assert_eq!(slice, &[2, 3]);
 ```
 
-Questo _slice_ ha il _type_ `&[i32]`. Funziona allo stesso modo degli string
+Questa _slice_ ha il _type_ `&[i32]`. Funziona allo stesso modo delle string
 _slice_, memorizzando un _reference_ al primo elemento e una lunghezza.
 Utilizzerai questo tipo di _slice_ per tutti i _type_ di altre collezioni.
 Discuteremo di queste collezioni in dettaglio quando parleremo dei vettori nel

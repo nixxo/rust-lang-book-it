@@ -7,7 +7,7 @@ fn main() {
 }
 
 // ANCHOR: here
-fn calcola_lunghezza(s: &String) -> usize { // `s` è una reference as una String
+fn calcola_lunghezza(s: &String) -> usize { // `s` è un reference a una String
     s.len()
 } // Qui, `s` esce dallo scope. Ma siccome `s` non ha ownership di quello
   // a cui fa riferimento, i valori di String non vengono cancellati

@@ -33,7 +33,7 @@ questo output:
 Questo esempio mostra come il compilatore ti aiuta a trovare gli errori nei tuoi
 programmi. Gli errori del compilatore possono essere frustranti, ma in realtà
 significano solo che il tuo programma non sta ancora facendo in modo sicuro ciò
-che vuoi; non significano che non sei un buon programmatore! Anche ai Rustaceani
+che vuoi; non significano che non sei un buon programmatore! Anche ai Rustaceans
 più esperti appaiono errori del compilatore.
 
 Hai ricevuto il messaggio di errore `` cannot assign twice to immutable variable
@@ -134,7 +134,7 @@ codificato deve essere aggiornato in futuro.
 
 Come hai visto nel tutorial sul gioco dell'indovinello nel [Capitolo
 2][confrontare-lipotesi-con-il-numero-segreto]<!-- ignore -->, puoi dichiarare
-una nuova variabile con lo stesso nome di una variabile precedente. I Rustaceani
+una nuova variabile con lo stesso nome di una variabile precedente. I Rustaceans
 dicono che la prima variabile è _messa in ombra_, _shadowing_, dalla seconda, il
 che significa che la seconda variabile è quella che il compilatore vedrà quando
 userai il nome della variabile. In effetti, la seconda variabile mette in ombra

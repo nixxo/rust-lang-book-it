@@ -5,11 +5,12 @@ da parte di un programma Rust. Tutti i programmi devono gestire il modo in cui
 utilizzano la memoria del computer durante l'esecuzione. Alcuni linguaggi hanno
 una _garbage collection_ che cerca regolarmente la memoria non più utilizzata
 durante l'esecuzione del programma; in altri linguaggi, il programmatore deve
-allocare e liberare esplicitamente la memoria. Rust utilizza un terzo approccio:
-la memoria viene gestita attraverso un sistema di _controllo esclusivo_ con un
-insieme di regole che il compilatore controlla. Se una qualsiasi delle regole
-viene violata, il programma non viene compilato. Nessuna delle caratteristiche
-di _ownership_ rallenterà il tuo programma mentre è in esecuzione.
+allocare e rilasciare esplicitamente la memoria. Rust utilizza un terzo
+approccio: la memoria viene gestita attraverso un sistema di _controllo
+esclusivo_ con un insieme di regole che il compilatore controlla. Se una
+qualsiasi delle regole viene violata, il programma non viene compilato. Nessuna
+delle caratteristiche di _ownership_ rallenterà il tuo programma mentre è in
+esecuzione.
 
 Poiché la _ownership_ è un concetto nuovo per molti programmatori, ci vuole un
 po' di tempo per abituarsi. La buona notizia è che più si acquisisce esperienza
@@ -24,46 +25,46 @@ dati molto comune: le stringhe.
 > ### Lo _Stack_ e l’_Heap_
 > Molti linguaggi di programmazione non richiedono di pensare allo _stack_ e
 > all’_heap_ molto spesso. Ma in un linguaggio di programmazione di sistema come
-> Rust, il fatto che un valore sia nello _stack_ o nell’_heap_ influisce sul
+> Rust, il fatto che un valore sia sullo _stack_ o nell’_heap_ influisce sul
 > comportamento del linguaggio e sul motivo per cui devi prendere determinate
 > decisioni.
 >
 > Sia lo _stack_ che l’_heap_ sono parti di memoria disponibili per il codice da
-> utilizzare in fase di esecuzione, ma sono strutturati in modi diversi. Lo
+> utilizzare in fase di esecuzione, ma sono strutturate in modi diversi. Lo
 > _stack_ memorizza i valori nell’ordine in cui li ottiene e rimuove i valori
 > nell’ordine opposto. Questo viene definito _last in, first out_. Pensa a una
 > pila di piatti: quando aggiungi altri piatti, li metti in cima alla pila e
 > quando ti serve un piatto, ne togli uno dalla cima. Aggiungere o rimuovere i
 > piatti dal centro o dal fondo non funzionerebbe altrettanto bene! L’aggiunta
-> di dati allo _stack_ viene definita _push_ (_immissione_), mentre la rimozione
-> dei dati viene definita _pop_ (_estrazione_). Tutti i dati archiviati nello
-> _stack_ devono avere una dimensione nota e fissa. I dati con una dimensione
-> sconosciuta in fase di compilazione o una dimensione che potrebbe cambiare
-> devono invece essere archiviati nell’_heap_.
+> di dati sullo _stack_ viene definita _push_ (_immissione_), mentre la
+> rimozione dei dati viene definita _pop_ (_estrazione_). Tutti i dati
+> archiviati sullo _stack_ devono avere una dimensione nota e fissa. I dati con
+> una dimensione sconosciuta in fase di compilazione o una dimensione che
+> potrebbe cambiare devono invece essere archiviati nell’_heap_.
 >
 > L’_heap_ è meno organizzato: quando metti i dati nell’_heap_, richiedi una
 > certa quantità di spazio. L’allocatore di memoria trova un punto vuoto
 > nell’_heap_ che sia sufficientemente grande, lo contrassegna come in uso e
 > restituisce un _puntatore_, che è l’indirizzo di quella posizione. Questo
-> processo è chiamato _allocazione sull’heap_ e talvolta è abbreviato
-> semplicemente in _allocazione_ (l’inserimento di valori nello _stack_ non è
+> processo è chiamato _allocazione nell’heap_ e talvolta è abbreviato
+> semplicemente in _allocazione_ (l’inserimento di valori sullo _stack_ non è
 > considerato allocazione). Poiché il puntatore all’_heap_ ha una dimensione
-> nota e fissa, è possibile archiviare il puntatore nello _stack_, ma quando si
+> nota e fissa, è possibile archiviare il puntatore sullo _stack_, ma quando si
 > desiderano i dati effettivi è necessario seguire il puntatore. Pensa di essere
 > seduto in un ristorante. Quando entri, indichi il numero di persone nel tuo
 > gruppo e il cameriere trova un tavolo vuoto adatto a tutti e ti conduce lì. Se
 > qualcuno nel tuo gruppo arriva in ritardo, può chiedere dove sei seduto e
 > trovarti.
 >
-> Il _push_ nello _stack_ è più veloce dell’allocazione nell’_heap_ perché
+> Il _push_ sullo _stack_ è più veloce dell’allocazione nell’_heap_ perché
 > l’allocatore non deve mai cercare un posto dove archiviare i nuovi dati;
 > quella posizione è sempre in cima allo _stack_. In confronto, l’allocazione
-> dello spazio sull’_heap_ richiede più lavoro perché l’allocatore deve prima
+> dello spazio nell'_heap_ richiede più lavoro perché l’allocatore deve prima
 > trovare uno spazio sufficientemente grande per contenere i dati e quindi
 > eseguire la contabilità per prepararsi all’allocazione successiva.
 >
-> L’accesso ai dati nell’_heap_ è più lento dell’accesso ai dati nello _stack_
-> perché è necessario leggere un puntatore nello _stack_ per poi "saltare"
+> L’accesso ai dati nell’_heap_ è più lento dell’accesso ai dati sullo _stack_
+> perché è necessario leggere un puntatore sullo _stack_ per poi "saltare"
 > all'indirizzo di memoria nell'_heap_ per accedere ai dati. I processori
 > attuali sono più veloci se non "saltano" troppo in giro per la memoria.
 > Continuando l’analogia, consideriamo un cameriere in un ristorante che prende
@@ -72,12 +73,12 @@ dati molto comune: le stringhe.
 > poi un ordine dal tavolo B, poi ancora uno da A e poi ancora uno da B sarebbe
 > un processo molto più lento. Allo stesso modo, un processore può svolgere
 > meglio il proprio lavoro se lavora su dati vicini ad altri dati (come sono
-> nello _stack_) piuttosto che più lontani (come possono essere nell’_heap_).
+> sullo _stack_) piuttosto che più lontani (come possono essere nell’_heap_).
 >
 > Quando il codice chiama una funzione, i valori passati alla funzione (inclusi,
 > potenzialmente, puntatori ai dati nell’_heap_) e le variabili locali della
-> funzione vengono inseriti nello _stack_. Quando la funzione termina, tali
-> valori vengono estratti, _pop_, dallo _stack_.
+> funzione vengono inseriti sullo _stack_. Quando la funzione termina, tali
+> valori vengono estratti, _pop_, sullo _stack.
 >
 > Tenere traccia di quali parti del codice utilizzano quali dati nell’_heap_,
 > ridurre al minimo la quantità di dati duplicati nell’_heap_ e ripulire i dati
@@ -92,7 +93,7 @@ dati molto comune: le stringhe.
 Per prima cosa, diamo un'occhiata alle regole di _ownership_, tenendole a mente
 mentre lavoriamo agli esempi che le illustrano:
 
-- Ogni valore in Rust ha un proprietario, _owner_.
+- Ogni valore in Rust ha un _proprietario_, _owner_.
 - Ci può essere un solo _owner_ alla volta.
 - Quando l'_owner_ esce dallo _scope_, il valore viene rilasciato.
 
@@ -105,7 +106,7 @@ conseguenza, i nostri esempi saranno un po' più concisi, permettendoci di
 concentrarci sui dettagli reali piuttosto che sul codice di base.
 
 Come primo esempio di _ownership_, analizzeremo lo _scope_ di alcune variabili.
-Lo _scope_ è l'intervallo all'interno di un programma per il quale un elemento è
+Lo _scope_ è l'ambito all'interno di un programma nel quale un elemento è
 valido. Prendiamo la seguente variabile:
 
 ```rust
@@ -128,19 +129,19 @@ sarebbe valida (in _scope_).
 
 In altre parole, ci sono due momenti importanti:
 
-- Quando `s` entra _nello scope_, è valida;
-- Rimane valida fino a quando non _esce dallo scope_.
+- Quando `s` _entra_ nello _scope_, è valida;
+- Rimane valida fino a quando non _esce_ dallo _scope_.
 
 A questo punto, la relazione tra _scope_ e validità delle variabili è simile a
 quella di altri linguaggi di programmazione. Ora ci baseremo su questa
 comprensione introducendo il _type_ `String`.
 
-### Il type `String`
+### Il _type_ `String`
 
 Per illustrare le regole di _ownership_, abbiamo bisogno di un tipo di dati più
 complesso di quelli trattati nel [Capitolo 3][data-types]<!-- ignore -->. I
 _type_ trattati in precedenza hanno dimensioni note, possono essere inseriti e
-estratti dallo _stack_ quando il loro _scope_ è terminato, possono essere
+estratti sullo _stack quando il loro _scope_ è terminato, possono essere
 rapidamente copiati per creare una nuova istanza indipendente se un’altra parte
 del codice deve utilizzare lo stesso valore in uno _scope_ diverso. Ma vogliamo
 esaminare i dati archiviati nell’_heap_ ed capire come Rust sa quando ripulire
@@ -158,9 +159,9 @@ motivi è che sono immutabili. Un altro è che non tutti i valori di stringa
 possono essere conosciuti quando scriviamo il nostro codice: ad esempio, cosa
 succederebbe se volessimo prendere l’input dell’utente e memorizzarlo? Per
 queste situazioni, Rust ha un secondo tipo di stringa, `String`. Questo _type_
-gestisce i dati allocati sull’_heap_ e come tale è in grado di memorizzare una
-quantità di testo a noi sconosciuta in fase di compilazione. Puoi creare un type
-`String` partendo da un letterale stringa  con utilizzando la funzione `from`,
+gestisce i dati allocati nell'_heap_ e come tale è in grado di memorizzare una
+quantità di testo a noi sconosciuta in fase di compilazione. Puoi creare un
+_type_ `String` partendo da un letterale stringa utilizzando la funzione `from`,
 in questo modo:
 
 ```rust
@@ -197,7 +198,7 @@ compilazione e la cui dimensione potrebbe cambiare durante l'esecuzione del
 programma.
 
 Con il _type_ `String`, per supportare una porzione di testo mutabile e
-espandibile, dobbiamo allocare una quantità di memoria sull’_heap_, sconosciuta
+espandibile, dobbiamo allocare una quantità di memoria nell'_heap_, sconosciuta
 in fase di compilazione, per contenere il contenuto. Questo significa:
 - La memoria deve essere richiesta all’allocatore di memoria in fase di
   esecuzione.
@@ -217,7 +218,7 @@ richiederla. Farlo correttamente è stato storicamente un difficile problema di
 programmazione. Se ce lo dimentichiamo, sprecheremo memoria. Se lo facciamo
 troppo presto, avremo una variabile non valida. Se lo facciamo due volte, anche
 questo è un bug. Dobbiamo accoppiare esattamente un’_allocazione_ con
-esattamente un _de-allocazione_ (o _rilascio_, _liberazione_).
+esattamente una _de-allocazione_ (o _rilascio_, _liberazione_).
 
 Rust prende una strada diversa: la memoria viene rilasciata automaticamente una
 volta che la variabile che la possiede esce dallo _scope_. Ecco una versione del
@@ -236,7 +237,7 @@ automaticamente alla parentesi graffa di chiusura.
 
 > Nota: in C++, questo schema di deallocazione delle risorse alla fine del ciclo
 > di vita di un elemento è talvolta chiamato _Resource Acquisition Is
-> Initialization (RAII)_. > La funzione `drop` di Rust ti sarà familiare se hai
+> Initialization (RAII)_. La funzione `drop` di Rust ti sarà familiare se hai
 > usato gli schemi RAII.
 
 Questo schema ha un profondo impatto sul modo in cui viene scritto il codice
@@ -264,7 +265,7 @@ Probabilmente possiamo indovinare cosa sta facendo: “associare il valore `5` a
 `x`; quindi crea una copia del valore in `x` e associala a `y`.” Ora abbiamo due
 variabili, `x` e `y`, ed entrambe uguali a `5`. Questo è effettivamente ciò che
 sta accadendo. Poiché gli _integer_ sono valori semplici con una dimensione
-fissa e nota, questi due valori `5` vengono immessi nello _stack_.
+fissa e nota, questi due valori `5` vengono immessi sullo _stack_.
 
 Ora diamo un’occhiata alla versione con `String`:
 
@@ -280,7 +281,7 @@ Nalla Figura 4-1 diamo un'occhiata _sotto le coperte_ per vedere com'è in realt
 una `String`. Una `String` è composta da tre parti, mostrate a sinistra: un
 puntatore (`ptr`) alla memoria che contiene il contenuto della stringa, una
 lunghezza (`len`) e una capienza (`capacity`). Questo gruppo di dati è
-memorizzato sullo _stack_. A destra c'è la memoria sull'_heap_ che contiene il
+memorizzato sullo _stack_. A destra c'è la memoria nell'_heap_ che contiene il
 contenuto.
 
 <img alt="Due tabelle: la prima tabella contiene la rappresentazione di s1 nello stack, composta dalla lunghezza (5), capienza (5), e un puntatore al primo valore dela seconda tabella. La seconda tabella contiene una rappresentazione del contenuto della stringa nell'heap, byte per byte." src="img/trpl04-01.svg" class="center"
@@ -295,7 +296,7 @@ che `String` ha ricevuto dall’allocatore. La differenza tra lunghezza e capaci
 capienza.
 
 Quando assegniamo `s1` a `s2`, i dati `String` vengono copiati, ovvero copiamo
-il puntatore, la lunghezza e la capienza presenti nello _stack_. Non copiamo i
+il puntatore, la lunghezza e la capienza presenti sullo _stack_. Non copiamo i
 dati nell’_heap_ a cui fa riferimento il puntatore. In altre parole, la
 rappresentazione dei dati in memoria è simile alla Figura 4-2.
 
@@ -307,7 +308,7 @@ src="img/trpl04-02.svg" class="center" style="width: 50%;" />
 La rappresentazione non assomiglia alla Figura 4-3, che è l'aspetto che avrebbe
 la memoria se Rust copiasse anche i dati dell'_heap_. Se Rust facesse così,
 l'operazione `s2 = s1` potrebbe diventare molto dispendiosa in termini
-prestazionali e di memoria qualora i dati sull'_heap_ fossero di grandi
+prestazionali e di memoria qualora i dati nell'_heap_ fossero di grandi
 dimensioni.
 
 <img alt="Quattro tabelle: due tabelle rappresentanmo i dati sullo stack di s1 e s2, ognuna delle guali punta alla propriia copia di dati nell'heap."
@@ -386,7 +387,7 @@ class="center"
 style="width: 50%;"
 />
 
-<span class="caption">Figura 4-5: Reppresentazione in memoria dopo che il primo valore è completamente sostituito..</span>
+<span class="caption">Figura 4-5: Reppresentazione in memoria dopo che il primo valore è completamente sostituito.</span>
 
 La stringa originale esce così immediatamente dallo _scope_. Rust eseguirà la
 funzione `drop` su di essa e la sua memoria verrà rilasciata immediatamente.
@@ -437,7 +438,7 @@ superficiale, quindi chiamare `clone` non farebbe nulla di diverso dalla solita
 copia superficiale e possiamo tralasciarlo.
 
 Rust ha un’annotazione speciale chiamata _tratto_ `Copy` che possiamo
-appiccicare sui _type_ memorizzati sullo stack, come lo sono gli _integer_
+appiccicare sui _type_ memorizzati sullo _stack_, come lo sono gli _integer_
 (parleremo meglio dei _tratti_ nel [Capitolo 10][traits]<!-- ignore -->). Se un
 _type_ implementa il _tratto_ `Copy`, le variabili che lo utilizzano non si
 spostano, ma vengono semplicemente copiate, rendendole ancora valide dopo
@@ -510,7 +511,7 @@ la _ownership_ dei dati non sia stata spostata ad un’altra variabile.
 Anche se funziona, prendere e cedere la _ownership_ con ogni funzione è un po’
 faticoso. Cosa succede se vogliamo consentire a una funzione di utilizzare un
 valore ma non di prenderne la _ownership_? È piuttosto fastidioso che tutto ciò
-che passiamo debba anche essere restituitoe se vogliamo usarlo di nuovo, oltre a
+che passiamo debba anche essere restituito se vogliamo usarlo di nuovo, oltre a
 tutte le varie elaborazioni sui dati che la funzione esegue e che magari è
 necessario ritornare pure quelle.
 

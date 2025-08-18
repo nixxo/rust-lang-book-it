@@ -3,15 +3,15 @@
 Il problema con il codice nel Listato 4-5 è che dobbiamo restituire la `String`
 alla funzione chiamante in modo da poter ancora utilizzare la `String` dopo la
 chiamata a `calcola_lunghezza`, perché la `String` è stata spostata in
-`calcola_lunghezza`. Possiamo invece fornire un riferimento al valore `String`.
-Un riferimento è come un puntatore in quanto è un indirizzo che possiamo seguire
-per accedere ai dati archiviati a quell’indirizzo di memoria; la _ownership_ di
-quei dati appartiene ad un'altra variabile.  differenza di un puntatore, è
-garantito che una _reference_ punti a un valore valido di un certo _type_ finchè
-la _reference_ è ancora valida.
+`calcola_lunghezza`. Possiamo invece fornire un riferimento (_reference_) al
+valore `String`. Un _reference_ è come un puntatore in quanto è un indirizzo che
+possiamo seguire per accedere ai dati archiviati a quell’indirizzo di memoria;
+la _ownership_ di quei dati appartiene ad un'altra variabile. A differenza di un
+puntatore, è garantito che un _reference_ punti a un valore valido di un certo
+_type_ finchè il _reference_ è ancora valido.
 
 Ecco come definiresti e utilizzeresti una funzione `calcola_lunghezza` che abbia
-una _reference_ ad un oggetto come parametro invece di assumere la _ownership_
+un _reference_ ad un oggetto come parametro invece di assumere la _ownership_
 del valore:
 
 <Listing file-name="src/main.rs">
@@ -47,11 +47,11 @@ Diamo un'occhiata più da vicino alla chiamata di funzione:
 ```
 
 La sintassi `&s1` ci permette di creare un _reference_ che punta al valore di
-`s1` ma non li _possiede_. Poiché il _reference_ non li _possiede_, il valore a
-cui punta non verrà abbandonato quando il _reference_ smette di essere
-utilizzato. Allo stesso modo, la firma della funzione utilizza `&` per indicare
-che il _type_ del parametro `s` è un _reference_. Aggiungiamo alcune annotazioni
-esplicative:
+`s1` ma non lo _possiede_. Poiché il _reference_ non lo _possiede_, il valore a
+cui punta non verrà rilasciato dalla memoria quando il _reference_ smette di
+essere utilizzato. Allo stesso modo, la firma della funzione utilizza `&` per
+indicare che il _type_ del parametro `s` è un _reference_. Aggiungiamo alcune
+annotazioni esplicative:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-08-reference-with-annotations/src/main.rs:here}}
@@ -62,7 +62,7 @@ qualsiasi parametro di funzione, ma il valore a cui punta il _referecence_ non
 viene eliminato quando `s` smette di essere utilizzato, perché `s` non ha la
 _ownership_. Quando le funzioni hanno _reference_ come parametri anziché valori
 effettivi, non avremo bisogno di restituire i valori per restituire la
-_ownership_, perché non abbiamo mai avuto la _ownership_.
+_ownership_, perché la _ownership_ non ci è mai stata trasferita.
 
 L'azione di creare un _reference_ viene chiamata _borrowing_ (_fare un prestito_
 in italiano). Come nella vita reale, se una persona possiede qualcosa, puoi
@@ -84,11 +84,11 @@ Ecco l'errore:
 ```console
 {{#include ../listings/ch04-understanding-ownership/listing-04-06/output.txt}}
 ```
-Così come le variabili sono immutabili per impostazione predefinita, lo sono
-anche i _reference_. Non possiamo modificare qualcosa a cui abbiamo un
+Così come le variabili sono immutabili come impostazione predefinita, lo sono
+anche i _reference_. Non possiamo modificare qualcosa a cui abbiamo solo un
 riferimento.
 
-### Reference mutabili
+### _Reference_ mutabili
 
 Possiamo correggere il codice del Listato 4-6 per permetterci di modificare un
 valore preso in prestito con alcune piccole modifiche che utilizzano, invece, un
@@ -187,27 +187,26 @@ verrà compilato perché l'ultimo utilizzo dei _reference_ immutabili avviene ne
 
 Gli _scope_ dei _reference_ immutabili `r1` e `r2` terminano dopo il `println!`
 in cui sono stati utilizzati per l'ultima volta, ovvero prima che venga creato
-il _refeerence_ mutabile `r3`. Questi _scope_ non si sovrappongono, quindi
-questo codice è consentito: il compilatore capisce che il _reference_ non verrà
-più utilizzato in nessun altro punto prima della fine dello _scope_.
+il _reference_ mutabile `r3`. Questi _scope_ non si sovrappongono, quindi questo
+codice è consentito: il compilatore capisce che il _reference_ non verrà più
+utilizzato in nessun altro punto prima della fine dello _scope_.
 
 Anche se a volte gli errori  di _borrowing_ possono essere frustranti, ricorda
 che è il compilatore di Rust a segnalare un potenziale bug in anticipo (in fase
 di compilazione e non in fase di esecuzione) e a mostrarti esattamente dove si
 trova il problema. In questo modo non dovrai cercare di capire perché i tuoi
-dati non sono quelli che pensavi fossero.
+dati non sono quelli che pensavi fossero quando il programma è in esecuzione.
 
 ### _Reference_ pendenti
 
 Nei linguaggi con puntatori, è facile creare erroneamente un _puntatore
 pendente_, cioé un puntatore che fa riferimento a una posizione in memoria non
 più valido, perché quella momoria assegnata a quella variabile è stata liberata,
-ma non si è provveduto a cancellar anche il puntatore che per l'appunto rimane
+ma non si è provveduto a cancellare anche il puntatore che per l'appunto rimane
 _pendente_ puntando a qualcosa che non è più disponibile. In Rust, al contrario,
-il compilatore garantisce che i _reference_ non saranno diverranno mai
-_pendenti_: se si ha un _reference_ ad alcuni dati, il compilatore si assicurerà
-che i dati non escano dallo _scope_ prima che lo faccia il _reference_ a quie
-dati.
+il compilatore garantisce che i _reference_ non diverranno mai _pendenti_: se si
+ha un _reference_ ad alcuni dati, il compilatore si assicurerà che i dati non
+escano dallo _scope_ prima che lo faccia il _reference_ a quei dati.
 
 Proviamo a creare un _reference_ _pendente_ per vedere come Rust li previene
 segnalando un errore in fase di compilazione:
@@ -228,14 +227,15 @@ Ecco l'errore:
 Questo messaggio di errore si riferisce a una funzionalità che non abbiamo
 ancora trattato: la longevità (_lifetime_ d'ora in poi). Parleremo in dettaglio
 della _lifetime_ nel Capitolo 10. Ma, se trascuriamo le parti relative alla
-_lifetime, il messaggio contiene la chiave del motivo per cui questo codice è un
-problema:
+_lifetime_, il messaggio contiene la chiave del motivo per cui questo codice è
+un problema:
 
 ```text
 this function's return type contains a borrowed value, but there is no value
 for it to be borrowed from
 
-(traduzione: il type di ritorno di questa funzione contiene un valore in prestito, ma non c'è alcun valore da cui prenderlo in prestito)
+(traduzione: il type di ritorno di questa funzione contiene un valore in prestito,
+ma non c'è alcun valore da cui prenderlo in prestito)
 ```
 
 Diamo un'occhiata più da vicino a cosa succede esattamente in ogni fase della

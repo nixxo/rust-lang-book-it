@@ -139,10 +139,10 @@ let mele = 5;
 ```
 
 Questa riga crea una nuova variabile di nome `mele` e la lega al valore 5. In
-Rust, le variabili sono immutabili (_immutable_ d'ora in poi) come impostazione
-predefinita, il che significa che una volta assegnato un valore alla variabile,
-il valore non cambierà. Parleremo di questo concetto in dettaglio nella sezione
-["Variabili e mutabilità"][variables-and-mutability]<!-- ignore --> del Capitolo
+Rust, le variabili sono immutabili (_immutable_) come impostazione predefinita,
+il che significa che una volta assegnato un valore alla variabile, il valore non
+cambierà. Parleremo di questo concetto in dettaglio nella sezione ["Variabili e
+mutabilità"][variables-and-mutability]<!-- ignore --> del Capitolo
 3. Per rendere mutabile (_mutable_) una variabile, aggiungiamo `mut` prima del
 nome della variabile:
 
@@ -521,7 +521,7 @@ versione che hai specificato.
 C'è molto altro da dire su [Cargo][doccargo]<!-- ignore --> e sul [suo
 ecosistema][doccratesio]<!-- ignore -->, di cui parleremo nel Capitolo 14, ma
 per ora questo è tutto ciò che devi sapere. Cargo rende molto facile il
-riutilizzo delle librerie, per cui i Rustaceani sono in grado di scrivere
+riutilizzo delle librerie, per cui i Rustaceans sono in grado di scrivere
 progetti più piccoli che sono assemblati da una serie di pacchetti.
 
 ### Generare un numero casuale

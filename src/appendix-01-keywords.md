@@ -3,11 +3,9 @@
 Il seguente elenco contiene parole chiave che sono riservate per l'uso attuale o
 futuro del linguaggio Rust. In quanto tali, non possono essere utilizzate come
 identificatori (tranne che come _identificatori grezzi_, come discuteremo nella
-sezione [dedicata][raw-identifiers]<!-- ignore -->). Gli identificatori sono
+sezione [dedicata](#identificatori-grezzi)<!-- ignore -->). Gli identificatori sono
 nomi di funzioni, variabili, parametri, elementi di struct, moduli, _crate_,
 costanti, macro, valori statici, attributi, _type_, _traits_ o _lifetime_.
-
-[raw-identifiers]: #raw-identifiers
 
 ### Parole chiave attualmente in uso
 

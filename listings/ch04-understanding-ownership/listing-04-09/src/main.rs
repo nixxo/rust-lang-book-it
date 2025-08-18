@@ -25,13 +25,13 @@ fn main() {
 
     let mia_stringa_literal = "hello world";
 
-    // `prima_parola` funziona con slice di lettrali di stringhe,
+    // `prima_parola` funziona con slice di letterali di stringa,
     // parziali o intere.
     let parola = prima_parola(&mia_stringa_literal[0..6]);
     let parola = prima_parola(&mia_stringa_literal[..]);
 
-    // E siccome i letterali di stringa *sono* già degli slice,
-    // funziona pure così, senza usare la sintassi degli slice!
+    // E siccome i letterali di stringa *sono* già delle slice,
+    // funziona pure così, senza usare la sintassi delle slice!
     let parola = prima_parola(mia_stringa_literal);
 }
 // ANCHOR_END: usage

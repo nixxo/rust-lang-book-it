@@ -142,7 +142,7 @@ hash. Il Capitolo 9 esplora la filosofia e le tecniche di gestione degli errori
 di Rust.
 
 Il Capitolo 10 approfondisce i generici, i tratti e la longevità (_generics_,
-_traits_ e _lifetimes_  d'ora in poi), che ti danno la possibilità di definire
+_traits_ e _lifetime_  d'ora in poi), che ti danno la possibilità di definire
 codice applicabile a più tipologie di dato. Il Capitolo 11 è dedicato ai test,
 che anche con le garanzie di sicurezza di Rust sono necessari per garantire la
 correttezza della logica del tuo programma. Nel Capitolo 12, costruiremo la
@@ -168,8 +168,8 @@ della programmazione orientata agli oggetti che potresti conoscere. Il Capitolo
 19 è un riferimento ai _pattern_ e al loro riconoscimento (_pattern matching_),
 che sono modi potenti di esprimere idee nei programmi Rust. Il Capitolo 20
 contiene una varietà di argomenti di interesse, tra cui Rust non sicuro (_unsafe
-Rust_ d'ora in poi), macro e altre informazioni su longevità, _traits_,
-tipologie (_types_), funzioni e chiusure.
+Rust_ d'ora in poi), macro e altre informazioni su longevità, _trait_,
+tipologie (_type_), funzioni e chiusure.
 
 Nel Capitolo 21, completeremo un progetto in cui implementeremo un server web
 multi-thread di basso livello!
@@ -177,7 +177,7 @@ multi-thread di basso livello!
 Infine, alcune appendici contengono informazioni utili sul linguaggio in un
 formato meno strutturato. L'**Appendice A** tratta delle parole chiave di Rust,
 l'**Appendice B** degli operatori e dei simboli di Rust, l'**Appendice C** dei
-_traits_ derivabili forniti dalla libreria standard, l'**Appendice D** di alcuni
+_trait_ derivabili forniti dalla libreria standard, l'**Appendice D** di alcuni
 utili strumenti di sviluppo e l'**Appendice E** delle varie edizioni di Rust.
 Nell'**Appendice F** puoi trovare un elenco delle traduzioni del libro, mentre
 nell'**Appendice G** si parlerà di come viene realizzato Rust e di cosa sia la

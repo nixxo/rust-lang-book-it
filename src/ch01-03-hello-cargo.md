@@ -1,7 +1,7 @@
 ## Hello, Cargo!
 
 Cargo è il sistema di compilazione e il gestore di pacchetti di Rust. La maggior
-parte dei Rustaceani utilizza questo strumento per gestire i propri progetti
+parte dei Rustaceans utilizza questo strumento per gestire i propri progetti
 Rust perché Cargo gestisce molte attività al posto tuo, come la compilazione del
 codice, il download delle librerie da cui dipende il tuo codice e la
 compilazione di tali librerie (chiamiamo le librerie di cui il tuo codice ha
@@ -200,7 +200,7 @@ E perché non dovresti volere un eseguibile? Spesso, `cargo check` è molto più
 veloce di `cargo build` perché salta il passaggio della produzione di un
 eseguibile. Se controlli continuamente il tuo lavoro mentre scrivi il codice,
 l'uso di `cargo check` accelererà il processo di sapere se il tuo progetto è
-privo di errori e compilabile! Per questo motivo, molti Rustaceani eseguono
+privo di errori e compilabile! Per questo motivo, molti Rustaceans eseguono
 `cargo check` periodicamente mentre scrivono il loro programma per assicurarsi
 che si compili. Poi eseguono `cargo build` quando sono pronti a creare
 l'eseguibile.

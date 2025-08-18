@@ -371,7 +371,7 @@ cambierai il numero di valori nell'array, come invece faresti con il metodo
 La sicurezza e la concisione dei cicli `for` li rendono il costrutto di ciclo
 più usato in Rust. Anche nelle situazioni in cui vuoi eseguire un certo numero
 di volte il codice, come nell'esempio del conto alla rovescia che utilizzava un
-ciclo `while` nel Listato 3-3, la maggior parte dei Rustaceani userebbe un ciclo
+ciclo `while` nel Listato 3-3, la maggior parte dei Rustaceans userebbe un ciclo
 `for`. Il modo per farlo sarebbe quello di usare un `Range`, fornito dalla
 libreria standard, che genera tutti i numeri in sequenza partendo da un numero e
 finendo prima di un altro numero.
