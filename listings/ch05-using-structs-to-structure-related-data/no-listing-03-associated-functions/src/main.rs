@@ -1,20 +1,20 @@
 #[derive(Debug)]
-struct Rectangle {
-    width: u32,
-    height: u32,
+struct Rettangolo {
+    larghezza: u32,
+    altezza: u32,
 }
 
 // ANCHOR: here
-impl Rectangle {
-    fn square(size: u32) -> Self {
+impl Rettangolo {
+    fn quadrato(dimensione: u32) -> Self {
         Self {
-            width: size,
-            height: size,
+            larghezza: dimensione,
+            altezza: dimensione,
         }
     }
 }
 // ANCHOR_END: here
 
 fn main() {
-    let sq = Rectangle::square(3);
+    let quad = Rectangle::quadrato(3);
 }

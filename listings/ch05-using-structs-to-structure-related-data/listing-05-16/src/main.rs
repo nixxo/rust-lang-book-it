@@ -1,37 +1,37 @@
 #[derive(Debug)]
-struct Rectangle {
-    width: u32,
-    height: u32,
+struct Rettangolo {
+    larghezza: u32,
+    altezza: u32,
 }
 
 // ANCHOR: here
-impl Rectangle {
+impl Rettangolo {
     fn area(&self) -> u32 {
-        self.width * self.height
+        self.larghezza * self.altezza
     }
 }
 
-impl Rectangle {
-    fn can_hold(&self, other: &Rectangle) -> bool {
-        self.width > other.width && self.height > other.height
+impl Rettangolo {
+    fn puo_contenere(&self, altro: &Rectangle) -> bool {
+        self.larghezza > altro.larghezza && self.altezza > altro.altezza
     }
 }
 // ANCHOR_END: here
 
 fn main() {
-    let rect1 = Rectangle {
-        width: 30,
-        height: 50,
+    let rettangolo1 = Rettangolo {
+        larghezza: 30,
+        altezza: 50,
     };
-    let rect2 = Rectangle {
-        width: 10,
-        height: 40,
+    let rettangolo2 = Rettangolo {
+        larghezza: 10,
+        altezza: 40,
     };
-    let rect3 = Rectangle {
-        width: 60,
-        height: 45,
+    let rettangolo3 = Rettangolo {
+        larghezza: 60,
+        altezza: 45,
     };
 
-    println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
-    println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
+    println!("Può rettangolo1 contenere rettangolo2? {}", rettangolo1.puo_contenere(&rettangolo2));
+    println!("Può rettangolo1 contenere rettangolo3? {}", rettangolo1.puo_contenere(&rettangolo3));
 }

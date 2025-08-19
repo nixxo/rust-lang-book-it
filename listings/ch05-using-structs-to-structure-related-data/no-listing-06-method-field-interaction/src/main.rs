@@ -1,24 +1,24 @@
 #[derive(Debug)]
-struct Rectangle {
-    width: u32,
-    height: u32,
+struct Rettangolo {
+    larghezza: u32,
+    altezza: u32,
 }
 
 // ANCHOR: here
-impl Rectangle {
-    fn width(&self) -> bool {
-        self.width > 0
+impl Rettangolo {
+    fn larghezza(&self) -> bool {
+        self.larghezza > 0
     }
 }
 
 fn main() {
-    let rect1 = Rectangle {
-        width: 30,
-        height: 50,
+    let rettangolo1 = Rettangolo {
+        larghezza: 30,
+        altezza: 50,
     };
 
-    if rect1.width() {
-        println!("The rectangle has a nonzero width; it is {}", rect1.width);
+    if rettangolo1.larghezza() {
+        println!("La larghezza del rettangolo è > 0; è {}", rettangolo1.larghezza);
     }
 }
 // ANCHOR_END: here
