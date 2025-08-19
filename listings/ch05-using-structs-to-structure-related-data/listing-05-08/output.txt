@@ -1,5 +1,5 @@
 $ cargo run
-   Compiling rectangles v0.1.0 (file:///projects/rectangles)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.42s
-     Running `target/debug/rectangles`
-The area of the rectangle is 1500 square pixels.
+   Compiling rettangoli v0.1.0 (file:///progetti/rettangoli)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.15s
+     Running `target/debug/rettangoli`
+L'area del rettangolo è di 1500 pixel quadrati.

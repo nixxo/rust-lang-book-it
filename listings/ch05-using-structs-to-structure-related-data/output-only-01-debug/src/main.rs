@@ -1,13 +1,13 @@
-struct Rectangle {
-    width: u32,
-    height: u32,
+struct Rettangolo {
+    larghezza: u32,
+    altezza: u32,
 }
 
 fn main() {
-    let rect1 = Rectangle {
-        width: 30,
-        height: 50,
+    let rettangolo1 = Rettangolo {
+        larghezza: 30,
+        altezza: 50,
     };
 
-    println!("rect1 is {:?}", rect1);
+    println!("rettangolo1 è {:?}", rettangolo1);
 }

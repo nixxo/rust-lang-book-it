@@ -1,5 +1,5 @@
 $ cargo run
-   Compiling rectangles v0.1.0 (file:///projects/rectangles)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.48s
-     Running `target/debug/rectangles`
-rect1 is Rectangle { width: 30, height: 50 }
+   Compiling rettangoli v0.1.0 (file:///progetti/rettangoli)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.27s
+     Running `target/debug/rettangoli`
+rettangolo1 è Rettangolo { larghezza: 30, altezza: 50 }

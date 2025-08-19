@@ -1,9 +1,9 @@
 $ cargo run
-   Compiling rectangles v0.1.0 (file:///projects/rectangles)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.61s
-     Running `target/debug/rectangles`
-[src/main.rs:10:16] 30 * scale = 60
-[src/main.rs:14:5] &rect1 = Rectangle {
-    width: 60,
-    height: 50,
+   Compiling rettangoli v0.1.0 (file:///progetti/rettangoli)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.30s
+     Running `target/debug/rettangoli`
+[src/main.rs:10:20] 30 * scala = 60
+[src/main.rs:14:5] &rettangolo1 = Rettangolo {
+    larghezza: 60,
+    altezza: 50,
 }
