@@ -236,7 +236,7 @@ because it won’t work with any other type. Let’s look at how we can continue
 refactor this code by turning the `area` function into an `area` _method_
 defined on our `Rectangle` type.
 
-[the-tuple-type]: ch03-02-data-types.html#type-tupla
+[the-tuple-type]: ch03-02-data-types.html#il-type-tupla
 [app-c]: appendix-03-derivable-traits.md
 [println]: https://doc.rust-lang.org/stable/std/macro.println.html
 [dbg]: https://doc.rust-lang.org/stable/std/macro.dbg.html
