@@ -35,7 +35,7 @@ primari: numeri interi, numeri in virgola mobile, booleani e caratteri. Potresti
 riconoscerli da altri linguaggi di programmazione. Andiamo a vedere come
 funzionano in Rust.
 
-#### Type Intero
+#### Il _Type_ Intero
 Un intero, _integer_ d'ora in poi, è un numero senza una componente frazionaria.
 Nel Capitolo 2 abbiamo utilizzato un tipo _integer_, il _type_ `u32`. Questa
 dichiarazione del _type_ indica che il valore a cui è associato deve essere un
@@ -65,12 +65,12 @@ tuttavia, quando è lecito ritenere che il numero sia positivo, viene
 visualizzato senza segno. I numeri con segno vengono memorizzati utilizzando la
 rappresentazione del [complemento a due][complemento-a-due]<!-- ignore -->.
 
-Ogni variante con segno può memorizzare numeri da -(2<sup>n - 1</sup>) a
-2<sup>n - 1</sup> - 1 inclusi, dove _n_ è il numero di bit che la variante
-utilizza. Quindi un `i8` può memorizzare numeri da -(2<sup>7</sup>) a
-2<sup>7</sup> - 1, il che equivale a -128 a 127. Le varianti senza segno possono
-memorizzare numeri da 0 a 2<sup>n</sup> - 1, quindi un `u8` può memorizzare
-numeri da 0 a 2<sup>8</sup> - 1, il che equivale a 0 a 255.
+Ogni variante con segno può memorizzare numeri da -(2<sup>n - 1</sup>) a 2<sup>n
+- 1</sup> - 1 inclusi, dove _n_ è il numero di bit che la variante utilizza.
+Quindi un `i8` può memorizzare numeri da -(2<sup>7</sup>) a 2<sup>7</sup> - 1,
+il che equivale a -128 a 127. Le varianti senza segno possono memorizzare numeri
+da 0 a 2<sup>n</sup> - 1, quindi un `u8` può memorizzare numeri da 0 a
+2<sup>8</sup> - 1, il che equivale a 0 a 255.
 
 Inoltre, i _type_ `isize` e `usize` dipendono dall'architettura del computer su
 cui viene eseguito il programma: 64 bit se si tratta di un'architettura a 64 bit
@@ -128,7 +128,7 @@ _type integer_ di default è `i32`. La situazione principale in cui puoi usare
 >   metodi `overflowing_*`.
 > - Saturare i valori minimi o massimi del valore con i metodi `saturating_*`.
 
-#### Type a Virgola Mobile
+#### Il _Type_ a Virgola Mobile
 
 Rust ha anche due _type_ primitivi per i _numeri in virgola mobile_, abbreviato
 _float_ in inglese, che sono numeri con punti decimali. I _type_ in virgola
@@ -167,7 +167,7 @@ valuta un singolo valore, che viene poi legato a una variabile. [Appendice
 B][appendice_b]<!-- ignore --> contiene un elenco di tutti gli operatori che
 Rust mette a disposizione.
 
-#### Type Booleano
+#### Il _Type_ Booleano
 
 Come nella maggior parte degli altri linguaggi di programmazione, un _type_
 booleano in Rust ha due valori possibili: _vero_ o _falso_ (`true` e `false`
@@ -185,7 +185,7 @@ come ad esempio un'espressione `if`. Tratteremo il funzionamento delle
 espressioni `if` in Rust nella sezione ["Controllo del
 flusso"][control-flow]<!-- ignore -->.
 
-#### Type Carattere
+#### Il _Type_ Carattere
 
 Il _type_ carattere (`char` d'ora in poi) di Rust è il tipo alfabetico più
 primitivo del linguaggio. Ecco alcuni esempi di dichiarazione di valori `char`:
@@ -214,15 +214,16 @@ codificato UTF-8 con le stringhe"][strings]<!-- ignore --> nel Capitolo 8.
 I _type composti_ possono raggruppare più valori in un unico _type_. Rust ha due
 _type_ composti primitivi: le tuple e gli array.
 
-#### Type Tupla
+#### Il _Type_ Tupla
 
-Una _tupla_ è un modo generale per raggruppare una serie di valori di tipo
-diverso in un unico _type_ composto. Le _tuple_ hanno una lunghezza fissa: una
-volta dichiarate, non possono crescere o diminuire di dimensione. Creiamo una
-tupla scrivendo un elenco di valori separati da virgole all'interno di parentesi
-tonde. Ogni posizione nella tupla ha un _type_ e i _type_ dei diversi valori
-nella tupla non devono essere necessariamente gli stessi. In questo esempio
-abbiamo aggiunto annotazioni del _type_ opzionali:
+Una _tupla_ (_tuple d'ora in poi) è un modo generale per raggruppare una serie
+di valori di tipo diverso in un unico _type_ composto. Le _tuple_ hanno una
+lunghezza fissa: una volta dichiarate, non possono crescere o diminuire di
+dimensione. Creiamo una _tuple_ scrivendo un elenco di valori separati da
+virgole all'interno di parentesi tonde. Ogni posizione nella _tuple_ ha un
+_type_ e i _type_ dei diversi valori nella _tuple_ non devono essere
+necessariamente gli stessi. In questo esempio abbiamo aggiunto annotazioni del
+_type_ opzionali:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -230,10 +231,10 @@ abbiamo aggiunto annotazioni del _type_ opzionali:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-10-tuples/src/main.rs}}
 ```
 
-La variabile `tup` si lega all'intera tupla perché una tupla è considerata un
-singolo elemento composto. Per ottenere i singoli valori di una tupla, possiamo
-fare _pattern matching_ per destrutturare il valore di una tupla, in questo
-modo:
+La variabile `tup` si lega all'intera _tuple_ perché una _tuple_ è considerata
+un singolo elemento composto. Per ottenere i singoli valori di una _tuple_,
+possiamo fare _pattern matching_ per destrutturare il valore di una _tuple_, in
+questo modo:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -241,13 +242,13 @@ modo:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-11-destructuring-tuples/src/main.rs}}
 ```
 
-Questo programma crea prima una tupla e la associa alla variabile `tup`. Quindi
-utilizza un _pattern_ con `let` per prendere `tup` e trasformarlo in tre
+Questo programma crea prima una _tuple_ e la associa alla variabile `tup`.
+Quindi utilizza un _pattern_ con `let` per prendere `tup` e trasformarlo in tre
 variabili separate, `x`, `y` e `z`. Questa operazione è chiamata
-_destrutturazione_ perché spezza la singola tupla in tre parti. Infine, il
+_destrutturazione_ perché spezza la singola _tuple_ in tre parti. Infine, il
 programma stampa il valore di `y`, che è `6,4`.
 
-Possiamo anche accedere direttamente a un elemento della tupla utilizzando un
+Possiamo anche accedere direttamente a un elemento della _tuple_ utilizzando un
 punto (`.`) seguito dall’indice del valore a cui vogliamo accedere. Ad esempio:
 
 <span class="filename">File: src/main.rs</span>
@@ -256,20 +257,20 @@ punto (`.`) seguito dall’indice del valore a cui vogliamo accedere. Ad esempio
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-12-tuple-indexing/src/main.rs}}
 ```
 
-Questo programma crea la tupla `x` e poi accede a ogni elemento della tupla
+Questo programma crea la _tuple_ `x` e poi accede a ogni elemento della _tuple_
 utilizzando i rispettivi indici. Come nella maggior parte dei linguaggi di
-programmazione, il primo indice di una tupla è 0.
+programmazione, il primo indice di una _tuple_ è 0.
 
-La tupla senza valori ha un nome speciale, _unit_. Questo valore e il suo _type_
-corrispondente sono entrambi scritti `()` e rappresentano un valore vuoto o un
-_type_ di ritorno vuoto. Le espressioni restituiscono implicitamente il valore
-_unit_ se non restituiscono nessun altro valore.
+La _tuple_ senza valori ha un nome speciale, _unit_. Questo valore e il suo
+_type_ corrispondente sono entrambi scritti `()` e rappresentano un valore vuoto
+o un _type_ di ritorno vuoto. Le espressioni restituiscono implicitamente il
+valore _unit_ se non restituiscono nessun altro valore.
 
-#### Type Array
+#### Il _Type_ Array
 
 Un altro modo per avere una collezione di valori multipli è un _array_. A
-differenza di una tupla, ogni elemento di un array deve avere lo stesso _type_.
-A differenza degli array in altri linguaggi, gli array in Rust hanno una
+differenza di una _tuple_, ogni elemento di un array deve avere lo stesso
+_type_. A differenza degli array in altri linguaggi, gli array in Rust hanno una
 lunghezza fissa.
 
 Scriviamo i valori di un array come un elenco separato da virgole all'interno di

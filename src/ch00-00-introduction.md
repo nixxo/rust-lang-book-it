@@ -168,8 +168,8 @@ della programmazione orientata agli oggetti che potresti conoscere. Il Capitolo
 19 è un riferimento ai _pattern_ e al loro riconoscimento (_pattern matching_),
 che sono modi potenti di esprimere idee nei programmi Rust. Il Capitolo 20
 contiene una varietà di argomenti di interesse, tra cui Rust non sicuro (_unsafe
-Rust_ d'ora in poi), macro e altre informazioni su longevità, _trait_,
-tipologie (_type_), funzioni e chiusure.
+Rust_ d'ora in poi), macro e altre informazioni su longevità, _trait_, tipologie
+(_type_), funzioni e chiusure.
 
 Nel Capitolo 21, completeremo un progetto in cui implementeremo un server web
 multi-thread di basso livello!

@@ -149,8 +149,9 @@ la memoria che quei dati usavano quando non serve più, e il _type_ `String` è 
 ottimo esempio da cui partire.
 
 Ci concentreremo sulle parti di `String` che riguardano la _ownership_. Questi
-aspetti si applicano anche ad altri _type_ di dati complessi, siano essi
-forniti dalla libreria standard o creati dall’utente. Parleremo di `String` in modo più approfondito nel [Capitolo 8][ch8]<!-- ignore -->.
+aspetti si applicano anche ad altri _type_ di dati complessi, siano essi forniti
+dalla libreria standard o creati dall’utente. Parleremo di `String` in modo più
+approfondito nel [Capitolo 8][ch8]<!-- ignore -->.
 
 Abbiamo già visto i letterali di stringhe, in cui un valore stringa è codificato
 nel nostro programma. I letterali di stringhe sono convenienti, ma non sono
@@ -251,7 +252,8 @@ alcune di queste situazioni.
 
 #### Interazione tra Variabili e Dati con _Move_
 
-In Rust, più variabili possono interagire con gli stessi dati in modi diversi. Vediamo un esempio che utilizza un _integer_ nel Listato 4-2.
+In Rust, più variabili possono interagire con gli stessi dati in modi diversi.
+Vediamo un esempio che utilizza un _integer_ nel Listato 4-2.
 
 <Listing number="4-2" caption="Assegnazione del valore integer della variabile `x` a `y`">
 
@@ -515,7 +517,7 @@ che passiamo debba anche essere restituito se vogliamo usarlo di nuovo, oltre a
 tutte le varie elaborazioni sui dati che la funzione esegue e che magari è
 necessario ritornare pure quelle.
 
-Rust ci permette di ritornare più valori utilizzando una tupla, come mostrato
+Rust ci permette di ritornare più valori utilizzando una _tuple_, come mostrato
 nel Listato 4-5
 
 <Listing number="4-5" file-name="src/main.rs" caption="Restituzione ownership dei parametri">
@@ -536,5 +538,6 @@ chiamata _riferimento_ (_reference_ in inglese).
 [traits]: ch10-02-traits.html
 [derivable-traits]: appendix-03-derivable-traits.html
 [method-syntax]: ch05-03-method-syntax.html#method-syntax
-[paths-module-tree]: ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html
+[paths-module-tree]:
+    ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html
 [drop]: https://doc.rust-lang.org/stable/std/ops/trait.Drop.html#tymethod.drop

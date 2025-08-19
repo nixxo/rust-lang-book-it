@@ -23,10 +23,10 @@ del valore:
 </Listing>
 
 Innanzitutto, nota che tutto il codice che dichiarava e ritornava la variabile
-tupla è sparito. In secondo luogo, nota che passiamo `&s1` a `calcola_lunghezza`
-e, nella sua definizione del parametro, prendiamo `&String` anziché `String`. Il
-carattere `&` (_E commerciale_) rappresenta il _reference_ e consente di fare
-riferimento a un valore senza prenderne la _ownership_.
+_tuple_ è sparito. In secondo luogo, nota che passiamo `&s1` a
+`calcola_lunghezza` e, nella sua definizione del parametro, prendiamo `&String`
+anziché `String`. Il carattere `&` (_E commerciale_) rappresenta il _reference_
+e consente di fare riferimento a un valore senza prenderne la _ownership_.
 
 La Figura 4-6 illustra questo concetto.
 

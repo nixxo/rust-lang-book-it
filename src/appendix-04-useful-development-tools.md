@@ -1,6 +1,9 @@
 ## Appendice D - Utili Strumenti di sviluppo
 
-In questa appendice parliamo di alcuni utili strumenti di sviluppo che il progetto Rust mette a disposizione: la formattazione automatica, i modi rapidi per applicare le correzioni degli avvisi, un linter e l'integrazione con gli IDE.
+In questa appendice parliamo di alcuni utili strumenti di sviluppo che il
+progetto Rust mette a disposizione: la formattazione automatica, i modi rapidi
+per applicare le correzioni degli avvisi, un linter e l'integrazione con gli
+IDE.
 
 ### Formattazione automatica con `rustfmt
 
@@ -70,7 +73,8 @@ $ cargo fix
     Finished dev [unoptimized + debuginfo] target(s) in 0.59s
 ```
 
-Se guardiamo di nuovo _src/main.rs_, vedremo che `cargo fix` ha modificato il codice:
+Se guardiamo di nuovo _src/main.rs_, vedremo che `cargo fix` ha modificato il
+codice:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -169,4 +173,5 @@ l'autocompletamento, il salto alla definizione e gli errori in linea.
 [clippy]: https://doc.rust-lang.org/clippy/
 [rust-analyzer]: https://rust-analyzer.github.io
 [lsp]: http://langserver.org/
-[vscode]: https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
+[vscode]:
+    https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer

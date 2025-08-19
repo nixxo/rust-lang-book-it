@@ -57,14 +57,15 @@ Successivamente, creiamo un iteratore sull'array di byte usando il metodo
 Discuteremo gli iteratori in modo più dettagliato nel [Capitolo 13][ch13]<!--
 ignore -->. Per ora, sappi che `iter` è un metodo che restituisce ogni elemento
 in una collezione e che `enumerate` prende il risultato di `iter` e restituisce
-ogni elemento come parte di una tupla. Il primo elemento della tupla restituita
-da `enumerate` è l'indice, e il secondo elemento è un riferimento all'elemento.
-Questo è un po' più conveniente rispetto a calcolarci l'indice da soli.
+ogni elemento come parte di una _tuple_. Il primo elemento della _tuple_
+restituita da `enumerate` è l'indice, e il secondo elemento è un riferimento
+all'elemento. Questo è un po' più conveniente rispetto a calcolarci l'indice da
+soli.
 
-Poiché il metodo `enumerate` restituisce una tupla, possiamo usare i _pattern_
-per destrutturare quella tupla. Discuteremo meglio i _pattern_ nel [Capitolo
+Poiché il metodo `enumerate` restituisce una _tuple_, possiamo usare i _pattern_
+per destrutturare quella _tuple_. Discuteremo meglio i _pattern_ nel [Capitolo
 6][ch6]. Nel ciclo `for`, specifichiamo un _pattern_ che ha `i` per l'indice
-nella tupla e `&item` per il singolo byte nella tupla. Poiché da
+nella _tuple_ e `&item` per il singolo byte nella _tuple_. Poiché da
 `.iter().enumerate()` otteniamo un _rererence_ all'elemento, usiamo `&` nel
 _pattern_.
 
@@ -151,7 +152,8 @@ let slice = &s[0..2];
 let slice = &s[..2];
 ```
 
-Allo stesso modo, se la tua _slice_ include l'ultimo byte della `String`, puoi omettere il numero finale. Ciò significa che questi sono equivalenti:
+Allo stesso modo, se la tua _slice_ include l'ultimo byte della `String`, puoi
+omettere il numero finale. Ciò significa che questi sono equivalenti:
 
 ```rust
 let s = String::from("hello");
@@ -162,7 +164,8 @@ let slice = &s[3..len];
 let slice = &s[3..];
 ```
 
-Puoi anche omettere entrambi i valori per prendere una _slice_ dell'intera stringa. Quindi questi sono equivalenti:
+Puoi anche omettere entrambi i valori per prendere una _slice_ dell'intera
+stringa. Quindi questi sono equivalenti:
 
 ```rust
 let s = String::from("hello");
@@ -195,7 +198,9 @@ fatto nel Listato 4-7, cercando la prima occorrenza di uno spazio. Quando
 troviamo uno spazio, restituiamo una _slice_ di stringa usando l'inizio della
 stringa e l'indice dello spazio come indici di inizio e fine.
 
-Ora, quando chiamiamo `prima_parola`, otteniamo un singolo valore che è legato ai dati sottostanti. Il valore è composto da un _reference_ al punto di partenza della _slice_ e dal numero di elementi nella _slice_.
+Ora, quando chiamiamo `prima_parola`, otteniamo un singolo valore che è legato
+ai dati sottostanti. Il valore è composto da un _reference_ al punto di partenza
+della _slice_ e dal numero di elementi nella _slice_.
 
 Restituire una _slice_ funzionerebbe anche per una funzione `seconda_parola`:
 
@@ -337,4 +342,5 @@ Capitolo 5 e vediamo come raggruppare pezzi di dati insieme in una `struct`.
 [ch13]: ch13-02-iterators.html  
 [ch6]: ch06-02-match.html#patterns-that-bind-to-values  
 [strings]: ch08-02-strings.html#storing-utf-8-encoded-text-with-strings  
-[deref-coercions]: ch15-02-deref.html#de-referenziazione-forzata-implicita-in-funzioni-e-metodi
+[deref-coercions]:
+    ch15-02-deref.html#de-referenziazione-forzata-implicita-in-funzioni-e-metodi
