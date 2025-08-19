@@ -7,8 +7,8 @@ struct User {
 
 fn main() {
     let user1 = User {
-        email: "someone@example.com",
-        username: "someusername123",
+        email: "qualcuno@mia_mail.com",
+        username: "qualcuno123",
         active: true,
         sign_in_count: 1,
     };

@@ -1,5 +1,5 @@
 struct AlwaysEqual;
 
 fn main() {
-    let subject = AlwaysEqual;
+    let suggetto = AlwaysEqual;
 }

@@ -1,19 +1,19 @@
-struct User {
-    active: bool,
-    username: String,
+struct Utente {
+    attivo: bool,
+    nome_utente: String,
     email: String,
-    sign_in_count: u64,
+    numero_accessi: u64,
 }
 
 // ANCHOR: here
 fn main() {
-    let mut user1 = User {
-        active: true,
-        username: String::from("someusername123"),
-        email: String::from("someone@example.com"),
-        sign_in_count: 1,
+    let mut utente1 = Utente {
+        attivo: true,
+        nome_utente: String::from("qualcuno123"),
+        email: String::from("qualcuno@mia_mail.com"),
+        numero_accessi: 1,
     };
 
-    user1.email = String::from("anotheremail@example.com");
+    user1.email = String::from("nuova_email@mia_mail.com");
 }
 // ANCHOR_END: here

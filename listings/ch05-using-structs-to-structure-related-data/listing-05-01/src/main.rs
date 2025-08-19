@@ -1,9 +1,9 @@
 // ANCHOR: here
-struct User {
-    active: bool,
-    username: String,
+struct Utente {
+    attivo: bool,
+    nome_utente: String,
     email: String,
-    sign_in_count: u64,
+    numero_accessi: u64,
 }
 // ANCHOR_END: here
 

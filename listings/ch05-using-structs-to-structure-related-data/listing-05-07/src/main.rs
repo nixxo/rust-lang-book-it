@@ -1,8 +1,8 @@
-struct User {
-    active: bool,
-    username: String,
+struct Utente {
+    attivo: bool,
+    nome_utente: String,
     email: String,
-    sign_in_count: u64,
+    numero_accessi: u64,
 }
 
 // ANCHOR: here
@@ -10,17 +10,17 @@ fn main() {
     // --snip--
     // ANCHOR_END: here
 
-    let user1 = User {
-        email: String::from("someone@example.com"),
-        username: String::from("someusername123"),
-        active: true,
-        sign_in_count: 1,
+    let utente1 = Utente {
+        email: String::from("qualcuno@mia_mail.com"),
+        nome_utente: String::from("qualcuno123"),
+        attivo: true,
+        numero_accessi: 1,
     };
     // ANCHOR: here
 
-    let user2 = User {
-        email: String::from("another@example.com"),
-        ..user1
+    let utente2 = Utente {
+        email: String::from("altra_mail@example.com"),
+        ..utente1
     };
 }
 // ANCHOR_END: here
