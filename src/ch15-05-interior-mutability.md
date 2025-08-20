@@ -340,4 +340,4 @@ structures. Note that `RefCell<T>` does not work for multithreaded code!
 `Mutex<T>` is the thread-safe version of `RefCell<T>`, and we’ll discuss
 `Mutex<T>` in Chapter 16.
 
-[wheres-the---operator]: ch05-03-method-syntax.html#wheres-the---operator
+[wheres-the---operator]: ch05-03-method-syntax.html#dovè-loperatore--

@@ -537,7 +537,7 @@ chiamata _riferimento_ (_reference_ in inglese).
 [ch8]: ch08-02-strings.html
 [traits]: ch10-02-traits.html
 [derivable-traits]: appendix-03-derivable-traits.html
-[method-syntax]: ch05-03-method-syntax.html#method-syntax
+[method-syntax]: ch05-03-method-syntax.html#sintassi-dei-metodi
 [paths-module-tree]:
     ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html
 [drop]: https://doc.rust-lang.org/stable/std/ops/trait.Drop.html#tymethod.drop

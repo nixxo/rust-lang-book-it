@@ -1,15 +1,15 @@
-## An Example Program Using Structs
+## Un esempio di programma che usa _struct_
 
-To understand when we might want to use structs, let’s write a program that
-calculates the area of a rectangle. We’ll start by using single variables, and
-then refactor the program until we’re using structs instead.
+Per capire quando potremmo voler usare le _struct_, scriviamo un programma che
+calcola l'area di un rettangolo. Partiremo usando variabili singole e poi
+riscriveremo il programma un pezzo per volta finché non useremo le _struct_.
 
-Let’s make a new binary project with Cargo called _rectangles_ that will take
-the width and height of a rectangle specified in pixels and calculate the area
-of the rectangle. Listing 5-8 shows a short program with one way of doing
-exactly that in our project’s _src/main.rs_.
+Creiamo un nuovo progetto binario con _Cargo_ chiamato _rettangoli_ che prenderà
+la larghezza e l'altezza di un rettangolo specificate in pixel e calcolerà
+l'area del rettangolo. Il Listato 5-8 mostra un breve programma con un modo per
+farlo nel file _src/main.rs_ del nostro progetto.
 
-<Listing number="5-8" file-name="src/main.rs" caption="Calculating the area of a rectangle specified by separate width and height variables">
+<Listing number="5-8" file-name="src/main.rs" caption="Calcolo dell'area di un rettangolo specificando in variabili separate larghezza e alatezza">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-08/src/main.rs:all}}
@@ -17,34 +17,34 @@ exactly that in our project’s _src/main.rs_.
 
 </Listing>
 
-Now, run this program using `cargo run`:
+Ora esegui questo programma usando `cargo run`:
 
 ```console
 {{#include ../listings/ch05-using-structs-to-structure-related-data/listing-05-08/output.txt}}
 ```
 
-This code succeeds in figuring out the area of the rectangle by calling the
-`area` function with each dimension, but we can do more to make this code clear
-and readable.
+Questo codice riesce a calcolare l'area del rettangolo chiamando la funzione
+`area` con ogni dimensione, ma possiamo fare di più per rendere il codice chiaro
+e leggibile.
 
-The issue with this code is evident in the signature of `area`:
+Il problema con questo codice è evidente nella firma di `area`:
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-08/src/main.rs:here}}
 ```
 
-The `area` function is supposed to calculate the area of one rectangle, but the
-function we wrote has two parameters, and it’s not clear anywhere in our
-program that the parameters are related. It would be more readable and more
-manageable to group width and height together. We’ve already discussed one way
-we might do that in [“The Tuple Type”][the-tuple-type]<!-- ignore --> section
-of Chapter 3: by using tuples.
+La funzione `area` dovrebbe calcolare l'area di un rettangolo singolo, ma la
+funzione che abbiamo scritto ha due parametri, e non è chiaro da nessuna parte
+nel nostro programma che i parametri siano correlati. Sarebbe più leggibile e
+più gestibile raggruppare larghezza e altezza insieme. Abbiamo già discusso un
+modo per farlo nella sezione [“Il _Type_ Tuple”][the-tuple-type]<!-- ignore -->
+del Capitolo 3: usando le _tuple_.
 
-### Refactoring with Tuples
+### Riscrittura con le _tuple_
 
-Listing 5-9 shows another version of our program that uses tuples.
+Il Listato 5-9 mostra un'altra versione del nostro programma che usa le _tuple_.
 
-<Listing number="5-9" file-name="src/main.rs" caption="Specifying the width and height of the rectangle with a tuple">
+<Listing number="5-9" file-name="src/main.rs" caption="Specicare larghezza e altezza di un rettangolo tramite una tuple">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-09/src/main.rs}}
@@ -52,23 +52,25 @@ Listing 5-9 shows another version of our program that uses tuples.
 
 </Listing>
 
-In one way, this program is better. Tuples let us add a bit of structure, and
-we’re now passing just one argument. But in another way, this version is less
-clear: tuples don’t name their elements, so we have to index into the parts of
-the tuple, making our calculation less obvious.
+Da un lato, questo programma è migliore. Le _tuple_ ci permettono di aggiungere
+un po' di struttura, e ora stiamo passando un solo argomento. Ma dall'altro,
+questa versione è meno chiara: le _tuple_ non nominano i loro elementi, quindi
+dobbiamo indicizzare le parti della _tuple_, rendendo il nostro calcolo meno
+ovvio.
 
-Mixing up the width and height wouldn’t matter for the area calculation, but if
-we want to draw the rectangle on the screen, it would matter! We would have to
-keep in mind that `width` is the tuple index `0` and `height` is the tuple
-index `1`. This would be even harder for someone else to figure out and keep in
-mind if they were to use our code. Because we haven’t conveyed the meaning of
-our data in our code, it’s now easier to introduce errors.
+Confondere larghezza e altezza non avrebbe importanza per il calcolo dell'area,
+ma se volessimo disegnare il rettangolo sullo schermo, importerebbe! Dovremmo
+tenere a mente che `larghezza` è l'indice della _tuple_ `0` e `altezza` è
+l'indice della _tuple_ `1`. Questo sarebbe ancora più difficile da capire e
+ricordare per qualcun altro che in futuro leggesse o usasse il nostro codice.
+Poiché non abbiamo reso palese il significato dei nostri dati nel codice, è più
+facile introdurre errori.
 
-### Refactoring with Structs: Adding More Meaning
+### Riscrittura con le _Struct_: Aggiungere Più Significato
 
-We use structs to add meaning by labeling the data. We can transform the tuple
-we’re using into a struct with a name for the whole as well as names for the
-parts, as shown in Listing 5-10.
+Usiamo la _struct_ per aggiungere significato etichettando i dati. Possiamo
+trasformare la _tuple_ che stiamo usando in una _struct_ con un nome per
+l'intero e nomi per le parti, come mostrato nel Listato 5-10.
 
 <Listing number="5-10" file-name="src/main.rs" caption="Defining a `Rectangle` struct">
 
@@ -78,35 +80,36 @@ parts, as shown in Listing 5-10.
 
 </Listing>
 
-Here, we’ve defined a struct and named it `Rectangle`. Inside the curly
-brackets, we defined the fields as `width` and `height`, both of which have
-type `u32`. Then, in `main`, we created a particular instance of `Rectangle`
-that has a width of `30` and a height of `50`.
+Qui abbiamo definito una _struct_ e l'abbiamo chiamata `Rettangolo`. All'interno
+ delle parentesi graffe, abbiamo definito i campi come `larghezza` e `altezza`,
+entrambi di tipo `u32`. Poi, in `main`, abbiamo creato un'istanza particolare di
+`Rettangolo` che ha larghezza `30` e altezza `50`.
 
-Our `area` function is now defined with one parameter, which we’ve named
-`rectangle`, whose type is an immutable borrow of a struct `Rectangle`
-instance. As mentioned in Chapter 4, we want to borrow the struct rather than
-take ownership of it. This way, `main` retains its ownership and can continue
-using `rect1`, which is the reason we use the `&` in the function signature and
-where we call the function.
+La nostra funzione `area` è ora definita con un solo parametro, che abbiamo
+chiamato `Rettangolo`, il cui tipo è un _reference_ immutabile a un'istanza di
+_struct_ `Rettangolo`. Come menzionato nel Capitolo 4, ci serve solo prendere in
+prestito la _struct_ piuttosto che averla la _ownership_. In questo modo, `main`
+mantiene la sua _ownership_ e può continuare a usare `rettangolo1`, che è il
+motivo per cui usiamo `&` nella firma della funzione e dove chiamiamo la
+funzione.
 
-The `area` function accesses the `width` and `height` fields of the `Rectangle`
-instance (note that accessing fields of a borrowed struct instance does not
-move the field values, which is why you often see borrows of structs). Our
-function signature for `area` now says exactly what we mean: calculate the area
-of `Rectangle`, using its `width` and `height` fields. This conveys that the
-width and height are related to each other, and it gives descriptive names to
-the values rather than using the tuple index values of `0` and `1`. This is a
-win for clarity.
+La funzione `area` accede ai campi `larghezza` e `altezza` dell'istanza di
+`Rettangolo` (nota che accedere ai campi di un'istanza di _struct_ presa in
+prestito non muove i valori dei campi, motivo per cui spesso si vedono
+_reference_ di _struct_). La nostra firma della funzione per `area` ora dice
+esattamente ciò che intendiamo: calcolare l'area di `Rettangolo`, usando i suoi
+campi `larghezza` e `altezza`. Questo comunica che larghezza e altezza sono
+correlate tra loro e fornisce nomi descrittivi ai valori invece di usare gli
+indici della _tuple_ `0` e `1`. Questo è un vantaggio in termini di chiarezza.
 
-### Adding Useful Functionality with Derived Traits
+### Aggiungere funzionalità utili con i trait derivati
 
-It’d be useful to be able to print an instance of `Rectangle` while we’re
-debugging our program and see the values for all its fields. Listing 5-11 tries
-using the [`println!` macro][println]<!-- ignore --> as we have used in
-previous chapters. This won’t work, however.
+Sarebbe utile poter stampare un'istanza di `Rettangolo` mentre eseguiamo il
+debug del nostro programma e vedere i valori di tutti i suoi campi. Il Listato
+5-11 prova a usare la [macro `println!`][println]<!-- ignore --> come l'abbiamo
+usata nei capitoli precedenti. Questo però non funzionerà.
 
-<Listing number="5-11" file-name="src/main.rs" caption="Attempting to print a `Rectangle` instance">
+<Listing number="5-11" file-name="src/main.rs" caption="Tentativo di stampare un'istanza di `Rettangolo`">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-11/src/main.rs}}
@@ -114,51 +117,55 @@ previous chapters. This won’t work, however.
 
 </Listing>
 
-When we compile this code, we get an error with this core message:
+Quando compiliamo questo codice, otteniamo un errore con questo messaggio
+principale:
 
 ```text
 {{#include ../listings/ch05-using-structs-to-structure-related-data/listing-05-11/output.txt:3}}
 ```
 
-The `println!` macro can do many kinds of formatting, and by default, the curly
-brackets tell `println!` to use formatting known as `Display`: output intended
-for direct end user consumption. The primitive types we’ve seen so far
-implement `Display` by default because there’s only one way you’d want to show
-a `1` or any other primitive type to a user. But with structs, the way
-`println!` should format the output is less clear because there are more
-display possibilities: Do you want commas or not? Do you want to print the
-curly brackets? Should all the fields be shown? Due to this ambiguity, Rust
-doesn’t try to guess what we want, and structs don’t have a provided
-implementation of `Display` to use with `println!` and the `{}` placeholder.
+La macro `println!` può fare molti tipi di formattazione e, come impostazione
+predefinita, le parentesi graffe dicono a `println!` di usare una formattazione
+conosciuta come `Display`: output pensato per il l'utente finale che utilizzarà
+il programma. I _type_ primitivi che abbiamo visto finora implementano `Display`
+di default perché c'è un solo modo in cui vorresti mostrare un `1` o qualsiasi
+altro _type_ primitivo a un utente. Ma con le _struct_ il modo in cui `println!`
+dovrebbe formattare l'output è meno chiaro perché ci sono più possibilità di
+visualizzazione: vuoi le virgole o no? Vuoi stampare le parentesi graffe? Devono
+essere mostrati tutti i campi? A causa di questa ambiguità, Rust non cerca di
+indovinare ciò che vogliamo, e le _struct_ non hanno un'implementazione standard
+di `Display` da usare con `println!` e il segnaposto `{}`.
 
-If we continue reading the errors, we’ll find this helpful note:
+Se continuiamo a leggere gli errori, troveremo questa nota utile:
 
 ```text
 {{#include ../listings/ch05-using-structs-to-structure-related-data/listing-05-11/output.txt:9:10}}
 ```
 
-Let’s try it! The `println!` macro call will now look like `println!("rect1 is
-{rect1:?}");`. Putting the specifier `:?` inside the curly brackets tells
-`println!` we want to use an output format called `Debug`. The `Debug` trait
-enables us to print our struct in a way that is useful for developers so we can
-see its value while we’re debugging our code.
+Proviamolo! La chiamata ala macro `println!` ora assomiglierà a
+`println!("rettangolo1 è {rettangolo1:?}");`. Inserire lo specificatore `:?`
+all'interno delle parentesi graffe dice a `println!` che vogliamo usare un
+formato di output chiamato `Debug`. Il _trait_ `Debug` ci permette di stampare
+la nostra _struct_ in un modo utile per gli sviluppatori, così possiamo vedere
+il suo valore mentre eseguiamo il debug del nostro codice.
 
-Compile the code with this change. Drat! We still get an error:
+Compila il codice con questa modifica. Accidenti! Otteniamo ancora un errore:
 
 ```text
 {{#include ../listings/ch05-using-structs-to-structure-related-data/output-only-01-debug/output.txt:3}}
 ```
 
-But again, the compiler gives us a helpful note:
+Ma di nuovo, il compilatore ci dà una nota utile:
 
 ```text
 {{#include ../listings/ch05-using-structs-to-structure-related-data/output-only-01-debug/output.txt:9:10}}
 ```
 
-Rust _does_ include functionality to print out debugging information, but we
-have to explicitly opt in to make that functionality available for our struct.
-To do that, we add the outer attribute `#[derive(Debug)]` just before the
-struct definition, as shown in Listing 5-12.
+Rust _include_ effettivamente funzionalità per stampare informazioni di debug,
+ma dobbiamo esplicitamente dichiararlo per rendere disponibile quella
+funzionalità alla nostra _struct_. Per farlo, aggiungiamo l'attributo esterno
+`#[derive(Debug)]` appena prima della definizione della _struct_, come mostrato
+nel Listato 5-12.
 
 <Listing number="5-12" file-name="src/main.rs" caption="Adding the attribute to derive the `Debug` trait and printing the `Rectangle` instance using debug formatting">
 
@@ -168,73 +175,76 @@ struct definition, as shown in Listing 5-12.
 
 </Listing>
 
-Now when we run the program, we won’t get any errors, and we’ll see the
-following output:
+Ora quando eseguiamo il programma, non otterremo errori e vedremo il seguente
+output:
 
 ```console
 {{#include ../listings/ch05-using-structs-to-structure-related-data/listing-05-12/output.txt}}
 ```
 
-Nice! It’s not the prettiest output, but it shows the values of all the fields
-for this instance, which would definitely help during debugging. When we have
-larger structs, it’s useful to have output that’s a bit easier to read; in
-those cases, we can use `{:#?}` instead of `{:?}` in the `println!` string. In
-this example, using the `{:#?}` style will output the following:
+Bene! Non è l'output più bello, ma mostra i valori di tutti i campi per questa
+istanza, il che aiuterebbe sicuramente durante lo sviluppo e il debug del
+programma. Quando abbiamo _struct_ più grandi, è utile avere un output un po'
+più facile da leggere; in quei casi, possiamo usare `{:#?}` invece di `{:?}`
+nella stringa di `println!`. In questo esempio, usare lo stile `{:#?}` produrrà
+il seguente output:
 
 ```console
 {{#include ../listings/ch05-using-structs-to-structure-related-data/output-only-02-pretty-debug/output.txt}}
 ```
 
-Another way to print out a value using the `Debug` format is to use the [`dbg!`
-macro][dbg]<!-- ignore -->, which takes ownership of an expression (as opposed
-to `println!`, which takes a reference), prints the file and line number of
-where that `dbg!` macro call occurs in your code along with the resultant value
-of that expression, and returns ownership of the value.
+Un altro modo per stampare un valore usando il formato `Debug` è usare la [macro
+`dbg!`][dbg], che prende _ownership_ di un'espressione (a differenza di
+`println!`, che prende un _reference_), stampa file e mumero di linea di dove
+quella chiamata a `dbg!` si verifica nel codice insieme al valore risultante di
+quell'espressione, e restituisce l'_ownership_ del valore.
 
-> Note: Calling the `dbg!` macro prints to the standard error console stream
-> (`stderr`), as opposed to `println!`, which prints to the standard output
-> console stream (`stdout`). We’ll talk more about `stderr` and `stdout` in the
-> [“Writing Error Messages to Standard Error Instead of Standard Output”
-> section in Chapter 12][err]<!-- ignore -->.
+> Nota: Chiamare la macro _dbg!_ stampa sullo stream di errore standard
+> (`stderr`), a differenza di `println!`, che stampa sullo stream di output
+> standard (`stdout`). Parleremo meglio di `stderr` e `stdout` nella sezione
+> [“Scrivere i Messaggi di Errore su Standard Error invece che su Standard
+> Output” del Capitolo 12][err]<!-- ignore -->.
 
-Here’s an example where we’re interested in the value that gets assigned to the
-`width` field, as well as the value of the whole struct in `rect1`:
+Ecco un esempio in cui siamo interessati al valore che viene assegnato al campo
+`larghezza`, così come al valore dell'intera _struct_ in `rettangolo1`:
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/no-listing-05-dbg-macro/src/main.rs}}
 ```
 
-We can put `dbg!` around the expression `30 * scale` and, because `dbg!`
-returns ownership of the expression’s value, the `width` field will get the
-same value as if we didn’t have the `dbg!` call there. We don’t want `dbg!` to
-take ownership of `rect1`, so we use a reference to `rect1` in the next call.
-Here’s what the output of this example looks like:
+Possiamo mettere `dbg!` attorno all'espressione `30 * scala` e, poiché `dbg!`
+restituisce l'_ownership_ del valore dell'espressione, il campo `larghezza`
+otterrà lo stesso valore come se non avessimo la chiamata a `dbg!` lì. Non
+vogliamo che `dbg!` prenda _ownership_ di `rettangolo1`, quindi usiamo un
+riferimento a `rettangolo1` nella chiamata successiva. Ecco come appare l'output
+di questo esempio:
 
 ```console
 {{#include ../listings/ch05-using-structs-to-structure-related-data/no-listing-05-dbg-macro/output.txt}}
 ```
 
-We can see the first bit of output came from _src/main.rs_ line 10 where we’re
-debugging the expression `30 * scale`, and its resultant value is `60` (the
-`Debug` formatting implemented for integers is to print only their value). The
-`dbg!` call on line 14 of _src/main.rs_ outputs the value of `&rect1`, which is
-the `Rectangle` struct. This output uses the pretty `Debug` formatting of the
-`Rectangle` type. The `dbg!` macro can be really helpful when you’re trying to
-figure out what your code is doing!
+Possiamo vedere che il primo frammento di output proviene da _src/main.rs_ riga
+10 dove stiamo facendo il debug dell'espressione `30 * scala`, e il suo valore
+risultante è `60` (la formattazione `Debug` implementata per gli _integer_ è di
+stampare solo il loro valore). La chiamata a `dbg!` alla riga 14 di
+_src/main.rs_ stampa il valore di `&rettangolo1`, che è la _struct_
+`Rettangolo`. Questo output usa la formattazione `Debug` "pretty" del tipo
+`Rettangolo`. La macro `dbg!` può essere davvero utile quando stai cercando di
+capire cosa sta facendo il tuo codice!
 
-In addition to the `Debug` trait, Rust has provided a number of traits for us
-to use with the `derive` attribute that can add useful behavior to our custom
-types. Those traits and their behaviors are listed in [Appendix C][app-c]<!--
-ignore -->. We’ll cover how to implement these traits with custom behavior as
-well as how to create your own traits in Chapter 10. There are also many
-attributes other than `derive`; for more information, see [the “Attributes”
-section of the Rust Reference][attributes].
+Oltre al _trait_ `Debug`, Rust fornisce diversi _trait_ che possiamo usare con
+l'attributo `derive` che possono aggiungere comportamenti utili ai nostri _type_
+personalizzati. Quei _trait_ e i loro comportamenti sono elencati
+nell'[Appendice C][app-c]<!-- ignore -->. Tratteremo come implementare questi
+_trait_ con un comportamento personalizzato e come creare i propri _trait_ nel
+Capitolo 10. Ci sono anche molti attributi oltre a `derive`; per maggiori
+informazioni, vedi la sezione [“Attributes” del Rust Reference][attributes].
 
-Our `area` function is very specific: it only computes the area of rectangles.
-It would be helpful to tie this behavior more closely to our `Rectangle` struct
-because it won’t work with any other type. Let’s look at how we can continue to
-refactor this code by turning the `area` function into an `area` _method_
-defined on our `Rectangle` type.
+La nostra funzione `area` è molto specifica: calcola solo l'area dei rettangoli.
+Sarebbe utile legare questo comportamento più strettamente alla nostra _struct_
+`Rettangolo` perché non funzionerà con altri _type_. Vediamo come possiamo
+continuare a riscrivere questo codice trasformando la funzione `area` in un
+_metodo_ (_method_) definito sul nostro _type_ `Rettangolo`.
 
 [the-tuple-type]: ch03-02-data-types.html#il-type-tupla
 [app-c]: appendix-03-derivable-traits.md

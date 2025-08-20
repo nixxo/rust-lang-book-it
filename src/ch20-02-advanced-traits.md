@@ -472,4 +472,4 @@ switch focus and look at some advanced ways to interact with Rust’s type syste
 [implementing-a-trait-on-a-type]: ch10-02-traits.html#implementing-a-trait-on-a-type
 [traits-defining-shared-behavior]: ch10-02-traits.html#traits-defining-shared-behavior
 [smart-pointer-deref]: ch15-02-deref.html#treating-smart-pointers-like-regular-references-with-the-deref-trait
-[tuple-structs]: ch05-01-defining-structs.html#using-tuple-structs-without-named-fields-to-create-different-types
+[tuple-structs]: ch05-01-defining-structs.html#struct-di-tuple-senza-campi-denominati-per-creare-type-diversi

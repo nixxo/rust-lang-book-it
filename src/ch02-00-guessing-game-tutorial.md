@@ -980,4 +980,4 @@ mentre il Capitolo 6 spiega come funzionano gli _enum_.
 [match]: ch06-02-match.html
 [shadowing]: ch03-01-variables-and-mutability.html#shadowing
 [parse]: https://doc.rust-lang.org/stable/std/primitive.str.html#method.parse
-[integers]: ch03-02-data-types.html#type-intero
+[integers]: ch03-02-data-types.html#il-type-intero

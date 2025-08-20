@@ -716,7 +716,7 @@ the associated block. In Listing 21-21, the lock remains held for the duration
 of the call to `job()`, meaning other `Worker` instances cannot receive jobs.
 
 [creating-type-synonyms-with-type-aliases]: ch20-03-advanced-types.html#creating-type-synonyms-with-type-aliases
-[integer-types]: ch03-02-data-types.html#type-intero
+[integer-types]: ch03-02-data-types.html#il-type-intero
 [fn-traits]: ch13-01-closures.html#moving-captured-values-out-of-the-closure-and-the-fn-traits
 [builder]: https://doc.rust-lang.org/stable/std/thread/struct.Builder.html
 [builder-spawn]: https://doc.rust-lang.org/stable/std/thread/struct.Builder.html#method.spawn

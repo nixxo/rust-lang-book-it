@@ -179,7 +179,7 @@ The `Default` trait is required when you use the method `unwrap_or_default` on
 `unwrap_or_default` will return the result of `Default::default` for the type
 `T` stored in the `Option<T>`.
 
-[creating-instances-from-other-instances-with-struct-update-syntax]: ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax
+[creating-instances-from-other-instances-with-struct-update-syntax]: ch05-01-defining-structs.html#creare-istanze-da-altre-istanze-con-la-sintassi-di-aggiornamento-delle-struct
 [stack-only-data-copy]: ch04-01-what-is-ownership.html#duplicazione-di-dati-sullo-stack
 [variables-and-data-interacting-with-clone]: ch04-01-what-is-ownership.html#interazione-tra-variabili-e-dati-con-clone
 [macros]: ch20-05-macros.html#macros

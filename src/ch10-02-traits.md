@@ -386,4 +386,4 @@ time. Doing so improves performance without having to give up the flexibility
 of generics.
 
 [using-trait-objects-that-allow-for-values-of-different-types]: ch18-02-trait-objects.html#using-trait-objects-that-allow-for-values-of-different-types
-[methods]: ch05-03-method-syntax.html#defining-methods
+[methods]: ch05-03-method-syntax.html#definire-i-metodi
