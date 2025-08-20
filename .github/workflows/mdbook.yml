@@ -39,6 +39,8 @@ jobs:
       # cargo run --bin lfp src
     - name: Validate references
       run: bash ci/validate.sh
+    - name: Translate book.js
+      run: bash ci/translate_mbook.sh
 
     - name: Upload pages artifacts
       uses: actions/upload-pages-artifact@v3
