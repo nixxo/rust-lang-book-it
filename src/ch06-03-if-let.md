@@ -48,7 +48,7 @@ We can include an `else` with an `if let`. The block of code that goes with the
 `else` is the same as the block of code that would go with the `_` case in the
 `match` expression that is equivalent to the `if let` and `else`. Recall the
 `Coin` enum definition in Listing 6-4, where the `Quarter` variant also held a
-`UsState` value. If we wanted to count all non-quarter coins we see while also
+`StatoUSA` value. If we wanted to count all non-quarter coins we see while also
 announcing the state of the quarters, we could do that with a `match`
 expression, like this:
 
@@ -66,15 +66,15 @@ Or we could use an `if let` and `else` expression, like this:
 
 The common pattern is to perform some computation when a value is present and
 return a default value otherwise. Continuing on with our example of coins with a
-`UsState` value, if we wanted to say something funny depending on how old the
-state on the quarter was, we might introduce a method on `UsState` to check the
+`StatoUSA` value, if we wanted to say something funny depending on how old the
+state on the quarter was, we might introduce a method on `StatoUSA` to check the
 age of a state, like so:
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-07/src/main.rs:state}}
 ```
 
-Then we might use `if let` to match on the type of coin, introducing a `state`
+Then we might use `if let` to match on the type of coin, introducing a `stato`
 variable within the body of the condition, as in Listing 6-7.
 
 <Listing number="6-7" caption="Checking whether a state existed in 1900 by using conditionals nested inside an `if let`.">
@@ -89,7 +89,7 @@ That gets the job done, but it has pushed the work into the body of the `if
 let` statement, and if the work to be done is more complicated, it might be
 hard to follow exactly how the top-level branches relate. We could also take
 advantage of the fact that expressions produce a value either to produce the
-`state` from the `if let` or to return early, as in Listing 6-8. (You could do
+`stato` from the `if let` or to return early, as in Listing 6-8. (You could do
 similar with a `match`, too.)
 
 <Listing number="6-8" caption="Using `if let` to produce a value or return early.">

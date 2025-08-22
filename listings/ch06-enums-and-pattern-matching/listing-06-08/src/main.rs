@@ -1,45 +1,45 @@
 #[derive(Debug)] // so we can inspect the state in a minute
-enum UsState {
+enum StatoUSA {
     Alabama,
     Alaska,
     // --snip--
 }
 
-impl UsState {
-    fn existed_in(&self, year: u16) -> bool {
+impl StatoUSA {
+    fn esistente_nel(&self, anno: u16) -> bool {
         match self {
-            UsState::Alabama => year >= 1819,
-            UsState::Alaska => year >= 1959,
+            StatoUSA::Alabama => anno >= 1819,
+            StatoUSA::Alaska => anno >= 1959,
             // -- snip --
         }
     }
 }
 
-enum Coin {
+enum Moneta {
     Penny,
     Nickel,
     Dime,
-    Quarter(UsState),
+    Quarter(StatoUSA),
 }
 
 // ANCHOR: describe
-fn describe_state_quarter(coin: Coin) -> Option<String> {
-    let state = if let Coin::Quarter(state) = coin {
-        state
+fn desc_quarter_statale(moneta: Moneta) -> Option<String> {
+    let stato = if let Moneta::Quarter(stato) = moneta {
+        stato
     } else {
         return None;
     };
 
-    if state.existed_in(1900) {
-        Some(format!("{state:?} is pretty old, for America!"))
+    if stato.esistente_nel(1900) {
+        Some(format!("{stato:?} è abbastanza vecchio, per l'America!"))
     } else {
-        Some(format!("{state:?} is relatively new."))
+        Some(format!("{stato:?} è abbastanza recente."))
     }
 }
 // ANCHOR_END: describe
 
 fn main() {
-    if let Some(desc) = describe_state_quarter(Coin::Quarter(UsState::Alaska)) {
+    if let Some(desc) = desc_quarter_statale(Moneta::Quarter(StatoUSA::Alaska)) {
         println!("{desc}");
     }
 }
