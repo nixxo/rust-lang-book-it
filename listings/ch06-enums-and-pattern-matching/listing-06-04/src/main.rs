@@ -1,16 +1,16 @@
 // ANCHOR: here
 #[derive(Debug)] // so we can inspect the state in a minute
-enum UsState {
+enum StatoUSA {
     Alabama,
     Alaska,
     // --snip--
 }
 
-enum Coin {
+enum Moneta {
     Penny,
     Nickel,
     Dime,
-    Quarter(UsState),
+    Quarter(StatoUSA),
 }
 // ANCHOR_END: here
 

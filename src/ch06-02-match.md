@@ -1,5 +1,4 @@
 <!-- Old heading. Do not remove or links may break. -->
-
 <a id="the-match-control-flow-operator"></a>
 
 ## The `match` Control Flow Construct
@@ -100,7 +99,7 @@ quarter’s state. Then we can use `state` in the code for that arm, like so:
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-09-variable-in-pattern/src/main.rs:here}}
 ```
 
-If we were to call `value_in_cents(Coin::Quarter(UsState::Alaska))`, `coin`
+If we were to call `valore_in_cent(Moneta::Quarter(StatoUSA::Alaska))`, `coin`
 would be `Coin::Quarter(UsState::Alaska)`. When we compare that value with each
 of the match arms, none of them match until we reach `Coin::Quarter(state)`. At
 that point, the binding for `state` will be the value `UsState::Alaska`. We can

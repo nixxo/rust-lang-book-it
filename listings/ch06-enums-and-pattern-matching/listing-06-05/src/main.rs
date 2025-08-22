@@ -1,6 +1,6 @@
 fn main() {
     // ANCHOR: here
-    fn plus_one(x: Option<i32>) -> Option<i32> {
+    fn piu_uno(x: Option<i32>) -> Option<i32> {
         match x {
             // ANCHOR: first_arm
             None => None,
@@ -11,8 +11,8 @@ fn main() {
         }
     }
 
-    let five = Some(5);
-    let six = plus_one(five);
-    let none = plus_one(None);
+    let cinque = Some(5);
+    let sei = piu_uno(cinque);
+    let nulla = piu_uno(None);
     // ANCHOR_END: here
 }

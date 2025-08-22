@@ -1,13 +1,13 @@
 fn main() {
     // ANCHOR: here
-    let dice_roll = 9;
-    match dice_roll {
-        3 => add_fancy_hat(),
-        7 => remove_fancy_hat(),
+    let tiro_dadi = 9;
+    match tiro_dadi {
+        3 => metti_cappello_buffo(),
+        7 => togli_cappello_buffo(),
         _ => (),
     }
 
-    fn add_fancy_hat() {}
-    fn remove_fancy_hat() {}
+    fn metti_cappello_buffo() {}
+    fn togli_cappello_buffo() {}
     // ANCHOR_END: here
 }
