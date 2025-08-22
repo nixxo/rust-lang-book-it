@@ -8,12 +8,12 @@ fn main() {
 
     // ANCHOR: here
     impl Messaggio {
-        fn call(&self) {
+        fn chiama(&self) {
             // method body would be defined here
         }
     }
 
     let m = Messaggio::Scrivi(String::from("ciao"));
-    m.call();
+    m.chiama();
     // ANCHOR_END: here
 }

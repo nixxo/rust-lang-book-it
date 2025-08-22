@@ -30,8 +30,8 @@
   - [Un esempio di programma che usa Struct](ch05-02-example-structs.md)
   - [Sintassi dei Metodi](ch05-03-method-syntax.md)
 
-- [Enums and Pattern Matching](ch06-00-enums.md)
-  - [Defining an Enum](ch06-01-defining-an-enum.md)
+- [Enumerazioni e Corrispondenza dei Pattern](ch06-00-enums.md)
+  - [Definire un Enum](ch06-01-defining-an-enum.md)
   - [The `match` Control Flow Construct](ch06-02-match.md)
   - [Concise Control Flow with `if let` and `let else`](ch06-03-if-let.md)
 
