@@ -1,5 +1,5 @@
-struct AlwaysEqual;
+struct SempreUguale;
 
 fn main() {
-    let suggetto = AlwaysEqual;
+    let suggetto = SempreUguale;
 }

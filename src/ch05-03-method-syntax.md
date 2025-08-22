@@ -1,10 +1,10 @@
-## Sintassi dei _Metodi_
+## Sintassi dei Metodi
 
 I metodi (_method_) sono simili alle funzioni: le dichiariamo con la keyword
 `fn` e un nome, possono avere parametri e un valore di ritorno, e contengono del
 codice che viene eseguito quando il metodo viene chiamato da un’altra parte.
-Diversamente dalle funzioni, i metodi sono definiti nel contesto di una
-_struct_ (o di un _enum_ o di un _trait object_, che tratteremo nel [Capitolo
+Diversamente dalle funzioni, i metodi sono definiti nel contesto di una _struct_
+(o di un _enum_ o di un _trait object_, che tratteremo nel [Capitolo
 6][enums]<!-- ignore --> e [Capitolo 18][trait-objects]<!-- ignore -->,
 rispettivamente), e il loro primo parametro è sempre `self`, che rappresenta
 l’istanza della _struct_ su cui il metodo viene chiamato.
@@ -12,10 +12,10 @@ l’istanza della _struct_ su cui il metodo viene chiamato.
 ### Definire i metodi
 
 Trasformiamo la funzione `area` che prende un’istanza di `Rettangolo` come
-parametro rendendola invece un _method_ definito sulla _struct_ `Rettangolo`,
-come mostrato nel Listato 5-13.
+parametro rendendola invece un metodo definito sulla _struct_ `Rettangolo`, come
+mostrato nel Listato 5-13.
 
-<Listing number="5-13" file-name="src/main.rs" caption="Definizione di un _method_ `area` nella _struct_ `Rettangolo`">
+<Listing number="5-13" file-name="src/main.rs" caption="Definizione di un metodo `area` nella _struct_ `Rettangolo`">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-13/src/main.rs}}
@@ -29,44 +29,44 @@ Per definire la funzione nel contesto di `Rettangolo`, iniziamo un blocco `impl`
 all’interno delle parentesi graffe dell’`impl` e cambiamo il primo (e in questo
 caso, unico) parametro in `self` nella firma e ovunque nel corpo. In `main`,
 dove chiamavamo la funzione `area` passando `rettangolo1` come argomento,
-possiamo invece usare la _sintassi dei method_ per chiamare il metodo `area`
-sull’istanza di `Rettangolo`. La sintassi del _method_ va dopo un’istanza:
-aggiungiamo un punto seguito dal nome del _method_, parentesi tonde ed eventuali
+possiamo invece usare la _sintassi dei metodi_ per chiamare il metodo `area`
+sull’istanza di `Rettangolo`. La sintassi del metodo va dopo un’istanza:
+aggiungiamo un punto seguito dal nome del metodo, parentesi tonde ed eventuali
 argomenti.
 
 Nella firma di `area` usiamo `&self` invece di `rettangolo: &Rettangolo`. Il
 `&self` è in realtà l’abbreviazione di `self: &Self`. All’interno di un blocco
-`impl`, il _type_ `Self` è un alias per il _type_ per cui il blocco `impl` è
-stato scritto. I metodi devono avere un parametro chiamato `self` di _type_
-`Self` come primo parametro, quindi Rust permette di abbreviare questo con
-soltanto il nome `self` nella prima posizione dei parametri. Nota che dobbiamo
-ancora usare `&` davanti alla forma abbreviata `self` per indicare che questo
-_method_ prende in prestito l’istanza `Self`, esattamente come facevamo con
-`rettangolo: &Rettangolo`. I metodi possono prendere la _ownership_ di `self`,
-prendere in prestito `self` immutabilmente, come abbiamo fatto qui, oppure
-prendere in prestito `self` mutabilmente, proprio come possono fare con
-qualsiasi altro parametro.
+`impl`, il _type_ `Self` è un alias del _type_ per cui il blocco `impl` è stato
+scritto. I metodi devono avere un parametro chiamato `self` di _type_ `Self`
+come primo parametro, quindi Rust permette di abbreviare questo con soltanto il
+nome `self` nella prima posizione dei parametri. Nota che dobbiamo comunque
+usare `&` davanti alla forma abbreviata `self` per indicare che questo metodo
+prende in prestito l’istanza `Self`, esattamente come facevamo con `rettangolo:
+&Rettangolo`. I metodi possono prendere la _ownership_ di `self`, prendere un
+_reference_ immutabile a `self`, come abbiamo fatto qui, oppure prendere un
+_reference_ mutabile a `self`, proprio come possono fare con qualsiasi altro
+parametro.
 
 Qui abbiamo scelto `&self` per lo stesso motivo per cui abbiamo usato
 `&Rettangolo` nella versione precedente: non serve che prendiamo la _ownership_,
 vogliamo solo leggere i dati nella _struct_, non modificarli. Se volessimo
-modificare l’istanza su cui chiamiamo il metodo come parte di ciò che il
-_method_ fa, useremmo `&mut self` come primo parametro. Avere un _method_ che
-prende la _ownership_ dell’istanza usando semplicemente `self` come primo
-parametro è raro; questa tecnica è solitamente usata quando il metodo trasforma
-`self` in qualcos’altro e si vuole impedire al chiamante di usare l’istanza
-originale dopo la trasformazione.
+modificare l’istanza su cui chiamiamo il metodo come parte di ciò che il metodo
+fa, useremmo `&mut self` come primo parametro. Avere un metodo che prende la
+_ownership_ dell’istanza usando semplicemente `self` come primo parametro è
+raro; questa tecnica è solitamente usata quando il metodo trasforma `self` in
+qualcos’altro e si vuole impedire al chiamante di usare l’istanza originale dopo
+la trasformazione.
 
-La ragione principale per usare i metodi invece delle funzioni, oltre a
-fornire la sintassi dei metodi e a non dover ripetere il _type_ di `self` in
-ogni firma dei metodi, è per organizzazione. Abbiamo messo tutte le cose che
-possiamo fare con un’istanza di un _type_ in un unico blocco `impl` invece di
-costringere chi dovrà in futuro leggere o manutenere il nostro codice a cercare
-le capacità di `Rettangolo` in vari posti nella libreria che forniamo.
+La ragione principale per usare i metodi invece delle funzioni, oltre a fornire
+la sintassi dei metodi e a non dover ripetere il _type_ di `self` in ogni firma
+dei metodi, è per organizzazione. Abbiamo messo tutte le cose che possiamo fare
+con un’istanza di un _type_ in un unico blocco `impl` invece di costringere chi
+dovrà in futuro leggere o manutenere il nostro codice a cercare le funzionalità
+di `Rettangolo` in vari posti nella libreria che forniamo.
 
-Nota che possiamo scegliere di dare a un _method_ lo stesso nome di uno dei
-campi della _struct_. Per esempio, possiamo definire un _method_ su `Rettangolo`
-che si chiama anch’esso `larghezza`:
+Nota che possiamo scegliere di dare a un metodo lo stesso nome di uno dei campi
+della _struct_. Per esempio, possiamo definire un metodo su `Rettangolo` che si
+chiama anch’esso `larghezza`:
 
 <Listing file-name="src/main.rs">
 
@@ -78,20 +78,20 @@ che si chiama anch’esso `larghezza`:
 
 Qui scegliamo di fare in modo che il metodo `larghezza` ritorni `true` se il
 valore nel campo `larghezza` dell’istanza è maggiore di `0` e `false` se il
-valore è `0`: possiamo usare un campo all’interno di un _method_ con lo stesso
+valore è `0`: possiamo usare un campo all’interno di un metodo con lo stesso
 nome per qualunque scopo. In `main`, quando seguiamo `rettangolo1.larghezza` con
 le parentesi tonde, Rust sa che si intende il metodo `larghezza`. Quando non
 usiamo le parentesi tonde, Rust sa che intendiamo il campo `larghezza`.
 
-Spesso, ma non sempre, quando diamo a un _method_ lo stesso nome di un campo
+Spesso, ma non sempre, quando diamo a un metodo lo stesso nome di un campo
 vogliamo che esso ritorni soltanto il valore del campo e non faccia altro. I
-_method_ di questo tipo sono chiamati _getter_ (_metodi di incapsulamento_) e
-Rust non li implementa automaticamente per i campi della _struct_ come fanno
-alcuni altri linguaggi di programmazione. I _getter_ sono utili perché puoi
-rendere il campo privato ma il metodo pubblico, abilitando così accesso in
-sola lettura a quel campo come parte dell’API pubblica del _type_. Discuteremo
-cosa sono pubblico e privato e come designare un campo o un _method_ come
-pubblico o privato nel [Capitolo 7][public]<!-- ignore -->.
+metodi di questo tipo sono chiamati _getter_ (_metodi di incapsulamento_) e Rust
+non li implementa automaticamente per i campi della _struct_ come fanno alcuni
+altri linguaggi di programmazione. I _getter_ sono utili perché puoi rendere il
+campo privato ma il metodo pubblico, abilitando così accesso in sola lettura a
+quel campo come parte dell’API pubblica del _type_. Discuteremo cosa sono
+pubblico e privato e come designare un campo o un metodo come pubblico o privato
+nel [Capitolo 7][public]<!-- ignore -->.
 
 > ### Dov’è l’operatore `->`?
 > 
@@ -104,12 +104,12 @@ pubblico o privato nel [Capitolo 7][public]<!-- ignore -->.
 >
 > Rust non ha un equivalente dell’operatore `->`; invece, Rust ha una
 > funzionalità chiamata _referenziamento e de-referenziamento automatico_
-> (_automatic referencing and dereferencing_). Chiamare i metodi è uno dei
-> pochi posti in Rust che implementa questa funzionalità.
+> (_automatic referencing and dereferencing_). Chiamare i metodi è uno dei pochi
+> posti in Rust che implementa questa funzionalità.
 >
-> Ecco come funziona: quando chiami un _method_ con `oggetto.qualcosa()`, Rust
+> Ecco come funziona: quando chiami un metodo con `oggetto.qualcosa()`, Rust
 > aggiunge automaticamente `&`, `&mut`, o `*` affinché `oggetto` corrisponda
-> alla firma del _method_. In altre parole, i seguenti sono equivalenti:
+> alla firma del metodo. In altre parole, i seguenti sono equivalenti:
 >
 > <!-- CAN'T EXTRACT SEE BUG https://github.com/rust-lang/mdBook/issues/1127 -->
 >
@@ -135,12 +135,12 @@ pubblico o privato nel [Capitolo 7][public]<!-- ignore -->.
 > ```
 >
 > Il primo sembra molto più pulito. Questo comportamento di _referencing
-> automatico_ funziona perché i metodi hanno un _receiver_ (_recettore_)
-> chiaro, il _type_ di `self`. Dato il _receiver_ e il nome di un _method_, Rust
-> può determinare in modo definitivo se il metodo sta leggendo (`&self`),
-> mutando (`&mut self`), o consumando (`self`). Il fatto che Rust renda
-> implicito il _borrowing_ per i _receiver_ dei metodi è una parte importante
-> per rendere l’_ownership_ ergonomica nella pratica.
+> automatico_ funziona perché i metodi hanno un _receiver_ (_recettore_) chiaro,
+> il _type_ di `self`. Dato il _receiver_ e il nome di un metodo, Rust può
+> determinare in modo definitivo se il metodo sta leggendo (`&self`), mutando
+> (`&mut self`), o consumando (`self`). Il fatto che Rust renda implicito il
+> _borrowing_ per i _receiver_ dei metodi è una parte importante per rendere
+> l’_ownership_ ergonomica nella pratica.
 
 ### Metodi con più parametri
 
@@ -207,7 +207,7 @@ usata una: la funzione `String::from` implementata sul _type_ `String`.
 
 Le funzioni associate che non sono metodi sono spesso usate come _costruttori_
 che ritornano una nuova istanza della _struct_. Spesso si chiamano `new` perchè
-`new` non è una parola chiave e non è incorporato nel linguaggio. Per esempio,
+`new` non è una parola chiave e non è incorporata nel linguaggio. Per esempio,
 potremmo decidere di fornire una funzione associata chiamata `quadrato` che
 prende un parametro di dimensione e lo usa sia come larghezza sia come altezza,
 rendendo più semplice creare un `Rettangolo` _quadrato_ invece di dover
@@ -235,7 +235,7 @@ A ogni _struct_ è permesso avere più blocchi `impl`. Per esempio, il Listato
 5-15 è equivalente al codice mostrato nel Listato 5-16, che ha ognuno dei metodi
 nel proprio blocco `impl`.
 
-<Listing number="5-16" caption="Rewriting Listing 5-15 using multiple `impl` blocks">
+<Listing number="5-16" caption="Riscrittura del Listato 5-15 usando più blocchi `impl`">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-16/src/main.rs:here}}

@@ -11,5 +11,5 @@ fn main() {
         altezza: 50,
     };
 
-    dbg!(&rettangolo1 );
+    dbg!(&rettangolo1);
 }

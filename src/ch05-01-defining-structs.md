@@ -1,6 +1,6 @@
 ## Definire e Istanziare le _Struct_
 
-Le _struct_ sono simili ai _tuple_, discussi nella sezione ["Il _
+Le _struct_ sono simili ai _tuple_, discussi nella sezione ["Il _Type_
 Tupla"][tuples]<!-- ignore -->, in quanto entrambi possono contenere più valori
 correlati. Come i _tuple_, i componenti di una _struct_ possono essere di _type_
 diversi. A differenza dei _tuple_, in una _struct_ puoi denominare ogni pezzo di
@@ -65,10 +65,10 @@ possiamo costruire una nuova istanza della _struct_ come ultima espressione nel
 corpo di una funzione per restituire implicitamente quella nuova istanza.
 
 Il Listato 5-4 mostra la funzione `nuovo_utente` che restituisce un'istanza
-`Utente` con l'email e il nome_utente indicati. Il campo `attivo` assume il
+`Utente` con l'email e il nome utente indicati. Il campo `attivo` assume il
 valore di `true` e `numero_accessi` prende il valore di `1`.
 
-<Listing number="5-4" file-name="src/main.rs" caption="A `build_user` function that takes an email and username and returns a `User` instance">
+<Listing number="5-4" file-name="src/main.rs" caption="Una funzione `nuovo_utente` che prende una email e un nome utente per ritornare un'istanza `Utente`">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-04/src/main.rs:here}}
@@ -93,7 +93,7 @@ gli stessi, possiamo usare la sintassi di inizializzazione abbreviata dei campi
 esattamente allo stesso modo ma senza la ripetizione di `nome_utente` e `email`,
 come mostrato nel Listato 5-5.
 
-<Listing number="5-5" file-name="src/main.rs" caption="A `build_user` function that uses field init shorthand because the `username` and `email` parameters have the same name as struct fields">
+<Listing number="5-5" file-name="src/main.rs" caption="Una funzione `nuovo_utente` che usa la sintassi abbreviata perché i campi e i parametri `nome_utente` e `email` hanno lo stesso nome">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-05/src/main.rs:here}}
@@ -101,7 +101,7 @@ come mostrato nel Listato 5-5.
 
 </Listing>
 
-Qui stiamo creando una nuova istanza della struct `Utente`, che ha un campo
+Qui stiamo creando una nuova istanza della _struct_ `Utente`, che ha un campo
 chiamato `email`. Vogliamo impostare il valore del campo `email` sul valore del
 parametro `email` della funzione `nuovo_utente`. Dato che il campo `email` e il
 parametro `email` hanno lo stesso nome, dobbiamo solo scrivere `email` invece di
@@ -119,7 +119,7 @@ istanza `Utente` in `utente2`, senza la sintassi di aggiornamento. Impostiamo un
 nuovo valore per `email` ma per il resto utilizziamo gli stessi valori di
 `utente1` creati nel Listato 5-2.
 
-<Listing number="5-6" file-name="src/main.rs" caption="Creating a new `User` instance using all but one of the values from `user1`">
+<Listing number="5-6" file-name="src/main.rs" caption="Creazione di una nuova istanza `Utente` con gli stessi valori tranne uno di `utente1`">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-06/src/main.rs:here}}
@@ -132,7 +132,7 @@ meno codice, come mostrato nel Listato 5-7. La sintassi `..` specifica che i
 restanti campi non impostati esplicitamente dovrebbero avere lo stesso valore
 dei campi nell’istanza data.
 
-<Listing number="5-7" file-name="src/main.rs" caption="Using struct update syntax to set a new `email` value for a `User` instance but to use the rest of the values from `user1`">
+<Listing number="5-7" file-name="src/main.rs" caption="Utilizzo della sintassi _struct update_ per impostare un nuovo valore di `email` per un'istanza di `Utente`, ma utilizzando o restanti valori da `utente1`">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-07/src/main.rs:here}}
@@ -142,18 +142,18 @@ dei campi nell’istanza data.
 
 Anche il codice nel Listato 5-7 crea un’istanza in `utente2` che ha un valore
 diverso per `email` ma ha gli stessi valori per i campi `nome_utente`, `attivo`
-e `numero_accessi` di `utente1`. La keyword `..utente1` deve venire per ultima
-per specificare che tutti i campi rimanenti dovrebbero ottenere i propri valori
-dai campi corrispondenti in `utente1`, ma possiamo scegliere di specificare i
-valori per tutti i campi che vogliamo in qualsiasi ordine, indipendentemente
-dall’ordine dei campi in la definizione della struttura.
+e `numero_accessi` di `utente1`. La parola chiave `..utente1` deve venire per
+ultima per specificare che tutti i campi rimanenti dovrebbero ottenere i propri
+valori dai campi corrispondenti in `utente1`, ma possiamo scegliere di
+specificare i valori per tutti i campi che vogliamo in qualsiasi ordine,
+indipendentemente dall’ordine dei campi nella definizione della _struct_.
 
 Si noti che la sintassi di _struct update_ utilizza `=` come un assegnazione;
 questo perché sposta i dati, proprio come abbiamo visto nella sezione
 [”Interazione tra Variabili e Dati con _Move_”][move]<!-- ignore -->. In questo
 esempio, non possiamo più utilizzare `utente1` dopo aver creato `utente2` perché
 la `String` nel campo `nome_utente` di `utente1` è stata spostata in `utente2`.
-Se avessimo fornito a `utente2` nuovi valori String sia per l’`email` che per
+Se avessimo fornito a `utente2` nuovi valori `String` sia per l’`email` che per
 `nome_utente` e quindi avessimo utilizzato solo i valori `attivo` e
 `numero_accessi` di `utente1`, `utente1` sarebbe ancora valido dopo aver creato
 `utente2`. Sia `attivo` che `numero_accessi` sono _type_ che implementano il
@@ -206,7 +206,7 @@ stesso.
 
 Parleremo dei _trait_ nel [Capitolo 10](ch10-02-traits.html)<!-- ignore -->.
 Ecco un esempio di dichiarazione e istanziazione di una _unit struct_ chiamata
-`AlwaysEqual`:
+`SempreUguale`:
 
 <Listing file-name="src/main.rs">
 
@@ -216,12 +216,12 @@ Ecco un esempio di dichiarazione e istanziazione di una _unit struct_ chiamata
 
 </Listing>
 
-Per definire `AlwaysEqual`, utilizziamo la parola chiave `struct`, il nome che
+Per definire `SempreUguale`, utilizziamo la parola chiave `struct`, il nome che
 vogliamo e quindi un punto e virgola. Non c’è bisogno di parentesi graffe o
-tonde! Quindi possiamo ottenere un’istanza di `AlwaysEqual` nella variabile
+tonde! Quindi possiamo ottenere un’istanza di `SempreUguale` nella variabile
 `soggetto` in un modo simile: utilizzando il nome che abbiamo definito, senza
 parentesi graffe o tonde. Immagina che in seguito implementeremo il
-comportamento per questo _type_ in modo tale che ogni istanza di `AlwaysEqual`
+comportamento per questo _type_ in modo tale che ogni istanza di `SempreUguale`
 sia sempre uguale a ogni istanza di qualsiasi altro _type_, magari per avere un
 risultato noto a scopo di test. Non avremmo bisogno di dati per implementare
 quel comportamento! Vedremo nel Capitolo 10 come definire i _trait_ e
@@ -229,7 +229,7 @@ implementarli su qualsiasi _type_, comprese le _unit struct_.
 
 > ### _Ownership_ dei Dati di _Struct_
 >
-> Nella definizione della _struct_ `Utenete`, abbiamo utilizzato il _type_
+> Nella definizione della _struct_ `Utente`, abbiamo utilizzato il _type_
 > `String` invece del _type_ _slice_ di stringa `&str`. Questa è una scelta
 > deliberata perché vogliamo che ogni istanza di questa _struct_ possieda tutti
 > i suoi dati e che tali dati siano validi per tutto il tempo in cui la _struct_
@@ -269,7 +269,7 @@ implementarli su qualsiasi _type_, comprese le _unit struct_.
 >
 > ```console
 > $ cargo run
->    Compiling struct v0.1.0 (file:///progetti/struct)
+>    Compiling struct v0.1.0 (file:///progetti/structs)
 > error[E0106]: missing lifetime specifier
 >  --> src/main.rs:3:18
 >   |

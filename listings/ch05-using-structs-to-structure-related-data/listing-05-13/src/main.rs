@@ -18,6 +18,6 @@ fn main() {
 
     println!(
         "L'area del rettangolo è di {} pixel quadrati.",
-        rettangolo1 .area()
+        rettangolo1.area()
     );
 }

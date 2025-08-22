@@ -20,15 +20,15 @@
   - [Commenti](ch03-04-comments.md)
   - [Controllo del flusso](ch03-05-control-flow.md)
 
-- [Capire la _Ownership_](ch04-00-understanding-ownership.md)
-  - [Cos'è la _Ownership_?](ch04-01-what-is-ownership.md)
+- [Capire la Ownership](ch04-00-understanding-ownership.md)
+  - [Cos'è la Ownership?](ch04-01-what-is-ownership.md)
   - [Reference e Borrowing](ch04-02-references-and-borrowing.md)
-  - [Il _Type_ Slice](ch04-03-slices.md)
+  - [Il Type Slice](ch04-03-slices.md)
 
-- [Using Structs to Structure Related Data](ch05-00-structs.md)
-  - [Defining and Instantiating Structs](ch05-01-defining-structs.md)
-  - [An Example Program Using Structs](ch05-02-example-structs.md)
-  - [Method Syntax](ch05-03-method-syntax.md)
+- [Utilizzare le Struct per Strutturare Dati Correlati](ch05-00-structs.md)
+  - [Definire e Istanziare le Struct](ch05-01-defining-structs.md)
+  - [Un esempio di programma che usa Struct](ch05-02-example-structs.md)
+  - [Sintassi dei Metodi](ch05-03-method-syntax.md)
 
 - [Enums and Pattern Matching](ch06-00-enums.md)
   - [Defining an Enum](ch06-01-defining-an-enum.md)

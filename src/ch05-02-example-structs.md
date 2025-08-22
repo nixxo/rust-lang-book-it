@@ -1,4 +1,4 @@
-## Un esempio di programma che usa _struct_
+## Un esempio di programma che usa _Struct_
 
 Per capire quando potremmo voler usare le _struct_, scriviamo un programma che
 calcola l'area di un rettangolo. Partiremo usando variabili singole e poi
@@ -44,7 +44,7 @@ del Capitolo 3: usando le _tuple_.
 
 Il Listato 5-9 mostra un'altra versione del nostro programma che usa le _tuple_.
 
-<Listing number="5-9" file-name="src/main.rs" caption="Specicare larghezza e altezza di un rettangolo tramite una tuple">
+<Listing number="5-9" file-name="src/main.rs" caption="Specificare larghezza e altezza di un rettangolo tramite una tuple">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-09/src/main.rs}}
@@ -72,7 +72,7 @@ Usiamo la _struct_ per aggiungere significato etichettando i dati. Possiamo
 trasformare la _tuple_ che stiamo usando in una _struct_ con un nome per
 l'intero e nomi per le parti, come mostrato nel Listato 5-10.
 
-<Listing number="5-10" file-name="src/main.rs" caption="Defining a `Rectangle` struct">
+<Listing number="5-10" file-name="src/main.rs" caption="Definizione di una _struct_ `Rettangolo`">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-10/src/main.rs}}
@@ -82,16 +82,16 @@ l'intero e nomi per le parti, come mostrato nel Listato 5-10.
 
 Qui abbiamo definito una _struct_ e l'abbiamo chiamata `Rettangolo`. All'interno
  delle parentesi graffe, abbiamo definito i campi come `larghezza` e `altezza`,
-entrambi di tipo `u32`. Poi, in `main`, abbiamo creato un'istanza particolare di
-`Rettangolo` che ha larghezza `30` e altezza `50`.
+entrambi di _type_ `u32`. Poi, in `main`, abbiamo creato un'istanza particolare
+di `Rettangolo` che ha larghezza `30` e altezza `50`.
 
 La nostra funzione `area` è ora definita con un solo parametro, che abbiamo
-chiamato `Rettangolo`, il cui tipo è un _reference_ immutabile a un'istanza di
-_struct_ `Rettangolo`. Come menzionato nel Capitolo 4, ci serve solo prendere in
-prestito la _struct_ piuttosto che averla la _ownership_. In questo modo, `main`
-mantiene la sua _ownership_ e può continuare a usare `rettangolo1`, che è il
-motivo per cui usiamo `&` nella firma della funzione e dove chiamiamo la
-funzione.
+chiamato `Rettangolo`, il cui _type_ è un _reference_ immutabile a un'istanza
+della _struct_ `Rettangolo`. Come menzionato nel Capitolo 4, ci serve solo
+prendere in prestito la _struct_ piuttosto che averne la _ownership_. In questo
+modo, `main` mantiene la sua _ownership_ e può continuare a usare `rettangolo1`,
+che è il motivo per cui usiamo `&` nella firma della funzione e dove chiamiamo
+la funzione.
 
 La funzione `area` accede ai campi `larghezza` e `altezza` dell'istanza di
 `Rettangolo` (nota che accedere ai campi di un'istanza di _struct_ presa in
@@ -102,7 +102,7 @@ campi `larghezza` e `altezza`. Questo comunica che larghezza e altezza sono
 correlate tra loro e fornisce nomi descrittivi ai valori invece di usare gli
 indici della _tuple_ `0` e `1`. Questo è un vantaggio in termini di chiarezza.
 
-### Aggiungere funzionalità utili con i trait derivati
+### Aggiungere funzionalità utili con i _trait_ derivati
 
 Sarebbe utile poter stampare un'istanza di `Rettangolo` mentre eseguiamo il
 debug del nostro programma e vedere i valori di tutti i suoi campi. Il Listato
@@ -126,7 +126,7 @@ principale:
 
 La macro `println!` può fare molti tipi di formattazione e, come impostazione
 predefinita, le parentesi graffe dicono a `println!` di usare una formattazione
-conosciuta come `Display`: output pensato per il l'utente finale che utilizzarà
+conosciuta come `Display`, output pensato per il l'utente finale che utilizzarà
 il programma. I _type_ primitivi che abbiamo visto finora implementano `Display`
 di default perché c'è un solo modo in cui vorresti mostrare un `1` o qualsiasi
 altro _type_ primitivo a un utente. Ma con le _struct_ il modo in cui `println!`
@@ -139,10 +139,10 @@ di `Display` da usare con `println!` e il segnaposto `{}`.
 Se continuiamo a leggere gli errori, troveremo questa nota utile:
 
 ```text
-{{#include ../listings/ch05-using-structs-to-structure-related-data/listing-05-11/output.txt:9:10}}
+{{#include ../listings/ch05-using-structs-to-structure-related-data/listing-05-11/output.txt:12:13}}
 ```
 
-Proviamolo! La chiamata ala macro `println!` ora assomiglierà a
+Proviamolo! La chiamata alla macro `println!` ora assomiglierà a
 `println!("rettangolo1 è {rettangolo1:?}");`. Inserire lo specificatore `:?`
 all'interno delle parentesi graffe dice a `println!` che vogliamo usare un
 formato di output chiamato `Debug`. Il _trait_ `Debug` ci permette di stampare
@@ -158,7 +158,7 @@ Compila il codice con questa modifica. Accidenti! Otteniamo ancora un errore:
 Ma di nuovo, il compilatore ci dà una nota utile:
 
 ```text
-{{#include ../listings/ch05-using-structs-to-structure-related-data/output-only-01-debug/output.txt:9:10}}
+{{#include ../listings/ch05-using-structs-to-structure-related-data/output-only-01-debug/output.txt:11:12}}
 ```
 
 Rust _include_ effettivamente funzionalità per stampare informazioni di debug,
@@ -167,7 +167,7 @@ funzionalità alla nostra _struct_. Per farlo, aggiungiamo l'attributo esterno
 `#[derive(Debug)]` appena prima della definizione della _struct_, come mostrato
 nel Listato 5-12.
 
-<Listing number="5-12" file-name="src/main.rs" caption="Adding the attribute to derive the `Debug` trait and printing the `Rectangle` instance using debug formatting">
+<Listing number="5-12" file-name="src/main.rs" caption="Aggiunta dell'attributo per derivare il _trait_ `Debug` e stampare `Rettangolo` usando la formattazione di debug">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-12/src/main.rs}}
@@ -195,7 +195,7 @@ il seguente output:
 
 Un altro modo per stampare un valore usando il formato `Debug` è usare la [macro
 `dbg!`][dbg], che prende _ownership_ di un'espressione (a differenza di
-`println!`, che prende un _reference_), stampa file e mumero di linea di dove
+`println!`, che prende un _reference_), stampa file e numero di linea di dove
 quella chiamata a `dbg!` si verifica nel codice insieme al valore risultante di
 quell'espressione, e restituisce l'_ownership_ del valore.
 

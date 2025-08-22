@@ -1,4 +1,4 @@
-# Utilizzare le _struct_ per Strutturare Dati Correlati
+# Utilizzare le _Struct_ per Strutturare Dati Correlati
 
 Una _struttura_ (_struct_ d'ora in poi) è un tipo di dati personalizzato che ti
 permette di raggruppare e denominare più valori correlati che formano un gruppo
@@ -9,7 +9,7 @@ dimostrare quando le _struct_ sono un modo migliore per raggruppare dati.
 
 Dimostreremo come definire e istanziare le _struct_. Discuteremo come definire
 funzioni associate, in particolare il tipo di funzioni associate chiamate
-_metodi_ (_methods_), per specificare il comportamento associato a un _type_
+_metodi_ (_method_), per specificare il comportamento associato a un _type_
 _struct_. Le _struct_ ed _enum_ (discussi nel Capitolo 6) sono i blocchi di
 costruzione per creare nuovi _type_ nel dominio del tuo programma per sfruttare
 appieno il controllo dei _type_ in fase di compilazione di _Rust_.
