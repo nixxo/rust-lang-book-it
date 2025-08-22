@@ -20,7 +20,7 @@ Both version four and version six addresses are still fundamentally IP
 addresses, so they should be treated as the same type when the code is handling
 situations that apply to any kind of IP address.
 
-We can express this concept in code by defining an `IpAddrKind` enumeration and
+We can express this concept in code by defining an `VersioneIndirizzoIp` enumeration and
 listing the possible kinds an IP address can be, `V4` and `V6`. These are the
 variants of the enum:
 
@@ -28,11 +28,11 @@ variants of the enum:
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-01-defining-enums/src/main.rs:def}}
 ```
 
-`IpAddrKind` is now a custom data type that we can use elsewhere in our code.
+`VersioneIndirizzoIp` is now a custom data type that we can use elsewhere in our code.
 
 ### Enum Values
 
-We can create instances of each of the two variants of `IpAddrKind` like this:
+We can create instances of each of the two variants of `VersioneIndirizzoIp` like this:
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-01-defining-enums/src/main.rs:instance}}
@@ -40,8 +40,8 @@ We can create instances of each of the two variants of `IpAddrKind` like this:
 
 Note that the variants of the enum are namespaced under its identifier, and we
 use a double colon to separate the two. This is useful because now both values
-`IpAddrKind::V4` and `IpAddrKind::V6` are of the same type: `IpAddrKind`. We
-can then, for instance, define a function that takes any `IpAddrKind`:
+`VersioneIndirizzoIp::V4` and `VersioneIndirizzoIp::V6` are of the same type: `VersioneIndirizzoIp`. We
+can then, for instance, define a function that takes any `VersioneIndirizzoIp`:
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-01-defining-enums/src/main.rs:fn}}
@@ -59,7 +59,7 @@ only know what _kind_ it is. Given that you just learned about structs in
 Chapter 5, you might be tempted to tackle this problem with structs as shown in
 Listing 6-1.
 
-<Listing number="6-1" caption="Storing the data and `IpAddrKind` variant of an IP address using a `struct`">
+<Listing number="6-1" caption="Storing the data and `VersioneIndirizzoIp` variant of an IP address using a `struct`">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-01/src/main.rs:here}}
@@ -67,18 +67,18 @@ Listing 6-1.
 
 </Listing>
 
-Here, we’ve defined a struct `IpAddr` that has two fields: a `kind` field that
-is of type `IpAddrKind` (the enum we defined previously) and an `address` field
+Here, we’ve defined a struct `IndirizzoIp` that has two fields: a `tipo` field that
+is of type `VersioneIndirizzoIp` (the enum we defined previously) and an `indirizzo` field
 of type `String`. We have two instances of this struct. The first is `home`,
-and it has the value `IpAddrKind::V4` as its `kind` with associated address
+and it has the value `VersioneIndirizzoIp::V4` as its `tipo` with associated address
 data of `127.0.0.1`. The second instance is `loopback`. It has the other
-variant of `IpAddrKind` as its `kind` value, `V6`, and has address `::1`
-associated with it. We’ve used a struct to bundle the `kind` and `address`
+variant of `VersioneIndirizzoIp` as its `tipo` value, `V6`, and has address `::1`
+associated with it. We’ve used a struct to bundle the `tipo` and `indirizzo`
 values together, so now the variant is associated with the value.
 
 However, representing the same concept using just an enum is more concise:
 rather than an enum inside a struct, we can put data directly into each enum
-variant. This new definition of the `IpAddr` enum says that both `V4` and `V6`
+variant. This new definition of the `IndirizzoIp` enum says that both `V4` and `V6`
 variants will have associated `String` values:
 
 ```rust
@@ -88,8 +88,8 @@ variants will have associated `String` values:
 We attach data to each variant of the enum directly, so there is no need for an
 extra struct. Here, it’s also easier to see another detail of how enums work:
 the name of each enum variant that we define also becomes a function that
-constructs an instance of the enum. That is, `IpAddr::V4()` is a function call
-that takes a `String` argument and returns an instance of the `IpAddr` type. We
+constructs an instance of the enum. That is, `IndirizzoIp::V4()` is a function call
+that takes a `String` argument and returns an instance of the `IndirizzoIp` type. We
 automatically get this constructor function defined as a result of defining the
 enum.
 
@@ -114,17 +114,17 @@ the form of two different structs, which are defined differently for each
 variant:
 
 ```rust
-struct Ipv4Addr {
+struct IndirizzoIpV4 {
     // --snip--
 }
 
-struct Ipv6Addr {
+struct IndirizzoIpV6 {
     // --snip--
 }
 
-enum IpAddr {
-    V4(Ipv4Addr),
-    V6(Ipv6Addr),
+enum IndirizzoIp {
+    V4(IndirizzoIpV4),
+    V6(IndirizzoIpV6),
 }
 ```
 
@@ -133,7 +133,7 @@ strings, numeric types, or structs, for example. You can even include another
 enum! Also, standard library types are often not much more complicated than
 what you might come up with.
 
-Note that even though the standard library contains a definition for `IpAddr`,
+Note that even though the standard library contains a definition for `IndirizzoIp`,
 we can still create and use our own definition without conflict because we
 haven’t brought the standard library’s definition into our scope. We’ll talk
 more about bringing types into scope in Chapter 7.
@@ -180,7 +180,7 @@ enums. Here’s a method named `call` that we could define on our `Message` enum
 
 The body of the method would use `self` to get the value that we called the
 method on. In this example, we’ve created a variable `m` that has the value
-`Message::Write(String::from("hello"))`, and that is what `self` will be in the
+`Message::Scrivi(String::from("ciao"))`, and that is what `self` will be in the
 body of the `call` method when `m.call()` runs.
 
 Let’s look at another enum in the standard library that is very common and
@@ -255,12 +255,12 @@ number types and char types:
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-06-option-examples/src/main.rs:here}}
 ```
 
-The type of `some_number` is `Option<i32>`. The type of `some_char` is
+The type of `un_numero` is `Option<i32>`. The type of `un_carattere` is
 `Option<char>`, which is a different type. Rust can infer these types because
-we’ve specified a value inside the `Some` variant. For `absent_number`, Rust
+we’ve specified a value inside the `Some` variant. For `nessun_numero`, Rust
 requires us to annotate the overall `Option` type: the compiler can’t infer the
 type that the corresponding `Some` variant will hold by looking only at a
-`None` value. Here, we tell Rust that we mean for `absent_number` to be of type
+`None` value. Here, we tell Rust that we mean for `nessun_numero` to be of type
 `Option<i32>`.
 
 When we have a `Some` value, we know that a value is present and the value is

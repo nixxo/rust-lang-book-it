@@ -1,10 +1,10 @@
 $ cargo run
-   Compiling enums v0.1.0 (file:///projects/enums)
+   Compiling enums v0.1.0 (file:///progetti/enums)
 error[E0277]: cannot add `Option<i8>` to `i8`
- --> src/main.rs:5:17
+ --> src/main.rs:6:19
   |
-5 |     let sum = x + y;
-  |                 ^ no implementation for `i8 + Option<i8>`
+6 |     let somma = x + y;
+  |                   ^ no implementation for `i8 + Option<i8>`
   |
   = help: the trait `Add<Option<i8>>` is not implemented for `i8`
   = help: the following other types implement trait `Add<Rhs>`:

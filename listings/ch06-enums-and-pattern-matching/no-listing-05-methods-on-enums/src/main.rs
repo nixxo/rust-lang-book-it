@@ -1,19 +1,19 @@
 fn main() {
-    enum Message {
-        Quit,
-        Move { x: i32, y: i32 },
-        Write(String),
-        ChangeColor(i32, i32, i32),
+    enum Messaggio {
+        Esci,
+        Sposta { x: i32, y: i32 },
+        Scrivi(String),
+        CambiaColore(i32, i32, i32),
     }
 
     // ANCHOR: here
-    impl Message {
+    impl Messaggio {
         fn call(&self) {
             // method body would be defined here
         }
     }
 
-    let m = Message::Write(String::from("hello"));
+    let m = Messaggio::Scrivi(String::from("ciao"));
     m.call();
     // ANCHOR_END: here
 }
