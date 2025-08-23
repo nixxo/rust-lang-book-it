@@ -32,7 +32,7 @@
 
 - [Enumerazioni e Corrispondenza dei Pattern](ch06-00-enums.md)
   - [Definire un Enum](ch06-01-defining-an-enum.md)
-  - [The `match` Control Flow Construct](ch06-02-match.md)
+  - [Controllo del Flusso col costrutto Match](ch06-02-match.md)
   - [Concise Control Flow with `if let` and `let else`](ch06-03-if-let.md)
 
 ## Basic Rust Literacy

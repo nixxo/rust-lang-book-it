@@ -9,5 +9,5 @@ fn main() {
 
     io::stdin().read_line(&mut ipotesi);
 
-    println!("Hai ipotizzato: {ipotesi}"); 
+    println!("Hai ipotizzato: {ipotesi}");
 }
