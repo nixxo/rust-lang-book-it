@@ -1,12 +1,12 @@
-## Concise Control Flow with `if let` and `let else`
+## Controllo di flusso conciso con `if let` e `let else`
 
-The `if let` syntax lets you combine `if` and `let` into a less verbose way to
-handle values that match one pattern while ignoring the rest. Consider the
-program in Listing 6-6 that matches on an `Option<u8>` value in the
-`config_max` variable but only wants to execute code if the value is the `Some`
-variant.
+La sintassi `if let` consente di combinare `if` e `let` in un modo meno verboso
+per gestire i valori che corrispondono a un singolo _pattern_, ignorando gli
+altri. Considera il programma nel Listato 6-6 che fa _matching_ su un
+`Option<u8>` nella variabile `config_max` ma vuole eseguire codice solo se il
+valore è la variante `Some`.
 
-<Listing number="6-6" caption="A `match` that only cares about executing code when the value is `Some`">
+<Listing number="6-6" caption="Un `match` che si interessa solo di eseguire codice quando il valore è `Some`">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-06/src/main.rs:here}}
@@ -14,70 +14,72 @@ variant.
 
 </Listing>
 
-If the value is `Some`, we print out the value in the `Some` variant by binding
-the value to the variable `max` in the pattern. We don’t want to do anything
-with the `None` value. To satisfy the `match` expression, we have to add `_ =>
-()` after processing just one variant, which is annoying boilerplate code to
-add.
+Se il valore è `Some`, stampiamo il valore contenuto nella variante `Some`
+legandolo alla variabile `max` nel _pattern_. Non vogliamo fare nulla per il
+valore `None`. Per soddisfare l’espressione `match` dobbiamo aggiungere `_ =>
+()` dopo aver processato una sola variante, il a ben vedere, sembra codice un
+po' inutile.
 
-Instead, we could write this in a shorter way using `if let`. The following
-code behaves the same as the `match` in Listing 6-6:
+Invece, possiamo scrivere questo in modo più breve usando `if let`. Il codice
+seguente si comporta allo stesso modo del `match` nel Listato 6-6:
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-12-if-let/src/main.rs:here}}
 ```
 
-The syntax `if let` takes a pattern and an expression separated by an equal
-sign. It works the same way as a `match`, where the expression is given to the
-`match` and the pattern is its first arm. In this case, the pattern is
-`Some(max)`, and the `max` binds to the value inside the `Some`. We can then
-use `max` in the body of the `if let` block in the same way we used `max` in
-the corresponding `match` arm. The code in the `if let` block only runs if the
-value matches the pattern.
+La sintassi `if let` prende un _pattern_ e un’espressione separati da un segno
+di uguale. Funziona come un `match`, dove l’espressione è data al `match` e il
+_pattern_ è il suo primo ramo. In questo caso il _pattern_ è `Some(max)`, e
+`max` si lega al valore dentro il `Some`. Possiamo quindi usare `max` nel corpo
+del blocco `if let` nello stesso modo in cui lo usavamo nel corrispondente ramo
+del `match`. Il codice nel blocco `if let` viene eseguito solo se il valore
+corrisponde al _pattern_.
 
-Using `if let` means less typing, less indentation, and less boilerplate code.
-However, you lose the exhaustive checking `match` enforces that ensures you
-aren’t forgetting to handle any cases. Choosing between `match` and `if let`
-depends on what you’re doing in your particular situation and whether gaining
-conciseness is an appropriate trade-off for losing exhaustive checking.
+Usare `if let` significa meno digitazione, meno indentazione e meno codice poco
+utile. Tuttavia si perde il controllo di esaustività che il `match` impone e che
+garantisce di non dimenticare di gestire dei casi. La scelta tra `match` e `if
+let` dipende da cosa stai facendo in quella situazione particolare e se un
+codice più conciso valga la perdita del controllo esaustivo.
 
-In other words, you can think of `if let` as syntax sugar for a `match` that
-runs code when the value matches one pattern and then ignores all other values.
+In altre parole, puoi pensare a `if let` come ad una espressione `match` ridotta
+all'osso che esegue codice quando il valore corrisponde a un _pattern_ e poi
+ignora tutti gli altri valori.
 
-We can include an `else` with an `if let`. The block of code that goes with the
-`else` is the same as the block of code that would go with the `_` case in the
-`match` expression that is equivalent to the `if let` and `else`. Recall the
-`Coin` enum definition in Listing 6-4, where the `Quarter` variant also held a
-`StatoUSA` value. If we wanted to count all non-quarter coins we see while also
-announcing the state of the quarters, we could do that with a `match`
-expression, like this:
+Possiamo includere un `else` con un `if let`. Il blocco di codice che accompagna
+l’`else` è lo stesso blocco che andrebbe con il caso `_` nell’espressione
+`match` equivalente all’`if let` con `else`. Ricorda la definizione dell’_enum_
+`Moneta` nel Listato 6-4, dove la variante `Quarter` conteneva anche un valore
+`StatoUSA`. Se volessimo contare tutte le monete non-quarter che vediamo
+annunciando anche lo stato dei quarter, potremmo farlo con un’espressione
+`match`, così:
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-13-count-and-announce-match/src/main.rs:here}}
 ```
 
-Or we could use an `if let` and `else` expression, like this:
+Oppure potremmo usare un `if let` e un `else`, così:
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-14-count-and-announce-if-let-else/src/main.rs:here}}
 ```
 
-## Staying on the “Happy Path” with `let...else`
+## Restare sul “percorso felice” con `let...else`
 
-The common pattern is to perform some computation when a value is present and
-return a default value otherwise. Continuing on with our example of coins with a
-`StatoUSA` value, if we wanted to say something funny depending on how old the
-state on the quarter was, we might introduce a method on `StatoUSA` to check the
-age of a state, like so:
+Una buona pratica è eseguire una computazione quando un valore è presente e
+restituire un valore di default altrimenti. Continuando con il nostro esempio
+delle monete con un valore `StatoUSA`, se volessimo dire qualcosa di divertente
+a seconda di quanto fosse vecchio lo stato sul quarter, potremmo introdurre un
+metodo su `StatoUSA` per verificare l’età dello stato, così:
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-07/src/main.rs:state}}
 ```
 
-Then we might use `if let` to match on the type of coin, introducing a `stato`
-variable within the body of the condition, as in Listing 6-7.
+Poi potremmo usare `if let` per fare _matching_ sul tipo di moneta, introducendo
+una variabile `stato` all’interno del corpo della condizione, come nel Listato
+6-7.
 
-<Listing number="6-7" caption="Checking whether a state existed in 1900 by using conditionals nested inside an `if let`.">
+<Listing number="6-7" caption="Verificare se uno stato esisteva nel 1900 usando condizionali annidati dentro un `if let`.">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-07/src/main.rs:describe}}
@@ -85,14 +87,14 @@ variable within the body of the condition, as in Listing 6-7.
 
 </Listing>
 
-That gets the job done, but it has pushed the work into the body of the `if
-let` statement, and if the work to be done is more complicated, it might be
-hard to follow exactly how the top-level branches relate. We could also take
-advantage of the fact that expressions produce a value either to produce the
-`stato` from the `if let` or to return early, as in Listing 6-8. (You could do
-similar with a `match`, too.)
+Questo risolve il problema, ma ha spostato il lavoro nel corpo dell’`if let`, e
+se il lavoro da fare è più complicato potrebbe risultare difficile seguire come
+i rami di alto livello si relazionano. Potremmo anche sfruttare il fatto che le
+espressioni producono un valore, o per produrre `stato` dall’`if let` o per
+ritornare anticipatamente, come in Listato 6-8. (Si potrebbe fare qualcosa di
+simile anche con un `match`.)
 
-<Listing number="6-8" caption="Using `if let` to produce a value or return early.">
+<Listing number="6-8" caption="Usare `if let` per produrre un valore o ritornare anticipatamente.">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-08/src/main.rs:describe}}
@@ -100,20 +102,20 @@ similar with a `match`, too.)
 
 </Listing>
 
-This is a bit annoying to follow in its own way, though! One branch of the `if
-let` produces a value, and the other one returns from the function entirely.
+Questo però è un po' scomodo da seguire: un ramo dell’`if let` produce un valore
+e l’altro ritorna dalla funzione completamente.
 
-To make this common pattern nicer to express, Rust has `let...else`. The
-`let...else` syntax takes a pattern on the left side and an expression on the
-right, very similar to `if let`, but it does not have an `if` branch, only an
-`else` branch. If the pattern matches, it will bind the value from the pattern
-in the outer scope. If the pattern does _not_ match, the program will flow into
-the `else` arm, which must return from the function.
+Per rendere più esprimibile questo _pattern_ comune, Rust ha `let...else`. La
+sintassi `let...else` prende un _pattern_ a sinistra e un’espressione a destra,
+molto simile a `if let`, ma non ha un ramo `if`, soltanto un ramo `else`. Se il
+_pattern_ corrisponde, legherà il valore estratto dal _pattern_ nello _scope_
+esterno. Se il _pattern_ non corrisponde, il flusso va nel ramo `else`, che deve
+restituire dalla funzione.
 
-In Listing 6-9, you can see how Listing 6-8 looks when using `let...else` in
-place of `if let`.
+Nel Listato 6-9 puoi vedere come Listato 6-8 appare usando `let...else` al posto
+di `if let`.
 
-<Listing number="6-9" caption="Using `let...else` to clarify the flow through the function.">
+<Listing number="6-9" caption="Usare `let...else` per semplificare il flusso della funzione.">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-09/src/main.rs:describe}}
@@ -121,27 +123,27 @@ place of `if let`.
 
 </Listing>
 
-Notice that it stays “on the happy path” in the main body of the function this
-way, without having significantly different control flow for two branches the
-way the `if let` did.
+Nota che in questo modo si resta sul “percorso felice” nel corpo principale
+della funzione, senza avere un controllo di flusso significativamente diverso
+per i due rami come invece succedeva con `if let`.
 
-If you have a situation in which your program has logic that is too verbose to
-express using a `match`, remember that `if let` and `let...else` are in your
-Rust toolbox as well.
+Se hai una situazione in cui la logica è troppo verbosa per essere espressa con
+un `match`, ricorda che anche `if let` e `let...else` sono nella tua cassetta
+degli attrezzi di Rust.
 
-## Summary
+## Riepilogo
 
-We’ve now covered how to use enums to create custom types that can be one of a
-set of enumerated values. We’ve shown how the standard library’s `Option<T>`
-type helps you use the type system to prevent errors. When enum values have
-data inside them, you can use `match` or `if let` to extract and use those
-values, depending on how many cases you need to handle.
+Abbiamo ora coperto come usare gli _enum_ per creare _type_ personalizzati che
+possono essere uno tra un insieme di valori enumerati. Abbiamo mostrato come il
+_type_ `Option<T>` della libreria standard ti aiuta a usare il sistema dei
+_type_ per prevenire errori. Quando i valori degli _enum_ contengono dati, puoi
+usare `match` o `if let` per estrarre e usare quei valori, a seconda di quanti
+casi devi gestire.
 
-Your Rust programs can now express concepts in your domain using structs and
-enums. Creating custom types to use in your API ensures type safety: the
-compiler will make certain your functions only get values of the type each
-function expects.
+I tuoi programmi Rust possono ora esprimere concetti nel tuo dominio usando
+`struct` ed `enum`. Creare _type_ personalizzati da usare nella tua API assicura
+maggiore sicurezza dei dati (_type safety_): il compilatore garantirà che le tue
+funzioni ricevano solo i valori del _type_ che ciascuna funzione si aspetta.
 
-In order to provide a well-organized API to your users that is straightforward
-to use and only exposes exactly what your users will need, let’s now turn to
-Rust’s modules.
+Per fornire un’API ben organizzata ai tuoi utenti, chiara da usare ed esponendo
+solo ciò che serve, passiamo ora ai module di Rust.
