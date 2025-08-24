@@ -17,8 +17,8 @@ valore è la variante `Some`.
 Se il valore è `Some`, stampiamo il valore contenuto nella variante `Some`
 legandolo alla variabile `max` nel _pattern_. Non vogliamo fare nulla per il
 valore `None`. Per soddisfare l’espressione `match` dobbiamo aggiungere `_ =>
-()` dopo aver processato una sola variante, il a ben vedere, sembra codice un
-po' inutile.
+()` dopo aver processato una sola variante, il che, a ben vedere, sembra codice
+un po' inutile.
 
 Invece, possiamo scrivere questo in modo più breve usando `if let`. Il codice
 seguente si comporta allo stesso modo del `match` nel Listato 6-6:
@@ -146,4 +146,4 @@ maggiore sicurezza dei dati (_type safety_): il compilatore garantirà che le tu
 funzioni ricevano solo i valori del _type_ che ciascuna funzione si aspetta.
 
 Per fornire un’API ben organizzata ai tuoi utenti, chiara da usare ed esponendo
-solo ciò che serve, passiamo ora ai module di Rust.
+solo ciò che serve, passiamo ora ai moduli di Rust.

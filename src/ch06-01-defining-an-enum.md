@@ -23,7 +23,7 @@ fondamentalmente indirizzi IP, quindi dovrebbero essere trattati come dati dello
 stesso _type_ quando il codice andrà a gestire situazioni che si applicano agli
 indirizzi IP d'ogni genere.
 
-Possiamo esprimere questo concetto nel codice definendo una _enum_
+Possiamo esprimere questo concetto nel codice definendo un _enum_
 `VersioneIndirizzoIp` e elencando le possibili tipologie che un indirizzo IP può
 essere: `V4` e `V6`. Queste sono le varianti dell’_enum_:
 
@@ -61,9 +61,9 @@ E possiamo chiamare questa funzione con entrambe le varianti:
 
 L’uso degli _enum_ ha ulteriori vantaggi. Pensando meglio al nostro _type_ per
 gli indirizzi IP, al momento non abbiamo un modo per memorizzare il vero e
-proprio indirizzo IP; sappiamo solo di che tipo si tratta. Dato che hai appena
-imparato le _struct_ nel Capitolo 5, potresti essere tentato di risolvere questo
-problema con le _struct_ come mostrato nel Listato 6-1.
+proprio indirizzo IP; sappiamo solo di che tipologia si tratta. Dato che hai
+appena imparato le _struct_ nel Capitolo 5, potresti essere tentato di risolvere
+questo problema con le _struct_ come mostrato nel Listato 6-1.
 
 <Listing number="6-1" caption="Memorizzare indirizzo e la variante `VersioneIndirizzoIp` di un indirizzo IP usando una `struct`">
 
@@ -112,8 +112,8 @@ potremmo farlo con un _struct_. Gli _enum_ gestiscono questo caso con facilità:
 
 Abbiamo mostrato diversi modi per definire strutture dati per memorizzare
 indirizzi IP versione quattro e versione sei. Tuttavia, risulta che voler
-memorizzare indirizzi IP e codificare di quale tipo siano è così comune che la
-[libreria standard fornisce una definizione che possiamo usare!][IpAddr]<!--
+memorizzare indirizzi IP e codificare di quale tipologia siano è così comune che
+la [libreria standard fornisce una definizione che possiamo usare!][IpAddr]<!--
 ignore --> Diamo un’occhiata a come la libreria standard definisce `IpAddr`: ha
 l’esatto _enum_ e le varianti che abbiamo definito e usato, ma incapsula i dati
 dell’indirizzo dentro le varianti sotto forma di due diverse _struct_, definite
@@ -134,7 +134,7 @@ enum IpAddr {
 }
 ```
 
-Questo codice illustra che puoi mettere qualsiasi tipo di dato dentro una
+Questo codice illustra che puoi mettere qualsiasi tipologia di dato dentro una
 variante di _enum_: stringhe, _type_ numerici o _struct_, per esempio. Puoi
 persino includere un altro _enum_! Inoltre, i _type_ della libreria standard
 spesso non sono molto più complicati di quello che potresti creare tu.
@@ -147,7 +147,7 @@ Parleremo più avanti dell’importazione dei _type_ nello _scope_ nel Capitolo 
 Diamo un’occhiata a un altro esempio di _enum_ nel Listato 6-2: questo ha una
 grande varietà di _type_ incorporati nelle sue varianti.
 
-<Listing number="6-2" caption="Un _enum_ `Messagio` le cui varianti memorizzano ciascuna quantità e _type_ diversi di valori">
+<Listing number="6-2" caption="Un _enum_ `Messaggio` le cui varianti memorizzano ciascuna quantità e _type_ diversi di valori">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-02/src/main.rs:here}}
@@ -179,7 +179,7 @@ Listato 6-2, che è un singolo _type_.
 
 C’è un’ulteriore somiglianza tra _enum_ e _struct_: proprio come possiamo
 definire metodi sulle _struct_ usando `impl`, possiamo anche definire metodi
-sugli _enum_. Ecco un metodo chiamato `chiama` che potremmo definire sul nostro
+sugli _enum_. Ecco un metodo nominato `chiama` che potremmo definire sul nostro
 _enum_ `Messaggio`:
 
 ```rust
@@ -295,9 +295,9 @@ Se eseguiamo questo codice, otteniamo un messaggio di errore come questo:
 {{#include ../listings/ch06-enums-and-pattern-matching/no-listing-07-cant-use-option-directly/output.txt}}
 ```
 
-Intenso! In effetti, questo messaggio di errore significa che Rust non capisce
-come sommare un `i8` e un `Option<i8>`, perché sono _type_ diversi. Quando
-abbiamo un valore di un _type_ come `i8` in Rust, il compilatore deve
+Wow, quanta roba! Nel concreto, questo messaggio di errore significa che Rust
+non capisce come sommare un `i8` e un `Option<i8>`, perché sono _type_ diversi.
+Quando abbiamo un valore di un _type_ come `i8` in Rust, il compilatore deve
 assicurarsi che abbiamo sempre un valore valido. Possiamo procedere con fiducia
 senza dover controllare il _null_ prima di usare quel valore. Solo quando
 abbiamo un `Option<i8>` (o qualunque _type_ di valore con cui stiamo lavorando)
@@ -329,9 +329,9 @@ In generale, per usare un valore `Option<T>` devi avere codice che gestisca ogni
 variante. Vuoi del codice che venga eseguito solo quando hai un valore
 `Some(T)`, e quel codice può usare il `T` interno. Vuoi altro codice che venga
 eseguito solo se hai un valore `None`, e quel codice non ha un valore `T`
-disponibile. L’espressione `match` è una costruzione di controllo del flusso che
-fa esattamente questo quando viene usata con gli _enum_: eseguirà codice diverso
-a seconda di quale variante dell’_enum_ ha, e quel codice può usare i dati
+disponibile. L’espressione `match` è un costrutto di controllo del flusso che fa
+esattamente questo quando viene usata con gli _enum_: eseguirà codice diverso a
+seconda di quale variante dell’_enum_ ha, e quel codice può usare i dati
 all’interno del valore che corrisponde.
 
 [IpAddr]: https://doc.rust-lang.org/stable/std/net/enum.IpAddr.html

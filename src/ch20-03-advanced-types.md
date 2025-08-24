@@ -290,6 +290,6 @@ Next, we’ll talk about functions and closures!
 
 [encapsulation-that-hides-implementation-details]: ch18-01-what-is-oo.html#encapsulation-that-hides-implementation-details
 [string-slices]: ch04-03-slices.html#string-slice
-[the-match-control-flow-construct]: ch06-02-match.html#the-match-control-flow-construct
+[the-match-control-flow-construct]: ch06-02-match.html#controllo-del-flusso-col-costrutto-match
 [using-trait-objects-to-abstract-over-shared-behavior]: ch18-02-trait-objects.html#using-trait-objects-to-abstract-over-shared-behavior
 [using-the-newtype-pattern]: ch20-02-advanced-traits.html#using-the-newtype-pattern-to-implement-external-traits

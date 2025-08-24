@@ -70,7 +70,7 @@ stampa “Penny fortunato!” ogni volta che il metodo viene chiamato con una
 
 ### _Pattern_ che si legano ai valori
 
-Un’altra caratteristica utile deli rami del `match` è che possono legarsi alle
+Un’altra caratteristica utile dei rami del `match` è che possono legarsi alle
 parti dei valori che corrispondono al _pattern_. È così che possiamo estrarre
 valori dalle varianti degli _enum_.
 
@@ -107,7 +107,7 @@ ramo, così:
 Se chiamassimo `valore_in_cent(Moneta::Quarter(StatoUSA::Alaska))`, `moneta`
 sarebbe `Moneta::Quarter(StatoUSA::Alaska)`. Quando confrontiamo quel valore con
 ciascuno dei rami del `match`, nessuna corrisponde fino a che non raggiungiamo
-`Moneta::Quarter(stato)`. A quel punto il vingolo per `stato` sarà il valore
+`Moneta::Quarter(stato)`. A quel punto `stato` sarà vincolato al valore
 `StatoUSA::Alaska`. Possiamo quindi usare quel vincolo nell’espressione
 `println!`, ottenendo così il valore interno dello stato dalla variante
 `Moneta::Quarter`.
@@ -219,7 +219,7 @@ implementarli esula da questo esempio:
 Per i primi due rami, i _pattern_ sono i valori letterali `3` e `7`. Per
 l’ultimo ramo che copre tutti gli altri valori possibili, il _pattern_ è la
 variabile che abbiamo scelto di chiamare `altro`. Il codice che viene eseguito
-per i ramo `altro` usa la variabile passando il suo valore alla funzione
+per il ramo `altro` usa la variabile passando il suo valore alla funzione
 `muovi_giocatore`.
 
 Questo codice compila, anche se non abbiamo elencato tutti i possibili valori
@@ -249,7 +249,7 @@ Anche questo esempio soddisfa il requisito di esaustività perché stiamo
 esplicitamente ignorando tutti gli altri valori nell’ultimo ramo; non abbiamo
 dimenticato nulla.
 
-Infine cambiamo ancora una volta le regole del gioco in modo che non succeda
+Infine, cambiamo ancora una volta le regole del gioco in modo che non succeda
 nient’altro nel tuo turno se tiri qualcosa di diverso da 3 o 7. Possiamo
 esprimerlo usando il valore _unit_ ([la _tuple_ vuota][tuples]<!-- ignore -->)
 come codice associato al ramo `_`:
@@ -263,7 +263,7 @@ non corrisponda a un _pattern_ in un ramo precedente, e non vogliamo eseguire
 alcun codice in questo caso.
 
 C’è molto altro sui _pattern_ e sul _matching_ che tratteremo nel [Capitolo
-19][ch19-00-patterns]<!-- ignore -->. Per ora, passiamo alla sintassi `if let`,
+19](ch19-00-patterns.html)<!-- ignore -->. Per ora, passiamo alla sintassi `if let`,
 che può essere utile nelle situazioni più semplici in cui l’espressione `match`
 risulta un po’ verbosa.
 

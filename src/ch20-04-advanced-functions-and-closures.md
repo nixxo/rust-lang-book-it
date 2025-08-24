@@ -173,7 +173,7 @@ Types”][using-trait-objects-to-abstract-over-shared-behavior]<!-- ignore
 Next, let’s look at macros!
 
 [advanced-traits]: ch20-02-advanced-traits.html#advanced-traits
-[enum-values]: ch06-01-defining-an-enum.html#enum-values
+[enum-values]: ch06-01-defining-an-enum.html#valori-di-enum
 [closure-types]: ch13-01-closures.html#closure-type-inference-and-annotation
 [any-number-of-futures]: ch17-03-more-futures.html
 [using-trait-objects-to-abstract-over-shared-behavior]: ch18-02-trait-objects.html#using-trait-objects-to-abstract-over-shared-behavior

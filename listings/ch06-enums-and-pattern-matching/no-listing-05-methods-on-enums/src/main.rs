@@ -9,7 +9,7 @@ fn main() {
     // ANCHOR: here
     impl Messaggio {
         fn chiama(&self) {
-            // method body would be defined here
+            // il corpo del metodo sarà definito qui
         }
     }
 
