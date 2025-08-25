@@ -1,47 +1,45 @@
-## Storing UTF-8 Encoded Text with Strings
+## Memorizzazione di TestoCcodificato UTF-8 con Stringhe
 
-We talked about strings in Chapter 4, but we’ll look at them in more depth now.
-New Rustaceans commonly get stuck on strings for a combination of three
-reasons: Rust’s propensity for exposing possible errors, strings being a more
-complicated data structure than many programmers give them credit for, and
-UTF-8. These factors combine in a way that can seem difficult when you’re
-coming from other programming languages.
+Abbiamo parlato delle stringhe nel Capitolo 4, ma ora le analizzeremo più approfonditamente.
+I nuovi utenti di Rustacean spesso si bloccano sulle stringhe per una combinazione di tre
+ragioni: la propensione di Rust a esporre possibili errori, il fatto che le stringhe siano una struttura dati più
+complicata di quanto molti programmatori credano e la codifica UTF-8. Questi fattori si combinano in un modo che può sembrare difficile per chi
+proviene da altri linguaggi di programmazione.
 
-We discuss strings in the context of collections because strings are
-implemented as a collection of bytes, plus some methods to provide useful
-functionality when those bytes are interpreted as text. In this section, we’ll
-talk about the operations on `String` that every collection type has, such as
-creating, updating, and reading. We’ll also discuss the ways in which `String`
-is different from the other collections, namely how indexing into a `String` is
-complicated by the differences between how people and computers interpret
-`String` data.
+Parleremo delle stringhe nel contesto delle collezioni perché le stringhe sono
+implementate come una collezione di byte, oltre ad alcuni metodi per fornire funzionalità utili
+quando tali byte vengono interpretati come testo. In questa sezione, parleremo
+delle operazioni su `String` che ogni tipo di collezione prevede, come
+creazione, aggiornamento e lettura. Discuteremo anche le differenze tra `String`
+e le altre collezioni, in particolare come l'indicizzazione in una `String` sia
+complicata dalle differenze tra il modo in cui le persone e i computer interpretano
+i dati `String`.
 
-### What Is a String?
+### Cos'è una Stringa?
 
-We’ll first define what we mean by the term _string_. Rust has only one string
-type in the core language, which is the string slice `str` that is usually seen
-in its borrowed form `&str`. In Chapter 4, we talked about _string slices_,
-which are references to some UTF-8 encoded string data stored elsewhere. String
-literals, for example, are stored in the program’s binary and are therefore
-string slices.
+Definiremo innanzitutto cosa intendiamo con il termine _string_. Rust ha un solo tipo di stringa
+nel linguaggio principale, ovvero la porzione di stringa `str` che di solito si vede
+nella sua forma presa in prestito `&str`. Nel Capitolo 4 abbiamo parlato delle _string slices_,
+che sono riferimenti ad alcuni dati stringa codificati in UTF-8 memorizzati altrove. I letterali stringa,
+ad esempio, sono memorizzati nel binario del programma e sono quindi
+porzioni di stringa.
 
-The `String` type, which is provided by Rust’s standard library rather than
-coded into the core language, is a growable, mutable, owned, UTF-8 encoded
-string type. When Rustaceans refer to “strings” in Rust, they might be
-referring to either the `String` or the string slice `&str` types, not just one
-of those types. Although this section is largely about `String`, both types are
-used heavily in Rust’s standard library, and both `String` and string slices
-are UTF-8 encoded.
+Il tipo `String`, fornito dalla libreria standard di Rust anziché
+codificato nel linguaggio principale, è un tipo di stringa codificato in UTF-8, espandibile e modificabile. Quando i Rustaceani fanno riferimento alle "stringhe" in Rust, potrebbero
+riferirsi al tipo `String` o alla porzione di stringa `&str`, non solo a uno
+di questi tipi. Sebbene questa sezione riguardi principalmente `String`, entrambi i tipi sono
+ampiamente utilizzati nella libreria standard di Rust, e sia `String` che le porzioni di stringa
+sono codificate in UTF-8.
 
-### Creating a New String
+### Creazione di una Nuova Stringa
 
-Many of the same operations available with `Vec<T>` are available with `String`
-as well because `String` is actually implemented as a wrapper around a vector
-of bytes with some extra guarantees, restrictions, and capabilities. An example
-of a function that works the same way with `Vec<T>` and `String` is the `new`
-function to create an instance, shown in Listing 8-11.
+Molte delle operazioni disponibili con `Vec<T>` sono disponibili anche con `String`
+perché `String` è in realtà implementata come wrapper attorno a un vettore
+di byte con alcune garanzie, restrizioni e funzionalità aggiuntive. Un esempio
+di una funzione che funziona allo stesso modo con `Vec<T>` e `String` è la funzione `new`
+per creare un'istanza, mostrata nel Listato 8-11.
 
-<Listing number="8-11" caption="Creating a new, empty `String`">
+<Listing number="8-11" caption="Creazione di una nuova `String` vuota">
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-11/src/main.rs:here}}
@@ -49,13 +47,13 @@ function to create an instance, shown in Listing 8-11.
 
 </Listing>
 
-This line creates a new, empty string called `s`, into which we can then load
-data. Often, we’ll have some initial data with which we want to start the
-string. For that, we use the `to_string` method, which is available on any type
-that implements the `Display` trait, as string literals do. Listing 8-12 shows
-two examples.
+Questa riga crea una nuova stringa vuota chiamata `s`, in cui possiamo quindi caricare
+i dati. Spesso, avremo dei dati iniziali con cui vogliamo iniziare la
+stringa. Per questo, utilizziamo il metodo `to_string`, disponibile su qualsiasi tipo
+che implementi il ​​tratto `Display`, come fanno i letterali stringa. Il Listato 8-12 mostra
+due esempi.
 
-<Listing number="8-12" caption="Using the `to_string` method to create a `String` from a string literal">
+<Listing number="8-12" caption="Utilizzo del metodo `to_string` per creare una `String` da una stringa letterale">
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-12/src/main.rs:here}}
@@ -63,13 +61,13 @@ two examples.
 
 </Listing>
 
-This code creates a string containing `initial contents`.
+Questo codice crea una stringa contenente `initial contents`.
 
-We can also use the function `String::from` to create a `String` from a string
-literal. The code in Listing 8-13 is equivalent to the code in Listing 8-12
-that uses `to_string`.
+Possiamo anche utilizzare la funzione `String::from` per creare una `String` da una stringa
+letterale. Il codice nel Listato 8-13 è equivalente al codice nel Listato 8-12
+che utilizza `to_string`.
 
-<Listing number="8-13" caption="Using the `String::from` function to create a `String` from a string literal">
+<Listing number="8-13" caption="Utilizzo della funzione `String::from` per creare una `String` da una stringa letterale">
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-13/src/main.rs:here}}
@@ -77,16 +75,16 @@ that uses `to_string`.
 
 </Listing>
 
-Because strings are used for so many things, we can use many different generic
-APIs for strings, providing us with a lot of options. Some of them can seem
-redundant, but they all have their place! In this case, `String::from` and
-`to_string` do the same thing, so which one you choose is a matter of style and
-readability.
+Poiché le stringhe vengono utilizzate per così tante cose, possiamo utilizzare diverse API generiche
+per le stringhe, offrendoci numerose opzioni. Alcune possono sembrare
+ridondanti, ma hanno tutte la loro importanza! In questo caso, `String::from` e
+`to_string` svolgono la stessa funzione, quindi la scelta è una questione di stile e
+leggibilità.
 
-Remember that strings are UTF-8 encoded, so we can include any properly encoded
-data in them, as shown in Listing 8-14.
+Ricorda che le stringhe sono codificate in UTF-8, quindi possiamo includere qualsiasi dato codificato
+correttamente, come mostrato nel Listato 8-14.
 
-<Listing number="8-14" caption="Storing greetings in different languages in strings">
+<Listing number="8-14" caption="Memorizzazione di saluti in diverse lingue nelle stringhe">
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-14/src/main.rs:here}}
@@ -94,20 +92,20 @@ data in them, as shown in Listing 8-14.
 
 </Listing>
 
-All of these are valid `String` values.
+Tutti questi sono valori `String` validi.
 
-### Updating a String
+### Aggiornamento di una Stringa
 
-A `String` can grow in size and its contents can change, just like the contents
-of a `Vec<T>`, if you push more data into it. In addition, you can conveniently
-use the `+` operator or the `format!` macro to concatenate `String` values.
+Una `String` può aumentare di dimensione e il suo contenuto può cambiare, proprio come il contenuto
+di un `Vec<T>`, se vi si inseriscono più dati. Inoltre, è possibile
+utilizzare comodamente l'operatore `+` o la macro `format!` per concatenare i valori `String`.
 
-#### Appending to a String with `push_str` and `push`
+#### Aggiunta a una Stringa con `push_str` e `push`
 
-We can grow a `String` by using the `push_str` method to append a string slice,
-as shown in Listing 8-15.
+Possiamo aumentare una `String` utilizzando il metodo `push_str` per aggiungere una porzione di stringa,
+come mostrato nel Listato 8-15.
 
-<Listing number="8-15" caption="Appending a string slice to a `String` using the `push_str` method">
+<Listing number="8-15" caption="Aggiungere una porzione di stringa a una `String` utilizzando il metodo `push_str`">
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-15/src/main.rs:here}}
@@ -115,12 +113,12 @@ as shown in Listing 8-15.
 
 </Listing>
 
-After these two lines, `s` will contain `foobar`. The `push_str` method takes a
-string slice because we don’t necessarily want to take ownership of the
-parameter. For example, in the code in Listing 8-16, we want to be able to use
-`s2` after appending its contents to `s1`.
+Dopo queste due righe, `s` conterrà `foobar`. Il metodo `push_str` accetta una
+slice di stringa perché non vogliamo necessariamente assumere la proprietà del
+parametro. Ad esempio, nel codice del Listato 8-16, vogliamo poter utilizzare
+`s2` dopo averne aggiunto il contenuto a `s1`.
 
-<Listing number="8-16" caption="Using a string slice after appending its contents to a `String`">
+<Listing number="8-16" caption="Utilizzo di una slice di stringa dopo averne aggiunto il contenuto a una `String`">
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-16/src/main.rs:here}}
@@ -128,14 +126,13 @@ parameter. For example, in the code in Listing 8-16, we want to be able to use
 
 </Listing>
 
-If the `push_str` method took ownership of `s2`, we wouldn’t be able to print
-its value on the last line. However, this code works as we’d expect!
+Se il metodo `push_str` assumesse la proprietà di `s2`, non saremmo in grado di stamparne
+il valore sull'ultima riga. Tuttavia, questo codice funziona come previsto!
 
-The `push` method takes a single character as a parameter and adds it to the
-`String`. Listing 8-17 adds the letter _l_ to a `String` using the `push`
-method.
+Il metodo `push` accetta un singolo carattere come parametro e lo aggiunge alla
+`String`. Il Listato 8-17 aggiunge la lettera _l_ a una `String` utilizzando il metodo `push`.
 
-<Listing number="8-17" caption="Adding one character to a `String` value using `push`">
+<Listing number="8-17" caption="Aggiunta di un carattere a un valore `String` utilizzando `push`">
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-17/src/main.rs:here}}
@@ -143,14 +140,14 @@ method.
 
 </Listing>
 
-As a result, `s` will contain `lol`.
+Di conseguenza, `s` conterrà `lol`.
 
-#### Concatenation with the `+` Operator or the `format!` Macro
+#### Concatenazione con l'Operatore `+` o la Macro `format!`
 
-Often, you’ll want to combine two existing strings. One way to do so is to use
-the `+` operator, as shown in Listing 8-18.
+Spesso, si desidera combinare due stringhe esistenti. Un modo per farlo è utilizzare
+l'operatore `+`, come mostrato nel Listato 8-18.
 
-<Listing number="8-18" caption="Using the `+` operator to combine two `String` values into a new `String` value">
+<Listing number="8-18" caption="Utilizzo dell'operatore `+` per combinare due valori `String` in un nuovo valore `String`">
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-18/src/main.rs:here}}
@@ -158,73 +155,70 @@ the `+` operator, as shown in Listing 8-18.
 
 </Listing>
 
-The string `s3` will contain `Hello, world!`. The reason `s1` is no longer
-valid after the addition, and the reason we used a reference to `s2`, has to do
-with the signature of the method that’s called when we use the `+` operator.
-The `+` operator uses the `add` method, whose signature looks something like
-this:
+La stringa `s3` conterrà `Hello, world!`. Il motivo per cui `s1` non è più
+valido dopo l'aggiunta, e il motivo per cui abbiamo utilizzato un riferimento a `s2`, ha a che fare
+con la firma del metodo chiamato quando utilizziamo l'operatore `+`. L'operatore `+` utilizza il metodo `add`, la cui firma è simile a questa
+:
 
 ```rust,ignore
 fn add(self, s: &str) -> String {
 ```
 
-In the standard library, you’ll see `add` defined using generics and associated
-types. Here, we’ve substituted in concrete types, which is what happens when we
-call this method with `String` values. We’ll discuss generics in Chapter 10.
-This signature gives us the clues we need in order to understand the tricky
-bits of the `+` operator.
+Nella libreria standard, `add` è definito utilizzando tipi generici e tipi associati.
+Qui, abbiamo sostituito tipi concreti, che è ciò che accade quando
+chiamiamo questo metodo con valori `String`. Parleremo dei generici nel Capitolo 10.
+Questa firma ci fornisce gli indizi necessari per comprendere le parti più complesse
+dell'operatore `+`.
 
-First, `s2` has an `&`, meaning that we’re adding a _reference_ of the second
-string to the first string. This is because of the `s` parameter in the `add`
-function: we can only add a `&str` to a `String`; we can’t add two `String`
-values together. But wait—the type of `&s2` is `&String`, not `&str`, as
-specified in the second parameter to `add`. So why does Listing 8-18 compile?
+Innanzitutto, `s2` ha un `&`, il che significa che stiamo aggiungendo un _riferimento_ della seconda
+stringa alla prima stringa. Questo è dovuto al parametro `s` nella funzione `add`: possiamo solo aggiungere un `&str` a una `String`; non possiamo sommare due valori `String`
+insieme. Ma aspetta: il tipo di `&s2` è `&String`, non `&str`, come
+specificato nel secondo parametro di `add`. Quindi perché il Listato 8-18 compila?
 
-The reason we’re able to use `&s2` in the call to `add` is that the compiler
-can _coerce_ the `&String` argument into a `&str`. When we call the `add`
-method, Rust uses a _deref coercion_, which here turns `&s2` into `&s2[..]`.
-We’ll discuss deref coercion in more depth in Chapter 15. Because `add` does
-not take ownership of the `s` parameter, `s2` will still be a valid `String`
-after this operation.
+Il motivo per cui possiamo usare `&s2` nella chiamata a `add` è che il compilatore
+può _costringere_ l'argomento `&String` in un `&str`. Quando chiamiamo il metodo `add`
+, Rust usa una _deref coercion_, che qui trasforma `&s2` in `&s2[..]`.
+Discuteremo la deref coercion più approfonditamente nel Capitolo 15. Poiché `add`
+non prende possesso del parametro `s`, `s2` sarà comunque una `String` valida
+dopo questa operazione.
 
-Second, we can see in the signature that `add` takes ownership of `self`
-because `self` does _not_ have an `&`. This means `s1` in Listing 8-18 will be
-moved into the `add` call and will no longer be valid after that. So, although
-`let s3 = s1 + &s2;` looks like it will copy both strings and create a new one,
-this statement actually takes ownership of `s1`, appends a copy of the contents
-of `s2`, and then returns ownership of the result. In other words, it looks
-like it’s making a lot of copies, but it isn’t; the implementation is more
-efficient than copying.
+In secondo luogo, possiamo vedere nella firma che `add` prende possesso di `self`
+perché `self` _non_ ha un `&`. Ciò significa che `s1` nel Listato 8-18 verrà
+spostato nella chiamata `add` e non sarà più valido da quel momento in poi. Quindi, sebbene
+`let s3 = s1 + &s2;` sembri copiare entrambe le stringhe e crearne una nuova,
+questa istruzione in realtà prende possesso di `s1`, aggiunge una copia del contenuto
+di `s2` e quindi restituisce la proprietà del risultato. In altre parole, sembra
+che stia facendo molte copie, ma non è così; l'implementazione è più
+efficiente della semplice copia.
 
-If we need to concatenate multiple strings, the behavior of the `+` operator
-gets unwieldy:
+Se dobbiamo concatenare più stringhe, il comportamento dell'operatore `+`
+diventa poco pratico:
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/no-listing-01-concat-multiple-strings/src/main.rs:here}}
 ```
 
-At this point, `s` will be `tic-tac-toe`. With all of the `+` and `"`
-characters, it’s difficult to see what’s going on. For combining strings in
-more complicated ways, we can instead use the `format!` macro:
+A questo punto, `s` diventerà `tris`. Con tutti i caratteri `+` e `"`, è difficile capire cosa sta succedendo. Per combinare stringhe in
+modi più complessi, possiamo invece usare la macro `format!`:
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/no-listing-02-format/src/main.rs:here}}
 ```
 
-This code also sets `s` to `tic-tac-toe`. The `format!` macro works like
-`println!`, but instead of printing the output to the screen, it returns a
-`String` with the contents. The version of the code using `format!` is much
-easier to read, and the code generated by the `format!` macro uses references
-so that this call doesn’t take ownership of any of its parameters.
+Questo codice imposta anche `s` a `tic-tac-toe`. La macro `format!` funziona come
+`println!`, ma invece di visualizzare l'output sullo schermo, restituisce una
+`String` con il contenuto. La versione del codice che utilizza `format!` è molto
+più facile da leggere e il codice generato dalla macro `format!` utilizza riferimenti
+in modo che questa chiamata non assuma la proprietà di nessuno dei suoi parametri.
 
-### Indexing into Strings
+### Indicizzazione in Stringhe
 
-In many other programming languages, accessing individual characters in a
-string by referencing them by index is a valid and common operation. However,
-if you try to access parts of a `String` using indexing syntax in Rust, you’ll
-get an error. Consider the invalid code in Listing 8-19.
+In molti altri linguaggi di programmazione, l'accesso a singoli caratteri in una
+stringa facendovi riferimento tramite indice è un'operazione valida e comune. Tuttavia,
+se si tenta di accedere a parti di una `String` utilizzando la sintassi di indicizzazione in Rust,
+si otterrà un errore. Si consideri il codice non valido nel Listato 8-19.
 
-<Listing number="8-19" caption="Attempting to use indexing syntax with a String">
+<Listing number="8-19" caption="Tentativo di utilizzare la sintassi di indicizzazione con una Stringa">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-19/src/main.rs:here}}
@@ -232,109 +226,106 @@ get an error. Consider the invalid code in Listing 8-19.
 
 </Listing>
 
-This code will result in the following error:
+Questo codice genererà il seguente errore:
 
 ```console
 {{#include ../listings/ch08-common-collections/listing-08-19/output.txt}}
 ```
 
-The error and the note tell the story: Rust strings don’t support indexing. But
-why not? To answer that question, we need to discuss how Rust stores strings in
-memory.
+L'errore e la nota spiegano la situazione: le stringhe Rust non supportano l'indicizzazione. Ma
+perché no? Per rispondere a questa domanda, dobbiamo discutere come Rust memorizza le stringhe in
+memoria.
 
-#### Internal Representation
+#### Rappresentazione Interna
 
-A `String` is a wrapper over a `Vec<u8>`. Let’s look at some of our properly
-encoded UTF-8 example strings from Listing 8-14. First, this one:
+Una `String` è un wrapper per una `Vec<u8>`. Diamo un'occhiata ad alcune delle nostre stringhe di esempio UTF-8 codificate correttamente dal Listato 8-14. Innanzitutto, questo:
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-14/src/main.rs:spanish}}
 ```
 
-In this case, `len` will be `4`, which means the vector storing the string
-`"Hola"` is 4 bytes long. Each of these letters takes one byte when encoded in
-UTF-8. The following line, however, may surprise you (note that this string
-begins with the capital Cyrillic letter _Ze_, not the number 3):
+In questo caso, `len` sarà `4`, il che significa che il vettore che memorizza la stringa
+`"Hola"` è lungo 4 byte. Ognuna di queste lettere occupa un byte se codificata in
+UTF-8. La riga seguente, tuttavia, potrebbe sorprendervi (notate che questa stringa
+inizia con la lettera maiuscola cirillica _Ze_, non con il numero 3):
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-14/src/main.rs:russian}}
 ```
 
-If you were asked how long the string is, you might say 12. In fact, Rust’s
-answer is 24: that’s the number of bytes it takes to encode “Здравствуйте” in
-UTF-8, because each Unicode scalar value in that string takes 2 bytes of
-storage. Therefore, an index into the string’s bytes will not always correlate
-to a valid Unicode scalar value. To demonstrate, consider this invalid Rust
-code:
+Se vi chiedessero quanto è lunga la stringa, potreste dire 12. In realtà, la risposta di Rust
+è 24: questo è il numero di byte necessari per codificare "Здравствуйте" in
+UTF-8, perché ogni valore scalare Unicode in quella stringa occupa 2 byte di
+spazio. Pertanto, un indice nei byte della stringa non sarà sempre correlato
+a un valore scalare Unicode valido. Per dimostrarlo, consideriamo questo codice Rust non valido:
 
 ```rust,ignore,does_not_compile
 let hello = "Здравствуйте";
 let answer = &hello[0];
 ```
 
-You already know that `answer` will not be `З`, the first letter. When encoded
-in UTF-8, the first byte of `З` is `208` and the second is `151`, so it would
-seem that `answer` should in fact be `208`, but `208` is not a valid character
-on its own. Returning `208` is likely not what a user would want if they asked
-for the first letter of this string; however, that’s the only data that Rust
-has at byte index 0. Users generally don’t want the byte value returned, even
-if the string contains only Latin letters: if `&"hi"[0]` were valid code that
-returned the byte value, it would return `104`, not `h`.
+Sapete già che `answer` non sarà `З`, la prima lettera. Quando codificato
+in UTF-8, il primo byte di `З` è `208` e il secondo è `151`, quindi
+sembrerebbe che `answer` dovrebbe in effetti essere `208`, ma `208` non è un carattere valido
+da solo. Restituire `208` probabilmente non è ciò che un utente vorrebbe se chiedesse
+la prima lettera di questa stringa; Tuttavia, questo è l'unico dato che Rust
+ha all'indice di byte 0. Gli utenti generalmente non vogliono che venga restituito il valore in byte, anche
+se la stringa contiene solo lettere latine: se `&"hi"[0]` fosse codice valido che
+restituisce il valore in byte, restituirebbe `104`, non `h`.
 
-The answer, then, is that to avoid returning an unexpected value and causing
-bugs that might not be discovered immediately, Rust doesn’t compile this code
-at all and prevents misunderstandings early in the development process.
+La risposta, quindi, è che per evitare di restituire un valore inaspettato e causare
+bug che potrebbero non essere scoperti immediatamente, Rust non compila affatto questo codice
+e previene malintesi fin dalle prime fasi del processo di sviluppo.
 
-#### Bytes and Scalar Values and Grapheme Clusters! Oh My!
+#### Byte, Valori Scalari e Cluster di Grafemi! Oddio!
 
-Another point about UTF-8 is that there are actually three relevant ways to
-look at strings from Rust’s perspective: as bytes, scalar values, and grapheme
-clusters (the closest thing to what we would call _letters_).
+Un altro punto su UTF-8 è che in realtà ci sono tre modi rilevanti per
+vedere le stringhe dalla prospettiva di Rust: come byte, valori scalari e cluster di grafemi (la cosa più vicina a ciò che chiameremmo _lettere_).
 
-If we look at the Hindi word “नमस्ते” written in the Devanagari script, it is
-stored as a vector of `u8` values that looks like this:
+Se consideriamo la parola hindi "नमस्ते" scritta in alfabeto Devanagari, essa è
+memorizzata come un vettore di valori `u8` che appare così:
 
-```text
+```testo
 [224, 164, 168, 224, 164, 174, 224, 164, 184, 224, 165, 141, 224, 164, 164,
 224, 165, 135]
 ```
 
-That’s 18 bytes and is how computers ultimately store this data. If we look at
-them as Unicode scalar values, which are what Rust’s `char` type is, those
-bytes look like this:
+Sono 18 byte ed è così che i computer memorizzano questi dati. Se li consideriamo
+come valori scalari Unicode, che corrispondono al tipo `char` di Rust, quei
+byte appaiono così:
 
 ```text
 ['न', 'म', 'स', '्', 'त', 'े']
 ```
 
-There are six `char` values here, but the fourth and sixth are not letters:
-they’re diacritics that don’t make sense on their own. Finally, if we look at
-them as grapheme clusters, we’d get what a person would call the four letters
-that make up the Hindi word:
+Ci sono sei valori `char` qui, ma il quarto e il sesto non sono lettere:
+sono segni diacritici che da soli non hanno senso. Infine, se li consideriamo
+come cluster di grafemi, otterremmo ciò che una persona chiamerebbe le quattro lettere
+che compongono la parola hindi:
 
-```text
+```testo
 ["न", "म", "स्", "ते"]
 ```
 
-Rust provides different ways of interpreting the raw string data that computers
-store so that each program can choose the interpretation it needs, no matter
-what human language the data is in.
+Rust fornisce diversi modi di interpretare i dati stringa grezzi che i computer
+memorizzano, in modo che ogni programma possa scegliere l'interpretazione di cui ha bisogno, indipendentemente
+dal linguaggio umano in cui sono espressi i dati.
 
-A final reason Rust doesn’t allow us to index into a `String` to get a
-character is that indexing operations are expected to always take constant time
-(O(1)). But it isn’t possible to guarantee that performance with a `String`,
-because Rust would have to walk through the contents from the beginning to the
-index to determine how many valid characters there were.
+Un ultimo motivo per cui Rust non ci consente di indicizzare una `String` per ottenere un
+carattere è che le operazioni di indicizzazione dovrebbero sempre richiedere un tempo costante
+(O(1)). Ma non è possibile garantire tali prestazioni con una `String`,
+perché Rust dovrebbe esaminare il contenuto dall'inizio fino all'indice
+per determinare quanti caratteri validi ci sono.
 
-### Slicing Strings
+### Slicing delle Stringhe
 
-Indexing into a string is often a bad idea because it’s not clear what the
-return type of the string-indexing operation should be: a byte value, a
-character, a grapheme cluster, or a string slice. If you really need to use
-indices to create string slices, therefore, Rust asks you to be more specific.
+Indicizzare una stringa è spesso una cattiva idea perché non è chiaro quale debba essere il
+tipo di ritorno dell'operazione di indicizzazione della stringa: un valore byte, un
+carattere, un cluster di grafemi o una slice di stringa. Se proprio si ha bisogno di usare
+gli indici per creare slice di stringa, Rust chiede di essere più specifici.
 
-Rather than indexing using `[]` with a single number, you can use `[]` with a
-range to create a string slice containing particular bytes:
+Invece di indicizzare usando `[]` con un singolo numero, si può usare `[]` con un
+intervallo per creare una slice di stringa contenente byte specifici:
 
 ```rust
 let hello = "Здравствуйте";
@@ -342,82 +333,80 @@ let hello = "Здравствуйте";
 let s = &hello[0..4];
 ```
 
-Here, `s` will be a `&str` that contains the first four bytes of the string.
-Earlier, we mentioned that each of these characters was two bytes, which means
-`s` will be `Зд`.
+Qui, `s` sarà un `&str` che contiene i primi quattro byte della stringa. In precedenza, abbiamo accennato al fatto che ognuno di questi caratteri era composto da due byte, il che significa che
+`s` sarà `Зд`.
 
-If we were to try to slice only part of a character’s bytes with something like
-`&hello[0..1]`, Rust would panic at runtime in the same way as if an invalid
-index were accessed in a vector:
+Se provassimo a suddividere solo una parte dei byte di un carattere con qualcosa come
+`&hello[0..1]`, Rust andrebbe in panic in fase di esecuzione, proprio come se si accedesse a un indice non valido
+in un vettore:
 
 ```console
 {{#include ../listings/ch08-common-collections/output-only-01-not-char-boundary/output.txt}}
 ```
 
-You should use caution when creating string slices with ranges, because doing
-so can crash your program.
+È necessario prestare attenzione quando si creano segmentazioni di stringhe con intervalli, perché
+ciò potrebbe causare l'arresto anomalo del programma.
 
-### Methods for Iterating Over Strings
+### Metodi per l'Iterazione sulle Stringhe
 
-The best way to operate on pieces of strings is to be explicit about whether
-you want characters or bytes. For individual Unicode scalar values, use the
-`chars` method. Calling `chars` on “Зд” separates out and returns two values of
-type `char`, and you can iterate over the result to access each element:
+Il modo migliore per operare su stringhe è specificare esplicitamente se si desidera
+caratteri o byte. Per singoli valori scalari Unicode, utilizzare il metodo
+`chars`. Chiamando `chars` su "Зд" si separano e si restituiscono due valori di
+tipo `char`, ed è possibile iterare sul risultato per accedere a ciascun elemento:
 
 ```rust
 for c in "Зд".chars() {
-    println!("{c}");
+println!("{c}");
 }
 ```
 
-This code will print the following:
+Questo codice stamperà quanto segue:
 
 ```text
 З
 д
 ```
 
-Alternatively, the `bytes` method returns each raw byte, which might be
-appropriate for your domain:
+In alternativa, il metodo `bytes` restituisce ogni byte grezzo, che potrebbe essere
+appropriato per il proprio dominio:
 
 ```rust
 for b in "Зд".bytes() {
-    println!("{b}");
+println!("{b}");
 }
 ```
 
-This code will print the four bytes that make up this string:
+Questo codice stamperà i quattro byte che compongono questa stringa:
 
-```text
+```testo
 208
 151
 208
 180
 ```
 
-But be sure to remember that valid Unicode scalar values may be made up of more
-than one byte.
+Ma ricordate che i valori scalari Unicode validi possono essere composti da più
+di un byte.
 
-Getting grapheme clusters from strings, as with the Devanagari script, is
-complex, so this functionality is not provided by the standard library. Crates
-are available on [crates.io](https://crates.io/)<!-- ignore --> if this is the
-functionality you need.
+Ottenere cluster di grafemi dalle stringhe, come con lo script Devanagari, è
+complesso, quindi questa funzionalità non è fornita dalla libreria standard. I crate
+sono disponibili su [crates.io](https://crates.io/)<!-- ignore --> se questa è
+la funzionalità di cui avete bisogno.
 
-### Strings Are Not So Simple
+### Le Stringhe Non Sono Così Semplici
 
-To summarize, strings are complicated. Different programming languages make
-different choices about how to present this complexity to the programmer. Rust
-has chosen to make the correct handling of `String` data the default behavior
-for all Rust programs, which means programmers have to put more thought into
-handling UTF-8 data up front. This trade-off exposes more of the complexity of
-strings than is apparent in other programming languages, but it prevents you
-from having to handle errors involving non-ASCII characters later in your
-development life cycle.
+In sintesi, le stringhe sono complicate. Diversi linguaggi di programmazione fanno
+scelte diverse su come presentare questa complessità al programmatore. Rust
+ha scelto di rendere la corretta gestione dei dati `String` il comportamento predefinito
+per tutti i programmi Rust, il che significa che i programmatori devono dedicare maggiore attenzione alla
+gestione dei dati UTF-8 in anticipo. Questo compromesso espone la complessità delle
+stringhe a una complessità maggiore rispetto ad altri linguaggi di programmazione, ma evita
+di dover gestire errori che coinvolgono caratteri non ASCII in una fase successiva
+del ciclo di sviluppo.
 
-The good news is that the standard library offers a lot of functionality built
-off the `String` and `&str` types to help handle these complex situations
-correctly. Be sure to check out the documentation for useful methods like
-`contains` for searching in a string and `replace` for substituting parts of a
-string with another string.
+La buona notizia è che la libreria standard offre numerose funzionalità basate
+sui tipi `String` e `&str` per aiutare a gestire correttamente queste situazioni complesse. Assicuratevi di consultare la documentazione per metodi utili come
+`contains` per la ricerca in una stringa e `replace` per sostituire parti di una
+stringa con un'altra stringa.
 
-Let’s switch to something a bit less complex: hash maps!
+Passiamo a qualcosa di un po' meno complesso: le mappe hash!

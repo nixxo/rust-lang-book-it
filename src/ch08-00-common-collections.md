@@ -1,25 +1,27 @@
 # Common Collections
 
-Rust’s standard library includes a number of very useful data structures called
-_collections_. Most other data types represent one specific value, but
-collections can contain multiple values. Unlike the built-in array and tuple
-types, the data that these collections point to is stored on the heap, which
-means the amount of data does not need to be known at compile time and can grow
-or shrink as the program runs. Each kind of collection has different
-capabilities and costs, and choosing an appropriate one for your current
-situation is a skill you’ll develop over time. In this chapter, we’ll discuss
-three collections that are used very often in Rust programs:
+# Collezioni Comuni
 
-- A _vector_ allows you to store a variable number of values next to each other.
-- A _string_ is a collection of characters. We’ve mentioned the `String` type
-  previously, but in this chapter we’ll talk about it in depth.
-- A _hash map_ allows you to associate a value with a specific key. It’s a
-  particular implementation of the more general data structure called a _map_.
+La libreria standard di Rust include diverse strutture dati molto utili chiamate
+_collections_. La maggior parte degli altri tipi di dati rappresenta un valore specifico, ma
+le collezioni possono contenere più valori. A differenza dei tipi array e dei tipi tuple integrati,
+i dati a cui puntano queste collezioni vengono memorizzati nell'heap, il che
+significa che la quantità di dati non deve essere nota in fase di compilazione e può aumentare
+o diminuire durante l'esecuzione del programma. Ogni tipo di collezione ha
+funzionalità e costi diversi, e sceglierne una appropriata per la propria
+situazione attuale è un'abilità che si svilupperà nel tempo. In questo capitolo, parleremo
+di tre collezioni utilizzate molto spesso nei programmi Rust:
 
-To learn about the other kinds of collections provided by the standard library,
-see [the documentation][collections].
+- Un _vector_ che consente di memorizzare un numero variabile di valori uno accanto all'altro.
+- Una _string_ è una raccolta di caratteri. Abbiamo menzionato il tipo `String`
+in precedenza, ma in questo capitolo ne parleremo in modo approfondito.
+- Una _hash map_ che consente di associare un valore a una chiave specifica. Si tratta di una
+particolare implementazione della struttura dati più generale chiamata _map_.
 
-We’ll discuss how to create and update vectors, strings, and hash maps, as well
-as what makes each special.
+Per saperne di più sugli altri tipi di raccolte fornite dalla libreria standard,
+vedere [la documentazione][collections].
 
-[collections]: https://doc.rust-lang.org/stable/std/collections/index.html
+Discuteremo come creare e aggiornare vettori, stringhe e mappe hash, nonché
+cosa rende ciascuna di esse speciale.
+
+[collezioni]: ../std/collections/index.html
