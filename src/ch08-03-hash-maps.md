@@ -19,9 +19,9 @@ Come sempre, consultate la documentazione della libreria standard per ulteriori 
 ### Creazione di una Nuova Mappa Hash
 
 Un modo per creare una mappa hash vuota è usare `new` e aggiungere elementi con
-`insert`. Nel Listato 8-20, stiamo tenendo traccia dei punteggi di due squadre i cui
-nomi sono _Blue_ e _Yellow_. La squadra Blue inizia con 10 punti, mentre la squadra
-Yellow inizia con 50.
+`insert`. Nel Listato 8-20, stiamo tenendo traccia dei punteggio di due squadre i cui
+nomi sono _Blu_ e _Gialla_. La squadra Blu inizia con 10 punti, mentre la squadra
+Gialla inizia con 50.
 
 <Listing number="8-20" caption="Creazione di una nuova mappa hash e inserimento di chiavi e valori">
 
@@ -55,11 +55,11 @@ come mostrato nel Listato 8-21.
 
 </Listing>
 
-Qui, `score` avrà il valore associato alla squadra Blue e il
+Qui, `punteggio` avrà il valore associato alla squadra Blu e il
 risultato sarà `10`. Il metodo `get` restituisce `Option<&V>`; se non c'è alcun
 valore per quella chiave nella mappa hash, `get` restituirà `None`. Questo programma
 gestisce `Option` chiamando `copied` per ottenere `Option<i32>` anziché
-`Option<&i32>`, quindi `unwrap_or` per impostare `score` a zero se `scores` non
+`Option<&i32>`, quindi `unwrap_or` per impostare `punteggio` a zero se `punteggio` non
 ha una voce per la chiave.
 
 Possiamo iterare su ogni coppia chiave-valore in una mappa hash in modo simile a come facciamo con i vettori, utilizzando un ciclo `for`:
@@ -71,8 +71,8 @@ Possiamo iterare su ogni coppia chiave-valore in una mappa hash in modo simile a
 Questo codice stamperà ogni coppia in un ordine arbitrario:
 
 ```testo
-Yellow: 50
-Blue: 10
+Gialla: 50
+Blu: 10
 ```
 
 ### Mappe Hash e Proprietà
@@ -89,7 +89,7 @@ la mappa hash diventerà la proprietaria di tali valori, come dimostrato nel Lis
 
 </Listing>
 
-Non possiamo utilizzare le variabili `field_name` e `field_value` dopo
+Non possiamo utilizzare le variabili `nome_campo` e `valore_campo` dopo
 che sono state spostate nella mappa hash con la chiamata a `insert`.
 
 Se inseriamo riferimenti a valori nella mappa hash, i valori non verranno spostati
@@ -102,8 +102,8 @@ i tempi di vita”][validating-references-with-lifetimes]<!-- ignore --> nel Cap
 
 Sebbene il numero di coppie chiave-valore sia espandibile, a ogni chiave univoca può
 essere associato un solo valore alla volta (ma non viceversa:
-ad esempio, sia la squadra Blue che quella Yellow potrebbero avere il valore `10`
-memorizzato nella mappa hash `scores`).
+ad esempio, sia la squadra Blu che quella Gialla potrebbero avere il valore `10`
+memorizzato nella mappa hash `punteggi`).
 
 Quando si desidera modificare i dati in una mappa hash, è necessario decidere come
 gestire il caso in cui a una chiave sia già assegnato un valore. È possibile sostituire il
@@ -117,7 +117,7 @@ nuovo valore. Vediamo come fare ciascuna di queste cose!
 Se inseriamo una chiave e un valore in una mappa hash e poi inseriamo la stessa chiave
 con un valore diverso, il valore associato a quella chiave verrà sostituito.
 Anche se il codice nel Listato 8-23 chiama `insert` due volte, la mappa hash
-conterrà solo una coppia chiave-valore perché stiamo inserendo il valore per la chiave del Blue
+conterrà solo una coppia chiave-valore perché stiamo inserendo il valore per la chiave del Blu
 team entrambe le volte.
 
 <Listing number="8-23" caption="Sostituzione di un valore memorizzato con una chiave specifica">
@@ -128,7 +128,7 @@ team entrambe le volte.
 
 </Listing>
 
-Questo codice stamperà `{"Blue": 25}`. Il valore originale di `10` è stato
+Questo codice stamperà `{"Blu": 25}`. Il valore originale di `10` è stato
 sovrascritto.
 
 <!-- Titoli precedenti. Non rimuovere o i link potrebbero non funzionare. -->
@@ -144,8 +144,8 @@ non esiste, inserirla e assegnarle un valore.
 
 Le mappe hash dispongono di un'API speciale per questo scopo, chiamata `entry`, che accetta la chiave che si desidera
 controllare come parametro. Il valore restituito dal metodo `entry` è un enum
-chiamato `Entry` che rappresenta un valore che potrebbe esistere o meno. Supponiamo di voler verificare se la chiave per la squadra Yellow ha un valore associato. In caso contrario, vogliamo inserire il valore `50`, e lo stesso vale per la
-squadra Blue. Utilizzando l'API `entry`, il codice appare come nel Listato 8-24.
+chiamato `Entry` che rappresenta un valore che potrebbe esistere o meno. Supponiamo di voler verificare se la chiave per la squadra Gialla ha un valore associato. In caso contrario, vogliamo inserire il valore `50`, e lo stesso vale per la
+squadra Blu. Utilizzando l'API `entry`, il codice appare come nel Listato 8-24.
 
 <Listing number="8-24" caption="Utilizzo del metodo `entry` per inserire solo se la chiave non ha già un valore">
 
@@ -160,10 +160,10 @@ valore della chiave `Entry` corrispondente, se tale chiave esiste, e in caso con
 inserisce il parametro come nuovo valore per questa chiave e restituisce un riferimento mutabile al nuovo valore. Questa tecnica è molto più pulita rispetto alla scrittura manuale
 della logica e, inoltre, si integra meglio con il controllo dei prestiti.
 
-L'esecuzione del codice nel Listato 8-24 stamperà `{"Yellow": 50, "Blue": 10}`. La
-prima chiamata a `entry` inserirà la chiave per la squadra Yellow con il valore
-`50` perché la squadra Yellow non ha già un valore. La seconda chiamata a
-`entry` non modificherà la mappa hash perché la squadra Blue ha già il
+L'esecuzione del codice nel Listato 8-24 stamperà `{"Gialla": 50, "Blu": 10}`. La
+prima chiamata a `entry` inserirà la chiave per la squadra Gialla con il valore
+`50` perché la squadra Gialla non ha già un valore. La seconda chiamata a
+`entry` non modificherà la mappa hash perché la squadra Blu ha già il
 valore `10`.
 
 #### Aggiornamento di un Valore in Base al Valore Precedente

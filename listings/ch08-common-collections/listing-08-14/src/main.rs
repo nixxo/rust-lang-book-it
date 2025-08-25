@@ -9,11 +9,11 @@ fn main() {
     let hello = String::from("안녕하세요");
     let hello = String::from("你好");
     let hello = String::from("Olá");
-    // ANCHOR: russian
+    // ANCHOR: russo
     let hello = String::from("Здравствуйте");
-    // ANCHOR_END: russian
-    // ANCHOR: spanish
+    // ANCHOR_END: russo
+    // ANCHOR: spagnolo
     let hello = String::from("Hola");
-    // ANCHOR_END: spanish
+    // ANCHOR_END: spagnolo 
     // ANCHOR_END: here
 }
