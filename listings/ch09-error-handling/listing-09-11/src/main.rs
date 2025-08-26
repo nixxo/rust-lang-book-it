@@ -1,15 +1,15 @@
 // ANCHOR: here
-fn last_char_of_first_line(text: &str) -> Option<char> {
+fn ultimo_char_della_prima_riga(text: &str) -> Option<char> {
     text.lines().next()?.chars().last()
 }
 // ANCHOR_END: here
 
 fn main() {
     assert_eq!(
-        last_char_of_first_line("Hello, world\nHow are you today?"),
+        ultimo_char_della_prima_riga("Hello, world\nCome stai oggi?"),
         Some('d')
     );
 
-    assert_eq!(last_char_of_first_line(""), None);
-    assert_eq!(last_char_of_first_line("\nhi"), None);
+    assert_eq!(ultimo_char_della_prima_riga(""), None);
+    assert_eq!(ultimo_char_della_prima_riga("\nhi"), None);
 }

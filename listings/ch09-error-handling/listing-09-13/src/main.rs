@@ -6,31 +6,31 @@ use std::io;
 mod guessing_game;
 
 fn main() {
-    println!("Guess the number!");
+    println!("Indovina il numero!");
 
-    let secret_number = rand::thread_rng().gen_range(1..=100);
+    let numero_segreto = rand::thread_rng().gen_range(1..=100);
 
     loop {
-        println!("Please input your guess.");
+        println!("Per favore, inserisci la tua ipotesi.");
 
-        let mut guess = String::new();
+        let mut ipotesi = String::new();
 
         io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line");
+            .read_line(&mut ipotesi)
+            .expect("Errore a leggere la prima riga");
 
-        let guess: i32 = match guess.trim().parse() {
+        let ipotesi: i32 = match ipotesi.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
         };
 
-        let guess = Guess::new(guess);
+        let ipotesi = Ipotesi::new(ipotesi);
 
-        match guess.value().cmp(&secret_number) {
-            Ordering::Less => println!("Too small!"),
-            Ordering::Greater => println!("Too big!"),
+        match ipotesi.valore().cmp(&numero_segreto) {
+            Ordering::Less => println!("Troppo piccolo!"),
+            Ordering::Greater => println!("Troppo grande!"),
             Ordering::Equal => {
-                println!("You win!");
+                println!("Hai vinto!");
                 break;
             }
         }

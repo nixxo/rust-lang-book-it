@@ -2,23 +2,23 @@
 use std::fs::File;
 use std::io::{self, Read};
 
-fn read_username_from_file() -> Result<String, io::Error> {
-    let username_file_result = File::open("hello.txt");
+fn leggi_nomeutente_dal_file() -> Result<String, io::Error> {
+    let nomeutente_file_result = File::open("hello.txt");
 
-    let mut username_file = match username_file_result {
+    let mut nomeutente_file = match nomeutente_file_result {
         Ok(file) => file,
         Err(e) => return Err(e),
     };
 
-    let mut username = String::new();
+    let mut nomeutente = String::new();
 
-    match username_file.read_to_string(&mut username) {
-        Ok(_) => Ok(username),
+    match nomeutente_file.read_to_string(&mut nomeutente) {
+        Ok(_) => Ok(nomeutente),
         Err(e) => Err(e),
     }
 }
 // ANCHOR_END: here
 
 fn main() {
-    let username = read_username_from_file().expect("Unable to get username");
+    let nomeutente = leggi_nomeutente_dal_file().expect("Impossibile ottenere il nome utente");
 }

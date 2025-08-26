@@ -1,17 +1,17 @@
-pub struct Guess {
-    value: i32,
+pub struct Ipotesi {
+    valore: i32,
 }
 
-impl Guess {
-    pub fn new(value: i32) -> Guess {
-        if value < 1 || value > 100 {
-            panic!("Guess value must be between 1 and 100, got {value}.");
+impl Ipotesi {
+    pub fn new(valore: i32) -> Ipotesi {
+        if valore < 1 || valore > 100 {
+            panic!("L'ipotesi deve essere compresa tra 1 e 100, valore ottenuto: {valore}.");
         }
 
-        Guess { value }
+        Ipotesi { valore }
     }
 
-    pub fn value(&self) -> i32 {
-        self.value
+    pub fn valore(&self) -> i32 {
+        self.valore
     }
 }
