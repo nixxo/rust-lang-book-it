@@ -1,16 +1,16 @@
 // ANCHOR: here
-mod front_of_house {
-    pub mod hosting {
-        pub fn add_to_waitlist() {}
+mod sala_pranzo {
+    pub mod accoglienza {
+        pub fn aggiungi_in_lista() {}
     }
 }
 
 // -- snip --
 // ANCHOR_END: here
-pub fn eat_at_restaurant() {
-    // Absolute path
-    crate::front_of_house::hosting::add_to_waitlist();
+pub fn mangiare_al_ristorante() {
+    // Path assoluta
+    crate::sala_pranzo::accoglienza::aggiungi_in_lista();
 
-    // Relative path
-    front_of_house::hosting::add_to_waitlist();
+    // Path relativa
+    sala_pranzo::accoglienza::aggiungi_in_lista();
 }

@@ -1,7 +1,7 @@
-mod front_of_house;
+mod sala_pranzo;
 
-pub use crate::front_of_house::hosting;
+pub use crate::sala_pranzo::accoglienza;
 
-pub fn eat_at_restaurant() {
-    hosting::add_to_waitlist();
+pub fn mangiare_al_ristorante() {
+    accoglienza::aggiungi_in_lista();
 }

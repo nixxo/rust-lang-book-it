@@ -1,10 +1,10 @@
-fn deliver_order() {}
+fn consegna_ordine() {}
 
-mod back_of_house {
-    fn fix_incorrect_order() {
-        cook_order();
-        super::deliver_order();
+mod cucine {
+    fn correzione_ordine() {
+        cucina_ordine();
+        super::consegna_ordine();
     }
 
-    fn cook_order() {}
+    fn cucina_ordine() {}
 }

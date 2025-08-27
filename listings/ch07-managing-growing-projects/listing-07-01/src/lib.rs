@@ -1,15 +1,15 @@
-mod front_of_house {
-    mod hosting {
-        fn add_to_waitlist() {}
+mod sala_pranzo {
+    mod accoglienza {
+        fn aggiungi_in_lista() {}
 
-        fn seat_at_table() {}
+        fn metti_al_tavolo() {}
     }
 
     mod serving {
-        fn take_order() {}
+        fn prendi_ordine() {}
 
-        fn serve_order() {}
+        fn servi_ordine() {}
 
-        fn take_payment() {}
+        fn prendi_pagamento() {}
     }
 }

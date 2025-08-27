@@ -1,5 +1,5 @@
 [package]
-name = "guessing_game"
+name = "gioco_indovinelli"
 version = "0.1.0"
 edition = "2024"
 

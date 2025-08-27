@@ -1,11 +1,11 @@
-mod front_of_house {
-    pub mod hosting {
-        pub fn add_to_waitlist() {}
+mod sala_pranzo {
+    pub mod accoglienza {
+        pub fn aggiungi_in_lista() {}
     }
 }
 
-use crate::front_of_house::hosting::add_to_waitlist;
+use crate::sala_pranzo::accoglienza::aggiungi_in_lista;
 
-pub fn eat_at_restaurant() {
-    add_to_waitlist();
+pub fn mangiare_al_ristorante() {
+    aggiungi_in_lista();
 }

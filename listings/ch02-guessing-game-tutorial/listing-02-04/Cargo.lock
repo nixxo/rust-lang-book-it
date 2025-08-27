@@ -20,7 +20,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "guessing_game"
+name = "gioco_indovinello"
 version = "0.1.0"
 dependencies = [
  "rand",

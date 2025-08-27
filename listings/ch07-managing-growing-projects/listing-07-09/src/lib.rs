@@ -1,27 +1,27 @@
-mod back_of_house {
-    pub struct Breakfast {
+mod cucine {
+    pub struct Colazione {
         pub toast: String,
-        seasonal_fruit: String,
+        frutta_di_stagione: String,
     }
 
-    impl Breakfast {
-        pub fn summer(toast: &str) -> Breakfast {
-            Breakfast {
+    impl Colazione {
+        pub fn estate(toast: &str) -> Colazione {
+            Colazione {
                 toast: String::from(toast),
-                seasonal_fruit: String::from("peaches"),
+                frutta_di_stagione: String::from("pesche"),
             }
         }
     }
 }
 
-pub fn eat_at_restaurant() {
-    // Order a breakfast in the summer with Rye toast.
-    let mut meal = back_of_house::Breakfast::summer("Rye");
-    // Change our mind about what bread we'd like.
-    meal.toast = String::from("Wheat");
-    println!("I'd like {} toast please", meal.toast);
+pub fn mangiare_al_ristorante() {
+    // Ordina una colazione in estate con pane tostato di segale.
+    let mut pasto = cucine::Colazione::estate("segale");
+    // Cambiare idea sul pane che vorremmo. wheat
+    pasto.toast = String::from("integrale");
+    println!("Vorrei un toast {}, grazie.", pasto.toast);
 
-    // The next line won't compile if we uncomment it; we're not allowed
-    // to see or modify the seasonal fruit that comes with the meal.
-    // meal.seasonal_fruit = String::from("blueberries");
+    // La riga successiva non verrà compilata se la decommentiamo; non ci è
+    // permesso vedere o modificare frutta che accompagna il pasto.
+    // pasto.frutta_di_stagione = String::from("mirtilli");
 }
