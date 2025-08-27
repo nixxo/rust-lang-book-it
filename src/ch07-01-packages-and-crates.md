@@ -1,6 +1,6 @@
 ## Pacchetti e Crate
 
-Le prime parti del sistema di moduli che tratteremo sono i pacchetti e i
+Le prime parti del sistema dei moduli che tratteremo sono i pacchetti e i
 _crate_.
 
 Un _crate_ è la quantità minima di codice che il compilatore Rust considera in
