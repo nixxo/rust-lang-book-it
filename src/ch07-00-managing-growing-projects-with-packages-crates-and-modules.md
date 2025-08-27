@@ -1,48 +1,56 @@
-# Managing Growing Projects with Packages, Crates, and Modules
+# Gestione di Progetti in Crescita con Pacchetti, _Crates_, e Moduli
 
-As you write large programs, organizing your code will become increasingly
-important. By grouping related functionality and separating code with distinct
-features, you’ll clarify where to find code that implements a particular
-feature and where to go to change how a feature works.
+Quando scriverai programmi sempre più complessi, organizzare il tuo codice
+diventerà sempre più importante. Raccogliendo funzionalità correlate e separando
+il codice con caratteristiche distinte, chiarirai dove trovare il codice che
+implementa una particolare funzionalità e quindi dove guardare per modificare il
+codice di quella funzionalità se necessario.
 
-The programs we’ve written so far have been in one module in one file. As a
-project grows, you should organize code by splitting it into multiple modules
-and then multiple files. A package can contain multiple binary crates and
-optionally one library crate. As a package grows, you can extract parts into
-separate crates that become external dependencies. This chapter covers all
-these techniques. For very large projects comprising a set of interrelated
-packages that evolve together, Cargo provides _workspaces_, which we’ll cover
-in [“Cargo Workspaces”][workspaces]<!-- ignore --> in Chapter 14.
+I programmi che abbiamo scritto finora sono stati tutti implementati con un
+singolo _modulo_ in un unico file. Man mano che un progetto cresce, dovresti
+organizzare il codice suddividendolo in più _moduli_ e poi in più file. Un
+_pacchetto_ (_package_) può contenere più _crate binari_ (_binary crate_) e
+opzionalmente un _crate libreria_ (_library crate_). Man mano che un _pachetto_
+cresce, puoi estrarne parti in _crate_ separate che diventeranno dipendenze
+esterne. Questo capitolo copre tutte queste tecniche. Per progetti molto grandi
+che comprendono un insieme di _pacchetti_ interconnessi che evolvono insieme,
+Cargo fornisce degli _spazi di lavoro_ (_workspace_), che tratteremo in [“Cargo
+Workspace”](ch14-03-cargo-workspaces.html)<!-- ignore --> nel Capitolo 14.
 
-We’ll also discuss encapsulating implementation details, which lets you reuse
-code at a higher level: once you’ve implemented an operation, other code can
-call your code via its public interface without having to know how the
-implementation works. The way you write code defines which parts are public for
-other code to use and which parts are private implementation details that you
-reserve the right to change. This is another way to limit the amount of detail
-you have to keep in your head.
+Discuteremo anche l'incapsulamento dei dettagli di implementazione, che ti
+consente di riutilizzare il codice a un livello più alto: una volta implementata
+un'operazione, l'altro codice può chiamare il tuo codice tramite la sua
+interfaccia pubblica senza dover sapere come funziona l'implementazione. Il modo
+in cui scrivi il codice definisce quali parti sono pubbliche per l'uso da parte
+di altri codici e quali parti sono dettagli di implementazione privati che ti
+riservi il diritto di modificare. Questo è un altro modo per limitare la
+quantità di dettagli che devi tenere a mente.
 
-A related concept is scope: the nested context in which code is written has a
-set of names that are defined as “in scope.” When reading, writing, and
-compiling code, programmers and compilers need to know whether a particular
-name at a particular spot refers to a variable, function, struct, enum, module,
-constant, or other item and what that item means. You can create scopes and
-change which names are in or out of scope. You can’t have two items with the
-same name in the same scope; tools are available to resolve name conflicts.
+Un concetto correlato è lo _scope_: il contesto annidato in cui è scritto il
+codice ha un insieme di nomi definiti come "in _scope_". Quando si legge, si
+scrive e si compila il codice, i programmatori e i compilatori devono sapere se
+un particolare nome in un particolare punto si riferisce a una variabile,
+funzione, _struct_, _enum_, modulo, costante o altro elemento e cosa significa
+quell'elemento. Puoi creare _scope_ e modificare quali nomi sono in o fuori
+_scope_. Non puoi avere due elementi con lo stesso nome nello stesso _scope_;
+sono disponibili strumenti per risolvere i conflitti di nomenclatura.
 
-Rust has a number of features that allow you to manage your code’s
-organization, including which details are exposed, which details are private,
-and what names are in each scope in your programs. These features, sometimes
-collectively referred to as the _module system_, include:
+Rust ha una serie di funzionalità che ti consentono di gestire l'organizzazione
+del tuo codice, inclusi i dettagli esposti, i dettagli privati e quali nomi sono
+in ogni _scope_ nei tuoi programmi. Queste funzionalità, a volte definite
+collettivamente _sistema dei moduli_ (_module system_), includono:
 
-* **Packages**: A Cargo feature that lets you build, test, and share crates
-* **Crates**: A tree of modules that produces a library or executable
-* **Modules and use**: Let you control the organization, scope, and privacy of
-paths
-* **Paths**: A way of naming an item, such as a struct, function, or module
+* **Pacchetti**: Una funzionalità di Cargo che ti consente di costruire, testare
+  e condividere _crate_
+* **Crate**: Un albero di _moduli_ che produce una libreria o un eseguibile
+* **Moduli** e **use**: Ti consentono di controllare l'organizzazione, lo
+  _scope_ e la privacy dei percorsi (_paths_)
+* **Path**: Un modo per nominare un elemento, come una _struct_, una funzione o
+  un modulo
 
-In this chapter, we’ll cover all these features, discuss how they interact, and
-explain how to use them to manage scope. By the end, you should have a solid
-understanding of the module system and be able to work with scopes like a pro!
+In questo capitolo, tratteremo tutte queste funzionalità, discuteremo come
+interagiscono e spiegheremo come usarle per gestire lo _scope_. Alla fine,
+dovresti avere una solida comprensione del _module system_ e essere in grado di
+lavorare con gli _scope_ come un professionista!
 
 [workspaces]: ch14-03-cargo-workspaces.html
