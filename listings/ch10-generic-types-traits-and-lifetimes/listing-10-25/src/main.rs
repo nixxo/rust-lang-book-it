@@ -1,5 +1,5 @@
 // ANCHOR: here
-fn first_word(s: &str) -> &str {
+fn prima_parola(s: &str) -> &str {
     let bytes = s.as_bytes();
 
     for (i, &item) in bytes.iter().enumerate() {
@@ -15,15 +15,15 @@ fn first_word(s: &str) -> &str {
 fn main() {
     let my_string = String::from("hello world");
 
-    // first_word works on slices of `String`s
-    let word = first_word(&my_string[..]);
+    // prima_parola lavora su slice di `String`s
+    let word = prima_parola(&my_string[..]);
 
-    let my_string_literal = "hello world";
+    let mia_stringa_literal = "hello world";
 
-    // first_word works on slices of string literals
-    let word = first_word(&my_string_literal[..]);
+    // prima_parola lavora su slice di string literals
+    let word = prima_parola(&mia_stringa_literal[..]);
 
-    // Because string literals *are* string slices already,
-    // this works too, without the slice syntax!
-    let word = first_word(my_string_literal);
+    // Siccome le string literals *sono* già slices di stringa,
+    // funziona anche senza la sintassi delle slice!
+    let word = prima_parola(mia_stringa_literal);
 }

@@ -1,29 +1,29 @@
-pub trait Summary {
-    fn summarize(&self) -> String;
+pub trait Sommario {
+    fn riassunto(&self) -> String;
 }
 
-pub struct NewsArticle {
-    pub headline: String,
-    pub location: String,
-    pub author: String,
-    pub content: String,
+pub struct ArticoloNews {
+    pub titolo: String,
+    pub posizione: String,
+    pub autore: String,
+    pub contenuto: String,
 }
 
-impl Summary for NewsArticle {
-    fn summarize(&self) -> String {
-        format!("{}, by {} ({})", self.headline, self.author, self.location)
+impl Sommario for ArticoloNews {
+    fn riassunto(&self) -> String {
+        format!("{}, di {} ({})", self.titolo, self.autore, self.posizione)
     }
 }
 
 pub struct SocialPost {
-    pub username: String,
-    pub content: String,
-    pub reply: bool,
-    pub repost: bool,
+    pub nomeutente: String,
+    pub contenuto: String,
+    pub risposta: bool,
+    pub riposta: bool,
 }
 
-impl Summary for SocialPost {
-    fn summarize(&self) -> String {
-        format!("{}: {}", self.username, self.content)
+impl Sommario for SocialPost {
+    fn riassunto(&self) -> String {
+        format!("{}: {}", self.nomeutente, self.contenuto)
     }
 }

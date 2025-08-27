@@ -1,22 +1,22 @@
 use std::fmt::Display;
 
-struct Pair<T> {
+struct Coppia<T> {
     x: T,
     y: T,
 }
 
-impl<T> Pair<T> {
+impl<T> Coppia<T> {
     fn new(x: T, y: T) -> Self {
         Self { x, y }
     }
 }
 
-impl<T: Display + PartialOrd> Pair<T> {
+impl<T: Display + PartialOrd> Coppia<T> {
     fn cmp_display(&self) {
         if self.x >= self.y {
-            println!("The largest member is x = {}", self.x);
+            println!("Il membro più grande è x = {}", self.x);
         } else {
-            println!("The largest member is y = {}", self.y);
+            println!("Il membro più grande è y = {}", self.y);
         }
     }
 }

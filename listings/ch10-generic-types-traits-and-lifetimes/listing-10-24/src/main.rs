@@ -3,9 +3,9 @@ struct ImportantExcerpt<'a> {
 }
 
 fn main() {
-    let novel = String::from("Call me Ishmael. Some years ago...");
-    let first_sentence = novel.split('.').next().unwrap();
+    let novel = String::from("Chiamami Ishmael. Alcuni anni fa...");
+    let prima_frase = novel.split('.').next().unwrap();
     let i = ImportantExcerpt {
-        part: first_sentence,
+        part: prima_frase,
     };
 }

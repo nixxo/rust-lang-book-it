@@ -1,29 +1,29 @@
 // ANCHOR: here
-pub trait Summary {
-    fn summarize(&self) -> String {
-        String::from("(Read more...)")
+pub trait Sommario {
+    fn sommarizza(&self) -> String {
+        String::from("(Leggi di più...)")
     }
 }
 // ANCHOR_END: here
 
-pub struct NewsArticle {
-    pub headline: String,
-    pub location: String,
-    pub author: String,
-    pub content: String,
+pub struct ArticoloNews {
+    pub titolo: String,
+    pub posizione: String,
+    pub autore: String,
+    pub contenuto: String,
 }
 
-impl Summary for NewsArticle {}
+impl Sommario for ArticoloNews {}
 
 pub struct SocialPost {
-    pub username: String,
-    pub content: String,
-    pub reply: bool,
+    pub nomeutente: String,
+    pub contenuto: String,
+    pub risposta: bool,
     pub repost: bool,
 }
 
-impl Summary for SocialPost {
-    fn summarize(&self) -> String {
-        format!("{}: {}", self.username, self.content)
+impl Sommario for SocialPost {
+    fn sommarizza(&self) -> String {
+        format!("{}: {}", self.nomeutente, self.contenuto)
     }
 }

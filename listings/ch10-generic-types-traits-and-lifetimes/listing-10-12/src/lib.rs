@@ -1,3 +1,3 @@
-pub trait Summary {
-    fn summarize(&self) -> String;
+pub trait Sommario {
+    fn sommarizza(&self) -> String;
 }

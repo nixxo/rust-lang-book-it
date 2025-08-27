@@ -1,23 +1,23 @@
-fn largest<T>(list: &[T]) -> &T {
-    let mut largest = &list[0];
+fn maggiore<T>(lista: &[T]) -> &T {
+    let mut maggiore = &lista[0];
 
-    for item in list {
-        if item > largest {
-            largest = item;
+    for elemento in lista {
+        if elemento > maggiore {
+            maggiore = elemento;
         }
     }
 
-    largest
+    maggiore
 }
 
 fn main() {
-    let number_list = vec![34, 50, 25, 100, 65];
+    let lista_numeri = vec![34, 50, 25, 100, 65];
 
-    let result = largest(&number_list);
-    println!("The largest number is {result}");
+    let result = maggiore(&lista_numeri);
+    println!("Il numero maggiore è {result}");
 
-    let char_list = vec!['y', 'm', 'a', 'q'];
+    let lista_caratteri = vec!['y', 'm', 'a', 'q'];
 
-    let result = largest(&char_list);
-    println!("The largest char is {result}");
+    let result = maggiore(&lista_caratteri);
+    println!("Il carattere maggiore è {result}");
 }
