@@ -1,32 +1,32 @@
 $ cargo build
-   Compiling restaurant v0.1.0 (file:///projects/restaurant)
-error[E0603]: module `hosting` is private
- --> src/lib.rs:9:28
+   Compiling ristorante v0.1.0 (file:///progetti/ristorante)
+error[E0603]: module `accoglienza` is private
+ --> src/lib.rs:9:18
   |
-9 |     crate::front_of_house::hosting::add_to_waitlist();
-  |                            ^^^^^^^  --------------- function `add_to_waitlist` is not publicly re-exported
-  |                            |
-  |                            private module
+9 |     crate::sala::accoglienza::aggiungi_in_lista();
+  |                  ^^^^^^^^^^^  ----------------- function `aggiungi_in_lista` is not publicly re-exported
+  |                  |
+  |                  private module
   |
-note: the module `hosting` is defined here
+note: the module `accoglienza` is defined here
  --> src/lib.rs:2:5
   |
-2 |     mod hosting {
-  |     ^^^^^^^^^^^
+2 |     mod accoglienza {
+  |     ^^^^^^^^^^^^^^^
 
-error[E0603]: module `hosting` is private
-  --> src/lib.rs:12:21
+error[E0603]: module `accoglienza` is private
+  --> src/lib.rs:12:11
    |
-12 |     front_of_house::hosting::add_to_waitlist();
-   |                     ^^^^^^^  --------------- function `add_to_waitlist` is not publicly re-exported
-   |                     |
-   |                     private module
+12 |     sala::accoglienza::aggiungi_in_lista();
+   |           ^^^^^^^^^^^  ----------------- function `aggiungi_in_lista` is not publicly re-exported
+   |           |
+   |           private module
    |
-note: the module `hosting` is defined here
+note: the module `accoglienza` is defined here
   --> src/lib.rs:2:5
    |
-2  |     mod hosting {
-   |     ^^^^^^^^^^^
+ 2 |     mod accoglienza {
+   |     ^^^^^^^^^^^^^^^
 
 For more information about this error, try `rustc --explain E0603`.
-error: could not compile `restaurant` (lib) due to 2 previous errors
+error: could not compile `ristorante` (lib) due to 2 previous errors
