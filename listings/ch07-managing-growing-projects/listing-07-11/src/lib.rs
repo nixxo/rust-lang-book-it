@@ -1,10 +1,10 @@
-mod sala_pranzo {
+mod sala {
     pub mod accoglienza {
         pub fn aggiungi_in_lista() {}
     }
 }
 
-use crate::sala_pranzo::accoglienza;
+use crate::sala::accoglienza;
 
 pub fn mangiare_al_ristorante() {
     accoglienza::aggiungi_in_lista();

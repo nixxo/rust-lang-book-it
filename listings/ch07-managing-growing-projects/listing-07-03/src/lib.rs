@@ -1,4 +1,4 @@
-mod sala_pranzo {
+mod sala {
     mod accoglienza {
         fn aggiungi_in_lista() {}
     }
@@ -6,8 +6,8 @@ mod sala_pranzo {
 
 pub fn mangiare_al_ristorante() {
     // Path assoluta
-    crate::sala_pranzo::accoglienza::aggiungi_in_lista();
+    crate::sala::accoglienza::aggiungi_in_lista();
 
     // Path relativa
-    sala_pranzo::accoglienza::aggiungi_in_lista();
+    sala::accoglienza::aggiungi_in_lista();
 }

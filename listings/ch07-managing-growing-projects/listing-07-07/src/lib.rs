@@ -1,5 +1,5 @@
 // ANCHOR: here
-mod sala_pranzo {
+mod sala {
     pub mod accoglienza {
         pub fn aggiungi_in_lista() {}
     }
@@ -9,8 +9,8 @@ mod sala_pranzo {
 // ANCHOR_END: here
 pub fn mangiare_al_ristorante() {
     // Path assoluta
-    crate::sala_pranzo::accoglienza::aggiungi_in_lista();
+    crate::sala::accoglienza::aggiungi_in_lista();
 
     // Path relativa
-    sala_pranzo::accoglienza::aggiungi_in_lista();
+    sala::accoglienza::aggiungi_in_lista();
 }

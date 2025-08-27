@@ -1,11 +1,11 @@
-mod sala_pranzo {
+mod sala {
     mod accoglienza {
         fn aggiungi_in_lista() {}
 
         fn metti_al_tavolo() {}
     }
 
-    mod serving {
+    mod servizio {
         fn prendi_ordine() {}
 
         fn servi_ordine() {}
