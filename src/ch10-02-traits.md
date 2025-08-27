@@ -45,8 +45,7 @@ questo caso è `fn sommario(&self) -> String`.
 
 Dopo la firma del metodo, invece di fornire un'implementazione tra parentesi graffe, utilizziamo un punto e virgola. Ogni tipo che implementa questa caratteristica deve fornire
 il proprio comportamento personalizzato per il corpo del metodo. Il compilatore imporrà
-che qualsiasi tipo che abbia la caratteristica `Sommario` abbia il metodo `riassunto`
-definito esattamente con questa firma.
+che qualsiasi tipo che abbia la caratteristica `Sommario` abbia il metodo `riassunto` definito esattamente con questa firma.
 
 Una caratteristica può avere più metodi nel suo corpo: le firme dei metodi sono elencate
 una per riga e ogni riga termina con un punto e virgola.
@@ -121,7 +120,7 @@ Nel Listato 10-14, specifichiamo una stringa predefinita per il metodo `riassunt
 tratto `Sommario` invece di definire solo la firma del metodo, come abbiamo fatto nel
 Listato 10-12.
 
-<Listato number="10-14" file-name="src/lib.rs" caption="Definizione di un tratto `Sommario` con un'implementazione predefinita del metodo `riassunto`">
+<Listato number="10-14" file-name="src/lib.rs" caption="Definizione di un tratto `Sommario` con un'implementazione predefinita del metodo `riassunto`  ">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-14/src/lib.rs:here}}
@@ -152,25 +151,25 @@ Le implementazioni predefinite possono chiamare altri metodi nello stesso tratto
 non hanno un'implementazione predefinita. In questo modo, un tratto può
 fornire molte funzionalità utili e richiedere agli implementatori di specificarne solo
 una piccola parte. Ad esempio, potremmo definire il tratto `Sommario` in modo che abbia un
-metodo ``riassunto`_autore` la cui implementazione è richiesta, e quindi definire un
+metodo ``riassunto_autore` la cui implementazione è richiesta, e quindi definire un
 metodo `riassunto` con un'implementazione predefinita che chiama il
-metodo ``riassunto`_autore`:
+metodo `riassunto_autore`:
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/no-listing-03-default-impl-calls-other-methods/src/lib.rs:here}}
 ```
 
-Per utilizzare questa versione di `Sommario`, dobbiamo definire ``riassunto`_autore` solo
+Per utilizzare questa versione di `Sommario`, dobbiamo definire `riassunto_autore` solo
 quando implementiamo il tratto su un tipo:
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/no-listing-03-default-impl-calls-other-methods/src/lib.rs:impl}}
 ```
 
-Dopo aver definito ``riassunto`_autore`, possiamo chiamare `riassunto` sulle istanze della struttura
+Dopo aver definito `riassunto_autore`, possiamo chiamare `riassunto` sulle istanze della struttura
 `SocialPost` e l'implementazione predefinita di `riassunto` chiamerà la
-definizione di ``riassunto`_autore` che abbiamo fornito. Poiché abbiamo implementato
-``riassunto`_autore`, il tratto `Sommario` ci ha fornito il comportamento del
+definizione di `riassunto_autore` che abbiamo fornito. Poiché abbiamo implementato
+`riassunto_autore`, il tratto `Sommario` ci ha fornito il comportamento del
 metodo `riassunto` senza richiedere ulteriore codice. Ecco come
 appare:
 
@@ -188,8 +187,7 @@ implementazione sovrascritta dello stesso metodo.
 Ora che sai come definire e implementare i tratti, possiamo esplorare come usarli
 per definire funzioni che accettano molti tipi diversi. Useremo il
 tratto `Sommario` che abbiamo implementato sui tipi `ArticoloNews` e `SocialPost` nel
-Listato 10-13 per definire una funzione `notifica` che chiama il metodo `riassunto`
-sul suo parametro `elemento`, che è di un tipo che implementa il
+Listato 10-13 per definire una funzione `notifica` che chiama il metodo `riassunto` sul suo parametro `elemento`, che è di un tipo che implementa il
 tratto `Sommario`. Per fare ciò, utilizziamo la sintassi `impl Trait`, in questo modo:
 
 ```rust,ignore
@@ -214,7 +212,7 @@ La sintassi `impl Trait` funziona per i casi più semplici, ma in realtà è sol
 
 ```rust,ignore
 pub fn notifica<T: Sommario>(elemento: &T) {
-println!("Ultime notizie! {}", elemento.`riassunto`());
+println!("Ultime notizie! {}", elemento.riassunto());
 }
 ```
 
@@ -259,7 +257,7 @@ La sintassi `+` è valida anche con i limiti di tratto sui tipi generici:
 pub fn notifica<T: Sommario + Display>(elemento: &T) {
 ```
 
-Con i due limiti di tratto specificati, il corpo di `notifica` può chiamare `riassunto`
+Con i due limiti di tratto specificati, il corpo di `notifica` può chiamare `riassunto`  
 e utilizzare `{}` per formattare `elemento`.
 
 #### Limiti di Tratto più Chiari con le Clausole `where`

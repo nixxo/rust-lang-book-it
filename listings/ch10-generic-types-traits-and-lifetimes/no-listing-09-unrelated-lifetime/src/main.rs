@@ -3,12 +3,12 @@ fn main() {
     let string2 = "xyz";
 
     let result = longest(string1.as_str(), string2);
-    println!("The longest string is {result}");
+    println!("La stringa più lunga è {result}");
 }
 
 // ANCHOR: here
 fn longest<'a>(x: &str, y: &str) -> &'a str {
-    let result = String::from("really long string");
+    let result = String::from("una stringa molto lunga");
     result.as_str()
 }
 // ANCHOR_END: here

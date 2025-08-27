@@ -1,55 +1,54 @@
-pub trait Summary {
-    fn summarize(&self) -> String;
+pub trait Sommario {
+    fn riassunto(&self) -> String;
 }
 
-pub struct NewsArticle {
-    pub headline: String,
-    pub location: String,
-    pub author: String,
-    pub content: String,
+pub struct ArticoloNews {
+    pub titolo: String,
+    pub posizione: String,
+    pub autore: String,
+    pub contenuto: String,
 }
 
-impl Summary for NewsArticle {
-    fn summarize(&self) -> String {
-        format!("{}, by {} ({})", self.headline, self.author, self.location)
+impl Sommario for ArticoloNews {
+    fn riassunto(&self) -> String {
+        format!("{}, di {} ({})", self.titolo, self.autore, self.posizione)
     }
 }
 
 pub struct SocialPost {
-    pub username: String,
-    pub content: String,
-    pub reply: bool,
-    pub repost: bool,
+    pub nomeutente: String,
+    pub contenuto: String,
+    pub risposta: bool,
+    pub riposta: bool,
 }
 
-impl Summary for SocialPost {
-    fn summarize(&self) -> String {
-        format!("{}: {}", self.username, self.content)
+impl Sommario for SocialPost {
+    fn riassunto(&self) -> String {
+        format!("{}: {}", self.nomeutente, self.contenuto)
     }
 }
 
 // ANCHOR: here
-fn returns_summarizable(switch: bool) -> impl Summary {
+fn riassumibile(switch: bool) -> impl Sommario {
     if switch {
-        NewsArticle {
-            headline: String::from(
-                "Penguins win the Stanley Cup Championship!",
+        ArticoloNews {
+            titolo: String::from(
+                "I pinguini vincono il campionato di Stanley Cup!",
             ),
-            location: String::from("Pittsburgh, PA, USA"),
-            author: String::from("Iceburgh"),
-            content: String::from(
-                "The Pittsburgh Penguins once again are the best \
-                 hockey team in the NHL.",
+            posizione: String::from("Pittsburgh, PA, USA"),
+            autore: String::from("Iceburgh"),
+            contenuto: String::from(
+                "I Pittsburgh Penguins sono ancora una volta la migliore squadra di hockey nella NHL.",
             ),
         }
     } else {
         SocialPost {
-            username: String::from("horse_ebooks"),
-            content: String::from(
-                "of course, as you probably already know, people",
+            nomeutente: String::from("horse_ebooks"),
+            contenuto: String::from(
+                "ovviamente, come probabilmente già sapete, gente",
             ),
-            reply: false,
-            repost: false,
+            risposta: false,
+            riposta: false,
         }
     }
 }

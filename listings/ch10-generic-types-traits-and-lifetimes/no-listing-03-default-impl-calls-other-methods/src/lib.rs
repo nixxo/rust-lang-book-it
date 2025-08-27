@@ -1,24 +1,23 @@
-// ANCHOR: here
-pub trait Summary {
-    fn summarize_author(&self) -> String;
+pub trait Sommario {
+    fn riassunto_autore(&self) -> String;
 
-    fn summarize(&self) -> String {
-        format!("(Read more from {}...)", self.summarize_author())
+    fn riassunto(&self) -> String {
+        format!("(Leggi di più da {}...)", self.riassunto_autore())
     }
 }
 // ANCHOR_END: here
 
 pub struct SocialPost {
-    pub username: String,
-    pub content: String,
-    pub reply: bool,
-    pub repost: bool,
+    pub nomeutente: String,
+    pub contenuto: String,
+    pub risposta: bool,
+    pub riposta: bool,
 }
 
 // ANCHOR: impl
-impl Summary for SocialPost {
-    fn summarize_author(&self) -> String {
-        format!("@{}", self.username)
+impl Sommario for SocialPost {
+    fn riassunto_autore(&self) -> String {
+        format!("@{}", self.nomeutente)
     }
 }
 // ANCHOR_END: impl
