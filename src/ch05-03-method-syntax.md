@@ -1,13 +1,13 @@
 ## Sintassi dei Metodi
 
-I metodi (_method_) sono simili alle funzioni: le dichiariamo con la keyword
-`fn` e un nome, possono avere parametri e un valore di ritorno, e contengono del
-codice che viene eseguito quando il metodo viene chiamato da un’altra parte.
-Diversamente dalle funzioni, i metodi sono definiti nel contesto di una _struct_
-(o di un _enum_ o di un _trait object_, che tratteremo nel [Capitolo
-6][enums]<!-- ignore --> e [Capitolo 18][trait-objects]<!-- ignore -->,
-rispettivamente), e il loro primo parametro è sempre `self`, che rappresenta
-l’istanza della _struct_ su cui il metodo viene chiamato.
+I metodi (_method_) sono simili alle funzioni: le dichiariamo con la parola
+chiave `fn` e un nome, possono avere parametri e un valore di ritorno, e
+contengono del codice che viene eseguito quando il metodo viene chiamato da
+un’altra parte. Diversamente dalle funzioni, i metodi sono definiti nel contesto
+di una _struct_ (o di un _enum_ o di un _trait object_, che tratteremo nel
+[Capitolo 6][enums]<!-- ignore --> e [Capitolo 18][trait-objects]<!-- ignore
+-->, rispettivamente), e il loro primo parametro è sempre `self`, che
+rappresenta l’istanza della _struct_ su cui il metodo viene chiamato.
 
 ### Definire i metodi
 
