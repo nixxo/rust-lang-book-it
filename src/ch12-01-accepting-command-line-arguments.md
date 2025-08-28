@@ -130,4 +130,4 @@ arguments; for now, we’ll ignore that situation and work on adding file-readin
 capabilities instead.
 
 [ch13]: ch13-00-functional-features.html
-[ch7-idiomatic-use]: ch07-04-bringing-paths-into-scope-with-the-use-keyword.html#creating-idiomatic-use-paths
+[ch7-idiomatic-use]: ch07-04-bringing-paths-into-scope-with-the-use-keyword.html#creare-percorsi-use-idiomatici

@@ -9,9 +9,8 @@ compilatore di solito può dedurre quale _type_ vogliamo utilizzare in base al
 valore e al modo in cui lo utilizziamo. Nei casi in cui sono possibili
 molteplici _type_, come quando abbiamo convertito uno `String` in un _type_
 numerico usando `parse` nella sezione ["Confrontare l'ipotesi con il numero
-segreto"][confrontare-lipotesi-con-il-numero-segreto]<!-- ignore --> del
-Capitolo 2, dobbiamo aggiungere un'annotazione, specificando il _type_ in questo
-modo:
+segreto"][numero-segreto]<!-- ignore --> del Capitolo 2, dobbiamo aggiungere
+un'annotazione, specificando il _type_ in questo modo:
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/output-only-01-no-type-annotations/src/main.rs:main}}
@@ -108,7 +107,7 @@ _type integer_ di default è `i32`. La situazione principale in cui puoi usare
 > fase di esecuzione se si verifica questo comportamento. Rust usa il termine
 > _panic_ quando un programma termina con un errore; parleremo in modo più
 > approfondito di _panic_ nella sezione ["Errori irrecuperabili con
-> `panic!`"][errori-irrecuperabili-con-panic]<!-- ignore --> nel Capitolo 9.
+> `panic!`"][panic]<!-- ignore --> nel Capitolo 9.
 > Quando si compila in modalità release con il flag `--release`, Rust _non_
 > include i controlli per l'overflow degli integer che causano il _panic_.
 > Invece, se si verifica l'overflow, Rust esegue l'_avvolgimento del complemento
@@ -386,18 +385,17 @@ Questo è un esempio dei principi di sicurezza della memoria di Rust in azione.
 In molti linguaggi di basso livello, questo tipo di controllo non viene fatto e
 quando si fornisce un indice errato, si può accedere a una memoria non valida.
 Rust ti protegge da questo tipo di errore uscendo immediatamente invece di
-consentire l'accesso alla memoria e continuare. Il [Capitolo
-9][errori-irrecuperabili-con-panic] tratta di altri aspetti della gestione degli
-errori di Rust e di come puoi scrivere codice leggibile e sicuro che non va in
-_panic_ né consente l'accesso non valido alla memoria.
+consentire l'accesso alla memoria e continuare. Il [Capitolo 9][panic] tratta di
+altri aspetti della gestione degli errori di Rust e di come puoi scrivere codice
+leggibile e sicuro che non va in _panic_ né consente l'accesso non valido alla
+memoria.
 
-[confrontare-lipotesi-con-il-numero-segreto]:
-    ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
+[numero-segreto]: ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
 [complemento-a-due]: https://it.wikipedia.org/wiki/Complemento_a_due
 [ieee-754]: https://it.wikipedia.org/wiki/IEEE_754
 [control-flow]: ch03-05-control-flow.html#controllo-del-flusso
-[strings]: ch08-02-strings.html#storing-utf-8-encoded-text-with-strings
+[strings]: ch08-02-strings.html#memorizzazione-di-testo-codificato-utf-8-con-stringhe
 [stack-and-heap]: ch04-01-what-is-ownership.html#lo-stack-e-lheap
 [vectors]: ch08-01-vectors.html
-[errori-irrecuperabili-con-panic]: ch09-01-unrecoverable-errors-with-panic.html
+[panic]: ch09-01-unrecoverable-errors-with-panic.html
 [appendice_b]: appendix-02-operators.md

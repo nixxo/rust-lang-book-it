@@ -24,4 +24,4 @@ vedere [la documentazione][collections].
 Discuteremo come creare e aggiornare vettori, stringhe e mappe hash, nonché
 cosa rende ciascuna di esse speciale.
 
-[collezioni]: ../std/collections/index.html
+[collections]: https://doc.rust-lang.org/stable/std/collections/index.html

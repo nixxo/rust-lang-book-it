@@ -960,17 +960,14 @@ linguaggi. Il Capitolo 5 parla delle strutture e della sintassi dei metodi,
 mentre il Capitolo 6 spiega come funzionano gli _enum_.
 
 [prelude]: https://doc.rust-lang.org/stable/std/prelude/index.html
-[variables-and-mutability]:
-    ch03-01-variables-and-mutability.html#variabili-e-mutabilità
+[variables-and-mutability]: ch03-01-variables-and-mutability.html#variabili-e-mutabilità
 [comments]: ch03-04-comments.html
 [string]: https://doc.rust-lang.org/stable/std/string/struct.String.html
 [iostdin]: https://doc.rust-lang.org/stable/std/io/struct.Stdin.html
-[read_line]:
-    https://doc.rust-lang.org/stable/std/io/struct.Stdin.html#method.read_line
+[read_line]: https://doc.rust-lang.org/stable/std/io/struct.Stdin.html#method.read_line
 [result]: https://doc.rust-lang.org/stable/std/result/enum.Result.html
 [enums]: ch06-00-enums.html
-[expect]:
-    https://doc.rust-lang.org/stable/std/result/enum.Result.html#method.expect
+[expect]: https://doc.rust-lang.org/stable/std/result/enum.Result.html#method.expect
 [recover]: ch09-02-recoverable-errors-with-result.html
 [randcrate]: https://crates.io/crates/rand
 [semver]: https://semver.org/lang/it/

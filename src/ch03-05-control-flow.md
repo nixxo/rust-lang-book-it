@@ -30,8 +30,7 @@ meno un valore inferiore a 5. Il blocco di codice da eseguire se la condizione Ã
 graffe. I blocchi di codice associati alle condizioni nelle espressioni `if`
 possono esser viste come dei _rami_, proprio come i _rami_ nelle espressioni
 `match` di cui abbiamo parlato nella sezione ["Confrontare l'ipotesi con il
-numero segreto"][confrontare-lipotesi-con-il-numero-segreto]<!-- ignore --> del
-Capitolo 2.
+numero segreto"][numero-segreto]<!-- ignore --> del Capitolo 2.
 
 Opzionalmente, possiamo anche includere un'espressione `else` (`altrimenti` in
 italiano), come abbiamo scelto di fare in questo caso, per dare al programma un
@@ -230,9 +229,8 @@ Fortunatamente, Rust offre anche un modo per uscire da un ciclo utilizzando del
 codice. Puoi inserire la parola chiave `break` all'interno del ciclo per
 indicare al programma quando interrompere l'esecuzione del ciclo. Ricorda che
 abbiamo fatto questo nel gioco di indovinelli nella sezione ["Uscita dopo
-un'ipotesi corretta"][uscita-dopo-unipotesi-corretta]<!-- ignore --> del
-Capitolo 2 per uscire dal programma quando l'utente indovinava il numero
-segreto.
+un'ipotesi corretta"][ipotesi-corretta]<!-- ignore --> del Capitolo 2 per uscire
+dal programma quando l'utente indovinava il numero segreto.
 
 Nel gioco di indovinelli abbiamo usato anche `continue`, che in un ciclo indica
 al programma di saltare tutto il codice rimanente in questa iterazione del ciclo
@@ -404,7 +402,5 @@ operazioni:
 Quando sarai pronto per andare avanti, parleremo di un concetto di Rust che non
 esiste in altri linguaggi di programmazione: la _ownership_.
 
-[confrontare-lipotesi-con-il-numero-segreto]:
-    ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
-[uscita-dopo-unipotesi-corretta]:
-    ch02-00-guessing-game-tutorial.html#uscita-dopo-unipotesi-corretta
+[numero-segreto]: ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
+[ipotesi-corretta]: ch02-00-guessing-game-tutorial.html#uscita-dopo-unipotesi-corretta

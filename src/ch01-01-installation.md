@@ -170,8 +170,7 @@ comando, puoi aggiungere il flag `--offline` quando userai il comando `cargo`
 nel resto del libro per utilizzare queste versioni memorizzate nella cache
 invece di scaricarle da internet in quel momento.
 
-[otherinstall]:
-    https://forge.rust-lang.org/infra/other-installation-methods.html
+[otherinstall]: https://forge.rust-lang.org/infra/other-installation-methods.html
 [install]: https://www.rust-lang.org/tools/install
 [msvc]: https://rust-lang.github.io/rustup/installation/windows-msvc.html
 [community]: https://www.rust-lang.org/community

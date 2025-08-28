@@ -133,15 +133,15 @@ codificato deve essere aggiornato in futuro.
 ### Shadowing
 
 Come hai visto nel tutorial sul gioco dell'indovinello nel [Capitolo
-2][confrontare-lipotesi-con-il-numero-segreto]<!-- ignore -->, puoi dichiarare
-una nuova variabile con lo stesso nome di una variabile precedente. I Rustaceans
-dicono che la prima variabile è _messa in ombra_, _shadowing_, dalla seconda, il
-che significa che la seconda variabile è quella che il compilatore vedrà quando
-userai il nome della variabile. In effetti, la seconda variabile mette in ombra
-la prima, portando a sé qualsiasi uso del nome della variabile fino a quando non
-sarà essa stessa messa in ombra o lo _scope_ terminerà. Possiamo fare
-_shadowing_ di una variabile usando lo stesso nome della variabile e ripetendo
-l'uso della parola chiave `let` come segue:
+2][numero-segreto]<!-- ignore -->, puoi dichiarare una nuova variabile con lo
+stesso nome di una variabile precedente. I Rustaceans dicono che la prima
+variabile è _messa in ombra_, _shadowing_, dalla seconda, il che significa che
+la seconda variabile è quella che il compilatore vedrà quando userai il nome
+della variabile. In effetti, la seconda variabile mette in ombra la prima,
+portando a sé qualsiasi uso del nome della variabile fino a quando non sarà essa
+stessa messa in ombra o lo _scope_ terminerà. Possiamo fare _shadowing_ di una
+variabile usando lo stesso nome della variabile e ripetendo l'uso della parola
+chiave `let` come segue:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -198,9 +198,7 @@ L'errore dice che non è consentito mutare il _type_ di una variabile:
 Ora che abbiamo visto il funzionamento delle variabili, passiamo in rassegna le
 varie tipologie di dato, _type_, che possono essere.
 
-[confrontare-lipotesi-con-il-numero-segreto]:
-    ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
+[numero-segreto]: ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
 [data-types]: ch03-02-data-types.html#datatype---tipi-di-dato
-[memorizzare-i-valori-con-le-variabili]:
-    ch02-00-guessing-game-tutorial.html#memorizzare-i-valori-con-le-variabili
+[memorizzare-i-valori-con-le-variabili]: ch02-00-guessing-game-tutorial.html#memorizzare-i-valori-con-le-variabili
 [const-eval]: https://doc.rust-lang.org/stable/reference/const_eval.html

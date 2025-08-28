@@ -1,4 +1,4 @@
-## Memorizzazione di TestoCcodificato UTF-8 con Stringhe
+## Memorizzazione di Testo Codificato UTF-8 con Stringhe
 
 Abbiamo parlato delle stringhe nel Capitolo 4, ma ora le analizzeremo più approfonditamente.
 I nuovi utenti di Rustacean spesso si bloccano sulle stringhe per una combinazione di tre

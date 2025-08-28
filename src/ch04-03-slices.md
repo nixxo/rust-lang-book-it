@@ -339,8 +339,7 @@ L'_ownership_ influisce su come molte altre parti di Rust funzionano, quindi
 parleremo di questi concetti ulteriormente nel resto del libro. Passiamo al
 Capitolo 5 e vediamo come raggruppare pezzi di dati insieme in una `struct`.
 
-[ch13]: ch13-02-iterators.html  
+[ch13]: ch13-02-iterators.html
 [ch6]: ch06-02-match.html#pattern-che-si-legano-ai-valori
-[strings]: ch08-02-strings.html#storing-utf-8-encoded-text-with-strings  
-[deref-coercions]:
-    ch15-02-deref.html#de-referenziazione-forzata-implicita-in-funzioni-e-metodi
+[strings]: ch08-02-strings.html#memorizzazione-di-testo-codificato-utf-8-con-stringhe
+[deref-coercions]: ch15-02-deref.html#de-referenziazione-forzata-implicita-in-funzioni-e-metodi

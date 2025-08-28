@@ -250,7 +250,7 @@ valido.
 
 Passiamo al tipo di raccolta successivo: `String`!
 
-[tipi-dati]: ch03-02-tipi-dati.html#tipi-dati
-[nomicon]: ../nomicon/vec/vec.html
-[vec-api]: ../std/vec/struct.Vec.html
+[data-types]: ch03-02-tipi-dati.html#tipi-dati
+[nomicon]: https://doc.rust-lang.org/stable/nomicon/vec/vec.html
+[vec-api]: https://doc.rust-lang.org/stable/std/vec/struct.Vec.html
 [deref]: ch15-02-deref.html#seguire-il-puntatore-al-valore-con-l'operatore-di-dereferenziazione

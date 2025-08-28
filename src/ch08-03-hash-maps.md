@@ -206,7 +206,7 @@ con un calo delle prestazioni, ne vale la pena. Se si profila il codice e si sco
 è troppo lenta per i propri scopi, è possibile passare a un'altra funzione
 specificando un hasher diverso. Un _hasher_ è un tipo che implementa il
 tratto `BuildHasher`. Parleremo dei tratti e di come implementarli nel
-[Capitolo 10][tratti]<!-- ignore -->. Non è necessario implementare
+[Capitolo 10][traits]<!-- ignore -->. Non è necessario implementare
 il proprio hasher da zero; [crates.io](https://crates.io/)<!-- ignore -->
 offre librerie condivise da altri utenti Rust che forniscono hasher che implementano molti
 algoritmi di hashing comuni.
