@@ -311,7 +311,7 @@ il tipo di ritorno specificato come `impl Sommario` non funzionerebbe:
 
 Restituire un `ArticoloNews` o un `SocialPost` non è consentito a causa
 di restrizioni relative all'implementazione della sintassi `impl Trait` nel compilatore. Spiegheremo come scrivere una funzione con questo comportamento nella sezione [“Utilizzo di oggetti tratto che consentono valori di tipi
-diversi”][using-trait-objects-that-allow-for-values-of-different-types]<!-- ignore
+diversi”][using-trait-objects]<!-- ignore
 --> del Capitolo 18.
 
 ### Utilizzo di Vincoli di Tratto per Implementare Metodi in Modo Condizionale
@@ -368,5 +368,5 @@ prima ancora che il nostro codice possa essere eseguito. Inoltre, non dobbiamo s
 che verifichi il comportamento a runtime, perché abbiamo già verificato in fase di compilazione. Ciò migliora le prestazioni senza dover rinunciare alla flessibilità
 dei tipi generici.
 
-[utilizzo-di-oggetti-caratteristica-che-consentono-valori-di-tipi-diversi]: ch18-02-oggetti-caratteristica.html#utilizzo-di-oggetti-caratteristica-che-consentono-valori-di-tipi-diversi
-[metodi]: ch05-03-sintassi-del-metodo.html#definire-i-metodi
+[using-trait-objects]: ch18-02-trait-objects.html#utilizzo-di-oggetti-caratteristica-che-consentono-valori-di-tipi-diversi
+[methods]: ch05-03-method-syntax.html#definire-i-metodi
