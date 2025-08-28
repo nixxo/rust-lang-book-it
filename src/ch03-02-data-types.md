@@ -1,4 +1,4 @@
-## Datatype - Tipi di dato
+## Datatype - Tipi di Dato
 
 Ogni valore in Rust è di un determinato _type_, il che dice a Rust che tipo di
 dati vengono specificati in modo che sappia come lavorare con quei dati.
@@ -147,7 +147,7 @@ Ecco un esempio che mostra i numeri in virgola mobile in azione:
 I numeri in virgola mobile sono rappresentati secondo lo standard
 [IEEE-754][ieee-754]<!-- ignore -->.
 
-#### Operazioni numeriche
+#### Operazioni Numeriche
 
 Rust supporta le operazioni matematiche di base che ti aspetteresti per tutte le
 tipologie di numero: addizione, sottrazione, moltiplicazione, divisione e resto.
@@ -325,7 +325,7 @@ L'array chiamato `a` conterrà `5` elementi che saranno tutti impostati
 inizialmente al valore `3`. Questo equivale a scrivere `let a = [3, 3, 3, 3,
 3];` ma in modo più conciso.
 
-##### Accesso agli elementi dell'array
+##### Accesso Agli Elementi dell'Array
 
 Un array è un singolo blocco di memoria di dimensione fissa e nota che può
 essere allocato nello _stack_. Puoi accedere agli elementi di un array
@@ -341,7 +341,7 @@ In questo esempio, la variabile denominata `primo` otterrà il valore `1` perch�
 è il valore all'indice `[0]` dell'array. La variabile denominata `secondo`
 otterrà il valore `2` dall'indice `[1]` dell'array.
 
-##### Accesso all'elemento dell'array non valido
+##### Accesso All'Elemento Non Valido dell'Array
 
 Vediamo cosa succede se cerchi di accedere a un elemento di un array che si
 trova oltre la fine dell'array stesso. Supponiamo di eseguire questo codice,

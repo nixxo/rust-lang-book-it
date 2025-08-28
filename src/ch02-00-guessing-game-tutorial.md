@@ -1,4 +1,4 @@
-# Programmare un gioco di indovinelli
+# Programmare un Gioco di Indovinelli
 
 Cominciamo a programmare in Rust lavorando insieme a un progetto pratico! Questo
 capitolo ti introduce ad alcuni concetti comuni di Rust mostrandoti come
@@ -14,7 +14,7 @@ Dopo aver inserito un'ipotesi, il programma indicherà se l'ipotesi è troppo
 bassa o troppo alta. Se l'ipotesi è corretta, il gioco stamperà un messaggio di
 congratulazioni e terminerà.
 
-## Impostazione di un nuovo progetto
+## Impostazione di un Nuovo Progetto
 
 Per creare un nuovo progetto, vai nella cartella _progetti_ che hai creato nel
 Capitolo 1 e crea un nuovo progetto con Cargo, in questo modo:
@@ -67,7 +67,7 @@ di passare alla successiva.
 
 Riapri il file _src/main.rs_. In questo file scriverai tutto il codice.
 
-## Elaborazione di un'ipotesi
+## Elaborazione di un'Ipotesi
 
 La prima parte del programma del gioco di indovinelli richiederà l'input
 dell'utente, lo elaborerà e verificherà che l'input sia nella forma prevista.
@@ -122,7 +122,7 @@ stringa sullo schermo:
 Questo codice stampa un messaggio che introduce il gioco e richiede un input da
 parte dell'utente.
 
-### Memorizzare i valori con le Variabili
+### Memorizzare i Valori con le Variabili
 
 Successivamente, creeremo una _variabile_ per memorizzare l'input dell'utente,
 in questo modo:
@@ -173,7 +173,7 @@ una funzione che crea un nuovo valore di qualche tipo.
 In pratica, la linea `let mut ipotesi = String::new();` ha creato una variabile
 _mutable_ che è attualmente legata a una nuova istanza vuota di `String`. Wow!
 
-### Ricevere l'input dell'utente
+### Ricevere l'Input dell'Utente
 
 Ricordiamo che abbiamo incluso le funzionalità di input/output della libreria
 standard con `use std::io;` nella prima riga del programma. Ora chiameremo la
@@ -214,7 +214,7 @@ _reference_ in modo più approfondito)
 <!-- Old heading. Do not remove or links may break. -->
 <a id="handling-potential-failure-with-the-result-type"></a>
 
-### Gestione dei potenziali errori con `Result`
+### Gestione dei Potenziali Errori con `Result`
 
 Stiamo ancora lavorando su questa riga di codice. Ora stiamo discutendo di una
 terza riga di testo, ma notiamo che fa ancora parte di un'unica riga logica di
@@ -276,7 +276,7 @@ problema mandare in crash il programma quando si verifica un problema, quindi
 possiamo usare `expect`. Imparerai a recuperare dagli errori nel [Capitolo
 9][recover]<!-- ignore -->.
 
-### Stampa di valori con i Segnaposto in `println!`
+### Stampa di Valori con i Segnaposto in `println!`
 
 A parte la parentesi graffa di chiusura, c'è un'ultima riga da discutere nel
 codice:
@@ -305,7 +305,7 @@ println!("x = {x} e y + 2 = {}", y + 2);
 
 Questo codice produrrà `x = 5 e y + 2 = 12`.
 
-### Proviamo la prima parte
+### Proviamo la Prima Parte
 
 Proviamo la prima parte del gioco di indovinelli utilizzando `cargo run`:
 
@@ -329,7 +329,7 @@ Hai ipotizzato: 6
 A questo punto, la prima parte del gioco è terminata: stiamo ricevendo input
 dalla tastiera e poi li stiamo stampando.
 
-## Generare un numero segreto
+## Generare un Numero Segreto
 
 Ora dobbiamo generare un numero segreto che l'utente cercherà di indovinare. Il
 numero segreto dovrebbe essere diverso ogni volta, in modo da rendere il gioco
@@ -338,7 +338,7 @@ divertente più di una volta. Utilizzeremo un numero casuale compreso tra 1 e
 funzionalità dei numeri casuali nella sua libreria standard, ma il team di Rust
 fornisce un [_crate_ `rand`][randcrate] con tale funzionalità.
 
-### Utilizzare un _crate_ per ottenere maggiori funzionalità
+### Utilizzare un _Crate_ per Ottenere Maggiori Funzionalità
 
 Ricorda che un _crate_ è una raccolta di file di codice sorgente in Rust. Il
 progetto che stiamo costruento è un _crate binario_, cioè un eseguibile. Il
@@ -459,7 +459,7 @@ Queste righe mostrano che Cargo ricompila solo le modifiche, il file
 _src/main.rs_. Le dipendenze non sono cambiate, quindi Cargo sa di poter
 riutilizzare ciò che ha già scaricato e compilato in precedenza.
 
-#### Garanzia di build riproducibili con il file _Cargo.lock
+#### Garanzia di Build Riproducibili con il File _Cargo.lock_
 
 Cargo ha un meccanismo che ti garantisce di ricostruire lo stesso artefatto ogni
 volta che tu o chiunque altro costruisce il tuo codice: Cargo utilizzerà solo le
@@ -480,7 +480,7 @@ aggiornamento esplicito, grazie al file _Cargo.lock_. Poiché il file
 _Cargo.lock_ è importante per la creazione di build riproducibili, spesso viene
 inserito nel controllo sorgente insieme al resto del codice del progetto.
 
-#### Aggiornare un _crate_ per ottenere una nuova versione
+#### Aggiornare un _crate_ per Ottenere una Nuova Versione
 
 Quando _vuoi_ aggiornare un _crate_, Cargo mette a disposizione il comando
 `update`, che ignorerà il file _Cargo.lock_ e troverà tutte le ultime versioni
@@ -524,7 +524,7 @@ per ora questo è tutto ciò che devi sapere. Cargo rende molto facile il
 riutilizzo delle librerie, per cui i Rustaceans sono in grado di scrivere
 progetti più piccoli che sono assemblati da una serie di pacchetti.
 
-### Generare un numero casuale
+### Generare un Numero Casuale
 
 Iniziamo a usare `rand` per generare un numero da indovinare. Il passo
 successivo è aggiornare _src/main.rs_, come mostrato nel Listato 2-3.
@@ -600,7 +600,7 @@ Hai ipotizzato: 5
 Dovresti ottenere diversi numeri casuali, tutti compresi tra 1 e 100. Ottimo
 lavoro!
 
-## Confrontare l'ipotesi con il numero segreto
+## Confrontare l'Ipotesi con il Numero Segreto
 
 Ora che abbiamo l'input dell'utente e un numero casuale, possiamo confrontarli.
 Questo passo è mostrato nel Listato 2-4. Nota che questo codice non è
@@ -776,7 +776,7 @@ basso.
 Ora la maggior parte del gioco funziona, ma l'utente può fare una sola ipotesi.
 Cambiamo questa situazione aggiungendo un ciclo!
 
-## Consentire più ipotesi con la ripetizione
+## Consentire Più Ipotesi con la Ripetizione
 
 La parola chiave `loop` (ndt: _ripetere_) crea un ciclo infinito. Aggiungeremo
 un ciclo per dare agli utenti più possibilità di indovinare il numero:
@@ -842,7 +842,7 @@ Digitando `esci` chiude il gioco, ma come noterai, anche l'inserimento di
 qualsiasi altro input che non sia un numero. Questo è a dir poco subottimale:
 vogliamo che il gioco si fermi anche quando viene indovinato il numero corretto.
 
-### Uscita dopo un'ipotesi corretta
+### Uscita Dopo un'Ipotesi Corretta
 
 Programmiamo il gioco in modo che esca quando l'utente vince, aggiungendo
 un'istruzione `break` (ndt: _uscita_):
@@ -858,7 +858,7 @@ dal ciclo quando l'utente indovina correttamente il numero segreto. Uscire dal
 ciclo significa anche uscire dal programma, perché il ciclo è l'ultima parte di
 `main`.
 
-### Gestione degli input non validi
+### Gestione Degli Input Non Validi
 
 Per perfezionare ulteriormente il comportamento del gioco, invece di mandare in
 crash il programma quando l'utente non inserisce un numero valido, facciamo in

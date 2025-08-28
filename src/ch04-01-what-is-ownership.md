@@ -97,7 +97,7 @@ mentre lavoriamo agli esempi che le illustrano:
 - Ci può essere un solo _owner_ alla volta.
 - Quando l'_owner_ esce dallo _scope_, il valore viene rilasciato.
 
-### _Scope_ delle variabili
+### _Scope_ delle Variabili
 
 Ora che abbiamo visto e imparato la sintassi di base di Rust, non includeremo
 tutto il codice `fn main() {` negli esempi, quindi se stai seguendo, assicurati
@@ -187,7 +187,7 @@ Allora, qual è la differenza? Perché `String` può essere mutata ma i letteral
 no? La differenza sta nel modo in cui questi due _type_ vengono gestiti in
 memoria.
 
-### Memoria e allocazione
+### Memoria e Allocazione
 
 Nel caso di un letterale di stringa, conosciamo il contenuto al momento della
 compilazione, quindi il testo è codificato direttamente nell'eseguibile finale.
@@ -419,7 +419,7 @@ Quando vedi una chiamata a `clone`, sai che viene eseguito del codice arbitrario
 e che questo potrebbe essere dispendioso. È un indicatore visivo del fatto che
 sta succedendo qualcosa di diverso.
 
-#### Duplicazione di dati sullo _Stack_
+#### Duplicazione di Dati Sullo _Stack_
 
 C'è un'altra peculiarità di cui non abbiamo ancora parlato: questo codice che
 utilizza gli _integer_, in parte mostrato nel Listato 4-2, funziona ed è valido
@@ -491,7 +491,7 @@ proteggono dagli errori. Prova ad aggiungere del codice a `main` che usi `s` e
 `x` per sperimentare dove puoi usarli e dove le regole di _ownership_ te lo
 impediscono.
 
-### Valori di ritorno e _Scope_
+### Valori di Ritorno e _Scope_
 
 I valori di ritorno possono anch'essi trasferire la _ownership_. Il Listato 4-4
 mostra un esempio di funzione che restituisce un valore, con annotazioni simili

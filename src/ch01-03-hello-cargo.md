@@ -30,7 +30,7 @@ visualizzato un errore, come ad esempio `comando non trovato`, consulta la
 documentazione relativa al tuo metodo di installazione per determinare come
 installare Cargo separatamente.
 
-### Creare un progetto con Cargo
+### Creare un Progetto con Cargo
 
 Creiamo un nuovo progetto utilizzando Cargo e vediamo come si differenzia dal
 nostro progetto originale "Hello, world!". Torna alla tua cartella _progetti_ (o
@@ -127,7 +127,7 @@ nella directory _src_ e crea un file _Cargo.toml_ appropriato. Un modo semplice
 per ottenere il file _Cargo.toml_ è eseguire `cargo init`, che lo creerà
 automaticamente.
 
-### Costruire e eseguire un progetto Cargo
+### Costruire e Eseguire un Progetto Cargo
 
 Ora vediamo cosa cambia quando costruiamo ed eseguiamo il programma "Hello,
 world!" con Cargo! Dalla cartella _hello_cargo_, costruisci il tuo progetto
@@ -235,7 +235,7 @@ fare un benchmark del tempo di esecuzione del tuo codice, assicurati di eseguire
 `cargo build --release` e di fare il benchmark con l'eseguibile in
 _target/release_.
 
-### Cargo come convenzione
+### Cargo come Convenzione
 
 Con i progetti semplici, Cargo non offre molti vantaggi rispetto all'uso di
 `rustc`, ma si dimostrerà utile quando i tuoi programmi diventeranno più

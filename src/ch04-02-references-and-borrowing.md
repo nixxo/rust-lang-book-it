@@ -88,7 +88,7 @@ Così come le variabili sono immutabili come impostazione predefinita, lo sono
 anche i _reference_. Non possiamo modificare qualcosa a cui abbiamo solo un
 riferimento.
 
-### _Reference_ mutabili
+### _Reference_ Mutabili
 
 Possiamo correggere il codice del Listato 4-6 per permetterci di modificare un
 valore preso in prestito con alcune piccole modifiche che utilizzano, invece, un
@@ -197,7 +197,7 @@ di compilazione e non in fase di esecuzione) e a mostrarti esattamente dove si
 trova il problema. In questo modo non dovrai cercare di capire perché i tuoi
 dati non sono quelli che pensavi fossero quando il programma è in esecuzione.
 
-### _Reference_ pendenti
+### _Reference_ Pendenti
 
 Nei linguaggi con puntatori, è facile creare erroneamente un _puntatore
 pendente_, cioé un puntatore che fa riferimento a una posizione in memoria non
@@ -264,7 +264,7 @@ La soluzione è restituire direttamente la `String`:
 Questo funziona senza problemi: la _ownership_ viene spostata all'esterno e non
 viene rialssciato nulla.
 
-### Le regole dei _reference_
+### Le Regole dei _Reference_
 
 Ricapitoliamo quello che abbiamo detto sui _reference_:
 

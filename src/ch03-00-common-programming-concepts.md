@@ -1,4 +1,4 @@
-# Concetti comuni di programmazione
+# Concetti Comuni di Programmazione
 
 Questo capitolo tratta i concetti che appaiono in quasi tutti i linguaggi di
 programmazione e come funzionano in Rust. Molti linguaggi di programmazione
@@ -11,7 +11,7 @@ funzioni, i commenti e le strutture di controllo. Questi fondamenti saranno
 presenti in ogni programma di Rust e impararli presto ti darà una base solida da
 cui partire.
 
-> #### Parole chiave
+> #### Parole Chiave
 >
 > Il linguaggio Rust ha una serie di _parole chiave_ che sono riservate all'uso
 > esclusivo del linguaggio, proprio come in altri linguaggi. Tieni presente che

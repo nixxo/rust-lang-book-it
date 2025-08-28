@@ -9,7 +9,7 @@ di una _struct_ (o di un _enum_ o di un _trait object_, che tratteremo nel
 -->, rispettivamente), e il loro primo parametro è sempre `self`, che
 rappresenta l’istanza della _struct_ su cui il metodo viene chiamato.
 
-### Definire i metodi
+### Definire i Metodi
 
 Trasformiamo la funzione `area` che prende un’istanza di `Rettangolo` come
 parametro rendendola invece un metodo definito sulla _struct_ `Rettangolo`, come
@@ -93,7 +93,7 @@ quel campo come parte dell’API pubblica del _type_. Discuteremo cosa sono
 pubblico e privato e come designare un campo o un metodo come pubblico o privato
 nel [Capitolo 7][public]<!-- ignore -->.
 
-> ### Dov’è l’operatore `->`?
+> ### Dov’è l’Operatore `->`?
 > 
 > In C e C++ si usano due operatori diversi per accedere ai membri: si usa `.`
 > quando si lavora direttamente con un oggetto, e `->` quando si lavora con un
@@ -142,7 +142,7 @@ nel [Capitolo 7][public]<!-- ignore -->.
 > _borrowing_ per i _receiver_ dei metodi è una parte importante per rendere
 > l’_ownership_ ergonomica nella pratica.
 
-### Metodi con più parametri
+### Metodi con Più Parametri
 
 Esercitiamoci ad usare i metodi implementando un secondo metodo sulla _struct_
 `Rettangolo`. Questa volta vogliamo che un’istanza di `Rettangolo` prenda
@@ -196,7 +196,7 @@ otterremo l’output desiderato. I metodi possono prendere parametri multipli ch
 aggiungiamo alla firma dopo il parametro `self`, e quei parametri funzionano
 proprio come i parametri nelle funzioni.
 
-### Funzioni associate
+### Funzioni Associate
 
 Tutte le funzioni definite all’interno di un blocco `impl` sono chiamate
 _funzioni associate_ (_associated functions_) perché sono associate al _type_

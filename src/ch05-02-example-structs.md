@@ -1,4 +1,4 @@
-## Un esempio di programma che usa _Struct_
+## Un Esempio di Programma che Usa _Struct_
 
 Per capire quando potremmo voler usare le _struct_, scriviamo un programma che
 calcola l'area di un rettangolo. Partiremo usando variabili singole e poi
@@ -40,7 +40,7 @@ più gestibile raggruppare larghezza e altezza insieme. Abbiamo già discusso un
 modo per farlo nella sezione [“Il _Type_ Tuple”][the-tuple-type]<!-- ignore -->
 del Capitolo 3: usando le _tuple_.
 
-### Riscrittura con le _tuple_
+### Riscrittura con le _Tuple_
 
 Il Listato 5-9 mostra un'altra versione del nostro programma che usa le _tuple_.
 
@@ -102,7 +102,7 @@ campi `larghezza` e `altezza`. Questo comunica che larghezza e altezza sono
 correlate tra loro e fornisce nomi descrittivi ai valori invece di usare gli
 indici della _tuple_ `0` e `1`. Questo è un vantaggio in termini di chiarezza.
 
-### Aggiungere funzionalità utili con i _trait_ derivati
+### Aggiungere Funzionalità Utili con i _Trait_ Derivati
 
 Sarebbe utile poter stampare un'istanza di `Rettangolo` mentre eseguiamo il
 debug del nostro programma e vedere i valori di tutti i suoi campi. Il Listato

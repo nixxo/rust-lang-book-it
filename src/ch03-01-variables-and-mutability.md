@@ -1,4 +1,4 @@
-## Variabili e mutabilità
+## Variabili e Mutabilità
 
 Come accennato nella sezione ["Memorizzare i valori con le
 Variabili"][memorizzare-i-valori-con-le-variabili]<!-- ignore -->, come

@@ -85,7 +85,7 @@ scorciatoia!
 <!-- Old heading. Do not remove or links may break. -->
 <a id="using-the-field-init-shorthand-when-variables-and-fields-have-the-same-name"></a>
 
-### Utilizzo della sintassi abbreviata di inizializzazione
+### Utilizzo della Sintassi Abbreviata di Inizializzazione
 
 Poiché i nomi dei parametri e i nomi dei campi della _struct_ sono esattamente
 gli stessi, possiamo usare la sintassi di inizializzazione abbreviata dei campi

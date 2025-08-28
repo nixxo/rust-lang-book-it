@@ -1,7 +1,7 @@
 <!-- Old heading. Do not remove or links may break. -->
 <a id="the-match-control-flow-operator"></a>
 
-## Controllo del Flusso col costrutto `Match`
+## Controllo del Flusso col Costrutto `Match`
 
 Rust offre un costrutto di controllo del flusso estremamente potente chiamato
 `match` (_corrisponde_, _combacia_) che permette di confrontare un valore con
@@ -68,7 +68,7 @@ stampa “Penny fortunato!” ogni volta che il metodo viene chiamato con una
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-08-match-arm-multiple-lines/src/main.rs:here}}
 ```
 
-### _Pattern_ che si legano ai valori
+### _Pattern_ che Si Legano ai Valori
 
 Un’altra caratteristica utile dei rami del `match` è che possono legarsi alle
 parti dei valori che corrispondono al _pattern_. È così che possiamo estrarre
@@ -174,7 +174,7 @@ interni e poi esegui codice basato su di essi. All’inizio è un po’ ostico, 
 una volta che ci prendi la mano vorrai averlo in tutti i linguaggi. È un
 costrutto tra i preferiti dagli utenti.
 
-### Le corrispondenxe sono esaustive
+### Le Corrispondenze sono Esaustive
 
 C’è un altro aspetto di `match` da discutere: i _pattern_ dei rami devono
 coprire tutte le possibilità. Considera questa versione della nostra funzione

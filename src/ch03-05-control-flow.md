@@ -1,4 +1,4 @@
-## Controllo del flusso
+## Controllo del Flusso
 
 La possibilità di eseguire del codice a seconda che una condizione sia `vera` e
 di eseguire ripetutamente del codice finché una data condizione è `vera` sono
@@ -6,7 +6,7 @@ elementi fondamentali della maggior parte dei linguaggi di programmazione. I
 costrutti più comuni che ti permettono di controllare il flusso di esecuzione
 del codice in Rust sono le espressioni `if` e i cicli.
 
-### L'espressione `if`
+### L'Espressione `if`
 
 Un'espressione `if` (`se` in italiano) ti permette di ramificare il tuo codice a
 seconda delle condizioni. Fornisci una condizione e poi dici: "Se questa
@@ -90,7 +90,7 @@ modo:
 
 L'esecuzione di questo codice stamperà `numero era qualcosa di diverso da zero`.
 
-#### Gestione di condizioni multiple con `else if`
+#### Gestione di Condizioni Multiple con `else if`
 
 Puoi utilizzare condizioni multiple combinando `if` e `else` in un'espressione
 `else if`. Ad esempio:
@@ -119,7 +119,7 @@ e difficile da leggere, quindi se ne hai più di una, potresti valutare di
 riscrivere il codice. Il Capitolo 6 descrive un potente costrutto di
 ramificazione di Rust chiamato `match` per gestire casi del genere.
 
-#### Utilizzo di `if` in una dichiarazione `let`
+#### Utilizzo di `if` in Una Dichiarazione `let`
 
 Dato che `if` è un'espressione, possiamo usarla a destra di una dichiarazione
 `let` per assegnare il risultato a una variabile, come nel Listato 3-2.
@@ -171,7 +171,7 @@ si utilizzi `numero`. Rust non sarebbe in grado di farlo se il _type_ di
 più complesso e darebbe meno garanzie sul codice se dovesse tenere traccia dei
 più disparati _type_ possibili per ogni variabile.
 
-### Ripetizione con i cicli
+### Ripetizione con i Cicli
 
 Spesso è utile eseguire un blocco di codice più di una volta. Per questo
 compito, Rust mette a disposizione diversi _cicli_ (_loop_ in inglese), che
@@ -182,7 +182,7 @@ nuovo progetto chiamato _cicli_.
 Rust mette a disposizione tre tipologie di ciclo: `loop`, `while` e `for`.
 Proviamo ciascuno di essi.
 
-#### Ripetizione del codice con `loop`
+#### Ripetizione del Codice con `loop`
 
 La parola chiave `loop` dice a Rust di eseguire un blocco di codice più e più
 volte per sempre o finché non gli dici esplicitamente di fermarsi.
@@ -236,7 +236,7 @@ Nel gioco di indovinelli abbiamo usato anche `continue`, che in un ciclo indica
 al programma di saltare tutto il codice rimanente in questa iterazione del ciclo
 e di passare all'iterazione successiva.
 
-#### Restituzione di valori dai cicli
+#### Restituzione di Valori dai Cicli
 
 Uno degli utilizzi di un `loop` è quello di riprovare un'operazione che sai che
 potrebbe fallire, come ad esempio controllare se un _thread_ ha completato il
@@ -261,7 +261,7 @@ l'istruzione che assegna il valore a `risultato`. Infine, stampiamo il valore in
 Puoi anche usare `return` all'interno di un ciclo. Mentre `break` esce solo dal
 ciclo corrente, `return` esce sempre dalla funzione corrente.
 
-#### Etichette di loop per distinguere tra cicli multipli
+#### Etichette di Loop per Distinguere tra Cicli Multipli
 
 Se hai un ciclo annidati all'interno di un altro ciclo, `break` e `continue` si
 applicano al loop più interno in quel momento. Puoi specificare facoltativamente
@@ -283,7 +283,7 @@ esce dal ciclo esterno. Questo codice stamperà:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-32-5-loop-labels/output.txt}}
 ```
 
-#### I cicli condizionali con `while`
+#### I Cicli Condizionali con `while`
 
 Spesso un programma ha bisogno di valutare una condizione all'interno di un
 ciclo. Quando la condizione è `true`, il ciclo viene eseguito. Quando la
@@ -308,7 +308,7 @@ Questo costrutto elimina un sacco di annidamenti che sarebbero necessari se
 usassi `loop`, `if`, `else` e `break`, ed è di più semplice lettura. Finchè una
 condizione risulta `true`, il codice viene eseguito; altrimenti, esce dal ciclo.
 
-#### Eseguire un ciclo su una collezione con `for`
+#### Eseguire un Ciclo su una Collezione con `for`
 
 Puoi scegliere di utilizzare il costrutto `while` per eseguire un ciclo sugli
 elementi di una collezione, come un array. Ad esempio, il ciclo nel Listato 3-4

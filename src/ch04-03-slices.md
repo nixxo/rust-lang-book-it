@@ -246,7 +246,7 @@ di errori durante la compilazione!
 <!-- Old heading. Do not remove or links may break. -->
 <a id="string-literals-are-slices"></a>
 
-### Letterali di stringa come _Slice_
+### Letterali di Stringa come _Slice_
 
 Ricordi che abbiamo parlato dei letterali di stringhe memorizzati all'interno
 del binario? Ora che abbiamo scoperto le _slice_, possiamo comprendere

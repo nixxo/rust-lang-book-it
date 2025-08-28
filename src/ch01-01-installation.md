@@ -17,7 +17,7 @@ In altre parole, qualsiasi versione più recente e stabile di Rust che
 installerai utilizzando questi passaggi dovrebbe funzionare come previsto con il
 contenuto di questo libro.
 
-> ### Annotazioni per la riga di comando
+> ### Annotazioni per la Riga di Comando
 >
 > In questo capitolo e in tutto il libro, mostreremo alcuni comandi utilizzati
 > nel terminale. Le linee che dovresti inserire in un terminale iniziano tutte
@@ -70,7 +70,7 @@ passaggio, consulta
 Il resto di questo libro utilizza comandi che funzionano sia in _cmd.exe_ che in
 PowerShell. Se ci sono differenze specifiche, ti spiegheremo quale utilizzare.
 
-### Risoluzione dei problemi
+### Risoluzione dei Problemi
 
 Per verificare se Rust è stato installato correttamente, apri il terminale e
 inserisci questo comando:
@@ -130,7 +130,7 @@ dalla tua shell:
 $ rustup self uninstall
 ```
 
-### Documentazione in locale
+### Documentazione in Locale
 
 L'installazione di Rust include anche una copia locale della documentazione per
 poterla leggere offline. Esegui `rustup doc` per aprire la documentazione locale
@@ -140,7 +140,7 @@ Ogni qual volta hai un dubbio su un _type_ o una funzione fornita dalla libreria
 standard e non sei sicuro di cosa faccia o di come usarla, usa la documentazione
 delle _API_ per scoprirlo!
 
-### Editor di testo e Ambienti di sviluppo integrati (_IDE_)
+### Editor di Testo e Ambienti di Sviluppo Integrati (_IDE_)
 
 Questo libro non fa alcuna ipotesi sugli strumenti che utilizzi per scrivere il
 codice Rust. Qualsiasi editor di testo è in grado di fare il suo lavoro!
@@ -149,7 +149,7 @@ poi) hanno un supporto integrato per Rust. Puoi sempre trovare un elenco
 abbastanza aggiornato di molti editor e _IDE_ nella [pagina degli
 strumenti][tools] sul sito web di Rust.
 
-### Lavorare offline con questo libro
+### Lavorare Offline con Questo Libro
 
 In diversi esempi, utilizzeremo pacchetti Rust oltre alla libreria standard. Per
 lavorare a questi esempi, dovrai disporre di una connessione a internet o aver

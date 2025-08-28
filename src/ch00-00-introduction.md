@@ -16,12 +16,12 @@ tecniche e un'ottima esperienza di sviluppo, Rust vi offre la possibilità di
 controllare i dettagli di basso livello (come l'utilizzo della memoria) senza
 tutte le difficoltà tradizionalmente associate a tale controllo.
 
-## A chi è rivolto Rust
+## A Chi È Rivolto Rust
 
 Rust è ideale per molte persone per una serie di motivi. Diamo un'occhiata ad
 alcuni dei gruppi più importanti.
 
-### Team di sviluppatori
+### Team di Sviluppatori
 
 Rust si sta dimostrando uno strumento produttivo per la collaborazione tra
 grandi team di sviluppatori con diversi livelli di conoscenza della
@@ -72,7 +72,7 @@ Rust è per le persone che vogliono costruire il linguaggio di programmazione
 Rust, la comunità, gli strumenti per gli sviluppatori e le librerie. Ci
 piacerebbe che tu contribuissi al linguaggio Rust.
 
-### Persone che apprezzano la velocità e la stabilità
+### Persone che Apprezzano la Velocità e la Stabilità
 
 Rust è per le persone che desiderano velocità e stabilità in un linguaggio. Per
 velocità intendiamo sia la velocità con cui il codice Rust può essere eseguito,
@@ -91,7 +91,7 @@ ambizione di Rust è quella di eliminare i compromessi che i programmatori hanno
 accettato per decenni, offrendo sicurezza _e_ produttività, velocità _e_
 ergonomia. Prova Rust e vedi se le sue scelte funzionano per te.
 
-## Per chi è questo libro
+## Per Chi È Questo Libro
 
 Questo libro presuppone che tu abbia scritto codice in un altro linguaggio di
 programmazione, ma non fa alcuna ipotesi su quale sia. Abbiamo cercato di
@@ -101,7 +101,7 @@ cosa _sia_ la programmazione o di come pensarla. Se sei completamente nuovo alla
 programmazione, è meglio che tu legga un libro che fornisca un'introduzione
 specifica alla programmazione.
 
-## Come utilizzare questo libro
+## Come Utilizzare Questo Libro
 
 In generale, questo libro presuppone che tu lo legga in sequenza, dall'inizio
 alla fine. I capitoli più avanzati si basano sui concetti dei capitoli
@@ -207,7 +207,7 @@ destinato a funzionare:
 Nella maggior parte dei casi, ti guideremo alla versione corretta di qualsiasi
 codice che non si compila.
 
-## Codice sorgente
+## Codice Sorgente
 
 I file sorgente da cui è stato generato questo libro si trovano su
 [GitHub][book-it] per la versione italiana.

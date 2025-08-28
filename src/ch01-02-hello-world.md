@@ -13,7 +13,7 @@ programma che stampi sullo schermo il testo `Hello, world!`
 > concentrato sull'integrazione ottima con gli _IDE_ tramite `rust-analyzer`.
 > Vedi > [Appendice D][devtools] per maggiori dettagli.
 
-### Creare una directory di progetto
+### Creare una Directory di Progetto
 
 Inizierai creando una directory per memorizzare il tuo codice Rust. Per Rust non
 è importante dove si trovi il tuo codice, ma per gli esercizi e i progetti di
@@ -42,7 +42,7 @@ Per Windows con CMD, digita questo:
 > cd hello_world
 ```
 
-### Scrivere ed eseguire un programma Rust
+### Scrivere ed Eseguire un Programma Rust
 
 Adesso crea un nuovo file sorgente e chiamalo _main.rs_. I file di Rust
 terminano sempre con l'estensione _.rs_. Se usi più di una parola nel nome del
@@ -88,7 +88,7 @@ capitolo Installazione per trovare aiuto.
 Se `Hello, world!` è stato stampato, congratulazioni! Hai ufficialmente scritto
 un programma Rust. Questo ti rende un programmatore Rust, benvenuto!
 
-### Anatomia di un programma Rust
+### Anatomia di un Programma Rust
 
 Esaminiamo in dettaglio questo programma "Hello, world!". Ecco il primo pezzo
 del puzzle:
@@ -141,7 +141,7 @@ In terzo luogo, terminiamo la riga con un punto e virgola (`;`), che indica che
 questa espressione è terminata e che la prossima è pronta per iniziare. La
 maggior parte delle righe di codice Rust terminano con un punto e virgola
 
-### La compilazione e l'esecuzione sono fasi separate
+### La Compilazione e l'Esecuzione Sono Fasi Separate
 
 Hai appena eseguito un programma appena creato, quindi esaminiamo ogni fase del
 processo.

@@ -1,4 +1,4 @@
-## Controllo di flusso conciso con `if let` e `let else`
+## Controllo di Flusso Conciso con `if let` e `let else`
 
 La sintassi `if let` consente di combinare `if` e `let` in un modo meno verboso
 per gestire i valori che corrispondono a un singolo _pattern_, ignorando gli
@@ -63,7 +63,7 @@ Oppure potremmo usare un `if let` e un `else`, così:
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-14-count-and-announce-if-let-else/src/main.rs:here}}
 ```
 
-## Restare sul “percorso felice” con `let...else`
+## Restare sul “Percorso Felice” con `let...else`
 
 Una buona pratica è eseguire una computazione quando un valore è presente e
 restituire un valore di default altrimenti. Continuando con il nostro esempio

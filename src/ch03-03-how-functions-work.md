@@ -100,7 +100,7 @@ con `cargo run`:
 Poiché abbiamo chiamato la funzione con `5` come valore per `valore` e `'h'`
 come valore per `unita_misura`, l'output del programma contiene questi valori.
 
-### Dichiarazioni ed espressioni
+### Dichiarazioni ed Espressioni
 
 I corpi delle funzioni sono costituiti da una serie di dichiarazioni che possono
 eventualmete terminare con un'espressione. Finora le funzioni che abbiamo
@@ -184,7 +184,7 @@ aggiungi un punto e virgola alla fine di un'espressione, la trasformi in una
 dichiarazione e quindi non restituirà un valore. Tienilo a mente mentre leggi il
 prossimo paragrafo sui volori di ritorno delle funzioni e le espressioni.
 
-### Funzioni con valori di ritorno
+### Funzioni con Valori di Ritorno
 
 Le funzioni possono restituire dei valori al codice che le chiama. Non assegnamo
 un nome ai valori di ritorno, ma dobbiamo esplicitarne il _type_ dopo una
