@@ -19,11 +19,10 @@ Rust’s _deref coercion_ feature and how it lets us work with either references
 or smart pointers.
 
 <!-- Old links, do not remove -->
-
 <a id="following-the-pointer-to-the-value-with-the-dereference-operator"></a>
 <a id="following-the-pointer-to-the-value"></a>
 
-### Following the Reference to the Value
+### Seguire il _Reference_ al Valore
 
 A regular reference is a type of pointer, and one way to think of a pointer is
 as an arrow to a value stored somewhere else. In Listing 15-6, we create a
