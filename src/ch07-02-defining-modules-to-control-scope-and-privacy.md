@@ -1,4 +1,4 @@
-## Definire Moduli per Controllare Ambito e Privacy
+## Definire Moduli per Controllare _Scope_ e Privacy
 
 In questa sezione, parleremo dei moduli e di altre parti del sistema dei moduli,
 in particolare dei _path_ (_percorsi_), che ti permettono di nominare gli

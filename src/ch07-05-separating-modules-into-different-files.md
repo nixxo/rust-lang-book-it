@@ -1,4 +1,4 @@
-## Separare i moduli in file diversi
+## Separare i Moduli in File Diversi
 
 Finora tutti gli esempi di questo capitolo definivano più moduli in un unico
 file. Quando i moduli diventano grandi, potresti voler spostare le loro
@@ -79,7 +79,7 @@ dichiarato nella radice del _crate_, e non come figlio del modulo `sala`. Le
 regole del compilatore su quali file cercare per il codice di quali moduli fanno
 sì che directory e file rispecchino più da vicino l'albero dei moduli.
 
-> ### Percorsi di file alternativi
+> ### Percorsi di File Alternativi
 >
 > Finora abbiamo coperto i percorsi di file più idiomatici che il compilatore
 > Rust usa, ma Rust supporta anche uno stile più vecchio. Per un modulo chiamato

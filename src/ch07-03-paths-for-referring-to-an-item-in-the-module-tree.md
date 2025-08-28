@@ -1,4 +1,4 @@
-## Percorsi per fare riferimento a un elemento nell'albero dei moduli
+## Percorsi per Fare Riferimento a un Elemento nell'Albero dei Moduli
 
 Per mostrare a Rust dove trovare un elemento in un albero dei moduli,
 utilizziamo un _path_ (_percorso_) nello stesso modo in cui usiamo un _path_

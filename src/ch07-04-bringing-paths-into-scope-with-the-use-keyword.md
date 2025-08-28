@@ -1,4 +1,4 @@
-## Portare i Percorsi in _Scope_ con la parola chiave `use`
+## Portare i Percorsi in _Scope_ con la Parola Chiave `use`
 
 Dover scrivere i percordi (_path_) per chiamare le funzioni può risultare
 scomodo e ripetitivo. Nel Listato 7-7, sia che scegliessimo il percorso assoluto
@@ -135,7 +135,7 @@ per il _type_ `std::io::Result`, che non entrerà in conflitto con il `Result` d
 `std::fmt` che abbiamo anch'esso portato nello _scope_. Sia il Listato 7-15 che
 il Listato 7-16 sono considerati idiomatici, quindi la scelta spetta a te!
 
-### Ri-esportare Nomi con `pub use`
+### Ri-Esportare Nomi con `pub use`
 
 Quando portiamo un nome nello _scope_ con la parola chiave `use`, il nome è
 privato allo _scope_ in cui lo abbiamo importato. Per consentire al codice
@@ -175,7 +175,7 @@ Vedremo un altro esempio di `pub use` e di come influisce sulla documentazione
 del crate in [“Esportare un API Pubblica Facilmente con `pub
 use`”][ch14-pub-use]<!-- ignore --> nel Capitolo 14.
 
-### Usare pacchetti esterni
+### Usare Pacchetti Esterni
 
 Nel Capitolo 2, abbiamo programmato un progetto del gioco degli indovinelli che
 usava un pacchetto esterno chiamato `rand` per ottenere numeri casuali. Per
@@ -228,7 +228,7 @@ use std::collections::HashMap;
 Questo è un percorso assoluto che inizia con `std`, il nome del _crate_ della
 standard library.
 
-### Usare percorsi nidificati per accorpare lunghi elenchi di `use`
+### Usare Percorsi Nidificati per Accorpare Lunghi Elenchi di `use`
 
 Se usiamo più elementi definiti nello stesso _crate_ o nello stesso modulo,
 elencare ogni elemento su una sua riga può occupare molto spazio verticale nei
