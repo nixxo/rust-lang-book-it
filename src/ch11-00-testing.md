@@ -1,33 +1,36 @@
-# Writing Automated Tests
+# Scrivere Test Automatizzati
 
-In his 1972 essay “The Humble Programmer,” Edsger W. Dijkstra said that “program
-testing can be a very effective way to show the presence of bugs, but it is
-hopelessly inadequate for showing their absence.” That doesn’t mean we shouldn’t
-try to test as much as we can!
+Nel suo saggio del 1972 "The Humble Programmer", Edsger W. Dijkstra ha affermato
+che "il testing dei programmi può essere un modo molto efficace per mostrare la
+presenza di bug, ma è irrimediabilmente inadeguato per mostrarne l'assenza."
+Questo non significa che non dovremmo cercare di testare il più possibile!
 
-Correctness in our programs is the extent to which our code does what we intend
-it to do. Rust is designed with a high degree of concern about the correctness
-of programs, but correctness is complex and not easy to prove. Rust’s type
-system shoulders a huge part of this burden, but the type system cannot catch
-everything. As such, Rust includes support for writing automated software tests.
+La correttezza dei nostri programmi è la misura in cui il nostro codice fa ciò
+che intendiamo fare. Rust è stato progettato con un alto grado di preoccupazione
+per la correttezza dei programmi, ma la correttezza è complessa e non facile da
+dimostrare. Il sistema dei _type_ di Rust si fa carico di gran parte di questo
+onere, ma il sistema dei _type_ non può catturare tutto. Per questo motivo, Rust
+include un supporto per la scrittura di test software automatizzati.
 
-Say we write a function `add_two` that adds 2 to whatever number is passed to
-it. This function’s signature accepts an integer as a parameter and returns an
-integer as a result. When we implement and compile that function, Rust does all
-the type checking and borrow checking that you’ve learned so far to ensure
-that, for instance, we aren’t passing a `String` value or an invalid reference
-to this function. But Rust _can’t_ check that this function will do precisely
-what we intend, which is return the parameter plus 2 rather than, say, the
-parameter plus 10 or the parameter minus 50! That’s where tests come in.
+Immaginiamo di scrivere una funzione `aggiungi_due` che aggiunge 2 a qualsiasi
+numero le venga passato. La firma di questa funzione accetta un intero come
+parametro e restituisce un intero come risultato. Quando implementiamo e
+compiliamo questa funzione, Rust esegue tutti i controlli di _type_ e di
+prestito (_borrow_) che hai imparato finora per assicurarsi che, ad esempio, non
+stiamo passando un valore `String` o un _reference_ non valido a questa
+funzione. Ma Rust _non_ può controllare che questa funzione faccia esattamente
+ciò che intendiamo, cioè restituire il parametro più 2 piuttosto che, ad
+esempio, il parametro più 10 o il parametro meno 50! È qui che entrano in gioco
+i test.
 
-We can write tests that assert, for example, that when we pass `3` to the
-`add_two` function, the returned value is `5`. We can run these tests whenever
-we make changes to our code to make sure any existing correct behavior has not
-changed.
+Possiamo scrivere dei test che verificano, ad esempio, che quando passiamo `3`
+alla funzione `aggiungi_due`, il valore restituito è `5`. Possiamo eseguire
+questi test ogni volta che apportiamo delle modifiche al nostro codice per
+assicurarci che il comportamento corretto esistente non sia cambiato.
 
-Testing is a complex skill: although we can’t cover in one chapter every detail
-about how to write good tests, in this chapter we will discuss the mechanics of
-Rust’s testing facilities. We’ll talk about the annotations and macros
-available to you when writing your tests, the default behavior and options
-provided for running your tests, and how to organize tests into unit tests and
-integration tests.
+Il testing è un'abilità complessa: anche se non possiamo trattare in un solo
+capitolo tutti i dettagli su come scrivere dei buoni test, in questo capitolo
+parleremo dei meccanismi delle strutture di test di Rust. Parleremo delle
+annotazioni e delle macro a tua disposizione quando scrivi i tuoi test, del
+comportamento predefinito e delle opzioni fornite per l'esecuzione dei tuoi test
+e di come organizzare i test in unità di test e test di integrazione.

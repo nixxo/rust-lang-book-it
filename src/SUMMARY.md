@@ -59,7 +59,7 @@
   - [Traits: Defining Shared Behavior](ch10-02-traits.md)
   - [Validating References with Lifetimes](ch10-03-lifetime-syntax.md)
 
-- [Writing Automated Tests](ch11-00-testing.md)
+- [Scrivere Test Automatizzati](ch11-00-testing.md)
   - [How to Write Tests](ch11-01-writing-tests.md)
   - [Controlling How Tests Are Run](ch11-02-running-tests.md)
   - [Test Organization](ch11-03-test-organization.md)
