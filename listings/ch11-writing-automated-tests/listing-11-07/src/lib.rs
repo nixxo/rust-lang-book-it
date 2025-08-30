@@ -1,4 +1,4 @@
-pub fn add_two(a: u64) -> u64 {
+pub fn aggiungi_due(a: u64) -> u64 {
     a + 2
 }
 
@@ -7,8 +7,8 @@ mod tests {
     use super::*;
 
     #[test]
-    fn it_adds_two() {
-        let result = add_two(2);
-        assert_eq!(result, 4);
+    fn aggiungere_due() {
+        let risultato = aggiungi_due(2);
+        assert_eq!(risultato, 4);
     }
 }

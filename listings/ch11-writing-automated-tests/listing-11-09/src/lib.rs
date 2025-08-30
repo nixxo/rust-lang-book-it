@@ -1,23 +1,23 @@
-pub struct Guess {
-    value: i32,
+pub struct Ipotesi {
+    valore: i32,
 }
 
 // ANCHOR: here
 // --snip--
 
-impl Guess {
-    pub fn new(value: i32) -> Guess {
-        if value < 1 {
+impl Ipotesi {
+    pub fn new(valore: i32) -> Ipotesi {
+        if valore < 1 {
             panic!(
-                "Guess value must be greater than or equal to 1, got {value}."
+                "L'ipotesi deve essere maggiore di zero, valore fornito {valore}."
             );
-        } else if value > 100 {
+        } else if valore > 100 {
             panic!(
-                "Guess value must be less than or equal to 100, got {value}."
+                "L'ipotesi deve essere minore o uguale a 100, valore fornito {valore}."
             );
         }
 
-        Guess { value }
+        Ipotesi { valore }
     }
 }
 
@@ -26,9 +26,9 @@ mod tests {
     use super::*;
 
     #[test]
-    #[should_panic(expected = "less than or equal to 100")]
-    fn greater_than_100() {
-        Guess::new(200);
+    #[should_panic(expected = "minore o uguale a 100")]
+    fn maggiore_di_100() {
+        Ipotesi::new(200);
     }
 }
 // ANCHOR_END: here

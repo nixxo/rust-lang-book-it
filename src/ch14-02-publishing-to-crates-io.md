@@ -73,7 +73,7 @@ Most documentation comments don’t need all of these sections, but this is a
 good checklist to remind you of the aspects of your code users will be
 interested in knowing about.
 
-#### Documentation Comments as Tests
+#### Commenti di Documentazione Come Test
 
 Adding example code blocks in your documentation comments can help demonstrate
 how to use your library, and doing so has an additional bonus: running `cargo

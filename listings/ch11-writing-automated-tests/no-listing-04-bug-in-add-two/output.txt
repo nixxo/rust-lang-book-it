@@ -1,16 +1,16 @@
 $ cargo test
-   Compiling adder v0.1.0 (file:///projects/adder)
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.61s
-     Running unittests src/lib.rs (target/debug/deps/adder-92948b65e88960b4)
+   Compiling addizione v0.1.0 (file:///progetti/addizione)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.30s
+     Running unittests src/lib.rs (target/debug/deps/addizione-41054392f08da196)
 
 running 1 test
-test tests::it_adds_two ... FAILED
+test tests::aggiungere_due ... FAILED
 
 failures:
 
----- tests::it_adds_two stdout ----
+---- tests::aggiungere_due stdout ----
 
-thread 'tests::it_adds_two' panicked at src/lib.rs:12:9:
+thread 'tests::aggiungere_due' (5229) panicked at src/lib.rs:14:9:
 assertion `left == right` failed
   left: 5
  right: 4
@@ -18,7 +18,7 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 
 
 failures:
-    tests::it_adds_two
+    tests::aggiungere_due
 
 test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 

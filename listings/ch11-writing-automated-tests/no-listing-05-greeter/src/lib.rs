@@ -1,5 +1,5 @@
-pub fn greeting(name: &str) -> String {
-    format!("Hello {name}!")
+pub fn saluto(nome: &str) -> String {
+    format!("Ciao {nome}!")
 }
 
 #[cfg(test)]
@@ -7,8 +7,8 @@ mod tests {
     use super::*;
 
     #[test]
-    fn greeting_contains_name() {
-        let result = greeting("Carol");
-        assert!(result.contains("Carol"));
+    fn saluto_contiene_nome() {
+        let risultato = saluto("Carol");
+        assert!(risultato.contains("Carol"));
     }
 }

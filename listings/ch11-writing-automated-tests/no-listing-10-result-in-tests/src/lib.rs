@@ -14,7 +14,7 @@ mod tests {
         if result == 4 {
             Ok(())
         } else {
-            Err(String::from("two plus two does not equal four"))
+            Err(String::from("due più due non fa quattro"))
         }
     }
     // ANCHOR_END: here

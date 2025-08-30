@@ -1,22 +1,22 @@
 $ cargo test
-   Compiling greeter v0.1.0 (file:///projects/greeter)
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.91s
-     Running unittests src/lib.rs (target/debug/deps/greeter-170b942eb5bf5e3a)
+   Compiling saluto v0.1.0 (file:///progetti/saluto)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.15s
+     Running unittests src/lib.rs (target/debug/deps/saluto-9c4c14b7b4719873)
 
 running 1 test
-test tests::greeting_contains_name ... FAILED
+test tests::saluto_contiene_nome ... FAILED
 
 failures:
 
----- tests::greeting_contains_name stdout ----
+---- tests::saluto_contiene_nome stdout ----
 
-thread 'tests::greeting_contains_name' panicked at src/lib.rs:12:9:
-assertion failed: result.contains("Carol")
+thread 'tests::saluto_contiene_nome' (10833) panicked at src/lib.rs:14:9:
+assertion failed: risultato.contains("Carol")
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 
 
 failures:
-    tests::greeting_contains_name
+    tests::saluto_contiene_nome
 
 test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 

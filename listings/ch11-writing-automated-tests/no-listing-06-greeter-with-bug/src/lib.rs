@@ -1,6 +1,6 @@
 // ANCHOR: here
-pub fn greeting(name: &str) -> String {
-    String::from("Hello!")
+pub fn saluto(nome: &str) -> String {
+    String::from("Ciao!")
 }
 // ANCHOR_END: here
 
@@ -9,8 +9,8 @@ mod tests {
     use super::*;
 
     #[test]
-    fn greeting_contains_name() {
-        let result = greeting("Carol");
-        assert!(result.contains("Carol"));
+    fn saluto_contiene_nome() {
+        let risultato = saluto("Carol");
+        assert!(risultato.contains("Carol"));
     }
 }
