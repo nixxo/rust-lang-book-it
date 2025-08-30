@@ -1,19 +1,19 @@
 fn main() {
-    let string1 = String::from("abcd");
-    let string2 = "xyz";
+    let stringa1 = String::from("abcd");
+    let stringa2 = "xyz";
 
-    let result = longest_with_an_announcement(
-        string1.as_str(),
-        string2,
-        "Today is someone's birthday!",
+    let result = Piu_lunga_con_annuncio(
+        stringa1.as_str(),
+        stringa2,
+        "Oggi è il compleanno di qualcuno!",
     );
-    println!("The longest string is {result}");
+    println!("La stringa più lunga è {result}");
 }
 
 // ANCHOR: here
 use std::fmt::Display;
 
-fn longest_with_an_announcement<'a, T>(
+fn Piu_lunga_con_annuncio<'a, T>(
     x: &'a str,
     y: &'a str,
     ann: T,
@@ -21,7 +21,7 @@ fn longest_with_an_announcement<'a, T>(
 where
     T: Display,
 {
-    println!("Announcement! {ann}");
+    println!("Annuncio! {ann}");
     if x.len() > y.len() { x } else { y }
 }
 // ANCHOR_END: here

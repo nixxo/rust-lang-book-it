@@ -1,11 +1,11 @@
-struct ImportantExcerpt<'a> {
-    part: &'a str,
+struct ParteImportante<'a> {
+    parte: &'a str,
 }
 
 fn main() {
-    let novel = String::from("Chiamami Ishmael. Alcuni anni fa...");
-    let prima_frase = novel.split('.').next().unwrap();
-    let i = ImportantExcerpt {
-        part: prima_frase,
+    let romanzo = String::from("Chiamami Ishmael. Alcuni anni fa...");
+    let prima_frase = romanzo.split('.').next().unwrap();
+    let i = ParteImportante {
+        parte: prima_frase,
     };
 }

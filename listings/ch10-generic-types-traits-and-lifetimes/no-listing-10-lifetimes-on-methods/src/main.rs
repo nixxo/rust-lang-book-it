@@ -1,28 +1,28 @@
-struct ImportantExcerpt<'a> {
-    part: &'a str,
+struct ParteImportante<'a> {
+    parte: &'a str,
 }
 
 // ANCHOR: 1st
-impl<'a> ImportantExcerpt<'a> {
-    fn level(&self) -> i32 {
+impl<'a> ParteImportante<'a> {
+    fn livello(&self) -> i32 {
         3
     }
 }
 // ANCHOR_END: 1st
 
 // ANCHOR: 3rd
-impl<'a> ImportantExcerpt<'a> {
-    fn announce_and_return_part(&self, announcement: &str) -> &str {
-        println!("Attention please: {announcement}");
-        self.part
+impl<'a> ParteImportante<'a> {
+    fn annunciare_e_restituire_parte(&self, annuncio: &str) -> &str {
+        println!("Attenzione per favore: {annuncio}");
+        self.parte
     }
 }
 // ANCHOR_END: 3rd
 
 fn main() {
-    let novel = String::from("Call me Ishmael. Some years ago...");
-    let first_sentence = novel.split('.').next().unwrap();
-    let i = ImportantExcerpt {
-        part: first_sentence,
+    let romanzo = String::from("Chiamami Ishmael. Qualche anno fa...");
+    let prima_frase = romanzo.split('.').next().unwrap();
+    let i = ParteImportante {
+        parte: prima_frase,
     };
 }
