@@ -160,8 +160,8 @@ consentono la funzionalità.
 Nel Capitolo 16, esamineremo diversi modelli di programmazione concorrente e
 parleremo di come Rust ti aiuti a programmare con più sotto-processi (_thread_
 d'ora in poi) senza paura. Nel Capitolo 17, esploreremo la sintassi _async_ e
-_await_ di Rust, insieme a task, futures e stream, e il modello di concomitanza
-leggera che consentono.
+_await_ di Rust, insieme a _task_, _futures_ e _stream_, e il modello di
+concomitanza leggera che consentono.
 
 Il Capitolo 18 analizza come gli idiomi di Rust si confrontano con i principi
 della programmazione orientata agli oggetti che potresti conoscere. Il Capitolo

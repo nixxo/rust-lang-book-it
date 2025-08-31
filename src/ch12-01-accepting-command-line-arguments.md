@@ -97,6 +97,7 @@ poterli utilizzare nel resto del programma. Lo facciamo nel Listato
 12-2.
 
 <Listing number="12-2" file-name="src/main.rs" caption="Creazione di variabili per contenere l'argomento query e l'argomento percorso file">
+
 ```rust,should_panic,noplayground
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-02/src/main.rs}}
 ```

@@ -8,7 +8,7 @@ sono nomi di funzioni, variabili, parametri, elementi di struct, moduli,
 _crate_, costanti, macro, valori statici, attributi, _type_, _trait_ o
 _lifetime_.
 
-### Parole chiave attualmente in uso
+### Parole Chiave Attualmente in Uso
 
 Di seguito è riportato un elenco di parole chiave attualmente in uso, con la
 loro funzionalità descritta.
@@ -64,7 +64,7 @@ loro funzionalità descritta.
 
 [union]: https://doc.rust-lang.org/stable/reference/items/unions.html
 
-### Parole chiave riservate per usi futuri
+### Parole Chiave Riservate per Usi Futuri
 
 Le seguenti parole chiave non hanno ancora alcuna funzionalità ma sono riservate
 da Rust per un potenziale uso futuro.
@@ -84,7 +84,7 @@ da Rust per un potenziale uso futuro.
 - `virtual`
 - `yield`
 
-### Identificatori grezzi
+### Identificatori Grezzi
 
 Gli _Identificatori grezzi_ (_raw identifiers_) sono la sintassi che ti permette
 di utilizzare parole chiave dove normalmente non sarebbero consentite. Utilizzi

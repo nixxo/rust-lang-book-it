@@ -256,7 +256,7 @@ assegnazione del valore alla variabile `result` all'interno dello scope con
 interno, dopo che quest'ultimo è terminato. Il codice nel Listato 10-23
 non verrà compilato.
 
-<Numero annuncio="10-23" nome file="src/main.rs" didascalia="Tentativo di utilizzare `result` dopo che `string2` è uscito dallo scope">
+<Listing number="10-23" file-name="src/main.rs" caption="Tentativo di utilizzare `result` dopo che `string2` è uscito dallo scope">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-23/src/main.rs:here}}
