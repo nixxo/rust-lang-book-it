@@ -1,75 +1,73 @@
-## Refactoring to Improve Modularity and Error Handling
+## Refactoring per Migliorare la Modularità e la Gestione degli Errori
 
-To improve our program, we’ll fix four problems that have to do with the
-program’s structure and how it’s handling potential errors. First, our `main`
-function now performs two tasks: it parses arguments and reads files. As our
-program grows, the number of separate tasks the `main` function handles will
-increase. As a function gains responsibilities, it becomes more difficult to
-reason about, harder to test, and harder to change without breaking one of its
-parts. It’s best to separate functionality so each function is responsible for
-one task.
+Per migliorare il nostro programma, risolveremo quattro problemi che riguardano
+la struttura del programma e la gestione di potenziali errori. Innanzitutto, la nostra funzione `main`
+ora esegue due attività: analizza gli argomenti e legge i file. Man mano che il nostro
+programma cresce, il numero di attività separate gestite dalla funzione `main`
+aumenterà. Man mano che una funzione acquisisce responsabilità, diventa più difficile
+esaminare, testare e modificare senza danneggiare una delle sue
+parti. È meglio separare le funzionalità in modo che ogni funzione sia responsabile di
+un'attività.
 
-This issue also ties into the second problem: although `query` and `file_path`
-are configuration variables to our program, variables like `contents` are used
-to perform the program’s logic. The longer `main` becomes, the more variables
-we’ll need to bring into scope; the more variables we have in scope, the harder
-it will be to keep track of the purpose of each. It’s best to group the
-configuration variables into one structure to make their purpose clear.
+Questo problema si collega anche al secondo problema: sebbene `query` e `file_path`
+siano variabili di configurazione del nostro programma, variabili come `contents` vengono utilizzate
+per eseguire la struttura logica del programma. Più `main` diventa lungo, più variabili
+dovremo includere nello scope; più variabili abbiamo nello scope, più difficile
+sarà tenere traccia dello scopo di ciascuna. È meglio raggruppare le
+variabili di configurazione in un'unica struttura per chiarirne lo scopo.
 
-The third problem is that we’ve used `expect` to print an error message when
-reading the file fails, but the error message just prints `Should have been
-able to read the file`. Reading a file can fail in a number of ways: for
-example, the file could be missing, or we might not have permission to open it.
-Right now, regardless of the situation, we’d print the same error message for
-everything, which wouldn’t give the user any information!
+Il terzo problema è che abbiamo usato `expect` per visualizzare un messaggio di errore quando
+la lettura del file fallisce, ma il messaggio di errore visualizza solo `Avrei dovuto
+essere in grado di leggere il file`. La lettura di un file può fallire in diversi modi: ad esempio, il file potrebbe essere mancante o potremmo non avere i permessi per aprirlo.
+Al momento, indipendentemente dalla situazione, visualizzeremo lo stesso messaggio di errore per
+tutto, il che non fornirebbe alcuna informazione all'utente!
 
-Fourth, we use `expect` to handle an error, and if the user runs our program
-without specifying enough arguments, they’ll get an `index out of bounds` error
-from Rust that doesn’t clearly explain the problem. It would be best if all the
-error-handling code were in one place so future maintainers had only one place
-to consult the code if the error-handling logic needed to change. Having all the
-error-handling code in one place will also ensure that we’re printing messages
-that will be meaningful to our end users.
+In quarto luogo, usiamo `expect` per gestire un errore e, se l'utente esegue il nostro programma
+senza specificare argomenti sufficienti, riceverà un errore `index out of bounds`
+da Rust che non spiega chiaramente il problema. Sarebbe meglio se tutto il
+codice di gestione degli errori fosse in un unico posto, in modo che i futuri manutentori abbiano un solo posto
+in cui consultare il codice se la struttura di gestione degli errori dovesse cambiare. Avere tutto il codice di gestione degli errori in un unico posto garantirà anche la stampa di messaggi
+comprensibili per i nostri utenti finali.
 
-Let’s address these four problems by refactoring our project.
+Affrontiamo questi quattro problemi riorganizzando il nostro progetto.
 
-### Separation of Concerns for Binary Projects
+### Separazione delle Attività per i Progetti Binari
 
-The organizational problem of allocating responsibility for multiple tasks to
-the `main` function is common to many binary projects. As a result, many Rust
-programmers find it useful to split up the separate concerns of a binary
-program when the `main` function starts getting large. This process has the
-following steps:
+Il problema organizzativo di allocare la responsabilità di più attività alla
+funzione `main` è comune a molti progetti binari. Di conseguenza, molti programmatori Rust
+trovano utile suddividere le attività di un programma binario
+quando la funzione `main` inizia a diventare più grande. Questo processo prevede i
+seguenti passaggi:
 
-- Split your program into a _main.rs_ file and a _lib.rs_ file and move your
-  program’s logic to _lib.rs_.
-- As long as your command line parsing logic is small, it can remain in
-  the `main` function.
-- When the command line parsing logic starts getting complicated, extract it
-  from the `main` function into other functions or types.
+- Suddividere il programma in un file _main.rs_ e un file _lib.rs_ e spostare
+la logica del programma in _lib.rs_.
+- Finché la logica di analisi della riga di comando è piccola, può rimanere nella
+funzione `main`.
+- Quando la logica di analisi della riga di comando inizia a complicarsi, estrarla
+dalla funzione `main` in altre funzioni o tipi.
 
-The responsibilities that remain in the `main` function after this process
-should be limited to the following:
+Le responsabilità che rimangono nella funzione `main` dopo questo processo
+dovrebbero essere limitate a quanto segue:
 
-- Calling the command line parsing logic with the argument values
-- Setting up any other configuration
-- Calling a `run` function in _lib.rs_
-- Handling the error if `run` returns an error
+- Chiamare la logica di analisi della riga di comando con i valori degli argomenti
+- Impostare qualsiasi altra configurazione
+- Chiamare una funzione `run` in _lib.rs_
+- Gestire l'errore se `run` restituisce un errore
 
-This pattern is about separating concerns: _main.rs_ handles running the
-program and _lib.rs_ handles all the logic of the task at hand. Because you
-can’t test the `main` function directly, this structure lets you test all of
-your program’s logic by moving it out of the `main` function. The code that
-remains in the `main` function will be small enough to verify its correctness
-by reading it. Let’s rework our program by following this process.
+Questo schema riguarda la separazione delle attività: _main.rs_ gestisce l'esecuzione
+del programma e _lib.rs_ gestisce tutta la logica dell'attività in corso. Poiché
+non è possibile testare direttamente la funzione `main`, questa struttura consente di testare tutta
+la logica del programma spostandola fuori dalla funzione `main`. Il codice che
+rimane nella funzione `main` sarà sufficientemente piccolo da poterne verificare la correttezza
+leggendolo. Rielaboriamo il nostro programma seguendo questo processo.
 
-#### Extracting the Argument Parser
+#### Estrazione del Parser degli Argomenti
 
-We’ll extract the functionality for parsing arguments into a function that
-`main` will call. Listing 12-5 shows the new start of the `main` function that
-calls a new function `parse_config`, which we’ll define in _src/main.rs_.
+Estrarremo la funzionalità per l'analisi degli argomenti in una funzione che
+chiamerà `main`. Il Listato 12-5 mostra il nuovo avvio della funzione `main` che
+chiama una nuova funzione `parse_config`, che definiremo in _src/main.rs_.
 
-<Listing number="12-5" file-name="src/main.rs" caption="Extracting a `parse_config` function from `main`">
+<Listing number="12-5" file-name="src/main.rs" caption="Estrazione di una funzione `parse_config` da `main`">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-05/src/main.rs:here}}
@@ -77,40 +75,39 @@ calls a new function `parse_config`, which we’ll define in _src/main.rs_.
 
 </Listing>
 
-We’re still collecting the command line arguments into a vector, but instead of
-assigning the argument value at index 1 to the variable `query` and the
-argument value at index 2 to the variable `file_path` within the `main`
-function, we pass the whole vector to the `parse_config` function. The
-`parse_config` function then holds the logic that determines which argument
-goes in which variable and passes the values back to `main`. We still create
-the `query` and `file_path` variables in `main`, but `main` no longer has the
-responsibility of determining how the command line arguments and variables
-correspond.
+Stiamo ancora raccogliendo gli argomenti della riga di comando in un vettore, ma invece di
+assegnare il valore dell'argomento all'indice 1 alla variabile `query` e il
+valore dell'argomento all'indice 2 alla variabile `file_path` all'interno della funzione `main`,
+passiamo l'intero vettore alla funzione `parse_config`. La funzione
+`parse_config` contiene quindi la logica che determina quale argomento
+andare in quale variabile e restituisce i valori a `main`. Creiamo ancora
+le variabili `query` e `file_path` in `main`, ma `main` non ha più la
+responsabilità di determinare come gli argomenti e le variabili della riga di comando
+corrispondono.
 
-This rework may seem like overkill for our small program, but we’re refactoring
-in small, incremental steps. After making this change, run the program again to
-verify that the argument parsing still works. It’s good to check your progress
-often, to help identify the cause of problems when they occur.
+Questa rielaborazione potrebbe sembrare eccessiva per il nostro piccolo programma, ma stiamo eseguendo il refactoring
+in piccoli passaggi incrementali. Dopo aver apportato questa modifica, esegui nuovamente il programma per
+verificare che l'analisi degli argomenti funzioni ancora. È consigliabile controllare spesso i progressi
+per aiutare a identificare la causa dei problemi quando si verificano.
 
-#### Grouping Configuration Values
+#### Raggruppamento dei Valori di Configurazione
 
-We can take another small step to improve the `parse_config` function further.
-At the moment, we’re returning a tuple, but then we immediately break that
-tuple into individual parts again. This is a sign that perhaps we don’t have
-the right abstraction yet.
+Possiamo fare un altro piccolo passo per migliorare ulteriormente la funzione `parse_config`.
+Al momento, restituiamo una tupla, ma poi la suddividiamo immediatamente
+in singole parti. Questo è un segno che forse non abbiamo ancora
+l'astrazione giusta.
 
-Another indicator that shows there’s room for improvement is the `config` part
-of `parse_config`, which implies that the two values we return are related and
-are both part of one configuration value. We’re not currently conveying this
-meaning in the structure of the data other than by grouping the two values into
-a tuple; we’ll instead put the two values into one struct and give each of the
-struct fields a meaningful name. Doing so will make it easier for future
-maintainers of this code to understand how the different values relate to each
-other and what their purpose is.
+Un altro indicatore che mostra che c'è margine di miglioramento è la parte `config`
+di `parse_config`, che implica che i due valori restituiti sono correlati e
+fanno entrambi parte di un unico valore di configurazione. Al momento non stiamo evidenziando questo
+significato nella struttura dei dati se non raggruppando i due valori in
+una tupla; inseriremo invece i due valori in un'unica struttura e daremo a ciascuno dei
+campi della struttura un nome significativo. In questo modo, sarà più facile per i futuri manutentori di questo codice comprendere come i diversi valori si relazionano tra loro
+e qual è il loro scopo.
 
-Listing 12-6 shows the improvements to the `parse_config` function.
+Il Listato 12-6 mostra i miglioramenti alla funzione `parse_config`.
 
-<Listing number="12-6" file-name="src/main.rs" caption="Refactoring `parse_config` to return an instance of a `Config` struct">
+<Listing number="12-6" file-name="src/main.rs" caption="Refactoring di `parse_config` per restituire un'istanza di una struttura `Config`">
 
 ```rust,should_panic,noplayground
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-06/src/main.rs:here}}
@@ -118,65 +115,65 @@ Listing 12-6 shows the improvements to the `parse_config` function.
 
 </Listing>
 
-We’ve added a struct named `Config` defined to have fields named `query` and
-`file_path`. The signature of `parse_config` now indicates that it returns a
-`Config` value. In the body of `parse_config`, where we used to return
-string slices that reference `String` values in `args`, we now define `Config`
-to contain owned `String` values. The `args` variable in `main` is the owner of
-the argument values and is only letting the `parse_config` function borrow
-them, which means we’d violate Rust’s borrowing rules if `Config` tried to take
-ownership of the values in `args`.
+Abbiamo aggiunto una struttura denominata `Config` definita per avere campi denominati `query` e
+`file_path`. La firma di `parse_config` ora indica che restituisce un
+valore `Config`. Nel corpo di `parse_config`, dove prima restituivamo
+slice di stringa che fanno riferimento a valori `String` in `args`, ora definiamo `Config`
+in modo che contenga valori `String` di proprietà. La variabile `args` in `main` è proprietaria dei
+valori degli argomenti e consente solo alla funzione `parse_config` di prenderli in prestito,
+il che significa che violeremmo le regole di Rust sui prestiti se `Config` tentasse di prendere
+la proprietà dei valori in `args`.
 
-There are a number of ways we could manage the `String` data; the easiest,
-though somewhat inefficient, route is to call the `clone` method on the values.
-This will make a full copy of the data for the `Config` instance to own, which
-takes more time and memory than storing a reference to the string data.
-However, cloning the data also makes our code very straightforward because we
-don’t have to manage the lifetimes of the references; in this circumstance,
-giving up a little performance to gain simplicity is a worthwhile trade-off.
+Ci sono diversi modi per gestire i dati `String`; il modo più semplice,
+anche se un po' inefficiente, è chiamare il metodo `clone` sui valori.
+Questo creerà una copia completa dei dati per l'istanza di `Config`, che ne diverrà proprietaria,
+il che richiede più tempo e memoria rispetto alla memorizzazione di un riferimento ai dati stringa.
+Tuttavia, clonare i dati rende anche il nostro codice molto semplice perché
+non dobbiamo gestire la lifetime dei riferimenti; in questo caso,
+rinunciare a un po' di prestazioni per guadagnare semplicità è un compromesso che vale la pena accettare.
 
-> ### The Trade-Offs of Using `clone`
+> ### I compromessi dell'Utilizzo di `Clone`
 >
-> There’s a tendency among many Rustaceans to avoid using `clone` to fix
-> ownership problems because of its runtime cost. In
-> [Chapter 13][ch13]<!-- ignore -->, you’ll learn how to use more efficient
-> methods in this type of situation. But for now, it’s okay to copy a few
-> strings to continue making progress because you’ll make these copies only
-> once and your file path and query string are very small. It’s better to have
-> a working program that’s a bit inefficient than to try to hyperoptimize code
-> on your first pass. As you become more experienced with Rust, it’ll be
-> easier to start with the most efficient solution, but for now, it’s
-> perfectly acceptable to call `clone`.
+> Molti utenti di Rust tendono a evitare di usare `clone` per risolvere
+> problemi di proprietà a causa del suo costo di esecuzione. Nel
+> [Capitolo 13][ch13]<!-- ignore -->, imparerai come utilizzare metodi più efficienti
+> in questo tipo di situazioni. Ma per ora, va bene copiare alcune
+> stringhe per continuare, perché queste copie verranno eseguite solo
+> una volta e il percorso del file e la stringa di query sono molto piccoli. È meglio avere
+> un programma funzionante ma un po' inefficiente che cercare di iperottimizzare il codice
+> al primo tentativo. Man mano che acquisirai esperienza con Rust, sarà
+> più facile iniziare con la soluzione più efficiente, ma per ora è
+> perfettamente accettabile chiamare `clone`.
 
-We’ve updated `main` so it places the instance of `Config` returned by
-`parse_config` into a variable named `config`, and we updated the code that
-previously used the separate `query` and `file_path` variables so it now uses
-the fields on the `Config` struct instead.
+Abbiamo aggiornato `main` in modo che inserisca l'istanza di `Config` restituita da
+`parse_config` in una variabile denominata `config`, e abbiamo aggiornato il codice che
+in precedenza utilizzava le variabili separate `query` e `file_path`, in modo che ora utilizzi
+i campi della struttura `Config`.
 
-Now our code more clearly conveys that `query` and `file_path` are related and
-that their purpose is to configure how the program will work. Any code that
-uses these values knows to find them in the `config` instance in the fields
-named for their purpose.
+Ora il nostro codice comunica più chiaramente da che `query` e `file_path` sono correlati e
+che il loro scopo è configurare il funzionamento del programma. Qualsiasi codice che
+utilizza questi valori sa come trovarli nell'istanza di `config` nei campi
+denominati appositamente per il loro scopo.
 
-#### Creating a Constructor for `Config`
+#### Creazione di un Costruttore per `Config`
 
-So far, we’ve extracted the logic responsible for parsing the command line
-arguments from `main` and placed it in the `parse_config` function. Doing so
-helped us see that the `query` and `file_path` values were related, and that
-relationship should be conveyed in our code. We then added a `Config` struct to
-name the related purpose of `query` and `file_path` and to be able to return the
-values’ names as struct field names from the `parse_config` function.
+Finora, abbiamo estratto la logica responsabile dell'analisi degli argomenti della riga di comando
+da `main` e l'abbiamo inserita nella funzione `parse_config`. In questo modo
+abbiamo potuto verificare che i valori `query` e `file_path` erano correlati e che
+questa relazione doveva essere comunicata nel nostro codice. Abbiamo quindi aggiunto una struttura `Config` per
+denominare lo scopo correlato di `query` e `file_path` e per poter restituire i nomi dei
+valori come nomi di campo della struttura dalla funzione `parse_config`.
 
-So now that the purpose of the `parse_config` function is to create a `Config`
-instance, we can change `parse_config` from a plain function to a function
-named `new` that is associated with the `Config` struct. Making this change
-will make the code more idiomatic. We can create instances of types in the
-standard library, such as `String`, by calling `String::new`. Similarly, by
-changing `parse_config` into a `new` function associated with `Config`, we’ll
-be able to create instances of `Config` by calling `Config::new`. Listing 12-7
-shows the changes we need to make.
+Ora che lo scopo della funzione `parse_config` è creare un'istanza di `Config`,
+possiamo modificare `parse_config` da una semplice funzione a una funzione
+chiamata `new` associata alla struttura `Config`. Questa modifica
+renderà il codice più idiomatico. Possiamo creare istanze di tipi nella
+libreria standard, come `String`, chiamando `String::new`. Allo stesso modo,
+modificando `parse_config` in una funzione `new` associata a `Config`, saremo
+in grado di creare istanze di `Config` chiamando `Config::new`. Il Listato 12-7
+mostra le modifiche che dobbiamo apportare.
 
-<Listing number="12-7" file-name="src/main.rs" caption="Changing `parse_config` into `Config::new`">
+<Numero di inserzione="12-7" nome-file="src/main.rs" didascalia="Modifica di `parse_config` in `Config::new`">
 
 ```rust,should_panic,noplayground
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-07/src/main.rs:here}}
