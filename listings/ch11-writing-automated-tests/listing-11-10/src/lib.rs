@@ -1,5 +1,5 @@
-fn prints_and_returns_10(a: i32) -> i32 {
-    println!("I got the value {a}");
+fn stampa_e_ritorna_10(a: i32) -> i32 {
+    println!("Ho ricevuto il valore {a}");
     10
 }
 
@@ -9,13 +9,13 @@ mod tests {
 
     #[test]
     fn this_test_will_pass() {
-        let value = prints_and_returns_10(4);
-        assert_eq!(value, 10);
+        let valore = stampa_e_ritorna_10(4);
+        assert_eq!(valore, 10);
     }
 
     #[test]
     fn this_test_will_fail() {
-        let value = prints_and_returns_10(8);
-        assert_eq!(value, 5);
+        let valore = stampa_e_ritorna_10(8);
+        assert_eq!(valore, 5);
     }
 }

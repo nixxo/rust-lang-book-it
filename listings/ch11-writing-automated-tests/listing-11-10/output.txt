@@ -1,18 +1,18 @@
 $ cargo test
-   Compiling silly-function v0.1.0 (file:///projects/silly-function)
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.58s
-     Running unittests src/lib.rs (target/debug/deps/silly_function-160869f38cff9166)
+   Compiling funzione-stupida v0.1.0 (file:///progetti/funzione-stupida)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.67s
+     Running unittests src/lib.rs (target/debug/deps/funzione_stupida-5473422b7951e476)
 
 running 2 tests
-test tests::this_test_will_fail ... FAILED
 test tests::this_test_will_pass ... ok
+test tests::this_test_will_fail ... FAILED
 
 failures:
 
 ---- tests::this_test_will_fail stdout ----
-I got the value 8
+Ho ricevuto il valore 8
 
-thread 'tests::this_test_will_fail' panicked at src/lib.rs:19:9:
+thread 'tests::this_test_will_fail' (8784) panicked at src/lib.rs:19:9:
 assertion `left == right` failed
   left: 10
  right: 5

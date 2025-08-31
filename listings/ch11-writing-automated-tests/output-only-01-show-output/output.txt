@@ -1,7 +1,7 @@
 $ cargo test -- --show-output
-   Compiling silly-function v0.1.0 (file:///projects/silly-function)
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.60s
-     Running unittests src/lib.rs (target/debug/deps/silly_function-160869f38cff9166)
+   Compiling funzione-stupida v0.1.0 (file:///progetti/funzione-stupida)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.91s
+     Running unittests src/lib.rs (target/debug/deps/funzione_stupida-5473422b7951e476)
 
 running 2 tests
 test tests::this_test_will_fail ... FAILED
@@ -10,7 +10,7 @@ test tests::this_test_will_pass ... ok
 successes:
 
 ---- tests::this_test_will_pass stdout ----
-I got the value 4
+Ho ricevuto il valore 4
 
 
 successes:
@@ -19,9 +19,9 @@ successes:
 failures:
 
 ---- tests::this_test_will_fail stdout ----
-I got the value 8
+Ho ricevuto il valore 8
 
-thread 'tests::this_test_will_fail' panicked at src/lib.rs:19:9:
+thread 'tests::this_test_will_fail' (9352) panicked at src/lib.rs:19:9:
 assertion `left == right` failed
   left: 10
  right: 5

@@ -15,8 +15,8 @@ mod tests {
 
     #[test]
     #[ignore]
-    fn expensive_test() {
-        // code that takes an hour to run
+    fn test_impegnativo() {
+        // codice che richiede un'ora per completarsi
     }
 }
 // ANCHOR_END: here

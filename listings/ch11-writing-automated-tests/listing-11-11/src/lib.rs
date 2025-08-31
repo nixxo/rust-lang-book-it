@@ -1,4 +1,4 @@
-pub fn add_two(a: u64) -> u64 {
+pub fn aggiungi_due(a: u64) -> u64 {
     a + 2
 }
 
@@ -7,20 +7,20 @@ mod tests {
     use super::*;
 
     #[test]
-    fn add_two_and_two() {
-        let result = add_two(2);
-        assert_eq!(result, 4);
+    fn somma_due_e_due() {
+        let risultato = aggiungi_due(2);
+        assert_eq!(risultato, 4);
     }
 
     #[test]
-    fn add_three_and_two() {
-        let result = add_two(3);
-        assert_eq!(result, 5);
+    fn somma_due_e_tre() {
+        let risultato = aggiungi_due(3);
+        assert_eq!(risultato, 5);
     }
 
     #[test]
-    fn one_hundred() {
-        let result = add_two(100);
-        assert_eq!(result, 102);
+    fn cento() {
+        let risultato = aggiungi_due(100);
+        assert_eq!(risultato, 102);
     }
 }
