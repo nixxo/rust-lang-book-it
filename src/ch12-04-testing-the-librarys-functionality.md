@@ -136,13 +136,13 @@ Fortunatamente, le stringhe hanno un metodo utile chiamato `contains` che fa pro
 noi! Aggiungiamo una chiamata al metodo `contains` nella funzione `cerca`, come mostrato nel
 Listato 12-18. Nota che questa non verrà ancora compilata.
 
-<Listato number="12-18" file-name="src/lib.rs" caption="Aggiunta di funzionalità per verificare se la riga contiene la stringa in `query`">
+<Listing number="12-18" file-name="src/lib.rs" caption="Aggiunta di funzionalità per verificare se la riga contiene la stringa in `query`">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-18/src/lib.rs:here}}
 ```
 
-</Listato>
+</Listing>
 
 Al momento, stiamo sviluppando la funzionalità. Per compilare il codice,
 dobbiamo restituire un valore dal corpo, come indicato nella firma della funzione.
@@ -206,7 +206,7 @@ le variabili d'ambiente e come stampare su standard error, entrambi utili
 quando si scrivono programmi da riga di comando.
 
 [validating-references-with-lifetimes]: ch10-03-lifetime-syntax.html#validating-references-with-lifetimes
-[ch11-anatomy]: ch11-01-writing-tests.html#the-anatomy-of-a-test-function
+[ch11-anatomy]: ch11-01-writing-tests.html#anatomia-di-una-funzione-di-test
 [ch10-lifetimes]: ch10-03-lifetime-syntax.html
 [ch3-iter]: ch03-05-control-flow.html#eseguire-un-ciclo-su-una-collezione-con-for
 [ch13-iterators]: ch13-02-iterators.html

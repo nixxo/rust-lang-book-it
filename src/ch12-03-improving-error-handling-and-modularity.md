@@ -173,7 +173,7 @@ modificando `parse_config` in una funzione `new` associata a `Config`, saremo
 in grado di creare istanze di `Config` chiamando `Config::new`. Il Listato 12-7
 mostra le modifiche che dobbiamo apportare.
 
-<Numero di inserzione="12-7" nome-file="src/main.rs" didascalia="Modifica di `parse_config` in `Config::new`">
+<Listing number="12-7" file-name="src/main.rs" caption="Modifica di `parse_config` in `Config::new`">
 
 ```rust,should_panic,noplayground
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-07/src/main.rs:here}}
@@ -304,7 +304,7 @@ Se `Result` è un valore `Ok`, il comportamento di questo metodo è simile
 a `unwrap`: restituisce il valore interno che `Ok` sta racchiudendo. Tuttavia, se il
 valore è un valore `Err`, questo metodo richiama il codice nella _closure_, che è
 una funzione anonima che definiamo e passiamo come argomento a `unwrap_or_else`.
-Tratteremo le closure più in dettaglio nel [Capitolo 13][cap13]<!-- ignore -->. Per
+Tratteremo le closure più in dettaglio nel [Capitolo 13][ch13]<!-- ignore -->. Per
 ora, è sufficiente sapere che `unwrap_or_else` passerà il valore interno di
 `Err`, che in questo caso è la stringa statica `"Non ci sono abbastanza argomenti"`
 che abbiamo aggiunto nel Listato 12-9, alla nostra chiusura nell'argomento `err` che
@@ -377,7 +377,7 @@ restituiva il tipo unitario, `()`, e lo manteniamo come valore restituito nel ca
 
 Per il tipo di errore, abbiamo utilizzato l'oggetto _trait_ `Box<dyn Error>` (e abbiamo
 portato `std::error::Error` nell'ambito con un'istruzione `use` all'inizio).
-Tratteremo gli oggetti trait nel [Capitolo 18][cap18]<!-- ignore -->. Per ora,
+Tratteremo gli oggetti trait nel [Capitolo 18][ch18]<!-- ignore -->. Per ora,
 sappi solo che `Box<dyn Error>` significa che la funzione restituirà un tipo che
 implementa il tratto `Error`, ma non dobbiamo specificare di quale tipo specifico
 sarà il valore restituito. Questo ci offre la flessibilità di restituire valori di errore che

@@ -29,8 +29,7 @@ apprendo solo ora questo concetto, implementiamo questa funzionalità da soli.
 
 Per consentire a `minigrep` di leggere i valori degli argomenti da riga di comando che gli passiamo,
 avremo bisogno della funzione `std::env::args` fornita nella libreria standard di Rust. Questa funzione restituisce un iteratore degli argomenti della riga di comando passati
-a `minigrep`. Tratteremo gli iteratori in dettaglio nel [Capitolo 13][cap13]<!-- ignore
--->. Per ora, è necessario conoscere solo due dettagli sugli iteratori: gli iteratori
+a `minigrep`. Tratteremo gli iteratori in dettaglio nel [Capitolo 13][ch13]<!-- ignore -->. Per ora, è necessario conoscere solo due dettagli sugli iteratori: gli iteratori
 producono una serie di valori e possiamo chiamare il metodo `collect` su un iteratore
 per trasformarlo in una raccolta, come un vettore, che contiene tutti gli elementi
 prodotti dall'iteratore.

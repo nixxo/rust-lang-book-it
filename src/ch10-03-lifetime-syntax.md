@@ -590,7 +590,7 @@ Che ci crediate o no, c'è molto altro da imparare sugli argomenti trattati in
 questo capitolo: il Capitolo 18 tratta degli oggetti Tratto, che rappresentano un altro modo per utilizzare
 i tratti. Esistono anche scenari più complessi che coinvolgono le annotazioni lifetimes,
 che ti serviranno solo in scenari molto avanzati; per questi, dovresti leggere
-il [Riferimento Rust][riferimento]. Ma ora imparerai come scrivere test in
+il [Riferimento Rust][reference]. Ma ora imparerai come scrivere test in
 Rust in modo da poterti assicurare che il tuo codice funzioni a dovere.
 
 [references-and-borrowing]: ch04-02-references-and-borrowing.html#reference-e-borrowing

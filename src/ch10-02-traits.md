@@ -120,13 +120,13 @@ Nel Listato 10-14, specifichiamo una stringa predefinita per il metodo `riassunt
 tratto `Sommario` invece di definire solo la firma del metodo, come abbiamo fatto nel
 Listato 10-12.
 
-<Listato number="10-14" file-name="src/lib.rs" caption="Definizione di un tratto `Sommario` con un'implementazione predefinita del metodo `riassunto`  ">
+<Listing number="10-14" file-name="src/lib.rs" caption="Definizione di un tratto `Sommario` con un'implementazione predefinita del metodo `riassunto`  ">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-14/src/lib.rs:here}}
 ```
 
-</Listato>
+</Listing>
 
 Per utilizzare un'implementazione predefinita per `riassunto`re le istanze di `ArticoloNews`,
 specifichiamo un blocco `impl` vuoto con `impl Sommario for ArticoloNews {}`.
