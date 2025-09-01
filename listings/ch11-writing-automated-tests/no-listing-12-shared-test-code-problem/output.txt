@@ -1,27 +1,27 @@
 $ cargo test
-   Compiling adder v0.1.0 (file:///projects/adder)
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.89s
-     Running unittests src/lib.rs (target/debug/deps/adder-92948b65e88960b4)
+   Compiling addizione v0.1.0 (file:///progetti/addizione)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.92s
+     Running unittests src/lib.rs (target/debug/deps/addizione-41054392f08da196)
 
 running 1 test
-test tests::internal ... ok
+test tests::privata ... ok
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
-     Running tests/common.rs (target/debug/deps/common-92948b65e88960b4)
+     Running tests/comune.rs (target/debug/deps/comune-9acf22d6dcb0de0a)
 
 running 0 tests
 
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
-     Running tests/integration_test.rs (target/debug/deps/integration_test-92948b65e88960b4)
+     Running tests/test_integrazione.rs (target/debug/deps/test_integrazione-a2e6a22ac01f911a)
 
 running 1 test
-test it_adds_two ... ok
+test aggiungere_due ... ok
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
-   Doc-tests adder
+   Doc-tests addizione
 
 running 0 tests
 

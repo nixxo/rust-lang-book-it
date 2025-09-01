@@ -1,39 +1,42 @@
-## Test Organization
+## Organizzazione dei Test
 
-As mentioned at the start of the chapter, testing is a complex discipline, and
-different people use different terminology and organization. The Rust community
-thinks about tests in terms of two main categories: unit tests and integration
-tests. _Unit tests_ are small and more focused, testing one module in isolation
-at a time, and can test private interfaces. _Integration tests_ are
-external to your library and use your code in the same way any other external
-code would, using only the public interface and potentially exercising multiple
-modules per test.
+Come accennato all'inizio del capitolo, i test sono una disciplina complessa e
+diverse persone tendono ad utilizzare una terminologia e un'organizzazione
+diverse. La comunità di Rust pensa ai test in termini di due categorie
+principali: i _test per unit_ (_unit test_) e i _test di integrazione_
+(_integration test_). Gli _unit test_ sono piccoli e più mirati, testano un
+singolo modulo alla volta e possono testare interfacce private. Gli _integration
+test_ sono invece esterni alla tua libreria e utilizzano il tuo codice nello
+stesso modo in cui lo farebbe qualsiasi altro codice esterno, utilizzando solo
+l'interfaccia pubblica e potenzialmente utilizzando più moduli per test.
 
-Writing both kinds of tests is important to ensure that the pieces of your
-library are doing what you expect them to, separately and together.
+Scrivere entrambi i tipi di test è importante per garantire che i pezzi della
+tua libreria facciano ciò che ti aspetti, sia separatamente che quando integrate
+in altro codice.
 
-### Unit Tests
+### _Unit Test_
 
-The purpose of unit tests is to test each unit of code in isolation from the
-rest of the code to quickly pinpoint where code is and isn’t working as
-expected. You’ll put unit tests in the _src_ directory in each file with the
-code that they’re testing. The convention is to create a module named `tests`
-in each file to contain the test functions and to annotate the module with
-`cfg(test)`.
+Lo scopo degli _unit test_ è quello di testare ogni unità di codice in modo
+isolato dal resto del codice per individuare rapidamente i punti in cui il
+codice funziona e non funziona come previsto. Gli _unit test_ vengono inseriti
+nella directory _src_ in ogni file con il codice che stanno testando. La
+convenzione è quella di creare un modulo chiamato `tests` in ogni file per
+contenere le funzioni di test e di annotare il modulo con `cfg(test)`.
 
-#### The Tests Module and `#[cfg(test)]`
+#### Il Modulo di Test e `#[cfg(test)]`
 
-The `#[cfg(test)]` annotation on the `tests` module tells Rust to compile and
-run the test code only when you run `cargo test`, not when you run `cargo
-build`. This saves compile time when you only want to build the library and
-saves space in the resultant compiled artifact because the tests are not
-included. You’ll see that because integration tests go in a different
-directory, they don’t need the `#[cfg(test)]` annotation. However, because unit
-tests go in the same files as the code, you’ll use `#[cfg(test)]` to specify
-that they shouldn’t be included in the compiled result.
+L'annotazione `#[cfg(test)]` sul modulo `tests` dice a Rust di compilare ed
+eseguire il codice di test solo quando si esegue `cargo test`, non quando si
+esegue `cargo build`. In questo modo si risparmia tempo di compilazione quando
+si vuole costruire solo la libreria e si risparmia spazio nell'artefatto
+compilato risultante perché i test non sono inclusi. Vedrai che, poiché i test
+di integrazione si trovano in una directory diversa, non hanno bisogno
+dell'annotazione `#[cfg(test)]`. Tuttavia, poiché gli _unit test_ si trovano
+negli stessi file del codice, dovrai specificare `#[cfg(test)]` per evitare che
+siano inclusi nel risultato compilato.
 
-Recall that when we generated the new `adder` project in the first section of
-this chapter, Cargo generated this code for us:
+Ricordi che quando abbiamo generato il nuovo progetto `addizione` nella prima
+sezione di questo capitolo, Cargo ha generato questo codice per noi:
 
 <span class="filename">File: src/lib.rs</span>
 
@@ -41,23 +44,25 @@ this chapter, Cargo generated this code for us:
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/listing-11-01/src/lib.rs}}
 ```
 
-On the automatically generated `tests` module, the attribute `cfg` stands for
-_configuration_ and tells Rust that the following item should only be included
-given a certain configuration option. In this case, the configuration option is
-`test`, which is provided by Rust for compiling and running tests. By using the
-`cfg` attribute, Cargo compiles our test code only if we actively run the tests
-with `cargo test`. This includes any helper functions that might be within this
-module, in addition to the functions annotated with `#[test]`.
+Nel modulo `tests` generato automaticamente, l'attributo `cfg` sta per
+_configuration_ (_configurazione_) e indica a Rust che il seguente elemento deve
+essere incluso solo in presenza di una determinata opzione di configurazione. In
+questo caso, l'opzione di configurazione è `test`, che viene fornita da Rust per
+la compilazione e l'esecuzione dei test. Utilizzando l'attributo `cfg`, Cargo
+compila il nostro codice di test solo se effettivamente eseguiamo i test con
+`cargo test`. Questo include qualsiasi funzione ausiliarie che potrebbero essere
+presenti in questo modulo, oltre alle funzioni annotate con `#[test]`.
 
-#### Testing Private Functions
+#### Testing di Funzioni Private
 
-There’s debate within the testing community about whether or not private
-functions should be tested directly, and other languages make it difficult or
-impossible to test private functions. Regardless of which testing ideology you
-adhere to, Rust’s privacy rules do allow you to test private functions.
-Consider the code in Listing 11-12 with the private function `internal_adder`.
+All'interno della comunità dei tester si discute se le funzioni private debbano
+essere testate direttamente o meno, e altri linguaggi rendono difficile o
+impossibile testare le funzioni private. Indipendentemente dall'ideologia di
+testing a cui aderisci, le regole sulla privacy di Rust ti permettono di testare
+le funzioni private. Considera il codice nel Listato 11-12 con la funzione
+privata `addizione_privata`.
 
-<Listing number="11-12" file-name="src/lib.rs" caption="Testing a private function">
+<Listing number="11-12" file-name="src/lib.rs" caption="Test di una funzione privata">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/listing-11-12/src/lib.rs}}
@@ -65,135 +70,137 @@ Consider the code in Listing 11-12 with the private function `internal_adder`.
 
 </Listing>
 
-Note that the `internal_adder` function is not marked as `pub`. Tests are just
-Rust code, and the `tests` module is just another module. As we discussed in
-[“Paths for Referring to an Item in the Module Tree”][paths]<!-- ignore -->,
-items in child modules can use the items in their ancestor modules. In this
-test, we bring all of the `tests` module’s parent’s items into scope with `use
-super::*`, and then the test can call `internal_adder`. If you don’t think
-private functions should be tested, there’s nothing in Rust that will compel you
-to do so.
+Nota che la funzione `addizione_privata` non è contrassegnata come `pub`. I test
+sono solo codice Rust e il modulo `tests` è solo un altro modulo. Come abbiamo
+discusso in ["Percorsi per Fare Riferimento a un Elemento nell'Albero dei
+Moduli"][paths]<!-- ignore -->, gli elementi dei moduli figli possono utilizzare
+gli elementi dei loro moduli antenati. In questo test, portiamo tutti gli
+elementi dei moduli genitore del modulo `tests` nello _scope_ con `use
+super::*`, e poi il test può chiamare `addizione_privata`. Se non pensi che le
+funzioni private debbano essere testate, non c'è nulla in Rust che ti costringa
+a farlo.
 
-### Integration Tests
+### Test di Integrazione
 
-In Rust, integration tests are external to your library. They use your
-library in the same way any other code would, which means they can only call
-functions that are part of your library’s public API. Their purpose is to test
-whether many parts of your library work together correctly. Units of code that
-work correctly on their own could have problems when integrated, so test
-coverage of the integrated code is important as well. To create integration
-tests, you first need a _tests_ directory.
+In Rust, i test di integrazione sono esterni alla tua libreria. Utilizzano la
+libreria nello stesso modo in cui lo farebbe qualsiasi altro codice, il che
+significa che possono chiamare solo le funzioni che fanno parte dell'API
+pubblica della libreria. Il loro scopo è quello di verificare se molte parti
+della libreria funzionano correttamente insieme. Unità di codice che funzionano
+correttamente da sole potrebbero avere problemi quando vengono integrate, quindi
+creare test che verifichino queste funzionalità del codice integrato è
+importante. Per creare i test di integrazione, hai bisogno innanzitutto di una
+cartella _tests_.
 
-#### The _tests_ Directory
+#### La Cartella _tests_
 
-We create a _tests_ directory at the top level of our project directory, next
-to _src_. Cargo knows to look for integration test files in this directory. We
-can then make as many test files as we want, and Cargo will compile each of the
-files as an individual crate.
+Creiamo una cartella _tests_ all'inizio della nostra cartella di progetto,
+accanto a _src_. Cargo sa che deve cercare i file di test di integrazione in
+questa cartella. Possiamo quindi creare tutti i file di test che vogliamo e
+Cargo compilerà ciascuno di essi come _crate_ separati.
 
 Let’s create an integration test. With the code in Listing 11-12 still in the
 _src/lib.rs_ file, make a _tests_ directory, and create a new file named
 _tests/integration_test.rs_. Your directory structure should look like this:
+Creiamo un test di integrazione. Con il codice del Listato 11-12 ancora nel file _src/lib.rs_, crea una cartella _tests_ e un nuovo file chiamato _tests/test_integrazione.rs_. La struttura delle cartelle del tuo progetto dovrebbe essere simile a questa:
 
 ```text
-adder
+addizione
 ├── Cargo.lock
 ├── Cargo.toml
 ├── src
 │   └── lib.rs
 └── tests
-    └── integration_test.rs
+    └── test_integrazione.rs
 ```
 
-Enter the code in Listing 11-13 into the _tests/integration_test.rs_ file.
+Inserisci il codice del Listato 11-13 nel file _tests/test_integrazione.rs_.
 
-<Listing number="11-13" file-name="tests/integration_test.rs" caption="An integration test of a function in the `adder` crate">
+<Listing number="11-13" file-name="tests/test_integrazione.rs" caption="Un test di integrazione di una funzione nel crate `addizione`">
 
 ```rust,ignore
-{{#rustdoc_include ../listings/ch11-writing-automated-tests/listing-11-13/tests/integration_test.rs}}
+{{#rustdoc_include ../listings/ch11-writing-automated-tests/listing-11-13/tests/test_integrazione.rs}}
 ```
 
 </Listing>
 
-Each file in the _tests_ directory is a separate crate, so we need to bring our
-library into each test crate’s scope. For that reason we add `use
-adder::add_two;` at the top of the code, which we didn’t need in the unit tests.
+Ogni file della cartella _tests_ è un _crate_ separato, quindi dobbiamo portare
+la nostra libreria nello _scope_ di ogni _crate_ di test. Per questo motivo
+aggiungiamo `use addizione::aggiungi_due;` all'inizio del codice, che non era
+necessario negli _unit test_ usati finora.
 
-We don’t need to annotate any code in _tests/integration_test.rs_ with
-`#[cfg(test)]`. Cargo treats the _tests_ directory specially and compiles files
-in this directory only when we run `cargo test`. Run `cargo test` now:
+Non abbiamo bisogno di annotare alcun codice in _tests/integration_test.rs_ con
+`#[cfg(test)]`. Cargo tratta la cartella _tests_ in modo speciale e compila i
+file in questa directory solo quando eseguiamo `cargo test`. Esegui ora `cargo
+test`:
 
 ```console
 {{#include ../listings/ch11-writing-automated-tests/listing-11-13/output.txt}}
 ```
 
-The three sections of output include the unit tests, the integration test, and
-the doc tests. Note that if any test in a section fails, the following sections
-will not be run. For example, if a unit test fails, there won’t be any output
-for integration and doc tests because those tests will only be run if all unit
-tests are passing.
+Le tre sezioni di output comprendono gli _unit test_, i test di integrazione e i
+test di documentazione. Nota che se un test di una sezione fallisce, le sezioni
+successive non verranno eseguite. Ad esempio, se un _unit test_ fallisce, non ci
+sarà alcun output per i test di integrazione e di documentazione perché questi
+test verranno eseguiti solo se tutti gli _unit test_ passano.
 
-The first section for the unit tests is the same as we’ve been seeing: one line
-for each unit test (one named `internal` that we added in Listing 11-12) and
-then a summary line for the unit tests.
+La prima sezione per gli _unit test_ è la stessa che abbiamo visto finora: una
+riga per ogni _unit test_ (una denominata `privata` che abbiamo aggiunto nel
+Listato 11-12) e poi una riga di riepilogo per i _unit test_.
 
-The integration tests section starts with the line `Running
-tests/integration_test.rs`. Next, there is a line for each test function in
-that integration test and a summary line for the results of the integration
-test just before the `Doc-tests adder` section starts.
+La sezione dei test di integrazione inizia con la riga `Running
+test/test_integrazione.rs`. Poi, c'è una riga per ogni funzione di test in quel
+test di integrazione e una riga di riepilogo dei risultati del test di
+integrazione appena prima dell'inizio della sezione `Doc-tests addizione`.
 
-Each integration test file has its own section, so if we add more files in the
-_tests_ directory, there will be more integration test sections.
+Ogni file di test di integrazione ha una propria sezione, quindi se aggiungiamo
+altri file nella cartella _tests_, ci saranno più sezioni di test di
+integrazione.
 
-We can still run a particular integration test function by specifying the test
-function’s name as an argument to `cargo test`. To run all the tests in a
-particular integration test file, use the `--test` argument of `cargo test`
-followed by the name of the file:
+Possiamo comunque eseguire una particolare funzione di test di integrazione
+specificando il nome della funzione di test come argomento di `cargo test`. Per
+eseguire tutti i test in un particolare file di test di integrazione, usa
+l'argomento `--test` di `cargo test` seguito dal nome del file:
 
 ```console
 {{#include ../listings/ch11-writing-automated-tests/output-only-05-single-integration/output.txt}}
 ```
 
-This command runs only the tests in the _tests/integration_test.rs_ file.
+Questo comando esegue solo i test presenti nel file _tests/test_integrazione.rs_.
 
-#### Submodules in Integration Tests
+#### Sottomoduli nei Test di Integrazione
 
-As you add more integration tests, you might want to make more files in the
-_tests_ directory to help organize them; for example, you can group the test
-functions by the functionality they’re testing. As mentioned earlier, each file
-in the _tests_ directory is compiled as its own separate crate, which is useful
-for creating separate scopes to more closely imitate the way end users will be
-using your crate. However, this means files in the _tests_ directory don’t
-share the same behavior as files in _src_ do, as you learned in Chapter 7
-regarding how to separate code into modules and files.
+Man mano che aggiungi altri test di integrazione, potresti voler creare altri
+file nella cartella _tests_ per organizzarli; ad esempio, puoi raggruppare le
+funzioni di test in base alla funzionalità che stanno testando. Come già detto,
+ogni file nella cartella _tests_ viene compilato come un proprio crate separato,
+il che è utile per creare _scope_ separati per imitare più da vicino il modo in
+cui gli utenti finali utilizzeranno il tuo _crate_. Tuttavia, questo significa
+che i file nella cartella _tests_ non condividono lo stesso comportamento dei
+file in _src_, come hai appreso nel Capitolo 7 su come separare il codice in
+moduli e file.
 
-The different behavior of _tests_ directory files is most noticeable when you
-have a set of helper functions to use in multiple integration test files and
-you try to follow the steps in the [“Separating Modules into Different
-Files”][separating-modules-into-files]<!-- ignore --> section of Chapter 7 to
-extract them into a common module. For example, if we create _tests/common.rs_
-and place a function named `setup` in it, we can add some code to `setup` that
-we want to call from multiple test functions in multiple test files:
+Il diverso comportamento dei file della cartella _tests_ si nota soprattutto quando hai una serie di funzioni comuni da utilizzare in più file di test di integrazione e cerchi di seguire i passi della sezione ["Separare i Moduli in File Diversi"][separating-modules-into-files]<!-- ignore --> del Capitolo 7 per metterle in un modulo comune. Ad esempio, se creiamo _tests/comune.rs_ e vi inseriamo una funzione chiamata `inizializzazione` a cui aggiungere del codice che vogliamo chiamare da più funzioni di test in più file di test:
 
-<span class="filename">File: tests/common.rs</span>
+<span class="filename">File: tests/comune.rs</span>
 
 ```rust,noplayground
-{{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-12-shared-test-code-problem/tests/common.rs}}
+{{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-12-shared-test-code-problem/tests/comune.rs}}
 ```
 
-When we run the tests again, we’ll see a new section in the test output for the
-_common.rs_ file, even though this file doesn’t contain any test functions nor
-did we call the `setup` function from anywhere:
+Quando eseguiamo nuovamente i test, vedremo una nuova sezione nell'output del
+test per il file _comune.rs_, anche se questo file non contiene alcuna funzione
+di test né abbiamo chiamato la funzione `inizializzazione` da nessuna parte:
 
 ```console
 {{#include ../listings/ch11-writing-automated-tests/no-listing-12-shared-test-code-problem/output.txt}}
 ```
 
-Having `common` appear in the test results with `running 0 tests` displayed for
-it is not what we wanted. We just wanted to share some code with the other
-integration test files. To avoid having `common` appear in the test output,
-instead of creating _tests/common.rs_, we’ll create _tests/common/mod.rs_. The
-project directory now looks like this:
+Il fatto che `comune` appaia nei risultati dei test con `running 0 tests`
+(_eseguiti 0 test_) non è quello che volevamo. Volevamo solo condividere un po'
+di codice con gli altri file dei test di integrazione. Per evitare che `comune`
+appaia nell'output dei test, invece di creare _tests/comune.rs_, creeremo
+_tests/comune/mod.rs_. La cartella del progetto ora ha questo aspetto:
 
 ```text
 ├── Cargo.lock
@@ -201,61 +208,67 @@ project directory now looks like this:
 ├── src
 │   └── lib.rs
 └── tests
-    ├── common
+    ├── comune
     │   └── mod.rs
-    └── integration_test.rs
+    └── test_integrazione.rs
 ```
 
-This is the older naming convention that Rust also understands that we mentioned
-in [“Alternate File Paths”][alt-paths]<!-- ignore --> in Chapter 7. Naming the
-file this way tells Rust not to treat the `common` module as an integration test
-file. When we move the `setup` function code into _tests/common/mod.rs_ and
-delete the _tests/common.rs_ file, the section in the test output will no longer
-appear. Files in subdirectories of the _tests_ directory don’t get compiled as
-separate crates or have sections in the test output.
+Questa è la vecchia convenzione di denominazione comunque compresa da Rust, di
+cui abbiamo parlato in ["Percorsi di File Alternativi"][alt-paths]<!-- ignore
+--> nel Capitolo 7. Nominare il file in questo modo indica a Rust di non
+trattare il modulo `comune` come un file di test di integrazione. Quando
+spostiamo il codice della funzione `inizializzazione` in _tests/comune/mod.rs_ e
+cancelliamo il file _tests/comune.rs_, la sezione nell'output del test non
+apparirà più. I file nelle sottocartelle della acrtella _tests_ non vengono
+compilati come _crate_ separati né hanno sezioni nell'output del test.
 
-After we’ve created _tests/common/mod.rs_, we can use it from any of the
-integration test files as a module. Here’s an example of calling the `setup`
-function from the `it_adds_two` test in _tests/integration_test.rs_:
+Dopo aver creato _tests/comune/mod.rs_, possiamo utilizzarlo da qualsiasi file
+di test di integrazione come modulo. Ecco un esempio di chiamata della funzione
+`inizializzazione` dal test `aggiungere_due` in _tests/test_integrazione.rs_:
 
-<span class="filename">File: tests/integration_test.rs</span>
+<span class="filename">File: tests/test_integrazione.rs</span>
 
 ```rust,ignore
-{{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-13-fix-shared-test-code-problem/tests/integration_test.rs}}
+{{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-13-fix-shared-test-code-problem/tests/test_integrazione.rs}}
 ```
 
-Note that the `mod common;` declaration is the same as the module declaration
-we demonstrated in Listing 7-21. Then, in the test function, we can call the
-`common::setup()` function.
+Nota come la dichiarazione `mod comune;` è uguale alla dichiarazione che abbiamo
+mostrato nel listato 7-21. Quindi, nella funzione di test, possiamo chiamare la
+funzione `comune::inizializzazione()`.
 
-#### Integration Tests for Binary Crates
+#### Test di Integrazione per i _Crate_ Binari
 
-If our project is a binary crate that only contains a _src/main.rs_ file and
-doesn’t have a _src/lib.rs_ file, we can’t create integration tests in the
-_tests_ directory and bring functions defined in the _src/main.rs_ file into
-scope with a `use` statement. Only library crates expose functions that other
-crates can use; binary crates are meant to be run on their own.
+Se il nostro progetto è un _crate_ binario che contiene solo un file
+_src/main.rs_ e non ha un file _src/lib.rs_, non possiamo creare test di
+integrazione nella cartella _tests_ e testare le funzioni definite nel file
+_src/main.rs_ con una dichiarazione `use`. Solo i _crate_ libreria espongono
+funzioni che altri _crate_ possono utilizzare; i _crate_ binari sono pensati per
+essere eseguiti da soli.
 
-This is one of the reasons Rust projects that provide a binary have a
-straightforward _src/main.rs_ file that calls logic that lives in the
-_src/lib.rs_ file. Using that structure, integration tests _can_ test the
-library crate with `use` to make the important functionality available. If the
-important functionality works, the small amount of code in the _src/main.rs_
-file will work as well, and that small amount of code doesn’t need to be tested.
+Per questo è buona pratica per i progetti Rust che forniscono un binario avere
+un file _src/main.rs_ semplice che si limita a richiamare la logica che risiede
+nel file _src/lib.rs_. Utilizzando questa struttura, i test di integrazione
+_possono_ testare il _crate_ libreria con `use` per rendere disponibile le
+funzionalità che ci interessa testare. Se la funzionalità passa il test, anche
+la piccola quantità di codice nel file _src/main.rs_ funzionerà e quella piccola
+quantità di codice non dovrà essere testata.
 
-## Summary
+## Riepilogo
 
-Rust’s testing features provide a way to specify how code should function to
-ensure it continues to work as you expect, even as you make changes. Unit tests
-exercise different parts of a library separately and can test private
-implementation details. Integration tests check that many parts of the library
-work together correctly, and they use the library’s public API to test the code
-in the same way external code will use it. Even though Rust’s type system and
-ownership rules help prevent some kinds of bugs, tests are still important to
-reduce logic bugs having to do with how your code is expected to behave.
+Le funzioni di testing di Rust forniscono un modo per specificare come il codice
+debba funzionare e ci si  assicuri che continui a funzionare come ci si aspetta,
+anche quando si apportano delle modifiche. Gli _unit test_ usano e testano le
+diverse parti di una libreria separatamente e possono testare i dettagli privati
+dell'implementazione. I test di integrazione verificano che molte parti della
+libreria funzionino insieme correttamente e utilizzano l'API pubblica della
+libreria per testare il codice nello stesso modo in cui lo utilizzerà il codice
+esterno. Anche se il sistema dei _type_ e le regole di _ownership_ di Rust
+aiutano a prevenire alcuni tipi di bug, i test sono comunque importanti per
+ridurre i bug logici che hanno a che fare con il modo in cui ci si aspetta che
+il codice si comporti.
 
-Let’s combine the knowledge you learned in this chapter and in previous
-chapters to work on a project!
+Combiniamo le conoscenze apprese in questo capitolo e nei capitoli precedenti
+per lavorare a un progetto!
 
 [paths]: ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html
 [separating-modules-into-files]: ch07-05-separating-modules-into-different-files.html
