@@ -214,7 +214,8 @@ possiedono. _Null_ è un valore che significa che non c’è alcun valore. Nei
 linguaggi con _null_, le variabili possono essere sempre in uno dei due stati:
 _null_ o non-_null_.
 
-Nella sua presentazione del 2009 “Null References: The Billion Dollar Mistake”, Tony Hoare, l’inventore del _null_, disse:
+Nella sua presentazione del 2009 “Null References: The Billion Dollar Mistake”,
+Tony Hoare, l’inventore del _null_, disse:
 
 > Lo chiamo il mio errore da un miliardo di dollari. All’epoca stavo progettando
 > il primo sistema di _type_ completo per i _reference_ in un linguaggio

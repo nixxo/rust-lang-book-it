@@ -263,8 +263,8 @@ non corrisponda a un _pattern_ in un ramo precedente, e non vogliamo eseguire
 alcun codice in questo caso.
 
 C’è molto altro sui _pattern_ e sul _matching_ che tratteremo nel [Capitolo
-19](ch19-00-patterns.html)<!-- ignore -->. Per ora, passiamo alla sintassi `if let`,
-che può essere utile nelle situazioni più semplici in cui l’espressione `match`
-risulta un po’ verbosa.
+19](ch19-00-patterns.html)<!-- ignore -->. Per ora, passiamo alla sintassi `if
+let`, che può essere utile nelle situazioni più semplici in cui l’espressione
+`match` risulta un po’ verbosa.
 
 [tuples]: ch03-02-data-types.html#il-type-tupla

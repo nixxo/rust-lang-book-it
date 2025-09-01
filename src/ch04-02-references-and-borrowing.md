@@ -30,9 +30,13 @@ e consente di fare riferimento a un valore senza prenderne la _ownership_.
 
 La Figura 4-6 illustra questo concetto.
 
-<img alt="Tre tabelle: la tabella per s contiene solo un puntatore alla tabella per s1. L atabella per s1 contiene i dati sullo stack per s1 e punta ai dati della stringa nell'heap." src="img/trpl04-06.svg" class="center" />
+<img alt="Tre tabelle: la tabella per s contiene solo un puntatore alla tabella
+per s1. L atabella per s1 contiene i dati sullo stack per s1 e punta ai dati
+della stringa nell'heap."
+src="img/trpl04-06.svg" class="center" />
 
-<span class="caption">Figura 4-6: Schema di `&String s` che punta a `String s1`</span>
+<span class="caption">Figura 4-6: Schema di `&String s` che punta a `String
+s1`</span>
 
 > Nota: l'opposto della referenziazione tramite l'uso di `&` è la
 > _dereferenziazione_, che si realizza con l'operatore di deferenziazione `*`

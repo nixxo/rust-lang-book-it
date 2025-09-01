@@ -108,6 +108,7 @@ _type integer_ di default è `i32`. La situazione principale in cui puoi usare
 > _panic_ quando un programma termina con un errore; parleremo in modo più
 > approfondito di _panic_ nella sezione ["Errori irrecuperabili con
 > `panic!`"][panic]<!-- ignore --> nel Capitolo 9.
+>
 > Quando si compila in modalità release con il flag `--release`, Rust _non_
 > include i controlli per l'overflow degli integer che causano il _panic_.
 > Invece, se si verifica l'overflow, Rust esegue l'_avvolgimento del complemento

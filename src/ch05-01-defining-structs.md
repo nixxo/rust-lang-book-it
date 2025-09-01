@@ -166,11 +166,11 @@ spostato da `utente1`.
 
 Rust supporta anche _struct_ che assomigliano alle _tuple_, chiamate _tuple
 struct_. Le _tuple struct_ hanno il significato aggiuntivo che il nome della
-_struct_ fornisce, ma non hanno nomi associati ai loro campi; piuttosto,
-hanno solo i _type_ dei campi. Le _tuple struct_ sono utili quando si vuole
-dare un nome all'intera _tuple_ e renderla un _type_ diverso da altre _tuple_, e
-quando denominare ogni campo come in una _struct_ regolare sarebbe poco utile
-o ridondante. Per definire una _tuple struct_, inizia con la parola chiave
+_struct_ fornisce, ma non hanno nomi associati ai loro campi; piuttosto, hanno
+solo i _type_ dei campi. Le _tuple struct_ sono utili quando si vuole dare un
+nome all'intera _tuple_ e renderla un _type_ diverso da altre _tuple_, e quando
+denominare ogni campo come in una _struct_ regolare sarebbe poco utile o
+ridondante. Per definire una _tuple struct_, inizia con la parola chiave
 `struct` e il nome della _struct_ seguito dai _type_ della _tuple_. Ad esempio,
 qui definiamo e utilizziamo due _tuple struct_ chiamate `Colore` e `Punto`:
 

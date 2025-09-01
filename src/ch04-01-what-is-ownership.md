@@ -286,10 +286,14 @@ lunghezza (`len`) e una capienza (`capacity`). Questo gruppo di dati è
 memorizzato sullo _stack_. A destra c'è la memoria nell'_heap_ che contiene il
 contenuto.
 
-<img alt="Due tabelle: la prima tabella contiene la rappresentazione di s1 nello stack, composta dalla lunghezza (5), capienza (5), e un puntatore al primo valore dela seconda tabella. La seconda tabella contiene una rappresentazione del contenuto della stringa nell'heap, byte per byte." src="img/trpl04-01.svg" class="center"
-style="width: 50%;" />
+<img alt="Due tabelle: la prima tabella contiene la rappresentazione di s1 nello
+stack, composta dalla lunghezza (5), capienza (5), e un puntatore al primo
+valore dela seconda tabella. La seconda tabella contiene una rappresentazione
+del contenuto della stringa nell'heap, byte per byte." src="img/trpl04-01.svg"
+class="center" style="width: 50%;" />
 
-<span class="caption">Figura 4-1: Representazione in memoria di una `String` con valore `"hello"` assegnato a `s1`</span>
+<span class="caption">Figura 4-1: Representazione in memoria di una `String` con
+valore `"hello"` assegnato a `s1`</span>
 
 La lunghezza è la quantità di memoria, in byte, utilizzata attualmente dal
 contenuto della `String`. La capienza è la quantità totale di memoria, in byte,
@@ -302,10 +306,12 @@ il puntatore, la lunghezza e la capienza presenti sullo _stack_. Non copiamo i
 dati nell’_heap_ a cui fa riferimento il puntatore. In altre parole, la
 rappresentazione dei dati in memoria è simile alla Figura 4-2.
 
-<img alt="Tre tabelle: tabella s1 e s2 rappresentano quelle stringhe nello stack, indipendentemente, ed entrambe puntano agli stessi dati della stringa nell'heap."
-src="img/trpl04-02.svg" class="center" style="width: 50%;" />
+<img alt="Tre tabelle: tabella s1 e s2 rappresentano quelle stringhe nello
+stack, indipendentemente, ed entrambe puntano agli stessi dati della stringa
+nell'heap." src="img/trpl04-02.svg" class="center" style="width: 50%;" />
 
-<span class="caption">Figura 4-2: Rappresentazione in memoria della variabile `s2` che contiene una copia del puntatore, lunghezza e capienza di `s1`</span>
+<span class="caption">Figura 4-2: Rappresentazione in memoria della variabile
+`s2` che contiene una copia del puntatore, lunghezza e capienza di `s1`</span>
 
 La rappresentazione non assomiglia alla Figura 4-3, che è l'aspetto che avrebbe
 la memoria se Rust copiasse anche i dati dell'_heap_. Se Rust facesse così,
@@ -313,10 +319,12 @@ l'operazione `s2 = s1` potrebbe diventare molto dispendiosa in termini
 prestazionali e di memoria qualora i dati nell'_heap_ fossero di grandi
 dimensioni.
 
-<img alt="Quattro tabelle: due tabelle rappresentanmo i dati sullo stack di s1 e s2, ognuna delle guali punta alla propriia copia di dati nell'heap."
+<img alt="Quattro tabelle: due tabelle rappresentanmo i dati sullo stack di s1 e
+s2, ognuna delle guali punta alla propriia copia di dati nell'heap."
 src="img/trpl04-03.svg" class="center" style="width: 50%;" />
 
-<span class="caption">Figura 4-3: Un'altra possibilità di come potrebbe essere `s2 = s1` se Rust copiasse anche i dati dell'_heap_</span>
+<span class="caption">Figura 4-3: Un'altra possibilità di come potrebbe essere
+`s2 = s1` se Rust copiasse anche i dati dell'_heap_</span>
 
 In precedenza, abbiamo detto che quando una variabile esce dallo _scope_, Rust
 chiama automaticamente la funzione `drop` e ripulisce la memoria nell'_heap_ di
@@ -352,11 +360,14 @@ essere chiamata _copia superficiale_, questa operazione è nota come _move_
 (_spostamento_). In questo esempio, diremmo che `s1` è stata _spostata_ in `s2`.
 Quindi, ciò che accade in realtà è mostrato nella Figura 4-4.
 
-<img alt="Tre tabelle: tabelle s1 e s2 raprpesentano rispettivamente le quelle stringhe sullo stack, ed entrambe puntano alla medesima stringa nell'heap.
-Tabella s1 è scurita perché s1 non è più valida; solo s2 può essere usata per accedere ai dati nell'heap." src="img/trpl04-04.svg" class="center" style="width:
-50%;" />
+<img alt="Tre tabelle: tabelle s1 e s2 raprpesentano rispettivamente le quelle
+stringhe sullo stack, ed entrambe puntano alla medesima stringa nell'heap.
+Tabella s1 è scurita perché s1 non è più valida; solo s2 può essere usata per
+accedere ai dati nell'heap." src="img/trpl04-04.svg" class="center"
+style="width: 50%;" />
 
-<span class="caption">Figura 4-4: Reppresentazione in memoria dopo che `s1` è resa non valida</span>
+<span class="caption">Figura 4-4: Reppresentazione in memoria dopo che `s1` è
+resa non valida</span>
 
 Questo risolve il nostro problema! Con la sola `s2` valida, quando essa uscirà
 dallo _scope_, solo lei rilascera la memoria e il gioco è fatto.
@@ -383,13 +394,13 @@ valore `"hello"`. Poi creiamo immediatamente una nuova `String` con il valore
 `"ciao"` e la assegniamo a `s`. A questo punto, non c'è più nulla che faccia
 riferimento al valore originale nell'_heap_.
 
-<img alt="Una tabella s rappresenta la stringa sullo stack, che punta ai dati della stringa (ciao) nell'heap, con i dati della stringa originale (hello) scuriti perchè non più accessibili."
-src="img/trpl04-05.svg"
-class="center"
-style="width: 50%;"
-/>
+<img alt="Una tabella s rappresenta la stringa sullo stack, che punta ai dati
+della stringa (ciao) nell'heap, con i dati della stringa originale (hello)
+scuriti perchè non più accessibili." src="img/trpl04-05.svg" class="center"
+style="width: 50%;" />
 
-<span class="caption">Figura 4-5: Reppresentazione in memoria dopo che il primo valore è completamente sostituito.</span>
+<span class="caption">Figura 4-5: Reppresentazione in memoria dopo che il primo
+valore è completamente sostituito.</span>
 
 La stringa originale esce così immediatamente dallo _scope_. Rust eseguirà la
 funzione `drop` su di essa e la sua memoria verrà rilasciata immediatamente.
