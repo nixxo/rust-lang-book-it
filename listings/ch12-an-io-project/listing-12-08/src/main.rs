@@ -6,13 +6,13 @@ fn main() {
 
     let config = Config::new(&args);
 
-    println!("Searching for {}", config.query);
-    println!("In file {}", config.file_path);
+    println!("Cerco {}", config.query);
+    println!("Nel file {}", config.file_path);
 
     let contents = fs::read_to_string(config.file_path)
-        .expect("Should have been able to read the file");
+        .expect("Dovrebbe essere stato possibile leggere il file");
 
-    println!("With text:\n{contents}");
+    println!("Con il testo:\n{contents}");
 }
 
 struct Config {
@@ -25,7 +25,7 @@ impl Config {
     // --snip--
     fn new(args: &[String]) -> Config {
         if args.len() < 3 {
-            panic!("not enough arguments");
+            panic!("non ci sono abbastanza argomenti");
         }
         // --snip--
         // ANCHOR_END: here

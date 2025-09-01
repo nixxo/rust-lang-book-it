@@ -1,7 +1,7 @@
 // ANCHOR: here
-pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+pub fn cerca<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     for line in contents.lines() {
-        // do something with line
+        // facciamo qualcosa con la riga
     }
 }
 // ANCHOR_END: here
@@ -18,6 +18,6 @@ Rust:
 safe, fast, productive.
 Pick three.";
 
-        assert_eq!(vec!["safe, fast, productive."], search(query, contents));
+        assert_eq!(vec!["safe, fast, productive."], cerca(query, contents));
     }
 }

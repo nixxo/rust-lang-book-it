@@ -5,7 +5,7 @@ use std::process;
 
 // ANCHOR: here
 // --snip--
-use minigrep::search;
+use minigrep::cerca;
 
 fn main() {
     // --snip--
@@ -13,12 +13,12 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     let config = Config::build(&args).unwrap_or_else(|err| {
-        println!("Problem parsing arguments: {err}");
+        println!("Problema nella lettura degli argomenti: {err}");
         process::exit(1);
     });
 
     if let Err(e) = run(config) {
-        println!("Application error: {e}");
+        println!("Errore nell'applicazione: {e}");
         process::exit(1);
     }
     // ANCHOR: here
@@ -36,7 +36,7 @@ struct Config {
 impl Config {
     fn build(args: &[String]) -> Result<Config, &'static str> {
         if args.len() < 3 {
-            return Err("not enough arguments");
+            return Err("Non ci sono abbastanza argomenti");
         }
 
         let query = args[1].clone();
@@ -50,7 +50,7 @@ impl Config {
 fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.file_path)?;
 
-    for line in search(&config.query, &contents) {
+    for line in cerca(&config.query, &contents) {
         println!("{line}");
     }
 
