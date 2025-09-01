@@ -2,7 +2,7 @@
 
 In questa sezione, parleremo dei moduli e di altre parti del sistema dei moduli,
 in particolare dei _path_ (_percorsi_), che ti permettono di nominare gli
-elementi; la parola chiave `use` che porta un _path_ in scope; e la parola
+elementi; la parola chiave `use` che porta un _path_ in _scope_; e la parola
 chiave `pub` per rendere pubblici gli elementi. Discuteremo anche della parola
 chiave `as`, dei pacchetti esterni e dell'operatore _glob_.
 
@@ -12,12 +12,12 @@ Prima di entrare nei dettagli dei moduli e dei _path_, qui forniamo un rapido
 riferimento su come funzionano i moduli, i _path_, la parola chiave `use` e la
 parola chiave `pub` nel compilatore, e come la maggior parte degli sviluppatori
 organizza il proprio codice. Esamineremo esempi di ciascuna di queste regole nel
-corso di questo capitolo, ma questo è un ottimo posto da consultare come
+corso di questo capitolo, ma questo è un ottimo riassunto da consultare come
 promemoria su come funzionano i moduli.
 
 - **Inizia dalla radice del _crate_**: Quando compili un _crate_, il compilatore
   prima cerca nel file di radice del _crate_ (di solito _src/lib.rs_ per un
-  _crate libreria_ o _src/main.rs_ per un _crate binario_) il codice da
+  _crate_ _libreria_ o _src/main.rs_ per un _crate_ _binario_) il codice da
   compilare.
 - **Dichiarare moduli**: Nel file di radice del _crate_, puoi dichiarare nuovi
   moduli; ad esempio, dichiari un modulo “giardino” con `mod giardino;`. Il
@@ -29,7 +29,7 @@ promemoria su come funzionano i moduli.
 - **Dichiarare sottomoduli**: In qualsiasi file diverso dalla radice del
   _crate_, puoi dichiarare sottomoduli. Ad esempio, potresti dichiarare `mod
   verdure;` in _src/giardino.rs_. Il compilatore cercherà il codice del
-  sottomodulo all'interno della directory nominata per il modulo genitore
+  sottomodulo all'interno della cartella nominata per il modulo genitore
   (_parent_) in questi luoghi:
   - Sulla linea, direttamente dopo `mod verdure`, all'interno delle parentesi
     graffe invece del punto e virgola
@@ -39,11 +39,11 @@ promemoria su come funzionano i moduli.
   _crate_, puoi fare riferimento al codice in quel modulo da qualsiasi altro
   punto dello stesso _crate_, purché le regole di _privacy_ lo consentano,
   utilizzando il _path_ per il codice. Ad esempio, un _type_ `Asparagi` nel
-  modulo delle verdure del giardino si troverebbe a
+  modulo delle verdure del giardino si troverebbe al _path_
   `crate::giardino::verdure::Asparagi`.
 - **Privato vs. pubblico**: Il codice all'interno di un modulo è non
   utilizzabile, _privato_, dai suoi moduli genitore come impostazione
-  predefinita. Per rendere un modilo utilizzabile, _pubblico_, è necessario
+  predefinita. Per rendere un modulo utilizzabile, _pubblico_, è necessario
   dichiaralo con `pub mod` invece di `mod`. Per rendere _pubblici_ anche gli
   elementi all'interno di un modulo pubblico, usa `pub` prima delle loro
   dichiarazioni.
@@ -51,12 +51,12 @@ promemoria su come funzionano i moduli.
   crea scorciatoie per gli elementi per ridurre la ripetizione di lunghi _path_.
   In qualsiasi _scope_ che può fare riferimento a
   `crate::giardino::verdure::Asparagi`, puoi creare una scorciatoia con `use
-  crate::giardino::verdure::Asparagi;` e da quel momento in poi devi solo
-  scrivere `Asparagi` per utilizzare quel _type_ nello _scope_.
+  crate::giardino::verdure::Asparagi;` e da quel momento in poi devi scrivere
+  solo `Asparagi` per utilizzare quel _type_ nello _scope_.
 
-Era creiamo un _crate binario_ chiamato `cortile` che illustra queste regole. La
-directory del crate, anch'essa chiamata `cortile`, contiene questi file e
-directory:
+Ora creiamo un _crate_ _binario_ chiamato `cortile` che illustra queste regole.
+La cartella del _crate_, anch'essa chiamata `cortile`, contiene questi file e
+cartelle:
 
 ```text
 cortile
@@ -69,7 +69,7 @@ cortile
     └── main.rs
 ```
 
-La radice del crate in questo caso è _src/main.rs_, e contiene:
+La radice del _crate_ in questo caso è _src/main.rs_, e contiene:
 
 <Listing file-name="src/main.rs">
 
@@ -109,7 +109,7 @@ dettagli di implementazione interni non disponibili per l'uso esterno. Possiamo
 scegliere di rendere pubblici i moduli e gli elementi al loro interno, il che li
 espone per consentire al codice esterno di utilizzarli e dipendere da essi.
 
-Come esempio, scriviamo un _crate libreria_ che fornisce la funzionalità di un
+Come esempio, scriviamo un _crate_ _libreria_ che fornisce la funzionalità di un
 ristorante. Definiremo le firme delle funzioni ma lasceremo i loro corpi vuoti
 per concentrarci sull'organizzazione del codice piuttosto che
 sull'implementazione vera e propria.
@@ -180,8 +180,8 @@ diciamo che il modulo A è il _figlio_ del modulo B e che il modulo B è il
 _genitore_ del modulo A. Nota che l'intero albero dei moduli è radicato sotto il
 modulo implicito chiamato `crate`.
 
-L'albero dei moduli potrebbe ricordarti l'albero delle directory del filesystem
+L'albero dei moduli potrebbe ricordarti l'albero delle cartelle del filesystem
 sul tuo computer; questo è un confronto molto appropriato! Proprio come le
-directory in un filesystem, usi i moduli per organizzare il tuo codice. E
-proprio come i file in una directory, abbiamo bisogno di un modo per trovare i
-nostri moduli.
+cartelle in un filesystem, usi i moduli per organizzare il tuo codice. E proprio
+come i file in una cartella, abbiamo bisogno di un modo per trovare i nostri
+moduli.

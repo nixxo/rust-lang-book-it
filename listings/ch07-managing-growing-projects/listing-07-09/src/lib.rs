@@ -17,7 +17,7 @@ mod cucine {
 pub fn mangiare_al_ristorante() {
     // Ordina una colazione in estate con pane tostato di segale.
     let mut pasto = cucine::Colazione::estate("segale");
-    // Cambiare idea sul pane che vorremmo. wheat
+    // Cambiare idea sul pane che vorremmo.
     pasto.toast = String::from("integrale");
     println!("Vorrei un toast {}, grazie.", pasto.toast);
 

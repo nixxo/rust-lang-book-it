@@ -9,13 +9,14 @@ codice di quella funzionalità se necessario.
 I programmi che abbiamo scritto finora sono stati tutti implementati con un
 singolo _modulo_ in un unico file. Man mano che un progetto cresce, dovresti
 organizzare il codice suddividendolo in più _moduli_ e poi in più file. Un
-_pacchetto_ (_package_) può contenere più _crate binari_ (_binary crate_) e
-opzionalmente un _crate libreria_ (_library crate_). Man mano che un _pachetto_
-cresce, puoi estrarne parti in _crate_ separate che diventeranno dipendenze
-esterne. Questo capitolo copre tutte queste tecniche. Per progetti molto grandi
-che comprendono un insieme di _pacchetti_ interconnessi che evolvono insieme,
-Cargo fornisce degli _spazi di lavoro_ (_workspace_), che tratteremo in [“Cargo
-Workspace”](ch14-03-cargo-workspaces.html)<!-- ignore --> nel Capitolo 14.
+_pacchetto_ (_package_) può contenere più _crate_ _binari_ (_binary crate_) e
+opzionalmente un _crate_ _libreria_ (_library crate_). Man mano che un
+_pacchetto_ cresce, puoi estrarne parti in _crate_ separate che diventeranno
+dipendenze esterne. Questo capitolo copre tutte queste tecniche. Per progetti
+molto grandi che comprendono un insieme di _pacchetti_ interconnessi che
+evolvono insieme, Cargo fornisce degli _spazi di lavoro_ (_workspace_), che
+tratteremo in [“Cargo Workspace”](ch14-03-cargo-workspaces.html)<!-- ignore -->
+nel Capitolo 14.
 
 Discuteremo anche l'incapsulamento dei dettagli di implementazione, che ti
 consente di riutilizzare il codice a un livello più alto: una volta implementata

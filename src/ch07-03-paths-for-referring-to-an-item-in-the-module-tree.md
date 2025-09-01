@@ -28,7 +28,7 @@ _path_ sono corretti, ma c'è un altro problema che impedirà a questo esempio d
 compilare così com'è. Spiegheremo perché tra poco.
 
 La funzione `mangiare_al_ristorante` fa parte dell'API pubblica del nostro
-_crate libreria_, quindi la contrassegniamo con la parola chiave `pub`. Nella
+_crate_ _libreria_, quindi la contrassegniamo con la parola chiave `pub`. Nella
 sezione [“Esporre _Path_ con la Parola Chiave `pub`”][pub]<!-- ignore -->,
 entreremo nei dettagli di `pub`.
 
@@ -41,38 +41,38 @@ entreremo nei dettagli di `pub`.
 </Listing>
 
 La prima volta che chiamiamo la funzione `aggiungi_in_lista` in
-`mangiare_al_ristorante`, utilizziamo un percorso assoluto. La funzione
+`mangiare_al_ristorante`, utilizziamo un _path_ assoluto. La funzione
 `aggiungi_in_lista` è definita nello stesso _crate_ di `mangiare_al_ristorante`,
 il che significa che possiamo usare la parola chiave `crate` per iniziare un
-percorso assoluto. Includiamo quindi ciascuno dei moduli successivi fino a
+_path_ assoluto. Includiamo quindi ciascuno dei moduli successivi fino a
 raggiungere `aggiungi_in_lista`. Puoi immaginare un filesystem con la stessa
-struttura: specificheremmo il percorso `/sala/accoglienza/aggiungi_in_lista` per
+struttura: specificheremmo il _path_ `/sala/accoglienza/aggiungi_in_lista` per
 eseguire il programma `aggiungi_in_lista`; utilizzare il nome del _crate_ per
 partire dalla radice del _crate_ è come usare `/` per partire dalla radice del
-filesystem nel tuo shell.
+filesystem nel tuo terminale.
 
 La seconda volta che chiamiamo `aggiungi_in_lista` in `mangiare_al_ristorante`,
-utilizziamo un percorso relativo. Il percorso inizia con `sala`, il nome del
-modulo definito allo stesso livello dell'albero dei moduli di
-`mangiare_al_ristorante`. Qui l'equivalente nel filesystem sarebbe utilizzare il
-percorso `sala/accoglienza/aggiungi_in_lista`. Iniziare con un nome di modulo
-significa che il percorso è relativo.
+utilizziamo un _path_ relativo. Il _path_ inizia con `sala`, il nome del modulo
+definito allo stesso livello dell'albero dei moduli di `mangiare_al_ristorante`.
+Qui l'equivalente nel filesystem sarebbe utilizzare il _path_
+`sala/accoglienza/aggiungi_in_lista`. Iniziare con un nome di modulo significa
+che il _path_ è relativo.
 
-Scegliere se utilizzare un percorso relativo o assoluto è una decisione che
+Scegliere se utilizzare un _path_ relativo o assoluto è una decisione che
 prenderai in base al tuo progetto, e dipende da se è più probabile che tu sposti
 il codice di definizione dell'elemento separatamente o insieme al codice che
 utilizza l'elemento. Ad esempio, se spostassimo il modulo `sala` e la funzione
 `mangiare_al_ristorante` in un modulo chiamato `gestione_cliente`, dovremmo
-aggiornare il percorso assoluto per `aggiungi_in_lista`, ma il percorso relativo
+aggiornare il _path_ assoluto per `aggiungi_in_lista`, ma il _path_ relativo
 rimarrebbe valido. Tuttavia, se spostassimo la funzione `mangiare_al_ristorante`
-separatamente in un modulo chiamato `cena`, il percorso assoluto per la chiamata
-a `aggiungi_in_lista` rimarrebbe lo stesso, ma il percorso relativo dovrebbe
-essere aggiornato. La nostra preferenza in generale è specificare percorsi
-assoluti perché è più probabile che vogliamo spostare le definizioni di codice e
-le chiamate agli elementi in modo indipendente l'una dall'altra.
+separatamente in un modulo chiamato `cena`, il _path_ assoluto per la chiamata a
+`aggiungi_in_lista` rimarrebbe lo stesso, ma il _path_ relativo dovrebbe essere
+aggiornato. La nostra preferenza in generale è specificare _path_ assoluti
+perché è più probabile che vogliamo spostare le definizioni di codice e le
+chiamate agli elementi in modo indipendente l'una dall'altra.
 
-Proviamo a compilare il Listato 7-3 e scopriamo perché non compila ancora! Gli
-errori che otteniamo sono mostrati nel Listato 7-4.
+Proviamo a compilare il Listato 7-3 e scopriamo perché non si compila ancora!
+Gli errori che otteniamo sono mostrati nel Listato 7-4.
 
 <Listing number="7-4" caption="Errori del compilatore durante la costruzione del codice nel Listato 7-3">
 
@@ -83,7 +83,7 @@ errori che otteniamo sono mostrati nel Listato 7-4.
 </Listing>
 
 I messaggi di errore dicono che il modulo `accoglienza` è privato. In altre
-parole, abbiamo i percorsi corretti per il modulo `accoglienza` e la funzione
+parole, abbiamo i _path_ corretti per il modulo `accoglienza` e la funzione
 `aggiungi_in_lista`, ma Rust non ci permette di usarli perché non ha accesso
 alle sezioni private. In Rust, tutti gli elementi (funzioni, metodi, _struct_,
 _enum_, moduli e costanti) sono privati rispetto ai moduli genitore come
@@ -160,13 +160,13 @@ aggiungendo la parola chiave `pub` prima della sua definizione, come nel Listato
 
 </Listing>
 
-Ora il codice compilerà! Per capire perché aggiungere la parola chiave `pub` ci
-consente di utilizzare questi percorsi in `mangiare_al_ristorante` rispetto alle
-regole di _privacy_, diamo un'occhiata ai percorsi assoluti e relativi.
+Ora il codice si compilerà! Per capire perché aggiungere la parola chiave `pub`
+ci consente di utilizzare questi _path_ in `mangiare_al_ristorante` rispetto
+alle regole di _privacy_, diamo un'occhiata ai _path_ assoluti e relativi.
 
-Nel percorso assoluto, iniziamo con `crate`, la radice dell'albero dei moduli
-del nostro _crate_. Il modulo `sala` è definito nella radice del _crate_. Anche
-se `sala` non è pubblico, poiché la funzione `mangiare_al_ristorante` è definita
+Nel _path_ assoluto, iniziamo con `crate`, la radice dell'albero dei moduli del
+nostro _crate_. Il modulo `sala` è definito nella radice del _crate_. Anche se
+`sala` non è pubblico, poiché la funzione `mangiare_al_ristorante` è definita
 nello stesso modulo di `sala` (cioè, `mangiare_al_ristorante` e `sala` sono
 _fratelli_), possiamo fare riferimento a `sala` da `mangiare_al_ristorante`.
 Successivamente, c'è il modulo `accoglienza` contrassegnato con `pub`. Possiamo
@@ -175,64 +175,64 @@ accedere al modulo genitore di `accoglienza`, quindi possiamo accedere a
 `pub` e possiamo accedere al suo modulo genitore, quindi questa chiamata di
 funzione funziona!
 
-Nel percorso relativo, la logica è la stessa del percorso assoluto, tranne per
-il primo passaggio: invece di partire dalla radice del crate, il percorso inizia
-da `sala`. Il modulo `sala` è definito all'interno dello stesso modulo di
-`mangiare_al_ristorante`, quindi il percorso relativo che inizia dal modulo in
-cui è definita `mangiare_al_ristorante` funziona. Poi, poiché `accoglienza` e
-`aggiungi_in_lista` sono contrassegnati con `pub`, il resto del percorso
-funziona, e questa chiamata di funzione è valida!
+Nel _path_ relativo, la logica è la stessa del _path_ assoluto, tranne per il
+primo passaggio: invece di partire dalla radice del _crate_, il _path_ inizia da
+`sala`. Il modulo `sala` è definito all'interno dello stesso modulo di
+`mangiare_al_ristorante`, quindi il _path_ relativo che inizia dal modulo in cui
+è definita `mangiare_al_ristorante` funziona. Poi, poiché `accoglienza` e
+`aggiungi_in_lista` sono contrassegnati con `pub`, il resto del _path_ funziona,
+e questa chiamata di funzione è valida!
 
-Se prevedi di condividere il tuo _crate libreria_ affinché altri progetti
+Se prevedi di condividere il tuo _crate_ _libreria_ affinché altri progetti
 possano utilizzare il tuo codice, la tua API pubblica è il tuo contratto con gli
-utenti del tuo crate che determina come possono interagire con il tuo codice. Ci
-sono molte considerazioni relative alla gestione delle modifiche alla tua API
+utenti del tuo _crate_ che determina come possono interagire con il tuo codice.
+Ci sono molte considerazioni relative alla gestione delle modifiche alla tua API
 pubblica per facilitare la dipendenza delle persone dal tuo _crate_. Queste
 considerazioni vanno oltre l'ambito di questo libro; se sei interessato a questo
 argomento, consulta [Le Linee Guida per l'API di Rust][api-guidelines].
 
-> #### Migliori Pratiche per Pacchetti con un Binario e una Libreria
+> #### Buone Pratiche per Pacchetti con un Binario e una Libreria
 >
 > Abbiamo menzionato che un pacchetto può contenere sia una radice di _crate
-> binario_ _src/main.rs_ che una radice di _crate libreria_ _src/lib.rs_, e
+> binario_ _src/main.rs_ che una radice di _crate_ _libreria_ _src/lib.rs_, e
 > entrambi i _crate_ avranno il nome del pacchetto come impostazione
 > predefinita. Tipicamente, i pacchetti che contengono sia una libreria che un
-> _crate binario_ avranno nel _crate binario_ il codice strattamente necessario
-> ad avviare un eseguibile che chiama il codice definito nel _crate libreria_.
-> Questo consente ad altri progetti di beneficiare della maggior parte delle
-> funzionalità che il pacchetto fornisce, poiché il codice del _crate libreria_
-> può essere condiviso.
+> _crate_ _binario_ avranno nel _crate_ _binario_ il codice strattamente
+> necessario ad avviare un eseguibile che chiama il codice definito nel _crate_
+> _libreria_. Questo consente ad altri progetti di beneficiare della maggior
+> parte delle funzionalità che il pacchetto fornisce, poiché il codice del
+> _crate_ _libreria_ può essere condiviso.
 >
 > L'albero dei moduli dovrebbe essere definito in _src/lib.rs_. Quindi,
-> qualsiasi elemento pubblico può essere utilizzato nel _crate binario_ facendo
-> iniziare i percorsi con il nome del pacchetto. Il _crate binario_ diventa un
-> utilizzatore del _crate libreria_ proprio come un crate completamente esterno
-> utilizzerebbe il _crate libreria_: può utilizzare solo l'API pubblica. Questo
-> ti aiuta a progettare una buona API; non solo sei l'autore, ma sei anche un
-> cliente!
+> qualsiasi elemento pubblico può essere utilizzato nel _crate_ _binario_
+> facendo iniziare i _path_ con il nome del pacchetto. Il _crate_ _binario_
+> diventa un utilizzatore del _crate_ _libreria_ proprio come un _crate_
+> completamente esterno utilizzerebbe il _crate_ _libreria_: può utilizzare solo
+> l'API pubblica. Questo ti aiuta a progettare una buona API; non solo sei
+> l'autore, ma sei anche un cliente!
 >
 > Nel [Capitolo 12][ch12]<!-- ignore -->, dimostreremo questa pratica
-> organizzativa con un programma da riga di comando che conterrà sia un _crate
-> binario_ che un _crate libreria_.
+> organizzativa con un programma da riga di comando che conterrà sia un _crate_
+> _binario_ che un _crate_ _libreria_.
 
 ### Iniziare _Path_ Relative con `super`
 
-Possiamo costruire percorsi relativi che iniziano nel modulo genitore, piuttosto
-che nel modulo corrente o nella radice del crate, utilizzando `super` all'inizio
-del percorso. Questo è simile a iniziare un percorso del filesystem con la
-sintassi `..` che significa andare nella directory genitore. Utilizzare `super`
-ci consente di fare riferimento a un elemento che sappiamo essere nel modulo
-genitore, il che può rendere più facile riorganizzare l'albero dei moduli quando
-il modulo è strettamente correlato al genitore, ma il genitore potrebbe essere
-spostato altrove nell'albero dei moduli in futuro.
+Possiamo costruire _path_ relative che iniziano nel modulo genitore, piuttosto
+che nel modulo corrente o nella radice del _crate_, utilizzando `super`
+all'inizio del _path_. Questo è simile a iniziare un _path_ del filesystem con
+la sintassi `..` che significa andare nella directory genitore. Utilizzare
+`super` ci consente di fare riferimento a un elemento che sappiamo essere nel
+modulo genitore, il che può rendere più facile riorganizzare l'albero dei moduli
+quando il modulo è strettamente correlato al genitore, ma il genitore potrebbe
+essere spostato altrove nell'albero dei moduli in futuro.
 
 Considera il codice nel Listato 7-8 che modella la situazione in cui un cuoco
 corregge un ordine errato e lo porta personalmente al cliente. La funzione
 `correzione_ordine` definita nel modulo `cucine` chiama la funzione
-`servi_ordine` definita nel modulo genitore specificando il percorso per
+`servi_ordine` definita nel modulo genitore specificando il _path_ per
 `servi_ordine`, iniziando con `super`.
 
-<Listing number="7-8" file-name="src/lib.rs" caption="Chiamare una funzione utilizzando un percorso relativo che inizia con `super`">
+<Listing number="7-8" file-name="src/lib.rs" caption="Chiamare una funzione utilizzando un _path_ relativo che inizia con `super`">
 
 ```rust,noplayground,test_harness
 {{#rustdoc_include ../listings/ch07-managing-growing-projects/listing-07-08/src/lib.rs}}
@@ -245,8 +245,8 @@ usare `super` per andare al modulo genitore di `cucine`, che in questo caso è
 `crate`, la radice. Da lì, cerchiamo `servi_ordine` e lo troviamo. Successo!
 Pensiamo che il modulo `cucine` e la funzione `servi_ordine` siano probabilmente
 destinati a rimanere nella stessa relazione l'uno con l'altro e verranno
-spostati insieme se decidiamo di riorganizzare l'albero dei moduli del crate.
-Pertanto,abbiamo usato `super` in modo da avere meno posti da aggiornare nel
+spostati insieme se decidiamo di riorganizzare l'albero dei moduli del _crate_.
+Pertanto abbiamo usato `super` in modo da avere meno posti da aggiornare nel
 codice in futuro se questo codice viene spostato in un modulo diverso.
 
 ### Rendere Pubbliche _Struct_ e _Enum_
