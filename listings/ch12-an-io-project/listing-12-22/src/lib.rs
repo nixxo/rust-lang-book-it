@@ -1,4 +1,4 @@
-pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+pub fn cerca<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     let mut results = Vec::new();
 
     for line in contents.lines() {
@@ -11,7 +11,7 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
 }
 
 // ANCHOR: here
-pub fn search_case_insensitive<'a>(
+pub fn cerca_case_insensitive<'a>(
     query: &str,
     contents: &'a str,
 ) -> Vec<&'a str> {
@@ -41,7 +41,7 @@ safe, fast, productive.
 Pick three.
 Duct tape.";
 
-        assert_eq!(vec!["safe, fast, productive."], search(query, contents));
+        assert_eq!(vec!["safe, fast, productive."], cerca(query, contents));
     }
 
     #[test]
@@ -55,7 +55,7 @@ Trust me.";
 
         assert_eq!(
             vec!["Rust:", "Trust me."],
-            search_case_insensitive(query, contents)
+            cerca_case_insensitive(query, contents)
         );
     }
 }

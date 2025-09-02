@@ -1,22 +1,20 @@
-## Working with Environment Variables
+## Lavorare con le Variabili d'Ambiente
 
-We’ll improve the `minigrep` binary by adding an extra feature: an option for
-case-insensitive searching that the user can turn on via an environment
-variable. We could make this feature a command line option and require that
-users enter it each time they want it to apply, but by instead making it an
-environment variable, we allow our users to set the environment variable once
-and have all their searches be case insensitive in that terminal session.
+Miglioreremo il programma `minigrep` implementando una funzionalità aggiuntiva: un'opzione per la
+ricerca senza distinzione tra maiuscole e minuscole, che l'utente può attivare tramite una variabile d'ambiente. Potremmo rendere questa funzionalità un'opzione della riga di comando e richiedere che
+gli utenti la inseriscano ogni volta che desiderano applicarla, ma rendendola invece una
+variabile d'ambiente, consentiamo ai nostri utenti di impostare la variabile d'ambiente una sola volta
+e di fare in modo che tutte le loro ricerche in quella sessione di terminale siano case-insensitive.
 
-### Writing a Failing Test for the Case-Insensitive `search` Function
+### Scrittura di un Test di Errore Case-Insensitive per la Funzione `cerca`
 
-We first add a new `search_case_insensitive` function to the `minigrep` library
-that will be called when the environment variable has a value. We’ll continue
-to follow the TDD process, so the first step is again to write a failing test.
-We’ll add a new test for the new `search_case_insensitive` function and rename
-our old test from `one_result` to `case_sensitive` to clarify the differences
-between the two tests, as shown in Listing 12-20.
+Aggiungiamo innanzitutto una nuova funzione `cerca_case_insensitive` alla libreria `minigrep`
+che verrà chiamata quando la variabile d'ambiente ha un valore. Continueremo
+a seguire il processo TDD, quindi il primo passo sarà di scrivere un nuovo test di errore. Aggiungeremo un nuovo test per la nuova funzione `cerca_case_insensitive` e rinomineremo
+il nostro vecchio test da `one_result` a `case_sensitive` per chiarire le differenze
+tra i due test, come mostrato nel Listato 12-20.
 
-<Listing number="12-20" file-name="src/lib.rs" caption="Adding a new failing test for the case-insensitive function we’re about to add">
+<Listing number="12-20" file-name="src/lib.rs" caption="Aggiunta di un nuovo test che fallisce per la funzione case-insensitive che stiamo per aggiungere">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-20/src/lib.rs:here}}
@@ -24,30 +22,30 @@ between the two tests, as shown in Listing 12-20.
 
 </Listing>
 
-Note that we’ve edited the old test’s `contents` too. We’ve added a new line
-with the text `"Duct tape."` using a capital _D_ that shouldn’t match the query
-`"duct"` when we’re searching in a case-sensitive manner. Changing the old test
-in this way helps ensure that we don’t accidentally break the case-sensitive
-search functionality that we’ve already implemented. This test should pass now
-and should continue to pass as we work on the case-insensitive search.
+Nota che abbiamo modificato anche il `contents` del vecchio test. Abbiamo aggiunto una nuova riga
+con il testo `"Duct tape."` usando una _D_ maiuscola che non dovrebbe corrispondere alla query
+`"duct"` quando effettuiamo una ricerca con distinzione tra maiuscole e minuscole. Modificare il vecchio test
+in questo modo ci aiuta a garantire di non interrompere accidentalmente la funzionalità di ricerca con distinzione tra maiuscole e minuscole
+che abbiamo già implementato. Questo test dovrebbe ora essere superato
+e dovrebbe continuare a essere superato mentre lavoriamo sulla ricerca senza distinzione tra maiuscole e minuscole.
 
-The new test for the case-_insensitive_ search uses `"rUsT"` as its query. In
-the `search_case_insensitive` function we’re about to add, the query `"rUsT"`
-should match the line containing `"Rust:"` with a capital _R_ and match the
-line `"Trust me."` even though both have different casing from the query. This
-is our failing test, and it will fail to compile because we haven’t yet defined
-the `search_case_insensitive` function. Feel free to add a skeleton
-implementation that always returns an empty vector, similar to the way we did
-for the `search` function in Listing 12-16 to see the test compile and fail.
+Il nuovo test per la ricerca case-insensitive utilizza `"rUsT"` come query. Nella
+funzione `cerca_case_insensitive` che stiamo per aggiungere, la query `"rUsT"`
+dovrebbe corrispondere alla riga contenente `"Rust:"` con una _R_ maiuscola e corrispondere alla
+riga `"Trust me."` anche se entrambe differiscono dalla query. Questo
+è il nostro test che fallisce e non verrà compilato perché non abbiamo ancora definito
+la funzione `cerca_case_insensitive`. Sentitevi liberi di aggiungere un'implementazione scheletro
+che restituisca sempre un vettore vuoto, simile a quella che abbiamo fatto
+per la funzione `cerca` nel Listato 12-16 per vedere il test compilare e fallire.
 
-### Implementing the `search_case_insensitive` Function
+### Implementazione della Funzione `cerca_case_insensitive`
 
-The `search_case_insensitive` function, shown in Listing 12-21, will be almost
-the same as the `search` function. The only difference is that we’ll lowercase
-the `query` and each `line` so that whatever the case of the input arguments,
-they’ll be the same case when we check whether the line contains the query.
+La funzione `cerca_case_insensitive`, mostrata nel Listato 12-21, sarà quasi
+la stessa della funzione `cerca`. L'unica differenza è che metteremo in minuscolo
+la `query` e ogni `line` in modo che, qualunque sia il carattere maiuscolo/minuscolo degli argomenti di input,
+saranno gli stessi quando controlleremo se la riga contiene la query.
 
-<Listing number="12-21" file-name="src/lib.rs" caption="Defining the `search_case_insensitive` function to lowercase the query and the line before comparing them">
+<Listing number="12-21" file-name="src/lib.rs" caption="Definizione della funzione `cerca_case_insensitive` per rendere minuscole la query e la riga prima di confrontarle">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-21/src/lib.rs:here}}
@@ -55,38 +53,36 @@ they’ll be the same case when we check whether the line contains the query.
 
 </Listing>
 
-First we lowercase the `query` string and store it in a new variable with the
-same name, shadowing the original `query`. Calling `to_lowercase` on the query
-is necessary so that no matter whether the user’s query is `"rust"`, `"RUST"`,
-`"Rust"`, or `"``rUsT``"`, we’ll treat the query as if it were `"rust"` and be
-insensitive to the case. While `to_lowercase` will handle basic Unicode, it
-won’t be 100 percent accurate. If we were writing a real application, we’d want
-to do a bit more work here, but this section is about environment variables,
-not Unicode, so we’ll leave it at that here.
+Per prima cosa, rendiamo minuscola la stringa `query` e la memorizziamo in una nuova variabile con lo
+stesso nome, nascondendo la `query` originale. La chiamata a `to_lowercase` sulla query
+è necessaria affinché, indipendentemente dal fatto che la query dell'utente sia `"rust"`, `"RUST"`,
+`"Rust"` o `"rUsT"`, la query verrà trattata come se fosse `"rust"` e non sarà case-sensible. Sebbene `to_lowercase` gestisca Unicode di base,
+non sarà accurato al 100%. Se stessimo scrivendo un'applicazione reale, dovremmo
+lavorare un po' di più qui, ma questa sezione riguarda le variabili d'ambiente,
+non Unicode, quindi ci fermeremo qui.
 
-Note that `query` is now a `String` rather than a string slice because calling
-`to_lowercase` creates new data rather than referencing existing data. Say the
-query is `"rUsT"`, as an example: that string slice doesn’t contain a lowercase
-`u` or `t` for us to use, so we have to allocate a new `String` containing
-`"rust"`. When we pass `query` as an argument to the `contains` method now, we
-need to add an ampersand because the signature of `contains` is defined to take
-a string slice.
+Si noti che `query` ora è una `String` anziché una slice di stringa, perché la chiamata a
+`to_lowercase` crea nuovi dati anziché fare riferimento a dati esistenti. Supponiamo che la
+query sia `"rUsT"`, ad esempio: quella slice di stringa non contiene una `u` o una `t` minuscola da utilizzare, quindi dobbiamo allocare una nuova `String` contenente
+`"rust"`. Quando passiamo `query` come argomento al metodo `contains` ora,
+dobbiamo aggiungere una & (e commerciale) perché la firma di `contains` è definita per accettare
+una slice di stringa.
 
-Next, we add a call to `to_lowercase` on each `line` to lowercase all
-characters. Now that we’ve converted `line` and `query` to lowercase, we’ll
-find matches no matter what the case of the query is.
+Successivamente, aggiungiamo una chiamata a `to_lowercase` su ogni `line` per convertire in minuscolo tutti
+i caratteri. Ora che abbiamo convertito `line` e `query` in minuscolo, troveremo
+corrispondenze indipendentemente dalle maiuscole e dalle minuscole della query.
 
-Let’s see if this implementation passes the tests:
+Vediamo se questa implementazione supera i test:
 
 ```console
 {{#include ../listings/ch12-an-io-project/listing-12-21/output.txt}}
 ```
 
-Great! They passed. Now, let’s call the new `search_case_insensitive` function
-from the `run` function. First we’ll add a configuration option to the `Config`
-struct to switch between case-sensitive and case-insensitive search. Adding
-this field will cause compiler errors because we aren’t initializing this field
-anywhere yet:
+Ottimo! Hanno superato i test. Ora, chiamiamo la nuova funzione `cerca_case_insensitive`
+dalla funzione `run`. Per prima cosa, aggiungeremo un'opzione di configurazione alla struttura `Config`
+per passare dalla ricerca case-sensite a quella case-insensitive. L'aggiunta
+di questo campo causerà errori di compilazione perché non lo stiamo ancora inizializzando
+da nessuna parte:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -94,12 +90,34 @@ anywhere yet:
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-22/src/main.rs:here}}
 ```
 
-We added the `ignore_case` field that holds a Boolean. Next, we need the `run`
-function to check the `ignore_case` field’s value and use that to decide
-whether to call the `search` function or the `search_case_insensitive`
-function, as shown in Listing 12-22. This still won’t compile yet.
+Successivamente, aggiungiamo una chiamata a `to_lowercase` su ogni `line` per convertire in minuscolo tutti
+i caratteri. Ora che abbiamo convertito `line` e `query` in minuscolo, troveremo
+corrispondenze indipendentemente dalle maiuscole e dalle minuscole della query.
 
-<Listing number="12-22" file-name="src/main.rs" caption="Calling either `search` or `search_case_insensitive` based on the value in `config.ignore_case`">
+Vediamo se questa implementazione supera i test:
+
+```console
+{{#include ../listings/ch12-an-io-project/listing-12-21/output.txt}}
+```
+
+Ottimo! Hanno superato i test. Ora, chiamiamo la nuova funzione `cerca_case_insensitive`
+dalla funzione `run`. Per prima cosa, aggiungeremo un'opzione di configurazione alla struttura `Config`
+per passare dalla ricerca con distinzione tra maiuscole e minuscole a quella senza distinzione tra maiuscole e minuscole. L'aggiunta
+di questo campo causerà errori di compilazione perché non lo stiamo ancora inizializzando
+da nessuna parte:
+
+<span class="filename">File: src/main.rs</span>
+
+```rust,ignore,does_not_compile
+{{#rustdoc_include ../listings/ch12-an-io-project/listing-12-22/src/main.rs:here}}
+```
+
+Abbiamo aggiunto il campo `ignore_case` che contiene un valore booleano. Successivamente, abbiamo bisogno della funzione `run`
+per controllare il valore del campo `ignore_case` e ​​utilizzarlo per decidere
+se chiamare la funzione `cerca` o la funzione `cerca_case_insensitive`
+come mostrato nel Listato 12-22. Questo non verrà ancora compilato.
+
+<Listing number="12-22" file-name="src/main.rs" caption="Chiamata `search` o `cerca_case_insensitive` in base al valore in `config.ignore_case`">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-22/src/main.rs:there}}
@@ -107,13 +125,12 @@ function, as shown in Listing 12-22. This still won’t compile yet.
 
 </Listing>
 
-Finally, we need to check for the environment variable. The functions for
-working with environment variables are in the `env` module in the standard
-library, which is already in scope at the top of _src/main.rs_. We’ll use the
-`var` function from the `env` module to check to see if any value has been set
-for an environment variable named `IGNORE_CASE`, as shown in Listing 12-23.
+Infine, dobbiamo verificare la variabile d'ambiente. Le funzioni per
+lavorare con le variabili d'ambiente si trovano nel modulo `env` della libreria standard, che è già nell'ambito all'inizio di _src/main.rs_. Useremo la
+funzione `var` del modulo `env` per verificare se è stato impostato un valore
+per una variabile d'ambiente denominata `IGNORE_CASE`, come mostrato nel Listato 12-23.
 
-<Listing number="12-23" file-name="src/main.rs" caption="Checking for any value in an environment variable named `IGNORE_CASE`">
+<Listing number="12-23" file-name="src/main.rs" caption="Controllo di qualsiasi valore in una variabile d'ambiente denominata `IGNORE_CASE`">
 
 ```rust,ignore,noplayground
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-23/src/main.rs:here}}
@@ -121,55 +138,54 @@ for an environment variable named `IGNORE_CASE`, as shown in Listing 12-23.
 
 </Listing>
 
-Here, we create a new variable, `ignore_case`. To set its value, we call the
-`env::var` function and pass it the name of the `IGNORE_CASE` environment
-variable. The `env::var` function returns a `Result` that will be the
-successful `Ok` variant that contains the value of the environment variable if
-the environment variable is set to any value. It will return the `Err` variant
-if the environment variable is not set.
+Qui creiamo una nuova variabile, `ignore_case`. Per impostarne il valore, chiamiamo la funzione
+`env::var` e le passiamo il nome della variabile d'ambiente
+`IGNORE_CASE`. La funzione `env::var` restituisce un `Result` che sarà la
+variante `Ok` corretta che contiene il valore della variabile d'ambiente se
+la variabile d'ambiente è impostata su un valore qualsiasi. Restituirà la variante `Err` se la variabile d'ambiente non è impostata.
 
-We’re using the `is_ok` method on the `Result` to check whether the environment
-variable is set, which means the program should do a case-insensitive search.
-If the `IGNORE_CASE` environment variable isn’t set to anything, `is_ok` will
-return `false` and the program will perform a case-sensitive search. We don’t
-care about the _value_ of the environment variable, just whether it’s set or
-unset, so we’re checking `is_ok` rather than using `unwrap`, `expect`, or any
-of the other methods we’ve seen on `Result`.
+Stiamo utilizzando il metodo `is_ok` su `Result` per verificare se la variabile d'ambiente
+è impostata, il che significa che il programma dovrebbe eseguire una ricerca senza distinzione tra maiuscole e minuscole.
+Se la variabile d'ambiente `IGNORE_CASE` non è impostata, `is_ok`
+restituirà `false` e ​​il programma eseguirà una ricerca senza distinzione tra maiuscole e minuscole. Non ci interessa
+il _valore_ della variabile d'ambiente, ma solo se è impostato o
+non impostato, quindi controlliamo `is_ok` anziché utilizzare `unwrap`, `expect` o uno qualsiasi
+degli altri metodi che abbiamo visto su `Result`.
 
-We pass the value in the `ignore_case` variable to the `Config` instance so the
-`run` function can read that value and decide whether to call
-`search_case_insensitive` or `search`, as we implemented in Listing 12-22.
+Passiamo il valore nella variabile `ignore_case` all'istanza `Config` in modo che la funzione
+`run` possa leggere quel valore e decidere se chiamare
+`cerca_case_insensitive` o `cerca`, come abbiamo implementato nel Listato 12-22.
 
-Let’s give it a try! First we’ll run our program without the environment
-variable set and with the query `to`, which should match any line that contains
-the word _to_ in all lowercase:
+Proviamo! Per prima cosa eseguiamo il nostro programma senza la variabile d'ambiente
+impostata e con la query `to`, che dovrebbe corrispondere a qualsiasi riga che contenga
+la parola _to_ in minuscolo:
 
 ```console
 {{#include ../listings/ch12-an-io-project/listing-12-23/output.txt}}
 ```
 
-Looks like that still works! Now let’s run the program with `IGNORE_CASE` set
-to `1` but with the same query _to_:
+Sembra che funzioni ancora! Ora eseguiamo il programma con `IGNORE_CASE` impostato
+a `1` ma con la stessa query _to_:
 
 ```console
 $ IGNORE_CASE=1 cargo run -- to poem.txt
 ```
 
-If you’re using PowerShell, you will need to set the environment variable and
-run the program as separate commands:
+Se si utilizza PowerShell, sarà necessario impostare la variabile d'ambiente ed
+eseguire il programma con comandi separati:
 
 ```console
 PS> $Env:IGNORE_CASE=1; cargo run -- to poem.txt
 ```
 
-This will make `IGNORE_CASE` persist for the remainder of your shell session.
-It can be unset with the `Remove-Item` cmdlet:
+Questo farà sì che `IGNORE_CASE` persista per il resto della sessione shell.
+Può essere annullato con il cmdlet `Remove-Item`:
 
 ```console
 PS> Remove-Item Env:IGNORE_CASE
 ```
 
-We should get lines that contain _to_ that might have uppercase letters:
+Dovremmo ottenere righe che contengono _to_ e che potrebbero contenere lettere maiuscole:
 
 <!-- manual-regeneration
 cd listings/ch12-an-io-project/listing-12-23
@@ -184,18 +200,17 @@ To tell your name the livelong day
 To an admiring bog!
 ```
 
-Excellent, we also got lines containing _To_! Our `minigrep` program can now do
-case-insensitive searching controlled by an environment variable. Now you know
-how to manage options set using either command line arguments or environment
-variables.
+Eccellente, abbiamo anche delle righe contenenti _A_! Il nostro programma `minigrep` ora può effettuare
+ricerche case-insensitive, controllate da una variabile d'ambiente. Ora sai
+come gestire le opzioni impostate utilizzando argomenti della riga di comando o variabili
+d'ambiente.
 
-Some programs allow arguments _and_ environment variables for the same
-configuration. In those cases, the programs decide that one or the other takes
-precedence. For another exercise on your own, try controlling case sensitivity
-through either a command line argument or an environment variable. Decide
-whether the command line argument or the environment variable should take
-precedence if the program is run with one set to case sensitive and one set to
-ignore case.
+Alcuni programmi consentono argomenti _e_ variabili d'ambiente per la stessa
+configurazione. In questi casi, i programmi decidono che l'uno o l'altro abbia
+la precedenza. Per un altro esercizio, prova a controllare la distinzione tra maiuscole e minuscole
+tramite un argomento della riga di comando o una variabile d'ambiente. Decidi
+se l'argomento della riga di comando o la variabile d'ambiente debbano avere
+la precedenza se il programma viene eseguito con uno impostato case-sensitive e l'altro impostato come case-insensitive.
 
-The `std::env` module contains many more useful features for dealing with
-environment variables: check out its documentation to see what is available.
+Il modulo `std::env` contiene molte altre utili funzionalità per gestire
+le variabili d'ambiente: consulta la sua documentazione per scoprire quali sono disponibili.

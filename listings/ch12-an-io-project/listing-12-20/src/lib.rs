@@ -1,4 +1,4 @@
-pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+pub fn cerca<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     let mut results = Vec::new();
 
     for line in contents.lines() {
@@ -38,7 +38,7 @@ Trust me.";
 
         assert_eq!(
             vec!["Rust:", "Trust me."],
-            search_case_insensitive(query, contents)
+            cerca_case_insensitive(query, contents)
         );
     }
 }

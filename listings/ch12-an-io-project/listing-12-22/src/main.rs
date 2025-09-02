@@ -4,7 +4,7 @@ use std::fs;
 use std::process;
 
 // ANCHOR: there
-use minigrep::{search, search_case_insensitive};
+use minigrep::{cerca, cerca_case_insensitive};
 
 // --snip--
 
@@ -14,12 +14,12 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     let config = Config::build(&args).unwrap_or_else(|err| {
-        println!("Problem parsing arguments: {err}");
+        println!("Problema nella parsing degli argomenti: {err}");
         process::exit(1);
     });
 
     if let Err(e) = run(config) {
-        println!("Application error: {e}");
+        println!("Errore dell'applicazione: {e}");
         process::exit(1);
     }
 }
@@ -35,7 +35,7 @@ pub struct Config {
 impl Config {
     fn build(args: &[String]) -> Result<Config, &'static str> {
         if args.len() < 3 {
-            return Err("not enough arguments");
+            return Err("non ci sono abbastanza argomenti");
         }
 
         let query = args[1].clone();
