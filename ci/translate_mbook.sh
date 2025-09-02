@@ -7,7 +7,10 @@ text_pairs=(
     ["'Show hidden lines'"]="'Mostra linee nascoste'"
     ["'Hide lines'"]="'Nascondi linee'"
     ["'Copy to clipboard'"]="'Copia negli appunti'"
+    ["'Copied!'"]="'Copiato!'"
+    ["'Clipboard error!'"]="'Errore nella copia!'"
     ["'Run this code'"]="'Esegui questo codice'"
+    ["'Undo changes'"]="'Annulla modifiche'"    
 )
 
 # Definizione della variabile che rappresenta il path al file di testo
