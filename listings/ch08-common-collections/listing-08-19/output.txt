@@ -1,5 +1,5 @@
 $ cargo run
-   Compiling collections v0.1.0 (file:///projects/collections)
+   Compiling collections v0.1.0 (file:///progetti/collections)
 error[E0277]: the type `str` cannot be indexed by `{integer}`
  --> src/main.rs:3:16
   |

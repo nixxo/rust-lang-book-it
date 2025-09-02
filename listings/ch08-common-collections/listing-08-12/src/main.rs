@@ -4,7 +4,7 @@ fn main() {
 
     let s = data.to_string();
 
-    // The method also works on a literal directly:
+    // Il metodo funziona anche direttamente sul letterale:
     let s = "contenuto iniziale".to_string();
     // ANCHOR_END: here
 }

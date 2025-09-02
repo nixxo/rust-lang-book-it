@@ -591,6 +591,6 @@ to consider first, though:
   with any collection of futures.)
 
 [dyn]: ch12-03-improving-error-handling-and-modularity.html#returning-errors-from-the-run-function
-[enum-alt]: ch08-01-vectors.html#using-an-enum-to-store-multiple-types
+[enum-alt]: ch08-01-vectors.html#utilizzo-di-unenum-per-memorizzare-più-type
 [async-program]: ch17-01-futures-and-syntax.html#our-first-async-program
 [iterator-trait]: ch13-02-iterators.html#the-iterator-trait-and-the-next-method
