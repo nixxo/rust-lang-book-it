@@ -1,4 +1,4 @@
-## Validazione dei Riferimenti con i Lifetime
+## Validazione dei _Reference_ con i _Lifetime_
 
 I lifetime (tempo di vita) sono un altro "tipo" di generico che abbiamo già utilizzato. Invece di garantire che un tipo abbia il comportamento desiderato, i lifetime assicurano che i riferimenti siano validi finché ne abbiamo bisogno.
 

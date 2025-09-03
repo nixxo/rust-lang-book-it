@@ -6,9 +6,9 @@ fn main() {
 
     let mut map = HashMap::new();
 
-    for word in testo.split_whitespace() {
-        let count = map.entry(word).or_insert(0);
-        *count += 1;
+    for parola in testo.split_whitespace() {
+        let conteggio = map.entry(parola).or_insert(0);
+        *conteggio += 1;
     }
 
     println!("{map:?}");

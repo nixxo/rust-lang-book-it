@@ -44,10 +44,10 @@
   - [Portare i Percorsi in _Scope_ con la Parola Chiave `use`](ch07-04-bringing-paths-into-scope-with-the-use-keyword.md)
   - [Separare i Moduli in File Diversi](ch07-05-separating-modules-into-different-files.md)
 
-- [Common Collections](ch08-00-common-collections.md)
-  - [Storing Lists of Values with Vectors](ch08-01-vectors.md)
-  - [Storing UTF-8 Encoded Text with Strings](ch08-02-strings.md)
-  - [Storing Keys with Associated Values in Hash Maps](ch08-03-hash-maps.md)
+- [Collezioni Comuni](ch08-00-common-collections.md)
+  - [Memorizzazione di Elenchi di Valori con Vettori](ch08-01-vectors.md)
+  - [Memorizzazione di Testo Codificato UTF-8 con Stringhe](ch08-02-strings.md)
+  - [Memorizzazione di Chiavi con Valori Associati in Mappe Hash](ch08-03-hash-maps.md)
 
 - [Error Handling](ch09-00-error-handling.md)
   - [Unrecoverable Errors with `panic!`](ch09-01-unrecoverable-errors-with-panic.md)
