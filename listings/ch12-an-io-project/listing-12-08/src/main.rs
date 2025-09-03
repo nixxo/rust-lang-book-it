@@ -22,12 +22,12 @@ struct Config {
 
 impl Config {
     // ANCHOR: here
-    // --snip--
+    // --taglio--
     fn new(args: &[String]) -> Config {
         if args.len() < 3 {
             panic!("non ci sono abbastanza argomenti");
         }
-        // --snip--
+        // --taglio--
         // ANCHOR_END: here
 
         let query = args[1].clone();

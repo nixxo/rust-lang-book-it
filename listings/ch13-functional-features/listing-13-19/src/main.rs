@@ -28,7 +28,7 @@ impl Config {
     fn build(
         mut args: impl Iterator<Item = String>,
     ) -> Result<Config, &'static str> {
-        // --snip--
+        // --taglio--
         // ANCHOR_END: here
         if args.len() < 3 {
             return Err("not enough arguments");

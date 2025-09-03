@@ -7,7 +7,7 @@ use crate::List::{Cons, Nil};
 use std::rc::Rc;
 
 // ANCHOR: here
-// --snip--
+// --taglio--
 
 fn main() {
     let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));

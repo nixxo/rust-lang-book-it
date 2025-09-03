@@ -2,7 +2,7 @@
 enum StatoUSA {
     Alabama,
     Alaska,
-    // --snip--
+    // --taglio--
 }
 
 // ANCHOR: state
@@ -11,7 +11,7 @@ impl StatoUSA {
         match self {
             StatoUSA::Alabama => anno >= 1819,
             StatoUSA::Alaska => anno >= 1959,
-            // -- snip --
+            // --taglio--
         }
     }
 }

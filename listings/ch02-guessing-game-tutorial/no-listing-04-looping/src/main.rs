@@ -9,14 +9,14 @@ fn main() {
     let numero_segreto = rand::thread_rng().gen_range(1..=100);
 
     // ANCHOR: here
-    // --snip--
+    // --taglio--
 
     println!("Il numero segreto è: {numero_segreto}");
 
     loop {
         println!("Inserisci la tua ipotesi.");
 
-        // --snip--
+        // --taglio--
 
         // ANCHOR_END: here
 

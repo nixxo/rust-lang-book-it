@@ -353,7 +353,7 @@ the changes are likely to be due to the tasks running differently rather than
 changes in the compiler -->
 
 ```text
---snip--
+--taglio--
 Interval: 38
 Interval: 39
 Interval: 40
@@ -361,7 +361,7 @@ Message: 'a'
 Interval: 41
 Interval: 42
 Interval: 43
---snip--
+--taglio--
 ```
 
 Listing 17-39 shows one way to solve these last two problems.

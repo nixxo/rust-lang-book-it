@@ -9,7 +9,7 @@ fn main() {
 
     // ANCHOR: here
     loop {
-        // --snip--
+        // --taglio--
 
         // ANCHOR_END: here
         println!("Please input your guess.");
@@ -32,7 +32,7 @@ fn main() {
         }
 
         match guess.cmp(&secret_number) {
-            // --snip--
+            // --taglio--
             // ANCHOR_END: here
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),

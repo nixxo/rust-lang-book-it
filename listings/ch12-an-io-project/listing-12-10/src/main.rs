@@ -11,7 +11,7 @@ fn main() {
         process::exit(1);
     });
 
-    // --snip--
+    // --taglio--
     // ANCHOR_END: here
 
     println!("Cerco {}", config.query);

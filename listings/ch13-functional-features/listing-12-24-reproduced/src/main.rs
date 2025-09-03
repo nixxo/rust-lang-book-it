@@ -14,7 +14,7 @@ fn main() {
         process::exit(1);
     });
 
-    // --snip--
+    // --taglio--
     // ANCHOR_END: ch13
 
     if let Err(e) = run(config) {

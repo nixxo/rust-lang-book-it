@@ -4,7 +4,7 @@ enum List {
 }
 
 // ANCHOR: here
-// --snip--
+// --taglio--
 
 use crate::List::{Cons, Nil};
 

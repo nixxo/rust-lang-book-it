@@ -15,7 +15,7 @@ impl ThreadPool {
         ThreadPool
     }
 
-    // --snip--
+    // --taglio--
     // ANCHOR_END: here
     pub fn execute<F>(&self, f: F)
     where

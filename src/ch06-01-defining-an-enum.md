@@ -121,11 +121,11 @@ in modo differente per ciascuna variante:
 
 ```rust
 struct Ipv4Addr {
-    // --snip--
+    // --taglio--
 }
 
 struct Ipv6Addr {
-    // --snip--
+    // --taglio--
 }
 
 enum IpAddr {

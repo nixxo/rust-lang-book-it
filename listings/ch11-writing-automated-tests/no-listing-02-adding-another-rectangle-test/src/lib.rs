@@ -17,7 +17,7 @@ mod tests {
 
     #[test]
     fn grande_contiene_piccolo() {
-        // --snip--
+        // --taglio--
         // ANCHOR_END: here
         let grande = Rettangolo {
             larghezza: 8,

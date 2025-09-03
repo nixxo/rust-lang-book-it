@@ -4,7 +4,7 @@ use std::{
     io::{BufReader, prelude::*},
     net::{TcpListener, TcpStream},
 };
-// --snip--
+// --taglio--
 
 // ANCHOR_END: here
 fn main() {

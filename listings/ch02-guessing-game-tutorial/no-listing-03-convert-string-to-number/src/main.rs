@@ -13,7 +13,7 @@ fn main() {
     println!("Inserisci la tua ipotesi.");
 
     // ANCHOR: here
-    // --snip--
+    // --taglio--
 
     let mut ipotesi = String::new();
 

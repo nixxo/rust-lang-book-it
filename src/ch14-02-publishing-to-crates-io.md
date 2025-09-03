@@ -318,7 +318,7 @@ $ cargo publish
     Updating crates.io index
 warning: manifest has no description, license, license-file, documentation, homepage or repository.
 See https://doc.rust-lang.org/cargo/reference/manifest.html#package-metadata for more info.
---snip--
+--taglio--
 error: failed to publish to registry at https://crates.io
 
 Caused by:

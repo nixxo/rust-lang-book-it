@@ -6,7 +6,7 @@ use std::process;
 // ANCHOR: there
 use minigrep::{cerca, cerca_case_insensitive};
 
-// --snip--
+// --taglio--
 
 // ANCHOR_END: there
 

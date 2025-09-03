@@ -2,7 +2,7 @@
 enum StatoUSA {
     Alabama,
     Alaska,
-    // --snip--
+    // --taglio--
 }
 
 enum Moneta {

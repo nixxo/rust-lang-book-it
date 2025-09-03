@@ -3,14 +3,14 @@ use std::fmt;
 use std::io;
 
 fn funzione1() -> fmt::Result {
-    // --snip--
+    // --taglio--
     // ANCHOR_END: here
     Ok(())
     // ANCHOR: here
 }
 
 fn funzione2() -> io::Result<()> {
-    // --snip--
+    // --taglio--
     // ANCHOR_END: here
     Ok(())
     // ANCHOR: here

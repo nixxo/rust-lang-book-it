@@ -3,7 +3,7 @@ pub struct Ipotesi {
 }
 
 // ANCHOR: here
-// --snip--
+// --taglio--
 impl Ipotesi {
     pub fn new(valore: i32) -> Ipotesi {
         if valore < 1 {

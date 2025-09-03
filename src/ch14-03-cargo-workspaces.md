@@ -236,7 +236,7 @@ copy output below; the output updating script doesn't handle subdirectories in p
 $ cargo build
     Updating crates.io index
   Downloaded rand v0.8.5
-   --snip--
+   --taglio--
    Compiling rand v0.8.5
    Compiling add_one v0.1.0 (file:///projects/add/add_one)
 warning: unused import: `rand`
@@ -266,7 +266,7 @@ copy output below; the output updating script doesn't handle subdirectories in p
 
 ```console
 $ cargo build
-  --snip--
+  --taglio--
    Compiling adder v0.1.0 (file:///projects/add/adder)
 error[E0432]: unresolved import `rand`
  --> adder/src/main.rs:2:5

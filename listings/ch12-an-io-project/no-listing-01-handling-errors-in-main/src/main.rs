@@ -5,7 +5,7 @@ use std::process;
 
 // ANCHOR: here
 fn main() {
-    // --snip--
+    // --taglio--
 
     // ANCHOR_END: here
     let args: Vec<String> = env::args().collect();

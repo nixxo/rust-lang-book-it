@@ -9,7 +9,7 @@ pub struct ThreadPool {
 struct Job;
 
 impl ThreadPool {
-    // --snip--
+    // --taglio--
     // ANCHOR_END: here
     /// Create a new ThreadPool.
     ///
@@ -32,7 +32,7 @@ impl ThreadPool {
 
         ThreadPool { workers, sender }
     }
-    // --snip--
+    // --taglio--
     // ANCHOR_END: here
 
     pub fn execute<F>(&self, f: F)

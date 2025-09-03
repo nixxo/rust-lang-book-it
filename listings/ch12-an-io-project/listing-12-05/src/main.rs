@@ -7,7 +7,7 @@ fn main() {
 
     let (query, file_path) = parse_config(&args);
 
-    // --snip--
+    // --taglio--
     // ANCHOR_END: here
 
     println!("Cerco {query}");

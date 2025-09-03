@@ -12,7 +12,7 @@ fn main() {
         process::exit(1);
     });
 
-    // --snip--
+    // --taglio--
     // ANCHOR_END: here
 
     if let Err(e) = run(config) {

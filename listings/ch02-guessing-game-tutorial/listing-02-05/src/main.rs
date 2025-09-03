@@ -16,7 +16,7 @@ fn main() {
         let mut ipotesi = String::new();
 
         // ANCHOR: here
-        // --snip--
+        // --taglio--
 
         io::stdin()
             .read_line(&mut ipotesi)
@@ -31,7 +31,7 @@ fn main() {
 
         println!("Hai ipotizzato: {ipotesi}");
 
-        // --snip--
+        // --taglio--
         // ANCHOR_END: here
 
         match ipotesi.cmp(&numero_segreto) {

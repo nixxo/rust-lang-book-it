@@ -4,11 +4,11 @@ use std::fs;
 use std::process;
 
 // ANCHOR: here
-// --snip--
+// --taglio--
 use minigrep::cerca;
 
 fn main() {
-    // --snip--
+    // --taglio--
     // ANCHOR_END: here
     let args: Vec<String> = env::args().collect();
 
@@ -24,7 +24,7 @@ fn main() {
     // ANCHOR: here
 }
 
-// --snip--
+// --taglio--
 
 // ANCHOR_END: here
 

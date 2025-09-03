@@ -5,7 +5,7 @@ use std::io;
 use rand::Rng;
 
 fn main() {
-    // --snip--
+    // --taglio--
     // ANCHOR_END: here
     println!("Indovina il numero!");
 

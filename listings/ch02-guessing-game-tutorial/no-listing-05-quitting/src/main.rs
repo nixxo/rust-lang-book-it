@@ -24,7 +24,7 @@ fn main() {
         println!("Hai ipotizzato: {ipotesi}");
 
         // ANCHOR: here
-        // --snip--
+        // --taglio--
 
         match ipotesi.cmp(&numero_segreto) {
             Ordering::Less => println!("Troppo piccolo!"),

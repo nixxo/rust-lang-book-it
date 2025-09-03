@@ -5,7 +5,7 @@ struct Rettangolo {
 }
 
 // ANCHOR: here
-// --snip--
+// --taglio--
 impl Rettangolo {
     fn puo_contenere(&self, altro: &Rettangolo) -> bool {
         self.larghezza < altro.larghezza && self.altezza > altro.altezza

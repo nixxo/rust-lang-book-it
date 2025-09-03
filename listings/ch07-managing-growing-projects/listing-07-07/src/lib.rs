@@ -5,7 +5,7 @@ mod sala {
     }
 }
 
-// -- snip --
+// --taglio--
 // ANCHOR_END: here
 pub fn mangiare_al_ristorante() {
     // Path assoluta

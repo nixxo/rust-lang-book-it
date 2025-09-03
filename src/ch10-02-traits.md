@@ -341,7 +341,7 @@ nella libreria standard è simile a questo codice:
 
 ```rust,ignore
 impl<T: Display> ToString for T {
-// --snip--
+// --taglio--
 }
 ```
 

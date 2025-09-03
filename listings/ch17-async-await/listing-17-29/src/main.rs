@@ -5,7 +5,7 @@ use std::time::Duration;
 // ANCHOR: implementation
 use trpl::Either;
 
-// --snip--
+// --taglio--
 // ANCHOR: implementation
 
 fn main() {

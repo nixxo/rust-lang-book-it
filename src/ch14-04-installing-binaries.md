@@ -35,7 +35,7 @@ $ cargo install ripgrep
   Downloaded ripgrep v14.1.1
   Downloaded 1 crate (213.6 KB) in 0.40s
   Installing ripgrep v14.1.1
---snip--
+--taglio--
    Compiling grep v0.3.2
     Finished `release` profile [optimized + debuginfo] target(s) in 6.73s
   Installing ~/.cargo/bin/rg

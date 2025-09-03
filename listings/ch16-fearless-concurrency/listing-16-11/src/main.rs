@@ -4,7 +4,7 @@ use std::time::Duration;
 
 fn main() {
     // ANCHOR: here
-    // --snip--
+    // --taglio--
 
     let (tx, rx) = mpsc::channel();
 
@@ -41,6 +41,6 @@ fn main() {
         println!("Got: {received}");
     }
 
-    // --snip--
+    // --taglio--
     // ANCHOR_END: here
 }

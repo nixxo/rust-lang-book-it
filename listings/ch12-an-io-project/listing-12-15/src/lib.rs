@@ -3,7 +3,7 @@ pub fn cerca<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
 }
 
 // ANCHOR: here
-// --snip--
+// --taglio--
 
 #[cfg(test)]
 mod tests {

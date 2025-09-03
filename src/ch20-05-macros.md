@@ -332,7 +332,7 @@ struct we get from parsing the `struct Pancakes;` string.
 
 ```rust,ignore
 DeriveInput {
-    // --snip--
+    // --taglio--
 
     ident: Ident {
         ident: "Pancakes",

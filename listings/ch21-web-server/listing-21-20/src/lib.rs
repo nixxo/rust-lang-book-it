@@ -50,7 +50,7 @@ struct Worker {
 }
 
 // ANCHOR: here
-// --snip--
+// --taglio--
 
 impl Worker {
     fn new(id: usize, receiver: Arc<Mutex<mpsc::Receiver<Job>>>) -> Worker {
