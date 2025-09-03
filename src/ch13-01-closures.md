@@ -2,14 +2,14 @@
 
 <a id="closures-anonymous-functions-that-can-capture-their-environment"></a>
 
-## Closures: Anonymous Functions That Capture Their Environment
+## Closures: Funzioni Anonime che Catturano il loro Ambiente
 
-Rust’s closures are anonymous functions you can save in a variable or pass as
-arguments to other functions. You can create the closure in one place and then
-call the closure elsewhere to evaluate it in a different context. Unlike
-functions, closures can capture values from the scope in which they’re defined.
-We’ll demonstrate how these closure features allow for code reuse and behavior
-customization.
+Le closures di Rust sono funzioni anonime che è possibile salvare in una variabile o passare come
+argomenti ad altre funzioni. È possibile creare la closure in un punto e poi
+chiamarla altrove per valutarla in un contesto diverso. A differenza delle
+funzioni, le closures possono catturare valori dall'ambito in cui sono definite.
+Dimostreremo come queste funzionalità di closure consentano il riutilizzo del codice e la
+personalizzazione del comportamento.
 
 <!-- Old headings. Do not remove or links may break. -->
 
@@ -17,25 +17,23 @@ customization.
 <a id="refactoring-using-functions"></a>
 <a id="refactoring-with-closures-to-store-code"></a>
 
-### Capturing the Environment with Closures
+### Catturare l'Ambiente con le Closures
 
-We’ll first examine how we can use closures to capture values from the
-environment they’re defined in for later use. Here’s the scenario: every so
-often, our T-shirt company gives away an exclusive, limited-edition shirt to
-someone on our mailing list as a promotion. People on the mailing list can
-optionally add their favorite color to their profile. If the person chosen for
-a free shirt has their favorite color set, they get that color shirt. If the
-person hasn’t specified a favorite color, they get whatever color the company
-currently has the most of.
+Esamineremo innanzitutto come possiamo utilizzare le closures per catturare valori dall'ambito in cui sono definite per un uso successivo. Ecco lo scenario: ogni tanto, la nostra azienda di magliette regala una maglietta esclusiva in edizione limitata a
+qualcuno nella nostra mailing list come promozione. Gli utenti della mailing list possono
+facoltativamente aggiungere il loro colore preferito al proprio profilo. Se la persona a cui viene assegnata
+una maglietta gratuita ha impostato il suo colore preferito, riceverà la maglietta di quel colore. Se la persona
+non ha specificato un colore preferito, riceverà il colore di cui l'azienda
+ha attualmente la maggiore disponibilità.
 
-There are many ways to implement this. For this example, we’re going to use an
-enum called `ShirtColor` that has the variants `Red` and `Blue` (limiting the
-number of colors available for simplicity). We represent the company’s
-inventory with an `Inventory` struct that has a field named `shirts` that
-contains a `Vec<ShirtColor>` representing the shirt colors currently in stock.
-The method `giveaway` defined on `Inventory` gets the optional shirt
-color preference of the free-shirt winner, and returns the shirt color the
-person will get. This setup is shown in Listing 13-1.
+Ci sono molti modi per implementarlo. Per questo esempio, useremo un'
+enum chiamata `ShirtColor` che ha le varianti `Red` e `Blue` (limitando il
+numero di colori disponibili per semplicità). Rappresentiamo l'inventario dell'azienda
+con una struttura `Inventory` che ha un campo denominato `shirts` che
+contiene un `Vec<ShirtColor>` che rappresenta i colori delle magliette attualmente disponibili in magazzino.
+Il metodo `giveaway` definito su `Inventory` ottiene la preferenza opzionale per il colore della maglietta
+del vincitore della maglietta gratuita e restituisce il colore della maglietta che la persona
+riceverà. Questa configurazione è mostrata nel Listato 13-1.
 
 <Listing number="13-1" file-name="src/main.rs" caption="Shirt company giveaway situation">
 
@@ -45,69 +43,66 @@ person will get. This setup is shown in Listing 13-1.
 
 </Listing>
 
-The `store` defined in `main` has two blue shirts and one red shirt remaining
-to distribute for this limited-edition promotion. We call the `giveaway` method
-for a user with a preference for a red shirt and a user without any preference.
+Lo `store` definito in `main` ha due magliette blu e una rossa rimanenti
+da distribuire per questa promozione in edizione limitata. Chiamiamo il metodo `giveaway`
+per un utente con preferenza per una maglietta rossa e un utente senza alcuna preferenza.
 
-Again, this code could be implemented in many ways, and here, to focus on
-closures, we’ve stuck to concepts you’ve already learned, except for the body of
-the `giveaway` method that uses a closure. In the `giveaway` method, we get the
-user preference as a parameter of type `Option<ShirtColor>` and call the
-`unwrap_or_else` method on `user_preference`. The [`unwrap_or_else` method on
-`Option<T>`][unwrap-or-else]<!-- ignore --> is defined by the standard library.
-It takes one argument: a closure without any arguments that returns a value `T`
-(the same type stored in the `Some` variant of the `Option<T>`, in this case
-`ShirtColor`). If the `Option<T>` is the `Some` variant, `unwrap_or_else`
-returns the value from within the `Some`. If the `Option<T>` is the `None`
-variant, `unwrap_or_else` calls the closure and returns the value returned by
-the closure.
+Anche in questo caso, questo codice potrebbe essere implementato in molti modi e, per concentrarci sulle
+closures, ci siamo attenuti ai concetti che avete già imparato, ad eccezione del corpo del
+metodo `giveaway` che utilizza una closure. Nel metodo `giveaway`, otteniamo la
+preferenza dell'utente come parametro di tipo `Option<ShirtColor>` e chiamiamo il
+metodo `unwrap_or_else` su `user_preference`. Il metodo [`unwrap_or_else` su
+`Option<T>`][unwrap-or-else]<!-- ignore --> è definito dalla libreria standard. Accetta un argomento: una closure senza argomenti che restituisce un valore `T`
+(lo stesso tipo memorizzato nella variante `Some` di `Option<T>`, in questo caso
+`ShirtColor`). Se `Option<T>` è la variante `Some`, `unwrap_or_else`
+restituisce il valore presente all'interno di `Some`. Se `Option<T>` è la variante `None`
+, `unwrap_or_else` chiama la closure e restituisce il valore restituito
+dalla closure.
 
-We specify the closure expression `|| self.most_stocked()` as the argument to
-`unwrap_or_else`. This is a closure that takes no parameters itself (if the
-closure had parameters, they would appear between the two vertical pipes). The
-body of the closure calls `self.most_stocked()`. We’re defining the closure
-here, and the implementation of `unwrap_or_else` will evaluate the closure
-later if the result is needed.
+Specifichiamo l'espressione di closure `|| self.most_stocked()` come argomento di
+`unwrap_or_else`. Questa è una closure che non accetta parametri (se la
+closure avesse parametri, questi apparirebbero tra le due pipe verticali). Il
+corpo della closure chiama `self.most_stocked()`. Stiamo definendo la closure
+qui, e l'implementazione di `unwrap_or_else` valuterà la closure
+in seguito, se il risultato è necessario.
 
-Running this code prints the following:
+L'esecuzione di questo codice stampa quanto segue:
 
 ```console
 {{#include ../listings/ch13-functional-features/listing-13-01/output.txt}}
 ```
 
-One interesting aspect here is that we’ve passed a closure that calls
-`self.most_stocked()` on the current `Inventory` instance. The standard library
-didn’t need to know anything about the `Inventory` or `ShirtColor` types we
-defined, or the logic we want to use in this scenario. The closure captures an
-immutable reference to the `self` `Inventory` instance and passes it with the
-code we specify to the `unwrap_or_else` method. Functions, on the other hand,
-are not able to capture their environment in this way.
+Un aspetto interessante è che abbiamo passato una closure che chiama
+`self.most_stocked()` sull'istanza corrente di `Inventory`. La libreria standard
+non aveva bisogno di sapere nulla sui tipi `Inventory` o `ShirtColor` che abbiamo
+definito, né sulla logica che vogliamo utilizzare in questo scenario. La closure cattura un
+riferimento immutabile all'istanza `self` di `Inventory` e lo passa con il
+codice che specifichiamo al metodo `unwrap_or_else`. Le funzioni, d'altra parte,
+non sono in grado di catturare il loro ambito in questo modo.
 
-### Closure Type Inference and Annotation
+### Inferenza e Annotazione del tipo di closure
 
-There are more differences between functions and closures. Closures don’t
-usually require you to annotate the types of the parameters or the return value
-like `fn` functions do. Type annotations are required on functions because the
-types are part of an explicit interface exposed to your users. Defining this
-interface rigidly is important for ensuring that everyone agrees on what types
-of values a function uses and returns. Closures, on the other hand, aren’t used
-in an exposed interface like this: they’re stored in variables and used without
-naming them and exposing them to users of our library.
+Esistono ulteriori differenze tra funzioni e closures. Le closures 
+di solito non richiedono di annotare i tipi dei parametri o il valore di ritorno,
+come fanno le funzioni `fn`. Le annotazioni di tipo sono necessarie sulle funzioni perché
+i tipi fanno parte di un'interfaccia esplicita esposta agli utenti. Definire rigidamente questa
+interfaccia è importante per garantire che tutti concordino sui tipi
+di valori che una funzione utilizza e restituisce. Le closures, d'altra parte, non vengono utilizzate
+in un'interfaccia esposta come questa: vengono memorizzate in variabili e utilizzate senza
+denominarle ed esporle agli utenti della nostra libreria.
 
-Closures are typically short and relevant only within a narrow context rather
-than in any arbitrary scenario. Within these limited contexts, the compiler can
-infer the types of the parameters and the return type, similar to how it’s able
-to infer the types of most variables (there are rare cases where the compiler
-needs closure type annotations too).
+Le closures sono in genere brevi e rilevanti solo in un contesto ristretto, piuttosto che in uno scenario arbitrario. In questi contesti limitati, il compilatore può
+dedurre i tipi dei parametri e il tipo di ritorno, in modo simile a come è in grado
+di dedurre i tipi della maggior parte delle variabili (ci sono rari casi in cui il compilatore
+necessita anche di annotazioni del tipo di closure).
 
-As with variables, we can add type annotations if we want to increase
-explicitness and clarity at the cost of being more verbose than is strictly
-necessary. Annotating the types for a closure would look like the definition
-shown in Listing 13-2. In this example, we’re defining a closure and storing it
-in a variable rather than defining the closure in the spot we pass it as an
-argument, as we did in Listing 13-1.
+Come per le variabili, possiamo aggiungere annotazioni di tipo se vogliamo aumentare
+l'esplicitezza e la chiarezza, a costo di essere più prolissi del necessario. L'annotazione dei tipi per una closure sarebbe simile alla definizione
+mostrata nel Listato 13-2. In questo esempio, definiamo una closure e la memorizziamo
+in una variabile, anziché definirla nel punto in cui la passiamo come
+argomento, come abbiamo fatto nel Listato 13-1.
 
-<Listing number="13-2" file-name="src/main.rs" caption="Adding optional type annotations of the parameter and return value types in the closure">
+<Listing number="13-2" file-name="src/main.rs" caption="Aggiunta di annotazioni di tipo facoltative dei tipi di parametro e valore di ritorno nella closure">
 
 ```rust
 {{#rustdoc_include ../listings/ch13-functional-features/listing-13-02/src/main.rs:here}}
@@ -115,12 +110,12 @@ argument, as we did in Listing 13-1.
 
 </Listing>
 
-With type annotations added, the syntax of closures looks more similar to the
-syntax of functions. Here, we define a function that adds 1 to its parameter and
-a closure that has the same behavior, for comparison. We’ve added some spaces
-to line up the relevant parts. This illustrates how closure syntax is similar
-to function syntax except for the use of pipes and the amount of syntax that is
-optional:
+Con l'aggiunta delle annotazioni di tipo, la sintassi delle closures appare più simile alla
+sintassi delle funzioni. Qui, per confronto, definiamo una funzione che aggiunge 1 al suo parametro e
+una closure che ha lo stesso comportamento. Abbiamo aggiunto alcuni spazi
+per allineare le parti rilevanti. Questo illustra come la sintassi delle closures sia simile
+a quella delle funzioni, fatta eccezione per l'uso delle pipe e per la quantità di sintassi che è
+facoltativa:
 
 ```rust,ignore
 fn  add_one_v1   (x: u32) -> u32 { x + 1 }
@@ -129,26 +124,25 @@ let add_one_v3 = |x|             { x + 1 };
 let add_one_v4 = |x|               x + 1  ;
 ```
 
-The first line shows a function definition and the second line shows a fully
-annotated closure definition. In the third line, we remove the type annotations
-from the closure definition. In the fourth line, we remove the brackets, which
-are optional because the closure body has only one expression. These are all
-valid definitions that will produce the same behavior when they’re called. The
-`add_one_v3` and `add_one_v4` lines require the closures to be evaluated to be
-able to compile because the types will be inferred from their usage. This is
-similar to `let v = Vec::new();` needing either type annotations or values of
-some type to be inserted into the `Vec` for Rust to be able to infer the type.
+La prima riga mostra una definizione di funzione e la seconda una definizione di closure completamente annotata. Nella terza riga, rimuoviamo le annotazioni di tipo
+dalla definizione di closure. Nella quarta riga, rimuoviamo le parentesi, che
+sono facoltative perché il corpo della closure ha una sola espressione. Queste sono tutte
+definizioni valide che produrranno lo stesso comportamento quando vengono chiamate. Le
+righe `add_one_v3` e `add_one_v4` richiedono che le closures vengano valutate per
+essere compilabili, poiché i tipi verranno dedotti dal loro utilizzo. Questo è
+simile a `let v = Vec::new();` che richiede annotazioni di tipo o valori di
+qualche tipo da inserire in `Vec` affinché Rust possa dedurre il tipo.
 
-For closure definitions, the compiler will infer one concrete type for each of
-their parameters and for their return value. For instance, Listing 13-3 shows
-the definition of a short closure that just returns the value it receives as a
-parameter. This closure isn’t very useful except for the purposes of this
-example. Note that we haven’t added any type annotations to the definition.
-Because there are no type annotations, we can call the closure with any type,
-which we’ve done here with `String` the first time. If we then try to call
-`example_closure` with an integer, we’ll get an error.
+Per le definizioni di closure, il compilatore dedurrà un tipo concreto per ciascuno dei
+loro parametri e per il loro valore di ritorno. Ad esempio, il Listato 13-3 mostra
+la definizione di una closure breve che restituisce semplicemente il valore ricevuto come
+parametro. Questa closure non è molto utile, se non per gli scopi di questo
+esempio. Si noti che non abbiamo aggiunto alcuna annotazione di tipo alla definizione.
+Poiché non ci sono annotazioni di tipo, possiamo chiamare la closure con qualsiasi tipo,
+come abbiamo fatto qui con `String` la prima volta. Se poi proviamo a chiamare
+`example_closure` con un intero, otterremo un errore.
 
-<Listing number="13-3" file-name="src/main.rs" caption="Attempting to call a closure whose types are inferred with two different types">
+<Listing number="13-3" file-name="src/main.rs" caption="Tentativo di chiamare una closure i cui tipi sono inferiti con due tipi diversi">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch13-functional-features/listing-13-03/src/main.rs:here}}
@@ -156,30 +150,30 @@ which we’ve done here with `String` the first time. If we then try to call
 
 </Listing>
 
-The compiler gives us this error:
+Il compilatore ci dà questo errore:
 
 ```console
 {{#include ../listings/ch13-functional-features/listing-13-03/output.txt}}
 ```
 
-The first time we call `example_closure` with the `String` value, the compiler
-infers the type of `x` and the return type of the closure to be `String`. Those
-types are then locked into the closure in `example_closure`, and we get a type
-error when we next try to use a different type with the same closure.
+La prima volta che chiamiamo `example_closure` con il valore `String`, il compilatore
+deduce che il tipo di `x` e il tipo di ritorno della closure siano `String`. Questi
+tipi vengono quindi bloccati nella closure in `example_closure` e si verifica un errore di tipo
+quando si tenta nuovamente di utilizzare un tipo diverso con la stessa closure.
 
-### Capturing References or Moving Ownership
+### Cattura di Riferimenti o Trasferimento di Proprietà
 
-Closures can capture values from their environment in three ways, which
-directly map to the three ways a function can take a parameter: borrowing
-immutably, borrowing mutably, and taking ownership. The closure will decide
-which of these to use based on what the body of the function does with the
-captured values.
+Le closures possono catturare valori dal loro ambiente in tre modi, che
+corrispondono direttamente ai tre modi in cui una funzione può accettare un parametro: prendendo in prestito
+immutabilmente, prendendo in prestito mutabilmente e prendendo in possesso. La closure deciderà
+quale di questi utilizzare in base a ciò che il corpo della funzione fa con i
+valori catturati.
 
-In Listing 13-4, we define a closure that captures an immutable reference to
-the vector named `list` because it only needs an immutable reference to print
-the value.
+Nel Listato 13-4, definiamo una closure che cattura un riferimento immutabile al
+vettore denominato `list` perché necessita solo di un riferimento immutabile per stampare
+il valore.
 
-<Listing number="13-4" file-name="src/main.rs" caption="Defining and calling a closure that captures an immutable reference">
+<Listing number="13-4" file-name="src/main.rs" caption="Definizione e chiamata di una closure che cattura un riferimento immutabile">
 
 ```rust
 {{#rustdoc_include ../listings/ch13-functional-features/listing-13-04/src/main.rs}}
@@ -187,21 +181,21 @@ the value.
 
 </Listing>
 
-This example also illustrates that a variable can bind to a closure definition,
-and we can later call the closure by using the variable name and parentheses as
-if the variable name were a function name.
+Questo esempio illustra anche che una variabile può essere associata a una definizione di closure,
+e che possiamo successivamente chiamare la closure utilizzando il nome della variabile e le parentesi come
+se il nome della variabile fosse il nome di una funzione.
 
-Because we can have multiple immutable references to `list` at the same time,
-`list` is still accessible from the code before the closure definition, after
-the closure definition but before the closure is called, and after the closure
-is called. This code compiles, runs, and prints:
+Poiché possiamo avere più riferimenti immutabili a `list` contemporaneamente,
+`list` è comunque accessibile dal codice prima della definizione della closure, dopo
+la definizione della closure ma prima che la closure venga chiamata, e dopo che la closure
+viene chiamata. Questo codice compila, esegue e stampa:
 
 ```console
 {{#include ../listings/ch13-functional-features/listing-13-04/output.txt}}
 ```
 
-Next, in Listing 13-5, we change the closure body so that it adds an element to
-the `list` vector. The closure now captures a mutable reference.
+Successivamente, nel Listato 13-5, modifichiamo il corpo della chiusura in modo che aggiunga un elemento al
+vettore `list`. La closure ora cattura un riferimento mutabile.
 
 <Listing number="13-5" file-name="src/main.rs" caption="Defining and calling a closure that captures a mutable reference">
 

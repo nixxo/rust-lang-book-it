@@ -12,7 +12,7 @@ caratteristiche di molti linguaggi spesso definiti funzionali.
 
 Più specificamente, tratteremo:
 
-- _Closures (Chiusure), un costrutto simile a una funzione che puoi memorizzare in una variabile
+- _Closures (Chiusure)_, un costrutto simile a una funzione che puoi memorizzare in una variabile
 - _Iteratori_, un modo per elaborare una serie di elementi
 - Come usare closures e iteratori per migliorare il progetto I/O nel Capitolo 12
 - Le prestazioni di closures e iteratori (attenzione, spoiler: sono più veloci di
