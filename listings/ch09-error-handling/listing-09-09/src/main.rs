@@ -3,7 +3,7 @@ use std::fs;
 use std::io;
 
 fn leggi_nomeutente_dal_file() -> Result<String, io::Error> {
-    fs::read_to_string("hello.txt")
+    fs::read_to_string("ciao.txt")
 }
 // ANCHOR_END: here
 

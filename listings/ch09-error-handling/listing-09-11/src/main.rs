@@ -1,6 +1,6 @@
 // ANCHOR: here
-fn ultimo_char_della_prima_riga(text: &str) -> Option<char> {
-    text.lines().next()?.chars().last()
+fn ultimo_char_della_prima_riga(testo: &str) -> Option<char> {
+    testo.lines().next()?.chars().last()
 }
 // ANCHOR_END: here
 
