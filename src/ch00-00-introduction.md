@@ -201,7 +201,7 @@ destinato a funzionare:
 | Ferris | Significato |
 | --- | --- |
 | <img src="img/ferris/does_not_compile.svg" class="ferris-explain" alt="Ferris with a question mark"/> | Questo codice non si compila! |
-| <img src="img/ferris/panics.svg" class="ferris-explain" alt="Ferris throwing up their hands"/> | Questo codice genera panico! |
+| <img src="img/ferris/panics.svg" class="ferris-explain" alt="Ferris throwing up their hands"/> | Questo codice genera _panic_! |
 | <img src="img/ferris/not_desired_behavior.svg" class="ferris-explain" alt="Ferris with one claw up, shrugging"/> | Questo codice non funziona come dovrebbe. |
 
 Nella maggior parte dei casi, ti guideremo alla versione corretta di qualsiasi

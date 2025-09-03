@@ -1,0 +1,21 @@
+$ RUST_BACKTRACE=1 cargo run
+thread 'main' (11968) panicked at src/main.rs:4:6:
+index out of bounds: the len is 3 but the index is 99
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+             at /rustc/8e62bfd311791bfd9dca886abdfbab07ec54d8b4/library/std/src/panicking.rs:698:5
+   1: core::panicking::panic_fmt
+             at /rustc/8e62bfd311791bfd9dca886abdfbab07ec54d8b4/library/core/src/panicking.rs:75:14
+   2: core::panicking::panic_bounds_check
+             at /rustc/8e62bfd311791bfd9dca886abdfbab07ec54d8b4/library/core/src/panicking.rs:280:5
+   3: <usize as core::slice::index::SliceIndex<[T]>>::index
+             at /rustc/8e62bfd311791bfd9dca886abdfbab07ec54d8b4/library/core/src/slice/index.rs:274:10
+   4: core::slice::index::<impl core::ops::index::Index<I> for [T]>::index
+             at /rustc/8e62bfd311791bfd9dca886abdfbab07ec54d8b4/library/core/src/slice/index.rs:18:15
+   5: <alloc::vec::Vec<T,A> as core::ops::index::Index<I>>::index
+             at /rustc/8e62bfd311791bfd9dca886abdfbab07ec54d8b4/library/alloc/src/vec/mod.rs:3621:9
+   6: panic::main
+             at ./src/main.rs:4:6
+   7: core::ops::function::FnOnce::call_once
+             at /rustc/8e62bfd311791bfd9dca886abdfbab07ec54d8b4/library/core/src/ops/function.rs:253:5
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.

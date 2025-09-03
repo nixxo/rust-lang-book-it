@@ -1,6 +1,6 @@
 $ cargo run
-   Compiling panic v0.1.0 (file:///projects/panic)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.27s
+   Compiling panic v0.1.0 (file:///progetti/panic)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.37s
      Running `target/debug/panic`
 
 thread 'main' panicked at src/main.rs:4:6:

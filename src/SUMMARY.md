@@ -49,8 +49,8 @@
   - [Memorizzazione di Testo Codificato UTF-8 con Stringhe](ch08-02-strings.md)
   - [Memorizzazione di Chiavi con Valori Associati in Mappe Hash](ch08-03-hash-maps.md)
 
-- [Error Handling](ch09-00-error-handling.md)
-  - [Unrecoverable Errors with `panic!`](ch09-01-unrecoverable-errors-with-panic.md)
+- [Gestione degli Errori](ch09-00-error-handling.md)
+  - [Errori Irreversibili con `panic!`](ch09-01-unrecoverable-errors-with-panic.md)
   - [Recoverable Errors with `Result`](ch09-02-recoverable-errors-with-result.md)
   - [To `panic!` or Not to `panic!`](ch09-03-to-panic-or-not-to-panic.md)
 
