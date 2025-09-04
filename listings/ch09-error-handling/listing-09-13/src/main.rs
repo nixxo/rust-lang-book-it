@@ -1,9 +1,9 @@
-use guessing_game::Guess;
+use gioco_indovinello::Ipotesi;
 use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
 
-mod guessing_game;
+mod gioco_indovinello;
 
 fn main() {
     println!("Indovina il numero!");
@@ -11,13 +11,13 @@ fn main() {
     let numero_segreto = rand::thread_rng().gen_range(1..=100);
 
     loop {
-        println!("Per favore, inserisci la tua ipotesi.");
+        println!("Inserisci la tua ipotesi.");
 
         let mut ipotesi = String::new();
 
         io::stdin()
             .read_line(&mut ipotesi)
-            .expect("Errore a leggere la prima riga");
+            .expect("Errore di lettura");
 
         let ipotesi: i32 = match ipotesi.trim().parse() {
             Ok(num) => num,
@@ -30,7 +30,7 @@ fn main() {
             Ordering::Less => println!("Troppo piccolo!"),
             Ordering::Greater => println!("Troppo grande!"),
             Ordering::Equal => {
-                println!("Hai vinto!");
+                println!("Hai indovinato!");
                 break;
             }
         }

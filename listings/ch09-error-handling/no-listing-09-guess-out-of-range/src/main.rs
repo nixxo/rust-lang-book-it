@@ -3,41 +3,41 @@ use std::cmp::Ordering;
 use std::io;
 
 fn main() {
-    println!("Guess the number!");
+    println!("Indovina il numero!");
 
-    let secret_number = rand::thread_rng().gen_range(1..=100);
+    let numero_segreto = rand::thread_rng().gen_range(1..=100);
 
     // ANCHOR: here
     loop {
         // --taglio--
 
         // ANCHOR_END: here
-        println!("Please input your guess.");
+        println!("Inserisci la tua ipotesi.");
 
-        let mut guess = String::new();
+        let mut ipotesi = String::new();
 
         io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line");
+            .read_line(&mut ipotesi)
+            .expect("Errore di lettura");
 
         // ANCHOR: here
-        let guess: i32 = match guess.trim().parse() {
+        let ipotesi: i32 = match ipotesi.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
         };
 
-        if guess < 1 || guess > 100 {
-            println!("The secret number will be between 1 and 100.");
+        if ipotesi < 1 || ipotesi > 100 {
+            println!("Il numero segreto è compreso tra 1 e 100.");
             continue;
         }
 
-        match guess.cmp(&secret_number) {
+        match ipotesi.cmp(&numero_segreto) {
             // --taglio--
             // ANCHOR_END: here
-            Ordering::Less => println!("Too small!"),
-            Ordering::Greater => println!("Too big!"),
+            Ordering::Less => println!("Troppo piccolo!"),
+            Ordering::Greater => println!("Troppo grande!"),
             Ordering::Equal => {
-                println!("You win!");
+                println!("Hai indovinato!");
                 break;
             }
         }

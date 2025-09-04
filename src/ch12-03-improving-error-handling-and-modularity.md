@@ -488,8 +488,8 @@ sarebbe stato difficile con il vecchio codice, ma è facile con il nuovo:
 scriveremo dei test!
 
 [ch13]: ch13-00-functional-features.html
-[ch9-custom-types]: ch09-03-to-panic-or-not-to-panic.html#creating-custom-types-for-validation
-[ch9-error-guidelines]: ch09-03-to-panic-or-not-to-panic.html#guidelines-for-error-handling
+[ch9-custom-types]: ch09-03-to-panic-or-not-to-panic.html#creazione-di-type-personalizzati-per-la-convalida
+[ch9-error-guidelines]: ch09-03-to-panic-or-not-to-panic.html#linee-guida-per-la-gestione-degli-errori
 [ch9-result]: ch09-02-recoverable-errors-with-result.html
 [ch18]: ch18-00-oop.html
 [ch9-question-mark]: ch09-02-recoverable-errors-with-result.html#una-scorciatoia-per-la-propagazione-degli-errori-loperatore-

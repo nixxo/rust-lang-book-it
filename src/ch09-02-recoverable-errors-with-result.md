@@ -1,4 +1,4 @@
-## Errori Recuperabili con `Result`
+## Errori Reversibili con `Result`
 
 La maggior parte degli errori non è abbastanza grave da richiedere l'arresto
 completo del programma. A volte, quando una funzione fallisce, è per un motivo

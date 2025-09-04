@@ -383,7 +383,7 @@ languages, we’re not taking as full advantage of Rust’s strengths as we coul
 Let’s look at some changes we can make to the `blog` crate that can make
 invalid states and transitions into compile-time errors.
 
-### Encoding States and Behavior as Types
+### Codifica di Stati e Comportamenti Come _Type_
 
 We’ll show you how to rethink the state pattern to get a different set of
 trade-offs. Rather than encapsulating the states and transitions completely so
@@ -522,5 +522,5 @@ Next, we’ll look at patterns, which are another of Rust’s features that enab
 lots of flexibility. We’ve looked at them briefly throughout the book but
 haven’t seen their full capability yet. Let’s go!
 
-[more-info-than-rustc]: ch09-03-to-panic-or-not-to-panic.html#cases-in-which-you-have-more-information-than-the-compiler
+[more-info-than-rustc]: ch09-03-to-panic-or-not-to-panic.html#casi-in-cui-si-hanno-più-informazioni-del-compilatore
 [macros]: ch20-05-macros.html#macros

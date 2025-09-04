@@ -35,7 +35,7 @@
   - [Controllo del Flusso col costrutto Match](ch06-02-match.md)
   - [Controllo di flusso conciso con if let e let else](ch06-03-if-let.md)
 
-## Basic Rust Literacy
+## Letteratura di Base Rust
 
 - [Gestione di Progetti in Crescita con Pacchetti, _Crates_, e Moduli](ch07-00-managing-growing-projects-with-packages-crates-and-modules.md)
   - [Pacchetti e Crate](ch07-01-packages-and-crates.md)
@@ -51,8 +51,8 @@
 
 - [Gestione degli Errori](ch09-00-error-handling.md)
   - [Errori Irreversibili con `panic!`](ch09-01-unrecoverable-errors-with-panic.md)
-  - [Recoverable Errors with `Result`](ch09-02-recoverable-errors-with-result.md)
-  - [To `panic!` or Not to `panic!`](ch09-03-to-panic-or-not-to-panic.md)
+  - [Errori Reversibili con `Result`](ch09-02-recoverable-errors-with-result.md)
+  - [`panic!` o non `panic!`](ch09-03-to-panic-or-not-to-panic.md)
 
 - [Generic Types, Traits, and Lifetimes](ch10-00-generics.md)
   - [Generic Data Types](ch10-01-syntax.md)

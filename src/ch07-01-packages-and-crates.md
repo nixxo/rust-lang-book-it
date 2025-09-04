@@ -1,4 +1,4 @@
-## Pacchetti e Crate
+## Pacchetti e `Crate`
 
 Le prime parti del sistema dei moduli che tratteremo sono i pacchetti e i
 _crate_.
@@ -22,7 +22,7 @@ I _crate_ _libreria_ non hanno una funzione `main`, e non si compilano in un
 eseguibile. Invece, definiscono funzionalità destinate a essere condivise con
 progetti multipli. Ad esempio, il _crate_ `rand` che abbiamo usato nel [Capitolo
 2][rand]<!-- ignore --> fornisce funzionalità che generano numeri casuali. La
-maggior parte delle volte, quando i Rustaceani dicono “_crate_”, intendono
+maggior parte delle volte, quando i Rustaceans dicono “_crate_”, intendono
 _crate_ _libreria_, e usano “_crate_” in modo intercambiabile con il concetto
 generale di programmazione di una “_libreria_”.
 

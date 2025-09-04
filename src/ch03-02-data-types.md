@@ -106,7 +106,7 @@ _type integer_ di default è `i32`. La situazione principale in cui puoi usare
 > che fanno sì che il tuo programma vada in _panico_ (_panic_ d'ora in poi) in
 > fase di esecuzione se si verifica questo comportamento. Rust usa il termine
 > _panic_ quando un programma termina con un errore; parleremo in modo più
-> approfondito di _panic_ nella sezione ["Errori irrecuperabili con
+> approfondito di _panic_ nella sezione ["Errori irreversibili con
 > `panic!`"][panic]<!-- ignore --> nel Capitolo 9.
 >
 > Quando si compila in modalità release con il flag `--release`, Rust _non_
