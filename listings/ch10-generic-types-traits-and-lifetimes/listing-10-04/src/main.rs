@@ -26,18 +26,18 @@ fn maggior_char(lista: &[char]) -> &char {
 fn main() {
     let lista_numeri = vec![34, 50, 25, 100, 65];
 
-    let result = maggior_i32(&lista_numeri);
-    println!("Il numero maggiore è  {result}");
+    let risultato = maggior_i32(&lista_numeri);
+    println!("Il numero maggiore è  {risultato}");
     // ANCHOR_END: here
-    assert_eq!(*result, 100);
+    assert_eq!(*risultato, 100);
     // ANCHOR: here
 
     let lista_caratteri = vec!['y', 'm', 'a', 'q'];
 
-    let result = maggior_char(&lista_caratteri);
-    println!("Il carattere maggiore è  {result}");
+    let risultato = maggior_char(&lista_caratteri);
+    println!("Il carattere maggiore è  {risultato}");
     // ANCHOR_END: here
-    assert_eq!(*result, 'y');
+    assert_eq!(*risultato, 'y');
     // ANCHOR: here
 }
 // ANCHOR_END: here

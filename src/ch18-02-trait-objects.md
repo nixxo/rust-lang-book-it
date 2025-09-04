@@ -1,7 +1,6 @@
 ## Using Trait Objects to Abstract over Shared Behavior
 
 <!-- Old headings. Do not remove or links may break. -->
-
 <a id="using-trait-objects-that-allow-for-values-of-different-types"></a>
 
 In Chapter 8, we mentioned that one limitation of vectors is that they can
@@ -222,8 +221,7 @@ didn’t mean to pass and so should pass a different type, or we should implemen
 
 ### Trait Objects Perform Dynamic Dispatch
 
-Recall in [“Performance of Code Using
-Generics”][performance-of-code-using-generics]<!-- ignore --> in Chapter 10 our
+Recall in [“Prestazioni del Codice utilizzando _Type_ Generici”][performance-of-code-using-generics]<!-- ignore --> in Chapter 10 our
 discussion on the monomorphization process performed on generics by the
 compiler: the compiler generates nongeneric implementations of functions and
 methods for each concrete type that we use in place of a generic type
@@ -246,6 +244,6 @@ rules are beyond the scope of this discussion, but you can read more about them
 flexibility in the code that we wrote in Listing 18-5 and were able to support
 in Listing 18-9, so it’s a trade-off to consider.
 
-[performance-of-code-using-generics]: ch10-01-syntax.html#performance-of-code-using-generics
+[performance-of-code-using-generics]: ch10-01-syntax.html#prestazioni-del-codice-utilizzando-type-generici
 [dynamically-sized]: ch20-03-advanced-types.html#dynamically-sized-types-and-the-sized-trait
 [dyn-compatibility]: https://doc.rust-lang.org/reference/items/traits.html#dyn-compatibility

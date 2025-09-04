@@ -13,11 +13,11 @@ fn maggiore<T>(lista: &[T]) -> &T {
 fn main() {
     let lista_numeri = vec![34, 50, 25, 100, 65];
 
-    let result = maggiore(&lista_numeri);
-    println!("Il numero maggiore è {result}");
+    let risultato = maggiore(&lista_numeri);
+    println!("Il numero maggiore è {risultato}");
 
     let lista_caratteri = vec!['y', 'm', 'a', 'q'];
 
-    let result = maggiore(&lista_caratteri);
-    println!("Il carattere maggiore è {result}");
+    let risultato = maggiore(&lista_caratteri);
+    println!("Il carattere maggiore è {risultato}");
 }
