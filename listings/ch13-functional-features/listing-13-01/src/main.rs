@@ -1,52 +1,52 @@
 #[derive(Debug, PartialEq, Copy, Clone)]
-enum ShirtColor {
-    Red,
-    Blue,
+enum ColoreMaglietta {
+    Rosso,
+    Blu,
 }
 
-struct Inventory {
-    shirts: Vec<ShirtColor>,
+struct Inventario {
+    magliette: Vec<ColoreMaglietta>,
 }
 
-impl Inventory {
-    fn giveaway(&self, user_preference: Option<ShirtColor>) -> ShirtColor {
+impl Inventario {
+    fn giveaway(&self, user_preference: Option<ColoreMaglietta>) -> ColoreMaglietta {
         user_preference.unwrap_or_else(|| self.most_stocked())
     }
 
-    fn most_stocked(&self) -> ShirtColor {
-        let mut num_red = 0;
-        let mut num_blue = 0;
+    fn most_stocked(&self) -> ColoreMaglietta {
+        let mut num_rosso = 0;
+        let mut num_blu = 0;
 
-        for color in &self.shirts {
+        for color in &self.magliette {
             match color {
-                ShirtColor::Red => num_red += 1,
-                ShirtColor::Blue => num_blue += 1,
+                ColoreMaglietta::Rosso => num_rosso += 1,
+                ColoreMaglietta::Blu => num_blu += 1,
             }
         }
-        if num_red > num_blue {
-            ShirtColor::Red
+        if num_rosso > num_blu {
+            ColoreMaglietta::Rosso
         } else {
-            ShirtColor::Blue
+            ColoreMaglietta::Blu
         }
     }
 }
 
 fn main() {
-    let store = Inventory {
-        shirts: vec![ShirtColor::Blue, ShirtColor::Red, ShirtColor::Blue],
+    let store = Inventario {
+        magliette: vec![ColoreMaglietta::Blu, ColoreMaglietta::Rosso, ColoreMaglietta::Blu],
     };
 
-    let user_pref1 = Some(ShirtColor::Red);
+    let user_pref1 = Some(ColoreMaglietta::Rosso);
     let giveaway1 = store.giveaway(user_pref1);
     println!(
-        "The user with preference {:?} gets {:?}",
+        "L'utente con preferenza {:?} riceve {:?}",
         user_pref1, giveaway1
     );
 
     let user_pref2 = None;
     let giveaway2 = store.giveaway(user_pref2);
     println!(
-        "The user with preference {:?} gets {:?}",
+        "L'utente con preferenza {:?} riceve {:?}",
         user_pref2, giveaway2
     );
 }

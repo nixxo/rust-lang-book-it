@@ -1,9 +1,9 @@
 fn main() {
     let mut list = vec![1, 2, 3];
-    println!("Before defining closure: {list:?}");
+    println!("Prima di definire la chiusura: {list:?}");
 
-    let mut borrows_mutably = || list.push(7);
+    let mut prestito_mutabile = || list.push(7);
 
-    borrows_mutably();
-    println!("After calling closure: {list:?}");
+    prestito_mutabile();
+    println!("Dopo aver chiamato la chiusura: {list:?}");
 }

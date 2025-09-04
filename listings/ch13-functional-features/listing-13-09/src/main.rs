@@ -1,20 +1,20 @@
 #[derive(Debug)]
-struct Rectangle {
-    width: u32,
-    height: u32,
+struct Rettangolo {
+    larghezza: u32,
+    altezza: u32,
 }
 
 fn main() {
     let mut list = [
-        Rectangle { width: 10, height: 1 },
-        Rectangle { width: 3, height: 5 },
-        Rectangle { width: 7, height: 12 },
-    ];
+        Rettangolo { larghezza: 10, altezza: 1 },
+        Rettangolo { larghezza: 3, altezza: 5 },
+        Rettangolo { larghezza: 7, altezza: 12 },
+    ];  
 
-    let mut num_sort_operations = 0;
+    let mut numero_operazioni_sort = 0;
     list.sort_by_key(|r| {
-        num_sort_operations += 1;
-        r.width
+        numero_operazioni_sort += 1;
+        r.larghezza
     });
-    println!("{list:#?}, sorted in {num_sort_operations} operations");
+    println!("{list:#?}, ordinato in {numero_operazioni_sort} operazioni");
 }

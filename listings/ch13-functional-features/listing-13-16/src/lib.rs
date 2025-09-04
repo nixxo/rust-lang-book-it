@@ -1,11 +1,11 @@
 #[derive(PartialEq, Debug)]
-struct Shoe {
+struct Scarpa {
     size: u32,
     style: String,
 }
 
-fn shoes_in_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
-    shoes.into_iter().filter(|s| s.size == shoe_size).collect()
+fn misura_scarpe(scarpe: Vec<Scarpa>, misura_scarpa: u32) -> Vec<Scarpa> {
+    scarpe.into_iter().filter(|s| s.size == misura_scarpa).collect()
 }
 
 #[cfg(test)]
@@ -13,34 +13,34 @@ mod tests {
     use super::*;
 
     #[test]
-    fn filters_by_size() {
-        let shoes = vec![
-            Shoe {
+    fn filtra_per_misura() {
+        let scarpe = vec![
+            Scarpa {
                 size: 10,
                 style: String::from("sneaker"),
             },
-            Shoe {
+            Scarpa {
                 size: 13,
-                style: String::from("sandal"),
+                style: String::from("sandalo"),
             },
-            Shoe {
+            Scarpa {
                 size: 10,
-                style: String::from("boot"),
+                style: String::from("scarpone"),
             },
         ];
 
-        let in_my_size = shoes_in_size(shoes, 10);
+        let della_mia_misura = misura_scarpe(scarpe, 10);
 
         assert_eq!(
-            in_my_size,
+            della_mia_misura,
             vec![
-                Shoe {
+                Scarpa {
                     size: 10,
                     style: String::from("sneaker")
                 },
-                Shoe {
+                Scarpa {
                     size: 10,
-                    style: String::from("boot")
+                    style: String::from("scarpone")
                 },
             ]
         );

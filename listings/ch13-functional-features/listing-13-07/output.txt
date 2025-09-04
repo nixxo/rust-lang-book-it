@@ -3,16 +3,16 @@ $ cargo run
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.41s
      Running `target/debug/rectangles`
 [
-    Rectangle {
-        width: 3,
-        height: 5,
+    Rettangolo {
+        larghezza: 3,
+        altezza: 5,
     },
-    Rectangle {
-        width: 7,
-        height: 12,
+    Rettangolo {
+        larghezza: 7,
+        altezza: 12,
     },
-    Rectangle {
-        width: 10,
-        height: 1,
+    Rettangolo {
+        larghezza: 10,
+        altezza: 1,
     },
 ]
