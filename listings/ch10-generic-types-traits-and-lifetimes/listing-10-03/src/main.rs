@@ -14,18 +14,18 @@ fn maggiore(lista: &[i32]) -> &i32 {
 fn main() {
     let lista_numeri = vec![34, 50, 25, 100, 65];
 
-    let result = maggiore(&lista_numeri);
-    println!("Il numero maggiore è {result}");
+    let risultato = maggiore(&lista_numeri);
+    println!("Il numero maggiore è {risultato}");
     // ANCHOR_END: here
-    assert_eq!(*result, 100);
+    assert_eq!(*risultato, 100);
     // ANCHOR: here
 
     let lista_numeri = vec![102, 34, 6000, 89, 54, 2, 43, 8];
 
-    let result = maggiore(&lista_numeri);
-    println!("Il numero maggiore è {result}");
+    let risultato = maggiore(&lista_numeri);
+    println!("Il numero maggiore è {risultato}");
     // ANCHOR_END: here
-    assert_eq!(*result, 6000);
+    assert_eq!(*risultato, 6000);
     // ANCHOR: here
 }
 // ANCHOR_END: here
