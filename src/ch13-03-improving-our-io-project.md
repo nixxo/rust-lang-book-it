@@ -85,7 +85,7 @@ the `Iterator` trait and returns `String` values.
 We’ve updated the signature of the `Config::build` function so the parameter
 `args` has a generic type with the trait bounds `impl Iterator<Item = String>`
 instead of `&[String]`. This usage of the `impl Trait` syntax we discussed in
-the [“Traits as Parameters”][impl-trait]<!-- ignore --> section of Chapter 10
+the [“_Trait_ come Parametri”][impl-trait]<!-- ignore --> section of Chapter 10
 means that `args` can be any type that implements the `Iterator` trait and
 returns `String` items.
 
@@ -181,4 +181,4 @@ condition each element in the iterator must pass.
 But are the two implementations truly equivalent? The intuitive assumption
 might be that the lower-level loop will be faster. Let’s talk about performance.
 
-[impl-trait]: ch10-02-traits.html#traits-as-parameters
+[impl-trait]: ch10-02-traits.html#trait-come-parametri

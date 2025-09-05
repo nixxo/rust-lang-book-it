@@ -1,5 +1,5 @@
 pub trait Sommario {
-    fn sommarizza(&self) -> String;
+    fn riassunto(&self) -> String;
 }
 
 // ANCHOR: here
@@ -11,7 +11,7 @@ pub struct ArticoloNews {
 }
 
 impl Sommario for ArticoloNews {
-    fn sommarizza(&self) -> String {
+    fn riassunto(&self) -> String {
         format!("{}, di {} ({})", self.titolo, self.autore, self.posizione)
     }
 }
@@ -24,7 +24,7 @@ pub struct SocialPost {
 }
 
 impl Sommario for SocialPost {
-    fn sommarizza(&self) -> String {
+    fn riassunto(&self) -> String {
         format!("{}: {}", self.nomeutente, self.contenuto)
     }
 }

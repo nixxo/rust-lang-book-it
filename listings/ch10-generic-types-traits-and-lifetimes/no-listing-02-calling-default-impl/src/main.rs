@@ -1,17 +1,17 @@
-use aggregator::{self, NewsArticle, Summary};
+use aggregatore::{self, ArticoloNews, Sommario};
 
 fn main() {
     // ANCHOR: here
-    let article = NewsArticle {
-        headline: String::from("Penguins win the Stanley Cup Championship!"),
-        location: String::from("Pittsburgh, PA, USA"),
-        author: String::from("Iceburgh"),
-        content: String::from(
-            "The Pittsburgh Penguins once again are the best \
-             hockey team in the NHL.",
+    let articolo = ArticoloNews {
+        titolo: String::from("I Penguins vincono la Stanley Cup!"),
+        posizione: String::from("Pittsburgh, PA, USA"),
+        autore: String::from("Iceburgh"),
+        contenuto: String::from(
+            "I Pittsburgh Penguins sono ancora una volta\
+             la migliore squadra di hockey nella NHL.",
         ),
     };
 
-    println!("New article available! {}", article.summarize());
+    println!("Nuovo articolo disponibile! {}", articolo.riassunto());
     // ANCHOR_END: here
 }

@@ -12,7 +12,7 @@ impl<T> Coppia<T> {
 }
 
 impl<T: Display + PartialOrd> Coppia<T> {
-    fn cmp_display(&self) {
+    fn mostra_comparazione(&self) {
         if self.x >= self.y {
             println!("Il membro più grande è x = {}", self.x);
         } else {

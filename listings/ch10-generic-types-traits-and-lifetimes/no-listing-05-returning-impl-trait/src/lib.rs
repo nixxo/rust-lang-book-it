@@ -19,7 +19,7 @@ pub struct SocialPost {
     pub nomeutente: String,
     pub contenuto: String,
     pub risposta: bool,
-    pub riposta: bool,
+    pub repost: bool,
 }
 
 impl Sommario for SocialPost {
@@ -29,14 +29,14 @@ impl Sommario for SocialPost {
 }
 
 // ANCHOR: here
-fn returns_summarizable() -> impl Sommario {
+fn riassumibile() -> impl Sommario {
     SocialPost {
         nomeutente: String::from("horse_ebooks"),
         contenuto: String::from(
             "ovviamente, come probabilmente già sapete, gente",
         ),
         risposta: false,
-        riposta: false,
+        repost: false,
     }
 }
 // ANCHOR_END: here

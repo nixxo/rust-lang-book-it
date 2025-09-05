@@ -19,7 +19,7 @@ pub struct SocialPost {
     pub nomeutente: String,
     pub contenuto: String,
     pub risposta: bool,
-    pub riposta: bool,
+    pub repost: bool,
 }
 
 impl Sommario for SocialPost {
@@ -29,7 +29,7 @@ impl Sommario for SocialPost {
 }
 
 // ANCHOR: here
-pub fn notifica(item: &impl Sommario) {
-    println!("Breaking news! {}", item.riassunto());
+pub fn notifica(elemento: &impl Sommario) {
+    println!("Ultime notizie! {}", elemento.riassunto());
 }
 // ANCHOR_END: here

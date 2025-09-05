@@ -135,7 +135,7 @@ implement the `Deref` trait.
 
 ### Implementing the `Deref` Trait
 
-As discussed in [“Implementing a Trait on a Type”][impl-trait]<!-- ignore --> in
+As discussed in [“Implementazione di un _Trait_ su un _Type_”][impl-trait]<!-- ignore --> in
 Chapter 10, to implement a trait we need to provide implementations for the
 trait’s required methods. The `Deref` trait, provided by the standard library,
 requires us to implement one method named `deref` that borrows `self` and
@@ -297,5 +297,5 @@ the borrowing rules don’t guarantee that. Therefore, Rust can’t make the
 assumption that converting an immutable reference to a mutable reference is
 possible.
 
-[impl-trait]: ch10-02-traits.html#implementing-a-trait-on-a-type
+[impl-trait]: ch10-02-traits.html#implementazione-di-un-trait-su-un-type
 [tuple-structs]: ch05-01-defining-structs.html#struct-di-tuple-senza-campi-denominati-per-creare-type-diversi

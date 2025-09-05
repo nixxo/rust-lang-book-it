@@ -1,14 +1,14 @@
-use aggregator::{SocialPost, Summary};
+use aggregatore::{SocialPost, Sommario};
 
 fn main() {
     let post = SocialPost {
-        username: String::from("horse_ebooks"),
-        content: String::from(
-            "of course, as you probably already know, people",
+        nomeutente: String::from("horse_ebooks"),
+        contenuto: String::from(
+            "ovviamente, come probabilmente già sapete, gente",
         ),
-        reply: false,
+        risposta: false,
         repost: false,
     };
 
-    println!("1 new post: {}", post.summarize());
+    println!("1 nuovo post: {}", post.riassunto());
 }

@@ -11,7 +11,7 @@ pub struct SocialPost {
     pub nomeutente: String,
     pub contenuto: String,
     pub risposta: bool,
-    pub riposta: bool,
+    pub repost: bool,
 }
 
 // ANCHOR: impl

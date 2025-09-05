@@ -19,7 +19,7 @@ pub struct SocialPost {
     pub nomeutente: String,
     pub contenuto: String,
     pub risposta: bool,
-    pub riposta: bool,
+    pub repost: bool,
 }
 
 impl Sommario for SocialPost {
@@ -33,7 +33,7 @@ fn riassumibile(switch: bool) -> impl Sommario {
     if switch {
         ArticoloNews {
             titolo: String::from(
-                "I pinguini vincono il campionato di Stanley Cup!",
+                "I Penguins vincono la Stanley Cup!",
             ),
             posizione: String::from("Pittsburgh, PA, USA"),
             autore: String::from("Iceburgh"),
