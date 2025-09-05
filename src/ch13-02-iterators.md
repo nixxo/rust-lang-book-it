@@ -76,7 +76,7 @@ Possiamo chiamare direttamente il metodo `next` sugli iteratori; il Listato 13-1
 quali valori vengono restituiti da chiamate ripetute a `next` sull'iteratore creato
 dal vettore.
 
-<Numero di lista="13-12" nome-file="src/lib.rs" didascalia="Chiamata del metodo `next` su un iteratore">
+<Listing number="13-12" file-name="src/lib.rs" caption="Chiamata del metodo `next` su un iteratore">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch13-functional-features/listing-13-12/src/lib.rs:here}}
