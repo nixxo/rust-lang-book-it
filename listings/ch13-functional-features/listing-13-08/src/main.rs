@@ -12,10 +12,10 @@ fn main() {
     ];
 
     let mut operazioni_sort = vec![];
-    let value = String::from("chiusura chiamata");
+    let valore = String::from("chiusura chiamata");
 
     list.sort_by_key(|r| {
-        operazioni_sort.push(value);
+        operazioni_sort.push(valore);
         r.larghezza
     });
     println!("{list:#?}");

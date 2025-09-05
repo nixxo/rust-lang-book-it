@@ -48,8 +48,8 @@ indicizzare, come i vettori. Esaminiamo come lo fanno gli iteratori.
 
 ### Il Trait `Iterator` e il Metodo `next`
 
-Tutti gli iteratori implementano un tratto chiamato `Iterator` definito nella
-libreria standard. La definizione del tratto è la seguente:
+Tutti gli iteratori implementano un trait chiamato `Iterator` definito nella
+libreria standard. La definizione del trait è la seguente:
 
 ```rust
 pub trait Iterator {
@@ -62,9 +62,9 @@ fn next(&mut self) -> Option<Self::Item>;
 ```
 
 Si noti che questa definizione utilizza una nuova sintassi: `type Item` e `Self::Item`,
-che definiscono un _tipo associato (associated type)_ a questo tratto. Parleremo approfonditamente dei
+che definiscono un _tipo associato (associated type)_ a questo trait. Parleremo approfonditamente dei
 tipi associati nel Capitolo 20. Per ora, tutto ciò che dovete sapere è che
-questo codice afferma che l'implementazione del tratto `Iterator` richiede anche la definizione di
+questo codice afferma che l'implementazione del trait `Iterator` richiede anche la definizione di
 un tipo `Item`, e questo tipo `Item` viene utilizzato nel tipo di ritorno del metodo `next`.
 In altre parole, il tipo `Item` sarà il tipo restituito dall'
 iteratore.
@@ -100,10 +100,10 @@ la proprietà di `v1` e restituisce i valori posseduti, possiamo chiamare `into_
 
 ### Metodi che Consumano l'Iteratore
 
-Il tratto `Iterator` ha diversi metodi con implementazioni predefinite
+Il trait `Iterator` ha diversi metodi con implementazioni predefinite
 fornite dalla libreria standard; è possibile scoprire di più su questi
-metodi consultando la documentazione API della libreria standard per il tratto `Iterator`. Alcuni di questi metodi chiamano il metodo `next` nella loro definizione, motivo per cui
-è necessario implementare il metodo `next` quando si implementa il tratto
+metodi consultando la documentazione API della libreria standard per il trait `Iterator`. Alcuni di questi metodi chiamano il metodo `next` nella loro definizione, motivo per cui
+è necessario implementare il metodo `next` quando si implementa il trait
 `Iterator`.
 
 I metodi che chiamano `next` sono chiamati _adattatori di consumo_, perché chiamandoli
@@ -126,7 +126,7 @@ la proprietà dell'iteratore su cui viene chiamato.
 
 ### Metodi che Producono Altri Iteratori
 
-Gli _Iterator adapter (adattatori di iteratore)_ sono metodi definiti sul tratto `Iterator` che non
+Gli _Iterator adapter (adattatori di iteratore)_ sono metodi definiti sul trait `Iterator` che non
 consumano l'iteratore. Invece, producono iteratori diversi modificando
 qualche aspetto dell'iteratore originale.
 
