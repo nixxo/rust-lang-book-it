@@ -1,46 +1,46 @@
-# Smart Pointers
+# Puntatori Intelligenti
 
-A _pointer_ is a general concept for a variable that contains an address in
-memory. This address refers to, or “points at,” some other data. The most
-common kind of pointer in Rust is a reference, which you learned about in
-Chapter 4. References are indicated by the `&` symbol and borrow the value they
-point to. They don’t have any special capabilities other than referring to
-data, and they have no overhead.
+Un _puntatore_ è un concetto generale che rappresenta una variabile che contiene un indirizzo in
+memoria. Questo indirizzo fa riferimento, o "punta a", altri dati. Il tipo più
+comune di puntatore in Rust è un riferimento, che hai imparato nel
+Capitolo 4. I riferimenti sono indicati dal simbolo `&` e prendono in prestito il valore a cui
+puntano. Non hanno capacità speciali oltre al riferimento ai
+dati, e non hanno overhead.
 
-_Smart pointers_, on the other hand, are data structures that act like a
-pointer but also have additional metadata and capabilities. The concept of
-smart pointers isn’t unique to Rust: smart pointers originated in C++ and exist
-in other languages as well. Rust has a variety of smart pointers defined in the
-standard library that provide functionality beyond that provided by references.
-To explore the general concept, we’ll look at a couple of different examples of
-smart pointers, including a _reference counting_ smart pointer type. This
-pointer enables you to allow data to have multiple owners by keeping track of
-the number of owners and, when no owners remain, cleaning up the data.
+I _puntatori intelligenti_, d'altra parte, sono strutture dati che si comportano come un
+puntatore ma hanno anche metadati e capacità aggiuntive. Il concetto di
+puntatori intelligenti non è esclusivo di Rust: i puntatori intelligenti hanno avuto origine in C++ ed esistono
+anche in altri linguaggi. Rust ha una varietà di puntatori intelligenti definiti nella
+libreria standard che forniscono funzionalità che vanno oltre quelle fornite dai riferimenti.
+Per esplorare il concetto generale, esamineremo un paio di esempi diversi di
+puntatori intelligenti, incluso un tipo di puntatore intelligente con _conteggio dei riferimenti_. Questo
+puntatore consente di consentire ai dati di avere più proprietari tenendo traccia del
+numero di proprietari e, quando non ne rimane nessuno, ripulendo i dati.
 
-Rust, with its concept of ownership and borrowing, has an additional difference
-between references and smart pointers: while references only borrow data, in
-many cases smart pointers _own_ the data they point to.
+Rust, con il suo concetto di proprietà e prestito, presenta un'ulteriore differenza
+tra riferimenti e puntatori intelligenti: mentre i riferimenti prendono solo in prestito dati, in
+molti casi i puntatori intelligenti _posseggono_ i dati a cui puntano.
 
-Smart pointers are usually implemented using structs. Unlike an ordinary
-struct, smart pointers implement the `Deref` and `Drop` traits. The `Deref`
-trait allows an instance of the smart pointer struct to behave like a reference
-so you can write your code to work with either references or smart pointers.
-The `Drop` trait allows you to customize the code that’s run when an instance
-of the smart pointer goes out of scope. In this chapter, we’ll discuss both of
-these traits and demonstrate why they’re important to smart pointers.
+I puntatori intelligenti sono solitamente implementati tramite struct. A differenza di una normale
+struct, i puntatori intelligenti implementano i tratti `Deref` e `Drop`. Il tratto `Deref`
+consente a un'istanza della struct del puntatore intelligente di comportarsi come un riferimento
+in modo da poter scrivere codice che funzioni sia con riferimenti che con puntatori intelligenti.
+Il tratto `Drop` consente di personalizzare il codice che viene eseguito quando un'istanza
+del puntatore intelligente esce dall'ambito. In questo capitolo, discuteremo entrambi
+questi tratti e dimostreremo perché sono importanti per i puntatori intelligenti.
 
-Given that the smart pointer pattern is a general design pattern used
-frequently in Rust, this chapter won’t cover every existing smart pointer. Many
-libraries have their own smart pointers, and you can even write your own. We’ll
-cover the most common smart pointers in the standard library:
+Dato che lo smart pointer pattern è un design pattern generale utilizzato
+frequentemente in Rust, questo capitolo non tratterà tutti gli smart pointer esistenti. Molte
+librerie hanno i propri smart pointer, ed è anche possibile scriverne di propri. Tratteremo
+i più comuni nella libreria standard:
 
-- `Box<T>`, for allocating values on the heap
-- `Rc<T>`, a reference counting type that enables multiple ownership
-- `Ref<T>` and `RefMut<T>`, accessed through `RefCell<T>`, a type that enforces
-  the borrowing rules at runtime instead of compile time
+- `Box<T>`, per l'allocazione di valori sull'heap
+- `Rc<T>`, un tipo di conteggio dei riferimenti che consente la proprietà multipla
+- `Ref<T>` e `RefMut<T>`, accessibili tramite `RefCell<T>`, un tipo che applica
+le regole di prestito a runtime anziché in fase di compilazione
 
-In addition, we’ll cover the _interior mutability_ pattern where an immutable
-type exposes an API for mutating an interior value. We’ll also discuss
-reference cycles: how they can leak memory and how to prevent them.
+Inoltre, tratteremo il pattern di _mutabilità interna_, in cui un tipo immutabile
+espone un'API per la mutazione di un valore interno. Discuteremo anche
+i cicli di riferimento: come possono causare perdite di memoria e come prevenirle.
 
-Let’s dive in!
+Approfondiamo!
