@@ -1,13 +1,13 @@
 fn main() {
-    let string1 = String::from("abcd");
-    let string2 = "efghijklmnopqrstuvwxyz";
+    let stringa1 = String::from("abcd");
+    let stringa2 = "efghijklmnopqrstuvwxyz";
 
-    let result = longest(string1.as_str(), string2);
-    println!("The longest string is {result}");
+    let risultato = piu_lunga(stringa1.as_str(), stringa2);
+    println!("La stringa più lunga è {risultato}");
 }
 
 // ANCHOR: here
-fn longest<'a>(x: &'a str, y: &str) -> &'a str {
+fn piu_lunga<'a>(x: &'a str, y: &str) -> &'a str {
     x
 }
 // ANCHOR_END: here
