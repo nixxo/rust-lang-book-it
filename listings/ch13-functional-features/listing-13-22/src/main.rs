@@ -3,7 +3,7 @@ use std::error::Error;
 use std::fs;
 use std::process;
 
-use minigrep::search;
+use minigrep::cerca;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -38,9 +38,9 @@ impl Config {
 }
 
 fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string(config.file_path)?;
+    let contenuti = fs::read_to_string(config.file_path)?;
 
-    for line in search(&config.query, &contents) {
+    for line in cerca(&config.query, &contenuti) {
         println!("{line}");
     }
 

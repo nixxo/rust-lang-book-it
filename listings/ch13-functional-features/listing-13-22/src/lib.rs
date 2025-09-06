@@ -1,26 +1,26 @@
 // ANCHOR: here
-pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    contents
+pub fn cerca<'a>(query: &str, contenuti: &'a str) -> Vec<&'a str> {
+    contenuti
         .lines()
         .filter(|line| line.contains(query))
         .collect()
 }
 // ANCHOR_END: here
 
-pub fn search_case_insensitive<'a>(
+pub fn cerca_case_insensitive<'a>(
     query: &str,
-    contents: &'a str,
+    contenuti: &'a str,
 ) -> Vec<&'a str> {
     let query = query.to_lowercase();
-    let mut results = Vec::new();
+    let mut risultati = Vec::new();
 
-    for line in contents.lines() {
+    for line in contenuti.lines() {
         if line.to_lowercase().contains(&query) {
-            results.push(line);
+            risultati.push(line);
         }
     }
 
-    results
+    risultati   
 }
 
 #[cfg(test)]
@@ -30,7 +30,7 @@ mod tests {
     #[test]
     fn case_sensitive() {
         let query = "duct";
-        let contents = "\
+        let contenuti = "\
 Rust:
 safe, fast, productive.
 Pick three.
@@ -42,7 +42,7 @@ Duct tape.";
     #[test]
     fn case_insensitive() {
         let query = "rUsT";
-        let contents = "\
+        let contenuti = "\
 Rust:
 safe, fast, productive.
 Pick three.
@@ -50,7 +50,7 @@ Trust me.";
 
         assert_eq!(
             vec!["Rust:", "Trust me."],
-            search_case_insensitive(query, contents)
+            cerca_case_insensitive(query, contenuti)
         );
     }
 }
