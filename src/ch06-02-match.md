@@ -251,7 +251,7 @@ dimenticato nulla.
 
 Infine, cambiamo ancora una volta le regole del gioco in modo che non succeda
 nient’altro nel tuo turno se tiri qualcosa di diverso da 3 o 7. Possiamo
-esprimerlo usando il valore _unit_ ([la _tuple_ vuota][tuples]<!-- ignore -->)
+esprimerlo usando il valore _unit_ ([la tupla vuota][tuples]<!-- ignore -->)
 come codice associato al ramo `_`:
 
 ```rust

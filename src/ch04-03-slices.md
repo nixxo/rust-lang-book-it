@@ -57,15 +57,14 @@ Successivamente, creiamo un iteratore sull'array di byte usando il metodo
 Discuteremo gli iteratori in modo più dettagliato nel [Capitolo 13][ch13]<!--
 ignore -->. Per ora, sappi che `iter` è un metodo che restituisce ogni elemento
 in una collezione e che `enumerate` prende il risultato di `iter` e restituisce
-ogni elemento come parte di una _tuple_. Il primo elemento della _tuple_
-restituita da `enumerate` è l'indice, e il secondo elemento è un riferimento
-all'elemento. Questo è un po' più conveniente rispetto a calcolarci l'indice da
-soli.
+ogni elemento come parte di una tupla. Il primo elemento della tupla restituita
+da `enumerate` è l'indice, e il secondo elemento è un riferimento all'elemento.
+Questo è un po' più conveniente rispetto a calcolarci l'indice da soli.
 
-Poiché il metodo `enumerate` restituisce una _tuple_, possiamo usare i _pattern_
-per destrutturare quella _tuple_. Discuteremo meglio i _pattern_ nel [Capitolo
+Poiché il metodo `enumerate` restituisce una tupla, possiamo usare i _pattern_
+per destrutturare quella tupla. Discuteremo meglio i _pattern_ nel [Capitolo
 6][ch6]. Nel ciclo `for`, specifichiamo un _pattern_ che ha `i` per l'indice
-nella _tuple_ e `&item` per il singolo byte nella _tuple_. Poiché da
+nella tupla e `&item` per il singolo byte nella tupla. Poiché da
 `.iter().enumerate()` otteniamo un _rererence_ all'elemento, usiamo `&` nel
 _pattern_.
 
@@ -278,7 +277,7 @@ Un Rustacean più esperto scriverebbe invece la firma come mostrata nel Listato
 4-9, perché ci permette di usare la stessa funzione sia su valori `&String` che
 su valori `&str`.
 
-<Listing number="4-9" caption="Migliorare la funzione `prima_parola` utilizzando una string slice come type del parametro `s`">
+<Listing number="4-9" caption="Migliorare la funzione `prima_parola` utilizzando una _slice_ come _type_ del parametro `s`">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-09/src/main.rs:here}}

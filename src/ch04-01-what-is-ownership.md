@@ -141,11 +141,11 @@ comprensione introducendo il _type_ `String`.
 Per illustrare le regole di _ownership_, abbiamo bisogno di un tipo di dati più
 complesso di quelli trattati nel [Capitolo 3][data-types]<!-- ignore -->. I
 _type_ trattati in precedenza hanno dimensioni note, possono essere inseriti e
-estratti sullo _stack quando il loro _scope_ è terminato, possono essere
+estratti sullo _stack_ quando il loro _scope_ è terminato, possono essere
 rapidamente copiati per creare una nuova istanza indipendente se un’altra parte
 del codice deve utilizzare lo stesso valore in uno _scope_ diverso. Ma vogliamo
-esaminare i dati archiviati nell’_heap_ ed capire come Rust sa quando ripulire
-la memoria che quei dati usavano quando non serve più, e il _type_ `String` è un
+esaminare i dati archiviati nell’_heap_ e capire come Rust sa quando ripulire la
+memoria che quei dati usavano quando non serve più, e il _type_ `String` è un
 ottimo esempio da cui partire.
 
 Ci concentreremo sulle parti di `String` che riguardano la _ownership_. Questi
@@ -200,7 +200,7 @@ programma.
 
 Con il _type_ `String`, per supportare una porzione di testo mutabile e
 espandibile, dobbiamo allocare una quantità di memoria nell'_heap_, sconosciuta
-in fase di compilazione, per contenere il contenuto. Questo significa:
+in fase di compilazione, per contenere il contenuto. Questo significa che:
 - La memoria deve essere richiesta all’allocatore di memoria in fase di
   esecuzione.
 - Abbiamo bisogno di un modo per restituire questa memoria all’allocatore quando
@@ -488,7 +488,7 @@ una funzione, questa viene spostata o copiata, proprio come fa l'assegnazione.
 Il Listato 4-3 contiene un esempio con alcune annotazioni che mostrano dove le
 variabili entrano ed escono dallo _scope_.
 
-<Listing number="4-3" file-name="src/main.rs" caption="Funzioni con ownership e scope annotate">
+<Listing number="4-3" file-name="src/main.rs" caption="Funzioni con _ownership_ e _scope_ annotate">
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-03/src/main.rs}}
@@ -508,7 +508,7 @@ I valori di ritorno possono anch'essi trasferire la _ownership_. Il Listato 4-4
 mostra un esempio di funzione che restituisce un valore, con annotazioni simili
 a quelle del Listato 4-3.
 
-<Listing number="4-4" file-name="src/main.rs" caption="Transferimento di ownership nei valori di ritorno">
+<Listing number="4-4" file-name="src/main.rs" caption="Trasferimento di _ownership_ nei valori di ritorno">
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-04/src/main.rs}}
@@ -528,10 +528,10 @@ che passiamo debba anche essere restituito se vogliamo usarlo di nuovo, oltre a
 tutte le varie elaborazioni sui dati che la funzione esegue e che magari è
 necessario ritornare pure quelle.
 
-Rust ci permette di ritornare più valori utilizzando una _tuple_, come mostrato
+Rust ci permette di ritornare più valori utilizzando una tupla, come mostrato
 nel Listato 4-5
 
-<Listing number="4-5" file-name="src/main.rs" caption="Restituzione ownership dei parametri">
+<Listing number="4-5" file-name="src/main.rs" caption="Restituzione _ownership_ dei parametri">
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-05/src/main.rs}}

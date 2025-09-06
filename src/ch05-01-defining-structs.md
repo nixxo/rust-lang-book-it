@@ -1,12 +1,12 @@
 ## Definire e Istanziare le _Struct_
 
-Le _struct_ sono simili ai _tuple_, discussi nella sezione ["Il _Type_
+Le _struct_ sono simili alle tuple, discussi nella sezione ["Il _Type_
 Tupla"][tuples]<!-- ignore -->, in quanto entrambi possono contenere più valori
-correlati. Come i _tuple_, i componenti di una _struct_ possono essere di _type_
-diversi. A differenza dei _tuple_, in una _struct_ puoi denominare ogni pezzo di
-dati in modo che sia chiaro il significato dei valori. L'aggiunta di questi nomi
-significa che le _struct_ sono più flessibili dei _tuple_: non devi fare
-affidamento sull'ordine dei dati per specificare o accedere ai valori di
+correlati. Come per le tuple, i componenti di una _struct_ possono essere di
+_type_ diversi. A differenza delle tuple, in una _struct_ puoi denominare ogni
+pezzo di dati in modo che sia chiaro il significato dei valori. L'aggiunta di
+questi nomi significa che le _struct_ sono più flessibili delle tuple: non devi
+fare affidamento sull'ordine dei dati per specificare o accedere ai valori di
 un'istanza.
 
 Per definire una _struct_, inseriamo la parola chiave `struct` e diamo un nome
@@ -17,7 +17,7 @@ Ad esempio, il Listato 5-1 mostra una _struct_ che memorizza informazioni su un
 account utente.
 
 
-<Listing number="5-1" file-name="src/main.rs" caption="Una definizione della struct `Utente`">
+<Listing number="5-1" file-name="src/main.rs" caption="Una definizione della _struct_ `Utente`">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-01/src/main.rs:here}}
@@ -36,7 +36,7 @@ e le istanze riempiono quel modello con dati particolari per creare valori del
 _type_. Ad esempio, possiamo dichiarare un utente particolare come mostrato nel
 listato 5-2.
 
-<Listing number="5-2" file-name="src/main.rs" caption="Creazione di un'istanza della struct `Utente`">
+<Listing number="5-2" file-name="src/main.rs" caption="Creazione di un'istanza della _struct_ `Utente`">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-02/src/main.rs:here}}
@@ -112,7 +112,7 @@ parametro `email` hanno lo stesso nome, dobbiamo solo scrivere `email` invece di
 Spesso è utile creare una nuova istanza di una _struct_ che include la maggior
 parte dei valori da un'altra istanza dello stesso _type_, ma con alcune
 modifiche. Puoi farlo usando la _sintassi di aggiornamento delle struct_
-(_struct update_ d'ora in poi).
+(_struct_ _update_).
 
 Per prima cosa, nel Listato 5-6 mostriamo come creare regolarmente una nuova
 istanza `Utente` in `utente2`, senza la sintassi di aggiornamento. Impostiamo un
@@ -127,8 +127,8 @@ nuovo valore per `email` ma per il resto utilizziamo gli stessi valori di
 
 </Listing>
 
-Utilizzando la sintassi _struct update_, possiamo ottenere lo stesso effetto con
-meno codice, come mostrato nel Listato 5-7. La sintassi `..` specifica che i
+Utilizzando la sintassi di aggiornamento, possiamo ottenere lo stesso effetto
+con meno codice, come mostrato nel Listato 5-7. La sintassi `..` specifica che i
 restanti campi non impostati esplicitamente dovrebbero avere lo stesso valore
 dei campi nell’istanza data.
 
@@ -148,7 +148,7 @@ valori dai campi corrispondenti in `utente1`, ma possiamo scegliere di
 specificare i valori per tutti i campi che vogliamo in qualsiasi ordine,
 indipendentemente dall’ordine dei campi nella definizione della _struct_.
 
-Si noti che la sintassi di _struct update_ utilizza `=` come un assegnazione;
+Si noti che la sintassi di aggiornamento utilizza `=` come un assegnazione;
 questo perché sposta i dati, proprio come abbiamo visto nella sezione
 [”Interazione tra Variabili e Dati con _Move_”][move]<!-- ignore -->. In questo
 esempio, non possiamo più utilizzare `utente1` dopo aver creato `utente2` perché
@@ -162,17 +162,17 @@ _trait_ `Copy`, quindi si applicherebbe il comportamento discusso nella sezione
 possiamo ancora utilizzare `utente1.email`, perché il suo valore non è stato
 spostato da `utente1`.
 
-### _Struct_ di _Tuple_ Senza Campi Denominati per Creare _Type_ Diversi
+### _Struct_ Tupla Senza Campi Denominati per Creare _Type_ Diversi
 
-Rust supporta anche _struct_ che assomigliano alle _tuple_, chiamate _tuple
-struct_. Le _tuple struct_ hanno il significato aggiuntivo che il nome della
-_struct_ fornisce, ma non hanno nomi associati ai loro campi; piuttosto, hanno
-solo i _type_ dei campi. Le _tuple struct_ sono utili quando si vuole dare un
-nome all'intera _tuple_ e renderla un _type_ diverso da altre _tuple_, e quando
-denominare ogni campo come in una _struct_ regolare sarebbe poco utile o
-ridondante. Per definire una _tuple struct_, inizia con la parola chiave
-`struct` e il nome della _struct_ seguito dai _type_ della _tuple_. Ad esempio,
-qui definiamo e utilizziamo due _tuple struct_ chiamate `Colore` e `Punto`:
+Rust supporta anche _struct_ che assomigliano alle tuple, chiamate _struct_
+tupla (_tuple_ _struct_). Le _struct_ tupla hanno il significato aggiuntivo che
+il nome della _struct_ fornisce, ma non hanno nomi associati ai loro campi;
+piuttosto, hanno solo i _type_ dei campi. Le _struct_ tupla sono utili quando si
+vuole dare un nome all'intera tupla e renderla un _type_ diverso da altre tuple,
+e quando denominare ogni campo come in una _struct_ regolare sarebbe poco utile
+o ridondante. Per definire una _struct_ tupla, inizia con la parola chiave
+`struct` e il nome della _struct_ seguito dai _type_ della tupla. Ad esempio,
+qui definiamo e utilizziamo due _struct_ tupla chiamate `Colore` e `Punto`:
 
 <Listing file-name="src/main.rs">
 
@@ -183,29 +183,29 @@ qui definiamo e utilizziamo due _tuple struct_ chiamate `Colore` e `Punto`:
 </Listing>
 
 Tieni presente che i valori `nero` e `origine` sono di _type_ diverso perché
-sono istanze di _tuple struct_ diverse. Ogni _struct_ che definisci diventa un
+sono istanze di _struct_ tupla diverse. Ogni _struct_ che definisci diventa un
 nuovo _type_ a sé stante, anche se i campi all’interno della _struct_ potrebbero
 avere gli stessi _type_. Ad esempio, una funzione che accetta un parametro di
 _type_ `Colore` non può accettare un `Punto` come argomento, anche se entrambi i
-_type_ sono costituiti da tre valori `i32`. Oltretutto, le istanze di _tuple
-struct_ sono simili alle _tuple_ in quanto puoi destrutturarle nelle loro
+_type_ sono costituiti da tre valori `i32`. Oltretutto, le istanze di una
+_struct_ tupla sono simili alle tuple in quanto puoi destrutturarle nelle loro
 singole parti e puoi utilizzare un `.` seguito dall’indice per accedere a un
-singolo valore. A differenza delle _tuple_ però, le _tuple struct_ richiedono di
+singolo valore. A differenza delle tuple però, le _struct_ tupla richiedono di
 nominare il _type_ di _struct_ quando le destrutturi. Ad esempio, scriveremo
 `let Punto(x, y, z) = origine;` per destrutturare i valori del `Punto` `origine`
 in variabili chiamate `x`, `y` e `z`.
 
-### _Struct_ di _Unit_ Senza Campi
+### _Struct_ _Unit_ Senza Campi
 
-Puoi anche definire _struct_ che non hanno campi! Queste sono chiamate
-_unit-like struct_ perché si comportano in modo simile a `()`, il _type_ _unit_
-menzionato nella sezione ["Il _Type_ Tupla"][tuples]<!-- ignore -->. Le
-_unit-like struct_ possono essere utili quando è necessario implementare un
+Puoi anche definire _struct_ che non hanno campi! Queste sono chiamate _struct_
+_unit_ (_unit-like_ _struct_) perché si comportano in modo simile a `()`, il
+_type_ _unit_ menzionato nella sezione ["Il _Type_ Tupla"][tuples]<!-- ignore
+-->. Le _struct_ _unit_ possono essere utili quando è necessario implementare un
 _trait_ su un _type_ ma non si hanno dati che si vogliono memorizzare nel _type_
 stesso.
 
 Parleremo dei _trait_ nel [Capitolo 10](ch10-02-traits.html)<!-- ignore -->.
-Ecco un esempio di dichiarazione e istanziazione di una _unit struct_ chiamata
+Ecco un esempio di dichiarazione e istanziazione di una _struct_ _unit_ chiamata
 `SempreUguale`:
 
 <Listing file-name="src/main.rs">
@@ -225,7 +225,7 @@ comportamento per questo _type_ in modo tale che ogni istanza di `SempreUguale`
 sia sempre uguale a ogni istanza di qualsiasi altro _type_, magari per avere un
 risultato noto a scopo di test. Non avremmo bisogno di dati per implementare
 quel comportamento! Vedremo nel Capitolo 10 come definire i _trait_ e
-implementarli su qualsiasi _type_, comprese le _unit struct_.
+implementarli su qualsiasi _type_, comprese le _struct_ _unit_.
 
 > ### _Ownership_ dei Dati di _Struct_
 >
@@ -238,7 +238,7 @@ implementarli su qualsiasi _type_, comprese le _unit struct_.
 > È anche possibile che le _struct_ memorizzino _reference_ a dati posseduti da
 > qualcos’altro, ma per farlo è necessario l’uso di _lifetime_, una funzionalità
 > di Rust di cui parleremo nel Capitolo 10. _Lifetime_ garantisce che i dati a
-> cui fa _reference_ una _struct_ siano validi finché lo è la _struct_.
+> cui fa riferimento una _struct_ siano validi finché lo è la _struct_.
 > Supponiamo che provi a memorizzare un _reference_ in una _struct_ senza
 > specificare la _lifetime_, come nel seguente esempio; questo non funzionerà:
 >

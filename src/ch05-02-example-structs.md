@@ -37,14 +37,14 @@ La funzione `area` dovrebbe calcolare l'area di un rettangolo singolo, ma la
 funzione che abbiamo scritto ha due parametri, e non è chiaro da nessuna parte
 nel nostro programma che i parametri siano correlati. Sarebbe più leggibile e
 più gestibile raggruppare larghezza e altezza insieme. Abbiamo già discusso un
-modo per farlo nella sezione [“Il _Type_ Tuple”][the-tuple-type]<!-- ignore -->
-del Capitolo 3: usando le _tuple_.
+modo per farlo nella sezione [“Il _Type_ Tupla”][the-tuple-type]<!-- ignore -->
+del Capitolo 3: usando le tuple.
 
-### Riscrittura con le _Tuple_
+### Riscrittura con le Tuple
 
-Il Listato 5-9 mostra un'altra versione del nostro programma che usa le _tuple_.
+Il Listato 5-9 mostra un'altra versione del nostro programma che usa le tuple.
 
-<Listing number="5-9" file-name="src/main.rs" caption="Specificare larghezza e altezza di un rettangolo tramite una tuple">
+<Listing number="5-9" file-name="src/main.rs" caption="Specificare larghezza e altezza di un rettangolo tramite una tupla">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-09/src/main.rs}}
@@ -52,25 +52,24 @@ Il Listato 5-9 mostra un'altra versione del nostro programma che usa le _tuple_.
 
 </Listing>
 
-Da un lato, questo programma è migliore. Le _tuple_ ci permettono di aggiungere
-un po' di struttura, e ora stiamo passando un solo argomento. Ma dall'altro,
-questa versione è meno chiara: le _tuple_ non nominano i loro elementi, quindi
-dobbiamo indicizzare le parti della _tuple_, rendendo il nostro calcolo meno
-ovvio.
+Da un lato, questo programma è migliore. Le tuple ci permettono di aggiungere un
+po' di struttura, e ora stiamo passando un solo argomento. Ma dall'altro, questa
+versione è meno chiara: le tuple non nominano i loro elementi, quindi dobbiamo
+indicizzare le parti della tupla, rendendo il nostro calcolo meno ovvio.
 
 Confondere larghezza e altezza non avrebbe importanza per il calcolo dell'area,
 ma se volessimo disegnare il rettangolo sullo schermo, importerebbe! Dovremmo
-tenere a mente che `larghezza` è l'indice della _tuple_ `0` e `altezza` è
-l'indice della _tuple_ `1`. Questo sarebbe ancora più difficile da capire e
-ricordare per qualcun altro che in futuro leggesse o usasse il nostro codice.
-Poiché non abbiamo reso palese il significato dei nostri dati nel codice, è più
-facile introdurre errori.
+tenere a mente che `larghezza` è l'indice della tupla `0` e `altezza` è l'indice
+della tupla `1`. Questo sarebbe ancora più difficile da capire e ricordare per
+qualcun altro che in futuro leggesse o usasse il nostro codice. Poiché non
+abbiamo reso palese il significato dei nostri dati nel codice, è più facile
+introdurre errori.
 
 ### Riscrittura con le _Struct_: Aggiungere Più Significato
 
 Usiamo la _struct_ per aggiungere significato etichettando i dati. Possiamo
-trasformare la _tuple_ che stiamo usando in una _struct_ con un nome per
-l'intero e nomi per le parti, come mostrato nel Listato 5-10.
+trasformare la tupla che stiamo usando in una _struct_ con un nome per l'intero
+e nomi per le parti, come mostrato nel Listato 5-10.
 
 <Listing number="5-10" file-name="src/main.rs" caption="Definizione di una _struct_ `Rettangolo`">
 
@@ -100,7 +99,7 @@ _reference_ di _struct_). La nostra firma della funzione per `area` ora dice
 esattamente ciò che intendiamo: calcolare l'area di `Rettangolo`, usando i suoi
 campi `larghezza` e `altezza`. Questo comunica che larghezza e altezza sono
 correlate tra loro e fornisce nomi descrittivi ai valori invece di usare gli
-indici della _tuple_ `0` e `1`. Questo è un vantaggio in termini di chiarezza.
+indici della tupla `0` e `1`. Questo è un vantaggio in termini di chiarezza.
 
 ### Aggiungere Funzionalità Utili con i _Trait_ Derivati
 

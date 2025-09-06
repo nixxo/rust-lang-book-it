@@ -425,8 +425,7 @@ ignore --> in Chapter 10, we mentioned the orphan rule that states we’re only
 allowed to implement a trait on a type if either the trait or the type, or
 both, are local to our crate. It’s possible to get around this restriction
 using the _newtype pattern_, which involves creating a new type in a tuple
-struct. (We covered tuple structs in [“Using Tuple Structs Without Named Fields
-to Create Different Types”][tuple-structs]<!-- ignore --> in Chapter 5.) The
+struct. (We covered tuple structs in [“_Struct_ Tupla Senza Campi Denominati per Creare _Type_ Diversi”][tuple-structs]<!-- ignore --> in Chapter 5.) The
 tuple struct will have one field and be a thin wrapper around the type for
 which we want to implement a trait. Then the wrapper type is local to our
 crate, and we can implement the trait on the wrapper. _Newtype_ is a term that
@@ -471,4 +470,4 @@ switch focus and look at some advanced ways to interact with Rust’s type syste
 [implementing-a-trait-on-a-type]: ch10-02-traits.html#implementazione-di-un-trait-su-un-type
 [traits-defining-shared-behavior]: ch10-02-traits.html#trait-definizione-del-comportamento-condiviso
 [smart-pointer-deref]: ch15-02-deref.html#treating-smart-pointers-like-regular-references-with-the-deref-trait
-[tuple-structs]: ch05-01-defining-structs.html#struct-di-tuple-senza-campi-denominati-per-creare-type-diversi
+[tuple-structs]: ch05-01-defining-structs.html#struct-tupla-senza-campi-denominati-per-creare-type-diversi
