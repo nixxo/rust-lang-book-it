@@ -23,17 +23,16 @@ del valore:
 </Listing>
 
 Innanzitutto, nota che tutto il codice che dichiarava e ritornava la variabile
-_tuple_ è sparito. In secondo luogo, nota che passiamo `&s1` a
-`calcola_lunghezza` e, nella sua definizione del parametro, prendiamo `&String`
-anziché `String`. Il carattere `&` (_E commerciale_) rappresenta il _reference_
-e consente di fare riferimento a un valore senza prenderne la _ownership_.
+tupla è sparito. In secondo luogo, nota che passiamo `&s1` a `calcola_lunghezza`
+e, nella sua definizione del parametro, prendiamo `&String` anziché `String`. Il
+carattere `&` (_E commerciale_) rappresenta il _reference_ e consente di fare
+riferimento a un valore senza prenderne la _ownership_.
 
 La Figura 4-6 illustra questo concetto.
 
 <img alt="Tre tabelle: la tabella per s contiene solo un puntatore alla tabella
 per s1. L atabella per s1 contiene i dati sullo stack per s1 e punta ai dati
-della stringa nell'heap."
-src="img/trpl04-06.svg" class="center" />
+della stringa nell'heap." src="img/trpl04-06.svg" class="center" />
 
 <span class="caption">Figura 4-6: Schema di `&String s` che punta a `String
 s1`</span>

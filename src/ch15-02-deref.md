@@ -157,8 +157,7 @@ them in more detail in Chapter 20.
 
 We fill in the body of the `deref` method with `&self.0` so `deref` returns a
 reference to the value we want to access with the `*` operator; recall from
-[“Using Tuple Structs Without Named Fields to Create Different
-Types”][tuple-structs]<!-- ignore --> in Chapter 5 that `.0` accesses the first
+[“_Struct_ Tupla Senza Campi Denominati per Creare _Type_ Diversi”][tuple-structs]<!-- ignore --> in Chapter 5 that `.0` accesses the first
 value in a tuple struct. The `main` function in Listing 15-9 that calls `*` on
 the `MyBox<T>` value now compiles, and the assertions pass!
 
@@ -298,4 +297,4 @@ assumption that converting an immutable reference to a mutable reference is
 possible.
 
 [impl-trait]: ch10-02-traits.html#implementazione-di-un-trait-su-un-type
-[tuple-structs]: ch05-01-defining-structs.html#struct-di-tuple-senza-campi-denominati-per-creare-type-diversi
+[tuple-structs]: ch05-01-defining-structs.html#struct-tupla-senza-campi-denominati-per-creare-type-diversi

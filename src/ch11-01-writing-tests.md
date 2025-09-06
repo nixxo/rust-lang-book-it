@@ -204,7 +204,7 @@ un metodo `puo_contenere`, che sono ripetuti qui nel Listato 11-5. Inseriamo
 questo codice nel file _src/lib.rs_ e scriviamo alcuni test utilizzando la macro
 `assert!`.
 
-<Listing number="11-5" file-name="src/lib.rs" caption="La struct `Rettangolo` e il suo metodo `puo_contenere` del Capitolo 5">
+<Listing number="11-5" file-name="src/lib.rs" caption="La _struct_ `Rettangolo` e il suo metodo `puo_contenere` del Capitolo 5">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/listing-11-05/src/lib.rs}}
