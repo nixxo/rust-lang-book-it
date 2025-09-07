@@ -1,0 +1,41 @@
+## Appendice H - Note di Traduzione ( in corso )
+
+
+In questa appendice verranno raccolte note e indicazioni sulle scelte di traduzione usate nel corso di questo lavoro.
+
+Termini inglesi non tradotti ecc.
+
+TODO: scrivere intro...
+
+### Tipi di dato / Strutture Dati
+
+| Terminologia | Termini usati nel libro | Spiegazione Italiano |
+| --------- | -------- | -------- |
+| Type      | Type / Tipo | Tipo di dato |
+| Integer   | Intero   |          |
+| Float     | Float    | |
+| Boolean | Boolean |
+| Struct    | Struct   | |
+| Enum      | Enum     | Enumerazione |
+| Tuple     | Tupla / Tuple | |
+| Array     | Array    | |
+| Vector    | Vector / Vettore | |
+| Hash Map  | Hash Map / Mappa hash | |
+| String Slice / Slice | Slice di stringa / Slice | |
+
+
+
+
+### Concetti del linguaggio
+
+| Terminologia | Termini usati nel libro | Italiano |
+| --------- | -------- | -------- |
+| Reference | Reference / Riferimento | Riferimento ad una variabile |
+| Ownership | Ownership | Possesso / Proprietà / Controllo di una variabile sui dati che contiene |
+| Borrow Checker | Borrow Checker / Controllo dei prestiti | Funzionalità del compilatore Rust per verificare la consistenza dei riferimenti |
+| Borrowed Type | Type Posseduto | Tipo di dato che ha il possesso della memoria associata a quei dati |
+| Lifetime | Lifetime / Longevità | |
+| Crate | Crate | Cassetta / cestino |
+| Package | Pacchetto |  |
+| Path | Path / Percorso | Percorso |
+| Namespace |  |  |

@@ -141,3 +141,4 @@
   - [E - Editions](appendix-05-editions.md)
   - [F - Traduzioni del Libro](appendix-06-translation.md)
   - [G - How Rust is Made and “Nightly Rust”](appendix-07-nightly-rust.md)
+  - [H - Note di Traduzione](appendix-08-note-di-traduzione.md)
