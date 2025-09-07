@@ -1,9 +1,10 @@
 // ANCHOR: here
 fn prima_parola(s: &str) -> &str {
+    // ANCHOR_END: here
     let bytes = s.as_bytes();
 
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
+    for (i, &lettera) in bytes.iter().enumerate() {
+        if lettera == b' ' {
             return &s[0..i];
         }
     }
@@ -13,17 +14,17 @@ fn prima_parola(s: &str) -> &str {
 // ANCHOR_END: here
 
 fn main() {
-    let mia_string = String::from("hello world");
+    let mia_stringa = String::from("hello world");
 
-    // prima_parola lavora su slice di `String`s
-    let parola = prima_parola(&mia_string[..]);
+    // `prima_parola` funziona con slice di `String`
+    let parola = prima_parola(&mia_stringa[..]);
 
-    let mia_stringa_literal = "hello world";
+    let mia_stringa_letterale = "hello world";
 
-    // prima_parola lavora su slice di string literals
-    let parola_literal = prima_parola(&mia_stringa_literal[..]);
+    // `prima_parola` funziona con slice di letterali di stringa
+    let parola_letterale = prima_parola(&mia_stringa_letterale[..]);
 
-    // Siccome le string literals *sono* già slices di stringa,
-    // funziona anche senza la sintassi delle slice!
-    let parola = prima_parola(mia_stringa_literal);
+    // E siccome i letterali di stringa *sono* già delle slice,
+    // funziona pure così, senza usare la sintassi delle slice!
+    let parola = prima_parola(mia_stringa_letterale);
 }
