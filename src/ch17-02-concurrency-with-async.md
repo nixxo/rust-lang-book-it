@@ -21,8 +21,7 @@ characteristics.
 
 ### Creating a New Task with `spawn_task`
 
-The first operation we tackled in [Creating a New Thread with
-Spawn][thread-spawn]<!-- ignore --> was counting up on two separate threads.
+The first operation we tackled in [Creare un Nuovo _Thread_ con `spawn`][thread-spawn]<!-- ignore --> was counting up on two separate threads.
 Let’s do the same using async. The `trpl` crate supplies a `spawn_task` function
 that looks very similar to the `thread::spawn` API, and a `sleep` function
 that is an async version of the `thread::sleep` API. We can use these together
@@ -117,8 +116,7 @@ async blocks compile to anonymous futures, we can put each loop in an async
 block and have the runtime run them both to completion using the `trpl::join`
 function.
 
-In the section [Waiting for All Threads to Finish Using `join`
-Handles][join-handles]<!-- ignore -->, we showed how to use the `join` method on
+In the section [Attendere Che Tutti i _Thread_ Finiscano Usando `join`][join-handles]<!-- ignore -->, we showed how to use the `join` method on
 the `JoinHandle` type returned when you call `std::thread::spawn`. The
 `trpl::join` function is similar, but for futures. When you give it two futures,
 it produces a single new future whose output is a tuple containing the output of
@@ -336,7 +334,7 @@ sending a message doesn’t require ownership, but if we could move `tx` into th
 async block, it would be dropped once that block ends. In the Chapter 13 section
 [Capturing References or Moving Ownership][capture-or-move]<!-- ignore -->, you
 learned how to use the `move` keyword with closures, and, as discussed in the
-Chapter 16 section [Using `move` Closures with Threads][move-threads]<!-- ignore
+Chapter 16 section [Usare le Chiusure `move` con i `Thread`][move-threads]<!-- ignore
 -->, we often need to move data into closures when working with threads. The
 same basic dynamics apply to async blocks, so the `move` keyword works with
 async blocks just as it does with closures.
@@ -399,9 +397,9 @@ received 'you'
 This is a good start, but it limits us to just a handful of futures: two with
 `join`, or three with `join3`. Let’s see how we might work with more futures.
 
-[thread-spawn]: ch16-01-threads.html#creating-a-new-thread-with-spawn
-[join-handles]: ch16-01-threads.html#waiting-for-all-threads-to-finish-using-join-handles
+[thread-spawn]: ch16-01-threads.html#creare-un-nuovo-thread-con-spawn
+[join-handles]: ch16-01-threads.html#attendere-che-tutti-i-thread-finiscano-usando-join
 [message-passing-threads]: ch16-02-message-passing.html
 [if-let]: ch06-03-if-let.html
 [capture-or-move]: ch13-01-closures.html#capturing-references-or-moving-ownership
-[move-threads]: ch16-01-threads.html#using-move-closures-with-threads
+[move-threads]: ch16-01-threads.html#usare-le-chiusure-move-con-i-thread

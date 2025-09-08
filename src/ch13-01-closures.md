@@ -161,7 +161,7 @@ deduce che il tipo di `x` e il tipo di ritorno della closure siano `String`. Que
 tipi vengono quindi bloccati nella closure in `example_closure` e si verifica un errore di tipo
 quando si tenta nuovamente di utilizzare un tipo diverso con la stessa closure.
 
-### Cattura di Riferimenti o Trasferimento di Proprietà
+### Cattura di _Reference_ o Trasferimento di _Ownership_
 
 Le closures possono catturare valori dal loro ambiente in tre modi, che
 corrispondono direttamente ai tre modi in cui una funzione può accettare un parametro: prendendo in prestito

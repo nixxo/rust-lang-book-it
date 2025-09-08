@@ -108,8 +108,7 @@ Likewise, futures do nothing unless you explicitly ask them to. This laziness
 allows Rust to avoid running async code until it’s actually needed.
 
 > Note: This is different from the behavior we saw in the previous chapter when
-> using `thread::spawn` in [Creating a New Thread with
-> spawn][thread-spawn]<!--ignore-->, where the closure we passed to another
+> using `thread::spawn` in [Creare un Nuovo _Thread_ con `spawn`][thread-spawn]<!--ignore-->, where the closure we passed to another
 > thread started running immediately. It’s also different from how many other
 > languages approach async. But it’s important for Rust to be able to provide
 > its performance guarantees, just as it is with iterators.
@@ -384,7 +383,7 @@ dig deeper into what we can do with async.
 
 [impl-trait]: ch10-02-traits.html#trait-come-parametri
 [iterators-lazy]: ch13-02-iterators.html
-[thread-spawn]: ch16-01-threads.html#creating-a-new-thread-with-spawn
+[thread-spawn]: ch16-01-threads.html#creare-un-nuovo-thread-con-spawn
 [cli-args]: ch12-01-accepting-command-line-arguments.html
 
 <!-- TODO: map source link version to version of Rust? -->

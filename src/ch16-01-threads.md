@@ -1,46 +1,54 @@
-## Using Threads to Run Code Simultaneously
+## Usare i Thread Per Eseguire Codice Simultaneamente
 
-In most current operating systems, an executed program’s code is run in a
-_process_, and the operating system will manage multiple processes at once.
-Within a program, you can also have independent parts that run simultaneously.
-The features that run these independent parts are called _threads_. For
-example, a web server could have multiple threads so that it can respond to
-more than one request at the same time.
+Nella maggior parte dei sistemi operativi attuali, il codice di un programma
+viene eseguito in un _processo_ e il sistema operativo gestisce più processi
+contemporaneamente. All'interno di un programma, è possibile avere anche parti
+indipendenti che vengono eseguite simultaneamente. Le funzioni che eseguono
+queste parti indipendenti sono chiamate _thread_. Ad esempio, un server web
+potrebbe avere più _thread_ in modo da poter rispondere a più richieste
+contemporaneamente.
 
-Splitting the computation in your program into multiple threads to run multiple
-tasks at the same time can improve performance, but it also adds complexity.
-Because threads can run simultaneously, there’s no inherent guarantee about the
-order in which parts of your code on different threads will run. This can lead
-to problems, such as:
+Suddividere i calcoli del tuo programma in più _thread_ per eseguire più
+attività contemporaneamente può migliorare le prestazioni, ma aggiunge anche
+complessità. Poiché i _thread_ possono essere eseguiti simultaneamente, non c'è
+alcuna garanzia intrinseca sull'ordine di esecuzione dei _thread_ del tuo
+codice. Questo può portare a problemi, come ad esempio:
 
-- Race conditions, in which threads are accessing data or resources in an
-  inconsistent order
-- Deadlocks, in which two threads are waiting for each other, preventing both
-  threads from continuing
-- Bugs that only happen in certain situations and are hard to reproduce and fix
-  reliably
+- Competizione (_race condition_), in cui i _thread_ accedono ai dati o alle
+  risorse in un ordine incoerente
+- Stallo (_deadlock_), in cui due _thread_ sono in attesa l'uno dell'altro,
+  impedendo a entrambi di continuare
+- Bug che si verificano solo in determinate situazioni e sono difficili da
+  riprodurre e risolvere in modo affidabile
 
-Rust attempts to mitigate the negative effects of using threads, but
-programming in a multithreaded context still takes careful thought and requires
-a code structure that is different from that in programs running in a single
-thread.
+Rust attempts to mitigate the negative effects of using threads, but programming
+in a multithreaded context still takes careful thought and requires a code
+structure that is different from that in programs running in a single thread.
 
-Programming languages implement threads in a few different ways, and many
-operating systems provide an API the programming language can call for creating
-new threads. The Rust standard library uses a _1:1_ model of thread
-implementation, whereby a program uses one operating system thread per one
-language thread. There are crates that implement other models of threading that
-make different trade-offs to the 1:1 model. (Rust’s async system, which we will
-see in the next chapter, provides another approach to concurrency as well.)
+Rust cerca di mitigare gli effetti negativi dell'uso dei _thread_, ma
+programmare in un contesto multi-_thread_ richiede comunque un'attenta
+riflessione e una struttura del codice diversa da quella dei programmi eseguiti
+in un singolo _thread_.
 
-### Creating a New Thread with `spawn`
+I linguaggi di programmazione implementano i _thread_ in diversi modi e molti
+sistemi operativi forniscono un'API che il linguaggio di programmazione può
+richiamare per creare nuovi _thread_. La libreria standard di Rust utilizza un
+modello _1:1_ di implementazione dei _thread_, in base al quale un programma
+utilizza un _thread_ del sistema operativo per ogni _thread_ del linguaggio.
+Esistono dei _crate_ che implementano altri modelli di _threading_ che fanno dei
+compromessi diversi rispetto al modello 1:1. (Anche il sistema _async_ di Rust,
+che vedremo nel prossimo capitolo, fornisce anche un ulteriore approccio alla
+concorrenza.)
 
-To create a new thread, we call the `thread::spawn` function and pass it a
-closure (we talked about closures in Chapter 13) containing the code we want to
-run in the new thread. The example in Listing 16-1 prints some text from a main
-thread and other text from a new thread.
+### Creare un Nuovo _Thread_ con `spawn`
 
-<Listing number="16-1" file-name="src/main.rs" caption="Creating a new thread to print one thing while the main thread prints something else">
+Per creare un nuovo _thread_, chiamiamo la funzione `thread::spawn` e le
+passiamo una chiusura (abbiamo parlato delle chiusure nel [Capitolo
+13][closures]) contenente il codice che vogliamo eseguire nel nuovo _thread_.
+L'esempio nel Listato 16-1 stampa del testo da un _thread_ principale e altro
+testo da un nuovo _thread_.
+
+<Listing number="16-1" file-name="src/main.rs" caption="Creazione di un nuovo _thread_ per stampare una cosa mentre il _thread_ principale stampa qualcos'altro">
 
 ```rust
 {{#rustdoc_include ../listings/ch16-fearless-concurrency/listing-16-01/src/main.rs}}
@@ -58,45 +66,47 @@ the changes are likely to be due to the threads running differently rather than
 changes in the compiler -->
 
 ```text
-hi number 1 from the main thread!
-hi number 1 from the spawned thread!
-hi number 2 from the main thread!
-hi number 2 from the spawned thread!
-hi number 3 from the main thread!
-hi number 3 from the spawned thread!
-hi number 4 from the main thread!
-hi number 4 from the spawned thread!
-hi number 5 from the spawned thread!
+ciao numero 1 dal thread principale!
+ciao numero 1 dal thread generato!
+ciao numero 2 dal thread principale!
+ciao numero 2 dal thread generato!
+ciao numero 3 dal thread principale!
+ciao numero 3 dal thread generato!
+ciao numero 4 dal thread principale!
+ciao numero 4 dal thread generato!
+ciao numero 5 dal thread generato!
 ```
 
-The calls to `thread::sleep` force a thread to stop its execution for a short
-duration, allowing a different thread to run. The threads will probably take
-turns, but that isn’t guaranteed: it depends on how your operating system
-schedules the threads. In this run, the main thread printed first, even though
-the print statement from the spawned thread appears first in the code. And even
-though we told the spawned thread to print until `i` is `9`, it only got to `5`
-before the main thread shut down.
+Le chiamate a `thread::sleep` costringono un _thread_ a interrompere la sua
+esecuzione per un breve periodo, consentendo a un altro _thread_ di funzionare.
+I _thread_ probabilmente si alterneranno, ma questo non è garantito: dipende da
+come il sistema operativo pianifica i _thread_. In questa esecuzione, il
+_thread_ principale ha stampato per primo, anche se l'istruzione di stampa del
+_thread_ generato (_spawned_) appare per prima nel codice. E anche se abbiamo
+detto al _thread_ generato di stampare finché `i` non è `9`, è arrivato solo a
+`5` prima che il _thread_ principale si spegnesse.
 
-If you run this code and only see output from the main thread, or don’t see any
-overlap, try increasing the numbers in the ranges to create more opportunities
-for the operating system to switch between the threads.
+Se esegui questo codice e vedi solo l'output del _thread_ principale o non vedi
+alcuna sovrapposizione, prova ad aumentare i numeri negli intervalli per creare
+più opportunità per il sistema operativo di passare da un _thread_ all'altro.
 
-### Waiting for All Threads to Finish Using `join` Handles
+### Attendere Che Tutti i _Thread_ Finiscano Usando `join`
 
-The code in Listing 16-1 not only stops the spawned thread prematurely most of
-the time due to the main thread ending, but because there is no guarantee on
-the order in which threads run, we also can’t guarantee that the spawned thread
-will get to run at all!
+Il codice nel listato 16-1 non solo arresta il _thread_ geenrato prematuramente
+nella maggior parte dei casi a causa della fine del _thread_ principale, ma
+poiché non c'è alcuna garanzia sull'ordine di esecuzione dei _thread_, non
+possiamo nemmeno garantire che il _thread_ generato venga eseguito!
 
-We can fix the problem of the spawned thread not running or of it ending
-prematurely by saving the return value of `thread::spawn` in a variable. The
-return type of `thread::spawn` is `JoinHandle<T>`. A `JoinHandle<T>` is an
-owned value that, when we call the `join` method on it, will wait for its
-thread to finish. Listing 16-2 shows how to use the `JoinHandle<T>` of the
-thread we created in Listing 16-1 and how to call `join` to make sure the
-spawned thread finishes before `main` exits.
+Possiamo risolvere il problema del _thread_ generato che non viene eseguito o
+che termina prematuramente salvando il valore di ritorno di `thread::spawn` in
+una variabile. Il _type_ di ritorno di `thread::spawn` è `JoinHandle<T>`. Un
+`JoinHandle<T>` è un valore posseduto che, quando chiamiamo il metodo `join` su
+di esso, aspetterà che il suo _thread_ finisca. Il Listato 16-2 mostra come
+utilizzare il `JoinHandle<T>` del _thread_ creato nel Listato 16-1 e come
+chiamare `join` per assicurarsi che il _thread_ generato finisca prima che
+`main` esca.
 
-<Listing number="16-2" file-name="src/main.rs" caption="Saving a `JoinHandle<T>` from `thread::spawn` to guarantee the thread is run to completion">
+<Listing number="16-2" file-name="src/main.rs" caption="Salvare un `JoinHandle<T>` da `thread::spawn` per garantire che il _thread_ venga eseguito fino al completamento">
 
 ```rust
 {{#rustdoc_include ../listings/ch16-fearless-concurrency/listing-16-02/src/main.rs}}
@@ -104,37 +114,39 @@ spawned thread finishes before `main` exits.
 
 </Listing>
 
-Calling `join` on the handle blocks the thread currently running until the
-thread represented by the handle terminates. _Blocking_ a thread means that
-thread is prevented from performing work or exiting. Because we’ve put the call
-to `join` after the main thread’s `for` loop, running Listing 16-2 should
-produce output similar to this:
+La chiamata a `join` sull'_handle_ blocca il _thread_ attualmente in esecuzione
+fino a quando il _thread_ rappresentato dall'_handle_ non termina. _Bloccare_ un
+_thread_ significa che a quel _thread_ viene impedito di eseguire lavori o di
+uscire. Poiché abbiamo inserito la chiamata a `join` dopo il ciclo `for` del
+_thread_ principale, l'esecuzione del listato 16-2 dovrebbe produrre un
+risultato simile a questo:
 
 <!-- Not extracting output because changes to this output aren't significant;
 the changes are likely to be due to the threads running differently rather than
 changes in the compiler -->
 
 ```text
-hi number 1 from the main thread!
-hi number 2 from the main thread!
-hi number 1 from the spawned thread!
-hi number 3 from the main thread!
-hi number 2 from the spawned thread!
-hi number 4 from the main thread!
-hi number 3 from the spawned thread!
-hi number 4 from the spawned thread!
-hi number 5 from the spawned thread!
-hi number 6 from the spawned thread!
-hi number 7 from the spawned thread!
-hi number 8 from the spawned thread!
-hi number 9 from the spawned thread!
+ciao numero 1 dal thread principale!
+ciao numero 1 dal thread generato!
+ciao numero 2 dal thread principale!
+ciao numero 2 dal thread generato!
+ciao numero 3 dal thread principale!
+ciao numero 3 dal thread generato!
+ciao numero 4 dal thread principale!
+ciao numero 4 dal thread generato!
+ciao numero 5 dal thread generato!
+ciao numero 6 dal thread generato!
+ciao numero 7 dal thread generato!
+ciao numero 8 dal thread generato!
+ciao numero 9 dal thread generato!
 ```
 
-The two threads continue alternating, but the main thread waits because of the
-call to `handle.join()` and does not end until the spawned thread is finished.
+I due _thread_ continuano ad alternarsi, ma il _thread_ principale attende a
+causa della chiamata a `handle.join()` e non termina finché il _thread_ generato
+non è terminato.
 
-But let’s see what happens when we instead move `handle.join()` before the
-`for` loop in `main`, like this:
+Ma vediamo cosa succede se spostiamo `handle.join()` prima del ciclo `for` di
+`main`, in questo modo:
 
 <Listing file-name="src/main.rs">
 
@@ -144,49 +156,51 @@ But let’s see what happens when we instead move `handle.join()` before the
 
 </Listing>
 
-The main thread will wait for the spawned thread to finish and then run its
-`for` loop, so the output won’t be interleaved anymore, as shown here:
+Il _thread_ principale aspetterà che il _thread_ generato finisca e poi eseguirà
+il suo ciclo `for`, quindi l'output non sarà più alternato, come mostrato qui:
 
 <!-- Not extracting output because changes to this output aren't significant;
 the changes are likely to be due to the threads running differently rather than
 changes in the compiler -->
 
 ```text
-hi number 1 from the spawned thread!
-hi number 2 from the spawned thread!
-hi number 3 from the spawned thread!
-hi number 4 from the spawned thread!
-hi number 5 from the spawned thread!
-hi number 6 from the spawned thread!
-hi number 7 from the spawned thread!
-hi number 8 from the spawned thread!
-hi number 9 from the spawned thread!
-hi number 1 from the main thread!
-hi number 2 from the main thread!
-hi number 3 from the main thread!
-hi number 4 from the main thread!
+ciao numero 1 dal thread generato!
+ciao numero 2 dal thread generato!
+ciao numero 3 dal thread generato!
+ciao numero 4 dal thread generato!
+ciao numero 5 dal thread generato!
+ciao numero 6 dal thread generato!
+ciao numero 7 dal thread generato!
+ciao numero 8 dal thread generato!
+ciao numero 9 dal thread generato!
+ciao numero 1 dal thread principale!
+ciao numero 2 dal thread principale!
+ciao numero 3 dal thread principale!
+ciao numero 4 dal thread principale!
 ```
 
-Small details, such as where `join` is called, can affect whether or not your
-threads run at the same time.
+Piccoli dettagli, come il punto in cui viene chiamato `join`, possono
+influenzare l'esecuzione simultanea o meno dei _thread_.
 
-### Using `move` Closures with Threads
+### Usare le Chiusure `move` con i `Thread`
 
-We’ll often use the `move` keyword with closures passed to `thread::spawn`
-because the closure will then take ownership of the values it uses from the
-environment, thus transferring ownership of those values from one thread to
-another. In [“Capturing References or Moving Ownership”][capture]<!-- ignore
---> in Chapter 13, we discussed `move` in the context of closures. Now we’ll
-concentrate more on the interaction between `move` and `thread::spawn`.
+Spesso useremo la parola chiave `move` con le chiusure passate a `thread::spawn`
+perché la chiusura prenderà la _ownership_ dei valori che utilizza
+dall'ambiente, trasferendo così la _ownership_ di quei valori da un _thread_
+all'altro. In ["Cattura di _Riference_ o Trasferimento di
+_Ownership_"][capture]<!-- ignore --> del Capitolo 13, abbiamo parlato di `move`
+nel contesto delle chiusure. Ora ci concentreremo maggiormente sull'interazione
+tra `move` e `thread::spawn`.
 
-Notice in Listing 16-1 that the closure we pass to `thread::spawn` takes no
-arguments: we’re not using any data from the main thread in the spawned
-thread’s code. To use data from the main thread in the spawned thread, the
-spawned thread’s closure must capture the values it needs. Listing 16-3 shows
-an attempt to create a vector in the main thread and use it in the spawned
-thread. However, this won’t work yet, as you’ll see in a moment.
+Nota nel Listato 16-1 che la chiusura che passiamo a `thread::spawn` non accetta
+argomenti: non stiamo utilizzando alcun dato del _thread_ principale nel codice
+del _thread_ generato. Per utilizzare i dati del _thread_ principale nel
+_thread_ generato, la chiusura del _thread_ generato deve catturare i valori di
+cui ha bisogno. Il listato 16-3 mostra un tentativo di creare un vettore nel
+_thread_ principale e di utilizzarlo nel _thread_ generato. Tuttavia, questo non
+funziona ancora, come vedrai tra poco.
 
-<Listing number="16-3" file-name="src/main.rs" caption="Attempting to use a vector created by the main thread in another thread">
+<Listing number="16-3" file-name="src/main.rs" caption="Tentativo di utilizzare un vettore creato dal _thread_ principale in un altro _thread_">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch16-fearless-concurrency/listing-16-03/src/main.rs}}
@@ -194,24 +208,24 @@ thread. However, this won’t work yet, as you’ll see in a moment.
 
 </Listing>
 
-The closure uses `v`, so it will capture `v` and make it part of the closure’s
-environment. Because `thread::spawn` runs this closure in a new thread, we
-should be able to access `v` inside that new thread. But when we compile this
-example, we get the following error:
+La chiusura utilizza `v`, quindi catturerà `v` e lo renderà parte dell'ambiente
+della chiusura. Poiché `thread::spawn` esegue questa chiusura in un nuovo
+_thread_, dovremmo essere in grado di accedere a `v` all'interno di questo nuovo
+_thread_. Ma quando compiliamo questo esempio, otteniamo il seguente errore:
 
 ```console
 {{#include ../listings/ch16-fearless-concurrency/listing-16-03/output.txt}}
 ```
 
-Rust _infers_ how to capture `v`, and because `println!` only needs a reference
-to `v`, the closure tries to borrow `v`. However, there’s a problem: Rust can’t
-tell how long the spawned thread will run, so it doesn’t know whether the
-reference to `v` will always be valid.
+Rust _inserisce_ come catturare `v` e, poiché `println!` ha bisogno solo di un
+_reference_ a `v`, la chiusura cerca di prendere in prestito `v`. Tuttavia, c'è
+un problema: Rust non può sapere per quanto tempo verrà eseguito il _thread_
+generato, quindi non sa se il _reference_ a `v` sarà sempre valido.
 
-Listing 16-4 provides a scenario that’s more likely to have a reference to `v`
-that won’t be valid.
+Il listato 16-4 mostra uno scenario in cui è più probabile che un _reference_ a
+`v` non sia valido.
 
-<Listing number="16-4" file-name="src/main.rs" caption="A thread with a closure that attempts to capture a reference to `v` from a main thread that drops `v`">
+<Listing number="16-4" file-name="src/main.rs" caption="Un _thread_ con una chiusura che tenta di catturare un _reference_ a `v` da un _thread_ principale che libera `v`">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch16-fearless-concurrency/listing-16-04/src/main.rs}}
@@ -219,15 +233,16 @@ that won’t be valid.
 
 </Listing>
 
-If Rust allowed us to run this code, there’s a possibility that the spawned
-thread would be immediately put in the background without running at all. The
-spawned thread has a reference to `v` inside, but the main thread immediately
-drops `v`, using the `drop` function we discussed in Chapter 15. Then, when the
-spawned thread starts to execute, `v` is no longer valid, so a reference to it
-is also invalid. Oh no!
+Se Rust ci permettesse di eseguire questo codice, è possibile che il _thread_
+generato venga immediatamente messo in background senza essere eseguito affatto.
+Il _thread_ generato ha un _reference_ a `v` al suo interno, ma il _thread_
+principale libera immediatamente `v`, utilizzando la funzione `drop` di cui
+abbiamo parlato nel Capitolo 15. Poi, quando il _thread_ generato inizia viene
+eseguito, `v` non è più valido, quindi anche il _reference_ ad esso non è
+valido. Oh no!
 
-To fix the compiler error in Listing 16-3, we can use the error message’s
-advice:
+Per risolvere l'errore del compilatore nel listato 16-3, possiamo utilizzare i
+consigli del messaggio di errore:
 
 <!-- manual-regeneration
 after automatic regeneration, look at listings/ch16-fearless-concurrency/listing-16-03/output.txt and copy the relevant part
@@ -240,12 +255,13 @@ help: to force the closure to take ownership of `v` (and any other referenced va
   |                                ++++
 ```
 
-By adding the `move` keyword before the closure, we force the closure to take
-ownership of the values it’s using rather than allowing Rust to infer that it
-should borrow the values. The modification to Listing 16-3 shown in Listing
-16-5 will compile and run as we intend.
+Aggiungendo la parola chiave `move` prima della chiusura, obblighiamo la
+chiusura a prendere _ownership_ dei valori che sta utilizzando, invece di
+permettere a Rust di dedurre che deve prendere in prestito i valori. La modifica
+al listato 16-3 mostrata nel listato 16-5 verrà compilata ed eseguita come
+previsto.
 
-<Listing number="16-5" file-name="src/main.rs" caption="Using the `move` keyword to force a closure to take ownership of the values it uses">
+<Listing number="16-5" file-name="src/main.rs" caption="Usare la parola chiave `move` per forzare una chiusura a prendere _ownership_ dei valori che utilizza">
 
 ```rust
 {{#rustdoc_include ../listings/ch16-fearless-concurrency/listing-16-05/src/main.rs}}
@@ -253,28 +269,31 @@ should borrow the values. The modification to Listing 16-3 shown in Listing
 
 </Listing>
 
-We might be tempted to try the same thing to fix the code in Listing 16-4 where
-the main thread called `drop` by using a `move` closure. However, this fix will
-not work because what Listing 16-4 is trying to do is disallowed for a
-different reason. If we added `move` to the closure, we would move `v` into the
-closure’s environment, and we could no longer call `drop` on it in the main
-thread. We would get this compiler error instead:
+Potremmo essere tentati di fare la stessa cosa per correggere il codice del
+Listato 16-4 in cui il _thread_ principale chiamava `drop` utilizzando una
+chiusura `move`. Tuttavia, questa correzione non funzionerà perché ciò che il
+Listato 16-4 sta cercando di fare è vietato per un motivo diverso. Se
+aggiungessimo `move` alla chiusura, sposteremmo `v` nell'ambiente della chiusura
+e non potremmo più chiamare `drop` su di essa nel _thread_ principale.
+Otterremmo invece questo errore del compilatore:
 
 ```console
 {{#include ../listings/ch16-fearless-concurrency/output-only-01-move-drop/output.txt}}
 ```
 
-Rust’s ownership rules have saved us again! We got an error from the code in
-Listing 16-3 because Rust was being conservative and only borrowing `v` for the
-thread, which meant the main thread could theoretically invalidate the spawned
-thread’s reference. By telling Rust to move ownership of `v` to the spawned
-thread, we’re guaranteeing to Rust that the main thread won’t use `v` anymore.
-If we change Listing 16-4 in the same way, we’re then violating the ownership
-rules when we try to use `v` in the main thread. The `move` keyword overrides
-Rust’s conservative default of borrowing; it doesn’t let us violate the
-ownership rules.
+Le regole di _ownership_ di Rust ci hanno salvato ancora una volta! Abbiamo
+ricevuto un errore dal codice del Listato 16-3 perché Rust era conservativo e
+prendeva in prestito solo `v` per il _thread_, il che significava che il
+_thread_ principale poteva teoricamente invalidare il _reference_ del _thread_
+generato. Dicendo a Rust di spostare la _ownership_ di `v` al _thread_ generato,
+garantiamo a Rust che il _thread_ principale non userà più `v`. Se modifichiamo
+il Listato 16-4 nello stesso modo, violeremo le regole di _ownership_ quando
+cercheremo di usare `v` nel _thread_ principale. La parola chiave `move`
+sovrascrive il comportamento conservativo di Rust di prendere in prestito; non
+ci permette di violare le regole di _ownership_.
 
-Now that we’ve covered what threads are and the methods supplied by the thread
-API, let’s look at some situations in which we can use threads.
+Ora che abbiamo analizzato cosa sono i _thread_ e i metodi forniti dall'API dei
+_thread_, vediamo alcune situazioni in cui possiamo utilizzarli.
 
-[capture]: ch13-01-closures.html#capturing-references-or-moving-ownership
+[closures]: ch13-01-closures.html
+[capture]: ch13-01-closures.html#cattura-di-reference-o-trasferimento-di-ownership
