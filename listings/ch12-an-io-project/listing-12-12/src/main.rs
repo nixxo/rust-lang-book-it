@@ -24,9 +24,9 @@ fn main() {
 
 // ANCHOR: here
 fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string(config.file_path)?;
+    let contenuto = fs::read_to_string(config.file_path)?;
 
-    println!("Con il testo:\n{contents}");
+    println!("Con il testo:\n{contenuto}");
 
     Ok(())
 }

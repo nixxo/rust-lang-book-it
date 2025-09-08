@@ -1,3 +1,3 @@
-pub fn cerca<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+pub fn cerca<'a>(query: &str, contenuto: &'a str) -> Vec<&'a str> {
     unimplemented!();
 }

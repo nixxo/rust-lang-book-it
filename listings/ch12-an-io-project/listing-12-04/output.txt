@@ -1,17 +1,17 @@
-$ cargo run -- the poem.txt
-   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+$ cargo run -- ciao poesia.txt
+   Compiling minigrep v0.1.0 (file:///progetti/minigrep)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.0s
-     Running `target/debug/minigrep the poem.txt`
-Searching for the
-In file poem.txt
-With text:
-I'm nobody! Who are you?
-Are you nobody, too?
-Then there's a pair of us - don't tell!
-They'd banish us, you know.
+     Running `target/debug/minigrep ciao poesia.txt`
+Cerco ciao
+Nel file poesia.txt
+Con il testo:
+Io sono Nessuno! Tu chi sei?
+Sei Nessuno anche tu?
+Allora siamo in due!
+Non dirlo! Potrebbero spargere la voce!
 
-How dreary to be somebody!
-How public, like a frog
-To tell your name the livelong day
-To an admiring bog!
+Che grande peso essere Qualcuno!
+Così volgare — come una rana
+che gracida il tuo nome — tutto giugno —
+ad un pantano in estasi di lei!
 

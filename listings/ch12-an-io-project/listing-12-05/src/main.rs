@@ -13,10 +13,10 @@ fn main() {
     println!("Cerco {query}");
     println!("Nel file {file_path}");
 
-    let contents = fs::read_to_string(file_path)
+    let contenuto = fs::read_to_string(file_path)
         .expect("Dovrebbe essere stato possibile leggere il file");
 
-    println!("Con il testo:\n{contents}");
+    println!("Con il testo:\n{contenuto}");
     // ANCHOR: here
 }
 

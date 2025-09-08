@@ -1,9 +1,9 @@
-$ cargo run -- needle haystack
-   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+$ cargo run -- ago pagliaio
+   Compiling minigrep v0.1.0 (file:///progetti/minigrep)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.57s
-     Running `target/debug/minigrep needle haystack`
+     Running `target/debug/minigrep ago pagliaio`
 [src/main.rs:5:5] args = [
     "target/debug/minigrep",
-    "needle",
-    "haystack",
+    "ago",
+    "pagliaio",
 ]

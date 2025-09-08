@@ -22,6 +22,7 @@ TODO: scrivere intro...
 | Enum      | Enum     | Enumerazione |
 | Tuple     | Tupla / Tuple | |
 | Array     | Array    | |
+| Collection | Collezione | |
 | Vector    | Vector / Vettore | |
 | Hash Map  | Hash Map / Mappa hash | |
 | String Slice / Slice | Slice di stringa / Slice | Riferimento ad una porzione di stringa |
@@ -42,10 +43,20 @@ TODO: scrivere intro...
 | Borrow Checker | Borrow Checker / Controllo dei prestiti | Funzionalità del compilatore Rust per verificare la consistenza dei riferimenti |
 | Borrowed Type | Type Posseduto | Tipo di dato che ha il possesso della memoria associata a quei dati |
 | Lifetime | Lifetime / Longevità | |
-| Crate | Crate | Cassetta / cestino |
+| Crate | Crate | Cassetta / contenitore |
 | Package | Pacchetto |  |
 | Path | Path / Percorso | Percorso |
 | Namespace |  |  |
 | Runtime | Esecuzione | |
 | Thread | Thread | | |
 | Spawned Thread | Thread Generato | |
+Closure Closure / Chiusura
+Refactoring refactoring / riscrittura / ristrutturazione
+
+Panic Panic / Panico
+
+
+Gerarchia Moduli
+
+Parent Genitore
+Child Figlio

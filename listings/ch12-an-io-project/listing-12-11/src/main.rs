@@ -22,10 +22,10 @@ fn main() {
 }
 
 fn run(config: Config) {
-    let contents = fs::read_to_string(config.file_path)
+    let contenuto = fs::read_to_string(config.file_path)
         .expect("Dovrebbe essere stato possibile leggere il file");
 
-    println!("Con il testo:\n{contents}");
+    println!("Con il testo:\n{contenuto}");
 }
 
 // --taglio--

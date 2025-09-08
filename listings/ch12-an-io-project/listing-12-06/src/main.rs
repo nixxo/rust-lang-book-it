@@ -10,13 +10,13 @@ fn main() {
     println!("Cerco {}", config.query);
     println!("Nel file {}", config.file_path);
 
-    let contents = fs::read_to_string(config.file_path)
+    let contenuto = fs::read_to_string(config.file_path)
         .expect("Dovrebbe essere stato possibile leggere il file");
 
     // --taglio--
     // ANCHOR_END: here
 
-    println!("Con il testo:\n{contents}");
+    println!("Con il testo:\n{contenuto}");
     // ANCHOR: here
 }
 
