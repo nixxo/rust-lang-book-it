@@ -1,20 +1,20 @@
-struct CustomSmartPointer {
+struct MioSmartPointer {
     data: String,
 }
 
-impl Drop for CustomSmartPointer {
+impl Drop for MioSmartPointer {
     fn drop(&mut self) {
-        println!("Dropping CustomSmartPointer with data `{}`!", self.data);
+        println!("Pulizia MioSmartPointer con dati `{}`!", self.data);
     }
 }
 
 // ANCHOR: here
 fn main() {
-    let c = CustomSmartPointer {
-        data: String::from("some data"),
+    let c = MioSmartPointer {
+        data: String::from("alcuni dati"),
     };
-    println!("CustomSmartPointer created.");
+    println!("MioSmartPointer creato.");
     drop(c);
-    println!("CustomSmartPointer dropped before the end of main.");
+    println!("MioSmartPointer pulito prima della fine di main.");
 }
 // ANCHOR_END: here
