@@ -9,7 +9,7 @@ pub struct Config {
 impl Config {
     pub fn build(args: &[String]) -> Result<Config, &'static str> {
         if args.len() < 3 {
-            return Err("not enough arguments");
+            return Err("Non ci sono abbastanza argomenti");
         }
 
         let query = args[1].clone();
@@ -21,9 +21,9 @@ impl Config {
 
 // ANCHOR: here
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string(config.file_path)?;
+    let contenuto = fs::read_to_string(config.file_path)?;
 
-    for line in search(&config.query, &contents) {
+    for line in cerca(&config.query, &contenuto) {
         println!("{line}");
     }
 
@@ -31,16 +31,16 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 }
 // ANCHOR_END: here
 
-pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut results = Vec::new();
+pub fn cerca<'a>(query: &str, contenuto: &'a str) -> Vec<&'a str> {
+    let mut risultato = Vec::new();
 
-    for line in contents.lines() {
+    for line in contenuto.lines() {
         if line.contains(query) {
-            results.push(line);
+            risultato.push(line);
         }
     }
 
-    results
+    risultato
 }
 
 #[cfg(test)]
@@ -48,13 +48,13 @@ mod tests {
     use super::*;
 
     #[test]
-    fn one_result() {
-        let query = "duct";
-        let contents = "\
+    fn un_risultato() {
+        let query = "dut";
+        let contenuto = "\
 Rust:
-safe, fast, productive.
-Pick three.";
+sicuro, veloce, produttivo.
+Scegline tre.";
 
-        assert_eq!(vec!["safe, fast, productive."], search(query, contents));
+        assert_eq!(vec!["sicuro, veloce, produttivo."], cerca(query, contenuto));
     }
 }

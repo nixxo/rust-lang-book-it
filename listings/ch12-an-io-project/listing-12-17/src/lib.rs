@@ -1,6 +1,6 @@
 // ANCHOR: here
-pub fn cerca<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    for line in contents.lines() {
+pub fn cerca<'a>(query: &str, contenuto: &'a str) -> Vec<&'a str> {
+    for line in contenuto.lines() {
         // facciamo qualcosa con la riga
     }
 }
@@ -11,13 +11,13 @@ mod tests {
     use super::*;
 
     #[test]
-    fn one_result() {
-        let query = "duct";
-        let contents = "\
+    fn un_risultato() {
+        let query = "dut";
+        let contenuto = "\
 Rust:
-safe, fast, productive.
-Pick three.";
+sicuro, veloce, produttivo.
+Scegline tre.";
 
-        assert_eq!(vec!["safe, fast, productive."], cerca(query, contents));
+        assert_eq!(vec!["sicuro, veloce, produttivo."], cerca(query, contenuto));
     }
 }

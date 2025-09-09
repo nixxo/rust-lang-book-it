@@ -1,5 +1,5 @@
 $ cargo test
-   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+   Compiling minigrep v0.1.0 (file:///progetti/minigrep)
     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.97s
      Running unittests src/lib.rs (target/debug/deps/minigrep-9cd200e5fac0fc94)
 

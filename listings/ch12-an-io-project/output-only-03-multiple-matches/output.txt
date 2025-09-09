@@ -1,7 +1,7 @@
-$ cargo run -- body poem.txt
-   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+$ cargo run -- uno poesia.txt
+   Compiling minigrep v0.1.0 (file:///progetti/minigrep)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.0s
-     Running `target/debug/minigrep body poem.txt`
-I'm nobody! Who are you?
-Are you nobody, too?
-How dreary to be somebody!
+     Running `target/debug/minigrep uno poesia.txt`
+Io sono Nessuno! Tu chi sei?
+Sei Nessuno anche tu?
+Che grande peso essere Qualcuno!

@@ -1,4 +1,4 @@
-pub fn search(query: &str, contents: &str) -> Vec<&str> {
+pub fn cerca(query: &str, contenuto: &str) -> Vec<&str> {
     vec![]
 }
 // ANCHOR_END: here
@@ -8,13 +8,13 @@ mod tests {
     use super::*;
 
     #[test]
-    fn one_result() {
-        let query = "duct";
-        let contents = "\
+    fn un_risultato() {
+        let query = "dut";
+        let contenuto = "\
 Rust:
-safe, fast, productive.
-Pick three.";
+sicuro, veloce, produttivo.
+Scegline tre.";
 
-        assert_eq!(vec!["safe, fast, productive."], search(query, contents));
+        assert_eq!(vec!["sicuro, veloce, produttivo."], cerca(query, contenuto));
     }
 }

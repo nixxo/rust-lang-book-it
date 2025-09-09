@@ -1,5 +1,5 @@
-$ cargo run -- frog poem.txt
-   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+$ cargo run -- rana poesia.txt
+   Compiling minigrep v0.1.0 (file:///progetti/minigrep)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.38s
-     Running `target/debug/minigrep frog poem.txt`
-How public, like a frog
+     Running `target/debug/minigrep rana poesia.txt`
+Così volgare — come una rana

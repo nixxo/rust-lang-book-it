@@ -33,6 +33,10 @@ TODO: scrivere intro...
 | Handle | Handle | Puntatore ad un thread/processo |
 
 
+letterale di stringa o stringa letterale ????
+lettarale numerico o numero letterale ????
+
+
 
 
 ### Concetti del linguaggio

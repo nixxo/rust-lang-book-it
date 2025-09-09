@@ -1,4 +1,4 @@
-$ cargo run -- monomorphization poem.txt
-   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+$ cargo run -- monomorfizzazione poesia.txt
+   Compiling minigrep v0.1.0 (file:///progetti/minigrep)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.0s
-     Running `target/debug/minigrep monomorphization poem.txt`
+     Running `target/debug/minigrep monomorfizzazione poesia.txt`

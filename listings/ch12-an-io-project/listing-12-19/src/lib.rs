@@ -1,15 +1,15 @@
 // ANCHOR: here
 // ANCHOR: ch13
-pub fn cerca<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut results = Vec::new();
+pub fn cerca<'a>(query: &str, contenuto: &'a str) -> Vec<&'a str> {
+    let mut risultato = Vec::new();
 
-    for line in contents.lines() {
+    for line in contenuto.lines() {
         if line.contains(query) {
-            results.push(line);
+            risultato.push(line);
         }
     }
 
-    results
+    risultato
 }
 // ANCHOR_END: ch13
 // ANCHOR_END: here
@@ -19,13 +19,13 @@ mod tests {
     use super::*;
 
     #[test]
-    fn one_result() {
-        let query = "duct";
-        let contents = "\
+    fn un_risultato() {
+        let query = "dut";
+        let contenuto = "\
 Rust:
-safe, fast, productive.
-Pick three.";
+sicuro, veloce, produttivo.
+Scegline tre.";
 
-        assert_eq!(vec!["safe, fast, productive."], cerca(query, contents));
+        assert_eq!(vec!["sicuro, veloce, produttivo."], cerca(query, contenuto));
     }
 }
