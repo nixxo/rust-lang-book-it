@@ -9,7 +9,7 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     let config = Config::build(&args).unwrap_or_else(|err| {
-        println!("Problema nella parsing degli argomenti: {err}");
+        println!("Problema nella lettura degli argomenti: {err}");
         process::exit(1);
     });
 
@@ -38,9 +38,9 @@ impl Config {
 }
 
 fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string(config.file_path)?;
+    let contenuto = fs::read_to_string(config.file_path)?;
 
-    for line in cerca(&config.query, &contents) {
+    for line in cerca(&config.query, &contenuto) {
         println!("{line}");
     }
 

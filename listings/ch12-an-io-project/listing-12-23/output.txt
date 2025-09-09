@@ -1,6 +1,6 @@
-$ cargo run -- to poem.txt
-   Compiling minigrep v0.1.0 (file:///projects/minigrep)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.0s
-     Running `target/debug/minigrep to poem.txt`
-Are you nobody, too?
-How dreary to be somebody!
+$ cargo run -- che poesia.txt
+   Compiling minigrep v0.1.0 (file:///progetti/minigrep)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.45s
+     Running `target/debug/minigrep che poesia.txt`
+Sei Nessuno anche tu?
+che gracida il tuo nome — tutto giugno —

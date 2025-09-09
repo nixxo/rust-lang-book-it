@@ -9,7 +9,7 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     let config = Config::build(&args).unwrap_or_else(|err| {
-        println!("Problema nella parsing degli argomenti: {err}");
+        println!("Problema nella lettura degli argomenti: {err}");
         process::exit(1);
     });
 
@@ -22,7 +22,7 @@ fn main() {
 pub struct Config {
     pub query: String,
     pub file_path: String,
-    pub ignore_case: bool,
+    pub ignora_maiuscole: bool,
 }
 
 // ANCHOR: here
@@ -35,27 +35,27 @@ impl Config {
         let query = args[1].clone();
         let file_path = args[2].clone();
 
-        let ignore_case = env::var("IGNORE_CASE").is_ok();
+        let ignora_maiuscole = env::var("IGNORA_MAIUSCOLE").is_ok();
 
         Ok(Config {
             query,
             file_path,
-            ignore_case,
+            ignora_maiuscole,
         })
     }
 }
 // ANCHOR_END: here
 
 fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string(config.file_path)?;
+    let contenuto = fs::read_to_string(config.file_path)?;
 
-    let results = if config.ignore_case {
-        cerca_case_insensitive(&config.query, &contents)
+    let risultato = if config.ignora_maiuscole {
+        cerca_case_insensitive(&config.query, &contenuto)
     } else {
-        cerca(&config.query, &contents)
+        cerca(&config.query, &contenuto)
     };
 
-    for line in results {
+    for line in risultato {
         println!("{line}");
     }
 
