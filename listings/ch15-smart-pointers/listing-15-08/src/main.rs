@@ -1,9 +1,9 @@
 // ANCHOR: here
-struct MyBox<T>(T);
+struct MioBox<T>(T);
 
-impl<T> MyBox<T> {
-    fn new(x: T) -> MyBox<T> {
-        MyBox(x)
+impl<T> MioBox<T> {
+    fn new(x: T) -> MioBox<T> {
+        MioBox(x)
     }
 }
 // ANCHOR_END: here

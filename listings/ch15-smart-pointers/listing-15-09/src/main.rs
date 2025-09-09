@@ -1,15 +1,15 @@
-struct MyBox<T>(T);
+struct MioBox<T>(T);
 
-impl<T> MyBox<T> {
-    fn new(x: T) -> MyBox<T> {
-        MyBox(x)
+impl<T> MioBox<T> {
+    fn new(x: T) -> MioBox<T> {
+        MioBox(x)
     }
 }
 
 // ANCHOR: here
 fn main() {
     let x = 5;
-    let y = MyBox::new(x);
+    let y = MioBox::new(x);
 
     assert_eq!(5, x);
     assert_eq!(5, *y);
