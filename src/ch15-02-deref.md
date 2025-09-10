@@ -208,13 +208,13 @@ Per vedere la deref coercion in azione, utilizziamo il tipo `MioBox<T>` definito
 Listato 15-8 e l'implementazione di `Deref` aggiunta nel Listato
 15-10. Il Listato 15-11 mostra la definizione di una funzione che ha un parametro di tipo `slice` stringa.
 
-<Listato number="15-11" file-name="src/main.rs" caption="Una funzione `hello` che ha il parametro `name` di tipo `&str`">
+<Listing number="15-11" file-name="src/main.rs" caption="Una funzione `hello` che ha il parametro `name` di tipo `&str`">
 
 ```rust
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-11/src/main.rs:here}}
 ```
 
-</Listato>
+</Listing>
 
 Possiamo chiamare la funzione `hello` con un parametro di tipo `slice` stringa come argomento, ad esempio
 `hello("Rust");`. La coercizione di deref consente di chiamare `hello`
@@ -240,7 +240,7 @@ Se Rust non implementasse la deref , dovremmo scrivere il codice nel
 Listato 15-13 invece del codice nel Listato 15-12 per chiamare `hello` con un valore
 di tipo `&MioBox<String>`.
 
-<Numero di inserzione="15-13" nome-file="src/main.rs" didascalia="Il codice che dovremmo scrivere se Rust non avesse la coercizione di dereferenziazione">
+<Listing number="15-13" file-name="src/main.rs" caption="Il codice che dovremmo scrivere se Rust non avesse la coercizione di dereferenziazione">
 
 ```rust
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-13/src/main.rs:here}}
