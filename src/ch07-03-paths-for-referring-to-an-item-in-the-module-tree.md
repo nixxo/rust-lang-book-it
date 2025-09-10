@@ -92,7 +92,7 @@ una _struct_ privata, lo metti in un modulo.
 
 Gli elementi in un modulo genitore non possono utilizzare gli elementi privati
 all'interno dei moduli figli, ma gli elementi nei moduli figli possono
-utilizzare gli elementi nei loro moduli genitore. Questo perché i moduli figli
+utilizzare gli elementi nei loro moduli antenati. Questo perché i moduli figli
 avvolgono e nascondono i loro dettagli di implementazione, ma i moduli figli
 possono vedere il contesto in cui sono definiti. Per continuare con la nostra
 metafora, pensa alle regole di privacy come se fossero l'ufficio posteriore di
@@ -104,7 +104,7 @@ Rust ha scelto che far funzionare il sistema dei moduli in questo modo,
 nascondendo i dettagli di implementazione interni come impostazione predefinita.
 In questo modo, sai quali parti del codice interno puoi modificare senza
 compromettere il codice esterno. Tuttavia, Rust ti offre la possibilità di
-esporre le parti interne del codice dei moduli figli ai moduli genitore esterni
+esporre le parti interne del codice dei moduli figli ai moduli antenati
 utilizzando la parola chiave `pub` per rendere pubblico un elemento.
 
 ### Esporre _Path_ con la Parola Chiave `pub`

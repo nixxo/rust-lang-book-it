@@ -1,4 +1,4 @@
-## Memorizzazione di Chiavi con Valori Associati in Mappe Hash
+## Memorizzare Chiavi con Valori Associati in Mappe Hash
 
 L'ultima delle nostre collezioni comuni è la _mappa hash_. Il _type_ `HashMap<K,
 V>` memorizza una mappatura di chiavi di _type_ `K` a valori di _type_ `V`
@@ -20,7 +20,7 @@ funzionalità si nascondono nelle funzioni definite su `HashMap<K, V>` dalla
 libreria standard. Come sempre, consultate la documentazione della libreria
 standard per ulteriori informazioni.
 
-### Creazione di una Nuova _Hash Map_
+### Creare una Nuova _Hash Map_
 
 Un modo per creare una _hash map_ vuota è usare `new` e aggiungere elementi con
 `insert`. Nel Listato 8-20, stiamo tenendo traccia del punteggio di due squadre
@@ -35,19 +35,19 @@ squadra Gialla inizia con 50.
 
 </Listing>
 
-Si noti che dobbiamo prima partare in _scope_ `HashMap` con `use` dalla sezione
+Nota che dobbiamo prima partare in _scope_ `HashMap` con `use` dalla sezione
 dedicata alle collezioni della libreria standard. Delle nostre tre collezioni
 comuni, questa è la meno utilizzata, quindi non è inclusa nelle funzionalità
 aggiunte allo _scope_ dal _preludio_. Le _hash map_ hanno anche un supporto
 minore dalla libreria standard; ad esempio, non esiste una macro integrata per
 costruirle.
 
-Proprio come i _vector_, le _hash map_ memorizzano i loro dati nell'_heap_.
+Proprio come i vettori, le _hash map_ memorizzano i loro dati nell'_heap_.
 Questa `HashMap` ha chiavi di _type_ `String` e valori di _type_ `i32`. Come i
-_vector_, le _hash map_ sono omogenee: tutte le chiavi devono avere lo stesso
+vettori, le _hash map_ sono omogenee: tutte le chiavi devono avere lo stesso
 _type_ e tutti i valori devono avere lo stesso _type_.
 
-### Accesso ai Valori in una _Hash Map_
+### Accedere ai Valori in una _Hash Map_
 
 Possiamo ottenere un valore dalla _hash map_ fornendo la sua chiave al metodo
 `get`, come mostrato nel Listato 8-21.
@@ -67,7 +67,8 @@ gestisce `Option` chiamando `copied` per ottenere `Option<i32>` anziché
 `Option<&i32>`, quindi `unwrap_or` per impostare `punteggio` a zero se
 `punteggio` non ha una voce per la chiave.
 
-Possiamo iterare su ogni coppia chiave-valore in una _hash map_ in modo simile a come facciamo con i vettori, utilizzando un ciclo `for`:
+Possiamo iterare su ogni coppia chiave-valore in una _hash map_ in modo simile a
+come facciamo con i vettori, utilizzando un ciclo `for`:
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/no-listing-03-iterate-over-hashmap/src/main.rs:here}}
@@ -100,11 +101,11 @@ state spostate nella _hash map_ con la chiamata a `insert`.
 
 Se inseriamo _reference_ a valori nella _hash map_, i valori non verranno
 spostati nella _hash map_. I valori a cui puntano i _reference_ devono essere
-validi almeno per quanto tempo è valida la _hash map_. Approfondiremo questi
+validi almeno per il tempo in cui è valida la _hash map_. Approfondiremo questi
 argomenti in [“Validazione dei _Reference_ con le _Lifetime_
 ”][validating-references-with-lifetimes]<!-- ignore --> nel Capitolo 10.
 
-### Aggiornamento di una _Hash Map_
+### Aggiornare una _Hash Map_
 
 Sebbene il numero di coppie chiave-valore sia espandibile, a ogni chiave univoca
 può essere associato un solo valore alla volta (ma non viceversa: ad esempio,
@@ -119,7 +120,7 @@ ignorare il nuovo valore, aggiungendo il nuovo valore solo se la chiave _non_ ha
 già un valore. Oppure è possibile combinare il vecchio valore e il nuovo valore.
 Vediamo come fare ciascuna di queste cose!
 
-#### Sovrascrittura di un Valore
+#### Sovrascrivere un Valore
 
 Se inseriamo una chiave e un valore in una _hash map_ e poi inseriamo la stessa
 chiave con un valore diverso, il valore associato a quella chiave verrà
@@ -177,14 +178,15 @@ valore `50` perché la squadra Gialla non ha già un valore. La seconda chiamata
 `entry` non modificherà la _hash map_ perché la squadra Blu ha già il valore
 `10`.
 
-#### Aggiornamento di un Valore in Base al Valore Precedente
+#### Aggiornare un Valore in Base al Valore Precedente
 
 Un altro caso d'uso comune per le _hash map_ è cercare il valore di una chiave e
 quindi aggiornarlo in base al valore precedente. Ad esempio, il Listato 8-25
 mostra un codice che conta quante volte ogni parola appare in un testo.
 Utilizziamo una _hash map_ con le parole come chiavi e incrementiamo il valore
-per tenere traccia di quante volte abbiamo visto quella parola. Se è la prima
-volta che vediamo una parola, inseriremo il valore `0`.
+per tenere traccia di quante volte abbiamo visto quella parola. Quando
+incontriamo una parola nuova, verrà inserita inizializzando il valore associato
+a `0`.
 
 <Listing number="8-25" caption="Conteggio delle occorrenze di parole utilizzando una _hash map_ che memorizza parole e conteggi">
 
@@ -195,8 +197,8 @@ volta che vediamo una parola, inseriremo il valore `0`.
 </Listing>
 
 Questo codice stamperà `{"world": 2, "hello": 1, "wonderful": 1}`. Potresti
-vedere le stesse coppie chiave-valore stampate in un ordine diverso: ricorda che
-in uno dei paragrafi precedenti, ["Accesso ai Valori in una _Hash
+vedere le stesse coppie chiave-valore stampate in un ordine diverso: ricorda
+che, come menzionato precedentemente in ["Accesso ai Valori in una _Hash
 Map_”][access]<!-- ignore -->, l'iterazione su una _hash map_ avviene in un
 ordine arbitrario.
 
@@ -220,40 +222,42 @@ predefinita è troppo lenta per i propri scopi, è possibile passare a un'altra
 funzione specificando un _hasher_ diverso. Un _hasher_ è un _type_ che
 implementa il _trait_ `BuildHasher`. Parleremo dei _trait_ e di come
 implementarli nel [Capitolo 10][traits]<!-- ignore -->. Non è necessario
-implementare il proprio _hasher_ da zero; [crates.io](https://crates.io/)<!--
-ignore --> offre librerie condivise da altri utenti Rust che forniscono _hasher_
-che implementano molti algoritmi di _hashing_ comuni.
+implementare il proprio _hasher_ da zero;
+[crates.io](https://crates.io/search?q=hasher)<!-- ignore --> offre librerie
+condivise da altri utenti Rust che forniscono _hasher_ che implementano molti
+algoritmi di _hashing_ comuni.
 
 [^siphash]: [https://en.wikipedia.org/wiki/SipHash](https://en.wikipedia.org/wiki/SipHash)
 
 ## Riepilogo
 
 Vettori, stringhe e _hash map_ forniranno una grande quantità di funzionalità
-necessarie nei programmi quando si desidera memorizzare, accedere e modificare
-dati. Ecco alcuni esercizi che ora dovresti essere in grado di risolvere:
+necessarie nei programmi quando avrai necessità di memorizzare, accedere e
+modificare dati. Ecco alcuni esercizi che ora dovresti essere in grado di
+risolvere:
 
-1. Dato un elenco di interi, usa un _vector_ e restituisci la mediana (quando
-ordinati, il valore in posizione centrale) e la moda (il valore che ricorre più
-spesso; una _hash map_ sarà utile in questo caso) dell'elenco.
+1. Dato un elenco di interi, usa un vettore e restituisci la mediana (quando
+   ordinati, il valore in posizione centrale) e la moda (il valore che ricorre
+   più spesso; una _hash map_ sarà utile in questo caso) dell'elenco.
 1. Converti delle stringhe in [pig latin][pig-latin]. La prima consonante di
-ogni parola viene spostata alla fine della parola e viene aggiunto _ay_, quindi
-_*p*rimo_ diventa _rimo-*p*ay_. Le parole che iniziano con una vocale hanno
-invece _hay_ aggiunto alla fine (_ananas_ diventa _ananas-hay_). Tieni a mente i
-dettagli sulla codifica UTF-8!
-1. Utilizzando _hash map_ e _vector_, crea un'interfaccia testuale che consenta
-a un utente di aggiungere i nomi dei dipendenti a un reparto di un'azienda; ad
-esempio, "Aggiungi Sally a Ingegneria" o "Aggiungi Amir a Vendite". Quindi,
-consenti all'utente di recuperare un elenco di tutte le persone in un reparto o
-di tutte le persone in azienda per reparto, ordinate alfabeticamente.
+   ogni parola viene spostata alla fine della parola e viene aggiunto _ay_,
+   quindi _**p**rimo_ diventa _rimo-**p**ay_. Le parole che iniziano con una
+   vocale hanno invece _hay_ aggiunto alla fine (_ananas_ diventa _ananas-hay_).
+   Tieni a mente i dettagli sulla codifica UTF-8!
+1. Utilizzando _hash map_ e vettori, crea un'interfaccia testuale che consenta a
+   un utente di aggiungere i nomi dei dipendenti a un reparto di un'azienda; ad
+   esempio, "Aggiungi Sally a Ingegneria" o "Aggiungi Amir a Vendite". Quindi,
+   consenti all'utente di recuperare un elenco di tutte le persone in un reparto
+   o di tutte le persone in azienda per reparto, ordinate alfabeticamente.
 
-La documentazione API della libreria standard descrive i metodi di _vector_, stringhe
-e _hash map_ che saranno utili per questi esercizi!
+La documentazione API della libreria standard descrive i metodi di vettori,
+stringhe e _hash map_ che saranno utili per questi esercizi!
 
 Stiamo entrando in programmi più complessi in cui le operazioni possono fallire,
 quindi è il momento perfetto per discutere della gestione degli errori. Lo
 faremo in seguito!
 
 [validating-references-with-lifetimes]: ch10-03-lifetime-syntax.html#validazione-dei-reference-con-le-lifetime
-[access]: #accesso-ai-valori-in-una-hash-map
+[access]: #accedere-ai-valori-in-una-hash-map
 [traits]: ch10-02-traits.html
 [pig-latin]: https://it.wikipedia.org/wiki/Pig_latin

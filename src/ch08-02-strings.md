@@ -1,4 +1,4 @@
-## Memorizzazione di Testo Codificato UTF-8 con Stringhe
+## Memorizzare Testo Codificato UTF-8 con Stringhe
 
 Abbiamo parlato delle stringhe nel Capitolo 4, ma ora le analizzeremo più
 approfonditamente. I nuovi Rustaceans spesso si bloccano sulle stringhe per una
@@ -11,7 +11,7 @@ programmazione.
 Parleremo delle stringhe nel contesto delle collezioni perché le stringhe sono
 implementate come una collezione di byte, oltre ad alcuni metodi per fornire
 funzionalità utili quando tali byte vengono interpretati come testo. In questa
-sezione, parleremo delle operazioni su `String` che ogni _type_ di collezione
+sezione, parleremo delle operazioni su `String` che ogni tipo di collezione
 prevede, come creazione, aggiornamento e lettura. Discuteremo anche le
 differenze tra `String` e le altre collezioni, in particolare come
 l'indicizzazione in una `String` sia complicata dalle differenze tra il modo in
@@ -36,14 +36,13 @@ questa sezione tratterà principalmente `String`, entrambe le tipologie sono
 ampiamente utilizzate nella libreria standard di Rust, e sia `String` che le
 _slice_ sono codificate in UTF-8.
 
-### Creazione di una Nuova `String`
+### Creare una Nuova `String`
 
 Molte delle operazioni disponibili con `Vec<T>` sono disponibili anche con
-`String` perché `String` è in realtà implementata come _wrapper _ (_involucro_)
+`String` perché `String` è in realtà implementata come _wrapper_ (_involucro_)
 attorno a un vettore di byte con alcune garanzie, restrizioni e funzionalità
-aggiuntive. Un esempio di una funzione che funziona allo stesso modo con
-`Vec<T>` e `String` è la funzione `new` per creare un'istanza, mostrata nel
-Listato 8-11.
+aggiuntive. Ad esempio, la funzione `new` per creare un'istanza, funziona allo
+stesso modo sia con `Vec<T>` che con `String`. Eccola mostrata nel Listato 8-11.
 
 <Listing number="8-11" caption="Creazione di una nuova `String` vuota">
 
@@ -100,14 +99,14 @@ qualsiasi dato codificato correttamente, come mostrato nel Listato 8-14.
 
 Tutti questi sono valori `String` validi.
 
-### Aggiornamento di una `String`
+### Aggiornare una `String`
 
 Una `String` può crescere di dimensione e il suo contenuto può cambiare, proprio
 come il contenuto di un `Vec<T>`, se vi si inseriscono più dati. Inoltre, è
 possibile utilizzare comodamente l'operatore `+` o la macro `format!` per
 concatenare valori `String`.
 
-#### Aggiunta a una `String` con `push_str` e `push`
+#### Aggiungere a una `String` con `push_str` e `push`
 
 Possiamo far crescere una `String` utilizzando il metodo `push_str` per
 aggiungere una _slice_ di stringa, come mostrato nel Listato 8-15.
@@ -151,7 +150,7 @@ metodo `push`.
 
 Di conseguenza, `s` conterrà `lol`.
 
-#### Concatenazione con l'Operatore `+` o la Macro `format!`
+#### Concatenare con l'Operatore `+` o la Macro `format!`
 
 Spesso, si desidera combinare due stringhe esistenti. Un modo per farlo è
 utilizzare l'operatore `+`, come mostrato nel Listato 8-18.
@@ -165,7 +164,7 @@ utilizzare l'operatore `+`, come mostrato nel Listato 8-18.
 </Listing>
 
 La stringa `s3` conterrà `Hello, world!`. Il motivo per cui `s1` non è più
-valido dopo l'aggiunta, e il motivo per cui abbiamo utilizzato un riferimento a
+valido dopo l'aggiunta, e il motivo per cui abbiamo utilizzato un _reference_ a
 `s2`, ha a che fare con la firma del metodo chiamato quando utilizziamo
 l'operatore `+`. L'operatore `+` utilizza il metodo `add`, la cui firma è simile
 a questa:
@@ -230,7 +229,7 @@ _ownership_ di nessuno dei suoi parametri.
 In molti altri linguaggi di programmazione, l'accesso a singoli caratteri in una
 stringa facendovi riferimento tramite indice è un'operazione valida e comune.
 Tuttavia, se si tenta di accedere a parti di una `String` utilizzando la
-sintassi di indicizzazione in Rust, si otterrà un errore. Si consideri il codice
+sintassi di indicizzazione in Rust, si otterrà un errore. Considera il codice
 non valido nel Listato 8-19.
 
 <Listing number="8-19" caption="Tentativo di utilizzare la sintassi di indicizzazione con una `String`">
@@ -254,7 +253,7 @@ discutere come Rust memorizza le stringhe in memoria.
 #### Rappresentazione Interna
 
 Una `String` è un _wrapper_ di un `Vec<u8>`. Diamo un'occhiata ad alcune delle
-nostre stringhe di esempio UTF-8 codificate correttamente dal Listato 8-14.
+nostre stringhe di esempio correttamente codificate UTF-8 dal Listato 8-14.
 Innanzitutto, questo:
 
 ```rust
@@ -263,9 +262,9 @@ Innanzitutto, questo:
 
 In questo caso, `len` sarà `4`, il che significa che il vettore che memorizza la
 stringa `"Hola"` è lungo 4 byte. Ognuna di queste lettere occupa un byte se
-codificata in UTF-8. La riga seguente, tuttavia, potrebbe sorprendervi (notate
-che questa stringa inizia con la lettera maiuscola cirillica _Ze_, non con il
-numero 3):
+codificata in UTF-8. La riga seguente, tuttavia, potrebbe sorprendervi (nota che
+questa stringa inizia con la lettera maiuscola cirillica _Ze_, non con il numero
+3):
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-14/src/main.rs:russian}}
@@ -307,7 +306,7 @@ grafemi (la cosa più vicina a ciò che chiameremmo _lettere_).
 Se consideriamo la parola hindi "नमस्ते" scritta in alfabeto Devanagari, essa è
 memorizzata come un vettore di valori `u8` che appare così:
 
-```testo
+```text
 [224, 164, 168, 224, 164, 174, 224, 164, 184, 224, 165, 141, 224, 164, 164,
 224, 165, 135]
 ```
@@ -325,7 +324,7 @@ segni diacritici che da soli non hanno senso. Infine, se li consideriamo come
 cluster di grafemi, otterremmo ciò che una persona chiamerebbe le quattro
 lettere che compongono la parola hindi:
 
-```testo
+```text
 ["न", "म", "स्", "ते"]
 ```
 
@@ -371,17 +370,17 @@ come se si accedesse a un indice non valido in un vettore:
 È necessario prestare attenzione quando si creano _slice_ di stringhe con
 intervalli, perché ciò potrebbe causare l'arresto anomalo del programma.
 
-### Metodi per l'Iterazione sulle Stringhe
+### Metodi per Iterare sulle Stringhe
 
 Il modo migliore per operare su stringhe è specificare esplicitamente se si
 desidera caratteri o byte. Per singoli valori scalari Unicode, utilizzare il
 metodo `chars`. Chiamando `chars` su "Зд" si separano e si restituiscono due
-valori di tipo `char`, ed è possibile iterare sul risultato per accedere a
+valori di _type_ `char`, ed è possibile iterare sul risultato per accedere a
 ciascun elemento:
 
 ```rust
 for c in "Зд".chars() {
-println!("{c}");
+    println!("{c}");
 }
 ```
 
@@ -403,7 +402,7 @@ for b in "Зд".bytes() {
 
 Questo codice stamperà i quattro byte che compongono questa stringa:
 
-```testo
+```text
 208
 151
 208
@@ -413,10 +412,10 @@ Questo codice stamperà i quattro byte che compongono questa stringa:
 Ma ricorda che i valori scalari Unicode validi possono essere composti da più di
 un byte.
 
-Ottenere cluster di grafemi dalle stringhe, come con l'alfabeto Devanagari, è
+Ottenere _cluster_ di grafemi dalle stringhe, come con l'alfabeto Devanagari, è
 complesso, quindi questa funzionalità non è fornita dalla libreria standard. I
-_crate_ sono disponibili su [crates.io](https://crates.io/)<!-- ignore --> se
-questa è la funzionalità di cui avete bisogno.
+_crate_ sono disponibili su [crates.io](https://crates.io/search?q=grapheme)<!--
+ignore --> se questa è la funzionalità di cui avete bisogno.
 
 ### Le Stringhe Non Sono Così Semplici
 

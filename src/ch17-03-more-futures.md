@@ -75,7 +75,7 @@ trait objects in detail in Chapter 18.) Using trait objects lets us treat each
 of the anonymous futures produced by these types as the same type, because all
 of them implement the `Future` trait.
 
-> Note: In [Using an Enum to Store Multiple Values][enum-alt]<!-- ignore --> in
+> Note: In [Utilizzare un'Enum per Memorizzare Più _Type_][enum-alt]<!-- ignore --> in
 > Chapter 8, we discussed another way to include multiple types in a `Vec`:
 > using an enum to represent each type that can appear in the vector. We can’t
 > do that here, though. For one thing, we have no way to name the different
@@ -590,6 +590,6 @@ to consider first, though:
   with any collection of futures.)
 
 [dyn]: ch12-03-improving-error-handling-and-modularity.html#ritorno-di-errori-dalla-funzione-run
-[enum-alt]: ch08-01-vectors.html#utilizzo-di-unenum-per-memorizzare-più-type
+[enum-alt]: ch08-01-vectors.html#utilizzare-unenum-per-memorizzare-più-type
 [async-program]: ch17-01-futures-and-syntax.html#our-first-async-program
 [iterator-trait]: ch13-02-iterators.html#the-iterator-trait-and-the-next-method

@@ -206,8 +206,8 @@ valori scalari Unicode vanno da `U+0000` a `U+D7FF` e da `U+E000` a `U+10FFFF`
 inclusi. Tuttavia, un "carattere" non è un concetto vero e proprio in Unicode,
 quindi quello che tu potresti concettualmente pensare essere un "carattere"
 potrebbe non corrispondere a cosa sia effettivamente un `char` in Rust.
-Discuteremo questo argomento in dettaglio in ["Memorizzazione del testo
-codificato UTF-8 con le stringhe"][strings]<!-- ignore --> nel Capitolo 8.
+Discuteremo questo argomento in dettaglio in ["Memorizzare testo codificato
+UTF-8 con le stringhe"][strings]<!-- ignore --> nel Capitolo 8.
 
 ### I Type Composti
 
@@ -394,7 +394,7 @@ memoria.
 [complemento-a-due]: https://it.wikipedia.org/wiki/Complemento_a_due
 [ieee-754]: https://it.wikipedia.org/wiki/IEEE_754
 [control-flow]: ch03-05-control-flow.html#controllo-del-flusso
-[strings]: ch08-02-strings.html#memorizzazione-di-testo-codificato-utf-8-con-stringhe
+[strings]: ch08-02-strings.html#memorizzare-testo-codificato-utf-8-con-stringhe
 [stack-and-heap]: ch04-01-what-is-ownership.html#lo-stack-e-lheap
 [vectors]: ch08-01-vectors.html
 [panic]: ch09-01-unrecoverable-errors-with-panic.html

@@ -369,7 +369,7 @@ che implementa un altro _trait_. Le implementazioni di un _trait_ su qualsiasi
 _type_ che soddisfi i _trait bound_ sono chiamate _implementazioni generali_
 (_blanket implementations_) e sono ampiamente utilizzate nella libreria standard
 di Rust. Ad esempio, la libreria standard implementa il _trait_ `ToString` su
-qualsiasi _type_ che implementi il ​​_trait_ `Display`. Il blocco `impl` nella
+qualsiasi _type_ che implementi il _trait_ `Display`. Il blocco `impl` nella
 libreria standard è simile a questo codice:
 
 ```rust,ignore

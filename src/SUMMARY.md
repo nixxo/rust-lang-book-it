@@ -45,9 +45,9 @@
   - [Separare i Moduli in File Diversi](ch07-05-separating-modules-into-different-files.md)
 
 - [Collezioni Comuni](ch08-00-common-collections.md)
-  - [Memorizzazione di Elenchi di Valori con Vettori](ch08-01-vectors.md)
-  - [Memorizzazione di Testo Codificato UTF-8 con Stringhe](ch08-02-strings.md)
-  - [Memorizzazione di Chiavi con Valori Associati in Mappe Hash](ch08-03-hash-maps.md)
+  - [Memorizzare Elenchi di Valori con Vettori](ch08-01-vectors.md)
+  - [Memorizzare Testo Codificato UTF-8 con Stringhe](ch08-02-strings.md)
+  - [Memorizzare Chiavi con Valori Associati in Mappe Hash](ch08-03-hash-maps.md)
 
 - [Gestione degli Errori](ch09-00-error-handling.md)
   - [Errori Irreversibili con `panic!`](ch09-01-unrecoverable-errors-with-panic.md)

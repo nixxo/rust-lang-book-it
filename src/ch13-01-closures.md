@@ -326,7 +326,7 @@ chiusure ed è il più flessibile possibile.
 > qualsiasi dei tratti `Fn` applicabile per una definizione di funzione.
 
 Ora diamo un'occhiata al metodo della libreria standard `sort_by_key`, definito sulle slice,
-per vedere in che modo differisce da `unwrap_or_else` e ​​perché `sort_by_key` utilizza
+per vedere in che modo differisce da `unwrap_or_else` e perché `sort_by_key` utilizza
 `FnMut` invece di `FnOnce` per il vincolo del trait. La chiusura riceve un argomento
 sotto forma di riferimento all'elemento corrente nella slice in esame
 e restituisce un valore di tipo `K` che può essere ordinato. Questa funzione è utile
@@ -383,7 +383,7 @@ implementare `FnMut`:
 
 L'errore punta alla riga nel corpo della chiusura che sposta `valore` fuori dall'
 ambiente. Per risolvere questo problema, dobbiamo modificare il corpo della chiusura in modo che non
-sposti values ​​fuori dall'ambiente. Mantenere un contatore nell'ambiente e
+sposti values fuori dall'ambiente. Mantenere un contatore nell'ambiente e
 incrementarne il valore nel corpo della chiusura è un modo più semplice per
 contare il numero di volte in cui la chiusura viene chiamata. La chiusura nel Listato 13-9
 funziona con `sort_by_key` perché cattura solo un riferimento mutabile al contatore

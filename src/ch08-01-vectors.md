@@ -1,4 +1,4 @@
-## Memorizzazione di Elenchi di Valori con Vettori
+## Memorizzare Elenchi di Valori con Vettori
 
 Il primo tipo di collezione che esamineremo è `Vec<T>`, nota anche come
 _vector_. I vettori consentono di memorizzare più di un valore in un'unica
@@ -7,7 +7,7 @@ vettori possono memorizzare solo valori dello stesso _type_. Sono utili quando
 si ha un elenco di elementi, come le righe di testo in un file o i prezzi degli
 articoli in un carrello.
 
-### Creazione di un Nuovo Vettore
+### Creare un Nuovo Vettore
 
 Per creare un nuovo vettore vuoto, chiamiamo la funzione `Vec::new`, come
 mostrato nel Listato 8-1.
@@ -23,20 +23,20 @@ mostrato nel Listato 8-1.
 Nota che qui abbiamo aggiunto un'annotazione di _type_. Poiché non stiamo
 inserendo alcun valore in questo vettore, Rust non sa che tipo di elementi
 intendiamo memorizzare. Questo è un punto importante. I vettori vengono
-implementati utilizzando i _type_ generici; spiegheremo come utilizzare i _type_
-generici quando si creano _type_ propri nel Capitolo 10. Per ora, sappiamo che
-il _type_ `Vec<T>` fornito dalla libreria standard può contenere qualsiasi
-_type_. Quando creiamo un vettore per contenere uno specifico _type_, possiamo
-specificarlo tra parentesi angolari. Nel Listato 8-1, abbiamo detto a Rust che
-`Vec<T>` in `v` conterrà elementi di _type_ `i32`.
+implementati utilizzando i _type_ generici; spiegheremo come utilizzare i
+_type_ generici quando si creano _type_ propri nel Capitolo 10. Per ora,
+sappiamo che il _type_ `Vec<T>` fornito dalla libreria standard può contenere
+qualsiasi _type_. Quando creiamo un vettore per contenere uno specifico _type_,
+possiamo specificarlo tra parentesi angolari. Nel Listato 8-1, abbiamo detto a
+Rust che `Vec<T>` in `v` conterrà elementi di _type_ `i32`.
 
-Più spesso, si crea un `Vec<T>` con valori iniziali e Rust dedurrà il _type_ dai
-valori che si desidera memorizzare, quindi raramente è necessario eseguire
+Più spesso, si crea un `Vec<T>` con valori iniziali e Rust dedurrà il _type_
+dai valori che si desidera memorizzare, quindi raramente è necessario eseguire
 questa annotazione di _type_. Rust fornisce opportunamente la macro `vec!`, che
 creerà un nuovo vettore contenente i valori che gli vengono assegnati. Il
 Listato 8-2 crea un nuovo `Vec<i32>` che contiene i valori `1`, `2` e `3`. Il
-_type_ intero è `i32` perché è il _type_ intero predefinito, come discusso nella
-sezione ["Tipi di dati”][data-types]<!-- ignore --> del Capitolo 3.
+_type_ intero è `i32` perché è il _type_ intero predefinito, come discusso
+nella sezione ["Tipi di dati”][data-types]<!-- ignore --> del Capitolo 3.
 
 <Listing number="8-2" caption="Creazione di un nuovo vettore contenente valori">
 
@@ -47,10 +47,10 @@ sezione ["Tipi di dati”][data-types]<!-- ignore --> del Capitolo 3.
 </Listing>
 
 Poiché abbiamo assegnato valori iniziali `i32`, Rust può dedurre che il _type_
-di `v` è `Vec<i32>` e l'annotazione di _type_ non è necessaria. Successivamente,
-vedremo come modificare un vettore.
+di `v` è `Vec<i32>` e l'annotazione di _type_ non è necessaria.
+Successivamente, vedremo come modificare un vettore.
 
-### Aggiornamento di un Vettore
+### Aggiornare un Vettore
 
 Per creare un vettore e aggiungervi elementi, possiamo usare il metodo `push`,
 come mostrato nel Listato 8-3.
@@ -63,12 +63,13 @@ come mostrato nel Listato 8-3.
 
 </Listing>
 
-Come per qualsiasi variabile, se vogliamo poterne modificare il valore, dobbiamo
-renderla mutabile usando la parola chiave `mut`, come discusso nel Capitolo 3. I
-numeri che inseriamo al suo interno sono tutti di _type_ `i32`, e Rust lo deduce
-dai dati, quindi non abbiamo bisogno dell'annotazione `Vec<i32>`.
+Come per qualsiasi variabile, se vogliamo poterne modificare il valore,
+dobbiamo renderla mutabile usando la parola chiave `mut`, come discusso nel
+Capitolo 3. I numeri che inseriamo al suo interno sono tutti di _type_ `i32`, e
+Rust lo deduce dai dati, quindi non abbiamo bisogno dell'annotazione
+`Vec<i32>`.
 
-### Lettura degli Elementi dei Vettori
+### Leggere Elementi dei Vettori
 
 Esistono due modi per fare riferimento a un valore memorizzato in un vettore:
 tramite indicizzazione o utilizzando il metodo `get`. Negli esempi seguenti,
@@ -86,9 +87,9 @@ con la sintassi di indicizzazione e il metodo `get`.
 
 </Listing>
 
-Sono da notare alcuni dettagli. Utilizziamo il valore di indice `2` per ottenere
-il terzo elemento poiché i vettori sono indicizzati per numero, a partire da
-zero. Utilizzando `&` e `[]` otteniamo un _reference_ all'elemento a
+Sono da notare alcuni dettagli. Utilizziamo il valore di indice `2` per
+ottenere il terzo elemento poiché i vettori sono indicizzati per numero, a
+partire da zero. Utilizzando `&` e `[]` otteniamo un _reference_ all'elemento a
 quell'indice. Quando utilizziamo il metodo `get` con l'indice passato come
 argomento, otteniamo un `Option<&T>` che possiamo utilizzare con `match`.
 
@@ -118,19 +119,21 @@ elemento oltre l'intervallo del vettore può verificarsi occasionalmente in
 circostanze normali. Il codice avrà quindi una logica per gestire sia
 `Some(&element)` che `None`, come discusso nel Capitolo 6. Ad esempio, l'indice
 potrebbe provenire da un utente che inserisce un numero. Se inserisce
-accidentalmente un numero troppo grande e il programma ottiene un valore `None`,
-è possibile indicare all'utente quanti elementi sono presenti nel vettore
-corrente e dargli un'altra possibilità di inserire un valore valido. Sarebbe più
-intuitivo che mandare in crash il programma a causa di un errore di battitura!
+accidentalmente un numero troppo grande e il programma ottiene un valore
+`None`, è possibile indicare all'utente quanti elementi sono presenti nel
+vettore corrente e dargli un'altra possibilità di inserire un valore valido.
+Sarebbe più intuitivo che mandare in crash il programma a causa di un errore di
+battitura!
 
 Quando il programma ha un _reference_ valido, il sistema applica le regole di
 _ownership_ e _borrowing_ (trattate nel Capitolo 4) per garantire che questo
 _reference_ e qualsiasi altro _reference_ al contenuto del vettore rimangano
-validi. Ricordati la regola che stabilisce che non è possibile avere _reference_
-mutabili e immutabili nello stesso _scope_. Questa regola si applica al Listato
-8-6, dove manteniamo un _reference_ immutabile al primo elemento di un vettore e
-proviamo ad aggiungere un elemento alla fine. Questo programma non funzionerà se
-proviamo a fare _reference_ a quell'elemento anche più avanti nella funzione.
+validi. Ricordati la regola che stabilisce che non è possibile avere
+_reference_ mutabili e immutabili nello stesso _scope_. Questa regola si
+applica al Listato 8-6, dove manteniamo un _reference_ immutabile al primo
+elemento di un vettore e proviamo ad aggiungere un elemento alla fine. Questo
+programma non funzionerà se proviamo a fare _reference_ a quell'elemento anche
+più avanti nella funzione.
 
 <Listing number="8-6" caption="Tentativo di aggiungere un elemento a un vettore in compresenza di un _reference_ all'oggetto">
 
@@ -160,7 +163,7 @@ programmi di finire in questa situazione.
 > Nota: per maggiori dettagli sull'implementazione del _type_ `Vec<T>`, vedere
 > ["Il Rustonomicon”][nomicon].
 
-### Iterazione sui Valori di un Vettore
+### Iterare sui Valori di un Vettore
 
 Per accedere a ogni elemento di un vettore a turno, dovremmo iterare su tutti
 gli elementi anziché utilizzare gli indici per accedervi uno alla volta. Il
@@ -200,22 +203,22 @@ del compilatore simile a quello ottenuto con il codice nel Listato 8-6. Il
 _reference_ al vettore contenuto nel ciclo `for` impedisce la modifica
 simultanea dell'intero vettore.
 
-### Utilizzo di un'Enum per Memorizzare Più _Type_
+### Utilizzare un'Enum per Memorizzare Più _Type_
 
-I vettori possono memorizzare solo valori dello stesso _type_. Questo può essere
-scomodo; ci sono sicuramente casi d'uso in cui è necessario memorizzare un
-elenco di elementi di _type_ diverso. Fortunatamente, le varianti di un'_enum_
-sono definite sotto lo stesso _type_ di _enum_, quindi quando abbiamo bisogno di
-un _type_ per rappresentare elementi di tipi diversi, possiamo definire e
-utilizzare un'_enum_!
+I vettori possono memorizzare solo valori dello stesso _type_. Questo può
+essere scomodo; ci sono sicuramente casi d'uso in cui è necessario memorizzare
+un elenco di elementi di _type_ diverso. Fortunatamente, le varianti di
+un'_enum_ sono definite sotto lo stesso _type_ di _enum_, quindi quando abbiamo
+bisogno di un _type_ per rappresentare elementi di tipi diversi, possiamo
+definire e utilizzare un'_enum_!
 
 Ad esempio, supponiamo di voler ottenere valori da una riga di un foglio di
-calcolo in cui alcune colonne della riga contengono numeri interi, alcuni numeri
-in virgola mobile e alcune stringhe. Possiamo definire un _enum_ le cui varianti
-conterranno i diversi tipi di valore, e tutte le varianti dell'_enum_ saranno
-considerate dello stesso _type_: quello dell'_enum_. Possiamo adesso creare un
-vettore per contenere quell'_enum_ e quindi, in definitiva, contenere _type_
-"diversi". Lo abbiamo dimostrato nel Listato 8-9.
+calcolo in cui alcune colonne della riga contengono numeri interi, alcuni
+numeri in virgola mobile e alcune stringhe. Possiamo definire un _enum_ le cui
+varianti conterranno i diversi tipi di valore, e tutte le varianti dell'_enum_
+saranno considerate dello stesso _type_: quello dell'_enum_. Possiamo adesso
+creare un vettore per contenere quell'_enum_ e quindi, in definitiva, contenere
+_type_ "diversi". Lo abbiamo dimostrato nel Listato 8-9.
 
 <Listing number="8-9" caption="Definizione di un `enum` per memorizzare valori di _type_ diversi in un vettore">
 
@@ -226,14 +229,14 @@ vettore per contenere quell'_enum_ e quindi, in definitiva, contenere _type_
 </Listing>
 
 Rust deve sapere quali _type_ saranno presenti nel vettore in fase di
-compilazione, in modo da sapere esattamente quanta memoria sull'_heap_ sarà
+compilazione, in modo da sapere esattamente quanta memoria nell'_heap_ sarà
 necessaria per memorizzare ogni elemento. Dobbiamo anche essere espliciti sui
 _type_ consentiti in questo vettore. Se Rust permettesse a un vettore di
 contenere qualsiasi _type_, ci sarebbe la possibilità che uno o più _type_
-causassero errori nelle operazioni eseguite sugli elementi del vettore.
-L'utilizzo di un _enum_ assieme ad un'espressione `match` significa che Rust
-garantirà in fase di compilazione che ogni possibile caso venga gestito, come
-discusso nel Capitolo 6.
+causino errori nelle operazioni eseguite sugli elementi del vettore. L'utilizzo
+di un _enum_ assieme ad un'espressione `match` significa che Rust garantirà in
+fase di compilazione che ogni possibile caso venga gestito, come discusso nel
+Capitolo 6.
 
 Se non si conosce l'insieme esaustivo di _type_ che un programma avrà una volta
 in esecuzione da memorizzare in un vettore, la tecnica dell'_enum_ non
@@ -241,17 +244,17 @@ funzionerà. In alternativa, è possibile utilizzare un oggetto _trait_, che
 tratteremo nel Capitolo 18.
 
 Ora che abbiamo discusso alcuni dei modi più comuni per utilizzare i vettori,
-assicuratevi di consultare [la documentazione dell'API][vec-api]<!-- ignore -->
+assicurati di consultare [la documentazione dell'API][vec-api]<!-- ignore -->
 per tutti i numerosi metodi utili definiti su `Vec<T>` dalla libreria standard.
 Ad esempio, oltre a `push`, un metodo `pop` rimuove e restituisce l'ultimo
 elemento.
 
-### L'Eliminazione di un Vettore comporta l'Eliminazione dei suoi Elementi
+### Eliminare un Vettore Elimina i Suoi Elementi
 
-Come qualsiasi altra `struct`, un vettore viene liberato quando esce dallo
+Come qualsiasi altra `struct`, un vettore viene rilasciato quando esce dallo
 _scope_, come annotato nel Listato 8-10.
 
-<Listing number="8-10" caption="Mostra dove vengono rilasciati il ​​vettore e i suoi elementi">
+<Listing number="8-10" caption="Mostra dove vengono rilasciati il vettore e i suoi elementi">
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-10/src/main.rs:here}}
@@ -260,10 +263,10 @@ _scope_, come annotato nel Listato 8-10.
 </Listing>
 
 Quando il vettore viene rilasciato, anche tutto il suo contenuto viene
-rilasciato, il che significa che gli interi in esso contenuti verranno ripuliti.
-Il _borrow checker_ (_controllo dei prestiti_) garantisce che qualsiasi
-_reference_ al contenuto di un vettore venga utilizzato solo finché il vettore
-stesso è valido.
+rilasciato, il che significa che gli interi in esso contenuti verranno
+ripuliti. Il _borrow checker_ (_controllo dei prestiti_) garantisce che
+qualsiasi _reference_ al contenuto di un vettore venga utilizzato solo finché
+il vettore stesso è valido.
 
 Passiamo al tipo di collezione successivo: `String`!
 

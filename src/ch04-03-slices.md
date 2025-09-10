@@ -13,8 +13,8 @@ restituita l'intera stringa.
 
 > Nota: Ai fini dell'introduzione alle _slice_ di stringhe, stiamo assumendo
 > solo caratteri ASCII in questa sezione; una discussione più approfondita sulla
-> gestione di UTF-8 si trova nella sezione [“Memorizzazione del testo codificato
-> UTF-8 con le stringhe”][strings] del Capitolo 8.
+> gestione di UTF-8 si trova nella sezione [“Memorizzare testo codificato UTF-8
+> con le stringhe”][strings] del Capitolo 8.
 
 Lavoriamo su come scrivere la firma di questa funzione senza usare _slice_ per
 ora, per comprendere il problema che le _slice_ risolveranno:
@@ -345,5 +345,5 @@ Capitolo 5 e vediamo come raggruppare pezzi di dati insieme in una `struct`.
 
 [ch13]: ch13-02-iterators.html
 [ch6]: ch06-02-match.html#pattern-che-si-legano-ai-valori
-[strings]: ch08-02-strings.html#memorizzazione-di-testo-codificato-utf-8-con-stringhe
+[strings]: ch08-02-strings.html#memorizzare-testo-codificato-utf-8-con-stringhe
 [deref-coercions]: ch15-02-deref.html#de-referenziazione-forzata-implicita-in-funzioni-e-metodi
