@@ -110,7 +110,7 @@ $ echo $PATH
 
 Se sembra essere tutto in ordine ma Rust non funziona ancora, ci sono diversi
 posti in cui puoi trovare aiuto. Scopri come metterti in contatto con altri
-Rustaceani (_Rustaceans_ d'ora in poi) (uno stupido soprannome con cui ci
+Rustaceani (_Rustacean_ d'ora in poi) (uno stupido soprannome con cui ci
 chiamiamo) sulla [pagina della comunità][community].
 
 ### Aggiornamento e Disinstallazione

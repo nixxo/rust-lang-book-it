@@ -35,7 +35,7 @@ squadra Gialla inizia con 50.
 
 </Listing>
 
-Nota che dobbiamo prima partare in _scope_ `HashMap` con `use` dalla sezione
+Nota che dobbiamo prima portare in _scope_ `HashMap` con `use` dalla sezione
 dedicata alle collezioni della libreria standard. Delle nostre tre collezioni
 comuni, questa è la meno utilizzata, quindi non è inclusa nelle funzionalità
 aggiunte allo _scope_ dal _preludio_. Le _hash map_ hanno anche un supporto
@@ -206,7 +206,7 @@ Il metodo `split_whitespace` restituisce un iteratore su _slice_, separate da
 spazi, del valore in `testo`. Il metodo `or_insert` restituisce un _reference_
 mutabile (`&mut V`) al valore della chiave specificata. Qui, memorizziamo quel
 _reference_ mutabile nella variabile `conteggio`, quindi per assegnare quel
-valore, dobbiamo prima dereferenziare `conteggio` usando l'asterisco (`*`). Il
+valore, dobbiamo prima de-referenziare `conteggio` usando l'asterisco (`*`). Il
 _reference_ mutabile esce dallo _scope_ alla fine del ciclo `for`, quindi tutte
 queste modifiche sono sicure e consentite dalle regole di prestito.
 

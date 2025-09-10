@@ -8,7 +8,7 @@ valore `String`. Un _reference_ è come un puntatore in quanto è un indirizzo c
 possiamo seguire per accedere ai dati archiviati a quell’indirizzo di memoria;
 la _ownership_ di quei dati appartiene ad un'altra variabile. A differenza di un
 puntatore, è garantito che un _reference_ punti a un valore valido di un certo
-_type_ finchè il _reference_ è ancora valido.
+_type_ finché il _reference_ è ancora valido.
 
 Ecco come definiresti e utilizzeresti una funzione `calcola_lunghezza` che abbia
 un _reference_ ad un oggetto come parametro invece di assumere la _ownership_
@@ -31,17 +31,17 @@ riferimento a un valore senza prenderne la _ownership_.
 La Figura 4-6 illustra questo concetto.
 
 <img alt="Tre tabelle: la tabella per s contiene solo un puntatore alla tabella
-per s1. L atabella per s1 contiene i dati sullo stack per s1 e punta ai dati
+per s1. La tabella per s1 contiene i dati sullo stack per s1 e punta ai dati
 della stringa nell'heap." src="img/trpl04-06.svg" class="center" />
 
 <span class="caption">Figura 4-6: Schema di `&String s` che punta a `String
 s1`</span>
 
 > Nota: l'opposto della referenziazione tramite l'uso di `&` è la
-> _dereferenziazione_, che si realizza con l'operatore di deferenziazione `*`
-> (_deference operator_). Vedremo alcuni usi dell'operatore di dereferenziazione
-> nel Capitolo 8 e discuteremo i dettagli della dereferenziazione nel Capitolo
-> 15.
+> _de-referenziazione_, che si realizza con l'operatore di de-referenziazione
+> `*` (_dereference operator_). Vedremo alcuni usi dell'operatore di
+> de-referenziazione nel Capitolo 8 e discuteremo i dettagli della
+> de-referenziazione nel Capitolo 15.
 
 Diamo un'occhiata più da vicino alla chiamata di funzione:
 
@@ -61,7 +61,7 @@ annotazioni esplicative:
 ```
 
 Lo _scope_ in cui la variabile `s` è valida è lo stesso dello _scope_ di
-qualsiasi parametro di funzione, ma il valore a cui punta il _referecence_ non
+qualsiasi parametro di funzione, ma il valore a cui punta il _reference_ non
 viene eliminato quando `s` smette di essere utilizzato, perché `s` non ha la
 _ownership_. Quando le funzioni hanno _reference_ come parametri anziché valori
 effettivi, non avremo bisogno di restituire i valori per restituire la
@@ -132,7 +132,7 @@ L'errore dice che questo codice non è valido perché non possiamo avere più di
 _reference_ mutabile alla volta ad `s`. Il primo _reference_ mutabile è in `r1`
 e deve durare fino a quando non viene utilizzato nel `println!`, ma tra la
 creazione di quel _reference_ mutabile e il suo utilizzo, abbiamo cercato di
-creare un altro _referene_ mutabile in `r2` che prende in prestito gli stessi
+creare un altro _reference_ mutabile in `r2` che prende in prestito gli stessi
 dati di `r1`.
 
 La restrizione che impedisce più _reference_ mutabili agli stessi dati
@@ -203,8 +203,8 @@ dati non sono quelli che pensavi fossero quando il programma è in esecuzione.
 ### _Reference_ Pendenti
 
 Nei linguaggi con puntatori, è facile creare erroneamente un _puntatore
-pendente_, cioé un puntatore che fa riferimento a una posizione in memoria non
-più valido, perché quella momoria assegnata a quella variabile è stata liberata,
+pendente_, cioè un puntatore che fa riferimento a una posizione in memoria non
+più valido, perché quella memoria assegnata a quella variabile è stata liberata,
 ma non si è provveduto a cancellare anche il puntatore che per l'appunto rimane
 _pendente_ puntando a qualcosa che non è più disponibile. In Rust, al contrario,
 il compilatore garantisce che i _reference_ non diverranno mai _pendenti_: se si
@@ -265,7 +265,7 @@ La soluzione è restituire direttamente la `String`:
 ```
 
 Questo funziona senza problemi: la _ownership_ viene spostata all'esterno e non
-viene rialssciato nulla.
+viene rilasciato nulla.
 
 ### Le Regole dei _Reference_
 

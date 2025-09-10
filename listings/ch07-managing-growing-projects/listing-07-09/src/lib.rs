@@ -21,7 +21,7 @@ pub fn mangiare_al_ristorante() {
     pasto.toast = String::from("integrale");
     println!("Vorrei un toast {}, grazie.", pasto.toast);
 
-    // La riga successiva non verrà compilata se la decommentiamo; non ci è
-    // permesso vedere o modificare frutta che accompagna il pasto.
+    // La riga successiva non verrà compilata se la de-commentiamo; non
+    // ci è permesso vedere o modificare frutta che accompagna il pasto.
     // pasto.frutta_di_stagione = String::from("mirtilli");
 }

@@ -9,7 +9,7 @@ la larghezza e l'altezza di un rettangolo specificate in pixel e calcolerà
 l'area del rettangolo. Il Listato 5-8 mostra un breve programma con un modo per
 farlo nel file _src/main.rs_ del nostro progetto.
 
-<Listing number="5-8" file-name="src/main.rs" caption="Calcolo dell'area di un rettangolo specificando in variabili separate larghezza e alatezza">
+<Listing number="5-8" file-name="src/main.rs" caption="Calcolo dell'area di un rettangolo specificando in variabili separate larghezza e altezza">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-08/src/main.rs:all}}
@@ -125,7 +125,7 @@ principale:
 
 La macro `println!` può fare molti tipi di formattazione e, come impostazione
 predefinita, le parentesi graffe dicono a `println!` di usare una formattazione
-conosciuta come `Display`, output pensato per il l'utente finale che utilizzarà
+conosciuta come `Display`, output pensato per il l'utente finale che utilizzerà
 il programma. I _type_ primitivi che abbiamo visto finora implementano `Display`
 di default perché c'è un solo modo in cui vorresti mostrare un `1` o qualsiasi
 altro _type_ primitivo a un utente. Ma con le _struct_ il modo in cui `println!`

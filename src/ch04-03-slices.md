@@ -65,7 +65,7 @@ Poiché il metodo `enumerate` restituisce una tupla, possiamo usare i _pattern_
 per destrutturare quella tupla. Discuteremo meglio i _pattern_ nel [Capitolo
 6][ch6]. Nel ciclo `for`, specifichiamo un _pattern_ che ha `i` per l'indice
 nella tupla e `&item` per il singolo byte nella tupla. Poiché da
-`.iter().enumerate()` otteniamo un _rererence_ all'elemento, usiamo `&` nel
+`.iter().enumerate()` otteniamo un _reference_ all'elemento, usiamo `&` nel
 _pattern_.
 
 All'interno del ciclo `for`, cerchiamo il byte che rappresenta lo spazio usando
@@ -182,7 +182,7 @@ let slice = &s[..];
 
 > Nota: Gli indici di intervallo delle _slice_ di stringa devono trovarsi in
 > posizioni valide tenendo conto anche dei caratteri UTF-8. Se tenti di creare
-> una _slice_ nel mezzo di un carattere multibyte, il tuo programma terminerà
+> una _slice_ nel mezzo di un carattere multi-byte, il tuo programma terminerà
 > con un errore.
 
 Tenendo presente tutte queste informazioni, riscriviamo `prima_parola` per
@@ -266,7 +266,7 @@ immutabili; `&str` è un _reference_ immutabile.
 
 ### String _Slice_ come Parametri
 
-Sapendo che puoi avere _slice_ di litterali e di valori `String`, arriviamo a un
+Sapendo che puoi avere _slice_ di letterali e di valori `String`, arriviamo a un
 ulteriore miglioramento per `prima_parola`, e cioè la sua firma:
 
 ```rust,ignore

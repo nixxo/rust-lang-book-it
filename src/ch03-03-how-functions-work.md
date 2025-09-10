@@ -103,7 +103,7 @@ come valore per `unita_misura`, l'output del programma contiene questi valori.
 ### Dichiarazioni ed Espressioni
 
 I corpi delle funzioni sono costituiti da una serie di dichiarazioni che possono
-eventualmete terminare con un'espressione. Finora le funzioni che abbiamo
+eventualmente terminare con un'espressione. Finora le funzioni che abbiamo
 trattato non hanno incluso un'espressione finale, ma hai visto un'espressione
 come parte di una dichiarazione. Poiché Rust è un linguaggio basato sulle
 espressioni, questa è una distinzione importante da capire. Altri linguaggi non
@@ -182,13 +182,13 @@ virgola alla fine, il che è diverso dalla maggior parte delle righe che hai
 visto finora. Le espressioni non includono il punto e virgola finale. Se
 aggiungi un punto e virgola alla fine di un'espressione, la trasformi in una
 dichiarazione e quindi non restituirà un valore. Tienilo a mente mentre leggi il
-prossimo paragrafo sui volori di ritorno delle funzioni e le espressioni.
+prossimo paragrafo sui valori di ritorno delle funzioni e le espressioni.
 
 ### Funzioni con Valori di Ritorno
 
-Le funzioni possono restituire dei valori al codice che le chiama. Non assegnamo
-un nome ai valori di ritorno, ma dobbiamo esplicitarne il _type_ dopo una
-freccia (`->`). In Rust, il valore di ritorno della funzione è sinonimo del
+Le funzioni possono restituire dei valori al codice che le chiama. Non
+assegniamo un nome ai valori di ritorno, ma dobbiamo esplicitarne il _type_ dopo
+una freccia (`->`). In Rust, il valore di ritorno della funzione è sinonimo del
 valore dell'espressione finale nel blocco del corpo della funzione. Puoi far
 ritornare un valore anche in anticipo alla funzione usando la parola chiave
 `return` e specificando un valore, ma la maggior parte delle funzioni

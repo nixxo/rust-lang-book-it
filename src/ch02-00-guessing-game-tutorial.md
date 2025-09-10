@@ -188,7 +188,7 @@ Se non avessimo importato il modulo `io` con `use std::io;` all'inizio del
 programma, potremmo comunque utilizzare la funzione scrivendo questa chiamata di
 funzione come `std::io::stdin`. La funzione `stdin` restituisce un'istanza di
 [`std::io::Stdin`][iostdin]<!-- ignore -->, che è un _type_ che rappresenta un
-_handle_ all' input standard del tuo terminale.
+_handle_ all'input standard del tuo terminale.
 
 Successivamente, la riga `.read_line(&mut ipotesi)` chiama il metodo
 [`read_line`][read_line]<!-- ignore --> sull'handle di input standard per
@@ -238,7 +238,7 @@ per aiutare a spezzare le righe lunghe quando chiami un metodo con la sintassi
 Come accennato in precedenza, `read_line` inserisce qualsiasi cosa l'utente
 inserisca nella stringa che gli passiamo, ma restituisce anche un valore
 `Result`. [`Result`][result]<!-- ignore --> è una [enumerazione][enums]<!--
-ignore -->(_enum_ per brevità), che è un _type_ che può trovarsi in uno dei
+ignore --> (_enum_ per brevità), che è un _type_ che può trovarsi in uno dei
 molteplici stati possibili. Chiamiamo ogni stato possibile una _variante_.
 
 Il [Capitolo 6][enums]<!-- ignore --> tratterà gli _enum_ in modo più
@@ -341,7 +341,7 @@ fornisce un [_crate_ `rand`][randcrate] con tale funzionalità.
 ### Utilizzare un _Crate_ per Ottenere Maggiori Funzionalità
 
 Ricorda che un _crate_ è una raccolta di file di codice sorgente in Rust. Il
-progetto che stiamo costruento è un _crate binario_, cioè un eseguibile. Il
+progetto che stiamo costruendo è un _crate binario_, cioè un eseguibile. Il
 _crate_ `rand` è un _crate libreria_, che contiene codice destinato a essere
 utilizzato in altri programmi e non può essere eseguito da solo.
 
@@ -390,7 +390,7 @@ rm Cargo.lock
 cargo clean
 cargo build -->
 
-<Listing number="2-2" caption="L'output dall'esecuizione di `cargo build` dopo l'aggiunt a del crate rand come dipendenza">
+<Listing number="2-2" caption="L'output dall'esecuzione di `cargo build` dopo l'aggiunta del crate `rand` come dipendenza">
 
 ```console
 $ cargo build
@@ -521,7 +521,7 @@ versione che hai specificato.
 C'è molto altro da dire su [Cargo][doccargo]<!-- ignore --> e sul [suo
 ecosistema][doccratesio]<!-- ignore -->, di cui parleremo nel Capitolo 14, ma
 per ora questo è tutto ciò che devi sapere. Cargo rende molto facile il
-riutilizzo delle librerie, per cui i Rustaceans sono in grado di scrivere
+riutilizzo delle librerie, per cui i _Rustacean_ sono in grado di scrivere
 progetti più piccoli che sono assemblati da una serie di pacchetti.
 
 ### Generare un Numero Casuale
@@ -621,7 +621,7 @@ risultati possibili quando si confrontano due valori.
 
 Poi aggiungiamo cinque nuove righe in basso che utilizzano il _type_ `Ordering`.
 Il metodo `cmp` confronta due valori e può essere richiamato su qualsiasi cosa
-possa essere confrontata. Come paramentro prende un _reference_ a qualsiasi cosa
+possa essere confrontata. Come parametro prende un _reference_ a qualsiasi cosa
 si voglia confrontare: in questo caso sta confrontando `ipotesi` con
 `numero_segreto`. Poi restituisce una variante dell'_enum_ `Ordering` che
 abbiamo portato nello _scope_ con l'istruzione `use`. Utilizziamo un'espressione
@@ -630,9 +630,9 @@ quale variante di `Ordering` è stata restituita dalla chiamata a `cmp` con i
 valori in `ipotesi` e `numero_segreto`.
 
 Un'espressione `match` è composta da due _rami_. Da una parte un _pattern_ su
-cui fare il contronto, dall'altra il codice da eseguire se il valore dato a
+cui fare il confronto, dall'altra il codice da eseguire se il valore dato a
 `match` corrisponde al _pattern_. Rust prende il valore dato a `match` e lo
-contronta con il _ pattern_ dei vari rami, eseguendo poi il codice se
+confronta con il _ pattern_ dei vari rami, eseguendo poi il codice se
 corrispondono. I _pattern_ e il costrutto `match` sono potenti caratteristiche
 di Rust: ti permettono di esprimere una varietà di situazioni in cui il tuo
 codice potrebbe imbattersi e ti assicurano di gestirle tutte. Queste
@@ -707,7 +707,7 @@ _type_ ad un altro.
 
 Leghiamo questa nuova variabile all'espressione `ipotesi.trim().parse()`.
 L'`ipotesi` nell'espressione si riferisce alla variabile `ipotesi` originale che
-contiene l'input come stringa. Il metodo `trim` su un'istatnza di `String`
+contiene l'input come stringa. Il metodo `trim` su un'istanza di `String`
 elimina ogni spazio bianco ad inizio e fine, cosa da fare prima di convertire la
 stringa in `u32`, che può contenere solo dati numerici. L'utente deve premere
 <kbd>invio</kbd> per confermare l'input da terminale e questo aggiunge un
@@ -715,7 +715,7 @@ carattere _nuova_linea_ (_newline_ d'ora in poi) alla stringa letta da
 `read_line`. Per esempio, se l'utente digita <kbd>5</kbd> e poi preme
 <kbd>invio</kbd>, `ipotesi` conterrà: `5\n`. Il carattere `\n` rappresenta
 _newline_. (Su Windows, premere <kbd>invio</kbd> aggiunge anche il carattere di
-_ritorno_a_capo_ oltre a _newline_, risultando in `\r\n`.) Il metodo `trim`
+_ritorno a capo_ oltre a _newline_, risultando in `\r\n`.) Il metodo `trim`
 elimina sia `\n` che `\r\n`, restituendo quindi solo `5`.
 
 Il metodo [`parse` sulle stringhe][parse]<!-- ignore --> converte una stringa in
@@ -778,8 +778,8 @@ Cambiamo questa situazione aggiungendo un ciclo!
 
 ## Consentire Più Ipotesi con la Ripetizione
 
-La parola chiave `loop` (ndt: _ripetere_) crea un ciclo infinito. Aggiungeremo
-un ciclo per dare agli utenti più possibilità di indovinare il numero:
+La parola chiave `loop` (_ripetizione_) crea un ciclo infinito. Aggiungeremo un
+ciclo per dare agli utenti più possibilità di indovinare il numero:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -839,13 +839,13 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ```
 
 Digitando `esci` chiude il gioco, ma come noterai, anche l'inserimento di
-qualsiasi altro input che non sia un numero. Questo è a dir poco subottimale:
+qualsiasi altro input che non sia un numero. Questo è a dir poco sub-ottimale:
 vogliamo che il gioco si fermi anche quando viene indovinato il numero corretto.
 
 ### Uscita Dopo un'Ipotesi Corretta
 
 Programmiamo il gioco in modo che esca quando l'utente vince, aggiungendo
-un'istruzione `break` (ndt: _uscita_):
+un'istruzione `break` (_uscita_):
 
 <span class="filename">File: src/main.rs</span>
 

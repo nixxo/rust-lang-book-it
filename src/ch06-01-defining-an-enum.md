@@ -16,7 +16,7 @@ incontrerà, possiamo _enumerare_ tutte le varianti possibili, da cui il nome
 _enum_.
 
 Qualsiasi indirizzo IP può essere o versione quattro o versione sei, ma non
-entrambi contemporaneamente. Questa proprietà degli indirizii IP rende la
+entrambi contemporaneamente. Questa proprietà degli indirizzi IP rende la
 struttura dati _enum_ appropriata perché un valore di _enum_ può essere solo una
 delle sue varianti. Sia i versione quattro sia i versione sei sono comunque
 fondamentalmente indirizzi IP, quindi dovrebbero essere trattati come dati dello
@@ -255,7 +255,7 @@ esplicitamente. Le sue varianti sono anch’esse incluse nel _prelude_: puoi usa
 è comunque un normale _enum_, e `Some(T)` e `None` sono ancora varianti del
 _type_ `Option<T>`.
 
-La sintassi `<T>` è una caratteriastica di Rust di cui non abbiamo ancora
+La sintassi `<T>` è una caratteristica di Rust di cui non abbiamo ancora
 parlato. È un parametro di _type_ generico, e tratteremo i _type generici_ più
 in dettaglio nel Capitolo 10. Per ora, tutto ciò che devi sapere è che `<T>`
 significa che la variante `Some` dell’_enum_ `Option` può contenere un pezzo di

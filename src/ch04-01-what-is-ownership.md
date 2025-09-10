@@ -236,8 +236,8 @@ funzione si chiama [`drop`][drop]<!-- ignore -->, ed è dove l’autore di `Stri
 può inserire il codice per rilasciare la memoria. Rust chiama `drop`
 automaticamente alla parentesi graffa di chiusura.
 
-> Nota: in C++, questo schema di deallocazione delle risorse alla fine del ciclo
-> di vita di un elemento è talvolta chiamato _Resource Acquisition Is
+> Nota: in C++, questo schema di de-allocazione delle risorse alla fine del
+> ciclo di vita di un elemento è talvolta chiamato _Resource Acquisition Is
 > Initialization (RAII)_. La funzione `drop` di Rust ti sarà familiare se hai
 > usato gli schemi RAII.
 
@@ -279,7 +279,7 @@ Sembra molto simile, quindi potremmo pensare che il funzionamento sia lo stesso:
 cioè che la seconda riga faccia una copia del valore in `s1` e lo assegni a
 `s2`. Ma non è esattamente quello che succede.
 
-Nalla Figura 4-1 diamo un'occhiata _sotto le coperte_ per vedere com'è in realtà
+Nella Figura 4-1 diamo un'occhiata _sotto le coperte_ per vedere com'è in realtà
 una `String`. Una `String` è composta da tre parti, mostrate a sinistra: un
 puntatore (`ptr`) alla memoria che contiene il contenuto della stringa, una
 lunghezza (`len`) e una capienza (`capacity`). Questo gruppo di dati è
@@ -288,7 +288,7 @@ contenuto.
 
 <img alt="Due tabelle: la prima tabella contiene la rappresentazione di s1 nello
 stack, composta dalla lunghezza (5), capienza (5), e un puntatore al primo
-valore dela seconda tabella. La seconda tabella contiene una rappresentazione
+valore della seconda tabella. La seconda tabella contiene una rappresentazione
 del contenuto della stringa nell'heap, byte per byte." src="img/trpl04-01.svg"
 class="center" style="width: 50%;" />
 
@@ -319,8 +319,8 @@ l'operazione `s2 = s1` potrebbe diventare molto dispendiosa in termini
 prestazionali e di memoria qualora i dati nell'_heap_ fossero di grandi
 dimensioni.
 
-<img alt="Quattro tabelle: due tabelle rappresentanmo i dati sullo stack di s1 e
-s2, ognuna delle guali punta alla propriia copia di dati nell'heap."
+<img alt="Quattro tabelle: due tabelle rappresentano i dati sullo stack di s1 e
+s2, ognuna delle quali punta alla propria copia di dati nell'heap."
 src="img/trpl04-03.svg" class="center" style="width: 50%;" />
 
 <span class="caption">Figura 4-3: Un'altra possibilità di come potrebbe essere
@@ -360,17 +360,17 @@ essere chiamata _copia superficiale_, questa operazione è nota come _move_
 (_spostamento_). In questo esempio, diremmo che `s1` è stata _spostata_ in `s2`.
 Quindi, ciò che accade in realtà è mostrato nella Figura 4-4.
 
-<img alt="Tre tabelle: tabelle s1 e s2 raprpesentano rispettivamente le quelle
+<img alt="Tre tabelle: tabelle s1 e s2 rappresentano rispettivamente le quelle
 stringhe sullo stack, ed entrambe puntano alla medesima stringa nell'heap.
 Tabella s1 è scurita perché s1 non è più valida; solo s2 può essere usata per
 accedere ai dati nell'heap." src="img/trpl04-04.svg" class="center"
 style="width: 50%;" />
 
-<span class="caption">Figura 4-4: Reppresentazione in memoria dopo che `s1` è
+<span class="caption">Figura 4-4: Rappresentazione in memoria dopo che `s1` è
 resa non valida</span>
 
 Questo risolve il nostro problema! Con la sola `s2` valida, quando essa uscirà
-dallo _scope_, solo lei rilascera la memoria e il gioco è fatto.
+dallo _scope_, solo lei rilascerà la memoria e il gioco è fatto.
 
 Inoltre, c’è una scelta progettuale implicita in questo: Rust non creerà mai
 automaticamente copie “profonde” dei tuoi dati. Pertanto, si può presupporre che
@@ -396,10 +396,10 @@ riferimento al valore originale nell'_heap_.
 
 <img alt="Una tabella s rappresenta la stringa sullo stack, che punta ai dati
 della stringa (ciao) nell'heap, con i dati della stringa originale (hello)
-scuriti perchè non più accessibili." src="img/trpl04-05.svg" class="center"
+scuriti perché non più accessibili." src="img/trpl04-05.svg" class="center"
 style="width: 50%;" />
 
-<span class="caption">Figura 4-5: Reppresentazione in memoria dopo che il primo
+<span class="caption">Figura 4-5: Rappresentazione in memoria dopo che il primo
 valore è completamente sostituito.</span>
 
 La stringa originale esce così immediatamente dallo _scope_. Rust eseguirà la
@@ -477,7 +477,7 @@ Ecco alcuni dei _type_ che implementano `Copy`:
 - Il _type_ booleano, `bool`, con i valori `true` e `false`.
 - Tutti i _type_ in virgola mobile, come `f64`.
 - Il _type_ carattere, `char`.
-- Le tuple, se contengono solo _type_ che implementanoe `Copy`. Ad esempio,
+- Le tuple, se contengono solo _type_ che implementano `Copy`. Ad esempio,
   `(i32, i32)` implementa `Copy`, ma `(i32, String)` no.
 
 ### _Ownership_ e Funzioni
@@ -549,6 +549,5 @@ chiamata _riferimento_ (_reference_ in inglese).
 [traits]: ch10-02-traits.html
 [derivable-traits]: appendix-03-derivable-traits.html
 [method-syntax]: ch05-03-method-syntax.html#sintassi-dei-metodi
-[paths-module-tree]:
-    ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html
+[paths-module-tree]: ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html
 [drop]: https://doc.rust-lang.org/stable/std/ops/trait.Drop.html#tymethod.drop

@@ -186,7 +186,7 @@ un _reference_ a un `i32` che ha un parametro di longevità denominato `'a` e un
 _reference_ mutabile a un `i32` che ha anch'esso il parametro di longevità `'a`.
 
 ```rust,ignore
-&i32        // _reference_ senza paramentro di longevità
+&i32        // _reference_ senza parametro di longevità
 &'a i32     // _reference_ con annotazione della longevità
 &'a mut i32 // _reference_ mutabile con annotazione della longevità
 ```
@@ -500,7 +500,7 @@ firma è questa:
 fn prima_parola<'a>(s: &'a str) -> &str {
 ```
 
-La seconda regola si applica perché esiste esattamente un singolo paramentro di
+La seconda regola si applica perché esiste esattamente un singolo parametro di
 longevità in input. La seconda regola specifica che la longevità di un parametro
 in input viene assegnata alala longevità in output, quindi la firma è ora
 questa:

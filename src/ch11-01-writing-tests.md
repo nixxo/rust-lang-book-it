@@ -147,7 +147,7 @@ is to call the `panic!` macro. Enter the new test as a function named
 `another`, so your _src/lib.rs_ file looks like Listing 11-3.
 Ora aggiungeremo un altro test, ma questa volta faremo un test che fallisce! I test falliscono quando qualcosa nella funzione di test va in panico. Ogni test viene eseguito in un nuovo _thread_ e quando il _thread_ principale vede che un _thread_ di test fallisce, il test viene contrassegnato come fallito. Nel Capitolo 9 abbiamo parlato di come il modo più semplice per mandare in panico un programma sia quello di chiamare la macro `panic!`. Inserisci il nuovo test come una funzione di nome `un_altra`, in modo che il tuo file _src/lib.rs_ assuma l'aspetto del Listato 11-3.
 
-<Listing number="11-3" file-name="src/lib.rs" caption="Aggiungere un secondo test che fallisce perchè chiamiamo la macro `panic!`">
+<Listing number="11-3" file-name="src/lib.rs" caption="Aggiungere un secondo test che fallisce perché chiamiamo la macro `panic!`">
 
 ```rust,panics,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/listing-11-03/src/lib.rs}}

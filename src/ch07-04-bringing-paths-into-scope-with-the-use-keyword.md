@@ -1,6 +1,6 @@
 ## Portare i Percorsi in _Scope_ con la Parola Chiave `use`
 
-Dover scrivere i percordi (_path_) per chiamare le funzioni può risultare
+Dover scrivere i percorsi (_path_) per chiamare le funzioni può risultare
 scomodo e ripetitivo. Nel Listato 7-7, sia che scegliessimo il _path_ assoluto o
 relativo per la funzione `aggiungi_in_lista`, ogni volta che volevamo chiamare
 `aggiungi_in_lista` dovevamo specificare anche `sala` e `accoglienza`.
@@ -81,7 +81,7 @@ sia definita `aggiungi_in_lista`.
 
 D'altra parte, quando portiamo `struct`, `enum` e altri elementi con `use`, è
 idiomatico specificare il _path_ completo. Il Listato 7-14 mostra il modo
-idiomatico per portare, ad esempio, `HashMap` della libreria standar nello
+idiomatico per portare, ad esempio, `HashMap` della libreria standard nello
 _scope_ di un _crate binario_.
 
 <Listing number="7-14" file-name="src/main.rs" caption="Portare `HashMap` nello _scope_ in modo idiomatico">

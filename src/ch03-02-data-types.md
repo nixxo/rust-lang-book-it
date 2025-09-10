@@ -35,6 +35,7 @@ riconoscerli da altri linguaggi di programmazione. Andiamo a vedere come
 funzionano in Rust.
 
 #### Il _Type_ Intero
+
 Un intero, _integer_ d'ora in poi, è un numero senza una componente frazionaria.
 Nel Capitolo 2 abbiamo utilizzato un tipo _integer_, il _type_ `u32`. Questa
 dichiarazione del _type_ indica che il valore a cui è associato deve essere un
@@ -282,13 +283,13 @@ parentesi quadre:
 ```
 
 Gli array sono utili quando vuoi che i tuoi dati siano allocati sullo _stack_,
-come gli altri _type_ che abbiamo visto finora, piuttosto che sull'_heap_
+come gli altri _type_ che abbiamo visto finora, piuttosto che nell'_heap_
 (parleremo dello _stack_ e dell'_heap_ in modo più approfondito nel [Capitolo
 4][stack-and-heap]<!-- ignore -->) o quando vuoi assicurarti di avere sempre un
 numero fisso di elementi. Un array, però, non è flessibile come il _type
 vettore_ (_vector_ d'ora in poi). Un _vector_ è un _type_ simile, che consente
 la collezione di dati, fornito dalla libreria standard ma che è autorizzato a
-crescere o a ridursi di dimensione perché il suo contenuto risiede sull'_heap_.
+crescere o a ridursi di dimensione perché il suo contenuto risiede nell'_heap_.
 Se non sei sicuro se usare un array o un _vector_, è probabile che tu debba
 usare un _vector_. Il [Capitolo 8][vectors]<!-- ignore --> tratta i _vector_ in
 modo più dettagliato.

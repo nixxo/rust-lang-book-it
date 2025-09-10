@@ -157,7 +157,7 @@ spazio per posizionare tutti gli elementi uno accanto all'altro dove il vettore
 è attualmente memorizzato l'aggiunta di un nuovo elemento alla fine del vettore
 potrebbe richiedere l'allocazione di nuova memoria e la copia dei vecchi
 elementi nel nuovo spazio. In tal caso, il _reference_ al primo elemento
-punterebbe alla memoria deallocata. Le regole di _borrowing_ impediscono ai
+punterebbe alla memoria de-allocata. Le regole di _borrowing_ impediscono ai
 programmi di finire in questa situazione.
 
 > Nota: per maggiori dettagli sull'implementazione del _type_ `Vec<T>`, vedere
@@ -191,10 +191,10 @@ Listato 8-8 aggiungerà `50` a ciascun elemento.
 </Listing>
 
 Per modificare il valore a cui punta il _reference_ mutabile, dobbiamo usare
-l'operatore di dereferenziazione `*` per arrivare al valore in `i` prima di
-poter usare l'operatore `+=`. Approfondiremo l'operatore di dereferenziazione
-nella sezione [“Seguire il _Reference_ al Valore”][deref]<!-- ignore --> del
-Capitolo 15.
+l'operatore di de-referenziazione `*` per arrivare al valore in `i` prima di poter
+usare l'operatore `+=`. Approfondiremo l'operatore di de-referenziazione nella
+sezione [“Seguire il _Reference_ al Valore”][deref]<!-- ignore --> del Capitolo
+15.
 
 L'iterazione su un vettore, sia immutabile che mutabile, è sicura grazie alle
 regole di _ownership_ e _borrowing_. Se tentassimo di inserire o rimuovere
@@ -203,7 +203,7 @@ del compilatore simile a quello ottenuto con il codice nel Listato 8-6. Il
 _reference_ al vettore contenuto nel ciclo `for` impedisce la modifica
 simultanea dell'intero vettore.
 
-### Utilizzare un'Enum per Memorizzare Più _Type_
+### Utilizzare un'_Enum_ per Memorizzare Più _Type_
 
 I vettori possono memorizzare solo valori dello stesso _type_. Questo può
 essere scomodo; ci sono sicuramente casi d'uso in cui è necessario memorizzare

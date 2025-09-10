@@ -63,7 +63,7 @@ con la programmazione.
 Centinaia di aziende, grandi e piccole, utilizzano Rust in produzione per una
 serie di compiti, come strumenti a riga di comando, servizi web, strumenti
 DevOps, dispositivi embedded, analisi e transcodifica di audio e video,
-criptovalute, bioinformatica, motori di ricerca, applicazioni per l'Internet
+cripto-valute, bioinformatica, motori di ricerca, applicazioni per l'Internet
 delle cose, machine learning e persino parti importanti del browser web Firefox.
 
 ### Sviluppatori Open Source
@@ -141,10 +141,10 @@ che la libreria standard mette a disposizione, come vettori, stringhe e mappe
 hash. Il Capitolo 9 esplora la filosofia e le tecniche di gestione degli errori
 di Rust.
 
-Il Capitolo 10 approfondisce i generici, i tratti e la longevità (_generics_,
-_traits_ e _lifetime_  d'ora in poi), che ti danno la possibilità di definire
-codice applicabile a più tipologie di dato. Il Capitolo 11 è dedicato ai test,
-che anche con le garanzie di sicurezza di Rust sono necessari per garantire la
+Il Capitolo 10 approfondisce i generici, i tratti e la longevità (_traits_ e
+_lifetime_  d'ora in poi), che ti danno la possibilità di definire codice
+applicabile a più tipologie di dato. Il Capitolo 11 è dedicato ai test, che
+anche con le garanzie di sicurezza di Rust sono necessari per garantire la
 correttezza della logica del tuo programma. Nel Capitolo 12, costruiremo la
 nostra implementazione di un sottoinsieme di funzionalità dello strumento da
 riga di comando `grep`, che cerca il testo all'interno dei file. Per questo,
@@ -200,9 +200,9 @@ destinato a funzionare:
 
 | Ferris | Significato |
 | --- | --- |
-| <img src="img/ferris/does_not_compile.svg" class="ferris-explain" alt="Ferris with a question mark"/> | Questo codice non si compila! |
-| <img src="img/ferris/panics.svg" class="ferris-explain" alt="Ferris throwing up their hands"/> | Questo codice genera _panic_! |
-| <img src="img/ferris/not_desired_behavior.svg" class="ferris-explain" alt="Ferris with one claw up, shrugging"/> | Questo codice non funziona come dovrebbe. |
+| <img src="img/ferris/does_not_compile.svg" class="ferris-explain" alt="Ferris con un punto interrogativo"/> | Questo codice non si compila! |
+| <img src="img/ferris/panics.svg" class="ferris-explain" alt="Ferris con le chele alzate"/> | Questo codice genera _panic_! |
+| <img src="img/ferris/not_desired_behavior.svg" class="ferris-explain" alt="Ferris con una chela alzata, interdetto"/> | Questo codice non funziona come dovrebbe. |
 
 Nella maggior parte dei casi, ti guideremo alla versione corretta di qualsiasi
 codice che non si compila.

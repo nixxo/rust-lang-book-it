@@ -216,7 +216,7 @@ ancora!
 ancora!
 ancora!
 ancora!
-^Ccicli!
+^C!
 ```
 
 Il simbolo `^C` rappresenta quando hai premuto <kbd>ctrl</kbd>-<kbd>c</kbd>.
@@ -263,7 +263,7 @@ ciclo corrente, `return` esce sempre dalla funzione corrente.
 
 #### Etichette di Loop per Distinguere tra Cicli Multipli
 
-Se hai un ciclo annidati all'interno di un altro ciclo, `break` e `continue` si
+Se hai un ciclo annidato all'interno di un altro ciclo, `break` e `continue` si
 applicano al loop più interno in quel momento. Puoi specificare facoltativamente
 un'_etichetta_ (_loop label_) su uno specifico ciclo per poi usare con `break` o
 `continue` quell'etichetta per specificare a quale ciclo applicare l'istruzione.
@@ -305,7 +305,7 @@ messaggio e usciamo.
 </Listing>
 
 Questo costrutto elimina un sacco di annidamenti che sarebbero necessari se
-usassi `loop`, `if`, `else` e `break`, ed è di più semplice lettura. Finchè una
+usassi `loop`, `if`, `else` e `break`, ed è di più semplice lettura. Finché una
 condizione risulta `true`, il codice viene eseguito; altrimenti, esce dal ciclo.
 
 #### Eseguire un Ciclo su una Collezione con `for`
@@ -369,7 +369,7 @@ cambierai il numero di valori nell'array, come invece faresti con il metodo
 La sicurezza e la concisione dei cicli `for` li rendono il costrutto di ciclo
 più usato in Rust. Anche nelle situazioni in cui vuoi eseguire un certo numero
 di volte il codice, come nell'esempio del conto alla rovescia che utilizzava un
-ciclo `while` nel Listato 3-3, la maggior parte dei Rustaceans userebbe un ciclo
+ciclo `while` nel Listato 3-3, la maggior parte dei _Rustacean_ userebbe un ciclo
 `for`. Il modo per farlo sarebbe quello di usare un `Range`, fornito dalla
 libreria standard, che genera tutti i numeri in sequenza partendo da un numero e
 finendo prima di un altro numero.
@@ -395,7 +395,7 @@ in questo capitolo, prova a costruire dei programmi per eseguire le seguenti
 operazioni:
 
 - Convertire le temperature tra Fahrenheit e Celsius.
-- Generare l'*n*esimo numero di Fibonacci.
+- Generare l'*n*-esimo numero di Fibonacci.
 - Stampare il testo del canto natalizio "The Twelve Days of Christmas",
   sfruttando la ripetizione della canzone.
 

@@ -97,10 +97,10 @@ nel [Capitolo 7][public]<!-- ignore -->.
 > 
 > In C e C++ si usano due operatori diversi per accedere ai membri: si usa `.`
 > quando si lavora direttamente con un oggetto, e `->` quando si lavora con un
-> puntatore all’oggetto e prima bisogna dereferenziarlo. In C++, questi
-> operatori possono essere usati per chiamare i metodi; in C, sono usati solo
-> per accedere ai campi delle _struct_. In altre parole, se `oggetto` è un
-> puntatore, `oggetto->qualcosa()` è simile a `(*oggetto).qualcosa()`.
+> puntatore all’oggetto e prima bisogna de-referenziarlo. In C++, questi operatori
+> possono essere usati per chiamare i metodi; in C, sono usati solo per accedere
+> ai campi delle _struct_. In altre parole, se `oggetto` è un puntatore,
+> `oggetto->qualcosa()` è simile a `(*oggetto).qualcosa()`.
 >
 > Rust non ha un equivalente dell’operatore `->`; invece, Rust ha una
 > funzionalità chiamata _referenziamento e de-referenziamento automatico_
@@ -206,7 +206,7 @@ bisogno di un’istanza del _type_ per svolgere il loro compito. Ne abbiamo già
 usata una: la funzione `String::from` implementata sul _type_ `String`.
 
 Le funzioni associate che non sono metodi sono spesso usate come _costruttori_
-che ritornano una nuova istanza della _struct_. Spesso si chiamano `new` perchè
+che ritornano una nuova istanza della _struct_. Spesso si chiamano `new` perché
 `new` non è una parola chiave e non è incorporata nel linguaggio. Per esempio,
 potremmo decidere di fornire una funzione associata chiamata `quadrato` che
 prende un parametro di dimensione e lo usa sia come larghezza sia come altezza,

@@ -21,7 +21,7 @@ durante l’esecuzione.
 
 Parlando di monete, usiamole come esempio con `match`! Possiamo scrivere una
 funzione che prende una moneta USA sconosciuta e, in modo simile alla macchina
-contamonete, determina quale moneta sia e restituisce il suo valore in
+conta-monete, determina quale moneta sia e restituisce il suo valore in
 centesimi, come mostrato nel Listato 6-3.
 
 <Listing number="6-3" caption="Un _enum_ e un'espressione `match` che ha come _pattern_ le varianti dell'_enum_">

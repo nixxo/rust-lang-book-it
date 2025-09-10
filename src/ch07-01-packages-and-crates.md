@@ -22,7 +22,7 @@ I _crate_ _libreria_ non hanno una funzione `main`, e non si compilano in un
 eseguibile. Invece, definiscono funzionalità destinate a essere condivise con
 progetti multipli. Ad esempio, il _crate_ `rand` che abbiamo usato nel [Capitolo
 2][rand]<!-- ignore --> fornisce funzionalità che generano numeri casuali. La
-maggior parte delle volte, quando i Rustaceans dicono “_crate_”, intendono
+maggior parte delle volte, quando i _Rustacean_ dicono “_crate_”, intendono
 _crate_ _libreria_, e usano “_crate_” in modo intercambiabile con il concetto
 generale di programmazione di una “_libreria_”.
 
@@ -33,7 +33,7 @@ Privacy”][modules]<!-- ignore -->).
 
 Un _pacchetto_ (_package_) è un insieme di uno o più _crate_ che fornisce un
 insieme di funzionalità. Un pacchetto contiene un file _Cargo.toml_ che descrive
-come costruire quei _crate_. Cargo è anch'esso in reltà un pacchetto che
+come costruire quei _crate_. Cargo è anch'esso in realtà un pacchetto che
 contiene il _crate_ _binario_ per lo strumento da riga di comando che hai usato
 per costruire il tuo codice finora. Il pacchetto Cargo contiene anche un _crate
 libreria_ di cui il _crate_ _binario_ ha bisogno. Altri progetti possono

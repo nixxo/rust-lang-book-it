@@ -75,7 +75,7 @@ trait objects in detail in Chapter 18.) Using trait objects lets us treat each
 of the anonymous futures produced by these types as the same type, because all
 of them implement the `Future` trait.
 
-> Note: In [Utilizzare un'Enum per Memorizzare Più _Type_][enum-alt]<!-- ignore --> in
+> Note: In [Utilizzare un'_Enum_ per Memorizzare Più _Type_][enum-alt]<!-- ignore --> in
 > Chapter 8, we discussed another way to include multiple types in a `Vec`:
 > using an enum to represent each type that can appear in the vector. We can’t
 > do that here, though. For one thing, we have no way to name the different

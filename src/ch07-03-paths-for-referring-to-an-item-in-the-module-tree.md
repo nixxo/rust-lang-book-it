@@ -197,7 +197,7 @@ argomento, consulta [Le Linee Guida per l'API di Rust][api-guidelines].
 > binario_ _src/main.rs_ che una radice di _crate_ _libreria_ _src/lib.rs_, e
 > entrambi i _crate_ avranno il nome del pacchetto come impostazione
 > predefinita. Tipicamente, i pacchetti che contengono sia una libreria che un
-> _crate_ _binario_ avranno nel _crate_ _binario_ il codice strattamente
+> _crate_ _binario_ avranno nel _crate_ _binario_ il codice strettamente
 > necessario ad avviare un eseguibile che chiama il codice definito nel _crate_
 > _libreria_. Questo consente ad altri progetti di beneficiare della maggior
 > parte delle funzionalità che il pacchetto fornisce, poiché il codice del
@@ -275,7 +275,7 @@ Poiché il campo `toast` nella _struct_ `cucine::Colazione` è pubblico, in
 `mangiare_al_ristorante` possiamo scrivere e leggere il campo `toast`
 utilizzando la notazione a punto. Nota che non possiamo utilizzare il campo
 `frutta_di_stagione` in `mangiare_al_ristorante`, perché `frutta_di_stagione` è
-privato. Prova a decommentare la riga che modifica il valore del campo
+privato. Prova a de-commentare la riga che modifica il valore del campo
 `frutta_di_stagione` per vedere quale errore ottieni!
 
 Inoltre, nota che poiché `cucine::Colazione` ha un campo privato, la _struct_

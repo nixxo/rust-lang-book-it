@@ -1,7 +1,7 @@
 ## Memorizzare Testo Codificato UTF-8 con Stringhe
 
 Abbiamo parlato delle stringhe nel Capitolo 4, ma ora le analizzeremo più
-approfonditamente. I nuovi Rustaceans spesso si bloccano sulle stringhe per una
+approfonditamente. I nuovi _Rustacean_ spesso si bloccano sulle stringhe per una
 combinazione di tre ragioni: la propensione di Rust a esporre possibili errori,
 il fatto che le stringhe siano una struttura dati più complicata di quanto molti
 programmatori credano e la codifica UTF-8. Questi fattori si combinano in un
@@ -29,7 +29,7 @@ stringa.
 
 Il _type_ `String`, fornito dalla libreria standard di Rust anziché esser
 definito nel linguaggio principale, è un _type_ di stringa codificato in UTF-8,
-con _ownership_, espandibile e modificabile. Quando i Rustaceans fanno
+con _ownership_, espandibile e modificabile. Quando i _Rustacean_ fanno
 riferimento alle "stringhe" in Rust, potrebbero riferirsi sia al _type_ `String`
 che alla _slice_ di stringa `&str`, e non solo a uno di questi _type_. Sebbene
 questa sezione tratterà principalmente `String`, entrambe le tipologie sono
