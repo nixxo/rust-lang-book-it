@@ -1,5 +1,4 @@
 <!-- Old heading. Do not remove or links may break. -->
-
 <a id="closures-anonymous-functions-that-can-capture-their-environment"></a>
 
 ## Closures: Funzioni Anonime che Catturano il loro Ambiente
@@ -12,7 +11,6 @@ Dimostreremo come queste funzionalità di closure consentano il riutilizzo del c
 personalizzazione del comportamento.
 
 <!-- Old headings. Do not remove or links may break. -->
-
 <a id="creating-an-abstraction-of-behavior-with-closures"></a>
 <a id="refactoring-using-functions"></a>
 <a id="refactoring-with-closures-to-store-code"></a>
@@ -26,8 +24,7 @@ una maglietta gratuita ha impostato il suo colore preferito, riceverà la maglie
 non ha specificato un colore preferito, riceverà il colore di cui l'azienda
 ha attualmente la maggiore disponibilità.
 
-Ci sono molti modi per implementarlo. Per questo esempio, useremo un'
-enum chiamata `ShirtColor` che ha le varianti `Red` e `Blue` (limitando il
+Ci sono molti modi per implementarlo. Per questo esempio, useremo un'enum chiamata `ShirtColor` che ha le varianti `Red` e `Blue` (limitando il
 numero di colori disponibili per semplicità). Rappresentiamo l'inventario dell'azienda
 con una struttura `Inventory` che ha un campo denominato `shirts` che
 contiene un `Vec<ShirtColor>` che rappresenta i colori delle magliette attualmente disponibili in magazzino.

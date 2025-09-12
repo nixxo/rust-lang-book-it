@@ -136,8 +136,8 @@ nel Listato 6-5.
 
 </Listing>
 
-Esaminiamo la prima esecuzione di `piu_uno` in maggiore dettaglio. Quando
-chiamiamo `piu_uno(cinque)`, la variabile `x` nel corpo di `piu_uno` avrà il
+Esaminiamo la prima esecuzione di `più_uno` in maggiore dettaglio. Quando
+chiamiamo `più_uno(cinque)`, la variabile `x` nel corpo di `più_uno` avrà il
 valore `Some(5)`. Quindi confrontiamo quello rispetto a ciascun ramo del
 `match`:
 
@@ -157,7 +157,7 @@ al valore contenuto in `Some`, quindi `i` assume il valore `5`. Il codice nel
 ramo del `match` viene quindi eseguito: aggiungiamo 1 al valore di `i` e creiamo
 un nuovo valore `Some` con il totale `6` all’interno.
 
-Consideriamo ora la seconda chiamata di `piu_uno` nel Listato 6-5, dove `x` è
+Consideriamo ora la seconda chiamata di `più_uno` nel Listato 6-5, dove `x` è
 `None`. Entriamo nel `match` e confrontiamolo con il primo ramo:
 
 ```rust,ignore
@@ -178,7 +178,7 @@ costrutto tra i preferiti dagli utenti.
 
 C’è un altro aspetto di `match` da discutere: i _pattern_ dei rami devono
 coprire tutte le possibilità. Considera questa versione della nostra funzione
-`piu_uno`, che contiene un bug e non si compilerà:
+`più_uno`, che contiene un bug e non si compilerà:
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-10-non-exhaustive-match/src/main.rs:here}}

@@ -10,7 +10,7 @@ impl Rettangolo {
         self.larghezza * self.altezza
     }
 
-    fn puo_contenere(&self, altro: &Rettangolo) -> bool {
+    fn può_contenere(&self, altro: &Rettangolo) -> bool {
         self.larghezza > altro.larghezza && self.altezza > altro.altezza
     }
 }
@@ -30,6 +30,6 @@ fn main() {
         altezza: 45,
     };
 
-    println!("Può rettangolo1 contenere rettangolo2? {}", rettangolo1.puo_contenere(&rettangolo2));
-    println!("Può rettangolo1 contenere rettangolo3? {}", rettangolo1.puo_contenere(&rettangolo3));
+    println!("Può rettangolo1 contenere rettangolo2? {}", rettangolo1.può_contenere(&rettangolo2));
+    println!("Può rettangolo1 contenere rettangolo3? {}", rettangolo1.può_contenere(&rettangolo3));
 }

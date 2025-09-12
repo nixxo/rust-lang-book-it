@@ -4,12 +4,12 @@ fn main() {
     let risultato;
     {
         let stringa2 = String::from("xyz");
-        risultato = piu_lunga(stringa1.as_str(), stringa2.as_str());
+        risultato = più_lunga(stringa1.as_str(), stringa2.as_str());
     }
     println!("La stringa più lunga è {risultato}");
 }
 // ANCHOR_END: here
 
-fn piu_lunga<'a>(x: &'a str, y: &'a str) -> &'a str {
+fn più_lunga<'a>(x: &'a str, y: &'a str) -> &'a str {
     if x.len() > y.len() { x } else { y }
 }

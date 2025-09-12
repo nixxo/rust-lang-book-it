@@ -41,11 +41,13 @@ Il Listato 15-1 mostra come utilizzare un box per memorizzare un valore `i32` su
 
 </Listing>
 
-Definiamo la variabile `b` come avente il valore di un `Box` che punta al
-valore `5`, allocato sull'heap. Questo programma stamperà `b = 5`; in
-questo caso, possiamo accedere ai dati nel box in modo simile a come faremmo se questi
-dati fossero sullo stack. Proprio come qualsiasi valore posseduto, quando un box esce
-dall'ambito, come accade a `b` alla fine di `main`, verrà deallocato. La deallocazione avviene sia per il box (memorizzato sullo stack) sia per i dati a cui punta (memorizzati sull'heap).
+Definiamo la variabile `b` come avente il valore di un `Box` che punta al valore
+`5`, allocato sull'heap. Questo programma stamperà `b = 5`; in questo caso,
+possiamo accedere ai dati nel box in modo simile a come faremmo se questi dati
+fossero sullo stack. Proprio come qualsiasi valore posseduto, quando un box esce
+dall'ambito, come accade a `b` alla fine di `main`, verrà de-allocato. La
+de-allocazione avviene sia per il box (memorizzato sullo stack) sia per i dati a
+cui punta (memorizzati sull'heap).
 
 Mettere un singolo valore sull'heap non è molto utile, quindi i box non verranno utilizzati molto spesso da soli in questo modo. Avere valori come un singolo `i32` sullo
 stack, dove vengono memorizzati di default, è più appropriato nella maggior parte

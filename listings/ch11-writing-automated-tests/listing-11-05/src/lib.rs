@@ -5,7 +5,7 @@ struct Rettangolo {
 }
 
 impl Rettangolo {
-    fn puo_contenere(&self, altro: &Rettangolo) -> bool {
+    fn può_contenere(&self, altro: &Rettangolo) -> bool {
         self.larghezza > altro.larghezza && self.altezza > altro.altezza
     }
 }

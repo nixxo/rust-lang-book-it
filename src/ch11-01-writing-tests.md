@@ -117,7 +117,7 @@ La parte successiva dell'output di test che inizia con `Doc-tests addizione` è
 per i risultati di qualsiasi test sulla documentazione. Non abbiamo ancora test
 sulla documentazione, ma Rust può compilare qualsiasi esempio di codice che
 appare nella nostra documentazione. Questa funzione aiuta a mantenere
-sincronizzata la docuemtazione e il codice! Parleremo di come scrivere test
+sincronizzata la documetazione e il codice! Parleremo di come scrivere test
 sulla documentazione nella sezione ["Commenti di documentazione come
 test"][doc-comments]<!-- ignore --> del Capitolo 14. Per ora, ignoreremo
 l'output `Doc-tests`.
@@ -200,11 +200,11 @@ alla macro `assert!` un argomento che valuta in un booleano. Se il valore è
 ci aiuta a verificare che il nostro codice funzioni nel modo in cui intendiamo.
 
 Nel Listato 5-15 del Capitolo 5 abbiamo utilizzato una _struct_ `Rettangolo` e
-un metodo `puo_contenere`, che sono ripetuti qui nel Listato 11-5. Inseriamo
+un metodo `può_contenere`, che sono ripetuti qui nel Listato 11-5. Inseriamo
 questo codice nel file _src/lib.rs_ e scriviamo alcuni test utilizzando la macro
 `assert!`.
 
-<Listing number="11-5" file-name="src/lib.rs" caption="La _struct_ `Rettangolo` e il suo metodo `puo_contenere` del Capitolo 5">
+<Listing number="11-5" file-name="src/lib.rs" caption="La _struct_ `Rettangolo` e il suo metodo `può_contenere` del Capitolo 5">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/listing-11-05/src/lib.rs}}
@@ -212,13 +212,13 @@ questo codice nel file _src/lib.rs_ e scriviamo alcuni test utilizzando la macro
 
 </Listing>
 
-Il metodo `puo_contenere` restituisce un booleano, il che significa che è un
+Il metodo `può_contenere` restituisce un booleano, il che significa che è un
 caso d'uso perfetto per la macro `assert!`. Nel Listato 11-6, scriviamo un test
-che utilizza il metodo `puo_contenere` creando un'istanza di `Rettangolo` che ha
+che utilizza il metodo `può_contenere` creando un'istanza di `Rettangolo` che ha
 una larghezza di 8 e un'altezza di 7 e affermando che può contenere un'altra
 istanza di `Rettangolo` che ha una larghezza di 5 e un'altezza di 1.
 
-<Listing number="11-6" file-name="src/lib.rs" caption="Un test per `puo_contenere` che verifica se un rettangolo più grande può effettivamente contenere un rettangolo più piccolo">
+<Listing number="11-6" file-name="src/lib.rs" caption="Un test per `può_contenere` che verifica se un rettangolo più grande può effettivamente contenere un rettangolo più piccolo">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/listing-11-06/src/lib.rs:here}}
@@ -238,7 +238,7 @@ esterno sia disponibile per questo modulo `tests`.
 Abbiamo chiamato il nostro test `grande_contiene_piccolo` e abbiamo creato le
 due istanze di `Rettangolo` di cui abbiamo bisogno. Poi abbiamo chiamato la
 macro `assert!` e le abbiamo passato il risultato della chiamata
-`grande.puo_contenere(&piccolo)`. Questa espressione dovrebbe restituire `true`,
+`grande.può_contenere(&piccolo)`. Questa espressione dovrebbe restituire `true`,
 quindi il nostro test dovrebbe passare. Scopriamolo!
 
 ```console
@@ -254,9 +254,9 @@ rettangolo più piccolo non può contenere un rettangolo più grande:
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-02-adding-another-rectangle-test/src/lib.rs:here}}
 ```
 
-Poiché il risultato corretto della funzione `puo_contenere` in questo caso è
+Poiché il risultato corretto della funzione `può_contenere` in questo caso è
 `false`, dobbiamo negare questo risultato prima di passarlo alla macro
-`assert!`. Di conseguenza, il nostro test passerà se `puo_contenere` restituisce
+`assert!`. Di conseguenza, il nostro test passerà se `può_contenere` restituisce
 `false`:
 
 ```console
@@ -265,7 +265,7 @@ Poiché il risultato corretto della funzione `puo_contenere` in questo caso è
 
 Due test superati! Ora vediamo cosa succede ai risultati dei nostri test quando
 introduciamo un bug nel nostro codice. Cambieremo l'implementazione del metodo
-`puo_contenere` sostituendo il segno maggiore con il segno minore quando
+`può_contenere` sostituendo il segno maggiore con il segno minore quando
 confronta le larghezze:
 
 ```rust,not_desired_behavior,noplayground
@@ -278,7 +278,7 @@ L'esecuzione dei test produce ora il seguente risultato:
 {{#include ../listings/ch11-writing-automated-tests/no-listing-03-introducing-a-bug/output.txt}}
 ```
 Poiché `grande.larghezza` è `8` e `piccolo.larghezza` è `5`, il confronto delle
-larghezze in `puo_contenere` ora restituisce `false`: 8 non è inferiore a 5.
+larghezze in `può_contenere` ora restituisce `false`: 8 non è inferiore a 5.
 
 ### Testare l'Eguaglianza Con le Macro `assert_eq!` e `assert_ne!`
 
@@ -355,18 +355,20 @@ cambiato dipende dal giorno della settimana in cui eseguiamo i test, la cosa
 migliore da asserire potrebbe essere che l'output della funzione non è uguale
 all'input.
 
-Sotto la superficie, le macro `assert_eq!` e `assert_ne!` utilizzano rispettivamente gli operatori
-`==` e `!=`. Quando le asserzioni falliscono, queste macro stampano i loro
-argomenti utilizzando la formattazione di debug, il che significa che i valori confrontati devono
-implementare i _trait_ `PartialEq` e `Debug`. Tutti i _type_ primitivi e la maggior parte dei
-_type_ della libreria standard implementano questi _trait_. Per le _struct_ e le _enum_ che
-definisci tu stesso, dovrai implementare `PartialEq` per asserire l'uguaglianza di
-tali _type_. Dovrai anche implementare `Debug` per stampare i valori quando l'
-asserzione fallisce. Poiché entrambi i _trait_ sono derivabili, come menzionato nel
-Listato 5-12 nel Capitolo 5, questo è solitamente semplice come aggiungere l'
-annotazione `#[derive(PartialEq, Debug)]` alla definizione della _struct_ o dell'_enum_. Vedi l'
-Appendice C, [_Trait_ derivabili”]][derivable-traits]<!-- ignore -->, per ulteriori
-dettagli su questi e altri _trait_ derivabili.
+Sotto la superficie, le macro `assert_eq!` e `assert_ne!` utilizzano
+rispettivamente gli operatori `==` e `!=`. Quando le asserzioni falliscono,
+queste macro stampano i loro argomenti utilizzando la formattazione di debug, il
+che significa che i valori confrontati devono implementare i _trait_ `PartialEq`
+e `Debug`. Tutti i _type_ primitivi e la maggior parte dei _type_ della libreria
+standard implementano questi _trait_. Per le _struct_ e le _enum_ che definisci
+tu stesso, dovrai implementare `PartialEq` per asserire l'uguaglianza di tali
+_type_. Dovrai anche implementare `Debug` per stampare i valori quando
+l'asserzione fallisce. Poiché entrambi i _trait_ sono derivabili, come
+menzionato nel Listato 5-12 nel Capitolo 5, questo è solitamente semplice come
+aggiungere l'annotazione `#[derive(PartialEq, Debug)]` alla definizione della
+_struct_ o dell'_enum_. Vedi l'Appendice C, [_Trait_
+derivabili”]][derivable-traits]<!-- ignore -->, per ulteriori dettagli su questi
+e altri _trait_ derivabili.
 
 ### Aggiunta di Messaggi di Errore Personalizzati
 
@@ -485,12 +487,12 @@ I test che utilizzano `should_panic` possono essere imprecisi. Un test
 `should_panic` passerebbe anche se il test va in panico per un motivo diverso da
 quello atteso. Per rendere i test `should_panic` più precisi, possiamo
 aggiungere un parametro opzionale `expected` all'attributo `should_panic`.
-L'infrastuttura di test si assicurerà che il messaggio di fallimento contenga il
-testo fornito. Per esempio, considera il codice modificato per `Ipotesi` nel
+L'infrastruttura di test si assicurerà che il messaggio di fallimento contenga
+il testo fornito. Per esempio, considera il codice modificato per `Ipotesi` nel
 Listato 11-9 dove la funzione `new` va in panico con messaggi diversi a seconda
 che il valore sia troppo piccolo o troppo grande.
 
-<Listing number="11-9" file-name="src/lib.rs" caption="Test per un `panic!` con un messaggio di panico contenente una sottostringa specificata">
+<Listing number="11-9" file-name="src/lib.rs" caption="Test per un `panic!` con un messaggio di panico contenente una sotto-stringa specificata">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/listing-11-09/src/lib.rs:here}}
@@ -499,13 +501,13 @@ che il valore sia troppo piccolo o troppo grande.
 </Listing>
 
 Questo test passerà perché il valore che abbiamo inserito nel parametro
-`expected` dell'attributo `should_panic` è una sottostringa del messaggio con
+`expected` dell'attributo `should_panic` è una sotto-stringa del messaggio con
 cui la funzione `Ipotesi::new` va in panico. Avremmo potuto specificare l'intero
 messaggio di panico che ci aspettiamo, che in questo caso sarebbe stato
 `L'ipotesi deve essere minore o uguale a 100, valore fornito 200.`. Quello che
 scegli di specificare dipende da quanto il messaggio di panico è unico o
 dinamico e da quanto preciso vuoi che sia il tuo test. In questo caso, una
-sottostringa del messaggio di panico è sufficiente per garantire che il codice
+sotto-stringa del messaggio di panico è sufficiente per garantire che il codice
 nella funzione di test esegua la parte con `else if valore > 100`.
 
 Per vedere cosa succede quando un test `should_panic` con un messaggio
@@ -558,8 +560,7 @@ Ora che conosci diversi modi per scrivere i test, vediamo cosa succede quando li
 eseguiamo ed esploriamo le diverse opzioni che possiamo utilizzare con `cargo
 test`
 
-[format-macro]: ch08-02-strings.html#
-concatenazione-con-loperatore--o-la-macro-format
+[format-macro]: ch08-02-strings.html#concatenazione-con-loperatore--o-la-macro-format
 [bench]: https://doc.rust-lang.org/stable/unstable-book/library-features/test.html
 [ignoring]: ch11-02-running-tests.html#ignorare-alcuni-test-se-non-specificamente-richiesti
 [subset]: ch11-02-running-tests.html#eseguire-un-sottoinsieme-di-test-in-base-al-nome

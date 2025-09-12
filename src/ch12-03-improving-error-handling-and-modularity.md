@@ -157,7 +157,7 @@ semplicità è un compromesso che vale la pena accettare.
 > continuare, perché queste copie verranno eseguite solo una volta e il
 > percorso del file e la stringa di query sono molto piccoli. È meglio avere
 > un programma funzionante ma un po' inefficiente che cercare di
-> iperottimizzare il codice al primo tentativo. Man mano che acquisirai
+> iper-ottimizzare il codice al primo tentativo. Man mano che acquisirai
 > esperienza con Rust, sarà più facile iniziare con la soluzione più
 > efficiente, ma per ora è perfettamente accettabile chiamare `clone`.
 
@@ -503,7 +503,7 @@ percorso del file, in modo che il nostro programma stampi solo i risultati
 della ricerca (se non si verificano errori).
 
 Nota che la funzione di ricerca raccoglierà tutti i risultati in un vettore
-che ritornerà prima che venga stampato alcunchè. Questa implementazione
+che ritornerà prima che venga stampato alcunché. Questa implementazione
 potrebbe essere lenta nel visualizzare i risultati quando si cercano file di
 grandi dimensioni, perché i risultati non vengono stampati man mano che
 vengono trovati; discuteremo un possibile modo per risolvere questo problema

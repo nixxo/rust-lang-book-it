@@ -3,7 +3,7 @@ $ cargo run
 error[E0308]: mismatched types
  --> src/main.rs:7:23
   |
-7 | fn piu_uno(x: i32) -> i32 {
+7 | fn più_uno(x: i32) -> i32 {
   |    -------            ^^^ expected `i32`, found `()`
   |    |
   |    implicitly returns `()` as its body has no tail or `return` expression

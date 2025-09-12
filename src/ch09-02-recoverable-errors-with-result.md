@@ -533,7 +533,7 @@ errore restituiscono un _integer_ diverso da `0`. Anche Rust restituisce
 _integer_ dagli eseguibili per essere compatibile con questa convenzione.
 
 La funzione `main` può restituire qualsiasi _type_ che implementi [il _trait_
-`std::process::Termination`][termination]<!-- ignore -->, contenenente una
+`std::process::Termination`][termination]<!-- ignore -->, contenente una
 funzione `report` che restituisce un `ExitCode`. Consulta la documentazione
 della libreria standard per maggiori informazioni sull'implementazione del
 _trait_ `Termination` per i tuoi _type_.

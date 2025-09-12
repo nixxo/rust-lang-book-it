@@ -2,7 +2,7 @@ fn main() {
     let stringa1 = String::from("abcd");
     let stringa2 = "xyz";
 
-    let risultato = piu_lunga_con_annuncio(
+    let risultato = più_lunga_con_annuncio(
         stringa1.as_str(),
         stringa2,
         "Oggi è il compleanno di qualcuno!",
@@ -13,7 +13,7 @@ fn main() {
 // ANCHOR: here
 use std::fmt::Display;
 
-fn piu_lunga_con_annuncio<'a, T>(
+fn più_lunga_con_annuncio<'a, T>(
     x: &'a str,
     y: &'a str,
     ann: T,

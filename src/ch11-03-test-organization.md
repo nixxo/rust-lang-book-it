@@ -99,10 +99,10 @@ accanto a _src_. Cargo sa che deve cercare i file di test di integrazione in
 questa cartella. Possiamo quindi creare tutti i file di test che vogliamo e
 Cargo compilerà ciascuno di essi come _crate_ separati.
 
-Let’s create an integration test. With the code in Listing 11-12 still in the
-_src/lib.rs_ file, make a _tests_ directory, and create a new file named
-_tests/integration_test.rs_. Your directory structure should look like this:
-Creiamo un test di integrazione. Con il codice del Listato 11-12 ancora nel file _src/lib.rs_, crea una cartella _tests_ e un nuovo file chiamato _tests/test_integrazione.rs_. La struttura delle cartelle del tuo progetto dovrebbe essere simile a questa:
+Creiamo un test di integrazione. Con il codice del Listato 11-12 ancora nel file
+_src/lib.rs_, crea una cartella _tests_ e un nuovo file chiamato
+_tests/test_integrazione.rs_. La struttura delle cartelle del tuo progetto
+dovrebbe essere simile a questa:
 
 ```text
 addizione
@@ -129,7 +129,7 @@ la nostra libreria nello _scope_ di ogni _crate_ di test. Per questo motivo
 aggiungiamo `use addizione::aggiungi_due;` all'inizio del codice, che non era
 necessario negli _unit test_ usati finora.
 
-Non abbiamo bisogno di annotare alcun codice in _tests/integration_test.rs_ con
+Non abbiamo bisogno di annotare alcun codice in _tests/test_integrazione.rs_ con
 `#[cfg(test)]`. Cargo tratta la cartella _tests_ in modo speciale e compila i
 file in questa directory solo quando eseguiamo `cargo test`. Esegui ora `cargo
 test`:
@@ -219,7 +219,7 @@ cui abbiamo parlato in ["Percorsi di File Alternativi"][alt-paths]<!-- ignore
 trattare il modulo `comune` come un file di test di integrazione. Quando
 spostiamo il codice della funzione `inizializzazione` in _tests/comune/mod.rs_ e
 cancelliamo il file _tests/comune.rs_, la sezione nell'output del test non
-apparirà più. I file nelle sottocartelle della acrtella _tests_ non vengono
+apparirà più. I file nelle sottocartelle della cartella _tests_ non vengono
 compilati come _crate_ separati né hanno sezioni nell'output del test.
 
 Dopo aver creato _tests/comune/mod.rs_, possiamo utilizzarlo da qualsiasi file

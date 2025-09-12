@@ -59,7 +59,7 @@ grande in un elenco.
 Memorizziamo un elenco di numeri interi nella variabile `lista_numeri` e
 inseriamo un _reference_ al primo numero dell'elenco in una variabile denominata
 `maggiore`. Quindi eseguiamo un'iterazione su tutti i numeri dell'elenco e, se
-il numero corrente è più grende del numero memorizzato in `maggiore`,
+il numero corrente è più grande del numero memorizzato in `maggiore`,
 sostituiamo il _reference_ in quella variabile. Tuttavia, se il numero corrente
 è minore o uguale al numero più grande visto finora, la variabile non cambia e
 il codice passa al numero successivo nell'elenco. Dopo aver considerato tutti i

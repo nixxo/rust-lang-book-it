@@ -12,7 +12,7 @@ failures:
 ---- tests::grande_contiene_piccolo stdout ----
 
 thread 'tests::grande_contiene_piccolo' (6902) panicked at src/lib.rs:31:9:
-assertion failed: grande.puo_contenere(&piccolo)
+assertion failed: grande.può_contenere(&piccolo)
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 
 

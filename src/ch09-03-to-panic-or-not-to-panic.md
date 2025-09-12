@@ -24,7 +24,7 @@ quando scrivi codice per una libreria.
 
 Quando si scrive un esempio per illustrare un concetto, includere anche un
 codice robusto per la gestione degli errori può rendere l'esempio meno chiaro.
-Negli esempi, è sufficentemente chiaro che una chiamata a un metodo come
+Negli esempi, è sufficientemente chiaro che una chiamata a un metodo come
 `unwrap` che potrebbe andare in panico è intesa come segnaposto per il modo in
 cui si desidera che l'applicazione gestisca gli errori, che può differire in
 base al comportamento del resto del codice.

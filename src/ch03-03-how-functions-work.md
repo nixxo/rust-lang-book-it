@@ -252,7 +252,7 @@ La compilazione di questo codice produce un errore, come segue:
 
 Il messaggio di errore principale, `mismatched types` (_type incompatibili_),
 rivela il problema principale di questo codice. La definizione della funzione
-`piu_uno` dice che restituirà un `i32`, ma le dichiarazioni non risultano in un
+`più_uno` dice che restituirà un `i32`, ma le dichiarazioni non risultano in un
 valore, restituendo un `()`, il _type_ _unit_. Pertanto, non viene restituito
 nulla, il che contraddice la definizione della funzione e provoca un errore. In
 questo output, Rust fornisce un messaggio che può aiutare a correggere questo

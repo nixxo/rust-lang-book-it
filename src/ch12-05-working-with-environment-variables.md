@@ -210,7 +210,7 @@ impostate utilizzando argomenti della riga di comando o variabili d'ambiente.
 
 Alcuni programmi consentono argomenti _e_ variabili d'ambiente per la stessa
 configurazione. In questi casi, i programmi decidono che l'uno o l'altro abbia
-la precedenza. COme esercizio e per sperimentare un po', prova a controllare
+la precedenza. Come esercizio e per sperimentare un po', prova a controllare
 la distinzione tra maiuscole e minuscole tramite un argomento della riga di
 comando o una variabile d'ambiente. Decidi se l'argomento della riga di
 comando o la variabile d'ambiente debbano avere la precedenza se il programma

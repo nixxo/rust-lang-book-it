@@ -1,17 +1,17 @@
 # Un progetto I/O: Creare un Programma da Riga di Comando
 
 Questo capitolo è un riepilogo delle numerose competenze acquisite finora e
-un' esplorazione di alcune funzionalità aggiuntive della libreria standard.
+un'esplorazione di alcune funzionalità aggiuntive della libreria standard.
 Creeremo uno strumento da riga di comando che interagisce con l'input/output
 di file e da riga di comando per mettere in pratica alcuni dei concetti di
 Rust che ora hai acquisito.
 
 La velocità, la sicurezza, l'output binario singolo e il supporto
-multipiattaforma di Rust lo rendono un linguaggio ideale per la creazione di
+multi-piattaforma di Rust lo rendono un linguaggio ideale per la creazione di
 strumenti da riga di comando, quindi per il nostro progetto creeremo la nostra
 versione del classico strumento di ricerca da riga di comando `grep` (cerca
 **g**lobalmente un'**espressione regolare** e  **stampala**). Nel caso d'uso
-più semplice, `grep` cerca una stringa come parmetro in un file specificato.
+più semplice, `grep` cerca una stringa come parametro in un file specificato.
 Per farlo, `grep` accetta come argomenti un percorso di file e una stringa.
 Quindi legge il file, trova le righe in quel file che contengono l'argomento
 stringa e visualizza quelle righe.

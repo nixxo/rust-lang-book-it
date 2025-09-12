@@ -10,7 +10,7 @@ tuttavia, specificare alcune opzioni della riga di comando per modificare questo
 comportamento predefinito.
 
 Alcune opzioni della riga di sono per `cargo test`, mentre altre vengono
-passater al binario di test risultante. 
+passate al binario di test risultante. 
 
 Per separare questi due tipi di argomenti, devi elencare gli argomenti che vanno
 a `cargo test` seguiti dal separatore `--` e poi quelli che vanno al binario di
@@ -142,7 +142,7 @@ Solo il test con il nome `cento` è stato eseguito; gli altri due test non
 corrispondevano a quel nome. L'output del test ci fa sapere che ci sono altri
 test che non sono stati eseguiti mostrando `2 filtered out` alla fine.
 
-Non possiamo specifare più di un nome in questo modo; verrà utilizzato solo il
+Non possiamo specificare più di un nome in questo modo; verrà utilizzato solo il
 primo valore dato a `cargo test`. Esiste però un modo per eseguire più test.
 
 #### Filtrare Per Eseguire Più Test

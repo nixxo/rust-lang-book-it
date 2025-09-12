@@ -5,7 +5,7 @@ struct Rettangolo {
 }
 
 impl Rettangolo {
-    fn puo_contenere(&self, altro: &Rettangolo) -> bool {
+    fn può_contenere(&self, altro: &Rettangolo) -> bool {
         self.larghezza > altro.larghezza && self.altezza > altro.altezza
     }
 }
@@ -28,7 +28,7 @@ mod tests {
             altezza: 1,
         };
 
-        assert!(grande.puo_contenere(&piccolo));
+        assert!(grande.può_contenere(&piccolo));
         // ANCHOR: here
     }
 
@@ -43,7 +43,7 @@ mod tests {
             altezza: 1,
         };
 
-        assert!(!piccolo.puo_contenere(&grande));
+        assert!(!piccolo.può_contenere(&grande));
     }
 }
 // ANCHOR_END: here

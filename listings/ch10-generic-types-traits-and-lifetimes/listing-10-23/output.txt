@@ -5,7 +5,7 @@ error[E0597]: `stringa2` does not live long enough
   |
 5 |         let stringa2 = String::from("xyz");
   |             -------- binding `stringa2` declared here
-6 |         risultato = piu_lunga(stringa1.as_str(), stringa2.as_str());
+6 |         risultato = più_lunga(stringa1.as_str(), stringa2.as_str());
   |                                                  ^^^^^^^^ borrowed value does not live long enough
 7 |     }
   |     - `stringa2` dropped here while still borrowed

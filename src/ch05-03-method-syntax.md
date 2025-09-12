@@ -148,10 +148,10 @@ Esercitiamoci ad usare i metodi implementando un secondo metodo sulla _struct_
 `Rettangolo`. Questa volta vogliamo che un’istanza di `Rettangolo` prenda
 un’altra istanza di `Rettangolo` e ritorni `true` se la seconda `Rettangolo` può
 entrare completamente dentro `self` (la prima `Rettangolo`); altrimenti dovrebbe
-ritornare `false`. Cioè, una volta definito il metodo `puo_contenere`, dovremmo
+ritornare `false`. Cioè, una volta definito il metodo `può_contenere`, dovremmo
 poter scrivere il programma mostrato nel Listato 5-14.
 
-<Listing number="5-14" file-name="src/main.rs" caption="Uso del metodo `puo_contenere` ancora da scrivere">
+<Listing number="5-14" file-name="src/main.rs" caption="Uso del metodo `può_contenere` ancora da scrivere">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-14/src/main.rs}}
@@ -169,21 +169,21 @@ Può rettangolo1 contenere rettangolo3? false
 ```
 
 Sappiamo che vogliamo definire un metodo, quindi sarà all’interno del blocco
-`impl Rettangolo`. Il nome del metodo sarà `puo_contenere`, e prenderà un
+`impl Rettangolo`. Il nome del metodo sarà `può_contenere`, e prenderà un
 _reference_ immutabile di un’altra `Rettangolo` come parametro. Possiamo dedurre
 il _type_ del parametro osservando il codice che chiama il metodo:
-`rettangolo1.puo_contenere(&rettangolo2)` passa `&rettangolo2`, che è un
+`rettangolo1.può_contenere(&rettangolo2)` passa `&rettangolo2`, che è un
 _reference_ immutabile di `rettangolo2`, un’istanza di `Rettangolo`. Questo ha
 senso perché abbiamo solo bisogno di leggere `rettangolo2` (invece di
 modificarlo, il che richiederebbe un _reference_ mutabile), e vogliamo che
 `main` mantenga l’_ownership_ di `rettangolo2` così da poterlo usare di nuovo
-dopo la chiamata a `puo_contenere`. Il valore di ritorno di `puo_contenere` sarà
+dopo la chiamata a `può_contenere`. Il valore di ritorno di `può_contenere` sarà
 un Booleano, e l’implementazione verificherà se la larghezza e l’altezza di
 `self` sono maggiori rispetto alla larghezza e all’altezza dell’altra
-`Rettangolo`, rispettivamente. Aggiungiamo il nuovo metodo `puo_contenere` al
+`Rettangolo`, rispettivamente. Aggiungiamo il nuovo metodo `può_contenere` al
 blocco `impl` del Listato 5-13, come mostrato nel Listato 5-15.
 
-<Listing number="5-15" file-name="src/main.rs" caption="Implementazione del metodo `puo_contenere` in `Rettangolo` che riceve un'altra istanza di `Rettangolo` come parametro">
+<Listing number="5-15" file-name="src/main.rs" caption="Implementazione del metodo `può_contenere` in `Rettangolo` che riceve un'altra istanza di `Rettangolo` come parametro">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-15/src/main.rs:here}}
