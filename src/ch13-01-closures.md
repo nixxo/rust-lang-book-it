@@ -134,7 +134,7 @@ Per le definizioni di closure, il compilatore dedurrà un tipo concreto per cias
 loro parametri e per il loro valore di ritorno. Ad esempio, il Listato 13-3 mostra
 la definizione di una closure breve che restituisce semplicemente il valore ricevuto come
 parametro. Questa closure non è molto utile, se non per gli scopi di questo
-esempio. Si noti che non abbiamo aggiunto alcuna annotazione di tipo alla definizione.
+esempio. Nota che non abbiamo aggiunto alcuna annotazione di tipo alla definizione.
 Poiché non ci sono annotazioni di tipo, possiamo chiamare la closure con qualsiasi tipo,
 come abbiamo fatto qui con `String` la prima volta. Se poi proviamo a chiamare
 `example_closure` con un intero, otterremo un errore.
@@ -208,7 +208,7 @@ This code compiles, runs, and prints:
 {{#include ../listings/ch13-functional-features/listing-13-05/output.txt}}
 ```
 
-Si noti che non c'è più `println!` tra la definizione e la chiamata della
+Nota che non c'è più `println!` tra la definizione e la chiamata della
 chiusura `prestito_mutabile`: quando `prestito_mutabile` è definita, cattura un
 riferimento mutabile a `list`. Non usiamo più la chiusura dopo che
 è stata chiamata, quindi il prestito mutabile termina. Tra la definizione della chiusura e la
@@ -304,7 +304,7 @@ Ricordiamo che `T` è il tipo generico che rappresenta il tipo del valore nella 
 funzione `unwrap_or_else`: il codice che chiama `unwrap_or_else` su un'
 `Option<String>`, ad esempio, otterrà una `String`.
 
-Si noti inoltre che la funzione `unwrap_or_else` ha il parametro di tipo generico aggiuntivo `F`. Il tipo `F` è il tipo del parametro denominato `f`, che è
+Nota inoltre che la funzione `unwrap_or_else` ha il parametro di tipo generico aggiuntivo `F`. Il tipo `F` è il tipo del parametro denominato `f`, che è
 la chiusura che forniamo quando chiamiamo `unwrap_or_else`.
 
 Il vincolo di trait specificato sul tipo generico `F` è `FnOnce() -> T`, il che

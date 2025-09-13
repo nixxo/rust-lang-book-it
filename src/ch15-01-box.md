@@ -86,7 +86,7 @@ lista `1, 2, 3` con ciascuna coppia tra parentesi:
 Ogni elemento in una cons list contiene due elementi: il valore dell'elemento corrente
 e l'elemento successivo. L'ultimo elemento della lista contiene solo un valore chiamato `Nil`
 senza un elemento successivo. Una cons list viene prodotta chiamando ricorsivamente la funzione `cons`. Il nome canonico per indicare il caso base della ricorsione è `Nil`.
-Si noti che questo non è lo stesso del concetto di "null" o "nil" discusso nel
+Nota che questo non è lo stesso del concetto di "null" o "nil" discusso nel
 Capitolo 6, che indica un valore non valido o assente.
 
 La cons list non è una struttura dati comunemente utilizzata in Rust. Nella maggior parte dei casi
@@ -95,7 +95,7 @@ Altri tipi di dati ricorsivi più complessi _sono_ utili in varie situazioni,
 ma iniziando con la cons list in questo capitolo, possiamo esplorare come i box
 ci consentano di definire un tipo di dati ricorsivo senza troppe distrazioni.
 
-Il Listato 15-2 contiene una definizione enum per una cons list. Si noti che questo codice
+Il Listato 15-2 contiene una definizione enum per una cons list. Nota che questo codice
 non verrà ancora compilato perché il tipo `List` non ha una dimensione nota, che
 dimostreremo.
 

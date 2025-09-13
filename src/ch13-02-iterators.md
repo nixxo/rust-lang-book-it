@@ -61,7 +61,7 @@ fn next(&mut self) -> Option<Self::Item>;
 }
 ```
 
-Si noti che questa definizione utilizza una nuova sintassi: `type Item` e `Self::Item`,
+Nota che questa definizione utilizza una nuova sintassi: `type Item` e `Self::Item`,
 che definiscono un _tipo associato (associated type)_ a questo trait. Parleremo approfonditamente dei
 tipi associati nel Capitolo 20. Per ora, tutto ciò che dovete sapere è che
 questo codice afferma che l'implementazione del trait `Iterator` richiede anche la definizione di
@@ -84,14 +84,14 @@ dal vettore.
 
 </Listing>
 
-Si noti che era necessario rendere `v1_iter` mutabile: chiamare il metodo `next` su un
+Nota che era necessario rendere `v1_iter` mutabile: chiamare il metodo `next` su un
 iteratore modifica lo stato interno che l'iteratore utilizza per tenere traccia della propria
 posizione nella sequenza. In altre parole, questo codice _consuma_, o esaurisce, l'
 iteratore. Ogni chiamata a `next` consuma un elemento dall'iteratore. Non era necessario
 rendere `v1_iter` mutabile quando abbiamo usato un ciclo `for`, perché il ciclo prendeva
 la proprietà di `v1_iter` e la rendeva mutabile in background.
 
-Si noti inoltre che i valori ottenuti dalle chiamate a `next` sono riferimenti immutabili
+Nota inoltre che i valori ottenuti dalle chiamate a `next` sono riferimenti immutabili
 ai valori nel vettore. Il metodo `iter` produce un iteratore
 su riferimenti immutabili. Se vogliamo creare un iteratore che prende
 la proprietà di `v1` e restituisce i valori posseduti, possiamo chiamare `into_iter` invece di

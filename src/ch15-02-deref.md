@@ -182,7 +182,7 @@ direttamente invece di un riferimento al valore, il valore verrebbe spostato fuo
 `self`. Non vogliamo assumere la proprietà del valore interno di `MioBox<T>` in
 questo caso, né nella maggior parte dei casi in cui utilizziamo l'operatore di de-referenziazione.
 
-Si noti che l'operatore `*` viene sostituito con una chiamata al metodo `deref` e
+Nota che l'operatore `*` viene sostituito con una chiamata al metodo `deref` e
 poi con una chiamata all'operatore `*` una sola volta, ogni volta che utilizziamo `*` nel nostro codice.
 Poiché la sostituzione dell'operatore `*` non è ricorsiva all'infinito,
 otteniamo dati di tipo `i32`, che corrispondono al `5` in `assert_eq!` nel

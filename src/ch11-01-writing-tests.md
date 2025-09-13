@@ -376,7 +376,7 @@ Puoi anche aggiungere un messaggio personalizzato da stampare insieme al
 messaggio di fallimento come argomenti opzionali alle macro `assert!`,
 `assert_eq!` e `assert_ne!`. Qualsiasi argomento specificato dopo gli argomenti
 obbligatori viene passato alla macro `format!` (di cui si parla in
-["Concatenazione con l'Operatore `+` o la Macro `format!`"][format-macro]<!--
+["Concatenare con l'Operatore `+` o la Macro `format!`"][format-macro]<!--
 ignore --> nel Capitolo 8), quindi puoi passare una stringa di formato che
 contenga dei segnaposto `{}` e dei valori da inserire in quei segnaposto. I
 messaggi personalizzati sono utili per documentare il significato di
@@ -560,7 +560,7 @@ Ora che conosci diversi modi per scrivere i test, vediamo cosa succede quando li
 eseguiamo ed esploriamo le diverse opzioni che possiamo utilizzare con `cargo
 test`
 
-[format-macro]: ch08-02-strings.html#concatenazione-con-loperatore--o-la-macro-format
+[format-macro]: ch08-02-strings.html#concatenare-con-loperatore--o-la-macro-format
 [bench]: https://doc.rust-lang.org/stable/unstable-book/library-features/test.html
 [ignoring]: ch11-02-running-tests.html#ignorare-alcuni-test-se-non-specificamente-richiesti
 [subset]: ch11-02-running-tests.html#eseguire-un-sottoinsieme-di-test-in-base-al-nome

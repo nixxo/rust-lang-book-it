@@ -106,7 +106,7 @@ dichiariamo il nome del _type_ tra parentesi angolari subito dopo il nome della
 _struct_. Quindi utilizziamo il _type_ generico nella definizione della
 _struct_, dove altrimenti specificheremmo _type_ di dati concreti.
 
-Si noti che, poiché abbiamo utilizzato un solo _type_ generico per definire
+Nota che, poiché abbiamo utilizzato un solo _type_ generico per definire
 `Punto<T>`, questa definizione afferma che la _struct_ `Punto<T>` è generica su
 un _type_ `T` e che i campi `x` e `y` sono entrambi dello stesso _type_,
 qualunque esso sia. Se creiamo un'istanza di `Punto<T>` che ha valori di _type_

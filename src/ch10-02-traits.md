@@ -192,7 +192,7 @@ codice. Ecco come appare:
 
 Questo codice stampa `1 nuovo post: (Leggi di più su @horse_ebooks...)`.
 
-Si noti che non è possibile chiamare l'implementazione predefinita da una
+Nota che non è possibile chiamare l'implementazione predefinita da una
 implementazione sovrascritta dello stesso metodo.
 
 ### _Trait_ come Parametri

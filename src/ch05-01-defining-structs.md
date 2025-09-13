@@ -148,12 +148,12 @@ valori dai campi corrispondenti in `utente1`, ma possiamo scegliere di
 specificare i valori per tutti i campi che vogliamo in qualsiasi ordine,
 indipendentemente dall’ordine dei campi nella definizione della _struct_.
 
-Si noti che la sintassi di aggiornamento utilizza `=` come un assegnazione;
-questo perché sposta i dati, proprio come abbiamo visto nella sezione
-[”Interazione tra Variabili e Dati con _Move_”][move]<!-- ignore -->. In questo
-esempio, non possiamo più utilizzare `utente1` dopo aver creato `utente2` perché
-la `String` nel campo `nome_utente` di `utente1` è stata spostata in `utente2`.
-Se avessimo fornito a `utente2` nuovi valori `String` sia per l’`email` che per
+Nota che la sintassi di aggiornamento utilizza `=` come un assegnazione; questo
+perché sposta i dati, proprio come abbiamo visto nella sezione [”Interazione tra
+Variabili e Dati con _Move_”][move]<!-- ignore -->. In questo esempio, non
+possiamo più utilizzare `utente1` dopo aver creato `utente2` perché la `String`
+nel campo `nome_utente` di `utente1` è stata spostata in `utente2`. Se avessimo
+fornito a `utente2` nuovi valori `String` sia per l’`email` che per
 `nome_utente` e quindi avessimo utilizzato solo i valori `attivo` e
 `numero_accessi` di `utente1`, `utente1` sarebbe ancora valido dopo aver creato
 `utente2`. Sia `attivo` che `numero_accessi` sono _type_ che implementano il

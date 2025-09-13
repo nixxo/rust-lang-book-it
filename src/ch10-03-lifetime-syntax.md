@@ -320,7 +320,7 @@ ragione!
 ### Pensare in Termini di _Lifetime_
 
 Il modo in cui è necessario specificare i parametri di longevità dipende da cosa
-sta facendo la vostra funzione. Ad esempio, se modificassimo l'implementazione
+sta facendo la tua funzione. Ad esempio, se modificassimo l'implementazione
 della funzione `più_lunga` in modo che restituisca sempre il primo parametro
 anziché la _slice_ di stringa più lunga, non avremmo bisogno di specificare un
 _lifetime_ per il parametro `y`. Il codice seguente verrà compilato:
