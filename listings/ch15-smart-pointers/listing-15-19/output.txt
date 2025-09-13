@@ -2,7 +2,7 @@ $ cargo run
    Compiling cons-list v0.1.0 (file:///projects/cons-list)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.45s
      Running `target/debug/cons-list`
-count after creating a = 1
-count after creating b = 2
-count after creating c = 3
-count after c goes out of scope = 2
+conteggio dopo la creazione di a = 1
+conteggio dopo la creazione di b = 2
+conteggio dopo la creazione di c = 3
+conteggio dopo che c è uscita dallo scope c = 2
