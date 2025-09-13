@@ -8,15 +8,15 @@
 const FERRIS_TYPES = [
   {
     attr: "does_not_compile",
-    title: "This code does not compile!",
+    title: "Questo codice non si compilerà!",
   },
   {
     attr: "panics",
-    title: "This code panics!",
+    title: "Questo codice va in panico!",
   },
   {
     attr: "not_desired_behavior",
-    title: "This code does not produce the desired behavior.",
+    title: "Questo codice non si comporta come previsto.",
   },
 ];
 

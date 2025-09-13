@@ -6,3 +6,8 @@ figure.listing {
   font-size: 0.8em;
   font-weight: 600;
 }
+
+.listing .file-name {
+  font-size: 0.8em;
+  font-weight: 600;
+}
