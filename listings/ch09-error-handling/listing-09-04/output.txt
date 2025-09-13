@@ -4,5 +4,5 @@ $ cargo run
      Running `target/debug/gestione_errore`
 
 thread 'main' (6304) panicked at src/main.rs:8:24:
-Si è verificato un errore nell'apertura del file: Os { code: 2, kind: NotFound, message: "No such file or directory" }
+Errore nell'apertura del file: Os { code: 2, kind: NotFound, message: "No such file or directory" }
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

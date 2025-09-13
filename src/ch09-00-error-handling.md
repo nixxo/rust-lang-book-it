@@ -16,9 +16,9 @@ quindi vogliamo interrompere immediatamente il programma.
 
 La maggior parte dei linguaggi non distingue tra questi due tipi di errori e li
 gestisce entrambi allo stesso modo, utilizzando meccanismi come le eccezioni.
-Rust non ha eccezioni. Al contrario, ha il _type_ `Result<T, E>` per gli errori
-reversibili e la macro `panic!` che interrompe l'esecuzione quando il programma
-incontra un errore irreversibile. Questo capitolo tratta prima la chiamata a
-`panic!` e poi parla della restituzione dei valori `Result<T, E>`. Inoltre,
-esploreremo le considerazioni da tenere presente quando si decide se tentare di
-recuperare da un errore o interrompere l'esecuzione.
+Rust non ha le eccezioni. Al contrario, ha il _type_ `Result<T, E>` per gli
+errori reversibili e la macro `panic!` che interrompe l'esecuzione quando il
+programma incontra un errore irreversibile. Questo capitolo tratta prima la
+chiamata a `panic!` e poi parla della restituzione dei valori `Result<T, E>`.
+Inoltre, esploreremo le considerazioni da tenere presente quando si decide se
+tentare di recuperare da un errore o interrompere l'esecuzione.

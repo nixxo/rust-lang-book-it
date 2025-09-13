@@ -5,6 +5,6 @@ fn main() {
 
     let file_benvenuto = match file_benvenuto_result {
         Ok(file) => file,
-        Err(errore) => panic!("Si è verificato un errore nell'apertura del file: {errore:?}"),
+        Err(errore) => panic!("Errore nell'apertura del file: {errore:?}"),
     };
 }

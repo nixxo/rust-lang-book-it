@@ -24,7 +24,7 @@ facilitare l'individuazione della causa del _panic_.
 > _panic_ aggiungendo `panic = 'abort'` alle sezioni `[profile]` appropriate nel
 > file _Cargo.toml_. Ad esempio, se si desidera interrompere l'esecuzione in
 > caso di _panic_ nell'eseguibile finale (_release_) ma non in fase di sviluppo,
-> aggiungere quanto segue:
+> aggiungi quanto segue:
 >
 > ```toml
 > [profile.release]
@@ -47,10 +47,10 @@ Quando si esegue il programma, si vedrà qualcosa di simile a questo:
 {{#include ../listings/ch09-error-handling/no-listing-01-panic/output.txt}}
 ```
 
-La chiamata a `panic!` causa il messaggio di errore contenuto nelle ultime due
-righe. La prima riga mostra il nostro messaggio di errore e il punto del codice
-sorgente in cui si è verificato l'errore: _src/main.rs:2:5_ indica che si tratta
-della seconda riga, quinto carattere del nostro file _src/main.rs_.
+La chiamata a `panic!` causa il messaggio di errore contenuto nelle ultime
+righe. La prima riga mostra il punto del codice sorgente in cui si è verificato
+l'errore: _src/main.rs:2:5_ indica che si tratta della seconda riga, quinto
+carattere del nostro file _src/main.rs_.
 
 In questo caso, la riga indicata fa parte del nostro codice e, se andiamo a
 quella riga, vediamo la chiamata alla macro `panic!`. In altri casi, la chiamata
@@ -59,6 +59,9 @@ file e il numero di riga riportati dal messaggio di errore saranno il codice di
 qualcun altro in cui viene richiamata la macro `panic!`, non la riga del nostro
 codice che alla fine ha portato alla chiamata a `panic!`.
 
+La seconda riga mostra il nostro messaggio di errore inserito nella chiamata a
+`panic!`.
+
 <!-- Old heading. Do not remove or links may break. -->
 <a id="using-a-panic-backtrace"></a>
 
@@ -66,12 +69,12 @@ Possiamo usare il _backtrace_ (_andare a ritroso_) delle funzioni da cui
 proviene la chiamata `panic!` per capire la parte del nostro codice che sta
 causando il problema. Per capire come usare un _backtrace_ di `panic!`, diamo
 un'occhiata a un altro esempio e vediamo cosa succede quando una chiamata
-`panic!` proviene da una libreria a causa di un bug nel nostro codice invece che
-dal nostro codice che chiama direttamente la macro. Il Listato 9-1 contiene del
-codice che tenta di accedere a un indice in un _vector_ oltre l'intervallo di
+`panic!` proviene da una libreria a causa di un _bug_ nel nostro codice invece
+che dal nostro codice che chiama direttamente la macro. Il Listato 9-1 contiene
+del codice che tenta di accedere a un indice in un vettore oltre l'intervallo di
 indici validi.
 
-<Listing number="9-1" file-name="src/main.rs" caption="Tentativo di accedere a un elemento oltre la fine di un _vector_, che causerà una chiamata a `panic!`">
+<Listing number="9-1" file-name="src/main.rs" caption="Tentativo di accedere a un elemento oltre la fine di un vettore, che causerà una chiamata a `panic!`">
 
 ```rust,should_panic,panics
 {{#rustdoc_include ../listings/ch09-error-handling/listing-09-01/src/main.rs}}
@@ -108,10 +111,10 @@ all'indice `99` del vettore in `v`.
 La riga `note:` ci dice che possiamo impostare la variabile d'ambiente
 `RUST_BACKTRACE` per ottenere un _backtrace_ di ciò che ha causato l'errore. Un
 _backtrace_ è un elenco di tutte le funzioni che sono state chiamate per
-arrivare a questo punto. I backtrace in Rust funzionano come in altri linguaggi:
-la chiave per leggere il _backtrace_ è iniziare dall'inizio e leggere fino a
-quando non si vedono i file che si sono creati. Quello è il punto in cui si è
-originato il problema. Le righe sopra quel punto sono il codice che il tuo
+arrivare a questo punto. I _backtrace_ in Rust funzionano come in altri
+linguaggi: la chiave per leggere il _backtrace_ è iniziare dall'inizio e leggere
+fino a quando non si vedono i file che si sono creati. Quello è il punto in cui
+si è originato il problema. Le righe sopra quel punto sono il codice che il tuo
 codice ha chiamato; le righe sottostanti sono il codice che ha chiamato il tuo
 codice. Queste righe prima e dopo potrebbero includere codice Rust core, codice
 di libreria standard o pacchetti che stai utilizzando. Proviamo a ottenere un
@@ -138,20 +141,19 @@ informazioni, i simboli di debug devono essere abilitati. I simboli di debug
 sono abilitati per impostazione predefinita quando si utilizza `cargo build` o
 `cargo run` senza il flag `--release`, come in questo caso.
 
-Nell'output del Listato 9-2, la riga 6 del backtrace punta alla riga del nostro
-progetto che causa il problema: la riga 4 di _src/main.rs_. Se non vogliamo che
-il nostro programma vada in _panic_, dovremmo iniziare la nostra analisi dalla
-posizione indicata dalla prima riga che menziona un file che abbiamo scritto.
-Nel Listato 9-1, dove abbiamo volutamente scritto codice che andrebbe in
-_panic_, il modo per risolvere il problema è non richiedere un elemento oltre
-l'intervallo degli indici del vettore. Quando in futuro il codice andrà in
-_panic_, dovrai capire quale azione sta eseguendo il codice con quali valori
-tali da causare il _panic_ e cosa dovrebbe fare il codice al suo posto.
+Nell'output del Listato 9-2, la riga 6 del _backtrace_ punta alla riga del
+nostro progetto che causa il problema: la riga 4 di _src/main.rs_. Se non
+vogliamo che il nostro programma vada in _panic_, dovremmo iniziare la nostra
+analisi dalla posizione indicata dalla prima riga che menziona un file che
+abbiamo scritto. Nel Listato 9-1, dove abbiamo volutamente scritto codice che
+andrebbe in _panic_, il modo per risolvere il problema è non richiedere un
+elemento oltre l'intervallo degli indici del vettore. Quando in futuro il codice
+andrà in _panic_, dovrai capire quale azione sta eseguendo il codice con quali
+valori tali da causare il _panic_ e cosa dovrebbe fare il codice al suo posto.
 
 Torneremo su `panic!` e su quando dovremmo e non dovremmo usare `panic!` per
 gestire le condizioni di errore nella sezione [“`panic!` o non
 `panic!`”][to-panic-or-not-to-panic]<!-- ignore --> più avanti in questo
-capitolo. Successivamente, vedremo come risolvere un errore utilizzando
-`Result`.
+capitolo. Ora vedremo come gestire un errore utilizzando `Result`.
 
 [to-panic-or-not-to-panic]: ch09-03-to-panic-or-not-to-panic.html#panic-o-non-panic

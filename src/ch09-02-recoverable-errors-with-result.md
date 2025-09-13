@@ -6,9 +6,9 @@ facilmente interpretabile e a cui è possibile rispondere. Ad esempio, se si
 tenta di aprire un file e l'operazione fallisce perché il file non esiste,
 potrebbe essere opportuno crearlo anziché terminare il processo.
 
-Ricorda da ["Gestione dei potenziali errori con `Result`”][handle_failure]<!--
-ignore --> nel Capitolo 2 che l'_enum_ `Result` è definito come avente due
-varianti, `Ok` ed `Err`, come segue:
+Come menzionato in ["Gestione dei potenziali errori con
+`Result`"][handle_failure]<!-- ignore --> nel Capitolo 2 l'_enum_ `Result` è
+definito come avente due varianti, `Ok` ed `Err`, come segue:
 
 ```rust
 enum Result<T, E> {
@@ -67,8 +67,8 @@ cui abbiamo parlato nel Capitolo 6.
 
 </Listing>
 
-Si noti che, come l'_enum_ `Option`, l'_enum_ `Result` e le sue varianti sono
-state introdotte nello _scope_ dal preludio, quindi non è necessario specificare
+Nota che, come l'_enum_ `Option`, l'_enum_ `Result` e le sue varianti sono state
+introdotte nello _scope_ dal preludio, quindi non è necessario specificare
 `Result::` prima delle varianti `Ok` ed `Err` nei rami di `match`.
 
 Quando il risultato è `Ok`, questo codice restituirà il valore interno `file`
@@ -76,9 +76,10 @@ dalla variante `Ok`, e quindi assegneremo il valore dell'_handle_ al file alla
 variabile `file_benvenuto`. Dopo `match`, possiamo utilizzare l'_handle_ al file
 per la lettura o la scrittura.
 
-L'altro ramo di `match` gestisce il caso in cui otteniamo un valore `Err` da `File::open`. In questo esempio, abbiamo scelto di chiamare la macro `panic!`. Se
-non c'è alcun file denominato _ciao.txt_ nella nostra cartella corrente ed eseguiamo questo
-codice, vedremo il seguente output dalla macro `panic!`:
+L'altro ramo di `match` gestisce il caso in cui otteniamo un valore `Err` da
+`File::open`. In questo esempio, abbiamo scelto di chiamare la macro `panic!`.
+Se non c'è alcun file denominato _ciao.txt_ nella nostra cartella corrente ed
+eseguiamo questo codice, vedremo il seguente output dalla macro `panic!`:
 
 ```console
 {{#include ../listings/ch09-error-handling/listing-09-04/output.txt}}
@@ -88,13 +89,14 @@ Come al solito, questo output ci dice esattamente cosa è andato storto.
 
 ### Corrispondenza in Caso di Errori Diversi
 
-Il codice nel Listato 9-4 genererà un `panic!` indipendentemente dal motivo per cui `File::open` ha fallito.
-Tuttavia, vogliamo intraprendere azioni diverse per diversi motivi di errore. Se
-`File::open` ha fallito perché il file non esiste, vogliamo crearlo
-e restituire l'_handle_ al nuovo file. Se `File::open` ha fallito per qualsiasi altro
-motivo, ad esempio perché non avevamo l'autorizzazione per aprire il file, vogliamo comunque
-che il codice generi un `panic!` come nel Listato 9-4. Per questo,
-aggiungiamo un'espressione `match` interna, mostrata nel Listato 9-5.
+Il codice nel Listato 9-4 genererà un `panic!` indipendentemente dal motivo per
+cui `File::open` ha fallito. Tuttavia, vogliamo intraprendere azioni diverse per
+diversi motivi di errore. Se `File::open` ha fallito perché il file non esiste,
+vogliamo crearlo e restituire l'_handle_ al nuovo file. Se `File::open` ha
+fallito per qualsiasi altro motivo, ad esempio perché non avevamo
+l'autorizzazione per aprire il file, vogliamo comunque che il codice generi un
+`panic!` come nel Listato 9-4. Per questo, aggiungiamo un'espressione `match`
+interna, mostrata nel Listato 9-5.
 
 <Listing number="9-5" file-name="src/main.rs" caption="Gestione di diversi tipi di errori in modi diversi">
 
@@ -104,6 +106,8 @@ test lol -->
 ```rust,ignore
 {{#rustdoc_include ../listings/ch09-error-handling/listing-09-05/src/main.rs}}
 ```
+
+</Listing>
 
 Il _type_ del valore restituito da `File::open` all'interno della variante `Err`
 è `io::Error`, una _struct_ fornita dalla libreria standard. Questa _struct_ ha
@@ -118,13 +122,13 @@ sulla tipologia di errore in `error.kind()`.
 La condizione che vogliamo verificare nel _matching_ interno è se il valore
 restituito da `error.kind()` è la variante `NotFound` dell'_enum_ `ErrorKind`.
 In tal caso, proviamo a creare il file con `File::create`. Tuttavia, poiché
-`File::create` potrebbe anche fallire, abbiamo bisogno di un secondo ramo
+anche `File::create` potrebbe fallire, abbiamo bisogno di un secondo ramo
 nell'espressione `match` interna. Quando il file non può essere creato, viene
 visualizzato un messaggio di errore diverso. Il secondo ramo dell'espressione
 `match` esterna rimane invariato, quindi il programma va in _panic_ in caso di
 qualsiasi errore diverso dall'errore di file mancante.
 
-> #### Alternative all'utilizzo di `match` con `Result<T, E>`
+> #### Alternative all'Utilizzo di `match` con `Result<T, E>`
 >
 > Sono un sacco di `match`! L'espressione `match` è molto utile, ma anche molto
 > primitiva. Nel Capitolo 13, imparerai a conoscere le chiusure (_closure_), che
@@ -139,31 +143,32 @@ qualsiasi errore diverso dall'errore di file mancante.
 > ```rust,ignore
 > use std::fs::File;
 > use std::io::ErrorKind;
->
+> 
 > fn main() {
->     let file_benvenuto = File::open("hello.txt").unwrap_or_else(|errore| {
+>     let file_benvenuto = File::open("ciao.txt").unwrap_or_else(|errore| {
 >         if errore.kind() == ErrorKind::NotFound {
->             File::create("hello.txt").unwrap_or_else(|errore| {
->                 panic!("Problema nella creazione del file: {errore:?}");
+>             File::create("ciao.txt").unwrap_or_else(|errore| {
+>                 panic!("Errore nella creazione del file: {errore:?}");
 >             })
 >         } else {
->             panic!("Problema nell'apertura del file: {errore:?}");
+>             panic!("Errore nell'apertura del file: {errore:?}");
 >         }
 >     });
 > }
 > ```
 >
-> Sebbene questo codice abbia lo stesso comportamento del Listato 9-5, non contiene
-> alcuna espressione `match` ed è più chiaro da leggere. Torna a questo esempio
-> dopo aver letto il Capitolo 13 e cerca il metodo `unwrap_or_else` nella
-> documentazione della libreria standard. Molti altri di questi metodi possono sostituire enormi 
-> espressioni annidate di `match` quando si hanno errori.
+> Sebbene questo codice abbia lo stesso comportamento del Listato 9-5, non
+> contiene alcuna espressione `match` ed è più chiaro da leggere. Torna a questo
+> esempio dopo aver letto il Capitolo 13 e cerca il metodo `unwrap_or_else`
+> nella documentazione della libreria standard. Molti altri di questi metodi
+> possono sostituire enormi espressioni annidate di `match` quando si hanno
+> errori.
 
 #### Scorciatoie per _Panic_ in Caso di Errore: `unwrap` e `expect`
 
 L'uso di `match` funziona abbastanza bene, ma può essere un po' prolisso e non
 sempre comunica bene l'intento. Il _type_ `Result<T, E>` ha molti metodi utili
-definiti al suo interno per svolgere varie attività più specifiche. Il metodo
+definiti al suo interno per svolgere varie attività più specifiche. Ad esempio
 `unwrap` è un metodo di scelta rapida implementato proprio come l'espressione
 `match` che abbiamo scritto nel Listato 9-4. Se il valore `Result` è la variante
 `Ok`, `unwrap` restituirà il valore all'interno di `Ok`. Se `Result` è la
@@ -178,7 +183,7 @@ di `unwrap` in azione:
 
 </Listing>
 
-Se eseguiamo questo codice senza un file _hello.txt_, vedremo un messaggio di
+Se eseguiamo questo codice senza un file _ciao.txt_, vedremo un messaggio di
 errore dalla chiamata `panic!` effettuata dal metodo `unwrap`:
 
 <!-- manual-regeneration
@@ -223,10 +228,9 @@ ciao.txt dovrebbe essere presente in questo progetto: Os { code: 2, kind: NotFou
 ```
 
 Nel codice ottimizzato per il rilascio, la maggior parte dei Rustacean sceglie
-`expect` invece di `unwrap` e fornisce più contesto sul motivo per cui ci si
-aspetta che l'operazione riesca sempre. In questo modo, se le tue ipotesi
-dovessero rivelarsi sbagliate, avrai più informazioni da utilizzare per il
-debug.
+`expect` invece di `unwrap` per fornire più contesto sul motivo per cui ci si
+aspetta che l'operazione è fallita. In questo modo, se le tue ipotesi dovessero
+rivelarsi sbagliate, avrai più informazioni da utilizzare per il debug.
 
 ### Propagazione degli Errori
 
@@ -266,14 +270,14 @@ Se questa funzione ha esito positivo senza problemi, il codice che la chiama
 riceverà un valore `Ok` che contiene una `String`, ovvero il `nomeutente` che
 questa funzione ha letto dal file. Se questa funzione riscontra problemi, il
 codice chiamante riceverà un valore `Err` che contiene un'istanza di `io::Error`
-che contiene maggiori informazioni sulla causa del problema. Abbiamo scelto
+contenente maggiori informazioni sulla causa del problema. Abbiamo scelto
 `io::Error` come _type_ di ritorno di questa funzione perché è il _type_ del
 valore di errore restituito da entrambe le operazioni che stiamo chiamando nel
 corpo di questa funzione che potrebbero fallire: la funzione `File::open` e il
 metodo `read_to_string`.
 
 Il corpo della funzione inizia con la chiamata alla funzione `File::open`.
-Quindi gestiamo il valore `Result` con un `match` simile al `match` nel Listato
+Quindi gestiamo il valore `Result` con un `match` simile a quello nel Listato
 9-4. Se `File::open` ha esito positivo, l'_handle_ al file nella variabile
 _pattern_ `file` diventa il valore nella variabile mutabile `nomeutente_file` e
 la funzione continua. Nel caso `Err`, invece di chiamare `panic!`, utilizziamo
@@ -382,7 +386,7 @@ direttamente al risultato di `File::open("hello.txt")?`. Abbiamo ancora un `?`
 alla fine della chiamata a `read_to_string` e continuiamo a restituire un valore
 `Ok` contenente `nomeutente` quando sia `File::open` che `read_to_string` hanno
 esito positivo, anziché restituire errori. La funzionalità è ancora la stessa
-dei Listati 9-6 e 9-7; Questo è solo un modo diverso e più stringato di
+dei Listati 9-6 e 9-7; questo è solo un modo diverso e più stringato di
 scriverlo.
 
 Il Listato 9-9 mostra un modo per renderlo ancora più breve usando
@@ -432,7 +436,7 @@ del valore su cui utilizziamo `?`.
 
 Questo codice apre un file, che potrebbe non funzionare. L'operatore `?` segue
 il valore `Result` restituito da `File::open`, ma questa funzione `main` ha come
-_type_ di ritorno ``()`, non `Result`. Quando compiliamo questo codice,
+_type_ di ritorno `()`, non `Result`. Quando compiliamo questo codice,
 otteniamo il seguente messaggio di errore:
 
 ```console
@@ -469,10 +473,10 @@ una funzione che trova l'ultimo carattere della prima riga del testo dato.
 
 Questa funzione restituisce `Option<char>` perché è possibile che ci sia un
 carattere, ma è anche possibile che non ci sia. Questo codice prende l'argomento
-`testo` della _slice_ di stringa e chiama il metodo `lines` su di esso, che
-restituisce un iteratore sulle righe della stringa. Poiché questa funzione vuole
-esaminare la prima riga, chiama `next` sull'iteratore per ottenere il primo
-valore dall'iteratore. Se `testo` è una stringa vuota, questa chiamata a `next`
+_slice_ `testo` e chiama il metodo `lines` su di esso, che restituisce un
+iteratore sulle righe della stringa. Poiché questa funzione vuole esaminare la
+prima riga, chiama `next` sull'iteratore per ottenere il primo valore
+dall'iteratore. Se `testo` è una stringa vuota, questa chiamata a `next`
 restituirà `None`, nel qual caso usiamo `?` per fermarci e restituire `None` da
 `ultimo_char_della_prima_riga`. Se `testo` non è una stringa vuota, `next`
 restituirà un valore `Some` contenente una _slice_ della prima riga di `testo`.
@@ -493,9 +497,8 @@ Nota che è possibile utilizzare l'operatore `?` su un `Result` in una funzione
 che restituisce `Result`, e si può utilizzare l'operatore `?` su un `Option` in
 una funzione che restituisce `Option`, ma non è possibile combinare le due.
 L'operatore `?` non convertirà automaticamente un `Result` in un `Option` o
-viceversa; in questi casi, è possibile utilizzare metodi come il metodo `ok` su
-`Result` o il metodo `ok_or` su `Option` per eseguire la conversione in modo
-esplicito.
+viceversa; in questi casi, è possibile utilizzare il metodo `ok` su `Result` o
+il metodo `ok_or` su `Option` per eseguire la conversione in modo esplicito.
 
 Finora, tutte le funzioni `main` che abbiamo utilizzato restituiscono `()`. La
 funzione `main` è speciale perché è il punto di ingresso e di uscita di un
@@ -539,8 +542,8 @@ della libreria standard per maggiori informazioni sull'implementazione del
 _trait_ `Termination` per i tuoi _type_.
 
 Ora che abbiamo discusso i dettagli della chiamata a `panic!` o della
-restituzione di `Result`, torniamo all'argomento di come decidere in quali casi
-sia più appropriato usare l'uno o l'altro.
+restituzione di `Result`, discuteremo di come decidere in quali casi sia più
+appropriato usare l'uno o l'altro.
 
 [handle_failure]: ch02-00-guessing-game-tutorial.html#gestione-dei-potenziali-errori-con-result
 [trait-objects]: ch18-02-trait-objects.html

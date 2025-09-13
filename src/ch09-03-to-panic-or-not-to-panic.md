@@ -31,7 +31,7 @@ base al comportamento del resto del codice.
 
 Allo stesso modo, i metodi `unwrap` ed `expect` sono molto utili durante la
 prototipazione, prima di decidere come gestire gli errori. Lasciano chiari punti
-nel codice per quando si è pronti a rendere il programma più robusto.
+nel codice per quando si è pronti a riscriverlo per renderlo più robusto.
 
 Se una chiamata a un metodo fallisce in un test, si desidera che l'intero test
 fallisca, anche se quel metodo non è la funzionalità in fase di test. Poiché
@@ -74,14 +74,14 @@ dovessimo ottenere l'indirizzo IP da un'altra fonte.
 possa finire in uno stato non valido. In questo contesto, uno _stato non valido_
 si verifica quando un presupposto, garanzia o contratto non sono rispettati, ad
 esempio quando vengono passati al codice valori non validi, valori
-contraddittori o valori mancanti, più uno o più dei seguenti:
+contraddittori o valori mancanti, più almeno una delle seguenti cose:
 
 - Lo stato non valido è qualcosa di inaspettato, al contrario di qualcosa che
-probabilmente accadrà occasionalmente, come un utente che inserisce dati nel
-formato sbagliato.
+  probabilmente accadrà occasionalmente, come un utente che inserisce dati nel
+  formato sbagliato.
 - Il codice da questo punto in poi deve fare affidamento sul fatto di non
-trovarsi in questo stato non valido, piuttosto che verificare la presenza del
-problema a ogni passaggio.
+  trovarsi in questo stato non valido, piuttosto che verificare la presenza del
+  problema a ogni passaggio.
 - Non esiste un buon modo per codificare queste informazioni nei _type_
   utilizzati. Faremo un esempio di ciò che intendiamo in ["Codifica di Stati e
   Comportamenti Come _Type_”][encoding]<!-- ignore --> nel Capitolo 18.
@@ -90,13 +90,13 @@ Se qualcuno chiama il tuo codice e passa valori che non hanno senso, è meglio
 restituire un errore, se possibile, in modo che l'utente della libreria possa
 decidere cosa fare in quel caso. Tuttavia, nei casi in cui continuare potrebbe
 essere insicuro o dannoso, la scelta migliore potrebbe essere quella di chiamare
-`panic!` e avvisare la persona che utilizza la tua libreria del bug nel suo
+`panic!` e avvisare la persona che utilizza la tua libreria del _bug_ nel suo
 codice in modo che possa correggerlo durante lo sviluppo. Allo stesso modo,
 `panic!` è spesso appropriato se stai chiamando codice esterno fuori dal tuo
 controllo e restituisce uno stato non valido che non hai modo di correggere.
 
 Tuttavia, quando è previsto un errore, è più appropriato restituire un `Result`
-piuttosto che effettuare una chiamata `panic!`. Esempi includono un parser che
+piuttosto che effettuare una chiamata `panic!`. Esempi includono un _parser_ che
 riceve dati non validi o una richiesta HTTP che restituisce uno stato che indica
 il raggiungimento di un limite di connessioni. In questi casi, restituire un
 `Result` indica che un errore è una possibilità prevista che il codice chiamante
@@ -113,7 +113,7 @@ appartiene alla struttura dati corrente è un problema di sicurezza comune. Le
 funzioni spesso hanno dei _contracts_ (_contratti_): il loro comportamento è
 garantito solo se gli input soddisfano determinati requisiti. Andare in _panic_
 quando il contratto viene violato ha senso perché una violazione del contratto
-indica sempre un bug lato chiamante, e non è un tipo di errore che si desidera
+indica sempre un _bug_ lato chiamante, e non è un tipo di errore che si desidera
 che il codice chiamante debba gestire esplicitamente. In effetti, non esiste un
 modo ragionevole per il codice chiamante di recuperare; i _programmatori_ che
 chiamano il codice devono correggerlo. I contratti per una funzione, soprattutto
@@ -123,22 +123,22 @@ documentazione API della funzione.
 Tuttavia, avere molti controlli di errore in tutte le funzioni sarebbe prolisso
 e fastidioso. Fortunatamente, è possibile utilizzare il sistema dei _type_ di
 Rust (e quindi il controllo dei _type_ effettuato dal compilatore) per eseguire
-molti dei controlli al posto vostro. Se la vostra funzione ha un _type_
-particolare come parametro, potete procedere con la logica del codice sapendo
-che il compilatore ha già verificato la presenza di un valore valido. Ad
-esempio, se avete un _type_ anziché un'`Option`, il vostro programma si aspetta
-di avere _qualcosa_ anziché _niente_. Il codice non dovrà quindi gestire due
-casi per le varianti `Some` e `None`: gestirà solo il caso che ha sicuramente un
-valore. Il codice che tenta di non passare nulla alla funzione non verrà nemmeno
-compilato, quindi la funzione non dovrà verificare quel caso in fase di
-esecuzione. Un altro esempio è l'utilizzo di un _type_ _integer_ senza segno
-come `u32`, che garantisce che il parametro non sia mai negativo.
+molti dei controlli al tuo posto. Se la tua funzione ha un _type_ particolare
+come parametro, potete procedere con la logica del codice sapendo che il
+compilatore ha già verificato la presenza di un valore valido. Ad esempio, se
+avete un _type_ anziché un'`Option`, il tuo programma si aspetta di avere
+_qualcosa_ anziché _niente_. Il codice non dovrà quindi gestire due casi per le
+varianti `Some` e `None`: gestirà solo il caso che ha sicuramente un valore. Il
+codice che tenta di non passare nulla alla funzione non verrà nemmeno compilato,
+quindi la funzione non dovrà verificare quel caso in fase di esecuzione. Un
+altro esempio è l'utilizzo di un _type_ _integer_ senza segno come `u32`, che
+garantisce che il parametro non sia mai negativo.
 
-### Creazione di _Type_ Personalizzati per la Convalida
+### Creare _Type_ Personalizzati per la Convalida
 
 Sviluppiamo ulteriormente l'idea di utilizzare il sistema dei _type_ di Rust per
 garantire un valore valido e proviamo a creare un _type_ personalizzato per la
-convalida. Ricordiamo il gioco di indovinelli del Capitolo 2 in cui il nostro
+convalida. Riprendiamo il gioco di indovinelli del Capitolo 2 in cui il nostro
 codice chiedeva all'utente di indovinare un numero compreso tra 1 e 100. Non
 abbiamo mai verificato che la risposta dell'utente fosse compresa tra quei
 numeri prima di confrontarla con il nostro numero segreto; abbiamo solo
@@ -171,14 +171,15 @@ procedere con i confronti tra `ipotesi` e il numero segreto, sapendo che
 Tuttavia, questa non è una soluzione ideale: se fosse assolutamente fondamentale
 che il programma operasse solo su valori compresi tra 1 e 100, e avesse molte
 funzioni con questo requisito, avere un controllo di questo tipo in ogni
-funzione sarebbe noioso (e potrebbe influire sulle prestazioni).
+funzione sarebbe ripetitivo (e potrebbe influire sulle prestazioni).
 
-Invece, possiamo creare un nuovo _type_ in un modulo dedicato e inserire le validazioni in
-una funzione per creare un'istanza del _type_, anziché ripetere le validazioni
-ovunque. In questo modo, le funzioni possono utilizzare il nuovo _type_ nelle
-loro firme in tutta sicurezza e utilizzare con sicurezza i valori che ricevono. Il Listato 9-13 mostra
-un modo per definire un _type_ `Ipotesi` che creerà un'istanza di `Ipotesi` solo se
-la funzione `new` riceve un valore compreso tra 1 e 100.
+Invece, possiamo creare un nuovo _type_ in un modulo dedicato e inserire le
+validazioni in una funzione per creare un'istanza del _type_, anziché ripetere
+le validazioni ovunque. In questo modo, le funzioni possono utilizzare il nuovo
+_type_ nelle loro firme in tutta sicurezza e utilizzare con sicurezza i valori
+che ricevono. Il Listato 9-13 mostra un modo per definire un _type_ `Ipotesi`
+che creerà un'istanza di `Ipotesi` solo se la funzione `new` riceve un valore
+compreso tra 1 e 100.
 
 <Listing number="9-13" caption="Un _type_ `Ipotesi` che continuerà solo con valori compresi tra 1 e 100" file-name="src/gioco_indovinello.rs">
 
@@ -188,10 +189,11 @@ la funzione `new` riceve un valore compreso tra 1 e 100.
 
 </Listing>
 
-Nota che questo codice in *src/gioco_indovinello.rs* dipende dall'aggiunta di una dichiarazione di modulo
-`mod gioco_indovinello;` in *src/lib.rs* che non abbiamo mostrato qui. All'interno del file di questo nuovo modulo, definiamo una _struct_ in quel modulo denominata `Ipotesi`
-che ha un campo denominato `valore` di _type_ `i32`. È qui che verrà memorizzato
-il numero.
+Nota che questo codice in *src/gioco_indovinello.rs* dipende dall'aggiunta di
+una dichiarazione di modulo `mod gioco_indovinello;` in *src/lib.rs* che non
+abbiamo mostrato qui. All'interno del file di questo nuovo modulo, definiamo una
+_struct_ in quel modulo denominata `Ipotesi` che ha un campo denominato `valore`
+di _type_ `i32`. È qui che verrà memorizzato il numero.
 
 Quindi implementiamo una funzione associata denominata `new` su `Ipotesi` che
 crea istanze di valori `Ipotesi`. La funzione `new` è definita per avere un
@@ -199,7 +201,7 @@ parametro denominato `valore` di _type_ `i32` e restituire un `Ipotesi`. Il
 codice nel corpo della funzione `new` verifica `valore` per assicurarsi che sia
 compreso tra 1 e 100. Se `valore` non supera questo test, effettuiamo una
 chiamata `panic!`, che avviserà il programmatore che sta scrivendo il codice
-chiamante che ha un bug da correggere, perché creare un `Ipotesi` con un
+chiamante che ha un _bug_ da correggere, perché creare un `Ipotesi` con un
 `valore` al di fuori di questo intervallo violerebbe il contratto su cui si basa
 `Ipotesi::new`. Le condizioni in cui `Ipotesi::new` potrebbe generare un errore
 di _panic_ dovrebbero essere discusse nella documentazione dell'API pubblica;
@@ -238,7 +240,7 @@ fallimenti. L'utilizzo di `panic!` e `Result` nelle situazioni appropriate
 renderà il tuo codice più affidabile di fronte a inevitabili problemi.
 
 Ora che hai visto i modi utili in cui la libreria standard utilizza i _type_
-generici con gli _enum_ `Option` e `Result`, ne parleremo ora in maniera
-approfondita e di come puoi usarli nel tuo codice.
+generici con gli _enum_ `Option` e `Result`, nel prossimo capitolo ne parleremo
+in maniera approfondita e di come puoi usarli nel tuo codice.
 
 [encoding]: ch18-03-oo-design-patterns.html#codifica-di-stati-e-comportamenti-come-type
