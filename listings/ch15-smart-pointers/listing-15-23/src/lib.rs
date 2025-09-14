@@ -1,38 +1,38 @@
-pub trait Messenger {
-    fn send(&self, msg: &str);
+pub trait Messaggiatore {
+    fn invia(&self, msg: &str);
 }
 
-pub struct LimitTracker<'a, T: Messenger> {
-    messenger: &'a T,
-    value: usize,
+pub struct TracciaLimiti<'a, T: Messaggiatore> {
+    messaggiatore: &'a T,
+    valore: usize,
     max: usize,
 }
 
-impl<'a, T> LimitTracker<'a, T>
+impl<'a, T> TracciaLimiti<'a, T>
 where
-    T: Messenger,
+    T: Messaggiatore,
 {
-    pub fn new(messenger: &'a T, max: usize) -> LimitTracker<'a, T> {
-        LimitTracker {
-            messenger,
-            value: 0,
+    pub fn new(messaggiatore: &'a T, max: usize) -> TracciaLimiti<'a, T> {
+        TracciaLimiti {
+            messaggiatore,
+            valore: 0,
             max,
         }
     }
 
-    pub fn set_value(&mut self, value: usize) {
-        self.value = value;
+    pub fn set_valore(&mut self, valore: usize) {
+        self.valore = valore;
 
-        let percentage_of_max = self.value as f64 / self.max as f64;
+        let percentuale_di_max = self.valore as f64 / self.max as f64;
 
-        if percentage_of_max >= 1.0 {
-            self.messenger.send("Error: You are over your quota!");
-        } else if percentage_of_max >= 0.9 {
-            self.messenger
-                .send("Urgent warning: You've used up over 90% of your quota!");
-        } else if percentage_of_max >= 0.75 {
-            self.messenger
-                .send("Warning: You've used up over 75% of your quota!");
+        if percentuale_di_max >= 1.0 {
+            self.messaggiatore.invia("Errore: Hai superato la tua quota!");
+        } else if percentuale_di_max >= 0.9 {
+            self.messaggiatore
+                .invia("Avviso urgente: Hai utilizzato oltre il 90% della tua quota!");
+        } else if percentuale_di_max >= 0.75 {
+            self.messaggiatore
+                .invia("Avviso: Hai utilizzato oltre il 75% della tua quota!");
         }
     }
 }
@@ -42,37 +42,34 @@ mod tests {
     use super::*;
     use std::cell::RefCell;
 
-    struct MockMessenger {
-        sent_messages: RefCell<Vec<String>>,
+    struct MockMessaggiatore {
+        messaggi_inviati: RefCell<Vec<String>>,
     }
 
-    impl MockMessenger {
-        fn new() -> MockMessenger {
-            MockMessenger {
-                sent_messages: RefCell::new(vec![]),
+    impl MockMessaggiatore {
+        fn new() -> MockMessaggiatore {
+            MockMessaggiatore {
+                messaggi_inviati: RefCell::new(vec![]),
             }
         }
     }
 
     // ANCHOR: here
-    impl Messenger for MockMessenger {
-        fn send(&self, message: &str) {
-            let mut one_borrow = self.sent_messages.borrow_mut();
-            let mut two_borrow = self.sent_messages.borrow_mut();
-
-            one_borrow.push(String::from(message));
-            two_borrow.push(String::from(message));
+    impl Messaggiatore for MockMessaggiatore {
+        fn invia(&self, messaggio: &str) {
+            let mut un_borrow = self.messaggi_inviati.borrow_mut();
+            un_borrow.push(String::from(messaggio));
         }
     }
     // ANCHOR_END: here
 
     #[test]
-    fn it_sends_an_over_75_percent_warning_message() {
-        let mock_messenger = MockMessenger::new();
-        let mut limit_tracker = LimitTracker::new(&mock_messenger, 100);
+    fn invia_un_messaggio_di_avviso_di_superamento_del_75_percento() {
+        let mock_messaggiatore = MockMessaggiatore::new();
+        let mut traccia_limiti = TracciaLimiti::new(&mock_messaggiatore, 100);
 
-        limit_tracker.set_value(80);
+        traccia_limiti.set_valore(80);
 
-        assert_eq!(mock_messenger.sent_messages.borrow().len(), 1);
+        assert_eq!(mock_messaggiatore.messaggi_inviati.borrow().len(), 1);
     }
 }

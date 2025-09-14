@@ -1,38 +1,38 @@
-pub trait Messenger {
-    fn send(&self, msg: &str);
+pub trait Messaggiatore {
+    fn invia(&self, msg: &str);
 }
 
-pub struct LimitTracker<'a, T: Messenger> {
-    messenger: &'a T,
-    value: usize,
+pub struct TracciaLimiti<'a, T: Messaggiatore> {
+    messaggiatore: &'a T,
+    valore: usize,
     max: usize,
 }
 
-impl<'a, T> LimitTracker<'a, T>
+impl<'a, T> TracciaLimiti<'a, T>
 where
-    T: Messenger,
+    T: Messaggiatore,
 {
-    pub fn new(messenger: &'a T, max: usize) -> LimitTracker<'a, T> {
-        LimitTracker {
-            messenger,
-            value: 0,
+    pub fn new(messaggiatore: &'a T, max: usize) -> TracciaLimiti<'a, T> {
+        TracciaLimiti {
+            messaggiatore,
+            valore: 0,
             max,
         }
     }
 
-    pub fn set_value(&mut self, value: usize) {
-        self.value = value;
+    pub fn setta_valore(&mut self, valore: usize) {
+        self.valore = valore;
 
-        let percentage_of_max = self.value as f64 / self.max as f64;
+        let percentuale_di_max = self.valore as f64 / self.max as f64;
 
-        if percentage_of_max >= 1.0 {
-            self.messenger.send("Error: You are over your quota!");
-        } else if percentage_of_max >= 0.9 {
-            self.messenger
-                .send("Urgent warning: You've used up over 90% of your quota!");
-        } else if percentage_of_max >= 0.75 {
-            self.messenger
-                .send("Warning: You've used up over 75% of your quota!");
+        if percentuale_di_max >= 1.0 {
+            self.messaggiatore.invia("Errore: Hai superato la tua quota!");
+        } else if percentuale_di_max >= 0.9 {
+            self.messaggiatore
+                .invia("Avviso urgente: Hai utilizzato oltre il 90% della tua quota!");
+        } else if percentuale_di_max >= 0.75 {
+            self.messaggiatore
+                .invia("Avviso: Hai utilizzato oltre il 75% della tua quota!");
         }
     }
 }

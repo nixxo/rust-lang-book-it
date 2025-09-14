@@ -4,19 +4,19 @@ $ cargo test
      Running unittests src/lib.rs (target/debug/deps/limit_tracker-e599811fa246dbde)
 
 running 1 test
-test tests::it_sends_an_over_75_percent_warning_message ... FAILED
+test tests::invia_un_messaggio_di_avviso_di_superamento_del_75_percento ... FAILED
 
 failures:
 
----- tests::it_sends_an_over_75_percent_warning_message stdout ----
+---- tests::invia_un_messaggio_di_avviso_di_superamento_del_75_percento stdout ----
 
-thread 'tests::it_sends_an_over_75_percent_warning_message' panicked at src/lib.rs:60:53:
+thread 'tests::iinvia_un_messaggio_di_avviso_di_superamento_del_75_percento' panicked at src/lib.rs:60:53:
 already borrowed: BorrowMutError
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 
 
 failures:
-    tests::it_sends_an_over_75_percent_warning_message
+    tests::invia_un_messaggio_di_avviso_di_superamento_del_75_percento
 
 test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
