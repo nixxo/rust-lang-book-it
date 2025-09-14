@@ -1,7 +1,6 @@
 ## Applying Concurrency with Async
 
 <!-- Old headings. Do not remove or links may break. -->
-
 <a id="concurrency-with-async"></a>
 
 In this section, we’ll apply async to some of the same concurrency challenges
@@ -332,9 +331,9 @@ to make sure that `tx` gets dropped _before_ the end of the function.
 Right now, the async block where we send the messages only borrows `tx` because
 sending a message doesn’t require ownership, but if we could move `tx` into that
 async block, it would be dropped once that block ends. In the Chapter 13 section
-[Capturing References or Moving Ownership][capture-or-move]<!-- ignore -->, you
+[“Cattura di _Reference_ o Trasferimento di _Ownership_”][capture-or-move]<!-- ignore -->, you
 learned how to use the `move` keyword with closures, and, as discussed in the
-Chapter 16 section [Usare le Chiusure `move` con i `Thread`][move-threads]<!-- ignore
+Chapter 16 section [“Usare le Chiusure `move` con i `Thread`”][move-threads]<!-- ignore
 -->, we often need to move data into closures when working with threads. The
 same basic dynamics apply to async blocks, so the `move` keyword works with
 async blocks just as it does with closures.
@@ -401,5 +400,5 @@ This is a good start, but it limits us to just a handful of futures: two with
 [join-handles]: ch16-01-threads.html#attendere-che-tutti-i-thread-finiscano-usando-join
 [message-passing-threads]: ch16-02-message-passing.html
 [if-let]: ch06-03-if-let.html
-[capture-or-move]: ch13-01-closures.html#capturing-references-or-moving-ownership
+[capture-or-move]: ch13-01-closures.html#cattura-di-reference-o-trasferimento-di-ownership
 [move-threads]: ch16-01-threads.html#usare-le-chiusure-move-con-i-thread

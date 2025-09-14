@@ -41,7 +41,7 @@ riga separata sopra il codice che sta annotando:
 ```
 
 Rust ha anche un altro tipo di commento, i commenti alla documentazione, di cui
-parleremo nella sezione ["Pubblicazione di un Crate su
-Crates.io"][pubblicazione]<!-- ignore --> del Capitolo 14.
+parleremo nella sezione [“Pubblicazione di un _Crate_ su
+Crates.io”][pubblicazione]<!-- ignore --> del Capitolo 14.
 
 [pubblicazione]: ch14-02-publishing-to-crates-io.html

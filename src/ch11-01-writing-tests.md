@@ -99,13 +99,13 @@ passati, e la parte che recita `1 passed; 0 failed` tiene il conto del numero di
 test che sono passati o falliti.
 
 È possibile contrassegnare un test come da ignorare in modo che non venga
-eseguito in una particolare istanza; ne parleremo nella sezione ["Ignorare
-alcuni test se non specificamente richiesti"][ignoring]<!-- ignore --> più
+eseguito in una particolare istanza; ne parleremo nella sezione [“Ignorare
+alcuni test se non specificamente richiesti”][ignoring]<!-- ignore --> più
 avanti in questo capitolo. Poiché non l'abbiamo fatto qui, il riepilogo mostra
 `0 ignored`. Possiamo anche passare un argomento al comando `cargo test` per
 eseguire solo i test il cui nome corrisponda a una stringa; questo si chiama
-_filtraggio_ e lo tratteremo nella sezione ["Eseguire un sottoinsieme di test in
-base al nome"][subset]<!-- ignore -->. In questo caso non abbiamo filtrato i
+_filtraggio_ e lo tratteremo nella sezione [“Eseguire un sottoinsieme di test in
+base al nome”][subset]<!-- ignore -->. In questo caso non abbiamo filtrato i
 test in esecuzione, quindi la fine del riepilogo mostra `0 filtered out`.
 
 La statistica `0 measured` è per i test di benchmark che misurano le
@@ -117,9 +117,9 @@ La parte successiva dell'output di test che inizia con `Doc-tests addizione` è
 per i risultati di qualsiasi test sulla documentazione. Non abbiamo ancora test
 sulla documentazione, ma Rust può compilare qualsiasi esempio di codice che
 appare nella nostra documentazione. Questa funzione aiuta a mantenere
-sincronizzata la documetazione e il codice! Parleremo di come scrivere test
-sulla documentazione nella sezione ["Commenti di documentazione come
-test"][doc-comments]<!-- ignore --> del Capitolo 14. Per ora, ignoreremo
+sincronizzata la documentazione e il codice! Parleremo di come scrivere test
+sulla documentazione nella sezione [“Commenti di documentazione come
+test”][doc-comments]<!-- ignore --> del Capitolo 14. Per ora, ignoreremo
 l'output `Doc-tests`.
 
 Iniziamo a personalizzare il test in base alle nostre esigenze. Per prima cosa,
@@ -181,8 +181,8 @@ _src/lib.rs_. La sezione successiva elenca solo i nomi di tutti i test falliti,
 il che è utile quando ci sono molti test e molti output dettagliati di test
 falliti. Possiamo usare il nome di un test fallito per eseguire solo quel test
 per eseguire più facilmente il debug; parleremo più diffusamente dei modi per
-eseguire i test nella sezione ["Controllare come vengono eseguiti i
-test"][controlling-how-tests-are-run]<!-- ignore -->.
+eseguire i test nella sezione [“Controllare come vengono eseguiti i
+test”][controlling-how-tests-are-run]<!-- ignore -->.
 
 Alla fine viene visualizzata la riga di riepilogo: in generale, il risultato del
 nostro test è `FAILED`. Abbiamo avuto un test superato e un test fallito.
@@ -228,8 +228,8 @@ istanza di `Rettangolo` che ha una larghezza di 5 e un'altezza di 1.
 
 Nota la riga `use super::*;` all'interno del modulo `tests`. Il modulo `tests` è
 un modulo normale che segue le solite regole di visibilità che abbiamo trattato
-nel Capitolo 7 nella sezione ["Percorsi per Fare Riferimento a un Elemento
-nell'Albero dei Moduli"][paths-for-referring-to-an-item-in-the-module-tree]<!--
+nel Capitolo 7 nella sezione [“Percorsi per Fare Riferimento a un Elemento
+nell'Albero dei Moduli”][paths-for-referring-to-an-item-in-the-module-tree]<!--
 ignore -->. Poiché il modulo `tests` è un modulo interno, dobbiamo portare il
 codice in fase di test nel modulo esterno nello _scope_ del modulo interno.
 Usiamo un _glob_ in questo caso, in modo che tutto ciò che definiamo nel modulo
@@ -376,7 +376,7 @@ Puoi anche aggiungere un messaggio personalizzato da stampare insieme al
 messaggio di fallimento come argomenti opzionali alle macro `assert!`,
 `assert_eq!` e `assert_ne!`. Qualsiasi argomento specificato dopo gli argomenti
 obbligatori viene passato alla macro `format!` (di cui si parla in
-["Concatenare con l'Operatore `+` o la Macro `format!`"][format-macro]<!--
+[“Concatenare con l'Operatore `+` o la Macro `format!`”][format-macro]<!--
 ignore --> nel Capitolo 8), quindi puoi passare una stringa di formato che
 contenga dei segnaposto `{}` e dei valori da inserire in quei segnaposto. I
 messaggi personalizzati sono utili per documentare il significato di

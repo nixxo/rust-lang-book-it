@@ -46,18 +46,18 @@ potrebbe potenzialmente creare errori. Gli iteratori offrono maggiore flessibili
 logica con molti tipi diversi di sequenze, non solo con strutture dati in cui puoi
 indicizzare, come i vettori. Esaminiamo come lo fanno gli iteratori.
 
-### Il Trait `Iterator` e il Metodo `next`
+### Il _Trait_ `Iterator` e il Metodo `next`
 
 Tutti gli iteratori implementano un trait chiamato `Iterator` definito nella
 libreria standard. La definizione del trait è la seguente:
 
 ```rust
 pub trait Iterator {
-type Item;
+    type Item;
 
-fn next(&mut self) -> Option<Self::Item>;
+    fn next(&mut self) -> Option<Self::Item>;
 
-// metodi con implementazioni predefinite
+    // metodi con implementazioni predefinite
 }
 ```
 

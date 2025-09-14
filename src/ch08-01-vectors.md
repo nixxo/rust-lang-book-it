@@ -36,7 +36,7 @@ questa annotazione di _type_. Rust fornisce opportunamente la macro `vec!`, che
 creerà un nuovo vettore contenente i valori che gli vengono assegnati. Il
 Listato 8-2 crea un nuovo `Vec<i32>` che contiene i valori `1`, `2` e `3`. Il
 _type_ intero è `i32` perché è il _type_ intero predefinito, come discusso
-nella sezione ["Tipi di dati”][data-types]<!-- ignore --> del Capitolo 3.
+nella sezione [“Tipi di dati”][data-types]<!-- ignore --> del Capitolo 3.
 
 <Listing number="8-2" caption="Creazione di un nuovo vettore contenente valori">
 
@@ -161,7 +161,7 @@ punterebbe alla memoria de-allocata. Le regole di _borrowing_ impediscono ai
 programmi di finire in questa situazione.
 
 > Nota: per maggiori dettagli sull'implementazione del _type_ `Vec<T>`, vedere
-> ["Il Rustonomicon”][nomicon].
+> [“Il Rustonomicon”][nomicon].
 
 ### Iterare sui Valori di un Vettore
 

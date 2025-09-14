@@ -1,7 +1,7 @@
 ## Definire e Istanziare le _Struct_
 
-Le _struct_ sono simili alle tuple, discussi nella sezione ["Il _Type_
-Tupla"][tuples]<!-- ignore -->, in quanto entrambi possono contenere più valori
+Le _struct_ sono simili alle tuple, discussi nella sezione [“Il _Type_
+Tupla”][tuples]<!-- ignore -->, in quanto entrambi possono contenere più valori
 correlati. Come per le tuple, i componenti di una _struct_ possono essere di
 _type_ diversi. A differenza delle tuple, in una _struct_ puoi denominare ogni
 pezzo di dati in modo che sia chiaro il significato dei valori. L'aggiunta di
@@ -199,7 +199,7 @@ in variabili chiamate `x`, `y` e `z`.
 
 Puoi anche definire _struct_ che non hanno campi! Queste sono chiamate _struct_
 _unit_ (_unit-like_ _struct_) perché si comportano in modo simile a `()`, il
-_type_ _unit_ menzionato nella sezione ["Il _Type_ Tupla"][tuples]<!-- ignore
+_type_ _unit_ menzionato nella sezione [“Il _Type_ Tupla”][tuples]<!-- ignore
 -->. Le _struct_ _unit_ possono essere utili quando è necessario implementare un
 _trait_ su un _type_ ma non si hanno dati che si vogliono memorizzare nel _type_
 stesso.

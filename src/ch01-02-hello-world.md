@@ -82,7 +82,7 @@ Hello, world!
 
 Indipendentemente dal sistema operativo, la stringa `Hello, world!` dovrebbe
 essere stampata sul terminale. Se non vedi questo output, consulta la sezione
-["Risoluzione dei problemi"][risoluzione-dei-problemi]<!-- ignore --> nel
+[“Risoluzione dei problemi”][risoluzione-dei-problemi]<!-- ignore --> nel
 capitolo Installazione per trovare aiuto.
 
 Se `Hello, world!` è stato stampato, congratulazioni! Hai ufficialmente scritto

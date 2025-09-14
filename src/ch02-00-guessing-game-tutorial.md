@@ -141,8 +141,8 @@ let mele = 5;
 Questa riga crea una nuova variabile di nome `mele` e la lega al valore 5. In
 Rust, le variabili sono immutabili (_immutable_) come impostazione predefinita,
 il che significa che una volta assegnato un valore alla variabile, il valore non
-cambierà. Parleremo di questo concetto in dettaglio nella sezione ["Variabili e
-mutabilità"][variables-and-mutability]<!-- ignore --> del Capitolo
+cambierà. Parleremo di questo concetto in dettaglio nella sezione [“Variabili e
+mutabilità”][variables-and-mutability]<!-- ignore --> del Capitolo
 3. Per rendere mutabile (_mutable_) una variabile, aggiungiamo `mut` prima del
 nome della variabile:
 
@@ -796,8 +796,8 @@ il che introduce un nuovo problema: come fa l'utente a smettere di giocare?
 L'utente può sempre interrompere il programma utilizzando la scorciatoia da
 tastiera <kbd>ctrl</kbd>-<kbd>c</kbd>. Ma c'è un altro modo per sfuggire a
 questo mostro insaziabile, come accennato nella discussione su `parse` in
-["Confrontare l'ipotesi con il numero
-segreto"](#confrontare-lipotesi-con-il-numero-segreto)<!-- ignore -->: se
+[“Confrontare l'ipotesi con il numero
+segreto”](#confrontare-lipotesi-con-il-numero-segreto)<!-- ignore -->: se
 l'utente inserisce una risposta non numerica, il programma si blocca. Possiamo
 approfittarne per consentire all'utente di uscire, come mostrato qui:
 

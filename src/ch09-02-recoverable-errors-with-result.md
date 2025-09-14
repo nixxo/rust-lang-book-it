@@ -6,8 +6,8 @@ facilmente interpretabile e a cui è possibile rispondere. Ad esempio, se si
 tenta di aprire un file e l'operazione fallisce perché il file non esiste,
 potrebbe essere opportuno crearlo anziché terminare il processo.
 
-Come menzionato in ["Gestione dei potenziali errori con
-`Result`"][handle_failure]<!-- ignore --> nel Capitolo 2 l'_enum_ `Result` è
+Come menzionato in [“Gestione dei potenziali errori con
+`Result`”][handle_failure]<!-- ignore --> nel Capitolo 2 l'_enum_ `Result` è
 definito come avente due varianti, `Ok` ed `Err`, come segue:
 
 ```rust

@@ -17,7 +17,7 @@ aggiungere dipendenze.
 Poiché la stragrande maggioranza dei progetti Rust utilizza Cargo, il resto di
 questo libro presuppone che anche tu stia utilizzando Cargo. Cargo viene
 installato insieme a Rust se hai utilizzato l'installazione di cui si parla
-nella sezione ["Installazione"][installazione]<!-- ignore -->. Se hai installato
+nella sezione [“Installazione”][installazione]<!-- ignore -->. Se hai installato
 Rust in altro modo, controlla se Cargo è installato inserendo quanto segue nel
 tuo terminale:
 

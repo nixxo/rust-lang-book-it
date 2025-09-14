@@ -72,8 +72,8 @@ privata `addizione_privata`.
 
 Nota che la funzione `addizione_privata` non è contrassegnata come `pub`. I test
 sono solo codice Rust e il modulo `tests` è solo un altro modulo. Come abbiamo
-discusso in ["Percorsi per Fare Riferimento a un Elemento nell'Albero dei
-Moduli"][paths]<!-- ignore -->, gli elementi dei moduli figli possono utilizzare
+discusso in [“Percorsi per Fare Riferimento a un Elemento nell'Albero dei
+Moduli”][paths]<!-- ignore -->, gli elementi dei moduli figli possono utilizzare
 gli elementi dei loro moduli antenati. In questo test, portiamo tutti gli
 elementi dei moduli genitore del modulo `tests` nello _scope_ con `use
 super::*`, e poi il test può chiamare `addizione_privata`. Se non pensi che le
@@ -180,7 +180,7 @@ che i file nella cartella _tests_ non condividono lo stesso comportamento dei
 file in _src_, come hai appreso nel Capitolo 7 su come separare il codice in
 moduli e file.
 
-Il diverso comportamento dei file della cartella _tests_ si nota soprattutto quando hai una serie di funzioni comuni da utilizzare in più file di test di integrazione e cerchi di seguire i passi della sezione ["Separare i Moduli in File Diversi"][separating-modules-into-files]<!-- ignore --> del Capitolo 7 per metterle in un modulo comune. Ad esempio, se creiamo _tests/comune.rs_ e vi inseriamo una funzione chiamata `inizializzazione` a cui aggiungere del codice che vogliamo chiamare da più funzioni di test in più file di test:
+Il diverso comportamento dei file della cartella _tests_ si nota soprattutto quando hai una serie di funzioni comuni da utilizzare in più file di test di integrazione e cerchi di seguire i passi della sezione [“Separare i Moduli in File Diversi”][separating-modules-into-files]<!-- ignore --> del Capitolo 7 per metterle in un modulo comune. Ad esempio, se creiamo _tests/comune.rs_ e vi inseriamo una funzione chiamata `inizializzazione` a cui aggiungere del codice che vogliamo chiamare da più funzioni di test in più file di test:
 
 <span class="filename">File: tests/comune.rs</span>
 
@@ -214,7 +214,7 @@ _tests/comune/mod.rs_. La cartella del progetto ora ha questo aspetto:
 ```
 
 Questa è la vecchia convenzione di denominazione comunque compresa da Rust, di
-cui abbiamo parlato in ["Percorsi di File Alternativi"][alt-paths]<!-- ignore
+cui abbiamo parlato in [“Percorsi di File Alternativi”][alt-paths]<!-- ignore
 --> nel Capitolo 7. Nominare il file in questo modo indica a Rust di non
 trattare il modulo `comune` come un file di test di integrazione. Quando
 spostiamo il codice della funzione `inizializzazione` in _tests/comune/mod.rs_ e

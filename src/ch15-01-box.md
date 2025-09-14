@@ -15,8 +15,7 @@ assicuratevi che i dati non vengano copiati quando lo fate
 - Quando volete possedere un valore e vi interessa solo che sia un tipo che
 implementa una caratteristica particolare piuttosto che essere di un tipo specifico
 
-Descriveremo la prima situazione in [“Abilitare i tipi ricorsivi con
-i box”](#enabling-recursive-types-with-boxes)<!-- ignore -->. Nel secondo
+Descriveremo la prima situazione in [“Abilitare i _Type_ Ricorsivi con i Box”](#abilitare-i-type-ricorsivi-con-i-box)<!-- ignore -->. Nel secondo
 caso, il trasferimento della ownership di una grande quantità di dati può richiedere molto tempo
 perché i dati vengono copiati nello stack. Per migliorare le prestazioni in questa
 situazione, possiamo memorizzare la grande quantità di dati sull'heap in un box. Quindi,
@@ -54,7 +53,7 @@ stack, dove vengono memorizzati di default, è più appropriato nella maggior pa
 delle situazioni. Diamo un'occhiata a un caso in cui i box ci consentono di definire tipi che
 non saremmo autorizzati a definire se non avessimo box.
 
-### Abilitare i Tipi Ricorsivi con i Box
+### Abilitare i _Type_ Ricorsivi con i Box
 
 Un valore di un _tipo ricorsivo (recursive type)_ può avere un altro valore dello stesso tipo come parte di
 sé. I tipi ricorsivi pongono un problema perché Rust deve sapere in fase di compilazione

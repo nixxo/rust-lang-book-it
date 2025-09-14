@@ -8,8 +8,8 @@ conoscere il _type_ di tutte le variabili in fase di compilazione. Il
 compilatore di solito può dedurre quale _type_ vogliamo utilizzare in base al
 valore e al modo in cui lo utilizziamo. Nei casi in cui sono possibili
 molteplici _type_, come quando abbiamo convertito uno `String` in un _type_
-numerico usando `parse` nella sezione ["Confrontare l'ipotesi con il numero
-segreto"][numero-segreto]<!-- ignore --> del Capitolo 2, dobbiamo aggiungere
+numerico usando `parse` nella sezione [“Confrontare l'ipotesi con il numero
+segreto”][numero-segreto]<!-- ignore --> del Capitolo 2, dobbiamo aggiungere
 un'annotazione, specificando il _type_ in questo modo:
 
 ```rust,ignore
@@ -107,8 +107,8 @@ _type integer_ di default è `i32`. La situazione principale in cui puoi usare
 > che fanno sì che il tuo programma vada in _panico_ (_panic_ d'ora in poi) in
 > fase di esecuzione se si verifica questo comportamento. Rust usa il termine
 > _panic_ quando un programma termina con un errore; parleremo in modo più
-> approfondito di _panic_ nella sezione ["Errori irreversibili con
-> `panic!`"][panic]<!-- ignore --> nel Capitolo 9.
+> approfondito di _panic_ nella sezione [“Errori irreversibili con
+> `panic!`”][panic]<!-- ignore --> nel Capitolo 9.
 >
 > Quando si compila in modalità release con il flag `--release`, Rust _non_
 > include i controlli per l'overflow degli integer che causano il _panic_.
@@ -183,8 +183,8 @@ _type_ booleano in Rust viene specificato con `bool`. Ad esempio:
 
 Il modo principale per utilizzare i valori booleani è attraverso i condizionali,
 come ad esempio un'espressione `if`. Tratteremo il funzionamento delle
-espressioni `if` in Rust nella sezione ["Controllo del
-flusso"][control-flow]<!-- ignore -->.
+espressioni `if` in Rust nella sezione [“Controllo del
+flusso”][control-flow]<!-- ignore -->.
 
 #### Il _Type_ Carattere
 
@@ -207,8 +207,8 @@ valori scalari Unicode vanno da `U+0000` a `U+D7FF` e da `U+E000` a `U+10FFFF`
 inclusi. Tuttavia, un "carattere" non è un concetto vero e proprio in Unicode,
 quindi quello che tu potresti concettualmente pensare essere un "carattere"
 potrebbe non corrispondere a cosa sia effettivamente un `char` in Rust.
-Discuteremo questo argomento in dettaglio in ["Memorizzare testo codificato
-UTF-8 con le stringhe"][strings]<!-- ignore --> nel Capitolo 8.
+Discuteremo questo argomento in dettaglio in [“Memorizzare testo codificato
+UTF-8 con le stringhe”][strings]<!-- ignore --> nel Capitolo 8.
 
 ### I Type Composti
 

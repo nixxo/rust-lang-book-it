@@ -29,8 +29,8 @@ meno un valore inferiore a 5. Il blocco di codice da eseguire se la condizione �
 `true` viene posizionato subito dopo la condizione, all'interno di parentesi
 graffe. I blocchi di codice associati alle condizioni nelle espressioni `if`
 possono esser viste come dei _rami_, proprio come i _rami_ nelle espressioni
-`match` di cui abbiamo parlato nella sezione ["Confrontare l'ipotesi con il
-numero segreto"][numero-segreto]<!-- ignore --> del Capitolo 2.
+`match` di cui abbiamo parlato nella sezione [“Confrontare l'ipotesi con il
+numero segreto”][numero-segreto]<!-- ignore --> del Capitolo 2.
 
 Opzionalmente, possiamo anche includere un'espressione `else` (`altrimenti` in
 italiano), come abbiamo scelto di fare in questo caso, per dare al programma un
@@ -228,8 +228,8 @@ interruzione.
 Fortunatamente, Rust offre anche un modo per uscire da un ciclo utilizzando del
 codice. Puoi inserire la parola chiave `break` all'interno del ciclo per
 indicare al programma quando interrompere l'esecuzione del ciclo. Ricorda che
-abbiamo fatto questo nel gioco di indovinelli nella sezione ["Uscita dopo
-un'ipotesi corretta"][ipotesi-corretta]<!-- ignore --> del Capitolo 2 per uscire
+abbiamo fatto questo nel gioco di indovinelli nella sezione [“Uscita dopo
+un'ipotesi corretta”][ipotesi-corretta]<!-- ignore --> del Capitolo 2 per uscire
 dal programma quando l'utente indovinava il numero segreto.
 
 Nel gioco di indovinelli abbiamo usato anche `continue`, che in un ciclo indica

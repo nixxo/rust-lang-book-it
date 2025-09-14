@@ -171,10 +171,10 @@ let s = String::from("ciao");
 
 L'operatore _double colon_ (doppio - due punti) `::` ci permette di integrare
 questa particolare funzione `from` nel _type_ `String` piuttosto che usare un
-nome come `string_from`. Parleremo di questa sintassi nella sezione ["Sintassi
-dei metodi"][method-syntax]<!-- ignore --> del Capitolo 5 e quando parleremo di
-come organizzare la nomenclatura nei moduli in ["Percorsi per fare riferimento a
-un elemento nell'albero dei moduli"][paths-module-tree]<!-- ignore --> nel
+nome come `string_from`. Parleremo di questa sintassi nella sezione [“Sintassi
+dei metodi”][method-syntax]<!-- ignore --> del Capitolo 5 e quando parleremo di
+come organizzare la nomenclatura nei moduli in [“Percorsi per fare riferimento a
+un elemento nell'albero dei moduli”][paths-module-tree]<!-- ignore --> nel
 Capitolo 7.
 
 Questo tipo di stringa _può_ essere mutata:
@@ -462,7 +462,7 @@ qualsiasi delle sue parti, ha implementato il _tratto_ `Drop`. Se il _type_ ha
 bisogno che accada qualcosa di speciale quando il valore esce dallo _scope_ e
 aggiungiamo l'annotazione `Copy` a quel _type_, otterremo un errore in fase di
 compilazione. Per sapere come aggiungere l'annotazione `Copy` al tuo _type_,
-consulta ["Tratti derivabili"][derivable-traits]<!-- ignore --> nell'Appendice
+consulta [“Tratti derivabili”][derivable-traits]<!-- ignore --> nell'Appendice
 C.
 
 Quindi, quali _type_ implementano il tratto `Copy`? Puoi controllare la

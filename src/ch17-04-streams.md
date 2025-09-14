@@ -1,7 +1,6 @@
 ## Streams: Futures in Sequence
 
 <!-- Old headings. Do not remove or links may break. -->
-
 <a id="streams"></a>
 
 So far in this chapter, we’ve mostly stuck to individual futures. The one big
@@ -12,7 +11,7 @@ produces a sequence of items over time. This is an instance of a much more
 general pattern known as a _stream_.
 
 We saw a sequence of items back in Chapter 13, when we looked at the `Iterator`
-trait in [The Iterator Trait and the `next` Method][iterator-trait]<!-- ignore
+trait in [“Il _Trait_ `Iterator` e il Metodo `next`”][iterator-trait]<!-- ignore
 --> section, but there are two differences between iterators and the async
 channel receiver. The first difference is time: iterators are synchronous, while
 the channel receiver is asynchronous. The second is the API. When working
@@ -447,4 +446,4 @@ into a few of the details of how `Future`, `Stream`, and the other key traits
 Rust uses to make async work.
 
 [17-02-messages]: ch17-02-concurrency-with-async.html#message-passing
-[iterator-trait]: ch13-02-iterators.html#the-iterator-trait-and-the-next-method
+[iterator-trait]: ch13-02-iterators.html#il-trait-iterator-e-il-metodo-next

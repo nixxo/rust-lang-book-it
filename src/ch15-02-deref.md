@@ -1,7 +1,6 @@
 ## Trattare i puntatori intelligenti come riferimenti regolari con `Deref`
 
 <!-- Old link, do not remove -->
-
 <a id="treating-smart-pointers-like-regular-references-with-the-deref-trait"></a>
 
 L'implementazione del trait `Deref` consente di personalizzare il comportamento dell'operatore di _dereference_ `*` (da non confondere con l'operatore di moltiplicazione o glob). Implementando `Deref` in modo tale che un puntatore intelligente possa essere

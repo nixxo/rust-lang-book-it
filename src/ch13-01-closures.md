@@ -77,7 +77,7 @@ riferimento immutabile all'istanza `self` di `Inventory` e lo passa con il
 codice che specifichiamo al metodo `unwrap_or_else`. Le funzioni, d'altra parte,
 non sono in grado di catturare il loro ambito in questo modo.
 
-### Inferenza e Annotazione del tipo di closure
+### Inferenza e Annotazione del _Type_ Delle Chiusure
 
 Esistono ulteriori differenze tra funzioni e closures. Le closures 
 di solito non richiedono di annotare i tipi dei parametri o il valore di ritorno,

@@ -1,7 +1,7 @@
 ## Variabili e Mutabilità
 
-Come accennato nella sezione ["Memorizzare i valori con le
-Variabili"][memorizzare-i-valori-con-le-variabili]<!-- ignore -->, come
+Come accennato nella sezione [“Memorizzare i valori con le
+Variabili”][memorizzare-i-valori-con-le-variabili]<!-- ignore -->, come
 impostazione predefinita, le variabili sono immutabili. Questo è uno dei tanti
 stimoli che Rust ti dà per scrivere il tuo codice in modo da sfruttare la
 sicurezza e la facilità di concorrenza che Rust offre. Tuttavia, hai ancora la
@@ -88,7 +88,7 @@ Innanzitutto, non puoi usare `mut` con le costanti. Le costanti non solo sono
 immutabili come impostazione predefinita, sono sempre immutabili. Dichiari le
 costanti usando la parola chiave `const` invece della parola chiave `let` e il
 _type_ del valore _deve_ essere annotato. Tratteremo i _type_ e le annotazioni
-dei _type_ nella prossima sezione, ["Datatype - Tipi di dato"][data-types]<!--
+dei _type_ nella prossima sezione, [“Datatype - Tipi di dato”][data-types]<!--
 ignore -->, quindi non preoccuparti dei dettagli in questo momento. Sappi solo
 che devi sempre annotare il _type_.
 
