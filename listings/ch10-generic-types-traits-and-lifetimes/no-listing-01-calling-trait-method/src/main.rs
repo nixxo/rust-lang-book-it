@@ -1,7 +1,7 @@
-use aggregatore::{SocialPost, Sommario};
+use aggregatore::{PostSocial, Sommario};
 
 fn main() {
-    let post = SocialPost {
+    let post = PostSocial {
         nomeutente: String::from("horse_ebooks"),
         contenuto: String::from(
             "ovviamente, come probabilmente già sapete, gente",

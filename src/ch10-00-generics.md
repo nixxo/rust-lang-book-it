@@ -2,10 +2,10 @@
 
 Ogni linguaggio di programmazione dispone di strumenti per gestire efficacemente
 la duplicazione di concetti. In Rust, uno di questi strumenti sono i _type_
-generici (_generics_): sostituti astratti per _type_ concreti o altre proprietà.
-Possiamo esprimere il comportamento dei _type_ generici o come si relazionano ad
-altri _type_ generici senza sapere cosa ci sarà al loro posto durante la
-compilazione e l'esecuzione del codice.
+generici: sostituti astratti per _type_ concreti o altre proprietà. Possiamo
+esprimere il comportamento dei _type_ generici o come si relazionano ad altri
+_type_ generici senza sapere cosa ci sarà al loro posto durante la compilazione
+e l'esecuzione del codice.
 
 Le funzioni possono accettare parametri di un _type_ generico, invece di un
 _type_ concreto come `i32` o `String`, allo stesso modo in cui accettano
@@ -26,14 +26,14 @@ generico. Puoi combinare i _trait_ con i _type_ generici per vincolare un _type_
 generico ad accettare solo i _type_ che hanno un comportamento particolare,
 anziché qualsiasi _type_.
 
-Infine, parleremo della _longevità_ (_lifetime_ d'ora in poi): una varietà di
-generici che forniscono al compilatore informazioni su come i _reference_ si
-relazionano tra loro. I _lifetime_ ci permettono di fornire al compilatore
-informazioni sufficienti sui valori presi in prestito in modo che possa
-garantire che i _reference_ siano validi in più situazioni di quante ne potrebbe
-avere senza il nostro aiuto.
+Infine, parleremo della longevità (_lifetime_): una varietà di generici che
+fornisce al compilatore informazioni su come i _reference_ si relazionano tra
+loro. I _lifetime_ ci permettono di fornire al compilatore informazioni
+sufficienti sui valori presi in prestito in modo che possa garantire che i
+_reference_ siano validi in più situazioni di quante ne potrebbe avere senza il
+nostro aiuto.
 
-## Rimozione della Duplicazione Mediante l'Estrazione di una Funzione
+## Rimuovere la Duplicazione Mediante l'Estrazione di una Funzione
 
 I _type_ generici ci permettono di sostituire _type_ specifici con un segnaposto
 che rappresenta più _type_ per evitare la duplicazione del codice. Prima di
@@ -42,7 +42,7 @@ ripetizioni in un modo che non coinvolga _type_ generici, estraendo una funzione
 che sostituisce valori specifici con un segnaposto che rappresenta più valori.
 Poi applicheremo la stessa tecnica per estrarre una funzione generica!
 Analizzando come riconoscere il codice duplicato che è possibile estrarre in una
-funzione, inizieremo a riconoscere il codice duplicato che può utilizzare i
+funzione, comincerai a riconoscere il codice duplicato che può utilizzare i
 generici.
 
 Inizieremo con il breve programma nel Listato 10-1 che trova il numero più
@@ -84,9 +84,9 @@ Dobbiamo anche ricordarci di aggiornare il codice in più punti quando vogliamo
 modificarlo.
 
 Per eliminare questa duplicazione, creeremo un'astrazione definendo una funzione
-che opera su qualsiasi elenco di interi passati come parametro. Questa soluzione
-rende il nostro codice più chiaro e ci permette di esprimere il concetto di
-ricerca del numero più grande in un elenco in modo astratto.
+che opera su qualsiasi elenco di _integer_ passati come parametro. Questa
+soluzione rende il nostro codice più chiaro e ci permette di esprimere il
+concetto di ricerca del numero più grande in un elenco in modo astratto.
 
 Nel Listato 10-3, estraiamo il codice che trova il numero più grande in una
 funzione denominata `maggiore`. Quindi chiamiamo la funzione per trovare il
@@ -111,7 +111,7 @@ Listato 10-2 al Listato 10-3
 
 1. Identificare il codice duplicato.
 1. Estrarre il codice duplicato nel corpo della funzione e specificare gli input
-e i valori restituiti da tale codice nella firma della funzione.
+   e i valori restituiti da tale codice nella firma della funzione.
 1. Aggiornare le due istanze di codice duplicato per chiamare la funzione.
 
 Successivamente, utilizzeremo gli stessi passaggi con i _type_ generici per

@@ -130,7 +130,7 @@ implementiamo la caratteristica `Deref`.
 
 ### Implementazione del tratto `Deref`
 
-Come discusso in [“Implementazione di un _Trait_ su un _Type_”][impl-trait]<!-- ignore --> nel
+Come discusso in [“Implementare un _Trait_ su un _Type_”][impl-trait]<!-- ignore --> nel
 Capitolo 10, per implementare un tratto dobbiamo fornire le implementazioni per
 i metodi richiesti dal tratto. Il tratto `Deref`, fornito dalla libreria standard,
 richiede l'implementazione di un metodo chiamato `deref` che prende in prestito `self` e
@@ -286,5 +286,5 @@ riferimento immutabile iniziale sia l'unico riferimento immutabile a quei dati, 
 le regole di borrowing non lo garantiscono. Pertanto, Rust non può dare per scontato
 che sia possibile convertire un riferimento immutabile in un riferimento mutabile.
 
-[impl-trait]: ch10-02-traits.html#implementazione-di-un-trait-su-un-type
+[impl-trait]: ch10-02-traits.html#implementare-un-trait-su-un-type
 [tuple-structs]: ch05-01-defining-structs.html#struct-tupla-senza-campi-denominati-per-creare-type-diversi

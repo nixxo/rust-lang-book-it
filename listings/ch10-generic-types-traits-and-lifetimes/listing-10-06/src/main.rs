@@ -1,4 +1,4 @@
-struct Point<T> {
+struct Punto<T> {
     x: T,
     y: T,
 }

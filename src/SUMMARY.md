@@ -54,10 +54,10 @@
   - [Errori Reversibili con `Result`](ch09-02-recoverable-errors-with-result.md)
   - [`panic!` o non `panic!`](ch09-03-to-panic-or-not-to-panic.md)
 
-- [Generic Types, Traits, and Lifetimes](ch10-00-generics.md)
-  - [Generic Data Types](ch10-01-syntax.md)
-  - [Traits: Defining Shared Behavior](ch10-02-traits.md)
-  - [Validating References with Lifetimes](ch10-03-lifetime-syntax.md)
+- [_Type_ Generici, _Trait_ e _Lifetime_](ch10-00-generics.md)
+  - [Tipi di Dati Generici](ch10-01-syntax.md)
+  - [_Trait_: Definire il Comportamento Condiviso](ch10-02-traits.md)
+  - [Validare i _Reference_ con la _Lifetime_](ch10-03-lifetime-syntax.md)
 
 - [Scrivere Test Automatizzati](ch11-00-testing.md)
   - [How to Write Tests](ch11-01-writing-tests.md)

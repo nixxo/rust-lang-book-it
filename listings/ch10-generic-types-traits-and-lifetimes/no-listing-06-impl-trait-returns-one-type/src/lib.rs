@@ -2,27 +2,27 @@ pub trait Sommario {
     fn riassunto(&self) -> String;
 }
 
-pub struct ArticoloNews {
+pub struct Articolo {
     pub titolo: String,
     pub posizione: String,
     pub autore: String,
     pub contenuto: String,
 }
 
-impl Sommario for ArticoloNews {
+impl Sommario for Articolo {
     fn riassunto(&self) -> String {
         format!("{}, di {} ({})", self.titolo, self.autore, self.posizione)
     }
 }
 
-pub struct SocialPost {
+pub struct PostSocial {
     pub nomeutente: String,
     pub contenuto: String,
     pub risposta: bool,
     pub repost: bool,
 }
 
-impl Sommario for SocialPost {
+impl Sommario for PostSocial {
     fn riassunto(&self) -> String {
         format!("{}: {}", self.nomeutente, self.contenuto)
     }
@@ -31,7 +31,7 @@ impl Sommario for SocialPost {
 // ANCHOR: here
 fn riassumibile(switch: bool) -> impl Sommario {
     if switch {
-        ArticoloNews {
+        Articolo {
             titolo: String::from(
                 "I Penguins vincono la Stanley Cup!",
             ),
@@ -42,7 +42,7 @@ fn riassumibile(switch: bool) -> impl Sommario {
             ),
         }
     } else {
-        SocialPost {
+        PostSocial {
             nomeutente: String::from("horse_ebooks"),
             contenuto: String::from(
                 "ovviamente, come probabilmente già sapete, gente",

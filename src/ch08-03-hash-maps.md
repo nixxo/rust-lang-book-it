@@ -102,7 +102,7 @@ state spostate nella _hash map_ con la chiamata a `insert`.
 Se inseriamo _reference_ a valori nella _hash map_, i valori non verranno
 spostati nella _hash map_. I valori a cui puntano i _reference_ devono essere
 validi almeno per il tempo in cui è valida la _hash map_. Approfondiremo questi
-argomenti in [“Validazione dei _Reference_ con le _Lifetime_
+argomenti in [“Validare i _Reference_ con la _Lifetime_
 ”][validating-references-with-lifetimes]<!-- ignore --> nel Capitolo 10.
 
 ### Aggiornare una _Hash Map_
@@ -198,7 +198,7 @@ a `0`.
 
 Questo codice stamperà `{"world": 2, "hello": 1, "wonderful": 1}`. Potresti
 vedere le stesse coppie chiave-valore stampate in un ordine diverso: ricorda
-che, come menzionato precedentemente in ["Accesso ai Valori in una _Hash
+che, come menzionato precedentemente in [“Accesso ai Valori in una _Hash
 Map_”][access]<!-- ignore -->, l'iterazione su una _hash map_ avviene in un
 ordine arbitrario.
 
@@ -257,7 +257,7 @@ Stiamo entrando in programmi più complessi in cui le operazioni possono fallire
 quindi è il momento perfetto per discutere della gestione degli errori. Lo
 faremo in seguito!
 
-[validating-references-with-lifetimes]: ch10-03-lifetime-syntax.html#validazione-dei-reference-con-le-lifetime
+[validating-references-with-lifetimes]: ch10-03-lifetime-syntax.html#validare-i-reference-con-la-lifetime
 [access]: #accedere-ai-valori-in-una-hash-map
 [traits]: ch10-02-traits.html
 [pig-latin]: https://it.wikipedia.org/wiki/Pig_latin

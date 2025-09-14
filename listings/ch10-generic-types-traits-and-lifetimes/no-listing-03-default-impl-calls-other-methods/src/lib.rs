@@ -1,3 +1,4 @@
+// ANCHOR: here
 pub trait Sommario {
     fn riassunto_autore(&self) -> String;
 
@@ -7,7 +8,7 @@ pub trait Sommario {
 }
 // ANCHOR_END: here
 
-pub struct SocialPost {
+pub struct PostSocial {
     pub nomeutente: String,
     pub contenuto: String,
     pub risposta: bool,
@@ -15,7 +16,7 @@ pub struct SocialPost {
 }
 
 // ANCHOR: impl
-impl Sommario for SocialPost {
+impl Sommario for PostSocial {
     fn riassunto_autore(&self) -> String {
         format!("@{}", self.nomeutente)
     }

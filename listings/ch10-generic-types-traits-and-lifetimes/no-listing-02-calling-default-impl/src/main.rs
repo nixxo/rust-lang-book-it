@@ -1,8 +1,8 @@
-use aggregatore::{self, ArticoloNews, Sommario};
+use aggregatore::{self, Articolo, Sommario};
 
 fn main() {
     // ANCHOR: here
-    let articolo = ArticoloNews {
+    let articolo = Articolo {
         titolo: String::from("I Penguins vincono la Stanley Cup!"),
         posizione: String::from("Pittsburgh, PA, USA"),
         autore: String::from("Iceburgh"),

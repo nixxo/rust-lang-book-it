@@ -1,12 +1,12 @@
 ## Tipi di Dati Generici
 
 Utilizziamo i _type_ generici per creare definizioni per elementi come firme di
-funzioni o _struct_, che possiamo poi utilizzare con molti _type_ di dati
-concreti diversi. Vediamo prima come definire funzioni, _struct_, _enum_ e
-metodi utilizzando i _type_ generici. Poi discuteremo di come i generici
-influiscono sulle prestazioni del codice.
+funzioni o _struct_, che possiamo poi utilizzare con molti tip di dati concreti
+diversi. Vediamo prima come definire funzioni, _struct_, _enum_ e metodi
+utilizzando i _type_ generici. Poi discuteremo di come i generici influiscono
+sulle prestazioni del codice.
 
-### Nelle Definizioni di Funzione
+### Nella Definizione delle Funzioni
 
 Quando definiamo una funzione che utilizza i _type_ generici, li inseriamo nella
 firma della funzione, dove normalmente specificheremmo i _type_ dei parametri e
@@ -35,10 +35,11 @@ in una singola funzione.
 Per parametrizzare i _type_ in una nuova singola funzione, dobbiamo assegnare un
 nome al parametro di _type_, proprio come facciamo per i parametri di valore di
 una funzione. È possibile utilizzare qualsiasi identificatore come nome di
-parametro di tipo. Ma useremo `T` perché, per convenzione, i nomi dei parametri
-di _type_ in Rust sono brevi, spesso di una sola lettera, e la convenzione di
-denominazione dei _type_ di Rust è CamelCase[^cc]. Abbreviazione di _type_, `T`
-è la scelta predefinita della maggior parte dei programmatori Rust.
+parametro di _type_. Ma useremo `T` perché, per convenzione, i nomi dei
+parametri di _type_ in Rust sono brevi, spesso di una sola lettera, e la
+convenzione di denominazione dei _type_ di Rust è CamelCase[^cc]. Abbreviazione
+di _type_, `T` è la scelta predefinita della maggior parte dei programmatori
+Rust.
 
 Quando utilizziamo un parametro nel corpo della funzione, dobbiamo dichiarare il
 nome del parametro nella firma in modo che il compilatore ne conosca il
@@ -76,16 +77,19 @@ Se compiliamo questo codice adesso, otterremo questo errore:
 {{#include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-05/output.txt}}
 ```
 
-Il testo di aiuto menziona `std::cmp::PartialOrd`, che è un _trait_, e  parleremo dei _trait_ nella prossima sezione. Per ora, sappi che questo errore
-indica che il corpo di `maggiore` non funzionerà per tutti i possibili _type_ di `T`. Poiché vogliamo confrontare valori di _type_ `T` nel corpo, possiamo
-utilizzare solo _type_ i cui valori possono essere ordinati. Per abilitare i confronti, la libreria
-standard include il _trait_ `std::cmp::PartialOrd` che è possibile implementare sui _type_
-(vedere l'[Appendice C][app-c] per maggiori informazioni su questo _trait_). Per correggere il Listato 10-5, possiamo seguire
-il suggerimento del testo di aiuto e limitare i _type_ validi per `T` solo a quelli che
-implementano `PartialOrd`. Il listato verrà quindi compilato, poiché la libreria
-standard implementa `PartialOrd` sia su `i32` che su `char`.
+Il testo di aiuto menziona `std::cmp::PartialOrd`, che è un _trait_, e
+parleremo dei _trait_ nella prossima sezione. Per ora, sappi che questo errore
+indica che il corpo di `maggiore` non funzionerà per tutti i possibili _type_ di
+`T`. Poiché vogliamo confrontare valori di _type_ `T` nel corpo, possiamo
+utilizzare solo _type_ i cui valori possono essere ordinati. Per abilitare i
+confronti, la libreria standard include il _trait_ `std::cmp::PartialOrd` che è
+possibile implementare sui _type_ (vedere l'[Appendice C][app-c] per maggiori
+informazioni su questo _trait_). Per correggere il Listato 10-5, possiamo
+seguire il suggerimento del testo di aiuto e limitare i _type_ validi per `T`
+solo a quelli che implementano `PartialOrd`. Il listato verrà quindi compilato,
+poiché la libreria standard implementa `PartialOrd` sia su `i32` che su `char`.
 
-### Nelle Definizioni delle _Struct_
+### Nella Definizione delle _Struct_
 
 Possiamo anche definire _struct_ per utilizzare un parametro di _type_ generico
 in uno o più campi utilizzando la sintassi `<>`. Il Listato 10-6 definisce una
@@ -150,7 +154,7 @@ il codice difficile da leggere. Se ti accorgi di aver bisogno di molti _type_
 generici nel tuo codice, potrebbe essere necessario ristrutturarlo in parti più
 piccole.
 
-### Nelle Definizioni di _Enum_
+### Nella Definizione degli _Enum_
 
 Come abbiamo fatto con le _struct_, possiamo definire gli _enum_ per contenere
 _type_ di dati generici nelle loro varianti. Diamo un'altra occhiata all'_enum_
@@ -186,7 +190,7 @@ che contiene un valore di _type_ `T`, e `Err`, che contiene un valore di _type_
 un'operazione che potrebbe avere successo (restituire un valore di _type_ `T`) o
 fallire (restituire un errore di _type_ `E`). In effetti, questo è ciò che
 abbiamo usato per aprire un file nel Listato 9-3, dove `T` veniva riempito con
-il _type_ `std::fs::File` quando il file veniva aperto correttamente e `E`
+il _type_ `std::fs::File` quando il file veniva aperto correttamente ed `E`
 veniva riempito con il _type_ `std::io::Error` quando si verificavano problemi
 durante l'apertura del file.
 
@@ -194,10 +198,10 @@ Quando trovi situazioni nel codice con più definizioni di _struct_ o _enum_ che
 differiscono solo per il _type_ dei valori che contengono, è possibile evitare
 la duplicazione utilizzando invece _type_ generici.
 
-### Nelle Definizioni dei Metodi
+### Nella Definizione dei Metodi
 
 Possiamo implementare metodi su _struct_ ed _enum_ (come abbiamo fatto nel
-Capitolo 5) e utilizzare _type_ generici anche nelle loro definizioni. Il
+Capitolo 5) e utilizzare _type_ generici anche nella loro definizione. Il
 Listato 10-9 mostra la _struct_ `Punto<T>` definita nel Listato 10-6 con un
 metodo denominato `x` implementato su di essa.
 
@@ -246,7 +250,7 @@ matematiche disponibili solo per i _type_ a virgola mobile.
 I parametri di _type_ generico nella definizione di una _struct_ non sono sempre
 gli stessi di quelli utilizzati nelle firme dei metodi della stessa _struct_. Il
 Listato 10-11 utilizza i _type_ generici `X1` e `Y1` per la _struct_ `Punto` e
-`X2` e `Y2` per la firma del metodo `mixup` per rendere l'esempio più chiaro. Il
+`X2` e `Y2` per la firma del metodo `misto` per rendere l'esempio più chiaro. Il
 metodo crea una nuova istanza di `Punto` con il valore `x` dal `self` `Punto`
 (di _type_ `X1`) e il valore `y` dal `Punto` passato come argomento (di _type_
 `Y2`).
@@ -262,7 +266,7 @@ metodo crea una nuova istanza di `Punto` con il valore `x` dal `self` `Punto`
 In `main`, abbiamo definito un `Punto` che ha un `i32` per `x` (con valore `5`)
 e un `f64` per `y` (con valore `10.4`). La variabile `p2` è una _struct_ `Punto`
 che ha una _slice_ di stringa per `x` (con valore `"Ciao"`) e un `char` per `y`
-(con valore `c`). Chiamando `mixup` su `p1` con l'argomento `p2` otteniamo `p3`,
+(con valore `c`). Chiamando `misto` su `p1` con l'argomento `p2` otteniamo `p3`,
 che avrà un `i32` per `x` perché `x` proviene da `p1`. La variabile `p3` avrà un
 `char` per `y` perché `y` proviene da `p2`. La chiamata alla macro `println!`
 stamperà `p3.x = 5, p3.y = c`.
@@ -271,7 +275,7 @@ Lo scopo di questo esempio è dimostrare una situazione in cui alcuni parametri
 generici sono dichiarati con `impl` e altri con la definizione del metodo. Qui,
 i parametri generici `X1` e `Y1` sono dichiarati dopo `impl` perché vanno con la
 definizione della _struct_. I parametri generici `X2` e `Y2` sono dichiarati
-dopo `fn mixup` perché sono rilevanti solo per il metodo.
+dopo `fn misto` perché sono rilevanti solo per il metodo.
 
 ### Prestazioni del Codice Utilizzando _Type_ Generici
 

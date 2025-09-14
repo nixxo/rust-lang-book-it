@@ -102,8 +102,8 @@ essere collegato al valore di ritorno utilizzando la sintassi di longevità.
 Altri linguaggi di programmazione non richiedono di collegare gli argomenti ai
 valori di ritorno nella firma, ma questa pratica diventerà più semplice col
 tempo. Potresti confrontare questo esempio con gli esempi nella sezione
-["Validazione dei _Reference_ con le
-_Lifetime_"][validating-references-with-lifetimes]<!-- ignore --> nel Capitolo
+[“Validare i _Reference_ con la
+_Lifetime_”][validating-references-with-lifetimes]<!-- ignore --> nel Capitolo
 10.
 
 ### Scrivere Codice per Superare il Test
@@ -224,7 +224,7 @@ Per completare questo progetto, mostreremo brevemente come lavorare con le
 variabili d'ambiente e come stampare su standard error, entrambi utili quando
 si scrivono programmi da riga di comando.
 
-[validating-references-with-lifetimes]: ch10-03-lifetime-syntax.html#validazione-dei-reference-con-le-lifetime
+[validating-references-with-lifetimes]: ch10-03-lifetime-syntax.html#validare-i-reference-con-la-lifetime
 [ch11-anatomy]: ch11-01-writing-tests.html#anatomia-di-una-funzione-di-test
 [ch10-lifetimes]: ch10-03-lifetime-syntax.html
 [ch13-iterators]: ch13-02-iterators.html

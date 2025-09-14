@@ -4,23 +4,23 @@ pub trait Sommario {
     }
 }
 
-pub struct ArticoloNews {
+pub struct Articolo {
     pub titolo: String,
     pub posizione: String,
     pub autore: String,
     pub contenuto: String,
 }
 
-impl Sommario for ArticoloNews {}
+impl Sommario for Articolo {}
 
-pub struct SocialPost {
+pub struct PostSocial {
     pub nomeutente: String,
     pub contenuto: String,
     pub risposta: bool,
     pub riposta: bool,
 }
 
-impl Sommario for SocialPost {
+impl Sommario for PostSocial {
     fn riassunto(&self) -> String {
         format!("{}: {}", self.nomeutente, self.contenuto)
     }

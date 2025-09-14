@@ -1,11 +1,11 @@
 ## Advanced Traits
 
-We first covered traits in [“_Trait_: Definizione del Comportamento Condiviso”][traits-defining-shared-behavior]<!-- ignore --> in Chapter 10, but we
-didn’t discuss the more advanced details. Now that you know more about Rust, we
-can get into the nitty-gritty.
+We first covered traits in [“_Trait_: Definire il Comportamento
+Condiviso”][traits-defining-shared-behavior]<!-- ignore --> in Chapter 10, but
+we didn’t discuss the more advanced details. Now that you know more about Rust,
+we can get into the nitty-gritty.
 
 <!-- Old link, do not remove -->
-
 <a id="specifying-placeholder-types-in-trait-definitions-with-associated-types"></a>
 
 ### Associated Types
@@ -420,7 +420,7 @@ it within an outline of asterisks.
 
 ### Using the Newtype Pattern to Implement External Traits
 
-In [“Implementazione di un _Trait_ su un _Type_”][implementing-a-trait-on-a-type]<!--
+In [“Implementare un _Trait_ su un _Type_”][implementing-a-trait-on-a-type]<!--
 ignore --> in Chapter 10, we mentioned the orphan rule that states we’re only
 allowed to implement a trait on a type if either the trait or the type, or
 both, are local to our crate. It’s possible to get around this restriction
@@ -467,7 +467,7 @@ This newtype pattern is also useful even when traits are not involved. Let’s
 switch focus and look at some advanced ways to interact with Rust’s type system.
 
 [newtype]: ch20-02-advanced-traits.html#using-the-newtype-pattern-to-implement-external-traits
-[implementing-a-trait-on-a-type]: ch10-02-traits.html#implementazione-di-un-trait-su-un-type
-[traits-defining-shared-behavior]: ch10-02-traits.html#trait-definizione-del-comportamento-condiviso
+[implementing-a-trait-on-a-type]: ch10-02-traits.html#implementare-un-trait-su-un-type
+[traits-defining-shared-behavior]: ch10-02-traits.html#trait-definire-il-comportamento-condiviso
 [smart-pointer-deref]: ch15-02-deref.html#treating-smart-pointers-like-regular-references-with-the-deref-trait
 [tuple-structs]: ch05-01-defining-structs.html#struct-tupla-senza-campi-denominati-per-creare-type-diversi

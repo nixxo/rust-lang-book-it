@@ -1,8 +1,8 @@
-use aggregatore::{self, SocialPost, Sommario};
+use aggregatore::{self, PostSocial, Sommario};
 
 fn main() {
     // ANCHOR: here
-    let post = SocialPost {
+    let post = PostSocial {
         nomeutente: String::from("horse_ebooks"),
         contenuto: String::from(
             "ovviamente, come probabilmente già sapete, gente",
