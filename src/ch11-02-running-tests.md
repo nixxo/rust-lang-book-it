@@ -17,10 +17,7 @@ a `cargo test` seguiti dal separatore `--` e poi quelli che vanno al binario di
 test. Eseguendo `cargo test --help` vengono visualizzate le opzioni che puoi
 usare con `cargo test`, mentre eseguendo `cargo test -- --help` vengono
 visualizzate le opzioni che puoi usare dopo il separatore. Queste opzioni sono
-documentate anche nella [sezione “Tests”][tests] del [libro di rustc][rustc].
-
-[tests]: https://doc.rust-lang.org/rustc/tests/index.html
-[rustc]: https://doc.rust-lang.org/rustc/index.html
+documentate anche nella [sezione “Tests”][tests] del libro di rustc.
 
 ### Eseguire i Test in Parallelo o Sequenzialmente
 
@@ -44,7 +41,7 @@ nell'assicurarsi che ogni test scriva in un file diverso; un'altra soluzione
 consiste nell'eseguire i test uno alla volta.
 
 Se non vuoi eseguire i test in parallelo o se vuoi un controllo più preciso sul
-numero di _thread_ utilizzati, puoi inviare il flag `--test-threads` e il numero
+numero di _thread_ utilizzati, puoi usare il flag `--test-threads` e il numero
 di thread che vuoi utilizzare al binario di test. Guarda il seguente esempio:
 
 ```console
@@ -65,7 +62,7 @@ chiamiamo `println!` in un test e il test viene superato, non vedremo l'output
 superato. Se un test fallisce, vedremo tutto ciò che è stato stampato sullo
 standard output con il resto del messaggio di fallimento.
 
-Come esempio, il listato 11-10 contiene una funzione stupida che stampa il
+Come esempio, il Listato 11-10 contiene una funzione stupida che stampa il
 valore del suo parametro e restituisce 10, oltre a un test che passa e uno che
 fallisce.
 
@@ -77,7 +74,7 @@ fallisce.
 
 </Listing>
 
-When we run these tests with `cargo test`, we’ll see the following output:
+Quando eseguiamo i test con `cargo test`, vedremo il seguente output:
 
 ```console
 {{#include ../listings/ch11-writing-automated-tests/listing-11-10/output.txt}}
@@ -105,10 +102,11 @@ Quando eseguiamo nuovamente i test del Listato 11-10 con il flag
 
 ### Eseguire un Sottoinsieme di Test in Base al Nome
 
-A volte, l'esecuzione di un'intera suite di test può richiedere molto tempo. Se
-stai lavorando sul codice di una particolare area, potresti voler eseguire solo
-i test relativi a quel codice. Puoi scegliere quali test eseguire passando a
-`cargo test` il nome o i nomi dei test che vuoi eseguire come argomento.
+A volte, l'esecuzione di tutti i test che abbiamo definito può richiedere molto
+tempo. Se stai lavorando sul codice di una particolare area, potresti voler
+eseguire solo i test relativi a quel codice. Puoi scegliere quali test eseguire
+passando a `cargo test` il nome o i nomi dei test che vuoi eseguire come
+argomento.
 
 Per dimostrare come eseguire un sottoinsieme di test, creeremo prima tre test
 per la nostra funzione `aggiungi_due`, come mostrato nel Listato 11-11, e
@@ -174,21 +172,26 @@ l'attributo `ignore` per escluderli, come mostrato qui:
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-11-ignore-a-test/src/lib.rs:here}}
 ```
 
-Dopo `#[test]`, aggiungiamo la riga `#[ignore]` al test che vogliamo escludere. Ora quando eseguiamo i nostri test, `it_works` viene eseguito, ma `test_impegnativo` no:
+Dopo `#[test]`, aggiungiamo la riga `#[ignore]` al test che vogliamo escludere.
+Ora quando eseguiamo i nostri test, `somma_due_e_due` viene eseguito, ma
+`test_impegnativo` no:
 
 ```console
 {{#include ../listings/ch11-writing-automated-tests/no-listing-11-ignore-a-test/output.txt}}
 ```
 
-La funzione `test_impegnativo` è elencata come `ignored`. Se vogliamo eseguire solo i test ignorati, possiamo usare `cargo test -- --ignored`:
+La funzione `test_impegnativo` è elencata come `ignored`. Se vogliamo eseguire
+solo i test ignorati, possiamo usare `cargo test -- --ignored`:
 
 ```console
 {{#include ../listings/ch11-writing-automated-tests/output-only-04-running-ignored/output.txt}}
 ```
 
-Controllando quali test vengono eseguiti, puoi assicurarti che i risultati del
-tuo `cargo test` vengano restituiti rapidamente. Quando ha senso controllare i
-risultati dei test `ignorati` e hai il tempo di aspettare i risultati, puoi
+Controllando quali test vengono eseguiti, puoi assicurarti che i risultati di
+`cargo test` vengano restituiti rapidamente. Quando ha senso controllare i
+risultati dei test `ignored` e hai il tempo di aspettare i risultati, puoi
 invece eseguire `cargo test -- --ignored`. Se vuoi eseguire tutti i test,
 indipendentemente dal fatto che siano ignorati o meno, puoi eseguire `cargo test
 -- --include-ignored`
+
+[tests]: https://doc.rust-lang.org/rustc/tests/index.html

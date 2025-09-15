@@ -1,4 +1,4 @@
-$cargo test somma_due_e_due
+$ cargo test somma
    Compiling addizione v0.1.0 (file:///progetti/addizione)
     Finished `test` profile [unoptimized + debuginfo] target(s) in 1.11s
      Running unittests src/lib.rs (target/debug/deps/addizione-41054392f08da196)

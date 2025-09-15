@@ -6,11 +6,11 @@ tre azioni:
 
 - Impostare i dati o lo stato necessari.
 - Eseguire il codice che si desidera testare.
-- Verificare che i risultati sono quelli attesi.
+- Verificare che i risultati siano quelli attesi.
 
-Vediamo le caratteristiche che Rust fornisce specificamente per scrivere test
-che eseguono queste azioni, che includono l'attributo `test`, alcune macro e
-l'attributo `should_panic`.
+Vediamo le funzionalità che Rust mette a disposizione specificamente per
+scrivere test che eseguono queste azioni, come l'attributo `test`, alcune macro
+e l'attributo `should_panic`.
 
 ### Anatomia di Una Funzione di Test
 
@@ -29,9 +29,9 @@ dover cercare la struttura e la sintassi esatta ogni volta che inizi un nuovo
 progetto. Puoi aggiungere tutte le funzioni di test e tutti i moduli di test che
 vuoi!
 
-Esploreremo alcuni aspetti del funzionamento dei test sperimentando il modello
-di test prima di testare effettivamente il codice. Poi scriveremo alcuni test
-reali che richiamano il codice che abbiamo scritto e verificano che il suo
+Esploreremo alcuni aspetti del funzionamento dei test sperimentando con il test
+predefinito prima di testare effettivamente il codice. Poi scriveremo alcuni
+test reali che richiamano il codice che abbiamo scritto e verificano che il suo
 comportamento sia corretto.
 
 Creiamo un nuovo progetto di libreria chiamato `addizione` che aggiungerà due
@@ -43,8 +43,8 @@ $ cargo new addizione --lib
 $ cd addizione
 ```
 
-The contents of the _src/lib.rs_ file in your `adder` library should look like
-Listing 11-1.
+Il contenuto del file _src/lib.rs_ della tua libreria `addizione` dovrebbe
+essere come il Listato 11-1.
 
 <Listing number="11-1" file-name="src/lib.rs" caption="Il codice generato automaticamente da `cargo new`">
 
@@ -70,7 +70,7 @@ qualcosa da testare.
 
 Per ora, concentriamoci solo sulla funzione `it_works` (_funziona_). Nota
 l'annotazione `#[test]`: questo attributo indica che si tratta di una funzione
-di test, in modo che il test runner sappia che deve trattare questa funzione
+di test, in modo che il _test runner_ sappia che deve trattare questa funzione
 come un test. Potremmo anche avere funzioni non di test nel modulo `tests` per
 aiutare a configurare scenari comuni o eseguire operazioni comuni, quindi
 dobbiamo sempre indicare quali funzioni sono di test.
@@ -81,7 +81,7 @@ uguale a 4. Questa asserzione serve come esempio del formato di un test tipico.
 Eseguiamola per vedere se il test passa.
 
 Il comando `cargo test` esegue tutti i test del nostro progetto, come mostrato
-nel listato 11-2.
+nel Listato 11-2.
 
 <Listing number="11-2" caption="L'output dell'esecuzione del test generato automaticamente">
 
@@ -108,10 +108,10 @@ _filtraggio_ e lo tratteremo nella sezione [“Eseguire un sottoinsieme di test 
 base al nome”][subset]<!-- ignore -->. In questo caso non abbiamo filtrato i
 test in esecuzione, quindi la fine del riepilogo mostra `0 filtered out`.
 
-La statistica `0 measured` è per i test di benchmark che misurano le
-prestazioni. I test di benchmark, al momento, sono disponibili solo nelle
-nightly di Rust. Per saperne di più, consulta [la documentazione sui test di
-benchmark][bench].
+La statistica `0 measured` è per i test di _benchmark_ che misurano le
+prestazioni. I test di _benchmark_, al momento, sono disponibili solo nelle
+_nightly_ di Rust. Per saperne di più, consulta [la documentazione sui test di
+_benchmark_][bench].
 
 La parte successiva dell'output di test che inizia con `Doc-tests addizione` è
 per i risultati di qualsiasi test sulla documentazione. Non abbiamo ancora test
@@ -139,13 +139,14 @@ Esegui nuovamente `cargo test`. L'output ora mostra `esplorazione` invece di
 {{#include ../listings/ch11-writing-automated-tests/no-listing-01-changing-test-name/output.txt}}
 ```
 
-Now we’ll add another test, but this time we’ll make a test that fails! Tests
-fail when something in the test function panics. Each test is run in a new
-thread, and when the main thread sees that a test thread has died, the test is
-marked as failed. In Chapter 9, we talked about how the simplest way to panic
-is to call the `panic!` macro. Enter the new test as a function named
-`another`, so your _src/lib.rs_ file looks like Listing 11-3.
-Ora aggiungeremo un altro test, ma questa volta faremo un test che fallisce! I test falliscono quando qualcosa nella funzione di test va in panico. Ogni test viene eseguito in un nuovo _thread_ e quando il _thread_ principale vede che un _thread_ di test fallisce, il test viene contrassegnato come fallito. Nel Capitolo 9 abbiamo parlato di come il modo più semplice per mandare in panico un programma sia quello di chiamare la macro `panic!`. Inserisci il nuovo test come una funzione di nome `un_altra`, in modo che il tuo file _src/lib.rs_ assuma l'aspetto del Listato 11-3.
+Ora aggiungeremo un altro test, ma questa volta faremo un test che fallisce! I
+test falliscono quando qualcosa nella funzione di test va in panico. Ogni test
+viene eseguito in un nuovo _thread_ e quando il _thread_ principale vede che un
+_thread_ di test fallisce, il test viene contrassegnato come fallito. Nel
+Capitolo 9 abbiamo parlato di come il modo più semplice per mandare in panico un
+programma sia quello di chiamare la macro `panic!`. Inserisci il nuovo test come
+una funzione di nome `un_altra`, in modo che il tuo file _src/lib.rs_ assuma
+l'aspetto del Listato 11-3.
 
 <Listing number="11-3" file-name="src/lib.rs" caption="Aggiungere un secondo test che fallisce perché chiamiamo la macro `panic!`">
 
@@ -156,8 +157,8 @@ Ora aggiungeremo un altro test, ma questa volta faremo un test che fallisce! I t
 </Listing>
 
 Esegui di nuovo i test utilizzando `cargo test`. L'output dovrebbe assomigliare
-al Listato 11-4, che mostra che il nostro test `esplorazione` è passato e
-`un_altra` è fallito.
+al Listato 11-4, che mostra come il nostro test `esplorazione` sia passato e
+`un_altra` sia fallito.
 
 <Listing number="11-4" caption="Risultati dei test quando uno viene superato e uno fallisce">
 
@@ -179,9 +180,9 @@ otteniamo il dettaglio che `tests::un_altra` ha fallito perché è andato in
 panico con il messaggio `Fai fallire questo test` alla riga 17 del file
 _src/lib.rs_. La sezione successiva elenca solo i nomi di tutti i test falliti,
 il che è utile quando ci sono molti test e molti output dettagliati di test
-falliti. Possiamo usare il nome di un test fallito per eseguire solo quel test
-per eseguire più facilmente il debug; parleremo più diffusamente dei modi per
-eseguire i test nella sezione [“Controllare come vengono eseguiti i
+falliti. Possiamo usare il nome di un test fallito per eseguire solo quel test e
+più facilmente fare il debug del problema; parleremo più diffusamente dei modi
+per eseguire i test nella sezione [“Controllare come vengono eseguiti i
 test”][controlling-how-tests-are-run]<!-- ignore -->.
 
 Alla fine viene visualizzata la riga di riepilogo: in generale, il risultato del
@@ -190,7 +191,7 @@ nostro test è `FAILED`. Abbiamo avuto un test superato e un test fallito.
 Ora che hai visto come appaiono i risultati dei test in diversi scenari, vediamo
 alcune macro diverse da `panic!` che sono utili nei test.
 
-## Verifica dei Risultati Con la Macro `assert!`
+## Verificare i Risultati Con la Macro `assert!`
 
 La macro `assert!`, fornita dalla libreria standard, è utile quando vuoi
 assicurarti che una condizione in un test risulti essere vera, `true`. Diamo
@@ -231,7 +232,7 @@ un modulo normale che segue le solite regole di visibilità che abbiamo trattato
 nel Capitolo 7 nella sezione [“Percorsi per Fare Riferimento a un Elemento
 nell'Albero dei Moduli”][paths-for-referring-to-an-item-in-the-module-tree]<!--
 ignore -->. Poiché il modulo `tests` è un modulo interno, dobbiamo portare il
-codice in fase di test nel modulo esterno nello _scope_ del modulo interno.
+codice del modulo esterno che vogliamo testare nello _scope_ del modulo interno.
 Usiamo un _glob_ in questo caso, in modo che tutto ciò che definiamo nel modulo
 esterno sia disponibile per questo modulo `tests`.
 
@@ -280,7 +281,7 @@ L'esecuzione dei test produce ora il seguente risultato:
 Poiché `grande.larghezza` è `8` e `piccolo.larghezza` è `5`, il confronto delle
 larghezze in `può_contenere` ora restituisce `false`: 8 non è inferiore a 5.
 
-### Testare l'Eguaglianza Con le Macro `assert_eq!` e `assert_ne!`
+### Testare l'Uguaglianza Con le Macro `assert_eq!` e `assert_ne!`
 
 Un modo comune per verificare le funzionalità è quello di testare l'uguaglianza
 tra il risultato del codice in esame e il valore che ti aspetti che il codice
@@ -317,7 +318,9 @@ argomenti alla macro `assert_eq!`. La riga di output per questo test è `test
 tests::aggiungere_due ... ok`, e il testo `ok` indica che il nostro test è
 passato!
 
-Introduciamo un bug nel nostro codice per vedere come appare `assert_eq!` quando fallisce. Cambia l'implementazione della funzione `aggiungi_due` per aggiungere invece `3`:
+Introduciamo un bug nel nostro codice per vedere come appare `assert_eq!` quando
+fallisce. Cambia l'implementazione della funzione `aggiungi_due` per aggiungere
+invece `3`:
 
 ```rust,not_desired_behavior,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-04-bug-in-add-two/src/lib.rs:here}}
@@ -334,7 +337,7 @@ il messaggio ci dice che l'asserzione fallita era `left == right`
 (_sinistra_/_destra_) e quali sono i valori `left` e `right`. Questo messaggio
 ci aiuta a iniziare il debug: l'argomento `left`, dove avevamo il risultato
 della chiamata a `aggiungi_due(2)`, era `5` ma l'argomento `right` era `4`. Puoi
-immaginare che questo sia particolarmente utile quando abbiamo molti test in
+immaginarti quanto questo sia particolarmente utile quando abbiamo molti test in
 corso.
 
 Nota che in alcuni linguaggi e framework di test, i parametri delle funzioni di
@@ -366,17 +369,17 @@ _type_. Dovrai anche implementare `Debug` per stampare i valori quando
 l'asserzione fallisce. Poiché entrambi i _trait_ sono derivabili, come
 menzionato nel Listato 5-12 nel Capitolo 5, questo è solitamente semplice come
 aggiungere l'annotazione `#[derive(PartialEq, Debug)]` alla definizione della
-_struct_ o dell'_enum_. Vedi l'Appendice C, [_Trait_
-derivabili”]][derivable-traits]<!-- ignore -->, per ulteriori dettagli su questi
+_struct_ o dell'_enum_. Vedi l'Appendice C, [“_Trait_
+derivabili”][derivable-traits]<!-- ignore -->, per ulteriori dettagli su questi
 e altri _trait_ derivabili.
 
-### Aggiunta di Messaggi di Errore Personalizzati
+### Aggiungere Messaggi di Errore Personalizzati
 
 Puoi anche aggiungere un messaggio personalizzato da stampare insieme al
 messaggio di fallimento come argomenti opzionali alle macro `assert!`,
 `assert_eq!` e `assert_ne!`. Qualsiasi argomento specificato dopo gli argomenti
-obbligatori viene passato alla macro `format!` (di cui si parla in
-[“Concatenare con l'Operatore `+` o la Macro `format!`”][format-macro]<!--
+obbligatori viene passato alla macro `format!` (di cui si parla in [“Concatenare
+con l'Operatore `+` o la Macro `format!`”][format-macro]<!--
 ignore --> nel Capitolo 8), quindi puoi passare una stringa di formato che
 contenga dei segnaposto `{}` e dei valori da inserire in quei segnaposto. I
 messaggi personalizzati sono utili per documentare il significato di
@@ -432,14 +435,14 @@ Possiamo vedere il valore effettivamente ottenuto nell'output del test, il che
 ci aiuterebbe a fare il debug di ciò che è accaduto invece di ciò che ci
 aspettavamo che accadesse.
 
-### Verifica Dei Casi di Panico Con `should_panic`
+### Verificare i Casi di Panico Con `should_panic`
 
 Oltre a verificare i valori di ritorno, è importante controllare che il nostro
 codice gestisca le condizioni di errore come ci aspettiamo. Ad esempio,
 considera il _type_ `Ipotesi` che abbiamo creato nel Capitolo 9, Listato 9-13.
 Altro codice che utilizza `Ipotesi` dipende dalla garanzia che le istanze di
 `Ipotesi` conterranno solo valori compresi tra 1 e 100. Possiamo scrivere un
-test che garantisca che il tentativo di creare un'istanza di `Ipotesi` con un
+test che verifichi che il tentativo di creare un'istanza di `Ipotesi` con un
 valore al di fuori di questo intervallo vada in panico.
 
 Per farlo, aggiungiamo l'attributo `should_panic` alla nostra funzione di test.
@@ -530,9 +533,9 @@ o uguale a 100`. Il messaggio di panico che abbiamo ottenuto in questo caso è
 stato `L'ipotesi deve essere maggiore di zero, valore fornito 200.`. Ora
 possiamo iniziare a capire dove si trova il nostro bug!
 
-### Utilizzo di `Result<T, E>` nei Test
+### Utilizzare `Result<T, E>` nei Test
 
-I test che abbiamo fatto finora vanno tutti nel panico quando falliscono.
+I test che abbiamo fatto finora vanno tutti il panico quando falliscono.
 Possiamo anche scrivere test che utilizzano `Result<T, E>`! Ecco il test del
 Listato 11-1, riscritto per utilizzare `Result<T, E>` e restituire un `Err`
 invece di andare in panico:

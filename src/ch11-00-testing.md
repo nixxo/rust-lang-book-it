@@ -24,7 +24,7 @@ esempio, il parametro più 10 o il parametro meno 50! È qui che entrano in gioc
 i test.
 
 Possiamo scrivere dei test che verificano, ad esempio, che quando passiamo `3`
-alla funzione `aggiungi_due`, il valore restituito è `5`. Possiamo eseguire
+alla funzione `aggiungi_due`, il valore restituito sia `5`. Possiamo eseguire
 questi test ogni volta che apportiamo delle modifiche al nostro codice per
 assicurarci che il comportamento corretto esistente non sia cambiato.
 

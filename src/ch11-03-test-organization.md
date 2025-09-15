@@ -1,9 +1,9 @@
-## Organizzazione dei Test
+## Organizzare i Test
 
 Come accennato all'inizio del capitolo, i test sono una disciplina complessa e
 diverse persone tendono ad utilizzare una terminologia e un'organizzazione
 diverse. La comunità di Rust pensa ai test in termini di due categorie
-principali: i _test per unit_ (_unit test_) e i _test di integrazione_
+principali: i _test unitari_ (_unit test_) e i _test di integrazione_
 (_integration test_). Gli _unit test_ sono piccoli e più mirati, testano un
 singolo modulo alla volta e possono testare interfacce private. Gli _integration
 test_ sono invece esterni alla tua libreria e utilizzano il tuo codice nello
@@ -14,7 +14,7 @@ Scrivere entrambi i tipi di test è importante per garantire che i pezzi della
 tua libreria facciano ciò che ti aspetti, sia separatamente che quando integrate
 in altro codice.
 
-### _Unit Test_
+### Test Unitari
 
 Lo scopo degli _unit test_ è quello di testare ogni unità di codice in modo
 isolato dal resto del codice per individuare rapidamente i punti in cui il
@@ -50,10 +50,10 @@ essere incluso solo in presenza di una determinata opzione di configurazione. In
 questo caso, l'opzione di configurazione è `test`, che viene fornita da Rust per
 la compilazione e l'esecuzione dei test. Utilizzando l'attributo `cfg`, Cargo
 compila il nostro codice di test solo se effettivamente eseguiamo i test con
-`cargo test`. Questo include qualsiasi funzione ausiliarie che potrebbero essere
-presenti in questo modulo, oltre alle funzioni annotate con `#[test]`.
+`cargo test`. Questo include qualsiasi funzione ausiliaria che potrebbero essere
+presente in questo modulo, oltre alle funzioni annotate con `#[test]`.
 
-#### Testing di Funzioni Private
+#### Test di Funzioni Private
 
 All'interno della comunità dei tester si discute se le funzioni private debbano
 essere testate direttamente o meno, e altri linguaggi rendono difficile o
@@ -109,14 +109,14 @@ addizione
 ├── Cargo.lock
 ├── Cargo.toml
 ├── src
-│   └── lib.rs
+│   └── lib.rs
 └── tests
     └── test_integrazione.rs
 ```
 
 Inserisci il codice del Listato 11-13 nel file _tests/test_integrazione.rs_.
 
-<Listing number="11-13" file-name="tests/test_integrazione.rs" caption="Un test di integrazione di una funzione nel crate `addizione`">
+<Listing number="11-13" file-name="tests/test_integrazione.rs" caption="Un test di integrazione di una funzione nel _crate_ `addizione`">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/listing-11-13/tests/test_integrazione.rs}}
@@ -173,14 +173,20 @@ Questo comando esegue solo i test presenti nel file _tests/test_integrazione.rs_
 Man mano che aggiungi altri test di integrazione, potresti voler creare altri
 file nella cartella _tests_ per organizzarli; ad esempio, puoi raggruppare le
 funzioni di test in base alla funzionalità che stanno testando. Come già detto,
-ogni file nella cartella _tests_ viene compilato come un proprio crate separato,
-il che è utile per creare _scope_ separati per imitare più da vicino il modo in
-cui gli utenti finali utilizzeranno il tuo _crate_. Tuttavia, questo significa
-che i file nella cartella _tests_ non condividono lo stesso comportamento dei
-file in _src_, come hai appreso nel Capitolo 7 su come separare il codice in
-moduli e file.
+ogni file nella cartella _tests_ viene compilato come un proprio _crate_
+separato, il che è utile per creare _scope_ separati per imitare il più
+possibile il modo in cui gli utenti finali utilizzeranno il tuo _crate_.
+Tuttavia, questo significa che i file nella cartella _tests_ non condividono lo
+stesso comportamento dei file in _src_, come hai appreso nel Capitolo 7 su come
+separare il codice in moduli e file.
 
-Il diverso comportamento dei file della cartella _tests_ si nota soprattutto quando hai una serie di funzioni comuni da utilizzare in più file di test di integrazione e cerchi di seguire i passi della sezione [“Separare i Moduli in File Diversi”][separating-modules-into-files]<!-- ignore --> del Capitolo 7 per metterle in un modulo comune. Ad esempio, se creiamo _tests/comune.rs_ e vi inseriamo una funzione chiamata `inizializzazione` a cui aggiungere del codice che vogliamo chiamare da più funzioni di test in più file di test:
+Il diverso comportamento dei file della cartella _tests_ si nota soprattutto
+quando hai una serie di funzioni comuni da utilizzare in più file di test di
+integrazione e cerchi di seguire i passi della sezione [“Separare i Moduli in
+File Diversi”][separating-modules-into-files]<!-- ignore --> del Capitolo 7 per
+metterle in un modulo comune. Ad esempio, se creiamo _tests/comune.rs_ e vi
+inseriamo una funzione chiamata `inizializzazione` a cui aggiungere del codice
+che vogliamo chiamare da più funzioni di test in più file di test:
 
 <span class="filename">File: tests/comune.rs</span>
 
@@ -206,10 +212,10 @@ _tests/comune/mod.rs_. La cartella del progetto ora ha questo aspetto:
 ├── Cargo.lock
 ├── Cargo.toml
 ├── src
-│   └── lib.rs
+│   └── lib.rs
 └── tests
     ├── comune
-    │   └── mod.rs
+    │   └── mod.rs
     └── test_integrazione.rs
 ```
 
@@ -233,7 +239,7 @@ di test di integrazione come modulo. Ecco un esempio di chiamata della funzione
 ```
 
 Nota come la dichiarazione `mod comune;` è uguale alla dichiarazione che abbiamo
-mostrato nel listato 7-21. Quindi, nella funzione di test, possiamo chiamare la
+mostrato nel Listato 7-21. Quindi, nella funzione di test, possiamo chiamare la
 funzione `comune::inizializzazione()`.
 
 #### Test di Integrazione per i _Crate_ Binari
@@ -255,17 +261,17 @@ quantità di codice non dovrà essere testata.
 
 ## Riepilogo
 
-Le funzioni di testing di Rust forniscono un modo per specificare come il codice
-debba funzionare e ci si  assicuri che continui a funzionare come ci si aspetta,
-anche quando si apportano delle modifiche. Gli _unit test_ usano e testano le
-diverse parti di una libreria separatamente e possono testare i dettagli privati
-dell'implementazione. I test di integrazione verificano che molte parti della
-libreria funzionino insieme correttamente e utilizzano l'API pubblica della
-libreria per testare il codice nello stesso modo in cui lo utilizzerà il codice
-esterno. Anche se il sistema dei _type_ e le regole di _ownership_ di Rust
-aiutano a prevenire alcuni tipi di bug, i test sono comunque importanti per
-ridurre i bug logici che hanno a che fare con il modo in cui ci si aspetta che
-il codice si comporti.
+Le funzionalità di testing di Rust forniscono un modo per specificare come il
+codice debba funzionare e ci si  assicuri che continui a funzionare come ci si
+aspetta, anche quando si apportano delle modifiche. I test unitari usano e
+testano le diverse parti di una libreria separatamente e possono testare i
+dettagli privati dell'implementazione. I test di integrazione verificano che
+molte parti della libreria funzionino insieme correttamente e utilizzano l'API
+pubblica della libreria per testare il codice nello stesso modo in cui lo
+utilizzerà il codice esterno. Anche se il sistema dei _type_ e le regole di
+_ownership_ di Rust aiutano a prevenire alcuni tipi di bug, i test sono comunque
+importanti per ridurre i bug logici che hanno a che fare con il modo in cui ci
+si aspetta che il codice si comporti.
 
 Combiniamo le conoscenze apprese in questo capitolo e nei capitoli precedenti
 per lavorare a un progetto!

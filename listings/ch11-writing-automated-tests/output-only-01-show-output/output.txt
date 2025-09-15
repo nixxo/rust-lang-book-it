@@ -4,24 +4,24 @@ $ cargo test -- --show-output
      Running unittests src/lib.rs (target/debug/deps/funzione_stupida-5473422b7951e476)
 
 running 2 tests
-test tests::this_test_will_fail ... FAILED
-test tests::this_test_will_pass ... ok
+test tests::questo_test_fallirà ... FAILED
+test tests::questo_test_passerà ... ok
 
 successes:
 
----- tests::this_test_will_pass stdout ----
+---- tests::questo_test_passerà stdout ----
 Ho ricevuto il valore 4
 
 
 successes:
-    tests::this_test_will_pass
+    tests::questo_test_passerà
 
 failures:
 
----- tests::this_test_will_fail stdout ----
+---- tests::questo_test_fallirà stdout ----
 Ho ricevuto il valore 8
 
-thread 'tests::this_test_will_fail' (9352) panicked at src/lib.rs:19:9:
+thread 'tests::questo_test_fallirà' (9352) panicked at src/lib.rs:19:9:
 assertion `left == right` failed
   left: 10
  right: 5
@@ -29,7 +29,7 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 
 
 failures:
-    tests::this_test_will_fail
+    tests::questo_test_fallirà
 
 test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 

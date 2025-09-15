@@ -8,13 +8,13 @@ mod tests {
     use super::*;
 
     #[test]
-    fn this_test_will_pass() {
+    fn questo_test_passerà() {
         let valore = stampa_e_ritorna_10(4);
         assert_eq!(valore, 10);
     }
 
     #[test]
-    fn this_test_will_fail() {
+    fn questo_test_fallirà() {
         let valore = stampa_e_ritorna_10(8);
         assert_eq!(valore, 5);
     }
