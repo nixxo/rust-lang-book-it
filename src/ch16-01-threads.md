@@ -92,7 +92,7 @@ più opportunità per il sistema operativo di passare da un _thread_ all'altro.
 
 ### Attendere Che Tutti i _Thread_ Finiscano Usando `join`
 
-Il codice nel listato 16-1 non solo arresta il _thread_ geenrato prematuramente
+Il codice nel Listato 16-1 non solo arresta il _thread_ geenrato prematuramente
 nella maggior parte dei casi a causa della fine del _thread_ principale, ma
 poiché non c'è alcuna garanzia sull'ordine di esecuzione dei _thread_, non
 possiamo nemmeno garantire che il _thread_ generato venga eseguito!
@@ -118,7 +118,7 @@ La chiamata a `join` sull'_handle_ blocca il _thread_ attualmente in esecuzione
 fino a quando il _thread_ rappresentato dall'_handle_ non termina. _Bloccare_ un
 _thread_ significa che a quel _thread_ viene impedito di eseguire lavori o di
 uscire. Poiché abbiamo inserito la chiamata a `join` dopo il ciclo `for` del
-_thread_ principale, l'esecuzione del listato 16-2 dovrebbe produrre un
+_thread_ principale, l'esecuzione del Listato 16-2 dovrebbe produrre un
 risultato simile a questo:
 
 <!-- Not extracting output because changes to this output aren't significant;
@@ -196,7 +196,7 @@ Nota nel Listato 16-1 che la chiusura che passiamo a `thread::spawn` non accetta
 argomenti: non stiamo utilizzando alcun dato del _thread_ principale nel codice
 del _thread_ generato. Per utilizzare i dati del _thread_ principale nel
 _thread_ generato, la chiusura del _thread_ generato deve catturare i valori di
-cui ha bisogno. Il listato 16-3 mostra un tentativo di creare un vettore nel
+cui ha bisogno. Il Listato 16-3 mostra un tentativo di creare un vettore nel
 _thread_ principale e di utilizzarlo nel _thread_ generato. Tuttavia, questo non
 funziona ancora, come vedrai tra poco.
 
@@ -222,7 +222,7 @@ _reference_ a `v`, la chiusura cerca di prendere in prestito `v`. Tuttavia, c'è
 un problema: Rust non può sapere per quanto tempo verrà eseguito il _thread_
 generato, quindi non sa se il _reference_ a `v` sarà sempre valido.
 
-Il listato 16-4 mostra uno scenario in cui è più probabile che un _reference_ a
+Il Listato 16-4 mostra uno scenario in cui è più probabile che un _reference_ a
 `v` non sia valido.
 
 <Listing number="16-4" file-name="src/main.rs" caption="Un _thread_ con una chiusura che tenta di catturare un _reference_ a `v` da un _thread_ principale che libera `v`">
@@ -241,7 +241,7 @@ abbiamo parlato nel Capitolo 15. Poi, quando il _thread_ generato inizia viene
 eseguito, `v` non è più valido, quindi anche il _reference_ ad esso non è
 valido. Oh no!
 
-Per risolvere l'errore del compilatore nel listato 16-3, possiamo utilizzare i
+Per risolvere l'errore del compilatore nel Listato 16-3, possiamo utilizzare i
 consigli del messaggio di errore:
 
 <!-- manual-regeneration
@@ -258,7 +258,7 @@ help: to force the closure to take ownership of `v` (and any other referenced va
 Aggiungendo la parola chiave `move` prima della chiusura, obblighiamo la
 chiusura a prendere _ownership_ dei valori che sta utilizzando, invece di
 permettere a Rust di dedurre che deve prendere in prestito i valori. La modifica
-al listato 16-3 mostrata nel listato 16-5 verrà compilata ed eseguita come
+al Listato 16-3 mostrata nel Listato 16-5 verrà compilata ed eseguita come
 previsto.
 
 <Listing number="16-5" file-name="src/main.rs" caption="Usare la parola chiave `move` per forzare una chiusura a prendere _ownership_ dei valori che utilizza">

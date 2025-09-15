@@ -264,7 +264,7 @@ Il Listato 12-9 mostra le modifiche che dobbiamo apportare al valore di
 ritorno della funzione che stiamo chiamando `Config::build` e al corpo della
 funzione necessaria per ritornare un `Result`. Nota che questa funzione non
 verrà compilata finché non aggiorneremo anche `main`, cosa che faremo nel
-prossimo listato.
+prossimo Listato.
 
 <Listing number="12-9" file-name="src/main.rs" caption="Ritorno di un `Result` da `Config::build`">
 
@@ -308,7 +308,7 @@ che il programma è uscito con uno stato di errore.
 
 </Listing>
 
-In questo listato, abbiamo utilizzato un metodo che non abbiamo ancora
+In questo Listato, abbiamo utilizzato un metodo che non abbiamo ancora
 trattato in dettaglio: `unwrap_or_else`, definito su `Result<T, E>` dalla
 libreria standard. L'utilizzo di `unwrap_or_else` ci consente di definire una
 gestione degli errori personalizzata, non di tipo `panic!`. Se `Result` è un

@@ -34,7 +34,7 @@ nello stesso ordine in cui li abbiamo dichiarati nella _struct_. In altre
 parole, la definizione della _struct_ è come un modello generale per il _type_,
 e le istanze riempiono quel modello con dati particolari per creare valori del
 _type_. Ad esempio, possiamo dichiarare un utente particolare come mostrato nel
-listato 5-2.
+Listato 5-2.
 
 <Listing number="5-2" file-name="src/main.rs" caption="Creazione di un'istanza della _struct_ `Utente`">
 

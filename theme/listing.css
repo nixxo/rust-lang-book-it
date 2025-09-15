@@ -11,3 +11,8 @@ figure.listing {
   font-size: 0.8em;
   font-weight: 600;
 }
+
+span.filename {
+  font-size: 0.8em;
+  font-weight: 600;
+}

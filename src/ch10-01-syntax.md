@@ -59,7 +59,7 @@ _slice_ di valori di _type_ `T`. La funzione `maggiore` restituirà un
 _reference_ a un valore dello stesso _type_ `T`.
 
 Il Listato 10-5 mostra la definizione combinata della funzione `maggiore`
-utilizzando il _type_ di dati generico nella sua firma. Il listato mostra anche
+utilizzando il _type_ di dati generico nella sua firma. Il Listato mostra anche
 come possiamo chiamare la funzione con una _slice_ di valori `i32` o `char`.
 Nota che questo codice non verrà ancora compilato.
 
@@ -86,7 +86,7 @@ confronti, la libreria standard include il _trait_ `std::cmp::PartialOrd` che è
 possibile implementare sui _type_ (vedere l'[Appendice C][app-c] per maggiori
 informazioni su questo _trait_). Per correggere il Listato 10-5, possiamo
 seguire il suggerimento del testo di aiuto e limitare i _type_ validi per `T`
-solo a quelli che implementano `PartialOrd`. Il listato verrà quindi compilato,
+solo a quelli che implementano `PartialOrd`. Il Listato verrà quindi compilato,
 poiché la libreria standard implementa `PartialOrd` sia su `i32` che su `char`.
 
 ### Nella Definizione delle _Struct_

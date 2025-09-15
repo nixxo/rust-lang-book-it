@@ -64,7 +64,7 @@ cortile
 ├── Cargo.toml
 └── src
     ├── giardino
-    │   └── verdure.rs
+    │   └── verdure.rs
     ├── giardino.rs
     └── main.rs
 ```
