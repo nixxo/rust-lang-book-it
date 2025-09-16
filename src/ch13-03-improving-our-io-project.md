@@ -27,7 +27,7 @@ le avremmo rimosse in futuro. Bene, quel momento è arrivato!
 Qui ci serviva `clone` perché abbiamo una slice con elementi `String` nel
 parametro `args`, ma la funzione `build` non possiede `args`. Per restituire
 la proprietà di un'istanza di `Config`, abbiamo dovuto clonare i valori dai campi `query`
-e `file_path` di `Config` in modo che l'istanza di `Config` possa possederne i valori.
+e `percorso_file` di `Config` in modo che l'istanza di `Config` possa possederne i valori.
 
 Grazie alle nostre nuove conoscenze sugli iteratori, possiamo modificare la funzione `build` per
 assumere la proprietà di un iteratore come argomento invece di prendere in prestito una slice.
@@ -112,7 +112,7 @@ programma. Vogliamo ignorarlo e passare al valore successivo, quindi prima chiam
 valore che vogliamo inserire nel campo `query` di `Config`. Se `next` restituisce `Some`,
 usiamo `match` per estrarre il valore. Se restituisce `None`, significa che non sono stati forniti abbastanza
 argomenti e restituiamo subito un valore `Err`. Facciamo la stessa cosa
-per il valore `file_path`.
+per il valore `percorso_file`.
 
 ### Rendere il Codice più Chiaro con gli Iterator Adapters
 
@@ -157,10 +157,9 @@ utilizzando lo strumento `minigrep` prima e dopo aver apportato questa modifica 
 la differenza di comportamento. Prima di questa modifica, il programma non visualizzava alcun risultato
 finché non aveva raccolto tutti i risultati, ma dopo la modifica, i risultati
 verranno visualizzati man mano che viene trovata ogni riga corrispondente, perché il ciclo `for` nella
-funzione `run` è in grado di sfruttare "la pigrizia" dell'iteratore.
+funzione `esegui` è in grado di sfruttare "la pigrizia" dell'iteratore.
 
 <!-- Old heading. Do not remove or links may break. -->
-
 <a id="choosing-between-loops-or-iterators"></a>
 
 ### Scegliere tra Cicli e Iteratori

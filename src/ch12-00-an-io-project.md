@@ -4,7 +4,7 @@ Questo capitolo è un riepilogo delle numerose competenze acquisite finora e
 un'esplorazione di alcune funzionalità aggiuntive della libreria standard.
 Creeremo uno strumento da riga di comando che interagisce con l'input/output di
 file e da riga di comando per mettere in pratica alcuni dei concetti di Rust che
-dovresti aver acquistito finora.
+dovresti aver acquisito finora.
 
 La velocità, la sicurezza, l'output binario singolo e il supporto
 multi-piattaforma di Rust lo rendono un linguaggio ideale per la creazione di

@@ -1,4 +1,4 @@
-## _Refactoring_ per Migliorare la Modularità e la Gestione degli Errori
+## _Refactoring_ per Migliorare Modularità e Gestione degli Errori
 
 Per migliorare il nostro programma, risolveremo quattro problemi che riguardano
 la struttura del programma e la gestione di potenziali errori. Innanzitutto, la

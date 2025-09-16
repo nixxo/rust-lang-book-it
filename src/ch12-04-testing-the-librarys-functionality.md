@@ -1,4 +1,4 @@
-## Sviluppare le Funzionalità della Libreria con il Test-Driven Development
+## Sviluppare Funzionalità della Libreria con il Test-Driven Development
 
 Ora che abbiamo la logica di ricerca in _src/lib.rs_ separata dalla funzione
 `main`, è molto più facile scrivere test per le funzionalità principali del
