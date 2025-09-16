@@ -1,14 +1,14 @@
-## Definire un _Enum_
+## Definire un'_Enum_
 
 Laddove le _struct_ ti danno un modo per raggruppare campi e dati correlati, per
-esempio un `Rettangolo` con i propri `larghezza` e `altezza`, gli _enum_ ti
-danno un modo per indicare che un valore è uno di un insieme possibile di
-valori. Per esempio, potremmo voler dire che `Rettangolo` è una delle possibili
-forme che include anche `Cerchio` e `Triangolo`. Per farlo, Rust ci permette di
-codificare queste possibilità come un _enum_.
+esempio un `Rettangolo` con i propri `larghezza` e `altezza`, le _enum_ ti danno
+un modo per indicare che un valore è uno di un insieme possibile di valori. Per
+esempio, potremmo voler dire che `Rettangolo` è una delle possibili forme che
+include anche `Cerchio` e `Triangolo`. Per farlo, Rust ci permette di codificare
+queste possibilità come un'_enum_.
 
 Esaminiamo una situazione che potremmo voler esprimere nel codice e vediamo
-perché gli _enum_ sono utili e più appropriati delle _struct_ in questo caso.
+perché le _enum_ sono utili e più appropriati delle _struct_ in questo caso.
 Supponiamo di dover lavorare con gli indirizzi IP. Attualmente, per gli
 indirizzi IP si usano due standard principali: versione quattro e versione sei.
 Poiché queste sono le uniche possibilità di indirizzo IP che il nostro programma
@@ -23,7 +23,7 @@ fondamentalmente indirizzi IP, quindi dovrebbero essere trattati come dati dello
 stesso _type_ quando il codice andrà a gestire situazioni che si applicano agli
 indirizzi IP d'ogni genere.
 
-Possiamo esprimere questo concetto nel codice definendo un _enum_
+Possiamo esprimere questo concetto nel codice definendo un'_enum_
 `VersioneIndirizzoIp` e elencando le possibili tipologie che un indirizzo IP può
 essere: `V4` e `V6`. Queste sono le varianti dell’_enum_:
 
@@ -59,7 +59,7 @@ E possiamo chiamare questa funzione con entrambe le varianti:
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-01-defining-enums/src/main.rs:fn_call}}
 ```
 
-L’uso degli _enum_ ha ulteriori vantaggi. Pensando meglio al nostro _type_ per
+L’uso delle _enum_ ha ulteriori vantaggi. Pensando meglio al nostro _type_ per
 gli indirizzi IP, al momento non abbiamo un modo per memorizzare il vero e
 proprio indirizzo IP; sappiamo solo di che tipologia si tratta. Dato che hai
 appena imparato le _struct_ nel Capitolo 5, potresti essere tentato di risolvere
@@ -82,8 +82,8 @@ il valore `VersioneIndirizzoIp::V4` come suo `tipo` con l’indirizzo associato
 l’indirizzo `::1`. Abbiamo usato una _struct_ per raggruppare i valori `tipo` e
 `indirizzo`, così la variante è ora associata al valore.
 
-Tuttavia, rappresentare lo stesso concetto usando solo un _enum_ è più conciso:
-invece di un _enum_ dentro una _struct_, possiamo mettere i dati direttamente in
+Tuttavia, rappresentare lo stesso concetto usando solo un'_enum_ è più conciso:
+invece di un'_enum_ dentro una _struct_, possiamo mettere i dati direttamente in
 ogni variante dell’_enum_. Questa nuova definizione dell’_enum_ `IpAddr` indica
 che entrambe le varianti `V4` e `V6` avranno valori `String` associati:
 
@@ -93,18 +93,18 @@ che entrambe le varianti `V4` e `V6` avranno valori `String` associati:
 
 Alleghiamo i dati direttamente a ciascuna variante dell’_enum_, quindi non c’è
 bisogno di una _struct_ aggiuntiva. Qui è anche più facile vedere un altro
-dettaglio di come funzionano gli _enum_: il nome di ciascuna variante che
+dettaglio di come funzionano le _enum_: il nome di ciascuna variante che
 definiamo diventa anche una funzione che costruisce un’istanza dell’_enum_.
 Cioè, `IpAddr::V4()` è una chiamata di funzione che prende un argomento `String`
 e ritorna un’istanza del _type_ `IpAddr`. Otteniamo automaticamente questa
 funzione costruttrice come risultato della definizione dell’_enum_.
 
-C’è un altro vantaggio nell’usare un _enum_ invece di una _struct_: ogni
+C’è un altro vantaggio nell’usare un'_enum_ invece di una _struct_: ogni
 variante può avere _type_ e quantità diverse di dati associati. Gli indirizzi
 versione quattro, ad esempio, avranno sempre quattro componenti numeriche con
 valori tra 0 e 255. Se volessimo memorizzare gli indirizzi `V4` come quattro
 valori `u8` ma rappresentare gli indirizzi `V6` come una singola `String`, non
-potremmo farlo con un _struct_. Gli _enum_ gestiscono questo caso con facilità:
+potremmo farlo con un _struct_. Le _enum_ gestiscono questo caso con facilità:
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-03-variants-with-different-data/src/main.rs:here}}
@@ -115,7 +115,7 @@ indirizzi IP versione quattro e versione sei. Tuttavia, risulta che voler
 memorizzare indirizzi IP e codificare di quale tipologia siano è così comune che
 la [libreria standard fornisce una definizione che possiamo usare!][IpAddr]<!--
 ignore --> Diamo un’occhiata a come la libreria standard definisce `IpAddr`: ha
-l’esatto _enum_ e le varianti che abbiamo definito e usato, ma incapsula i dati
+l’esatta _enum_ e le varianti che abbiamo definito e usato, ma incapsula i dati
 dell’indirizzo dentro le varianti sotto forma di due diverse _struct_, definite
 in modo differente per ciascuna variante:
 
@@ -136,7 +136,7 @@ enum IpAddr {
 
 Questo codice illustra che puoi mettere qualsiasi tipologia di dato dentro una
 variante di _enum_: stringhe, _type_ numerici o _struct_, per esempio. Puoi
-persino includere un altro _enum_! Inoltre, i _type_ della libreria standard
+persino includere un'altra _enum_! Inoltre, i _type_ della libreria standard
 spesso non sono molto più complicati di quello che potresti creare tu.
 
 Nota che anche se la libreria standard contiene una definizione per `IpAddr`,
@@ -147,7 +147,7 @@ Parleremo più avanti dell’importazione dei _type_ nello _scope_ nel Capitolo 
 Diamo un’occhiata a un altro esempio di _enum_ nel Listato 6-2: questo ha una
 grande varietà di _type_ incorporati nelle sue varianti.
 
-<Listing number="6-2" caption="Un _enum_ `Messaggio` le cui varianti memorizzano ciascuna quantità e _type_ diversi di valori">
+<Listing number="6-2" caption="Un'_enum_ `Messaggio` le cui varianti memorizzano ciascuna quantità e _type_ diversi di valori">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-02/src/main.rs:here}}
@@ -155,14 +155,14 @@ grande varietà di _type_ incorporati nelle sue varianti.
 
 </Listing>
 
-Questo _enum_ ha quattro varianti con _type_ diversi:
+Questa _enum_ ha quattro varianti con _type_ diversi:
 
 - `Esci`: non ha dati associati
 - `Muovi`: ha campi nominati, come fa un _struct_
 - `Scrivi`: include una singola `String`
 - `CambiaColore`: include tre valori `i32`
 
-Definire un _enum_ con varianti come quelle nel Listato 6-2 è simile a definire
+Definire un'_enum_ con varianti come quelle nel Listato 6-2 è simile a definire
 diversi _type_ di _struct_, eccetto che l’_enum_ non usa la parola chiave
 `struct` e tutte le varianti sono raggruppate sotto il _type_ `Messaggio`. Le
 seguenti _struct_ potrebbero contenere gli stessi dati che le varianti
@@ -179,8 +179,8 @@ Listato 6-2, che è un singolo _type_.
 
 C’è un’ulteriore somiglianza tra _enum_ e _struct_: proprio come possiamo
 definire metodi sulle _struct_ usando `impl`, possiamo anche definire metodi
-sugli _enum_. Ecco un metodo nominato `chiama` che potremmo definire sul nostro
-_enum_ `Messaggio`:
+sulle _enum_. Ecco un metodo nominato `chiama` che potremmo definire sulla
+nostra _enum_ `Messaggio`:
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/no-listing-05-methods-on-enums/src/main.rs:here}}
@@ -191,12 +191,12 @@ chiamato il metodo. In questo esempio, abbiamo creato una variabile `m` che ha
 il valore `Messaggio::Scrivi(String::from("ciao"))`, e quello sarà `self` nel
 corpo del metodo `chiama` quando `m.chiama()` viene eseguito.
 
-Diamo un’occhiata a un altro _enum_ nella libreria standard che è molto comune e
+Diamo un’occhiata a un'altra _enum_ nella libreria standard che è molto comune e
 utile: `Option`.
 
 ### L'_Enum_ `Option` e i Suoi Vantaggi Rispetto ai Valori Nulli
 
-Questa sezione esplora un caso di studio su `Option`, che è un altro _enum_
+Questa sezione esplora un caso di studio su `Option`, che è un'altra _enum_
 definito dalla libreria standard. Il _type_ `Option` codifica lo scenario molto
 comune in cui un valore può essere qualcosa oppure niente.
 
@@ -236,8 +236,8 @@ Tuttavia, il concetto che il _null_ cerca di esprimere è ancora utile: _null_ �
 un valore che è attualmente invalido o assente per qualche motivo.
 
 Il problema non è veramente il concetto ma l’implementazione. Di conseguenza,
-Rust non ha i _null_, ma ha un _enum_ che può codificare il concetto di un
-valore presente o assente. Questo _enum_ è `Option<T>`, ed è [definito dalla
+Rust non ha i _null_, ma ha un'_enum_ che può codificare il concetto di un
+valore presente o assente. Questa _enum_ è `Option<T>`, ed è [definito dalla
 libreria standard][option]<!-- ignore --> come segue:
 
 ```rust
@@ -331,7 +331,7 @@ variante. Vuoi del codice che venga eseguito solo quando hai un valore
 `Some(T)`, e quel codice può usare il `T` interno. Vuoi altro codice che venga
 eseguito solo se hai un valore `None`, e quel codice non ha un valore `T`
 disponibile. L’espressione `match` è un costrutto di controllo del flusso che fa
-esattamente questo quando viene usata con gli _enum_: eseguirà codice diverso a
+esattamente questo quando viene usata con le _enum_: eseguirà codice diverso a
 seconda di quale variante dell’_enum_ ha, e quel codice può usare i dati
 all’interno del valore che corrisponde.
 

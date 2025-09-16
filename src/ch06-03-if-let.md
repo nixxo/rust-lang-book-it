@@ -133,10 +133,10 @@ degli attrezzi di Rust.
 
 ## Riepilogo
 
-Abbiamo ora coperto come usare gli _enum_ per creare _type_ personalizzati che
+Abbiamo ora coperto come usare le _enum_ per creare _type_ personalizzati che
 possono essere uno tra un insieme di valori enumerati. Abbiamo mostrato come il
 _type_ `Option<T>` della libreria standard ti aiuta a usare il sistema dei
-_type_ per prevenire errori. Quando i valori degli _enum_ contengono dati, puoi
+_type_ per prevenire errori. Quando i valori delle _enum_ contengono dati, puoi
 usare `match` o `if let` per estrarre e usare quei valori, a seconda di quanti
 casi devi gestire.
 

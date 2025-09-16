@@ -241,7 +241,7 @@ inserisca nella stringa che gli passiamo, ma restituisce anche un valore
 ignore --> (_enum_ per brevità), che è un _type_ che può trovarsi in uno dei
 molteplici stati possibili. Chiamiamo ogni stato possibile una _variante_.
 
-Il [Capitolo 6][enums]<!-- ignore --> tratterà gli _enum_ in modo più
+Il [Capitolo 6][enums]<!-- ignore --> tratterà le _enum_ in modo più
 dettagliato. Lo scopo di questi _type_ `Result` è quello di fornire informazioni
 sulla gestione degli errori.
 
@@ -615,8 +615,8 @@ compilabile per il momento, come spiegheremo.
 </Listing>
 
 Per prima cosa aggiungiamo un'altra istruzione `use`, che porta un _type_
-chiamato `std::cmp::Ordering` dalla libreria standard. Il _type_ `Ordering` è un
-altro _enum_ e ha le varianti `Less`, `Greater` e `Equal`. Questi sono i tre
+chiamato `std::cmp::Ordering` dalla libreria standard. Il _type_ `Ordering` è
+un'altra _enum_ e ha le varianti `Less`, `Greater` e `Equal`. Questi sono i tre
 risultati possibili quando si confrontano due valori.
 
 Poi aggiungiamo cinque nuove righe in basso che utilizzano il _type_ `Ordering`.
@@ -876,7 +876,7 @@ viene convertito da `String` in `u32`, come mostrato nel Listato 2-5.
 
 Passiamo da una chiamata `expect` a un'espressione `match` per passare dal
 _crash_ su un errore alla gestione di quell'errore. Ricorda che `parse`
-restituisce un _type_ `Result` e `Result` è un _enum_ che ha le varianti `Ok` e
+restituisce un _type_ `Result` e `Result` è un'_enum_ che ha le varianti `Ok` e
 `Err`. Stiamo usando un'espressione `match` qui, come abbiamo fatto con il
 risultato `Ordering` del metodo `cmp`.
 
@@ -957,7 +957,7 @@ programmazione possiede, come le variabili, i tipi di dati e le funzioni, e
 mostra come utilizzarli in Rust. Il Capitolo 4 esplora la _ownership_
 (_controllo esclusivo_), una caratteristica che rende Rust diverso dagli altri
 linguaggi. Il Capitolo 5 parla delle strutture e della sintassi dei metodi,
-mentre il Capitolo 6 spiega come funzionano gli _enum_.
+mentre il Capitolo 6 spiega come funzionano le _enum_.
 
 [prelude]: https://doc.rust-lang.org/stable/std/prelude/index.html
 [variables-and-mutability]: ch03-01-variables-and-mutability.html#variabili-e-mutabilità

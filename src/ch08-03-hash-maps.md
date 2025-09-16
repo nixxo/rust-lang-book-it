@@ -151,7 +151,7 @@ inserirla e assegnarle un valore.
 
 Le _hash map_ dispongono di un'API speciale per questo scopo, chiamata `entry`,
 che accetta la chiave che si desidera controllare come parametro. Il valore
-restituito dal metodo `entry` è un _enum_ chiamato `Entry` che rappresenta un
+restituito dal metodo `entry` è un'_enum_ chiamato `Entry` che rappresenta un
 valore che potrebbe esistere o meno. Supponiamo di voler verificare se la chiave
 per la squadra Gialla ha un valore associato. In caso contrario, vogliamo
 inserire il valore `50`, e lo stesso vale per la squadra Blu. Utilizzando l'API

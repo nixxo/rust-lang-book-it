@@ -275,5 +275,5 @@ Ricapitoliamo quello che abbiamo detto sui _reference_:
 qualsiasi di _reference_ immutabili.
 - I _reference_ devono essere sempre validi.
 
-Successivamente, analizzeremo un altra tipologia di _reference_: le _sezioni_
+Successivamente, analizzeremo un'altra tipologia di _reference_: le _sezioni_
 (_slice_ in inglese).

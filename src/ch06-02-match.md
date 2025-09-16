@@ -24,7 +24,7 @@ funzione che prende una moneta USA sconosciuta e, in modo simile alla macchina
 conta-monete, determina quale moneta sia e restituisce il suo valore in
 centesimi, come mostrato nel Listato 6-3.
 
-<Listing number="6-3" caption="Un _enum_ e un'espressione `match` che ha come _pattern_ le varianti dell'_enum_">
+<Listing number="6-3" caption="Un'_enum_ e un'espressione `match` che ha come _pattern_ le varianti dell'_enum_">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-03/src/main.rs:here}}
@@ -72,16 +72,16 @@ stampa “Penny fortunato!” ogni volta che il metodo viene chiamato con una
 
 Un’altra caratteristica utile dei rami del `match` è che possono legarsi alle
 parti dei valori che corrispondono al _pattern_. È così che possiamo estrarre
-valori dalle varianti degli _enum_.
+valori dalle varianti delle _enum_.
 
 Per esempio, modifichiamo una delle nostre varianti dell’_enum_ per contenerci
 dei dati. Dal 1999 al 2008, gli Stati Uniti coniarono _quarter_ con design
 diversi per ciascuno dei 50 stati su un lato. Nessun’altra moneta aveva design
 statali, quindi solo i _quarter_ hanno questa caratteristica peculiare. Possiamo
-aggiungere questa informazione al nostro _enum_ cambiando la variante `Quarter`
+aggiungere questa informazione al nostra _enum_ cambiando la variante `Quarter`
 per includere un valore `StatoUSA` all’interno, come fatto nel Listato 6-4.
 
-<Listing number="6-4" caption="Un _enum_ `Moneta` in cui la variante `Quarter` contiene anche un valore `StatoUSA`">
+<Listing number="6-4" caption="Un'_enum_ `Moneta` in cui la variante `Quarter` contiene anche un valore `StatoUSA`">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-04/src/main.rs:here}}
@@ -169,7 +169,7 @@ e restituisce il valore `None` sul lato destro di `=>`. Poiché il primo ramo ha
 corrisposto, nessun altro ramo viene confrontato.
 
 Combinare `match` ed _enum_ è utile in molte situazioni. Vedrai questo schema
-spesso nel codice Rust: fai `match` su un _enum_, leghi una variabile ai dati
+spesso nel codice Rust: fai `match` su un'_enum_, leghi una variabile ai dati
 interni e poi esegui codice basato su di essi. All’inizio è un po’ ostico, ma
 una volta che ci prendi la mano vorrai averlo in tutti i linguaggi. È un
 costrutto tra i preferiti dagli utenti.
@@ -202,7 +202,7 @@ dollari” accennato nel capitolo precedente.
 
 ### _Pattern_ Pigliatutto e Segnaposto `_`
 
-Usando gli _enum_, possiamo anche eseguire determinate azioni per alcuni valori
+Usando le _enum_, possiamo anche eseguire determinate azioni per alcuni valori
 particolari, ma per tutti gli altri valori adottare un’azione predefinita.
 Immagina di implementare un gioco dove, se tiri un 3 in un lancio di dadi, il
 tuo giocatore non si muove ma riceve un nuovo cappello buffo. Se tiri un 7, il

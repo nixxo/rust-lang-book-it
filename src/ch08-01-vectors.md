@@ -214,7 +214,7 @@ definire e utilizzare un'_enum_!
 
 Ad esempio, supponiamo di voler ottenere valori da una riga di un foglio di
 calcolo in cui alcune colonne della riga contengono numeri interi, alcuni
-numeri in virgola mobile e alcune stringhe. Possiamo definire un _enum_ le cui
+numeri in virgola mobile e alcune stringhe. Possiamo definire un'_enum_ le cui
 varianti conterranno i diversi tipi di valore, e tutte le varianti dell'_enum_
 saranno considerate dello stesso _type_: quello dell'_enum_. Possiamo adesso
 creare un vettore per contenere quell'_enum_ e quindi, in definitiva, contenere
@@ -234,7 +234,7 @@ necessaria per memorizzare ogni elemento. Dobbiamo anche essere espliciti sui
 _type_ consentiti in questo vettore. Se Rust permettesse a un vettore di
 contenere qualsiasi _type_, ci sarebbe la possibilità che uno o più _type_
 causino errori nelle operazioni eseguite sugli elementi del vettore. L'utilizzo
-di un _enum_ assieme ad un'espressione `match` significa che Rust garantirà in
+di un'_enum_ assieme ad un'espressione `match` significa che Rust garantirà in
 fase di compilazione che ogni possibile caso venga gestito, come discusso nel
 Capitolo 6.
 

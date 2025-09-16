@@ -154,9 +154,9 @@ il codice difficile da leggere. Se ti accorgi di aver bisogno di molti _type_
 generici nel tuo codice, potrebbe essere necessario ristrutturarlo in parti più
 piccole.
 
-### Nella Definizione degli _Enum_
+### Nella Definizione delle _Enum_
 
-Come abbiamo fatto con le _struct_, possiamo definire gli _enum_ per contenere
+Come abbiamo fatto con le _struct_, possiamo definire le _enum_ per contenere
 _type_ di dati generici nelle loro varianti. Diamo un'altra occhiata all'_enum_
 `Option<T>` fornito dalla libreria standard, che abbiamo usato nel Capitolo 6:
 
@@ -174,7 +174,7 @@ Utilizzando l'_enum_ `Option<T>`, possiamo esprimere il concetto astratto di un
 valore opzionale e, poiché `Option<T>` è generico, possiamo usare questa
 astrazione indipendentemente dal _type_ del valore opzionale.
 
-Anche gli _enum_ possono usare più _type_ generici. La definizione dell'_enum_
+Anche le _enum_ possono usare più _type_ generici. La definizione dell'_enum_
 `Result` che abbiamo usato nel Capitolo 9 ne è un esempio:
 
 ```rust

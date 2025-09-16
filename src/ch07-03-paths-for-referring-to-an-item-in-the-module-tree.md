@@ -285,11 +285,11 @@ funzione del genere, non potremmo creare un'istanza di `Colazione` in
 `mangiare_al_ristorante` perché non potremmo impostare il valore del campo
 privato `frutta_di_stagione` in `mangiare_al_ristorante`.
 
-Al contrario, se rendiamo un _enum_ pubblico, tutte le sue varianti diventano
+Al contrario, se rendiamo un'_enum_ pubblico, tutte le sue varianti diventano
 pubbliche. Abbiamo bisogno solo di `pub` prima della parola chiave `enum`, come
 mostrato nel Listato 7-10.
 
-<Listing number="7-10" file-name="src/lib.rs" caption="Designare un _enum_ come pubblico rende pubbliche tutte le sue varianti.">
+<Listing number="7-10" file-name="src/lib.rs" caption="Designare un'_enum_ come pubblico rende pubbliche tutte le sue varianti.">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch07-managing-growing-projects/listing-07-10/src/lib.rs}}
@@ -300,9 +300,9 @@ mostrato nel Listato 7-10.
 Poiché abbiamo reso pubblico l'_enum_ `Antipasti`, possiamo utilizzare le
 varianti `Zuppa` e `Insalata` in `mangiare_al_ristorante`.
 
-Gli _enum_ non sono molto utili a meno che le loro varianti non siano pubbliche;
-sarebbe fastidioso dover annotare tutte le varianti degli _enum_ con `pub` una
-ad una, quindi la norma per le varianti degli _enum_ è essere pubbliche. Le
+Le _enum_ non sono molto utili a meno che le loro varianti non siano pubbliche;
+sarebbe fastidioso dover annotare tutte le varianti delle _enum_ con `pub` una
+ad una, quindi la norma per le varianti delle _enum_ è essere pubbliche. Le
 _struct_ sono spesso utili senza che i loro campi siano pubblici, quindi i campi
 delle _struct_ seguono la regola generale che tutto è privato come impostazione
 predefinita, a meno che non sia annotato con `pub`.

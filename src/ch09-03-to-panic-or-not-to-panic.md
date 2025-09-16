@@ -240,7 +240,7 @@ fallimenti. L'utilizzo di `panic!` e `Result` nelle situazioni appropriate
 renderà il tuo codice più affidabile di fronte a inevitabili problemi.
 
 Ora che hai visto i modi utili in cui la libreria standard utilizza i _type_
-generici con gli _enum_ `Option` e `Result`, nel prossimo capitolo ne parleremo
+generici con le _enum_ `Option` e `Result`, nel prossimo capitolo ne parleremo
 in maniera approfondita e di come puoi usarli nel tuo codice.
 
 [encoding]: ch18-03-oo-design-patterns.html#codifica-di-stati-e-comportamenti-come-type
