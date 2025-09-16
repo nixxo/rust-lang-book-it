@@ -11,7 +11,7 @@ fn main() {
         process::exit(1);
     });
 
-    if let Err(e) = run(config) {
+    if let Err(e) = esegui(config) {
         eprintln!("Application error: {e}");
         process::exit(1);
     }
@@ -19,7 +19,7 @@ fn main() {
 
 pub struct Config {
     pub query: String,
-    pub file_path: String,
+    pub percorso_file: String,
     pub ignore_case: bool,
 }
 
@@ -35,7 +35,7 @@ impl Config {
             None => return Err("Didn't get a query string"),
         };
 
-        let file_path = match args.next() {
+        let percorso_file = match args.next() {
             Some(arg) => arg,
             None => return Err("Didn't get a file path"),
         };
@@ -44,15 +44,15 @@ impl Config {
 
         Ok(Config {
             query,
-            file_path,
+            percorso_file,
             ignore_case,
         })
     }
 }
 // ANCHOR_END: here
 
-fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string(config.file_path)?;
+fn esegui(config: Config) -> Result<(), Box<dyn Error>> {
+    let contents = fs::read_to_string(config.percorso_file)?;
 
     let results = if config.ignore_case {
         search_case_insensitive(&config.query, &contents)

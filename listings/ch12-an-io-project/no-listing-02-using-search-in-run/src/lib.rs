@@ -3,7 +3,7 @@ use std::fs;
 
 pub struct Config {
     pub query: String,
-    pub file_path: String,
+    pub percorso_file: String,
 }
 
 impl Config {
@@ -13,15 +13,15 @@ impl Config {
         }
 
         let query = args[1].clone();
-        let file_path = args[2].clone();
+        let percorso_file = args[2].clone();
 
-        Ok(Config { query, file_path })
+        Ok(Config { query, percorso_file })
     }
 }
 
 // ANCHOR: here
-pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    let contenuto = fs::read_to_string(config.file_path)?;
+pub fn esegui(config: Config) -> Result<(), Box<dyn Error>> {
+    let contenuto = fs::read_to_string(config.percorso_file)?;
 
     for line in cerca(&config.query, &contenuto) {
         println!("{line}");

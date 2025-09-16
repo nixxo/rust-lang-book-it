@@ -24,7 +24,10 @@ sicuro, veloce, produttivo.
 Scegline tre.
 Duttilità.";
 
-        assert_eq!(vec!["sicuro, veloce, produttivo."], cerca(query, contenuto));
+        assert_eq!(
+            vec!["sicuro, veloce, produttivo."],
+            cerca(query, contenuto)
+        );
     }
 
     #[test]

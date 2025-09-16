@@ -12,9 +12,9 @@ fn main() {
     });
 
     println!("Cerco {}", config.query);
-    println!("Nel file {}", config.file_path);
+    println!("Nel file {}", config.percorso_file);
 
-    if let Err(e) = run(config) {
+    if let Err(e) = esegui(config) {
         println!("Errore nell'applicazione: {e}");
         process::exit(1);
     }
@@ -22,7 +22,7 @@ fn main() {
 
 struct Config {
     query: String,
-    file_path: String,
+    percorso_file: String,
 }
 
 impl Config {
@@ -32,14 +32,14 @@ impl Config {
         }
 
         let query = args[1].clone();
-        let file_path = args[2].clone();
+        let percorso_file = args[2].clone();
 
-        Ok(Config { query, file_path })
+        Ok(Config { query, percorso_file })
     }
 }
 
-fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    let contenuto = fs::read_to_string(config.file_path)?;
+fn esegui(config: Config) -> Result<(), Box<dyn Error>> {
+    let contenuto = fs::read_to_string(config.percorso_file)?;
 
     println!("Con il testo:\n{contenuto}");
 

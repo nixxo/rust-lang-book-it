@@ -13,7 +13,7 @@ fn main() {
         process::exit(1);
     });
 
-    if let Err(e) = run(config) {
+    if let Err(e) = esegui(config) {
         println!("Errore dell'applicazione: {e}");
         process::exit(1);
     }
@@ -21,7 +21,7 @@ fn main() {
 
 struct Config {
     query: String,
-    file_path: String,
+    percorso_file: String,
 }
 
 impl Config {
@@ -31,14 +31,14 @@ impl Config {
         }
 
         let query = args[1].clone();
-        let file_path = args[2].clone();
+        let percorso_file = args[2].clone();
 
-        Ok(Config { query, file_path })
+        Ok(Config { query, percorso_file })
     }
 }
 
-fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    let contenuti = fs::read_to_string(config.file_path)?;
+fn esegui(config: Config) -> Result<(), Box<dyn Error>> {
+    let contenuti = fs::read_to_string(config.percorso_file)?;
 
     for line in cerca(&config.query, &contenuti) {
         println!("{line}");

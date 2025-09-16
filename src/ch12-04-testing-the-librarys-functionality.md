@@ -1,5 +1,4 @@
-## Sviluppo delle Funzionalità della Libreria con il Test-Driven Development
-
+## Sviluppare le Funzionalità della Libreria con il Test-Driven Development
 
 Ora che abbiamo la logica di ricerca in _src/lib.rs_ separata dalla funzione
 `main`, è molto più facile scrivere test per le funzionalità principali del
@@ -15,12 +14,12 @@ development_, abbreviato _TDD_) con i seguenti passaggi:
    il motivo previsto.
 2. Scrivere o modificare solo il codice necessario per far passare il nuovo
    test.
-3. Ristrutturare il codice appena aggiunto o modificato e assicurarsi che i
-   test continuino a passare.
+3. Ristrutturare il codice appena aggiunto o modificato e assicurarsi che i test
+   continuino a passare.
 4. Ripetere dal passaggio 1!
 
-Sebbene sia solo uno dei tanti modi per scrivere software, il TDD può aiutare
-a guidare la progettazione del codice. Scrivere il test prima di scrivere il
+Sebbene sia solo uno dei tanti modi per scrivere software, il TDD può aiutare a
+guidare la progettazione del codice. Scrivere il test prima di scrivere il
 codice che lo supera aiuta a mantenere un'elevata copertura dei test durante
 l'intero processo.
 
@@ -45,21 +44,20 @@ testo che contengono la query. Il Listato 12-15 mostra questo test.
 
 </Listing>
 
-Questo test cerca la stringa `"dut"`. Il testo che stiamo cercando è composto
-da tre righe, solo una delle quali contiene `"dut"` (nota che la barra
-rovesciata dopo le virgolette doppie di apertura indica a Rust di non inserire
-un carattere di nuova riga all'inizio del contenuto di questa stringa
-letterale). Affermiamo che il valore restituito dalla funzione `cerca`
-contiene solo la riga che ci aspettiamo.
+Questo test cerca la stringa `"dut"`. Il testo che stiamo cercando è composto da
+tre righe, solo una delle quali contiene `"dut"` (nota che la barra rovesciata
+dopo le virgolette doppie di apertura indica a Rust di non inserire un carattere
+di nuova linea all'inizio del contenuto di questo letterale stringa). Affermiamo
+che il valore restituito dalla funzione `cerca` contiene solo la riga che ci
+aspettiamo.
 
-Se eseguiamo questo test, al momento fallirà perché la macro `unimplemented!`
-si blocca con il messaggio "not implemented" (_non implementato_). In
-conformità con i principi TDD, aggiungeremo solo il codice necessario per
-evitare che il test vada in panico quando si chiama la funzione, definendo la
-funzione `cerca` in modo che ritorni sempre un vettore vuoto, come mostrato
-nel Listato 12-16. Quindi il test dovrebbe compilare e fallire perché un
-vettore vuoto non corrisponde a un vettore contenente la riga `"sicuro,
-veloce, produttivo."`
+Se eseguiamo questo test, al momento fallirà perché la macro `unimplemented!` si
+blocca con il messaggio "not implemented" (_non implementato_). In conformità
+con i principi TDD, aggiungeremo solo il codice necessario per evitare che il
+test vada in panico quando si chiama la funzione, definendo la funzione `cerca`
+in modo che ritorni sempre un vettore vuoto, come mostrato nel Listato 12-16.
+Quindi il test dovrebbe compilare e fallire perché un vettore vuoto non
+corrisponde a un vettore contenente la riga `"sicuro, veloce, produttivo."`
 
 <Listing number="12-16" file-name="src/lib.rs" caption="Definire solo una parte sufficiente della funzione `cerca` in modo che chiamarla non provochi _panic_">
 
@@ -69,13 +67,13 @@ veloce, produttivo."`
 
 </Listing>
 
-Ora discutiamo perché è necessario esplicitare la longevità `'a` nella firma
+Ora parliamo del perché è necessario esplicitare la longevità `'a` nella firma
 di `cerca` e utilizzare tale longevità con l'argomento `contenuto` e con il
 valore di ritorno. Ricorda che nel [Capitolo 10][ch10-lifetimes]<!-- ignore
 --> i parametri di _lifetime_ specificano quale _lifetime_ dell'argomento è
 collegata a quella del valore di ritorno. In questo caso, indichiamo che il
-vettore restituito deve contenere _slice_ di stringa che fanno riferimento
-alla _slice_ dell'argomento `contenuto` (piuttosto che all'argomento `query`).
+vettore restituito deve contenere _slice_ di stringa che fanno riferimento alla
+_slice_ dell'argomento `contenuto` (piuttosto che all'argomento `query`).
 
 In altre parole, diciamo a Rust che i dati restituiti dalla funzione `cerca`
 rimarranno validi finché saranno validi i dati passati alla funzione `cerca`
@@ -96,8 +94,8 @@ dobbiamo indicarlo esplicitamente. Nota che il testo di aiuto suggerisce di
 specificare lo stesso parametro di longevità per tutti i parametri e il _type_
 di output, il che è sbagliato! Poiché `contenuto` è il parametro che contiene
 tutto il nostro testo e vogliamo restituire le parti di quel testo che
-corrispondono, sappiamo che `contenuto` è l'unico parametro che dovrebbe
-essere collegato al valore di ritorno utilizzando la sintassi di longevità.
+corrispondono, sappiamo che `contenuto` è l'unico parametro che dovrebbe essere
+collegato al valore di ritorno utilizzando la sintassi di longevità.
 
 Altri linguaggi di programmazione non richiedono di collegare gli argomenti ai
 valori di ritorno nella firma, ma questa pratica diventerà più semplice col
@@ -108,9 +106,9 @@ _Lifetime_”][validating-references-with-lifetimes]<!-- ignore --> nel Capitolo
 
 ### Scrivere Codice per Superare il Test
 
-Attualmente, il nostro test fallisce perché restituisce sempre un vettore
-vuoto. Per risolvere il problema e implementare `cerca`, il nostro programma
-deve seguire questi passaggi:
+Attualmente, il nostro test fallisce perché restituisce sempre un vettore vuoto.
+Per risolvere il problema e implementare `cerca`, il nostro programma deve
+seguire questi passaggi:
 
 1. Iterare ogni riga del contenuto.
 2. Verificare che la riga contenga la nostra stringa di query.
@@ -120,7 +118,7 @@ deve seguire questi passaggi:
 
 Esaminiamo ogni passaggio, iniziando con l'iterazione delle righe.
 
-#### Iterazione delle Righe con il Metodo `lines`
+#### Iterare le Righe con il Metodo `lines`
 
 Rust dispone di un metodo utile per gestire l'iterazione riga per riga delle
 stringhe, opportunamente chiamato `lines`, che funziona come mostrato nel
@@ -140,13 +138,13 @@ hai visto questo modo di usare un iteratore nel [Listato 3-5][ch3-iter]<!--
 ignore -->, dove abbiamo usato un ciclo `for` con un iteratore per eseguire
 del codice su ogni elemento di una collezione.
 
-#### Ricerca della Query in Ogni Riga
+#### Ricercare la Query in Ogni Riga
 
-Successivamente, controlleremo se la riga corrente contiene la nostra stringa
-di query. Fortunatamente, le stringhe hanno un metodo utile chiamato
-`contains` che fa proprio questo per noi! Aggiungiamo una chiamata al metodo
-`contains` nella funzione `cerca`, come mostrato nel Listato 12-18. Nota che
-questo non verrà ancora compilato.
+Successivamente, controlleremo se la riga corrente contiene la nostra stringa di
+query. Fortunatamente, le stringhe hanno un metodo utile chiamato `contains` che
+fa proprio questo per noi! Aggiungiamo una chiamata al metodo `contains` nella
+funzione `cerca`, come mostrato nel Listato 12-18. Nota che questo non verrà
+ancora compilato.
 
 <Listing number="12-18" file-name="src/lib.rs" caption="Aggiunta di funzionalità per verificare se la riga contiene la stringa in `query`">
 
@@ -160,15 +158,15 @@ Al momento, stiamo sviluppando la funzionalità. Per compilare il codice,
 dobbiamo restituire un valore dal corpo, come indicato nella firma della
 funzione.
 
-#### Memorizzazione delle Righe Corrispondenti
+#### Memorizzare le Righe Corrispondenti
 
 Per completare questa funzione, abbiamo bisogno di un modo per memorizzare le
 righe corrispondenti che vogliamo restituire. Per farlo, possiamo creare un
 vettore mutabile prima del ciclo `for` e chiamare il metodo `push` per
-memorizzare una `line` nel vettore. Dopo il ciclo `for`, ritorniamo il
-vettore, come mostrato nel Listato 12-19.
+memorizzare una `line` nel vettore. Dopo il ciclo `for`, ritorniamo il vettore,
+come mostrato nel Listato 12-19.
 
-<Listing number="12-19" file-name="src/lib.rs" caption="Memorizzazione delle righe corrispondenti in modo da poterle ritornare">
+<Listing number="12-19" file-name="src/lib.rs" caption="Memorizzazione delle righe corrispondenti in modo da poterle restituire">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-19/src/lib.rs:here}}
@@ -183,18 +181,19 @@ Ora la funzione `cerca` dovrebbe restituire solo le righe che contengono
 {{#include ../listings/ch12-an-io-project/listing-12-19/output.txt}}
 ```
 
-Il nostro test è stato superato, quindi sappiamo che funziona!
+Il nostro test è stato superato, quindi sappiamo che la funzione fa quello che
+ci aspettiamo!
 
 A questo punto, potremmo valutare l'opportunità di ristrutturare e migliorare
-l'implementazione della funzione di ricerca, controllando che i test
-continuino a passare per mantenere la stessa funzionalità. Il codice nella
-funzione di ricerca non è male, ma non sfrutta alcune utili funzionalità degli
-iteratori. Torneremo su questo esempio nel [Capitolo 13][ch13-iterators]<!--
+l'implementazione della funzione di ricerca, controllando che i test continuino
+a passare per mantenere la stessa funzionalità. Il codice nella funzione di
+ricerca non è male, ma non sfrutta alcune utili funzionalità degli iteratori.
+Torneremo su questo esempio nel [Capitolo 13][ch13-iterators]<!--
 ignore -->, dove esploreremo gli iteratori in dettaglio e vedremo come
-migliorarli.
+migliorarla.
 
-Ora l'intero programma dovrebbe funzionare! Proviamolo, prima con una parola
-che dovrebbe restituire esattamente una riga della poesia di Emily Dickinson:
+Ora l'intero programma dovrebbe funzionare! Proviamolo, prima con una parola che
+dovrebbe restituire esattamente una riga della poesia di Emily Dickinson:
 _rana_.
 
 ```console
@@ -207,22 +206,21 @@ Fantastico! Ora proviamo una parola che corrisponda a più righe, come _uno_:
 {{#include ../listings/ch12-an-io-project/output-only-03-multiple-matches/output.txt}}
 ```
 
-E infine, assicuriamoci di non ottenere alcuna riga quando cerchiamo una
-parola che non è presente da nessuna parte nella poesia, come
-_monomorfizzazione_:
+E infine, assicuriamoci di non ottenere alcuna riga quando cerchiamo una parola
+che non è presente da nessuna parte nella poesia, come _monomorfizzazione_:
 
 ```console
 {{#include ../listings/ch12-an-io-project/output-only-04-no-matches/output.txt}}
 ```
 
-Ottimo! Abbiamo creato la nostra versione in miniatura di uno strumento
-classico e abbiamo imparato molto su come strutturare le applicazioni. Abbiamo
-anche imparato qualcosa sull'input e l'output dei file, sui _lifetime_, sui
-test e sull'analisi della riga di comando.
+Ottimo! Abbiamo creato la nostra versione in miniatura di uno strumento classico
+e abbiamo imparato molto su come strutturare le applicazioni. Abbiamo anche
+imparato qualcosa sull'input e l'output dei file, sulle _lifetime_, sui test e
+sull'analisi della riga di comando.
 
 Per completare questo progetto, mostreremo brevemente come lavorare con le
-variabili d'ambiente e come stampare su standard error, entrambi utili quando
-si scrivono programmi da riga di comando.
+variabili d'ambiente e come stampare su standard error, entrambi utili quando si
+scrivono programmi da riga di comando.
 
 [validating-references-with-lifetimes]: ch10-03-lifetime-syntax.html#validare-i-reference-con-la-lifetime
 [ch11-anatomy]: ch11-01-writing-tests.html#anatomia-di-una-funzione-di-test

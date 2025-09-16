@@ -16,13 +16,13 @@ fn main() {
 
     // ANCHOR: here
     println!("Cerco {}", config.query);
-    println!("Nel file {}", config.file_path);
+    println!("Nel file {}", config.percorso_file);
 
-    run(config);
+    esegui(config);
 }
 
-fn run(config: Config) {
-    let contenuto = fs::read_to_string(config.file_path)
+fn esegui(config: Config) {
+    let contenuto = fs::read_to_string(config.percorso_file)
         .expect("Dovrebbe essere stato possibile leggere il file");
 
     println!("Con il testo:\n{contenuto}");
@@ -33,7 +33,7 @@ fn run(config: Config) {
 
 struct Config {
     query: String,
-    file_path: String,
+    percorso_file: String,
 }
 
 impl Config {
@@ -43,8 +43,8 @@ impl Config {
         }
 
         let query = args[1].clone();
-        let file_path = args[2].clone();
+        let percorso_file = args[2].clone();
 
-        Ok(Config { query, file_path })
+        Ok(Config { query, percorso_file })
     }
 }

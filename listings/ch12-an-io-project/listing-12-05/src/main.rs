@@ -5,25 +5,25 @@ use std::fs;
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    let (query, file_path) = parse_config(&args);
+    let (query, percorso_file) = leggi_config(&args);
 
     // --taglio--
     // ANCHOR_END: here
 
     println!("Cerco {query}");
-    println!("Nel file {file_path}");
+    println!("Nel file {percorso_file}");
 
-    let contenuto = fs::read_to_string(file_path)
+    let contenuto = fs::read_to_string(percorso_file)
         .expect("Dovrebbe essere stato possibile leggere il file");
 
     println!("Con il testo:\n{contenuto}");
     // ANCHOR: here
 }
 
-fn parse_config(args: &[String]) -> (&str, &str) {
+fn leggi_config(args: &[String]) -> (&str, &str) {
     let query = &args[1];
-    let file_path = &args[2];
+    let percorso_file = &args[2];
 
-    (query, file_path)
+    (query, percorso_file)
 }
 // ANCHOR_END: here
