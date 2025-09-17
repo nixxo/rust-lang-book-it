@@ -1,11 +1,11 @@
-## Migliorare il nostro progetto I/O
+## Migliorare il Nostro Progetto I/O
 
 Con queste nuove conoscenze sugli iteratori, possiamo migliorare il progetto I/O
 del Capitolo 12 utilizzando gli iteratori per rendere alcuni punti del codice
 più chiari e concisi. Vediamo come gli iteratori possono migliorare
 l'implementazione della funzione `Config::build` e della funzione `cerca`.
 
-### Rimuovere un `clone` utilizzando un iteratore
+### Rimuovere `clone` Utilizzando un Iteratore
 
 Nel Listato 12-6, abbiamo aggiunto del codice che prendeva una _slice_ di valori
 `String` e creava un'istanza della _struct_ `Config` indicizzando nella _slice_

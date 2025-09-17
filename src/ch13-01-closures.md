@@ -1,7 +1,7 @@
 <!-- Old heading. Do not remove or links may break. -->
 <a id="closures-anonymous-functions-that-can-capture-their-environment"></a>
 
-## Chiusure: Funzioni Anonime che Catturano il loro Ambiente
+## Chiusure: Funzioni Anonime che Catturano il Loro Ambiente
 
 Le chiusure di Rust sono funzioni anonime che è possibile salvare in una
 variabile o passare come argomenti ad altre funzioni. È possibile creare la
