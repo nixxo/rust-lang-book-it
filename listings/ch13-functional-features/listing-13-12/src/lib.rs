@@ -2,7 +2,7 @@
 mod tests {
     // ANCHOR: here
     #[test]
-    fn iterator_demonstration() {
+    fn dimostrazione_iteratore() {
         let v1 = vec![1, 2, 3];
 
         let mut v1_iter = v1.iter();

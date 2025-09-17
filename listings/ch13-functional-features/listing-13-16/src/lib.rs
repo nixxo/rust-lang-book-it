@@ -1,11 +1,11 @@
 #[derive(PartialEq, Debug)]
 struct Scarpa {
-    size: u32,
-    style: String,
+    misura: u32,
+    stile: String,
 }
 
 fn misura_scarpe(scarpe: Vec<Scarpa>, misura_scarpa: u32) -> Vec<Scarpa> {
-    scarpe.into_iter().filter(|s| s.size == misura_scarpa).collect()
+    scarpe.into_iter().filter(|s| s.misura == misura_scarpa).collect()
 }
 
 #[cfg(test)]
@@ -16,16 +16,16 @@ mod tests {
     fn filtra_per_misura() {
         let scarpe = vec![
             Scarpa {
-                size: 10,
-                style: String::from("sneaker"),
+                misura: 10,
+                stile: String::from("sneaker"),
             },
             Scarpa {
-                size: 13,
-                style: String::from("sandalo"),
+                misura: 13,
+                stile: String::from("sandalo"),
             },
             Scarpa {
-                size: 10,
-                style: String::from("scarpone"),
+                misura: 10,
+                stile: String::from("scarpone"),
             },
         ];
 
@@ -35,12 +35,12 @@ mod tests {
             della_mia_misura,
             vec![
                 Scarpa {
-                    size: 10,
-                    style: String::from("sneaker")
+                    misura: 10,
+                    stile: String::from("sneaker")
                 },
                 Scarpa {
-                    size: 10,
-                    style: String::from("scarpone")
+                    misura: 10,
+                    stile: String::from("scarpone")
                 },
             ]
         );

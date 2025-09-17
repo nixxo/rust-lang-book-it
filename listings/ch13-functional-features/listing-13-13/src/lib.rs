@@ -2,14 +2,14 @@
 mod tests {
     // ANCHOR: here
     #[test]
-    fn iterator_sum() {
+    fn somma_con_iteratore() {
         let v1 = vec![1, 2, 3];
 
         let v1_iter = v1.iter();
 
-        let total: i32 = v1_iter.sum();
+        let totale: i32 = v1_iter.sum();
 
-        assert_eq!(total, 6);
+        assert_eq!(totale, 6);
     }
     // ANCHOR_END: here
 }
