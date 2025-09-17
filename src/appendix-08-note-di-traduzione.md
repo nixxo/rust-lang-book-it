@@ -16,16 +16,16 @@ TODO: scrivere intro...
 | Integer   | Intero   |          |
 | Float     | Float    | |
 | Boolean | Boolean | |
-| Struct    | Struct   | |
-| Enum      | Enum     | Enumerazione |
+| Struct    | _Struct_   | |
+| Enum      | _Enum_     | Enumerazione |
 | Tuple     | Tupla / Tuple | |
 | Collection | Collezione | |
-| Array     | Array    | specificatamente riferito al Type Array |
+| Array     | _Array_    | specificatamente riferito al Type Array |
 | Vector    | Vettore | specificatamente riferito al Type Vector |
 | Hash Map  | Hash Map  | Mappa hash |
-| String Slice / Slice | Slice di stringa / Slice | Riferimento ad una porzione di stringa |
+| String Slice / Slice | _Slice_ di stringa / _Slice_ | Riferimento ad una porzione di stringa |
 | --- | --- | --- |
-| Reference | Reference / Riferimento | Riferimento ad una variabile |
+| Reference | _Reference_ / Riferimento | Riferimento ad una variabile |
 | Trait | Trait | Tratto |
 | Trait Bound | Vincolo di Trait | |
 | Handle | Handle | Puntatore ad un thread/processo |
@@ -38,10 +38,10 @@ TODO: scrivere intro...
 
 | Terminologia | Termini usati nel libro | Italiano |
 | --------- | -------- | -------- |
-| Ownership | Ownership | Possesso / Proprietà / Controllo di una variabile sui dati che contiene |
-| Borrow Checker | Borrow Checker / Controllo dei prestiti | Funzionalità del compilatore Rust per verificare la consistenza dei riferimenti |
-| Borrowed Type | Type Preso in prestito | Tipo di dato di cui si è ricevuta la ownership |
-| Owned Type| Type posseduto / Type con ownership | |
+| Ownership | _Ownership_ | Possesso / Proprietà / Controllo di una variabile sui dati che contiene |
+| Borrow Checker | _Borrow Checker_ / Controllo dei prestiti | Funzionalità del compilatore Rust per verificare la consistenza dei riferimenti |
+| Borrowed Type | _Type_ Preso in prestito | Tipo di dato di cui si è ricevuta la _ownership_ |
+| Owned Type| _Type_ posseduto / _Type_ con _ownership_ | |
 | Borrowing Rules | Regole di prestito | |
 
 
@@ -50,20 +50,25 @@ TODO: scrivere intro...
 
 | Terminologia | Termini usati nel libro | Italiano |
 | --------- | -------- | -------- |
-| Lifetime | Lifetime / Longevità | |
-| Crate | Crate | Contenitore |
+| Lifetime | _Lifetime_ / Longevità | |
+| Crate | _Crate_ | Contenitore |
 | Package | Pacchetto |  |
-| Path | Path / Percorso | Percorso file o moduli |
-| Root | Root / Radice | 
+| Path | _Path_ / Percorso | Percorso file o moduli |
+| Root | _Root_ / Radice | 
 | Namespace | ??? |  |
 | Runtime | Esecuzione | |
-| Thread | Thread | |
-| Spawned Thread | Thread Generato | |
-| Closure | Closure / Chiusura | |
-| Refactoring | refactoring / riscrittura / ristrutturazione | |
+| Thread | _Thread_ | |
+| Spawned Thread | _Thread_ Generato | |
+| Closure | _Closure_ / Chiusura | |
+| Environment | Ambiente |
+| Refactoring | _Refactoring_ / Riscrittura / Ristrutturazione | |
 | Panic | Panic / Panico | |
-| return value | valore di ritorno / valore restituito ??? | |
-| return | ritornare / restituire ???? | |
+| Return | Restituire / Ritornare | |
+| Return Value | Valore di ritorno / Valore restituito | |
+| Iterator | Iteratore |
+| Iterator Adapter | Adattatore | Saraebbe "Adattatore all'iteratore"
+| Consuming Adapters | Consumatore | Sarebbe "Adattatore all'iteratore che consuma l'adattatore"
+| Lazy | _Lazy_ | |
 
 
 ### Gerarchia Moduli

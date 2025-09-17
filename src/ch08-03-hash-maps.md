@@ -227,7 +227,7 @@ implementare il proprio _hasher_ da zero;
 condivise da altri utenti Rust che forniscono _hasher_ che implementano molti
 algoritmi di _hashing_ comuni.
 
-[^siphash]: [https://en.wikipedia.org/wiki/SipHash](https://en.wikipedia.org/wiki/SipHash)
+[^siphash]: [SipHash su wikipedia (eng)](https://en.wikipedia.org/wiki/SipHash)
 
 ## Riepilogo
 
