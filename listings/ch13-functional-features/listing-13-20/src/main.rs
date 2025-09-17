@@ -3,16 +3,16 @@ use std::error::Error;
 use std::fs;
 use std::process;
 
-use minigrep::{search, search_case_insensitive};
+use minigrep::{cerca, cerca_case_insensitive};
 
 fn main() {
     let config = Config::build(env::args()).unwrap_or_else(|err| {
-        eprintln!("Problem parsing arguments: {err}");
+        eprintln!("Problema nella lettura degli argomenti: {err}");
         process::exit(1);
     });
 
     if let Err(e) = esegui(config) {
-        eprintln!("Application error: {e}");
+        eprintln!("Errore dell'applicazione: {e}");
         process::exit(1);
     }
 }
@@ -20,7 +20,7 @@ fn main() {
 pub struct Config {
     pub query: String,
     pub percorso_file: String,
-    pub ignore_case: bool,
+    pub ignora_maiuscole: bool,
 }
 
 // ANCHOR: here
@@ -32,35 +32,35 @@ impl Config {
 
         let query = match args.next() {
             Some(arg) => arg,
-            None => return Err("Didn't get a query string"),
+            None => return Err("Stringa Query non fornita"),
         };
 
         let percorso_file = match args.next() {
             Some(arg) => arg,
-            None => return Err("Didn't get a file path"),
+            None => return Err("Percorso file non fornito"),
         };
 
-        let ignore_case = env::var("IGNORE_CASE").is_ok();
+        let ignora_maiuscole = env::var("IGNORA_MAIUSCOLE").is_ok();
 
         Ok(Config {
             query,
             percorso_file,
-            ignore_case,
+            ignora_maiuscole,
         })
     }
 }
 // ANCHOR_END: here
 
 fn esegui(config: Config) -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string(config.percorso_file)?;
+    let contenuto = fs::read_to_string(config.percorso_file)?;
 
-    let results = if config.ignore_case {
-        search_case_insensitive(&config.query, &contents)
+    let risultato = if config.ignora_maiuscole {
+        cerca_case_insensitive(&config.query, &contenuto)
     } else {
-        search(&config.query, &contents)
+        cerca(&config.query, &contenuto)
     };
 
-    for line in results {
+    for line in risultato {
         println!("{line}");
     }
 

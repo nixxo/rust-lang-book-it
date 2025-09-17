@@ -3,18 +3,18 @@ use std::error::Error;
 use std::fs;
 use std::process;
 
-use minigrep::{search, search_case_insensitive};
+use minigrep::{cerca, cerca_case_insensitive};
 
 fn main() {
     let args: Vec<String> = env::args().collect();
 
     let config = Config::build(&args).unwrap_or_else(|err| {
-        println!("Problem parsing arguments: {err}");
+        println!("Problema nella lettura degli argomenti: {err}");
         process::exit(1);
     });
 
     if let Err(e) = esegui(config) {
-        println!("Application error: {e}");
+        println!("Errore dell'applicazione: {e}");
         process::exit(1);
     }
 }
@@ -22,40 +22,40 @@ fn main() {
 pub struct Config {
     pub query: String,
     pub percorso_file: String,
-    pub ignore_case: bool,
+    pub ignora_maiuscole: bool,
 }
 
 // ANCHOR: ch13
 impl Config {
     fn build(args: &[String]) -> Result<Config, &'static str> {
         if args.len() < 3 {
-            return Err("not enough arguments");
+            return Err("non ci sono abbastanza argomenti");
         }
 
         let query = args[1].clone();
         let percorso_file = args[2].clone();
 
-        let ignore_case = env::var("IGNORE_CASE").is_ok();
+        let ignora_maiuscole = env::var("IGNORA_MAIUSCOLE").is_ok();
 
         Ok(Config {
             query,
             percorso_file,
-            ignore_case,
+            ignora_maiuscole,
         })
     }
 }
 // ANCHOR_END: ch13
 
 fn esegui(config: Config) -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string(config.percorso_file)?;
+    let contenuto = fs::read_to_string(config.percorso_file)?;
 
-    let results = if config.ignore_case {
-        search_case_insensitive(&config.query, &contents)
+    let risultato = if config.ignora_maiuscole {
+        cerca_case_insensitive(&config.query, &contenuto)
     } else {
-        search(&config.query, &contents)
+        cerca(&config.query, &contenuto)
     };
 
-    for line in results {
+    for line in risultato {
         println!("{line}");
     }
 

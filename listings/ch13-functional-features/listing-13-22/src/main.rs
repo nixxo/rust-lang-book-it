@@ -3,44 +3,62 @@ use std::error::Error;
 use std::fs;
 use std::process;
 
-use minigrep::cerca;
+use minigrep::{cerca, cerca_case_insensitive};
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    let config = Config::build(&args).unwrap_or_else(|err| {
-        println!("Problema durante il parsing degli argomenti: {err}");
+    let config = Config::build(env::args()).unwrap_or_else(|err| {
+        eprintln!("Problema nella lettura degli argomenti: {err}");
         process::exit(1);
     });
 
     if let Err(e) = esegui(config) {
-        println!("Errore dell'applicazione: {e}");
+        eprintln!("Errore dell'applicazione: {e}");
         process::exit(1);
     }
 }
 
-struct Config {
-    query: String,
-    percorso_file: String,
+pub struct Config {
+    pub query: String,
+    pub percorso_file: String,
+    pub ignora_maiuscole: bool,
 }
 
 impl Config {
-    fn build(args: &[String]) -> Result<Config, &'static str> {
-        if args.len() < 3 {
-            return Err("non ci sono abbastanza argomenti");
-        }
+    fn build(
+        mut args: impl Iterator<Item = String>,
+    ) -> Result<Config, &'static str> {
+        args.next();
 
-        let query = args[1].clone();
-        let percorso_file = args[2].clone();
+        let query = match args.next() {
+            Some(arg) => arg,
+            None => return Err("Stringa Query non fornita"),
+        };
 
-        Ok(Config { query, percorso_file })
+        let percorso_file = match args.next() {
+            Some(arg) => arg,
+            None => return Err("Percorso file non fornito"),
+        };
+
+        let ignora_maiuscole = env::var("IGNORA_MAIUSCOLE").is_ok();
+
+        Ok(Config {
+            query,
+            percorso_file,
+            ignora_maiuscole,
+        })
     }
 }
 
 fn esegui(config: Config) -> Result<(), Box<dyn Error>> {
-    let contenuti = fs::read_to_string(config.percorso_file)?;
+    let contenuto = fs::read_to_string(config.percorso_file)?;
 
-    for line in cerca(&config.query, &contenuti) {
+    let risultato = if config.ignora_maiuscole {
+        cerca_case_insensitive(&config.query, &contenuto)
+    } else {
+        cerca(&config.query, &contenuto)
+    };
+
+    for line in risultato {
         println!("{line}");
     }
 

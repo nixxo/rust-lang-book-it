@@ -1,29 +1,29 @@
-pub fn cerca<'a>(query: &str, contenuti: &'a str) -> Vec<&'a str> {
-    let mut risultati = Vec::new();
+pub fn cerca<'a>(query: &str, contenuto: &'a str) -> Vec<&'a str> {
+    let mut risultato = Vec::new();
 
-    for line in contenuti.lines() {
+    for line in contenuto.lines() {
         if line.contains(query) {
-            risultati.push(line);
+            risultato.push(line);
         }
     }
 
-    risultati
+    risultato
 }
 
 pub fn cerca_case_insensitive<'a>(
     query: &str,
-    contenuti: &'a str,
+    contenuto: &'a str,
 ) -> Vec<&'a str> {
     let query = query.to_lowercase();
-    let mut risultati = Vec::new();
+    let mut risultato = Vec::new();
 
-    for line in contenuti.lines() {
+    for line in contenuto.lines() {
         if line.to_lowercase().contains(&query) {
-            risultati.push(line);
+            risultato.push(line);
         }
     }
 
-    risultati
+    risultato
 }
 
 #[cfg(test)]
@@ -32,37 +32,28 @@ mod tests {
 
     #[test]
     fn case_sensitive() {
-        let query = "duct";
-        let contenuti = "\
+        let query = "dut";
+        let contenuto = "\
 Rust:
-safe, fast, productive.
-Pick three.
-";
-        assert_eq!(vec!["safe, fast, productive."], cerca(query, contenuti));
+sicuro, veloce, produttivo.
+Scegline tre.
+Duttilità.";
+
+        assert_eq!(vec!["sicuro, veloce, produttivo."], cerca(query, contenuto));
     }
 
     #[test]
     fn case_insensitive() {
         let query = "rUsT";
-        let contenuti = "\
+        let contenuto = "\
 Rust:
-Duct tape.";
-
-        assert_eq!(vec!["safe, fast, productive."], search(query, contents));
-    }
-
-    #[test]
-    fn case_insensitive() {
-        let query = "rUsT";
-        let contenuti = "\
-Rust:
-safe, fast, productive.
-Pick three.
-Trust me.";
+sicuro, veloce, produttivo.
+Scegline tre.
+Una frusta.";
 
         assert_eq!(
-            vec!["Rust:", "Trust me."],
-            cerca_case_insensitive(query, contenuti)
+            vec!["Rust:", "Una frusta."],
+            cerca_case_insensitive(query, contenuto)
         );
     }
 }

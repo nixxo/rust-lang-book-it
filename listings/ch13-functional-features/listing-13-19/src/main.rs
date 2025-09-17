@@ -7,7 +7,7 @@ use minigrep::{cerca, cerca_case_insensitive};
 
 fn main() {
     let config = Config::build(env::args()).unwrap_or_else(|err| {
-        eprintln!("Problema durante il parsing degli argomenti: {err}");
+        eprintln!("Problema nella lettura degli argomenti: {err}");
         process::exit(1);
     });
 
@@ -20,7 +20,7 @@ fn main() {
 pub struct Config {
     pub query: String,
     pub percorso_file: String,
-    pub ignora_case: bool,
+    pub ignora_maiuscole: bool,
 }
 
 // ANCHOR: here
@@ -37,26 +37,26 @@ impl Config {
         let query = args[1].clone();
         let percorso_file = args[2].clone();
 
-        let ignora_case = env::var("IGNORE_CASE").is_ok();
+        let ignora_maiuscole = env::var("IGNORA_MAIUSCOLE").is_ok();
 
         Ok(Config {
             query,
             percorso_file,
-            ignora_case,
+            ignora_maiuscole,
         })
     }
 }
 
 fn esegui(config: Config) -> Result<(), Box<dyn Error>> {
-    let contenuti = fs::read_to_string(config.percorso_file)?;
+    let contenuto = fs::read_to_string(config.percorso_file)?;
 
-    let risultati = if config.ignora_case {
-        cerca_case_insensitive(&config.query, &contenuti)
+    let risultato = if config.ignora_maiuscole {
+        cerca_case_insensitive(&config.query, &contenuto)
     } else {
-        cerca(&config.query, &contenuti)
+        cerca(&config.query, &contenuto)
     };
 
-    for line in risultati {
+    for line in risultato {
         println!("{line}");
     }
 
