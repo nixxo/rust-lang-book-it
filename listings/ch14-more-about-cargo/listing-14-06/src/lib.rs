@@ -1,33 +1,38 @@
-//! # Art
+// ANCHOR: here
+//! # Arte
 //!
-//! A library for modeling artistic concepts.
+//! Una libreria per modellare concetti artistici.
 
-pub use self::kinds::PrimaryColor;
-pub use self::kinds::SecondaryColor;
-pub use self::utils::mix;
+pub use self::tipologia::ColorePrimario;
+pub use self::tipologia::ColoreSecondario;
+pub use self::utilità::mix;
 
-pub mod kinds {
-    /// The primary colors according to the RYB color model.
-    pub enum PrimaryColor {
-        Red,
-        Yellow,
-        Blue,
+pub mod tipologia {
+    // --taglio--
+    // ANCHOR_END: here
+    /// I colori primari secondo il modello RYB.
+    pub enum ColorePrimario {
+        Rosso,
+        Giallo,
+        Blu,
     }
 
-    /// The secondary colors according to the RYB color model.
-    pub enum SecondaryColor {
-        Orange,
-        Green,
-        Purple,
+    /// I colori secondari secondo il modello RYB.
+    pub enum ColoreSecondario {
+        Arancio,
+        Verde,
+        Viola,
     }
+    // ANCHOR: here
 }
 
-pub mod utils {
-    use crate::kinds::*;
+pub mod utilità {
+    // --taglio--
+    use crate::tipologia::*;
 
-    /// Combines two primary colors in equal amounts to create
-    /// a secondary color.
-    pub fn mix(c1: PrimaryColor, c2: PrimaryColor) -> SecondaryColor {
-        SecondaryColor::Orange
+    /// Combina due colori primari in egual quantità
+    /// per formare un colore secondario.
+    pub fn mix(c1: ColorePrimario, c2: ColorePrimario) -> ColoreSecondario {
+        ColoreSecondario::Arancio
     }
 }

@@ -1,29 +1,30 @@
-//! # Art
+// ANCHOR: here
+//! # Arte
 //!
-//! A library for modeling artistic concepts.
+//! Una libreria per modellare concetti artistici.
 
-pub mod kinds {
-    /// The primary colors according to the RYB color model.
-    pub enum PrimaryColor {
-        Red,
-        Yellow,
-        Blue,
+pub mod tipologia {
+    /// I colori primari secondo il modello RYB.
+    pub enum ColorePrimario {
+        Rosso,
+        Giallo,
+        Blu,
     }
 
-    /// The secondary colors according to the RYB color model.
-    pub enum SecondaryColor {
-        Orange,
-        Green,
-        Purple,
+    /// I colori secondari secondo il modello RYB.
+    pub enum ColoreSecondario {
+        Arancio,
+        Verde,
+        Viola,
     }
 }
 
-pub mod utils {
-    use crate::kinds::*;
+pub mod utilità {
+    use crate::tipologia::*;
 
-    /// Combines two primary colors in equal amounts to create
-    /// a secondary color.
-    pub fn mix(c1: PrimaryColor, c2: PrimaryColor) -> SecondaryColor {
-        SecondaryColor::Orange
+    /// Combina due colori primari in egual quantità
+    /// per formare un colore secondario.
+    pub fn mix(c1: ColorePrimario, c2: ColorePrimario) -> ColoreSecondario {
+        ColoreSecondario::Arancio
     }
 }

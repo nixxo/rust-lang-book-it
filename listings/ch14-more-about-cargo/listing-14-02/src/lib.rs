@@ -1,21 +1,21 @@
 // ANCHOR: here
-//! # My Crate
+//! # Mio Crate
 //!
-//! `my_crate` is a collection of utilities to make performing certain
-//! calculations more convenient.
+//! `mio_crate` è una collezione di funzioni per compiere
+//! certi calcoli più facilmente.
 
-/// Adds one to the number given.
+/// Aggiunge uno al numero dato.
 // --taglio--
 // ANCHOR_END: here
 ///
-/// # Examples
+/// # Esempi
 ///
 /// ```
 /// let arg = 5;
-/// let answer = my_crate::add_one(arg);
+/// let risposta = mio_crate::più_uno(arg);
 ///
-/// assert_eq!(6, answer);
+/// assert_eq!(6, risposta);
 /// ```
-pub fn add_one(x: i32) -> i32 {
+pub fn più_uno(x: i32) -> i32 {
     x + 1
 }

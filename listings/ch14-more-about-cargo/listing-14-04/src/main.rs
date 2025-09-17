@@ -1,8 +1,8 @@
-use art::kinds::PrimaryColor;
-use art::utils::mix;
+use arte::tipologia::ColorePrimario;
+use arte::utilità::mix;
 
 fn main() {
-    let red = PrimaryColor::Red;
-    let yellow = PrimaryColor::Yellow;
-    mix(red, yellow);
+    let rosso = ColorePrimario::Rosso;
+    let giallo = ColorePrimario::Giallo;
+    mix(rosso, giallo);
 }

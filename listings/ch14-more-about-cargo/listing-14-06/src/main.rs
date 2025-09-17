@@ -1,13 +1,13 @@
 // ANCHOR: here
-use art::PrimaryColor;
-use art::mix;
-
+use arte::ColorePrimario;
+use arte::mix;
+ 
 fn main() {
     // --taglio--
     // ANCHOR_END: here
-    let red = PrimaryColor::Red;
-    let yellow = PrimaryColor::Yellow;
-    mix(red, yellow);
+    let rosso = ColorePrimario::Rosso;
+    let giallo = ColorePrimario::Giallo;
+    mix(rosso, giallo);
     // ANCHOR: here
 }
 // ANCHOR_END: here

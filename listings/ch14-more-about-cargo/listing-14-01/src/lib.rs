@@ -1,13 +1,13 @@
-/// Adds one to the number given.
+/// Aggiunge uno al numero dato.
 ///
-/// # Examples
+/// # Esempi
 ///
 /// ```
 /// let arg = 5;
-/// let answer = my_crate::add_one(arg);
+/// let risposta = mio_crate::più_uno(arg);
 ///
-/// assert_eq!(6, answer);
+/// assert_eq!(6, risposta);
 /// ```
-pub fn add_one(x: i32) -> i32 {
+pub fn più_uno(x: i32) -> i32 {
     x + 1
 }
