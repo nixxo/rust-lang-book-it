@@ -1,10 +1,10 @@
 fn main() {
-    let list = vec![1, 2, 3];
-    println!("Prima di definire la chiusura: {list:?}");
+    let lista = vec![1, 2, 3];
+    println!("Prima di definire la chiusura: {lista:?}");
 
-    let solo_prestito = || println!("Dalla chiusura: {list:?}");
+    let solo_prestito = || println!("Dalla chiusura: {lista:?}");
 
-    println!("Prima di chiamare la chiusura: {list:?}");
+    println!("Prima di chiamare la chiusura: {lista:?}");
     solo_prestito();
-    println!("Dopo aver chiamato la chiusura: {list:?}");
+    println!("Dopo aver chiamato la chiusura: {lista:?}");
 }

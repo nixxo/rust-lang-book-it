@@ -1,33 +1,33 @@
 use std::thread;
 use std::time::Duration;
 
-fn generate_workout(intensity: u32, random_number: u32) {
+fn genera_allenamento(intensità: u32, numero_casuale: u32) {
     // ANCHOR: here
-    let expensive_closure = |num: u32| -> u32 {
-        println!("calculating slowly...");
+    let closure_lenta = |num: u32| -> u32 {
+        println!("calcolo lentamente...");
         thread::sleep(Duration::from_secs(2));
         num
     };
     // ANCHOR_END: here
 
-    if intensity < 25 {
-        println!("Today, do {} pushups!", expensive_closure(intensity));
-        println!("Next, do {} situps!", expensive_closure(intensity));
+    if intensità < 25 {
+        println!("Oggi, fai {} flessioni!", closure_lenta(intensità));
+        println!("Poi, fai {} piegamenti!", closure_lenta(intensità));
     } else {
-        if random_number == 3 {
-            println!("Take a break today! Remember to stay hydrated!");
+        if numero_casuale == 3 {
+            println!("Oggi fai una pausa! Ricordati di idratarti!");
         } else {
             println!(
-                "Today, run for {} minutes!",
-                expensive_closure(intensity)
+                "Oggi, corri per {} minuti!",
+                closure_lenta(intensità)
             );
         }
     }
 }
 
 fn main() {
-    let simulated_user_specified_value = 10;
-    let simulated_random_number = 7;
+    let simulazione_numero_utente = 10;
+    let simulazione_numero_casuale = 7;
 
-    generate_workout(simulated_user_specified_value, simulated_random_number);
+    genera_allenamento(simulazione_numero_utente, simulazione_numero_casuale);
 }

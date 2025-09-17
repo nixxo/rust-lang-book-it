@@ -1,10 +1,10 @@
 use std::thread;
 
 fn main() {
-    let list = vec![1, 2, 3];
-    println!("Prima di definire la chiusura: {list:?}");
+    let lista = vec![1, 2, 3];
+    println!("Prima di definire la chiusura: {lista:?}");
 
-    thread::spawn(move || println!("Dal thread: {list:?}"))
+    thread::spawn(move || println!("Dal thread: {lista:?}"))
         .join()
         .unwrap();
 }

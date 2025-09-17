@@ -1,6 +1,6 @@
 $ cargo run
-   Compiling closure-example v0.1.0 (file:///projects/closure-example)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.43s
-     Running `target/debug/closure-example`
-Prima di definire la chiusura:: [1, 2, 3]
+   Compiling esempio-chiusura v0.1.0 (file:///progetti/esempio-chiusura)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.08s
+     Running `target/debug/esempio-chiusura`
+Prima di definire la chiusura: [1, 2, 3]
 Dopo aver chiamato la chiusura: [1, 2, 3, 7]

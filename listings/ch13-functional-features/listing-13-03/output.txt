@@ -1,26 +1,29 @@
 $ cargo run
-   Compiling closure-example v0.1.0 (file:///projects/closure-example)
+   Compiling esempio-chiusura v0.1.0 (file:///progetti/esempio_chiusura)
 error[E0308]: mismatched types
- --> src/main.rs:5:29
+ --> src/main.rs:6:30
   |
-5 |     let n = example_closure(5);
-  |             --------------- ^- help: try using a conversion method: `.to_string()`
-  |             |               |
-  |             |               expected `String`, found integer
+6 |     let n = esempio_chiusura(5);
+  |             ---------------- ^ expected `String`, found integer
+  |             |
   |             arguments to this function are incorrect
   |
 note: expected because the closure was earlier called with an argument of type `String`
- --> src/main.rs:4:29
+ --> src/main.rs:5:30
   |
-4 |     let s = example_closure(String::from("hello"));
-  |             --------------- ^^^^^^^^^^^^^^^^^^^^^ expected because this argument is of type `String`
+5 |     let s = esempio_chiusura(String::from("ciao"));
+  |             ---------------- ^^^^^^^^^^^^^^^^^^^^ expected because this argument is of type `String`
   |             |
   |             in this closure call
 note: closure parameter defined here
- --> src/main.rs:2:28
+ --> src/main.rs:3:29
   |
-2 |     let example_closure = |x| x;
-  |                            ^
+3 |     let esempio_chiusura = |x| x;
+  |                             ^
+help: try using a conversion method
+  |
+6 |     let n = esempio_chiusura(5.to_string());
+  |                               ++++++++++++
 
 For more information about this error, try `rustc --explain E0308`.
-error: could not compile `closure-example` (bin "closure-example") due to 1 previous error
+error: could not compile `esempio_chiusura` (bin "esempio_chiusura") due to 1 previous error

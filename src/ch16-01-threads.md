@@ -187,7 +187,7 @@ influenzare l'esecuzione simultanea o meno dei _thread_.
 Spesso useremo la parola chiave `move` con le chiusure passate a `thread::spawn`
 perché la chiusura prenderà la _ownership_ dei valori che utilizza
 dall'ambiente, trasferendo così la _ownership_ di quei valori da un _thread_
-all'altro. In [“Cattura di _Reference_ o Trasferimento di
+all'altro. In [“Catturare i _Reference_ o Trasferire la
 _Ownership_”][capture]<!-- ignore --> del Capitolo 13, abbiamo parlato di `move`
 nel contesto delle chiusure. Ora ci concentreremo maggiormente sull'interazione
 tra `move` e `thread::spawn`.
@@ -296,4 +296,4 @@ Ora che abbiamo analizzato cosa sono i _thread_ e i metodi forniti dall'API dei
 _thread_, vediamo alcune situazioni in cui possiamo utilizzarli.
 
 [closures]: ch13-01-closures.html
-[capture]: ch13-01-closures.html#cattura-di-reference-o-trasferimento-di-ownership
+[capture]: ch13-01-closures.html#catturare-i-reference-o-trasferire-la-ownership

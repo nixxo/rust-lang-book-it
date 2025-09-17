@@ -1,7 +1,7 @@
 $ cargo run
-   Compiling rectangles v0.1.0 (file:///projects/rectangles)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.41s
-     Running `target/debug/rectangles`
+   Compiling rettangoli v0.1.0 (file:///progetti/rettangoli)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.15s
+     Running `target/debug/rettangoli`
 [
     Rettangolo {
         larghezza: 3,

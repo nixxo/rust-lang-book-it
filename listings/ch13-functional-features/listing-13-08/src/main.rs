@@ -1,22 +1,22 @@
 #[derive(Debug)]
-struct Rectangolo {
+struct Rettangolo {
     larghezza: u32,
     altezza: u32,
 }
 
 fn main() {
-    let mut list = [
-        Rectangolo { larghezza: 10, altezza: 1 },
-        Rectangolo { larghezza: 3, altezza: 5 },
-        Rectangolo { larghezza: 7, altezza: 12 },
+    let mut lista = [
+        Rettangolo { larghezza: 10, altezza: 1 },
+        Rettangolo { larghezza: 3, altezza: 5 },
+        Rettangolo { larghezza: 7, altezza: 12 },
     ];
 
-    let mut operazioni_sort = vec![];
+    let mut azioni_ordinamento = vec![];
     let valore = String::from("chiusura chiamata");
 
-    list.sort_by_key(|r| {
-        operazioni_sort.push(valore);
+    lista.sort_by_key(|r| {
+        azioni_ordinamento.push(valore);
         r.larghezza
     });
-    println!("{list:#?}");
+    println!("{lista:#?}");
 }

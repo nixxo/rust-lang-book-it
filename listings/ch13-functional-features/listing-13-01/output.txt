@@ -1,6 +1,6 @@
 $ cargo run
-   Compiling shirt-company v0.1.0 (file:///projects/shirt-company)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.27s
-     Running `target/debug/shirt-company`
+   Compiling azienda-magliette v0.1.0 (file:///progetti/azienda-magliette)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.07s
+     Running `target/debug/azienda-magliette`
 L'utente con preferenza Some(Rosso) riceve Rosso
 L'utente con preferenza None riceve Blu
