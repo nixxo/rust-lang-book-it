@@ -5,11 +5,11 @@ fn main() {
     let (tx, rx) = mpsc::channel();
 
     thread::spawn(move || {
-        let val = String::from("hi");
+        let val = String::from("ciao");
         tx.send(val).unwrap();
-        println!("val is {val}");
+        println!("val è {val}");
     });
 
-    let received = rx.recv().unwrap();
-    println!("Got: {received}");
+    let ricevuto = rx.recv().unwrap();
+    println!("Ricevuto: {ricevuto}");
 }

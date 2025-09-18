@@ -3,13 +3,13 @@ use std::sync::Mutex;
 use std::thread;
 
 fn main() {
-    let counter = Rc::new(Mutex::new(0));
+    let contatore = Rc::new(Mutex::new(0));
     let mut handles = vec![];
 
     for _ in 0..10 {
-        let counter = Rc::clone(&counter);
+        let contatore = Rc::clone(&contatore);
         let handle = thread::spawn(move || {
-            let mut num = counter.lock().unwrap();
+            let mut num = contatore.lock().unwrap();
 
             *num += 1;
         });
@@ -20,5 +20,5 @@ fn main() {
         handle.join().unwrap();
     }
 
-    println!("Result: {}", *counter.lock().unwrap());
+    println!("Risultato: {}", *contatore.lock().unwrap());
 }

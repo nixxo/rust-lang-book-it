@@ -1,5 +1,5 @@
 [package]
-name = "shared-state"
+name = "stato-condiviso"
 version = "0.1.0"
 edition = "2024"
 

@@ -2,13 +2,13 @@ use std::sync::{Arc, Mutex};
 use std::thread;
 
 fn main() {
-    let counter = Arc::new(Mutex::new(0));
+    let contatore = Arc::new(Mutex::new(0));
     let mut handles = vec![];
 
     for _ in 0..10 {
-        let counter = Arc::clone(&counter);
+        let contatore = Arc::clone(&contatore);
         let handle = thread::spawn(move || {
-            let mut num = counter.lock().unwrap();
+            let mut num = contatore.lock().unwrap();
 
             *num += 1;
         });
@@ -19,5 +19,5 @@ fn main() {
         handle.join().unwrap();
     }
 
-    println!("Result: {}", *counter.lock().unwrap());
+    println!("Risultato: {}", *contatore.lock().unwrap());
 }

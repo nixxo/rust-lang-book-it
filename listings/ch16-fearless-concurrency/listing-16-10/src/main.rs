@@ -7,10 +7,10 @@ fn main() {
 
     thread::spawn(move || {
         let vals = vec![
-            String::from("hi"),
-            String::from("from"),
-            String::from("the"),
+            String::from("ciao"),
+            String::from("dal"),
             String::from("thread"),
+            String::from("!!!"),
         ];
 
         for val in vals {
@@ -19,7 +19,7 @@ fn main() {
         }
     });
 
-    for received in rx {
-        println!("Got: {received}");
+    for ricevuto in rx {
+        println!("Ricevuto: {ricevuto}");
     }
 }

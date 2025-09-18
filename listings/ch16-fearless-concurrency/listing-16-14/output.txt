@@ -9,7 +9,7 @@ error[E0277]: `Rc<Mutex<i32>>` cannot be sent between threads safely
    |  ______________________|_____________within this `{closure@src/main.rs:11:36: 11:43}`
    | |                      |
    | |                      required by a bound introduced by this call
-12 | |             let mut num = counter.lock().unwrap();
+12 | |             let mut num = contatore.lock().unwrap();
 13 | |
 14 | |             *num += 1;
 15 | |         });
