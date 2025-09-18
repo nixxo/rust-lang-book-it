@@ -5,7 +5,7 @@ eseguire e testare il nostro codice, ma può fare molto di più. In questo
 capitolo parleremo di alcune delle sue funzioni più avanzate per mostrarti come
 fare quanto segue:
 
-- Personalizza la tua build attraverso i profili di rilascio
+- Personalizzare la tua build tramite i profili di rilascio
 - Pubblica le librerie su [crates.io](https://crates.io/)<!-- ignore -->
 - Organizza progetti di grandi dimensioni con gli spazi di lavoro
 - Installa i binari da [crates.io](https://crates.io/)<!-- ignore -->
