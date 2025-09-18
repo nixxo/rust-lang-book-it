@@ -1,17 +1,19 @@
-## Extending Cargo with Custom Commands
+## Estendere Cargo con Comandi Personalizzati
 
-Cargo is designed so you can extend it with new subcommands without having to
-modify it. If a binary in your `$PATH` is named `cargo-something`, you can run
-it as if it were a Cargo subcommand by running `cargo something`. Custom
-commands like this are also listed when you run `cargo --list`. Being able to
-use `cargo install` to install extensions and then run them just like the
-built-in Cargo tools is a super-convenient benefit of Cargo’s design!
+Cargo è stato progettato in modo che tu possa estenderlo con nuovi sottocomandi
+senza doverlo modificare. Se un binario nel tuo `$PATH` si chiama
+`cargo-qualcosa`, puoi eseguirlo come se fosse un sottocomando di Cargo
+eseguendo `cargo qualcosa`. I comandi personalizzati come questo sono anche
+elencati quando esegui `cargo --list`. La possibilità di usare `cargo install`
+per installare le estensioni e poi eseguirle proprio come gli strumenti
+integrati di Cargo è un vantaggio super-conveniente del design di Cargo!
 
-## Summary
+## Riepilogo
 
-Sharing code with Cargo and [crates.io](https://crates.io/)<!-- ignore --> is
-part of what makes the Rust ecosystem useful for many different tasks. Rust’s
-standard library is small and stable, but crates are easy to share, use, and
-improve on a timeline different from that of the language. Don’t be shy about
-sharing code that’s useful to you on [crates.io](https://crates.io/)<!-- ignore
--->; it’s likely that it will be useful to someone else as well!
+La condivisione di codice con Cargo e [crates.io](https://crates.io/)<!-- ignore
+--> è parte di ciò che rende l'ecosistema Rust utile per molti compiti diversi.
+La libreria standard di Rust è piccola e stabile, ma i _crate_ sono facili da
+condividere, usare e migliorare con una tempistica diversa da quella del
+linguaggio. Non essere timido nel condividere il codice che ti è utile su
+[crates.io](https://crates.io/)<!-- ignore -->; è probabile che sia utile anche
+a qualcun altro!

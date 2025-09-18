@@ -1,213 +1,219 @@
-## Cargo Workspaces
+## Spazi di Lavoro Cargo
 
-In Chapter 12, we built a package that included a binary crate and a library
-crate. As your project develops, you might find that the library crate
-continues to get bigger and you want to split your package further into
-multiple library crates. Cargo offers a feature called _workspaces_ that can
-help manage multiple related packages that are developed in tandem.
+Nel Capitolo 12 abbiamo costruito un pacchetto che includeva un _crate_ binario
+e un _crate_ libreria. Man mano che il tuo progetto si sviluppa, potresti
+scoprire che il _crate_ libreria continua a diventare più grande e vorresti
+dividere ulteriormente il tuo pacchetto in più _crate_ libreria. Cargo offre una
+funzione chiamata _spazi di lavoro_ (_workspace_) che può aiutarti a gestire più
+pacchetti correlati che vengono sviluppati in tandem.
 
-### Creating a Workspace
+### Creare un _Workspace_
 
-A _workspace_ is a set of packages that share the same _Cargo.lock_ and output
-directory. Let’s make a project using a workspace—we’ll use trivial code so we
-can concentrate on the structure of the workspace. There are multiple ways to
-structure a workspace, so we'll just show one common way. We’ll have a
-workspace containing a binary and two libraries. The binary, which will provide
-the main functionality, will depend on the two libraries. One library will
-provide an `add_one` function and the other library an `add_two` function.
-These three crates will be part of the same workspace. We’ll start by creating
-a new directory for the workspace:
+Uno spazio di lavoro è un insieme di pacchetti che condividono lo stesso
+_Cargo.lock_ e la stessa directory di output. Creiamo un progetto utilizzando un
+_workspace_: useremo del codice banale in modo da poterci concentrare sulla
+struttura del _workspace_. Esistono diversi modi per strutturare uno spazio di
+lavoro, quindi ci limiteremo a mostrarne uno comune. Avremo un _workspace_
+contenente un binario e due librerie. Il binario, che fornirà la funzionalità
+principale, dipenderà dalle due librerie. Una libreria fornirà una funzione
+`più_uno` e l'altra libreria una funzione `più_due`. Questi tre _crate_ faranno
+parte dello stesso _workspace_. Inizia creando una nuova cartella per lo spazio
+di lavoro:
 
 ```console
-$ mkdir add
-$ cd add
+$ mkdir somma
+$ cd somma
 ```
 
-Next, in the _add_ directory, we create the _Cargo.toml_ file that will
-configure the entire workspace. This file won’t have a `[package]` section.
-Instead, it will start with a `[workspace]` section that will allow us to add
-members to the workspace. We also make a point to use the latest and greatest
-version of Cargo’s resolver algorithm in our workspace by setting the
-`resolver` value to `"3"`.
+Successivamente, nella cartella _somma_, creiamo il file _Cargo.toml_ che
+configurerà l'intero _workspace_. Questo file non avrà una sezione `[package]`,
+ma inizierà con una sezione `[workspace]` che ci permetterà di aggiungere membri
+al _workspace_. Inoltre, esplicitiamo di voler usare l'ultima versione
+dell'algoritmo di risoluzione delle dipendenze di Cargo nel nostro spazio di
+lavoro, impostando il valore `resolver` a `"3"`.
 
 <span class="filename">File: Cargo.toml</span>
 
 ```toml
-{{#include ../listings/ch14-more-about-cargo/no-listing-01-workspace/add/Cargo.toml}}
+{{#include ../listings/ch14-more-about-cargo/no-listing-01-workspace/somma/Cargo.toml}}
 ```
 
-Next, we’ll create the `adder` binary crate by running `cargo new` within the
-_add_ directory:
+Successivamente, creeremo il _crate_ binario `sommatore` eseguendo `cargo new`
+nella directory _somma_:
 
 <!-- manual-regeneration
-cd listings/ch14-more-about-cargo/output-only-01-adder-crate/add
-remove `members = ["adder"]` from Cargo.toml
-rm -rf adder
-cargo new adder
+cd listings/ch14-more-about-cargo/output-only-01-adder-crate/somma
+remove `members = ["sommatore"]` from Cargo.toml
+rm -rf sommatore
+cargo new sommatore
 copy output below
 -->
 
 ```console
-$ cargo new adder
-     Created binary (application) `adder` package
-      Adding `adder` as member of workspace at `file:///projects/add`
+$ cargo new sommatore
+     Created binary (application) `sommatore` package
+      Adding `sommatore` as member of workspace at `file:///progetti/somma`
 ```
 
-Running `cargo new` inside a workspace also automatically adds the newly created
-package to the `members` key in the `[workspace]` definition in the workspace
-_Cargo.toml_, like this:
+L'esecuzione di `cargo new` all'interno di uno spazio di lavoro aggiunge
+automaticamente il pacchetto appena creato alla chiave `members` nella
+definizione `[workspace]` del file _Cargo.toml_, in questo modo:
 
 ```toml
-{{#include ../listings/ch14-more-about-cargo/output-only-01-adder-crate/add/Cargo.toml}}
+{{#include ../listings/ch14-more-about-cargo/output-only-01-adder-crate/somma/Cargo.toml}}
 ```
 
-At this point, we can build the workspace by running `cargo build`. The files
-in your _add_ directory should look like this:
+A questo punto, possiamo costruire l'inter _workspace_ con `cargo build`. I file
+nella tua cartella _somma_ dovrebbero avere questo aspetto:
 
 ```text
 ├── Cargo.lock
 ├── Cargo.toml
-├── adder
+├── sommatore
 │   ├── Cargo.toml
 │   └── src
 │       └── main.rs
 └── target
 ```
 
-The workspace has one _target_ directory at the top level that the compiled
-artifacts will be placed into; the `adder` package doesn’t have its own
-_target_ directory. Even if we were to run `cargo build` from inside the
-_adder_ directory, the compiled artifacts would still end up in _add/target_
-rather than _add/adder/target_. Cargo structures the _target_ directory in a
-workspace like this because the crates in a workspace are meant to depend on
-each other. If each crate had its own _target_ directory, each crate would have
-to recompile each of the other crates in the workspace to place the artifacts
-in its own _target_ directory. By sharing one _target_ directory, the crates
-can avoid unnecessary rebuilding.
+Lo spazio di lavoro ha una cartela _target_ al livello superiore in cui verranno
+inseriti gli artefatti compilati; il pacchetto `sommatore` non ha una propria
+directory _target_. Anche se dovessimo eseguire `cargo build` dall'interno della
+cartella _sommatore_, gli artefatti compilati finirebbero comunque in
+_somma/target_ piuttosto che in _somma/sommatore/target_. Cargo struttura la
+cartella _target_ in uno spazio di lavoro in questo modo perché i _crate_ in un
+_workspace_ sono destinati a dipendere l'uno dall'altro. Se ogni _crate_ avesse
+la propria cartella _target_, ogni _crate_ dovrebbe ricompilare ogni altro
+_crate_ nello spazio di lavoro per posizionare gli artefatti nella propria
+cartella _target_. Condividendo una cartella _target_, i _crate_ possono evitare
+inutili ricostruzioni.
 
-### Creating the Second Package in the Workspace
+### Creare un Secondo Pacchetto nel _Workspace_
 
-Next, let’s create another member package in the workspace and call it
-`add_one`. Generate a new library crate named `add_one`:
+Ora creiamo un altro pacchetto membro dell'area di lavoro e chiamiamolo
+`più_uno`. Generiamo un nuovo _crate_ libreria chiamato `più_uno`:
 
 <!-- manual-regeneration
-cd listings/ch14-more-about-cargo/output-only-02-add-one/add
-remove `"add_one"` from `members` list in Cargo.toml
-rm -rf add_one
-cargo new add_one --lib
+cd listings/ch14-more-about-cargo/output-only-02-add-one/somma
+remove `"più_uno"` from `members` list in Cargo.toml
+rm -rf più_uno
+cargo new più_uno --lib
 copy output below
 -->
 
 ```console
-$ cargo new add_one --lib
-     Created library `add_one` package
-      Adding `add_one` as member of workspace at `file:///projects/add`
+$ cargo new più_uno --lib
+     Created library `più_uno` package
+      Adding `più_uno` as member of workspace at `file:///progetti/somma`
 ```
 
-The top-level _Cargo.toml_ will now include the _add_one_ path in the `members`
-list:
+Il file _Cargo.toml_ nella cartella _somma_ ora includerà il percorso _più_uno_
+nell'elenco dei membri `members`:
 
 <span class="filename">File: Cargo.toml</span>
 
 ```toml
-{{#include ../listings/ch14-more-about-cargo/no-listing-02-workspace-with-two-crates/add/Cargo.toml}}
+{{#include ../listings/ch14-more-about-cargo/no-listing-02-workspace-with-two-crates/somma/Cargo.toml}}
 ```
 
-Your _add_ directory should now have these directories and files:
+La tua cartella _somma_ dovrebbe ora contenere queste cartelle e questi file:
 
 ```text
 ├── Cargo.lock
 ├── Cargo.toml
-├── add_one
+├── più_uno
 │   ├── Cargo.toml
 │   └── src
 │       └── lib.rs
-├── adder
+├── sommatore
 │   ├── Cargo.toml
 │   └── src
 │       └── main.rs
 └── target
 ```
 
-In the _add_one/src/lib.rs_ file, let’s add an `add_one` function:
+Nel file _più_uno/src/lib.rs_, aggiungiamo una funzione `più_uno`:
 
-<span class="filename">File: add_one/src/lib.rs</span>
+<span class="filename">File: più_uno/src/lib.rs</span>
 
 ```rust,noplayground
-{{#rustdoc_include ../listings/ch14-more-about-cargo/no-listing-02-workspace-with-two-crates/add/add_one/src/lib.rs}}
+{{#rustdoc_include ../listings/ch14-more-about-cargo/no-listing-02-workspace-with-two-crates/somma/più_uno/src/lib.rs}}
 ```
 
-Now we can have the `adder` package with our binary depend on the `add_one`
-package that has our library. First, we’ll need to add a path dependency on
-`add_one` to _adder/Cargo.toml_.
+Ora possiamo fare in modo che il pacchetto `sommatore` con il nostro binario
+dipenda dal pacchetto `più_uno` che contiene la nostra libreria. Per prima cosa,
+dovremo aggiungere un percorso di dipendenza a `più_uno` nel file
+_sommatore/Cargo.toml_.
 
-<span class="filename">File: adder/Cargo.toml</span>
+<span class="filename">File: sommatore/Cargo.toml</span>
 
 ```toml
-{{#include ../listings/ch14-more-about-cargo/no-listing-02-workspace-with-two-crates/add/adder/Cargo.toml:6:7}}
+{{#include ../listings/ch14-more-about-cargo/no-listing-02-workspace-with-two-crates/somma/sommatore/Cargo.toml:6:7}}
 ```
 
-Cargo doesn’t assume that crates in a workspace will depend on each other, so
-we need to be explicit about the dependency relationships.
+Cargo non presuppone che i _crate_ dello stesso _workspace_ dipendano l'uno
+dall'altro, quindi dobbiamo essere espliciti sulle relazioni di dipendenza.
 
-Next, let’s use the `add_one` function (from the `add_one` crate) in the
-`adder` crate. Open the _adder/src/main.rs_ file and change the `main`
-function to call the `add_one` function, as in Listing 14-7.
+Quindi, utilizziamo la funzione `più_uno` (dal crate `più_uno`) nel crate
+`sommatore`. Apri il file _sommatore/src/main.rs_ e modifica la funzione `main`
+per richiamare la funzione `più_uno`, come nel Listato 14-7
 
-<Listing number="14-7" file-name="adder/src/main.rs" caption="Using the `add_one` library crate from the `adder` crate">
+<Listing number="14-7" file-name="sommatore/src/main.rs" caption="Utilizzo del _crate_ libreria `più_uno` dal _crate_ `sommatore`">
 
 ```rust,ignore
-{{#rustdoc_include ../listings/ch14-more-about-cargo/listing-14-07/add/adder/src/main.rs}}
+{{#rustdoc_include ../listings/ch14-more-about-cargo/listing-14-07/somma/sommatore/src/main.rs}}
 ```
 
 </Listing>
 
-Let’s build the workspace by running `cargo build` in the top-level _add_
-directory!
+Compiliamo lo spazio di lavoro eseguendo `cargo build` nella directory di primo
+livello _somma_!
 
 <!-- manual-regeneration
-cd listings/ch14-more-about-cargo/listing-14-07/add
+cd listings/ch14-more-about-cargo/listing-14-07/somma
 cargo build
 copy output below; the output updating script doesn't handle subdirectories in paths properly
 -->
 
 ```console
 $ cargo build
-   Compiling add_one v0.1.0 (file:///projects/add/add_one)
-   Compiling adder v0.1.0 (file:///projects/add/adder)
+   Compiling più_uno v0.1.0 (file:///progetti/somma/più_uno)
+   Compiling sommatore v0.1.0 (file:///progetti/somma/sommatore)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.22s
 ```
 
-To run the binary crate from the _add_ directory, we can specify which
-package in the workspace we want to run by using the `-p` argument and the
-package name with `cargo run`:
+Per eseguire il _crate_ binario dalla directory _somma_, possiamo specificare
+quale pacchetto del _workspace_ vogliamo eseguire utilizzando l'argomento `-p` e
+il nome del pacchetto con `cargo run`:
 
 <!-- manual-regeneration
-cd listings/ch14-more-about-cargo/listing-14-07/add
-cargo run -p adder
+cd listings/ch14-more-about-cargo/listing-14-07/somma
+cargo run -p sommatore
 copy output below; the output updating script doesn't handle subdirectories in paths properly
 -->
 
 ```console
-$ cargo run -p adder
+$ cargo run -p sommatore
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.00s
-     Running `target/debug/adder`
+     Running `target/debug/sommatore`
 Hello, world! 10 plus one is 11!
 ```
 
-This runs the code in _adder/src/main.rs_, which depends on the `add_one` crate.
+Questo esegue il codice in _sommatore/src/main.rs_, che dipende dal _crate_
+`più_uno`.
 
-#### Depending on an External Package in a Workspace
+#### Dipendere da un Pacchetto Esterno in un _Workspace_
 
-Notice that the workspace has only one _Cargo.lock_ file at the top level,
-rather than having a _Cargo.lock_ in each crate’s directory. This ensures that
-all crates are using the same version of all dependencies. If we add the `rand`
-package to the _adder/Cargo.toml_ and _add_one/Cargo.toml_ files, Cargo will
-resolve both of those to one version of `rand` and record that in the one
-_Cargo.lock_. Making all crates in the workspace use the same dependencies
-means the crates will always be compatible with each other. Let’s add the
-`rand` crate to the `[dependencies]` section in the _add_one/Cargo.toml_ file
-so we can use the `rand` crate in the `add_one` crate:
+Avrai notato che lo spazio di lavoro ha un solo file _Cargo.lock_ al livello
+superiore, invece di avere un _Cargo.lock_ nella cartella di ogni _crate_.
+Questo assicura che tutti i _crate_ utilizzino la stessa versione di tutte le
+dipendenze. Se aggiungiamo il pacchetto `rand` ai file _sommatore/Cargo.toml_ e
+_più_uno/Cargo.toml_, Cargo li risolverà entrambi in un'unica versione di `rand`
+e la registrerà nell'unico _Cargo.lock_. Fare in modo che tutti i _crate_ nel
+_workspace_ utilizzino le stesse dipendenze significa che i _crate_ saranno
+sempre compatibili tra loro. Aggiungiamo il _crate_ `rand` alla sezione
+`[dependencies]` nel file _più_uno/Cargo.toml_ in modo da poter utilizzare il
+_crate_ `rand` nel _crate_ `più_uno`:
 
 <!-- When updating the version of `rand` used, also update the version of
 `rand` used in these files so they all match:
@@ -215,19 +221,19 @@ so we can use the `rand` crate in the `add_one` crate:
 * ch07-04-bringing-paths-into-scope-with-the-use-keyword.md
 -->
 
-<span class="filename">File: add_one/Cargo.toml</span>
+<span class="filename">File: più_uno/Cargo.toml</span>
 
 ```toml
-{{#include ../listings/ch14-more-about-cargo/no-listing-03-workspace-with-external-dependency/add/add_one/Cargo.toml:6:7}}
+{{#include ../listings/ch14-more-about-cargo/no-listing-03-workspace-with-external-dependency/somma/più_uno/Cargo.toml:6:7}}
 ```
 
-We can now add `use rand;` to the _add_one/src/lib.rs_ file, and building the
-whole workspace by running `cargo build` in the _add_ directory will bring in
-and compile the `rand` crate. We will get one warning because we aren’t
-referring to the `rand` we brought into scope:
+Ora possiamo aggiungere `use rand;` al file _più_uno/src/lib.rs_ e la creazione
+dell'intero _workspace_ eseguendo `cargo build` nella cartella _somma_
+scaricherà e compilerà il _crate_ `rand`. Riceveremo un avviso perché non stiamo
+effettivamente usando `rand` che abbiamo portato nello _scope_:
 
 <!-- manual-regeneration
-cd listings/ch14-more-about-cargo/no-listing-03-workspace-with-external-dependency/add
+cd listings/ch14-more-about-cargo/no-listing-03-workspace-with-external-dependency/somma
 cargo build
 copy output below; the output updating script doesn't handle subdirectories in paths properly
 -->
@@ -238,28 +244,29 @@ $ cargo build
   Downloaded rand v0.8.5
    --taglio--
    Compiling rand v0.8.5
-   Compiling add_one v0.1.0 (file:///projects/add/add_one)
+   Compiling più_uno v0.1.0 (file:///progetti/somma/più_uno)
 warning: unused import: `rand`
- --> add_one/src/lib.rs:1:5
+ --> più_uno/src/lib.rs:1:5
   |
 1 | use rand;
   |     ^^^^
   |
   = note: `#[warn(unused_imports)]` on by default
 
-warning: `add_one` (lib) generated 1 warning (run `cargo fix --lib -p add_one` to apply 1 suggestion)
-   Compiling adder v0.1.0 (file:///projects/add/adder)
+warning: `più_uno` (lib) generated 1 warning (run `cargo fix --lib -p più_uno` to apply 1 suggestion)
+   Compiling sommatore v0.1.0 (file:///progetti/somma/sommatore)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.95s
 ```
 
-The top-level _Cargo.lock_ now contains information about the dependency of
-`add_one` on `rand`. However, even though `rand` is used somewhere in the
-workspace, we can’t use it in other crates in the workspace unless we add
-`rand` to their _Cargo.toml_ files as well. For example, if we add `use rand;`
-to the _adder/src/main.rs_ file for the `adder` package, we’ll get an error:
+Il file _Cargo.lock_ al livello più alto ora contiene informazioni sulla
+dipendenza di `più_uno` da `rand`. Tuttavia, anche se `rand` è utilizzato da
+qualche parte nello spazio di lavoro, non possiamo utilizzarlo in altri _crate_
+del _workspace_ a meno che non aggiungiamo `rand` anche ai loro file
+_Cargo.toml_. Ad esempio, se aggiungiamo `use rand;` al file
+_sommatore/src/main.rs_ per il pacchetto `sommatore`, otterremo un errore:
 
 <!-- manual-regeneration
-cd listings/ch14-more-about-cargo/output-only-03-use-rand/add
+cd listings/ch14-more-about-cargo/output-only-03-use-rand/somma
 cargo build
 copy output below; the output updating script doesn't handle subdirectories in paths properly
 -->
@@ -267,44 +274,44 @@ copy output below; the output updating script doesn't handle subdirectories in p
 ```console
 $ cargo build
   --taglio--
-   Compiling adder v0.1.0 (file:///projects/add/adder)
+   Compiling sommatore v0.1.0 (file:///progetti/somma/sommatore)
 error[E0432]: unresolved import `rand`
- --> adder/src/main.rs:2:5
+ --> sommatore/src/main.rs:2:5
   |
 2 | use rand;
   |     ^^^^ no external crate `rand`
 ```
 
-To fix this, edit the _Cargo.toml_ file for the `adder` package and indicate
-that `rand` is a dependency for it as well. Building the `adder` package will
-add `rand` to the list of dependencies for `adder` in _Cargo.lock_, but no
-additional copies of `rand` will be downloaded. Cargo will ensure that every
-crate in every package in the workspace using the `rand` package will use the
-same version as long as they specify compatible versions of `rand`, saving us
-space and ensuring that the crates in the workspace will be compatible with each
-other.
+Per risolvere questo problema, modifica il file _Cargo.toml_ per il pacchetto
+`sommatore` e indica che `rand` è una dipendenza anche per esso. Costruendo il
+pacchetto `sommatore` aggiungerà `rand` all'elenco delle dipendenze di
+`sommatore` in _Cargo.lock_, ma non verranno scaricate copie aggiuntive di
+`rand`. Cargo farà in modo che ogni _crate_ in ogni pacchetto dell'area di
+lavoro che utilizza il pacchetto `rand` utilizzi la stessa versione, a patto che
+specifichi versioni compatibili di `rand`, risparmiando spazio e assicurando che
+i _crate_ nel _workspace_ siano compatibili tra loro.
 
-If crates in the workspace specify incompatible versions of the same dependency,
-Cargo will resolve each of them, but will still try to resolve as few versions
-as possible.
+Se i _crate_ nel _workspace_ specificano versioni incompatibili della stessa
+dipendenza, Cargo risolverà ciascuna di esse, ma cercherà comunque di risolvere
+il minor numero possibile di versioni.
 
-#### Adding a Test to a Workspace
+#### Aggiungere un Test a un _Workspace_
 
-For another enhancement, let’s add a test of the `add_one::add_one` function
-within the `add_one` crate:
+Per un altro miglioramento, aggiungiamo un test della funzione
+`più_uno::più_uno` all'interno del _crate_ `più_uno`:
 
-<span class="filename">File: add_one/src/lib.rs</span>
+<span class="filename">File: più_uno/src/lib.rs</span>
 
 ```rust,noplayground
-{{#rustdoc_include ../listings/ch14-more-about-cargo/no-listing-04-workspace-with-tests/add/add_one/src/lib.rs}}
+{{#rustdoc_include ../listings/ch14-more-about-cargo/no-listing-04-workspace-with-tests/somma/più_uno/src/lib.rs}}
 ```
 
-Now run `cargo test` in the top-level _add_ directory. Running `cargo test` in
-a workspace structured like this one will run the tests for all the crates in
-the workspace:
+Ora esegui `cargo test` nella cartella di primo livello _somma_. Eseguendo
+`cargo test` in un _workspace_ strutturato come questo, verranno eseguiti i test
+per tutti i _crate_ presenti nello spazio di lavoro:
 
 <!-- manual-regeneration
-cd listings/ch14-more-about-cargo/no-listing-04-workspace-with-tests/add
+cd listings/ch14-more-about-cargo/no-listing-04-workspace-with-tests/somma
 cargo test
 copy output below; the output updating script doesn't handle subdirectories in
 paths properly
@@ -312,74 +319,75 @@ paths properly
 
 ```console
 $ cargo test
-   Compiling add_one v0.1.0 (file:///projects/add/add_one)
-   Compiling adder v0.1.0 (file:///projects/add/adder)
+   Compiling più_uno v0.1.0 (file:///progetti/somma/più_uno)
+   Compiling sommatore v0.1.0 (file:///progetti/somma/sommatore)
     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
-     Running unittests src/lib.rs (target/debug/deps/add_one-93c49ee75dc46543)
+     Running unittests src/lib.rs (target/debug/deps/più_uno-93c49ee75dc46543)
 
 running 1 test
-test tests::it_works ... ok
+test tests::funziona ... ok
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
-     Running unittests src/main.rs (target/debug/deps/adder-3a47283c568d2b6a)
+     Running unittests src/main.rs (target/debug/deps/sommatore-3a47283c568d2b6a)
 
 running 0 tests
 
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
-   Doc-tests add_one
+   Doc-tests più_uno
 
 running 0 tests
 
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 ```
 
-The first section of the output shows that the `it_works` test in the `add_one`
-crate passed. The next section shows that zero tests were found in the `adder`
-crate, and then the last section shows zero documentation tests were found in
-the `add_one` crate.
+La prima sezione dell'output mostra che il test `funziona` nel _crate_ `più_uno`
+è passato. La sezione successiva mostra che sono stati trovati zero test nel
+_crate_ `sommatore` e l'ultima sezione mostra che sono stati trovati zero test
+di documentazione nel _crate_ `più_uno`.
 
-We can also run tests for one particular crate in a workspace from the
-top-level directory by using the `-p` flag and specifying the name of the crate
-we want to test:
+Possiamo anche eseguire i test per un particolare _crate_ in un _workspace_
+dalla directory di primo livello utilizzando il flag `-p` e specificando il nome
+del _crate_ che vogliamo testare:
 
 <!-- manual-regeneration
-cd listings/ch14-more-about-cargo/no-listing-04-workspace-with-tests/add
-cargo test -p add_one
+cd listings/ch14-more-about-cargo/no-listing-04-workspace-with-tests/somma
+cargo test -p più_uno
 copy output below; the output updating script doesn't handle subdirectories in paths properly
 -->
 
 ```console
-$ cargo test -p add_one
+$ cargo test -p più_uno
     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.00s
-     Running unittests src/lib.rs (target/debug/deps/add_one-93c49ee75dc46543)
+     Running unittests src/lib.rs (target/debug/deps/più_uno-93c49ee75dc46543)
 
 running 1 test
-test tests::it_works ... ok
+test tests::funziona ... ok
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
-   Doc-tests add_one
+   Doc-tests più_uno
 
 running 0 tests
 
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 ```
 
-This output shows `cargo test` only ran the tests for the `add_one` crate and
-didn’t run the `adder` crate tests.
+Questo output mostra che `cargo test` ha eseguito solo i test del _crate_
+`più_uno` e non ha eseguito i test del _crate_ `sommatore`.
 
-If you publish the crates in the workspace to
-[crates.io](https://crates.io/)<!-- ignore -->, each crate in the workspace
-will need to be published separately. Like `cargo test`, we can publish a
-particular crate in our workspace by using the `-p` flag and specifying the
-name of the crate we want to publish.
+Se pubblichi i _crate_ nello _workspace_ su [crates.io](https://crates.io/)<!--
+ignore -->, ogni _crate_ nello spazio di lavoro dovrà essere pubblicato
+separatamente. Come nel caso di `cargo test`, possiamo pubblicare un particolare
+_crate_ nel nostro spazio di lavoro utilizzando il flag `-p` e specificando il
+nome del _crate_ che vogliamo pubblicare.
 
-For additional practice, add an `add_two` crate to this workspace in a similar
-way as the `add_one` crate!
+Per fare ulteriore pratica, aggiungi un _crate_ `più_due` a questo spazio di
+lavoro in modo simile al crate `più_uno`!
 
-As your project grows, consider using a workspace: it enables you to work with
-smaller, easier-to-understand components than one big blob of code. Furthermore,
-keeping the crates in a workspace can make coordination between crates easier if
-they are often changed at the same time.
+Quando il tuo progetto cresce, prendi in considerazione l'utilizzo di uno spazio
+di lavoro: ti permette di lavorare con componenti più piccoli e più facili da
+capire rispetto a un unico grande blocco di codice. Inoltre, mantenere i _crate_
+in uno spazio di lavoro può rendere più facile il coordinamento tra i _crate_ se
+questi vengono spesso modificati nello stesso momento.
