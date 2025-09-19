@@ -95,11 +95,11 @@
   - [`RefCell<T>` and the Interior Mutability Pattern](ch15-05-interior-mutability.md)
   - [Reference Cycles Can Leak Memory](ch15-06-reference-cycles.md)
 
-- [Fearless Concurrency](ch16-00-concurrency.md)
-  - [Using Threads to Run Code Simultaneously](ch16-01-threads.md)
-  - [Using Message Passing to Transfer Data Between Threads](ch16-02-message-passing.md)
-  - [Shared-State Concurrency](ch16-03-shared-state.md)
-  - [Extensible Concurrency with the `Send` and `Sync` Traits](ch16-04-extensible-concurrency-sync-and-send.md)
+- [Concorrenza Senza Paura](ch16-00-concurrency.md)
+  - [Usare i _Thread_ Per Eseguire Codice Simultaneamente](ch16-01-threads.md)
+  - [Usare il Passaggio di Messaggi per Trasferire Dati tra _Thread_](ch16-02-message-passing.md)
+  - [Concorrenza a Stato Condiviso](ch16-03-shared-state.md)
+  - [Concorrenza Estensibile con i _Trait_ `Send` e `Sync`](ch16-04-extensible-concurrency-sync-and-send.md)
 
 - [Fundamentals of Asynchronous Programming: Async, Await, Futures, and Streams](ch17-00-async-await.md)
   - [Futures and the Async Syntax](ch17-01-futures-and-syntax.md)

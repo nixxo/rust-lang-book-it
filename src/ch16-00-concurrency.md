@@ -20,10 +20,10 @@ invece di farti perdere molto tempo a cercare di riprodurre le circostanze
 esatte in cui si verifica un bug di concorrenza in fase di esecuzione, il codice
 errato non verrà compilato e presenterà un errore che spiega il problema. Di
 conseguenza, puoi correggere il tuo codice mentre ci stai lavorando piuttosto
-che potenzialmente dopo che è stato compilato e distrubuito a chi lo utilizza.
+che potenzialmente dopo che è stato compilato e distribuito a chi lo utilizza.
 Abbiamo soprannominato questo aspetto di Rust _fearless concurrency_
 (_concorrenza senza paura_). La concorrenza senza paura ti permette di scrivere
-codice privo di bug subdoli e facile da rifattorizzare senza introdurre nuovi
+codice privo di bug subdoli e facile da ristrutturare senza introdurre nuovi
 bug.
 
 > Nota: per semplicità, ci riferiremo a molti problemi come _concorrenti_

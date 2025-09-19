@@ -1,5 +1,5 @@
 $ cargo run
-   Compiling shared-state v0.1.0 (file:///projects/shared-state)
+   Compiling stato-condiviso v0.1.0 (file:///progetti/stato-condiviso)
 error[E0277]: `Rc<Mutex<i32>>` cannot be sent between threads safely
   --> src/main.rs:11:36
    |
@@ -25,4 +25,4 @@ note: required by a bound in `spawn`
   --> /rustc/4eb161250e340c8f48f66e2b929ef4a5bed7c181/library/std/src/thread/mod.rs:728:1
 
 For more information about this error, try `rustc --explain E0277`.
-error: could not compile `shared-state` (bin "shared-state") due to 1 previous error
+error: could not compile `stato-condiviso` (bin "stato-condiviso") due to 1 previous error

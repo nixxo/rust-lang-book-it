@@ -1,26 +1,26 @@
 $ cargo run
-   Compiling shared-state v0.1.0 (file:///projects/shared-state)
-error[E0382]: borrow of moved value: `counter`
-  --> src/main.rs:21:29
+   Compiling stato-condiviso v0.1.0 (file:///progetti/stato-condiviso)
+error[E0382]: borrow of moved value: `contatore`
+  --> src/main.rs:21:32
    |
-5  |     let contatore = Mutex::new(0);
-   |         ------- move occurs because `counter` has type `Mutex<i32>`, which does not implement the `Copy` trait
+ 5 |     let contatore = Mutex::new(0);
+   |         --------- move occurs because `contatore` has type `std::sync::Mutex<i32>`, which does not implement the `Copy` trait
 ...
-8  |     for _ in 0..10 {
+ 8 |     for _ in 0..10 {
    |     -------------- inside of this loop
-9  |         let handle = thread::spawn(move || {
+ 9 |         let handle = thread::spawn(move || {
    |                                    ------- value moved into closure here, in previous iteration of loop
 ...
 21 |     println!("Risultato: {}", *contatore.lock().unwrap());
-   |                             ^^^^^^^ value borrowed here after move
+   |                                ^^^^^^^^^ value borrowed here after move
    |
 help: consider moving the expression out of the loop so it is only moved once
    |
-8  ~     let mut value = contatore.lock();
-9  ~     for _ in 0..10 {
+ 8 ~     let mut value = contatore.lock();
+ 9 ~     for _ in 0..10 {
 10 |         let handle = thread::spawn(move || {
 11 ~             let mut num = value.unwrap();
    |
 
 For more information about this error, try `rustc --explain E0382`.
-error: could not compile `shared-state` (bin "shared-state") due to 1 previous error
+error: could not compile `stato-condiviso` (bin "stato-condiviso") due to 1 previous error

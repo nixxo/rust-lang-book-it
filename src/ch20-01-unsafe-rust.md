@@ -473,8 +473,7 @@ By using `unsafe impl`, we’re promising that we’ll uphold the invariants tha
 the compiler can’t verify.
 
 As an example, recall the `Send` and `Sync` marker traits we discussed in
-[“Extensible Concurrency with the `Send` and `Sync`
-Traits”][extensible-concurrency-with-the-send-and-sync-traits]<!-- ignore -->
+[“Concorrenza Estensibile con i _Trait_ `Send` e `Sync`”][extensible-concurrency]<!-- ignore -->
 in Chapter 16: the compiler implements these traits automatically if our types
 are composed entirely of other types that implement `Send` and `Sync`. If we
 implement a type that contains a type that does not implement `Send` or `Sync`,
@@ -555,7 +554,7 @@ Rust’s official guide to the subject, the [Rustonomicon][nomicon].
 [dangling-references]: ch04-02-references-and-borrowing.html#reference-pendenti
 [ABI]: https://doc.rust-lang.org/stable/reference/items/external-blocks.html#abi
 [differences-between-variables-and-constants]: ch03-01-variables-and-mutability.html#costanti
-[extensible-concurrency-with-the-send-and-sync-traits]: ch16-04-extensible-concurrency-sync-and-send.html#extensible-concurrency-with-the-send-and-sync-traits
+[extensible-concurrency]: ch16-04-extensible-concurrency-sync-and-send.html#concorrenza-estensibile-con-i-trait-send-e-sync
 [the-slice-type]: ch04-03-slices.html#il-type-slice
 [unions]: https://doc.rust-lang.org/stable/reference/items/unions.html
 [miri]: https://github.com/rust-lang/miri

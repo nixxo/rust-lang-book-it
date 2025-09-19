@@ -1,4 +1,4 @@
-## Usare i Thread Per Eseguire Codice Simultaneamente
+## Usare i _Thread_ Per Eseguire Codice Simultaneamente
 
 Nella maggior parte dei sistemi operativi attuali, il codice di un programma
 viene eseguito in un _processo_ e il sistema operativo gestisce più processi
@@ -20,10 +20,6 @@ codice. Questo può portare a problemi, come ad esempio:
   impedendo a entrambi di continuare
 - Bug che si verificano solo in determinate situazioni e sono difficili da
   riprodurre e risolvere in modo affidabile
-
-Rust attempts to mitigate the negative effects of using threads, but programming
-in a multithreaded context still takes careful thought and requires a code
-structure that is different from that in programs running in a single thread.
 
 Rust cerca di mitigare gli effetti negativi dell'uso dei _thread_, ma
 programmare in un contesto multi-_thread_ richiede comunque un'attenta
@@ -92,7 +88,7 @@ più opportunità per il sistema operativo di passare da un _thread_ all'altro.
 
 ### Attendere Che Tutti i _Thread_ Finiscano Usando `join`
 
-Il codice nel Listato 16-1 non solo arresta il _thread_ geenrato prematuramente
+Il codice nel Listato 16-1 non solo arresta il _thread_ generato prematuramente
 nella maggior parte dei casi a causa della fine del _thread_ principale, ma
 poiché non c'è alcuna garanzia sull'ordine di esecuzione dei _thread_, non
 possiamo nemmeno garantire che il _thread_ generato venga eseguito!
