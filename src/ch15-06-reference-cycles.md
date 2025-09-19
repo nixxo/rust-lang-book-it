@@ -111,7 +111,7 @@ reference cycles.
 
 <a id="preventing-reference-cycles-turning-an-rct-into-a-weakt"></a>
 
-### Preventing Reference Cycles Using `Weak<T>`
+### Prevenire Sequenze Auto-Referenziali Usando `Weak<T>`
 
 So far, we’ve demonstrated that calling `Rc::clone` increases the `strong_count`
 of an `Rc<T>` instance, and an `Rc<T>` instance is only cleaned up if its
