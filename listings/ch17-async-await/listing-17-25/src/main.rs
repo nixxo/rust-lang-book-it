@@ -1,4 +1,4 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 use std::{thread, time::Duration};
 
@@ -6,27 +6,27 @@ fn main() {
     trpl::run(async {
         // ANCHOR: yields
         let a = async {
-            println!("'a' started.");
-            slow("a", 30);
+            println!("'a' iniziato.");
+            lento("a", 30);
             trpl::yield_now().await;
-            slow("a", 10);
+            lento("a", 10);
             trpl::yield_now().await;
-            slow("a", 20);
+            lento("a", 20);
             trpl::yield_now().await;
-            println!("'a' finished.");
+            println!("'a' finito.");
         };
 
         let b = async {
-            println!("'b' started.");
-            slow("b", 75);
+            println!("'b' iniziato.");
+            lento("b", 75);
             trpl::yield_now().await;
-            slow("b", 10);
+            lento("b", 10);
             trpl::yield_now().await;
-            slow("b", 15);
+            lento("b", 15);
             trpl::yield_now().await;
-            slow("b", 350);
+            lento("b", 350);
             trpl::yield_now().await;
-            println!("'b' finished.");
+            println!("'b' finito.");
         };
         // ANCHOR_END: yields
 
@@ -34,7 +34,7 @@ fn main() {
     });
 }
 
-fn slow(name: &str, ms: u64) {
+fn lento(nome: &str, ms: u64) {
     thread::sleep(Duration::from_millis(ms));
-    println!("'{name}' ran for {ms}ms");
+    println!("'{nome}' eseguito per {ms}ms");
 }

@@ -14,8 +14,8 @@ fn main() {
     });
 
     trpl::run(async {
-        while let Some(message) = rx.recv().await {
-            println!("{message}");
+        while let Some(messaggio) = rx.recv().await {
+            println!("{messaggio}");
         }
     });
 }

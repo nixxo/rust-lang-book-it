@@ -1,16 +1,16 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 use std::{thread, time::Duration};
 
 fn main() {
     trpl::run(async {
-        // We will call `slow` here later
+        // Pià tardi chiameremo `lento` da qui
     });
 }
 
 // ANCHOR: slow
-fn slow(name: &str, ms: u64) {
+fn lento(nome: &str, ms: u64) {
     thread::sleep(Duration::from_millis(ms));
-    println!("'{name}' ran for {ms}ms");
+    println!("'{nome}' eseguito per {ms}ms");
 }
 // ANCHOR_END: slow

@@ -1,16 +1,16 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 use trpl::Html;
 
 fn main() {
-    // TODO: we'll add this next!
+    // TODO: lo aggiungeremo in seguito!
 }
 
-async fn page_title(url: &str) -> Option<String> {
+async fn titolo_pagina(url: &str) -> Option<String> {
     // ANCHOR: chaining
-    let response_text = trpl::get(url).await.text().await;
+    let testo_risposta = trpl::get(url).await.text().await;
     // ANCHOR_END: chaining
-    Html::parse(&response_text)
+    Html::parse(&testo_risposta)
         .select_first("title")
-        .map(|title| title.inner_html())
+        .map(|titolo| titolo.inner_html())
 }

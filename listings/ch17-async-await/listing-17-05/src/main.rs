@@ -1,4 +1,4 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 // ANCHOR: all
 use trpl::{Either, Html};
@@ -7,28 +7,28 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
 
     trpl::run(async {
-        let title_fut_1 = page_title(&args[1]);
-        let title_fut_2 = page_title(&args[2]);
+        let titolo_fut_1 = titolo_pagina(&args[1]);
+        let titolo_fut_2 = titolo_pagina(&args[2]);
 
-        let (url, maybe_title) =
-            match trpl::race(title_fut_1, title_fut_2).await {
+        let (url, forse_titolo) =
+            match trpl::race(titolo_fut_1, titolo_fut_2).await {
                 Either::Left(left) => left,
                 Either::Right(right) => right,
             };
 
-        println!("{url} returned first");
-        match maybe_title {
-            Some(title) => println!("Its page title was: '{title}'"),
-            None => println!("It had no title."),
+        println!("{url} ritornato per primo");
+        match forse_titolo {
+            Some(titolo) => println!("Il suo titolo era: '{titolo}'"),
+            None => println!("Non aveva titolo."),
         }
     })
 }
 
-async fn page_title(url: &str) -> (&str, Option<String>) {
-    let response_text = trpl::get(url).await.text().await;
-    let title = Html::parse(&response_text)
+async fn titolo_pagina(url: &str) -> (&str, Option<String>) {
+    let testo_risposta = trpl::get(url).await.text().await;
+    let titolo = Html::parse(&testo_risposta)
         .select_first("title")
-        .map(|title| title.inner_html());
-    (url, title)
+        .map(|titolo| titolo.inner_html());
+    (url, titolo)
 }
 // ANCHOR_END: all

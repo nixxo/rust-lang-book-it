@@ -1,4 +1,4 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 use std::{pin::pin, time::Duration};
 
@@ -7,45 +7,45 @@ use trpl::{ReceiverStream, Stream, StreamExt};
 fn main() {
     trpl::run(async {
         // ANCHOR: main
-        let messages = get_messages().timeout(Duration::from_millis(200));
-        let intervals = get_intervals();
-        let merged = messages.merge(intervals);
+        let messaggi = ricevi_messaggi().timeout(Duration::from_millis(200));
+        let intervalli = ricevi_intervalli();
+        let uniti = messaggi.merge(intervalli);
 
-        while let Some(result) = merged.next().await {
+        while let Some(risultato) = uniti.next().await {
             // ANCHOR_END: main
-            match result {
-                Ok(message) => println!("{message}"),
-                Err(reason) => eprintln!("Problem: {reason:?}"),
+            match risultato {
+                Ok(messaggio) => println!("{messaggio}"),
+                Err(ragione) => eprintln!("Problema: {ragione:?}"),
             }
         }
     })
 }
 
-fn get_messages() -> impl Stream<Item = String> {
+fn ricevi_messaggi() -> impl Stream<Item = String> {
     let (tx, rx) = trpl::channel();
 
     trpl::spawn_task(async move {
-        let messages = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
-        for (index, message) in messages.into_iter().enumerate() {
-            let time_to_sleep = if index % 2 == 0 { 100 } else { 300 };
-            trpl::sleep(Duration::from_millis(time_to_sleep)).await;
+        let messaggi = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+        for (indice, messaggio) in messaggi.into_iter().enumerate() {
+            let tempo_dormita = if indice % 2 == 0 { 100 } else { 300 };
+            trpl::sleep(Duration::from_millis(tempo_dormita)).await;
 
-            tx.send(format!("Message: '{message}'")).unwrap();
+            tx.send(format!("Messaggio: '{messaggio}'")).unwrap();
         }
     });
 
     ReceiverStream::new(rx)
 }
 
-fn get_intervals() -> impl Stream<Item = u32> {
+fn ricevi_intervalli() -> impl Stream<Item = u32> {
     let (tx, rx) = trpl::channel();
 
     trpl::spawn_task(async move {
-        let mut count = 0;
+        let mut conteggio = 0;
         loop {
             trpl::sleep(Duration::from_millis(1)).await;
-            count += 1;
-            tx.send(count).unwrap();
+            conteggio += 1;
+            tx.send(conteggio).unwrap();
         }
     });
 

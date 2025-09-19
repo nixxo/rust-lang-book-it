@@ -1,4 +1,4 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 use trpl::Html;
 
@@ -8,17 +8,17 @@ fn main() {
 
     trpl::run(async {
         let url = &args[1];
-        match page_title(url).await {
-            Some(title) => println!("The title for {url} was {title}"),
-            None => println!("{url} had no title"),
+        match titolo_pagina(url).await {
+            Some(titolo) => println!("Il titolo per {url} era {titolo}"),
+            None => println!("{url} non aveva titolo"),
         }
     })
 }
 // ANCHOR_END: run
 
-async fn page_title(url: &str) -> Option<String> {
-    let response_text = trpl::get(url).await.text().await;
-    Html::parse(&response_text)
+async fn titolo_pagina(url: &str) -> Option<String> {
+    let testo_risposta = trpl::get(url).await.text().await;
+    Html::parse(&testo_risposta)
         .select_first("title")
-        .map(|title| title.inner_html())
+        .map(|titolo| titolo.inner_html())
 }

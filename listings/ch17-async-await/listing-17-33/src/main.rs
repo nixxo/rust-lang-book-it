@@ -1,24 +1,24 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 // ANCHOR: all
 use trpl::{ReceiverStream, Stream, StreamExt};
 
 fn main() {
     trpl::run(async {
-        let mut messages = get_messages();
+        let mut messaggi = ricevi_messaggi();
 
-        while let Some(message) = messages.next().await {
-            println!("{message}");
+        while let Some(messaggio) = messaggi.next().await {
+            println!("{messaggio}");
         }
     });
 }
 
-fn get_messages() -> impl Stream<Item = String> {
+fn ricevi_messaggi() -> impl Stream<Item = String> {
     let (tx, rx) = trpl::channel();
 
-    let messages = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
-    for message in messages {
-        tx.send(format!("Message: '{message}'")).unwrap();
+    let messaggi = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+    for messaggio in messaggi {
+        tx.send(format!("Messaggio: '{messaggio}'")).unwrap();
     }
 
     ReceiverStream::new(rx)

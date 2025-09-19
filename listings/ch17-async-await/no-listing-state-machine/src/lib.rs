@@ -1,9 +1,9 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 // ANCHOR: enum
-enum PageTitleFuture<'a> {
+enum TitoloPaginaFuture<'a> {
     Initial { url: &'a str },
     GetAwaitPoint { url: &'a str },
-    TextAwaitPoint { response: trpl::Response },
+    TextAwaitPoint { risposta: trpl::Response },
 }
 // ANCHOR_END: enum

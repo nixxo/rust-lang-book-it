@@ -1,4 +1,4 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 use std::time::Duration;
 
@@ -10,28 +10,28 @@ use trpl::Either;
 
 fn main() {
     trpl::run(async {
-        let slow = async {
+        let lento = async {
             trpl::sleep(Duration::from_secs(5)).await;
-            "Finally finished"
+            "Finalmente finito"
         };
 
-        match timeout(slow, Duration::from_secs(2)).await {
-            Ok(message) => println!("Succeeded with '{message}'"),
-            Err(duration) => {
-                println!("Failed after {} seconds", duration.as_secs())
+        match timeout(lento, Duration::from_secs(2)).await {
+            Ok(messaggio) => println!("Completato con '{messaggio}'"),
+            Err(durata) => {
+                println!("Fallito dopo {} secondi", durata.as_secs())
             }
         }
     });
 }
 
 async fn timeout<F: Future>(
-    future_to_try: F,
-    max_time: Duration,
+    future_da_testare: F,
+    tempo_massimo: Duration,
 ) -> Result<F::Output, Duration> {
     // ANCHOR: implementation
-    match trpl::race(future_to_try, trpl::sleep(max_time)).await {
+    match trpl::race(future_da_testare, trpl::sleep(tempo_massimo)).await {
         Either::Left(output) => Ok(output),
-        Either::Right(_) => Err(max_time),
+        Either::Right(_) => Err(tempo_massimo),
     }
     // ANCHOR_END: implementation
 }

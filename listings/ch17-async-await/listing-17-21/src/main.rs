@@ -1,23 +1,23 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 use std::time::Duration;
 
 fn main() {
     trpl::run(async {
         // ANCHOR: here
-        let slow = async {
-            println!("'slow' started.");
+        let lento = async {
+            println!("'lento' iniziato.");
             trpl::sleep(Duration::from_millis(100)).await;
-            println!("'slow' finished.");
+            println!("'lento' finito.");
         };
 
-        let fast = async {
-            println!("'fast' started.");
+        let veloce = async {
+            println!("'veloce' iniziato.");
             trpl::sleep(Duration::from_millis(50)).await;
-            println!("'fast' finished.");
+            println!("'veloce' finito.");
         };
 
-        trpl::race(slow, fast).await;
+        trpl::race(lento, veloce).await;
         // ANCHOR_END: here
     });
 }

@@ -1,4 +1,4 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 use std::time::Duration;
 
@@ -7,20 +7,20 @@ fn main() {
         // ANCHOR: many-messages
         let (tx, mut rx) = trpl::channel();
 
-        let vals = vec![
-            String::from("hi"),
-            String::from("from"),
-            String::from("the"),
-            String::from("future"),
+        let valori = vec![
+            String::from("ciao"),
+            String::from("dal"),
+            String::from("futuro"),
+            String::from("!!!"),
         ];
 
-        for val in vals {
-            tx.send(val).unwrap();
+        for valore in valori {
+            tx.send(valore).unwrap();
             trpl::sleep(Duration::from_millis(500)).await;
         }
 
-        while let Some(value) = rx.recv().await {
-            println!("received '{value}'");
+        while let Some(val) = rx.recv().await {
+            println!("ricevuto '{val}'");
         }
         // ANCHOR_END: many-messages
     });

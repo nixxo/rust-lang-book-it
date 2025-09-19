@@ -1,4 +1,4 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 fn main() {
     trpl::run(async {
@@ -8,8 +8,8 @@ fn main() {
         let val = String::from("hi");
         tx.send(val).unwrap();
 
-        let received = rx.recv().await.unwrap();
-        println!("received '{received}'");
+        let ricevuto = rx.recv().await.unwrap();
+        println!("ricevuto '{ricevuto}'");
         // ANCHOR_END: channel
     });
 }

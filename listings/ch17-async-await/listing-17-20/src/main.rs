@@ -1,14 +1,14 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 fn main() {
     trpl::run(async {
         // ANCHOR: here
         let a = async { 1u32 };
-        let b = async { "Hello!" };
+        let b = async { "Ciao!" };
         let c = async { true };
 
-        let (a_result, b_result, c_result) = trpl::join!(a, b, c);
-        println!("{a_result}, {b_result}, {c_result}");
+        let (risultato_a, risultato_b, risultato_c) = trpl::join!(a, b, c);
+        println!("{risultato_a}, {risultato_b}, {risultato_c}");
         // ANCHOR_END: here
     });
 }

@@ -1,4 +1,4 @@
-extern crate trpl; // required for mdbook test
+extern crate trpl; // necessario per test mdbook
 
 // ANCHOR: timeout
 use std::{pin::pin, time::Duration};
@@ -6,25 +6,25 @@ use trpl::{ReceiverStream, Stream, StreamExt};
 
 fn main() {
     trpl::run(async {
-        let mut messages =
-            pin!(get_messages().timeout(Duration::from_millis(200)));
+        let mut messaggi =
+            pin!(ricevi_messaggi().timeout(Duration::from_millis(200)));
 
-        while let Some(result) = messages.next().await {
-            match result {
-                Ok(message) => println!("{message}"),
-                Err(reason) => eprintln!("Problem: {reason:?}"),
+        while let Some(risultato) = messaggi.next().await {
+            match risultato {
+                Ok(messaggio) => println!("{messaggio}"),
+                Err(ragione) => eprintln!("Problema: {ragione:?}"),
             }
         }
     })
 }
 // ANCHOR_END: timeout
 
-fn get_messages() -> impl Stream<Item = String> {
+fn ricevi_messaggi() -> impl Stream<Item = String> {
     let (tx, rx) = trpl::channel();
 
-    let messages = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
-    for message in messages {
-        tx.send(format!("Message: '{message}'")).unwrap();
+    let messaggi = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+    for messaggio in messaggi {
+        tx.send(format!("Messaggio: '{messaggio}'")).unwrap();
     }
 
     ReceiverStream::new(rx)
