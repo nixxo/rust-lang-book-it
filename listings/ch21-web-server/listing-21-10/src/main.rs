@@ -15,12 +15,12 @@ fn main() {
     for stream in listener.incoming() {
         let stream = stream.unwrap();
 
-        handle_connection(stream);
+        gestisci_connessione(stream);
     }
 }
 // ANCHOR: here
 
-fn handle_connection(mut stream: TcpStream) {
+fn gestisci_connessione(mut stream: TcpStream) {
     // --taglio--
 
     // ANCHOR_END: here

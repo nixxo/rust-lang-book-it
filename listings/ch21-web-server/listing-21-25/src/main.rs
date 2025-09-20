@@ -16,15 +16,15 @@ fn main() {
         let stream = stream.unwrap();
 
         pool.execute(|| {
-            handle_connection(stream);
+            gestisci_connessione(stream);
         });
     }
 
-    println!("Shutting down.");
+    println!("Spegnimento.");
 }
 // ANCHOR_END: here
 
-fn handle_connection(mut stream: TcpStream) {
+fn gestisci_connessione(mut stream: TcpStream) {
     let buf_reader = BufReader::new(&stream);
     let request_line = buf_reader.lines().next().unwrap().unwrap();
 

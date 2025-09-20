@@ -8,13 +8,13 @@ pub struct ThreadPool {
 impl ThreadPool {
     // --taglio--
     // ANCHOR_END: here
-    /// Create a new ThreadPool.
+    /// Crea un nuovo ThreadPool.
     ///
-    /// The size is the number of threads in the pool.
+    /// La dimensione é il numero di thread nel gruppo.
     ///
     /// # Panics
     ///
-    /// The `new` function will panic if the size is zero.
+    /// La funzione `new` genera panic se la dimensione é zero.
     // ANCHOR: here
     pub fn new(size: usize) -> ThreadPool {
         assert!(size > 0);

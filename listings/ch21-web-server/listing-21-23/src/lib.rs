@@ -16,13 +16,13 @@ type Job = Box<dyn FnOnce() + Send + 'static>;
 // ANCHOR: here
 impl ThreadPool {
     // ANCHOR_END: here
-    /// Create a new ThreadPool.
+    /// Crea un nuovo ThreadPool.
     ///
-    /// The size is the number of threads in the pool.
+    /// La dimensione é il numero di thread nel gruppo.
     ///
     /// # Panics
     ///
-    /// The `new` function will panic if the size is zero.
+    /// La funzione `new` genera panic se la dimensione é zero.
     // ANCHOR: here
     pub fn new(size: usize) -> ThreadPool {
         // --taglio--
@@ -62,7 +62,7 @@ impl Drop for ThreadPool {
         drop(self.sender.take());
 
         for worker in self.workers.drain(..) {
-            println!("Shutting down worker {}", worker.id);
+            println!("Spegnimento worker {}", worker.id);
 
             worker.thread.join().unwrap();
         }
@@ -81,7 +81,7 @@ impl Worker {
             loop {
                 let job = receiver.lock().unwrap().recv().unwrap();
 
-                println!("Worker {id} got a job; executing.");
+                println!("Worker {id} ha un lavoro; in esecuzione.");
 
                 job();
             }

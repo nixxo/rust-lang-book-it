@@ -10,11 +10,11 @@ fn main() {
     for stream in listener.incoming() {
         let stream = stream.unwrap();
 
-        handle_connection(stream);
+        gestisci_connessione(stream);
     }
 }
 
-fn handle_connection(mut stream: TcpStream) {
+fn gestisci_connessione(mut stream: TcpStream) {
     let buf_reader = BufReader::new(&stream);
     let request_line = buf_reader.lines().next().unwrap().unwrap();
 

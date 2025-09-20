@@ -9,11 +9,11 @@ fn main() {
     for stream in listener.incoming() {
         let stream = stream.unwrap();
 
-        handle_connection(stream);
+        gestisci_connessione(stream);
     }
 }
 
-fn handle_connection(mut stream: TcpStream) {
+fn gestisci_connessione(mut stream: TcpStream) {
     let buf_reader = BufReader::new(&stream);
     let http_request: Vec<_> = buf_reader
         .lines()
@@ -21,5 +21,5 @@ fn handle_connection(mut stream: TcpStream) {
         .take_while(|line| !line.is_empty())
         .collect();
 
-    println!("Request: {http_request:#?}");
+    println!("Richiesta: {http_request:#?}");
 }

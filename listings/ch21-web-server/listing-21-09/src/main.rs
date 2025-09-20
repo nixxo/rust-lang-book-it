@@ -10,13 +10,13 @@ fn main() {
     for stream in listener.incoming() {
         let stream = stream.unwrap();
 
-        handle_connection(stream);
+        gestisci_connessione(stream);
     }
 }
 // ANCHOR: here
 // --taglio--
 
-fn handle_connection(mut stream: TcpStream) {
+fn gestisci_connessione(mut stream: TcpStream) {
     // --taglio--
     // ANCHOR_END: here
     let buf_reader = BufReader::new(&stream);

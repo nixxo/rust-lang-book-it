@@ -14,13 +14,13 @@ fn main() {
         let stream = stream.unwrap();
 
         thread::spawn(|| {
-            handle_connection(stream);
+            gestisci_connessione(stream);
         });
     }
 }
 // ANCHOR_END: here
 
-fn handle_connection(mut stream: TcpStream) {
+fn gestisci_connessione(mut stream: TcpStream) {
     let buf_reader = BufReader::new(&stream);
     let request_line = buf_reader.lines().next().unwrap().unwrap();
 
