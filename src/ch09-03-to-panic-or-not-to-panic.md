@@ -143,7 +143,7 @@ codice chiedeva all'utente di indovinare un numero compreso tra 1 e 100. Non
 abbiamo mai verificato che la risposta dell'utente fosse compresa tra quei
 numeri prima di confrontarla con il nostro numero segreto; abbiamo solo
 verificato che la risposta fosse positiva. In questo caso, le conseguenze non
-sono state poi così gravi: il nostro output "Troppo alto" o "Troppo basso"
+sono state poi così gravi: il nostro output “Troppo alto” o “Troppo basso”
 sarebbe stato comunque corretto. Ma sarebbe stato un utile miglioramento guidare
 l'utente verso risposte valide e avere un comportamento diverso quando l'utente
 ipotizza un numero fuori dall'intervallo rispetto a quando l'utente digita, ad
@@ -234,7 +234,7 @@ scrivere codice più robusto. La macro `panic!` segnala che il programma si trov
 in uno stato che non può gestire e ti consente di dire al processo di
 interrompersi invece di provare a procedere con valori non validi o errati.
 L'_enum_ `Result` utilizza il sistema dei _type_ di Rust per indicare che le
-operazioni potrebbero fallire in un modo "recuperabile". Puoi usare `Result`
+operazioni potrebbero fallire in un modo “recuperabile”. Puoi usare `Result`
 anche per indicare al codice chiamante che deve gestire potenziali successi o
 fallimenti. L'utilizzo di `panic!` e `Result` nelle situazioni appropriate
 renderà il tuo codice più affidabile di fronte a inevitabili problemi.

@@ -63,8 +63,8 @@ definizione `[workspace]` del file _Cargo.toml_, in questo modo:
 {{#include ../listings/ch14-more-about-cargo/output-only-01-adder-crate/somma/Cargo.toml}}
 ```
 
-A questo punto, possiamo costruire l'inter _workspace_ con `cargo build`. I file
-nella tua cartella _somma_ dovrebbero avere questo aspetto:
+A questo punto, possiamo costruire l'intero _workspace_ con `cargo build`. I
+file nella tua cartella _somma_ dovrebbero avere questo aspetto:
 
 ```text
 ├── Cargo.lock
@@ -76,17 +76,17 @@ nella tua cartella _somma_ dovrebbero avere questo aspetto:
 └── target
 ```
 
-Lo spazio di lavoro ha una cartela _target_ al livello superiore in cui verranno
-inseriti gli artefatti compilati; il pacchetto `sommatore` non ha una propria
-directory _target_. Anche se dovessimo eseguire `cargo build` dall'interno della
-cartella _sommatore_, gli artefatti compilati finirebbero comunque in
-_somma/target_ piuttosto che in _somma/sommatore/target_. Cargo struttura la
-cartella _target_ in uno spazio di lavoro in questo modo perché i _crate_ in un
-_workspace_ sono destinati a dipendere l'uno dall'altro. Se ogni _crate_ avesse
-la propria cartella _target_, ogni _crate_ dovrebbe ricompilare ogni altro
-_crate_ nello spazio di lavoro per posizionare gli artefatti nella propria
-cartella _target_. Condividendo una cartella _target_, i _crate_ possono evitare
-inutili ricostruzioni.
+Lo spazio di lavoro ha una cartella _target_ al livello superiore in cui
+verranno inseriti gli artefatti compilati; il pacchetto `sommatore` non ha una
+propria directory _target_. Anche se dovessimo eseguire `cargo build`
+dall'interno della cartella _sommatore_, gli artefatti compilati finirebbero
+comunque in _somma/target_ piuttosto che in _somma/sommatore/target_. Cargo
+struttura la cartella _target_ in uno spazio di lavoro in questo modo perché i
+_crate_ in un _workspace_ sono destinati a dipendere l'uno dall'altro. Se ogni
+_crate_ avesse la propria cartella _target_, ogni _crate_ dovrebbe ricompilare
+ogni altro _crate_ nello spazio di lavoro per posizionare gli artefatti nella
+propria cartella _target_. Condividendo una cartella _target_, i _crate_ possono
+evitare inutili ricostruzioni.
 
 ### Creare un Secondo Pacchetto nel _Workspace_
 

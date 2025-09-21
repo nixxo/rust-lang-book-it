@@ -52,7 +52,7 @@ che il valore restituito dalla funzione `cerca` contiene solo la riga che ci
 aspettiamo.
 
 Se eseguiamo questo test, al momento fallirà perché la macro `unimplemented!` si
-blocca con il messaggio "not implemented" (_non implementato_). In conformità
+blocca con il messaggio “not implemented” (_non implementato_). In conformità
 con i principi TDD, aggiungeremo solo il codice necessario per evitare che il
 test vada in panico quando si chiama la funzione, definendo la funzione `cerca`
 in modo che ritorni sempre un vettore vuoto, come mostrato nel Listato 12-16.

@@ -28,7 +28,7 @@ riservi il diritto di modificare. Questo è un altro modo per limitare la
 quantità di dettagli che devi tenere a mente.
 
 Un concetto correlato è lo _scope_: il contesto annidato in cui è scritto il
-codice ha un insieme di nomi definiti come "in _scope_". Quando si legge, si
+codice ha un insieme di nomi definiti come “in _scope_”. Quando si legge, si
 scrive e si compila il codice, i programmatori e i compilatori devono sapere se
 un particolare nome in un particolare punto si riferisce a una variabile,
 funzione, _struct_, _enum_, modulo, costante o altro elemento e cosa significa

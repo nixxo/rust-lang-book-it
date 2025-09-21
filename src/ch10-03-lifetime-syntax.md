@@ -57,10 +57,10 @@ il messaggio di errore:
 {{#include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-16/output.txt}}
 ```
 
-Il messaggio di errore indica che la variabile `x` "non vive abbastanza a
-lungo". Il motivo è che `x` sarà fuori dallo _scope_ quando lo _scope_ interno
+Il messaggio di errore indica che la variabile `x` “non vive abbastanza a
+lungo”. Il motivo è che `x` sarà fuori dallo _scope_ quando lo _scope_ interno
 termina alla riga 7. Ma `r` è ancora valido per lo _scope_ esterno; Poiché il
-suo _scope_ è più ampio, diciamo che "vive più a lungo". Se Rust permettesse a
+suo _scope_ è più ampio, diciamo che “vive più a lungo”. Se Rust permettesse a
 questo codice di funzionare, `r` farebbe riferimento alla memoria de-allocata
 quando `x` è uscita dallo _scope_, e qualsiasi cosa provassimo a fare con `r`
 non funzionerebbe correttamente. Quindi, come fa Rust a determinare che questo
@@ -198,7 +198,7 @@ longevità si relazionano tra loro nel contesto della funzione `più_lunga`.
 ### Annotare la _Lifetime_ nella Firma delle Funzioni
 
 Per utilizzare le annotazioni di longevità nelle firme delle funzioni, dobbiamo
-dichiarare i parametri _lifetime_ generici  all'interno di parentesi angolari
+dichiarare i parametri _lifetime_ generici all'interno di parentesi angolari
 tra il nome della funzione e l'elenco dei parametri, proprio come abbiamo fatto
 con i parametri _type_ generici.
 
@@ -538,7 +538,7 @@ _lifetime_ dei _reference_ nella firma.
 
 Poiché la terza regola si applica solo alle firme dei metodi, esamineremo le
 _lifetime_ in quel contesto per capire perché la terza regola ci consente di non
-dover  annotare la longevità nelle firme dei metodi nella maggior parte dei
+dover annotare la longevità nelle firme dei metodi nella maggior parte dei
 casi.
 
 ### Annotare la _Lifetime_ nella Definizione dei Metodi

@@ -52,7 +52,7 @@ Per comodità, eseguendo `cargo doc --open` si costruisce l'HTML della
 documentazione del tuo _crate_ attuale (così come la documentazione di tutte le
 dipendenze del tuo _crate_) e si apre il risultato in un browser web. Naviga
 alla funzione `più_uno` per vedere che il testo nei commenti di
-documentazioneapparirà come mostrato nella Figura 14-1.
+documentazione apparirà come mostrato nella Figura 14-1.
 
 <img alt="Documentazione HTML renderizzata per la funzione `più_uno` di `mio_crate`" src="img/trpl14-01.png" class="center" />
 
@@ -99,7 +99,7 @@ cargo test
 copy just the doc-tests section below
 -->
 
-```text
+```console
    Doc-tests my_crate
 
 running 1 test
@@ -112,7 +112,7 @@ Ora, se modifichiamo la funzione o l'esempio in modo che `assert_eq!`
 nell'esempio vada nel panico, ed eseguiamo di nuovo `cargo test`, vedremo che i
 test doc rilevano che l'esempio e il codice non sono compatibili tra loro!
 
-#### Commenting Contained Items
+#### Commentare l'Elemento Contenitore
 
 Lo stile dei commenti di documentazione `//!` aggiunge la documentazione
 all'elemento che *contiene* i commenti piuttosto che agli elementi che *seguono*
@@ -433,7 +433,7 @@ Congratulazioni, ora hai condiviso il tuo codice con la comunità di Rust e
 chiunque può facilmente aggiungere il tuo _crate_ come dipendenza del proprio
 progetto.
 
-### Publishing a New Version of an Existing Crate
+### Pubblicare una Nuova Versione di un Crate
 
 Quando hai apportato delle modifiche al tuo _crate_ e sei pronto a rilasciare
 una nuova versione, cambia il valore `version` specificato nel file _Cargo.toml_
@@ -449,7 +449,7 @@ caricare la nuova versione.
 
 Sebbene non sia possibile rimuovere le versioni precedenti di un _crate_, puoi
 impedire a qualsiasi progetto futuro di aggiungerle come nuova dipendenza.
-Questo è utile quando una versione del _crate_ è malfunzionante per un motivo o
+Questo è utile quando una versione del _crate_ è mal funzionante per un motivo o
 per l'altro. In queste situazioni, Cargo supporta la disabilitazione di una
 versione del _crate_.
 
@@ -493,7 +493,7 @@ $ cargo yank --vers 1.0.1 --undo
 
 Quando disabiliti una versione non cancelli alcun codice. Non puoi, ad esempio,
 cancellare dati sensibili (chiavi API, password, ecc.) che per errore hai
-caricato accidentalmente. Se ciò accadesse, devi immediataemnte ripristinare e
+caricato accidentalmente. Se ciò accadesse, devi immediatamente ripristinare e
 cambiare quei dati sensibili.
 
 [spdx]: https://spdx.org/licenses/

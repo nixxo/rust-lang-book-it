@@ -8,7 +8,7 @@ compilazione di tali librerie (chiamiamo le librerie di cui il tuo codice ha
 bisogno _dipendenze_)
 
 I programmi Rust più semplici, come quello che abbiamo scritto finora, non hanno
-dipendenze. Se avessimo costruito il progetto "Hello, world!" con Cargo, questo
+dipendenze. Se avessimo costruito il progetto "Hello, world!” con Cargo, questo
 avrebbe utilizzato solo la parte di Cargo che si occupa della costruzione del
 codice. Man mano che scriverai programmi Rust più complessi, aggiungerai delle
 dipendenze e se inizierai un progetto utilizzando Cargo, sarà molto più facile
@@ -33,7 +33,7 @@ installare Cargo separatamente.
 ### Creare un Progetto con Cargo
 
 Creiamo un nuovo progetto utilizzando Cargo e vediamo come si differenzia dal
-nostro progetto originale "Hello, world!". Torna alla tua cartella _progetti_ (o
+nostro progetto originale “Hello, world!". Torna alla tua cartella _progetti_ (o
 dove hai deciso di memorizzare il tuo codice). Poi, su qualsiasi sistema
 operativo, esegui il seguente comando:
 
@@ -104,7 +104,7 @@ fn main() {
 }
 ```
 
-Cargo ha generato per te un programma "Hello, world!", proprio come quello che
+Cargo ha generato per te un programma “Hello, world!”, proprio come quello che
 abbiamo scritto nel Listato 1-1! Finora, le differenze tra il nostro progetto e
 quello generato da Cargo sono che Cargo ha inserito il codice nella directory
 _src_ e che c'è un file di configurazione _Cargo.toml_ nella directory
@@ -121,7 +121,7 @@ world!” project, you can convert it to a project that does use Cargo. Move the
 project code into the _src_ directory and create an appropriate _Cargo.toml_
 file. One easy way to get that _Cargo.toml_ file is to run `cargo init`, which
 will create it for you automatically. Se hai iniziato un progetto che non
-utilizza Cargo, come abbiamo fatto con il progetto "Hello, world!", puoi
+utilizza Cargo, come abbiamo fatto con il progetto “Hello, world!”, puoi
 convertirlo in un progetto che utilizza Cargo. Sposta il codice del progetto
 nella directory _src_ e crea un file _Cargo.toml_ appropriato. Un modo semplice
 per ottenere il file _Cargo.toml_ è eseguire `cargo init`, che lo creerà
@@ -129,13 +129,13 @@ automaticamente.
 
 ### Costruire e Eseguire un Progetto Cargo
 
-Ora vediamo cosa cambia quando costruiamo ed eseguiamo il programma "Hello,
-world!" con Cargo! Dalla cartella _hello_cargo_, costruisci il tuo progetto
+Ora vediamo cosa cambia quando costruiamo ed eseguiamo il programma “Hello,
+world!” con Cargo! Dalla cartella _hello_cargo_, costruisci il tuo progetto
 inserendo il seguente comando:
 
 ```console
 $ cargo build
-   Compiling hello_cargo v0.1.0 (file:///projects/hello_cargo)
+   Compiling hello_cargo v0.1.0 (file:///progetti/hello_cargo)
     Finished dev [unoptimized + debuginfo] target(s) in 2.85 secs
 ```
 
@@ -180,7 +180,7 @@ avresti visto questo output:
 
 ```console
 $ cargo run
-   Compiling hello_cargo v0.1.0 (file:///projects/hello_cargo)
+   Compiling hello_cargo v0.1.0 (file:///progetti/hello_cargo)
     Finished dev [unoptimized + debuginfo] target(s) in 0.33 secs
      Running `target/debug/hello_cargo`
 Hello, world!
@@ -192,7 +192,7 @@ eseguibile:
 
 ```console
 $ cargo check
-   Checking hello_cargo v0.1.0 (file:///projects/hello_cargo)
+   Checking hello_cargo v0.1.0 (file:///progetti/hello_cargo)
     Finished dev [unoptimized + debuginfo] target(s) in 0.32 secs
 ```
 
@@ -263,7 +263,7 @@ hai imparato a..:
 - Installare l'ultima versione stabile di Rust usando `rustup`
 - Aggiornare a una versione più recente di Rust
 - Aprire la documentazione installata localmente
-- Scrivere ed eseguire un programma "Hello, world!" usando direttamente `rustc`
+- Scrivere ed eseguire un programma “Hello, world!” usando direttamente `rustc`
 - Creare ed eseguire un nuovo progetto usando le convenzioni di Cargo
 
 Questo è un ottimo momento per costruire un programma più sostanzioso per

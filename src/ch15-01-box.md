@@ -85,7 +85,7 @@ lista `1, 2, 3` con ciascuna coppia tra parentesi:
 Ogni elemento in una cons list contiene due elementi: il valore dell'elemento corrente
 e l'elemento successivo. L'ultimo elemento della lista contiene solo un valore chiamato `Nil`
 senza un elemento successivo. Una cons list viene prodotta chiamando ricorsivamente la funzione `cons`. Il nome canonico per indicare il caso base della ricorsione è `Nil`.
-Nota che questo non è lo stesso del concetto di "null" o "nil" discusso nel
+Nota che questo non è lo stesso del concetto di “null” o “nil” discusso nel
 Capitolo 6, che indica un valore non valido o assente.
 
 La cons list non è una struttura dati comunemente utilizzata in Rust. Nella maggior parte dei casi
@@ -138,7 +138,7 @@ Listato 15-4.
 
 </Listing>
 
-L'errore indica che questo tipo "ha dimensione infinita". Il motivo è che abbiamo definito
+L'errore indica che questo tipo “ha dimensione infinita”. Il motivo è che abbiamo definito
 `List` con una variante ricorsiva: contiene direttamente un altro valore di se stesso. Di conseguenza, Rust non riesce a calcolare quanto spazio è necessario per memorizzare un
 valore `List`. Analizziamo il motivo per cui otteniamo questo errore. Innanzitutto, vedremo come
 Rust determina quanto spazio è necessario per memorizzare un valore di un tipo non ricorsivo.

@@ -9,9 +9,9 @@ del codice in Rust sono le espressioni `if` e i cicli.
 ### L'Espressione `if`
 
 Un'espressione `if` (`se` in italiano) ti permette di ramificare il tuo codice a
-seconda delle condizioni. Fornisci una condizione e poi dici: "Se questa
+seconda delle condizioni. Fornisci una condizione e poi dici: “Se questa
 condizione è soddisfatta, esegui questo blocco di codice. Se la condizione non è
-soddisfatta, non eseguire questo blocco di codice"
+soddisfatta, non eseguire questo blocco di codice”.
 
 Crea un nuovo progetto chiamato _ramificazioni_ nella tua directory _progetti_
 per sperimentare con l'espressione `if`. Nel file _src/main.rs_, inserisci
@@ -396,7 +396,7 @@ operazioni:
 
 - Convertire le temperature tra Fahrenheit e Celsius.
 - Generare l'*n*-esimo numero di Fibonacci.
-- Stampare il testo del canto natalizio "The Twelve Days of Christmas",
+- Stampare il testo del canto natalizio “The Twelve Days of Christmas”,
   sfruttando la ripetizione della canzone.
 
 Quando sarai pronto per andare avanti, parleremo di un concetto di Rust che non

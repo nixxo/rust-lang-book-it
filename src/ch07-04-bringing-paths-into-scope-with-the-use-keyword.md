@@ -135,13 +135,13 @@ per il _type_ `std::io::Result`, che non entrerà in conflitto con il `Result` d
 `std::fmt` che abbiamo anch'esso portato nello _scope_. Sia il Listato 7-15 che
 il Listato 7-16 sono considerati idiomatici, quindi la scelta spetta a te!
 
-### Ri-Esportare Nomi con `pub use`
+### Riesportare Nomi con `pub use`
 
 Quando portiamo un nome nello _scope_ con la parola chiave `use`, il nome è
 privato allo _scope_ in cui lo abbiamo importato. Per consentire al codice
 esterno a quello _scope_ di riferirsi a quel nome come se fosse stato definito
 in quello _scope_, possiamo combinare `pub` e `use`. Questa tecnica si chiama
-_ri-esportare_ (_re-exporting_) perché portiamo un elemento nello _scope_ ma lo
+_riesportare_ (_re-exporting_) perché portiamo un elemento nello _scope_ ma lo
 rendiamo anche disponibile affinché altri possano portarlo nel loro _scope_.
 
 Il Listato 7-17 mostra il codice del Listato 7-11 con `use` nella radice del

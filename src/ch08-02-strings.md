@@ -30,7 +30,7 @@ stringa.
 Il _type_ `String`, fornito dalla libreria standard di Rust anziché esser
 definito nel linguaggio principale, è un _type_ di stringa codificato in UTF-8,
 con _ownership_, espandibile e modificabile. Quando i _Rustacean_ fanno
-riferimento alle "stringhe" in Rust, potrebbero riferirsi sia al _type_ `String`
+riferimento alle “stringhe” in Rust, potrebbero riferirsi sia al _type_ `String`
 che alla _slice_ di stringa `&str`, e non solo a uno di questi _type_. Sebbene
 questa sezione tratterà principalmente `String`, entrambe le tipologie sono
 ampiamente utilizzate nella libreria standard di Rust, e sia `String` che le
@@ -303,7 +303,7 @@ Un altro punto su UTF-8 è che in realtà ci sono tre modi rilevanti per vedere 
 stringhe dalla prospettiva di Rust: come byte, valori scalari e cluster di
 grafemi (la cosa più vicina a ciò che chiameremmo _lettere_).
 
-Se consideriamo la parola hindi "नमस्ते" scritta in alfabeto Devanagari, essa è
+Se consideriamo la parola hindi “नमस्ते” scritta in alfabeto Devanagari, essa è
 memorizzata come un vettore di valori `u8` che appare così:
 
 ```text
@@ -374,7 +374,7 @@ intervalli, perché ciò potrebbe causare l'arresto anomalo del programma.
 
 Il modo migliore per operare su stringhe è specificare esplicitamente se si
 desidera caratteri o byte. Per singoli valori scalari Unicode, utilizzare il
-metodo `chars`. Chiamando `chars` su "Зд" si separano e si restituiscono due
+metodo `chars`. Chiamando `chars` su “Зд” si separano e si restituiscono due
 valori di _type_ `char`, ed è possibile iterare sul risultato per accedere a
 ciascun elemento:
 

@@ -131,7 +131,7 @@ Nel Listato 10-14, specifichiamo una stringa predefinita per il metodo
 `riassunto` del _trait_ `Sommario` invece di definire solo la firma del metodo,
 come abbiamo fatto nel Listato 10-12.
 
-<Listing number="10-14" file-name="src/lib.rs" caption="Definizione di un _trait_ `Sommario` con un'implementazione predefinita del metodo `riassunto`  ">
+<Listing number="10-14" file-name="src/lib.rs" caption="Definizione di un _trait_ `Sommario` con un'implementazione predefinita del metodo `riassunto`">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-14/src/lib.rs:here}}
@@ -265,7 +265,7 @@ passato come argomento per `elemento1` e `elemento2` debba essere lo stesso.
 
 Possiamo anche specificare più di un vincolo di _trait_. Supponiamo di voler che
 `notifica` usi sia la formattazione di visualizzazione, fornita dal _trait_
-`Display`, sia  che usi `riassunto` su `elemento`: specifichiamo nella
+`Display`, sia che usi `riassunto` su `elemento`: specifichiamo nella
 definizione di `notifica` che `elemento` deve implementare sia `Display` che
 `Sommario`. Possiamo farlo utilizzando la sintassi `+`:
 
@@ -390,7 +390,7 @@ let s = 3.to_string();
 ```
 
 Le implementazioni generali compaiono nella documentazione per il _trait_ in
-questione nella sezione "Implementatori" (_Implementors_).
+questione nella sezione “Implementatori” (_Implementors_).
 
 I _trait_ e i vincoli dei _trait_ ci consentono di scrivere codice che utilizza
 parametri di _type_ generico per ridurre le duplicazioni, ma anche di

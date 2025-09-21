@@ -194,7 +194,7 @@ il _reference_ mutabile `r3`. Questi _scope_ non si sovrappongono, quindi questo
 codice è consentito: il compilatore capisce che il _reference_ non verrà più
 utilizzato in nessun altro punto prima della fine dello _scope_.
 
-Anche se a volte gli errori  di _borrowing_ possono essere frustranti, ricorda
+Anche se a volte gli errori di _borrowing_ possono essere frustranti, ricorda
 che è il compilatore di Rust a segnalare un potenziale bug in anticipo (in fase
 di compilazione e non in fase di esecuzione) e a mostrarti esattamente dove si
 trova il problema. In questo modo non dovrai cercare di capire perché i tuoi

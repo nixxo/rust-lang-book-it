@@ -114,10 +114,10 @@ ristorante. Definiremo le firme delle funzioni ma lasceremo i loro corpi vuoti
 per concentrarci sull'organizzazione del codice piuttosto che
 sull'implementazione vera e propria.
 
-Nel settore della ristorazione, alcune "funzioni" di un ristorante sono chiamate
-_sala_ e altre _cucina_. La "sala" è dove si trovano i clienti; questo comprende
+Nel settore della ristorazione, alcune “funzioni” di un ristorante sono chiamate
+_sala_ e altre _cucina_. La “sala” è dove si trovano i clienti; questo comprende
 dove l'oste riceve i clienti, i camerieri prendono ordini e pagamenti, e i
-baristi preparano drink. La "cucina" è dove gli chef e i cuochi lavorano in
+baristi preparano drink. La “cucina” è dove gli chef e i cuochi lavorano in
 cucina, i lavapiatti puliscono e i manager svolgono lavori amministrativi.
 
 Per strutturare il nostro _crate_ in questo modo, possiamo organizzare le sue

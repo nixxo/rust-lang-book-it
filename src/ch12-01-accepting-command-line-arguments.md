@@ -68,8 +68,8 @@ una funzione definita nel modulo corrente.
 > non valido. Se il programma deve accettare argomenti contenenti Unicode non
 > valido, utilizzare invece `std::env::args_os`. Questa funzione restituisce un
 > iteratore che produce valori `OsString` invece di valori `String`. Abbiamo
-> scelto di  utilizzare `std::env::args` qui per semplicità perché i valori
-> `OsString` variano a seconda della  piattaforma e sono più complessi da
+> scelto di utilizzare `std::env::args` qui per semplicità perché i valori
+> `OsString` variano a seconda della piattaforma e sono più complessi da
 > gestire rispetto ai valori `String`.
 
 Nella prima riga del corpo di `main`, chiamiamo `env::args` e utilizziamo

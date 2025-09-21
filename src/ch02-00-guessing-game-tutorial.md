@@ -45,8 +45,8 @@ cd ../../..
 {{#include ../listings/ch02-guessing-game-tutorial/no-listing-01-cargo-new/Cargo.toml}}
 ```
 
-Come hai visto nel Capitolo 1, `cargo new` genera per te un programma "Hello,
-world!". Guarda il file _src/main.rs_:
+Come hai visto nel Capitolo 1, `cargo new` genera per te un programma “Hello,
+world!”. Guarda il file _src/main.rs_:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -54,7 +54,7 @@ world!". Guarda il file _src/main.rs_:
 {{#rustdoc_include ../listings/ch02-guessing-game-tutorial/no-listing-01-cargo-new/src/main.rs}}
 ```
 
-Ora compiliamo questo programma "Hello, world!" ed eseguiamolo nello stesso
+Ora compiliamo questo programma “Hello, world!” ed eseguiamolo nello stesso
 passaggio utilizzando il comando `cargo run`:
 
 ```console
@@ -680,7 +680,7 @@ dell'errore è che Rust non può confrontare una _type_ stringa e un _type_
 numerico.
 
 In definitiva, vogliamo convertire la `String` che il programma legge come input
-in un _type_  numerico in modo da poterlo confrontare numericamente con il
+in un _type_ numerico in modo da poterlo confrontare numericamente con il
 numero segreto. Lo facciamo aggiungendo questa riga al corpo della funzione
 `main`:
 

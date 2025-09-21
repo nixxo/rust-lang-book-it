@@ -227,7 +227,7 @@ Possiamo vedere che il primo frammento di output proviene da _src/main.rs_ riga
 risultante è `60` (la formattazione `Debug` implementata per gli _integer_ è di
 stampare solo il loro valore). La chiamata a `dbg!` alla riga 14 di
 _src/main.rs_ stampa il valore di `&rettangolo1`, che è la _struct_
-`Rettangolo`. Questo output usa la formattazione `Debug` "pretty" del tipo
+`Rettangolo`. Questo output usa la formattazione `Debug` “pretty” del _type_
 `Rettangolo`. La macro `dbg!` può essere davvero utile quando stai cercando di
 capire cosa sta facendo il tuo codice!
 

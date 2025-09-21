@@ -197,7 +197,7 @@ _pattern_ abbiamo dimenticato! I `match` in Rust sono esaustivi (_exhaustive_):
 dobbiamo coprire ogni possibilità affinché il codice sia valido. Soprattutto nel
 caso di `Option<T>`, quando Rust ci impedisce di dimenticare di gestire
 esplicitamente il caso `None`, ci protegge dall’assumere che abbiamo un valore
-quando potremmo avere _null_, rendendo impossibile "l'errore da un miliardo di
+quando potremmo avere _null_, rendendo impossibile “l'errore da un miliardo di
 dollari” accennato nel capitolo precedente.
 
 ### _Pattern_ Pigliatutto e Segnaposto `_`

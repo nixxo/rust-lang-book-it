@@ -28,7 +28,7 @@ implements the `Iterator` trait, which you learned about back in [“Il _Trait_ 
 it seems like just the ticket. Let’s try putting our futures in a vector and
 replacing `join!` with `join_all` as shown in Listing 17-15.
 
-<Listing  number="17-15" caption="Storing anonymous futures in a vector and calling `join_all`">
+<Listing number="17-15" caption="Storing anonymous futures in a vector and calling `join_all`">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-15/src/main.rs:here}}

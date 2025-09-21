@@ -6,15 +6,15 @@ fn main() {
     let (tx, rx) = mpsc::channel();
 
     thread::spawn(move || {
-        let vals = vec![
+        let valori = vec![
             String::from("ciao"),
             String::from("dal"),
             String::from("thread"),
             String::from("!!!"),
         ];
 
-        for val in vals {
-            tx.send(val).unwrap();
+        for valore in valori {
+            tx.send(valore).unwrap();
             thread::sleep(Duration::from_secs(1));
         }
     });

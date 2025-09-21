@@ -15,7 +15,7 @@ compilatore non può garantirlo. Il codice `unsafe` coinvolto viene quindi racch
 Esploriamo questo concetto esaminando il tipo `RefCell<T>` che segue il
 pattern di mutabilità interna.
 
-### Applicazione delle Regole di  Borrowing in Fase di Esecuzione con `RefCell<T>`
+### Applicazione delle Regole di Borrowing in Fase di Esecuzione con `RefCell<T>`
 
 A differenza di `Rc<T>`, il tipo `RefCell<T>` rappresenta la proprietà singola sui dati
 che contiene. Quindi, cosa rende `RefCell<T>` diverso da un tipo come `Box<T>`?

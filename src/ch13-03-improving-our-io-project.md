@@ -166,7 +166,7 @@ aver apportato questa modifica ed osserva la differenza di comportamento. Prima
 di questa modifica, il programma non visualizzava alcun risultato finché non
 aveva raccolto tutti i risultati, ma dopo la modifica, i risultati verranno
 visualizzati man mano che viene trovata ogni riga corrispondente, perché il
-ciclo `for` nella funzione `esegui` è in grado di sfruttare "la pigrizia"
+ciclo `for` nella funzione `esegui` è in grado di sfruttare “la pigrizia”
 (_laziness_) dell'iteratore.
 
 <!-- Old heading. Do not remove or links may break. -->

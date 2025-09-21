@@ -115,8 +115,8 @@ di Rust. Nei capitoli di progetto, costruiremo insieme dei piccoli programmi,
 applicando ciò che hai imparato finora. I capitoli 2, 12 e 21 sono capitoli di
 progetto; il resto sono capitoli concettuali.
 
-Il Capitolo 1 spiega come installare Rust, come scrivere un programma "Hello,
-world!" e come utilizzare Cargo, il gestore di pacchetti e lo strumento di
+Il Capitolo 1 spiega come installare Rust, come scrivere un programma “Hello,
+world!” e come utilizzare Cargo, il gestore di pacchetti e lo strumento di
 compilazione di Rust. Il Capitolo 2 è un'introduzione pratica alla scrittura di
 un programma in Rust, con la creazione di un gioco di indovinelli con i numeri.
 Qui trattiamo i concetti ad un livello più superficiale e i capitoli successivi
@@ -142,7 +142,7 @@ hash. Il Capitolo 9 esplora la filosofia e le tecniche di gestione degli errori
 di Rust.
 
 Il Capitolo 10 approfondisce i generici, i tratti e la longevità (_traits_ e
-_lifetime_  d'ora in poi), che ti danno la possibilità di definire codice
+_lifetime_ d'ora in poi), che ti danno la possibilità di definire codice
 applicabile a più tipologie di dato. Il Capitolo 11 è dedicato ai test, che
 anche con le garanzie di sicurezza di Rust sono necessari per garantire la
 correttezza della logica del tuo programma. Nel Capitolo 12, costruiremo la

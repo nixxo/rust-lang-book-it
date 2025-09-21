@@ -4,8 +4,8 @@ Un approccio sempre più diffuso per garantire una concomitanza sicura è il
 _passaggio di messaggi_ (_message passing_), in cui i _thread_ o gli attori
 comunicano inviandosi messaggi contenenti dati. Ecco l'idea in uno slogan tratto
 dalla [documentazione del linguaggio
-Go](https://golang.org/doc/effective_go.html#concurrency): "Non comunicare
-condividendo la memoria; condividi invece la memoria comunicando."
+Go](https://golang.org/doc/effective_go.html#concurrency): “Non comunicare
+condividendo la memoria; condividi invece la memoria comunicando.”
 
 Per realizzare la concomitanza tramite invio di messaggi, la libreria standard
 di Rust fornisce un'implementazione dei _canali_. Un _canale_ è un concetto

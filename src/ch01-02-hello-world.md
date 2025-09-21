@@ -21,7 +21,7 @@ questo libro ti consigliamo di creare una cartella _progetti_ nella tua home
 directory e di tenere tutti i tuoi progetti lì.
 
 Apri un terminale e inserisci i seguenti comandi per creare una directory
-_progetti_ e una directory per il progetto "Hello, world!" all'interno della
+_progetti_ e una directory per il progetto “Hello, world!” all'interno della
 directory _progetti_.
 
 Per Linux, macOS, e PowerShell su Windows, digita questo:
@@ -90,7 +90,7 @@ un programma Rust. Questo ti rende un programmatore Rust, benvenuto!
 
 ### Anatomia di un Programma Rust
 
-Esaminiamo in dettaglio questo programma "Hello, world!". Ecco il primo pezzo
+Esaminiamo in dettaglio questo programma “Hello, world!”. Ecco il primo pezzo
 del puzzle:
 
 ```rust
@@ -185,7 +185,7 @@ Ora puoi eseguire il file _main_ o _main.exe_, in questo modo:
 $ ./main # or .\main su Windows
 ```
 
-Se il tuo _main.rs_ è il tuo programma "Hello, world!", questa riga stampa
+Se il tuo _main.rs_ è il tuo programma “Hello, world!”, questa riga stampa
 `Hello, world!` sul tuo terminale.
 
 Se hai più familiarità con un linguaggio dinamico, come Ruby, Python o

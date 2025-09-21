@@ -1,8 +1,8 @@
 # Scrivere Test Automatizzati
 
-Nel suo saggio del 1972 "The Humble Programmer", Edsger W. Dijkstra ha affermato
-che "il testing dei programmi può essere un modo molto efficace per mostrare la
-presenza di bug, ma è irrimediabilmente inadeguato per mostrarne l'assenza."
+Nel suo saggio del 1972 “The Humble Programmer”, Edsger W. Dijkstra ha affermato
+che “il testing dei programmi può essere un modo molto efficace per mostrare la
+presenza di bug, ma è irrimediabilmente inadeguato per mostrarne l'assenza.”
 Questo non significa che non dovremmo cercare di testare il più possibile!
 
 La correttezza dei nostri programmi è la misura in cui il nostro codice fa ciò

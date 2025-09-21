@@ -25,7 +25,7 @@ seguito da una serie di parentesi tonde. Poiché `altra_funzione` è definita ne
 programma, può essere chiamata dall'interno della funzione `main`. Nota che
 abbiamo definito `altra_funzione` _dopo_ la funzione `main` nel codice sorgente;
 avremmo potuto definirla anche prima. A Rust non interessa dove definisci le tue
-funzioni, ma solo che siano definite in una parte del codice che sia "visibile",
+funzioni, ma solo che siano definite in una parte del codice che sia “visibile”,
 in _scope_, al chiamante.
 
 Cominciamo un nuovo progetto binario chiamato _funzioni_ per esplorare
@@ -37,7 +37,7 @@ ed eseguilo. Dovresti vedere il seguente output:
 ```
 
 Le righe vengono eseguite nell'ordine in cui appaiono nella funzione `main`.
-Prima viene stampato il messaggio "Hello, world!", poi viene chiamata
+Prima viene stampato il messaggio “Hello, world!”, poi viene chiamata
 `altra_funzione` e viene stampato il suo messaggio.
 
 ### Parametri

@@ -10,29 +10,29 @@ fn main() {
 
     let tx1 = tx.clone();
     thread::spawn(move || {
-        let vals = vec![
+        let valori = vec![
             String::from("ciao"),
             String::from("dal"),
             String::from("thread"),
             String::from("!!!"),
         ];
 
-        for val in vals {
-            tx1.send(val).unwrap();
+        for valore in valori {
+            tx1.send(valore).unwrap();
             thread::sleep(Duration::from_secs(1));
         }
     });
 
     thread::spawn(move || {
-        let vals = vec![
+        let valori = vec![
             String::from("ancora"),
             String::from("messaggi"),
             String::from("per"),
             String::from("te"),
         ];
 
-        for val in vals {
-            tx.send(val).unwrap();
+        for valore in valori {
+            tx.send(valore).unwrap();
             thread::sleep(Duration::from_secs(1));
         }
     });

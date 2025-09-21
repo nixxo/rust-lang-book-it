@@ -28,7 +28,7 @@ di livello inferiore. Gli iteratori sono una delle _astrazioni a costo zero_ di
 Rust. Con questo intendiamo che l'utilizzo dell'astrazione non impone alcun
 _costo prestazionale aggiuntivo_ (_overhead_) in fase di esecuzione. Questo è
 analogo a come Bjarne Stroustrup, il progettista e implementatore originale del
-C++, definisce _zero-overhead_ in "Foundations of C++" (2012):
+C++, definisce _zero-overhead_ in “Foundations of C++” (2012):
 
 > In generale, le implementazioni del C++ obbediscono al principio di
 > _zero-overhead_: ciò che non usi, non paghi. E inoltre: ciò che usi, non

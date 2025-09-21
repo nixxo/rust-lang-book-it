@@ -218,7 +218,7 @@ numeri in virgola mobile e alcune stringhe. Possiamo definire un'_enum_ le cui
 varianti conterranno i diversi tipi di valore, e tutte le varianti dell'_enum_
 saranno considerate dello stesso _type_: quello dell'_enum_. Possiamo adesso
 creare un vettore per contenere quell'_enum_ e quindi, in definitiva, contenere
-_type_ "diversi". Lo abbiamo dimostrato nel Listato 8-9.
+_type_ “diversi”. Lo abbiamo dimostrato nel Listato 8-9.
 
 <Listing number="8-9" caption="Definizione di un `enum` per memorizzare valori di _type_ diversi in un vettore">
 

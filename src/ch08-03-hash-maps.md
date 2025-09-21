@@ -246,7 +246,7 @@ risolvere:
    Tieni a mente i dettagli sulla codifica UTF-8!
 1. Utilizzando _hash map_ e vettori, crea un'interfaccia testuale che consenta a
    un utente di aggiungere i nomi dei dipendenti a un reparto di un'azienda; ad
-   esempio, "Aggiungi Sally a Ingegneria" o "Aggiungi Amir a Vendite". Quindi,
+   esempio, “Aggiungi Sally a Ingegneria” o “Aggiungi Amir a Vendite”. Quindi,
    consenti all'utente di recuperare un elenco di tutte le persone in un reparto
    o di tutte le persone in azienda per reparto, ordinate alfabeticamente.
 

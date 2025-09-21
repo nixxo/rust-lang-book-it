@@ -343,7 +343,7 @@ In Listing 17-12, we change the block used to send messages from `async` to
 `async move`. When we run _this_ version of the code, it shuts down gracefully
 after the last message is sent and received.
 
-<Listing number="17-12" caption="A  revision of the code from Listing 17-11 that correctly shuts down when complete" file-name="src/main.rs">
+<Listing number="17-12" caption="A revision of the code from Listing 17-11 that correctly shuts down when complete" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-12/src/main.rs:with-move}}

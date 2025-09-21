@@ -1,7 +1,7 @@
 # Puntatori Intelligenti
 
 Un _puntatore_ è un concetto generale che rappresenta una variabile che contiene un indirizzo in
-memoria. Questo indirizzo fa riferimento, o "punta a", altri dati. Il tipo più
+memoria. Questo indirizzo fa riferimento, o “punta a”, altri dati. Il tipo più
 comune di puntatore in Rust è un riferimento, che hai imparato nel
 Capitolo 4. I riferimenti sono indicati dal simbolo `&` e prendono in prestito il valore a cui
 puntano. Non hanno capacità speciali oltre al riferimento ai

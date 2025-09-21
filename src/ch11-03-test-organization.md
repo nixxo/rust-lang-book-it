@@ -262,7 +262,7 @@ quantità di codice non dovrà essere testata.
 ## Riepilogo
 
 Le funzionalità di testing di Rust forniscono un modo per specificare come il
-codice debba funzionare e ci si  assicuri che continui a funzionare come ci si
+codice debba funzionare e ci si assicuri che continui a funzionare come ci si
 aspetta, anche quando si apportano delle modifiche. I test unitari usano e
 testano le diverse parti di una libreria separatamente e possono testare i
 dettagli privati dell'implementazione. I test di integrazione verificano che

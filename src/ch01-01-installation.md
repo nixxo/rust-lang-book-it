@@ -23,7 +23,7 @@ contenuto di questo libro.
 > nel terminale. Le linee che dovresti inserire in un terminale iniziano tutte
 > con `$`. Non è necessario digitare il carattere `$`; è il prompt della riga di
 > comando mostrato per indicare l'inizio di ogni comando. Le linee che non
-> iniziano con `$` mostrano solitamente  l'output del comando precedente.
+> iniziano con `$` mostrano solitamente l'output del comando precedente.
 > Inoltre, gli esempi specifici per PowerShell useranno `>` anziché `$`.
 
 ### Installare `rustup` su Linux o macOS

@@ -100,7 +100,7 @@ _type integer_ di default è `i32`. La situazione principale in cui puoi usare
 > ##### Integer Overflow
 >
 > Supponiamo di avere una variabile di _type_ `u8` che può contenere valori
-> compresi tra 0 e  255. Se provi a cambiare la variabile con un valore al di
+> compresi tra 0 e 255. Se provi a cambiare la variabile con un valore al di
 > fuori di questo intervallo, ad esempio 256, si verificherà un _integer
 > overflow_, che può portare a uno dei due comportamenti seguenti. Quando stai
 > compilando in modalità debug, Rust include controlli per l'integer overflow
@@ -114,7 +114,7 @@ _type integer_ di default è `i32`. La situazione principale in cui puoi usare
 > include i controlli per l'overflow degli integer che causano il _panic_.
 > Invece, se si verifica l'overflow, Rust esegue l'_avvolgimento del complemento
 > a due_. In pratica, i valori maggiori del valore massimo che il _type_ può
-> contenere si "avvolgono" fino al minimo dei valori che il _type_ può
+> contenere si “avvolgono” fino al minimo dei valori che il _type_ può
 > contenere. Nel caso di un `u8`, il valore 256 diventa 0, il valore 257 diventa
 > 1 e così via. Il programma non andrà in _panic_, ma la variabile avrà un
 > valore che probabilmente non è quello che ci si aspettava che avesse.
@@ -204,8 +204,8 @@ Unicode, il che significa che può rappresentare molte altre cose oltre
 all'ASCII. Le lettere accentate, i caratteri cinesi, giapponesi e coreani, le
 emoji e gli spazi a larghezza zero sono tutti valori `char` validi in Rust. I
 valori scalari Unicode vanno da `U+0000` a `U+D7FF` e da `U+E000` a `U+10FFFF`
-inclusi. Tuttavia, un "carattere" non è un concetto vero e proprio in Unicode,
-quindi quello che tu potresti concettualmente pensare essere un "carattere"
+inclusi. Tuttavia, un “carattere” non è un concetto vero e proprio in Unicode,
+quindi quello che tu potresti concettualmente pensare essere un “carattere”
 potrebbe non corrispondere a cosa sia effettivamente un `char` in Rust.
 Discuteremo questo argomento in dettaglio in [“Memorizzare testo codificato
 UTF-8 con le stringhe”][strings]<!-- ignore --> nel Capitolo 8.

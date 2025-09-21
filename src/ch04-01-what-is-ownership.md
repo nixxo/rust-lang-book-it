@@ -64,9 +64,9 @@ dati molto comune: le stringhe.
 > eseguire la contabilità per prepararsi all’allocazione successiva.
 >
 > L’accesso ai dati nell’_heap_ è più lento dell’accesso ai dati sullo _stack_
-> perché è necessario leggere un puntatore sullo _stack_ per poi "saltare"
+> perché è necessario leggere un puntatore sullo _stack_ per poi “saltare”
 > all'indirizzo di memoria nell'_heap_ per accedere ai dati. I processori
-> attuali sono più veloci se non "saltano" troppo in giro per la memoria.
+> attuali sono più veloci se non “saltano” troppo in giro per la memoria.
 > Continuando l’analogia, consideriamo un cameriere in un ristorante che prende
 > ordini da molti tavoli. È più efficiente ricevere tutti gli ordini su un
 > tavolo prima di passare al tavolo successivo. Prendere un ordine dal tavolo A,

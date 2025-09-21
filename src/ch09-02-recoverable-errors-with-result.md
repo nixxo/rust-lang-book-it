@@ -519,8 +519,8 @@ di `main` in `Result<(), Box<dyn Error>>` e aggiunto un valore di ritorno
 </Listing>
 
 Il _type_ `Box<dyn Error>` è un _oggetto trait_, di cui parleremo nel [Capitolo
-18][trait-objects]. Per ora, puoi leggere `Box<dyn Error>` come "qualsiasi
-_type_ di errore". L'utilizzo di `?` su un valore `Result` in una funzione
+18][trait-objects]. Per ora, puoi leggere `Box<dyn Error>` come “qualsiasi
+_type_ di errore”. L'utilizzo di `?` su un valore `Result` in una funzione
 `main` con il _type_ di errore `Box<dyn Error>` è consentito perché consente la
 restituzione anticipata di qualsiasi valore `Err`. Anche se il corpo di questa
 funzione `main` restituirà sempre e solo errori di _type_ `std::io::Error`,

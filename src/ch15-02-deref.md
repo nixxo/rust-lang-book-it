@@ -82,7 +82,7 @@ di de-referenziazione.
 > Nota: c'è una grande differenza tra il tipo `MioBox<T>` che stiamo per
 > creare e il vero `Box<T>`: la nostra versione non memorizzerà i dati nell'heap.
 > Ci stiamo concentrando su `Deref`, quindi dove vengono effettivamente memorizzati i dati
-> è meno importante del comportamento "simile" a un puntatore.
+> è meno importante del comportamento “simile” a un puntatore.
 
 Il tipo `Box<T>` è in definitiva definito come una struttura tupla con un elemento, quindi
 il Listato 15-8 definisce un tipo `MioBox<T>` allo stesso modo. Definiremo anche una
