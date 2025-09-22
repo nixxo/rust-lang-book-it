@@ -16,13 +16,13 @@ impl<T> MioBox<T> {
     }
 }
 
-fn hello(nome: &str) {
-    println!("Hello, {nome}!");
+fn ciao(nome: &str) {
+    println!("Ciao, {nome}!");
 }
 
 // ANCHOR: here
 fn main() {
     let m = MioBox::new(String::from("Rust"));
-    hello(&m);
+    ciao(&m);
 }
 // ANCHOR_END: here

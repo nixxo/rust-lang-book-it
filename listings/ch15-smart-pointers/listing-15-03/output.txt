@@ -1,26 +1,26 @@
 $ cargo run
-   Compiling cons-list v0.1.0 (file:///projects/cons-list)
-error[E0072]: recursive type `List` has infinite size
+   Compiling cons-list v0.1.0 (file:///progetti/cons-list)
+error[E0072]: recursive type `Lista` has infinite size
  --> src/main.rs:1:1
   |
-1 | enum List {
-  | ^^^^^^^^^
-2 |     Cons(i32, List),
-  |               ---- recursive without indirection
+1 | enum Lista {
+  | ^^^^^^^^^^
+2 |     Cons(i32, Lista),
+  |               ----- recursive without indirection
   |
 help: insert some indirection (e.g., a `Box`, `Rc`, or `&`) to break the cycle
   |
-2 |     Cons(i32, Box<List>),
-  |               ++++    +
+2 |     Cons(i32, Box<Lista>),
+  |               ++++     +
 
-error[E0391]: cycle detected when computing when `List` needs drop
+error[E0391]: cycle detected when computing when `Lista` needs drop
  --> src/main.rs:1:1
   |
-1 | enum List {
-  | ^^^^^^^^^
+1 | enum Lista {
+  | ^^^^^^^^^^
   |
-  = note: ...which immediately requires computing when `List` needs drop again
-  = note: cycle used when computing whether `List` needs drop
+  = note: ...which immediately requires computing when `Lista` needs drop again
+  = note: cycle used when computing whether `Lista` needs drop
   = note: see https://rustc-dev-guide.rust-lang.org/overview.html#queries and https://rustc-dev-guide.rust-lang.org/query.html for more information
 
 Some errors have detailed explanations: E0072, E0391.
