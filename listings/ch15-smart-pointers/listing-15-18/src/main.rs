@@ -1,9 +1,9 @@
-enum List {
-    Cons(i32, Rc<List>),
+enum Lista {
+    Cons(i32, Rc<Lista>),
     Nil,
 }
 
-use crate::List::{Cons, Nil};
+use crate::Lista::{Cons, Nil};
 use std::rc::Rc;
 
 fn main() {

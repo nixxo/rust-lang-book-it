@@ -87,11 +87,11 @@
   - [Installazione di Binari con `cargo install`](ch14-04-installing-binaries.md)
   - [Estendere Cargo con Comandi Personalizzati](ch14-05-extending-cargo.md)
 
-- [Smart Pointers](ch15-00-smart-pointers.md)
-  - [Using `Box<T>` to Point to Data on the Heap](ch15-01-box.md)
-  - [Treating Smart Pointers Like Regular References with `Deref`](ch15-02-deref.md)
-  - [Running Code on Cleanup with the `Drop` Trait](ch15-03-drop.md)
-  - [`Rc<T>`, the Reference Counted Smart Pointer](ch15-04-rc.md)
+- [Puntatori Intelligenti](ch15-00-smart-pointers.md)
+  - [Utilizzare `Box<T>` per Puntare ai Dati nell'Heap](ch15-01-box.md)
+  - [Trattare i Puntatori Intelligenti Come Normali _Reference_ con `Deref`](ch15-02-deref.md)
+  - [Eseguire del Codice Durante la Pulizia con il _Trait_ `Drop`](ch15-03-drop.md)
+  - [`Rc<T>`, il Puntatore Intelligente con Conteggio dei _Reference_](ch15-04-rc.md)
   - [`RefCell<T>` and the Interior Mutability Pattern](ch15-05-interior-mutability.md)
   - [Reference Cycles Can Leak Memory](ch15-06-reference-cycles.md)
 

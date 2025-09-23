@@ -80,7 +80,7 @@ non è possibile prenderlo in prestito mutabilmente. Ad esempio, questo codice n
 {{#rustdoc_include ../listings/ch15-smart-pointers/no-listing-01-cant-borrow-immutable-as-mutable/src/main.rs}}
 ```
 
-Se provassi a compilare questo codice, otterresti il ​​seguente errore:
+Se provassi a compilare questo codice, otterresti il seguente errore:
 
 ```console
 {{#include ../listings/ch15-smart-pointers/no-listing-01-cant-borrow-immutable-as-mutable/output.txt}}
@@ -312,7 +312,7 @@ funzione di dereferenziazione automatica di cui abbiamo parlato in [“Dov'è l'
 `RefMut<T>`, su cui utilizziamo l'operatore di dereferenziazione e modifichiamo
 il valore interno.
 
-Quando stampiamo `a`, `b` e `c`, possiamo vedere che hanno tutti il ​​valore modificato
+Quando stampiamo `a`, `b` e `c`, possiamo vedere che hanno tutti il valore modificato
 di `15` anziché `5`:
 
 ```console
@@ -327,4 +327,5 @@ la pena sacrificare un po' di velocità per questa flessibilità nelle nostre
 strutture dati. Nota che `RefCell<T>` non funziona per il codice multithread!
 `Mutex<T>` è la versione thread-safe di `RefCell<T>` e ne parleremo
 nel Capitolo 16.
+
 [wheres-the---operator]: ch05-03-method-syntax.html#dovè-loperatore--

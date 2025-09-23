@@ -1,7 +1,7 @@
 $ cargo run
-   Compiling drop-example v0.1.0 (file:///projects/drop-example)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.60s
-     Running `target/debug/drop-example`
-MioSmartPointers creati.
-Dropping MioSmartPointer with data `altra roba`!
-Dropping MioSmartPointer with data `mia roba`!
+   Compiling esempio-drop v0.1.0 (file:///progetti/esempio-drop)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.02s
+     Running `target/debug/esempio-drop`
+MioSmartPointer creati.
+Pulizia MioSmartPointer con dati `altra roba`!
+Pulizia MioSmartPointer con dati `mia roba`!
