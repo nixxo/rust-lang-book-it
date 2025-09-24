@@ -11,12 +11,12 @@
 <g id="clust1" class="cluster">
 <title>cluster_task_a</title>
 <polygon fill="none" stroke="black" points="8,-93 8,-170 676.21,-170 676.21,-93 8,-93"/>
-<text text-anchor="middle" x="342.11" y="-152.7" font-family="Times,serif" font-size="14.00">Task A</text>
+<text text-anchor="middle" x="342.11" y="-152.7" font-family="Times,serif" font-size="14.00">Compito A</text>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_task_b</title>
 <polygon fill="none" stroke="black" points="8.72,-8 8.72,-85 675.49,-85 675.49,-8 8.72,-8"/>
-<text text-anchor="middle" x="342.11" y="-67.7" font-family="Times,serif" font-size="14.00">Task B</text>
+<text text-anchor="middle" x="342.11" y="-67.7" font-family="Times,serif" font-size="14.00">Compito B</text>
 </g>
 <!-- A1 -->
 <g id="node1" class="node">

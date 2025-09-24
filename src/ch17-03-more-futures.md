@@ -296,7 +296,7 @@ Each future prints a message when it starts running, pauses for some amount of
 time by calling and awaiting `sleep`, and then prints another message when it
 finishes. Then we pass both `slow` and `fast` to `trpl::race` and wait for one
 of them to finish. (The outcome here isn’t too surprising: `fast` wins.) Unlike
-when we used `race` back in [“Our First Async Program”][async-program]<!--
+when we used `race` back in [“Il Nostro Primo Programma _Async_”][async-program]<!--
 ignore -->, we just ignore the `Either` instance it returns here, because all of
 the interesting behavior happens in the body of the async blocks.
 
@@ -309,7 +309,7 @@ which future to poll first. Regardless of whether the implementation of race
 we’re using is fair, though, _one_ of the futures will run up to the first
 `await` in its body before another task can start.
 
-Recall from [Our First Async Program][async-program]<!-- ignore --> that at each
+Recall from [Il Nostro Primo Programma _Async_][async-program]<!-- ignore --> that at each
 await point, Rust gives a runtime a chance to pause the task and switch to
 another one if the future being awaited isn’t ready. The inverse is also true:
 Rust _only_ pauses async blocks and hands control back to a runtime at an await
@@ -590,5 +590,5 @@ to consider first, though:
 
 [dyn]: ch12-03-improving-error-handling-and-modularity.html#restituire-errori-dalla-funzione-esegui
 [enum-alt]: ch08-01-vectors.html#utilizzare-unenum-per-memorizzare-più-type
-[async-program]: ch17-01-futures-and-syntax.html#our-first-async-program
+[async-program]: ch17-01-futures-and-syntax.html#il-nostro-primo-programma-async
 [iterator-trait]: ch13-02-iterators.html#il-trait-iterator-e-il-metodo-next
