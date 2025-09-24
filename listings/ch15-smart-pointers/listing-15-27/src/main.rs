@@ -4,21 +4,21 @@ use std::rc::Rc;
 
 #[derive(Debug)]
 struct Node {
-    value: i32,
-    children: RefCell<Vec<Rc<Node>>>,
+    valore: i32,
+    figlio: RefCell<Vec<Rc<Node>>>,
 }
 // ANCHOR_END: here
 
 // ANCHOR: there
 fn main() {
-    let leaf = Rc::new(Node {
-        value: 3,
-        children: RefCell::new(vec![]),
+    let foglia = Rc::new(Node {
+        valore: 3,
+        figlio: RefCell::new(vec![]),
     });
 
-    let branch = Rc::new(Node {
-        value: 5,
-        children: RefCell::new(vec![Rc::clone(&leaf)]),
+    let ramo = Rc::new(Node {
+        valore: 5,
+        figlio: RefCell::new(vec![Rc::clone(&foglia)]),
     });
 }
 // ANCHOR_END: there
