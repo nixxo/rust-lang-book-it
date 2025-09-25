@@ -16,15 +16,15 @@ fn main() {
                 String::from("!!!"),
             ];
 
-            for valore in valori {
-                tx.send(valore).unwrap();
+            for val in valori {
+                tx1.send(val).unwrap();
                 trpl::sleep(Duration::from_millis(500)).await;
             }
         };
 
         let rx_fut = async {
-            while let Some(val) = rx.recv().await {
-                println!("ricevuto '{val}'");
+            while let Some(valore) = rx.recv().await {
+                println!("ricevuto '{valore}'");
             }
         };
 
@@ -36,8 +36,8 @@ fn main() {
                 String::from("te"),
             ];
 
-            for valore in valori {
-                tx.send(valore).unwrap();
+            for val in valori {
+                tx.send(val).unwrap();
                 trpl::sleep(Duration::from_millis(1500)).await;
             }
         };

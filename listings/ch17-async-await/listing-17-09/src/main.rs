@@ -5,7 +5,7 @@ fn main() {
         // ANCHOR: channel
         let (tx, mut rx) = trpl::channel();
 
-        let val = String::from("hi");
+        let val = String::from("ciao");
         tx.send(val).unwrap();
 
         let ricevuto = rx.recv().await.unwrap();
