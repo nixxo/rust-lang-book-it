@@ -5,10 +5,10 @@ use std::time::Duration;
 fn main() {
     trpl::run(async {
         // ANCHOR: here
-        let lento = async {
-            println!("'lento' iniziato.");
+        let lenta = async {
+            println!("'lenta' iniziato.");
             trpl::sleep(Duration::from_millis(100)).await;
-            println!("'lento' finito.");
+            println!("'lenta' finito.");
         };
 
         let veloce = async {
@@ -17,7 +17,7 @@ fn main() {
             println!("'veloce' finito.");
         };
 
-        trpl::race(lento, veloce).await;
+        trpl::race(lenta, veloce).await;
         // ANCHOR_END: here
     });
 }

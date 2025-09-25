@@ -8,27 +8,27 @@ fn main() {
         let un_ms = Duration::from_millis(1);
 
         let a = async {
-            println!("'a' iniziato.");
-            lento("a", 30);
+            println!("'a' iniziata.");
+            lenta("a", 30);
             trpl::sleep(un_ms).await;
-            lento("a", 10);
+            lenta("a", 10);
             trpl::sleep(un_ms).await;
-            lento("a", 20);
+            lenta("a", 20);
             trpl::sleep(un_ms).await;
-            println!("'a' finito.");
+            println!("'a' finita.");
         };
 
         let b = async {
-            println!("'b' iniziato.");
-            lento("b", 75);
+            println!("'b' iniziata.");
+            lenta("b", 75);
             trpl::sleep(un_ms).await;
-            lento("b", 10);
+            lenta("b", 10);
             trpl::sleep(un_ms).await;
-            lento("b", 15);
+            lenta("b", 15);
             trpl::sleep(un_ms).await;
-            lento("b", 350);
+            lenta("b", 350);
             trpl::sleep(un_ms).await;
-            println!("'b' finito.");
+            println!("'b' finita.");
         };
         // ANCHOR_END: here
 
@@ -36,7 +36,7 @@ fn main() {
     });
 }
 
-fn lento(nome: &str, ms: u64) {
+fn lenta(nome: &str, ms: u64) {
     thread::sleep(Duration::from_millis(ms));
-    println!("'{nome}' eseguito per {ms}ms");
+    println!("'{nome}' eseguita per {ms}ms");
 }

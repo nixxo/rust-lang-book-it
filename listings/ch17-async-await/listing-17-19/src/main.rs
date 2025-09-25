@@ -24,8 +24,8 @@ fn main() {
                 String::from("!!!"),
             ];
 
-            for valore in valori {
-                tx1.send(valore).unwrap();
+            for val in valori {
+                tx1.send(val).unwrap();
                 trpl::sleep(Duration::from_secs(1)).await;
             }
             // ANCHOR: here
@@ -36,8 +36,8 @@ fn main() {
         let rx_fut = pin!(async {
             // --taglio--
             // ANCHOR_END: here
-            while let Some(val) = rx.recv().await {
-                println!("ricevuto '{val}'");
+            while let Some(valore) = rx.recv().await {
+                println!("ricevuto '{valore}'");
             }
             // ANCHOR: here
         });
@@ -52,17 +52,17 @@ fn main() {
                 String::from("te"),
             ];
 
-            for valore in valori {
-                tx.send(valore).unwrap();
+            for val in valori {
+                tx.send(val).unwrap();
                 trpl::sleep(Duration::from_secs(1)).await;
             }
             // ANCHOR: here
         });
 
-        let futures: Vec<Pin<&mut dyn Future<Output = ()>>> =
+        let future: Vec<Pin<&mut dyn Future<Output = ()>>> =
             vec![tx1_fut, rx_fut, tx_fut];
         // ANCHOR_END: here
 
-        trpl::join_all(futures).await;
+        trpl::join_all(future).await;
     });
 }

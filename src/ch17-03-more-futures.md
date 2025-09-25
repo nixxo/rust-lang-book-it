@@ -1,14 +1,14 @@
-## Working with Any Number of Futures
+### Lavorare con un Numero Qualsiasi di Futures
 
-When we switched from using two futures to three in the previous section, we
-also had to switch from using `join` to using `join3`. It would be annoying to
-have to call a different function every time we changed the number of futures we
-wanted to join. Happily, we have a macro form of `join` to which we can pass an
-arbitrary number of arguments. It also handles awaiting the futures itself.
-Thus, we could rewrite the code from Listing 17-13 to use `join!` instead of
-`join3`, as in Listing 17-14.
+Quando siamo passati dall'usare due _future_ a tre nella sezione precedente,
+abbiamo dovuto passare da `join` a `join3`. Sarebbe fastidioso dover chiamare
+una funzione diversa ogni volta che cambiamo il numero di _future_ che vogliamo
+unire. Per fortuna, abbiamo una forma macro di `join` a cui possiamo passare un
+numero arbitrario di argomenti. Gestisce anche l'attesa delle _future_ stessa.
+Quindi, potremmo riscrivere il codice del Listato 17-13 per usare `join!` invece
+di `join3`, come nel Listato 17-14.
 
-<Listing number="17-14" caption="Using `join!` to wait for multiple futures" file-name="src/main.rs">
+<Listing number="17-14" caption="Usare `join!` per aspettare più _future_" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-14/src/main.rs:here}}
@@ -16,19 +16,20 @@ Thus, we could rewrite the code from Listing 17-13 to use `join!` instead of
 
 </Listing>
 
-This is definitely an improvement over swapping between `join` and
-`join3` and `join4` and so on! However, even this macro form only works
-when we know the number of futures ahead of time. In real-world Rust,
-though, pushing futures into a collection and then waiting on some or
-all the futures of them to complete is a common pattern.
+Questo è sicuramente un miglioramento rispetto allo scambio tra `join` e `join3`
+e `join4` e così via! Tuttavia, anche questa macro funziona solo quando
+conosciamo il numero di _future_ in anticipo. Nel mondo reale di Rust, tuttavia,
+spingere _future_ in una collezione e poi aspettare che alcune o tutte le
+_future_ si completino è una cosa comune.
 
-To check all the futures in some collection, we’ll need to iterate over and
-join on _all_ of them. The `trpl::join_all` function accepts any type that
-implements the `Iterator` trait, which you learned about back in [“Il _Trait_ `Iterator` e il Metodo `next`”][iterator-trait]<!-- ignore --> Chapter 13, so
-it seems like just the ticket. Let’s try putting our futures in a vector and
-replacing `join!` with `join_all` as shown in Listing 17-15.
+Per controllare tutte le _future_ in una qualche collezione, dovremo iterare e
+unire su _tutte_ loro. La funzione `trpl::join_all` accetta qualsiasi _type_ che
+implementa il _trait_ `Iterator`, che hai imparato nel Capitolo 13 in [“Il
+_Trait_ `Iterator` e il Metodo `next`”][iterator-trait]<!-- ignore -->, quindi
+sembra proprio la cosa giusta. Proviamo a mettere le nostre _future_ in un
+vettore e sostituire `join!` con `join_all` come mostrato nel Listato 17-15.
 
-<Listing number="17-15" caption="Storing anonymous futures in a vector and calling `join_all`">
+<Listing number="17-15" caption="Memorizzare _future_ anonime in un vettore e chiamare `join_all`">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-15/src/main.rs:here}}
@@ -36,56 +37,39 @@ replacing `join!` with `join_all` as shown in Listing 17-15.
 
 </Listing>
 
-Unfortunately, this code doesn’t compile. Instead, we get this error:
+Purtroppo, questo codice non si compila. Invece, otteniamo questo errore:
 
-<!-- manual-regeneration
-cd listings/ch17-async-await/listing-17-15/
-cargo build
-copy just the compiler error
--->
-
-```text
-error[E0308]: mismatched types
-  --> src/main.rs:45:37
-   |
-10 |         let tx1_fut = async move {
-   |                       ---------- the expected `async` block
-...
-24 |         let rx_fut = async {
-   |                      ----- the found `async` block
-...
-45 |         let futures = vec![tx1_fut, rx_fut, tx_fut];
-   |                                     ^^^^^^ expected `async` block, found a different `async` block
-   |
-   = note: expected `async` block `{async block@src/main.rs:10:23: 10:33}`
-              found `async` block `{async block@src/main.rs:24:22: 24:27}`
-   = note: no two async blocks, even if identical, have the same type
-   = help: consider pinning your async block and casting it to a trait object
+```console
+{{#include ../listings/ch17-async-await/listing-17-15/output.txt:2:23}}
 ```
 
-This might be surprising. After all, none of the async blocks returns anything,
-so each one produces a `Future<Output = ()>`. Remember that `Future` is a trait,
-though, and that the compiler creates a unique enum for each async block. You
-can’t put two different hand-written structs in a `Vec`, and the same rule
-applies to the different enums generated by the compiler.
+Questo potrebbe essere sorprendente. Dopotutto, nessuno dei blocchi _async_
+restituisce nulla, quindi ciascuno produce un `Future<Output = ()>`. Ricorda che
+`Future` è un _trait_, e che il compilatore crea una _enum_ unica per ogni
+blocco _async_. Non puoi mettere due _struct_ scritte a mano diverse in un
+`Vec`, e la stessa regola si applica alle _enum_ diverse generate dal
+compilatore.
 
-To make this work, we need to use _trait objects_, just as we did in [“Restituire Errori dalla Funzione `esegui`”][dyn]<!-- ignore --> in Chapter 12. (We’ll cover
-trait objects in detail in Chapter 18.) Using trait objects lets us treat each
-of the anonymous futures produced by these types as the same type, because all
-of them implement the `Future` trait.
+Per farlo funzionare, dobbiamo usare oggetti _trait_, proprio come abbiamo fatto
+in [“Restituire Errori dalla Funzione `esegui`”][dyn]<!-- ignore --> nel
+Capitolo 12. (Parleremo degli oggetti _trait_ in dettaglio nel Capitolo 18.)
+Usare oggetti _trait_ ci permette di trattare ciascuna delle _future_ anonime
+prodotte da questi _type_ come fossero il medesimo _type_, perché tutti
+implementano il _trait_ `Future`.
 
-> Note: In [Utilizzare un'_Enum_ per Memorizzare Più _Type_][enum-alt]<!-- ignore --> in
-> Chapter 8, we discussed another way to include multiple types in a `Vec`:
-> using an enum to represent each type that can appear in the vector. We can’t
-> do that here, though. For one thing, we have no way to name the different
-> types, because they are anonymous. For another, the reason we reached for a
-> vector and `join_all` in the first place was to be able to work with a dynamic
-> collection of futures where we only care that they have the same output type.
+> Nota: In [“Utilizzare un'_Enum_ per Memorizzare Più _Type_”][enum-alt]<!--
+> ignore --> nel Capitolo 8, abbiamo discusso un altro modo per includere più
+> _type_ in un `Vec`: usando una _enum_ per rappresentare ciascun _type_ che può
+> apparire nel vettore. Non possiamo farlo qui, però. Per prima cosa, non
+> abbiamo modo di nominare i diversi _type_, perché sono anonimi. Inoltre, il
+> motivo per cui abbiamo aggiunto un vettore e `join_all` in primo luogo era per
+> poter lavorare con una collezione dinamica di _future_ dove ci importa solo
+> che abbiano lo stesso tipo di output.
 
-We start by wrapping each future in the `vec!` in a `Box::new`, as shown in
-Listing 17-16.
+Iniziamo avvolgendo ciascun _future_ nel `vec!` in un `Box::new`, come mostrato
+nel Listato 17-16.
 
-<Listing number="17-16" caption="Using `Box::new` to align the types of the futures in a `Vec`" file-name="src/main.rs">
+<Listing number="17-16" caption="Usare `Box::new` per allineare i _type_ delle _future_ in un `Vec`" file-name="src/main.rs">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-16/src/main.rs:here}}
@@ -93,13 +77,14 @@ Listing 17-16.
 
 </Listing>
 
-Unfortunately, this code still doesn’t compile. In fact, we get the same basic
-error we got before for both the second and third `Box::new` calls, as well as
-new errors referring to the `Unpin` trait. We’ll come back to the `Unpin` errors
-in a moment. First, let’s fix the type errors on the `Box::new` calls by
-explicitly annotating the type of the `futures` variable (see Listing 17-17).
+Purtroppo, questo codice non si compila ancora. In realtà, otteniamo lo stesso
+errore di base che abbiamo ottenuto prima per entrambe le chiamate `Box::new`
+seconda e terza, oltre a nuovi errori che fanno riferimento al _trait_ `Unpin`.
+Torneremo agli errori `Unpin` tra un momento. Prima, correggiamo gli errori di
+_type_ sulle chiamate `Box::new` annotando esplicitamente il _type_ della
+variabile `future` come nel Listato 17-17.
 
-<Listing number="17-17" caption="Fixing the rest of the type mismatch errors by using an explicit type declaration" file-name="src/main.rs">
+<Listing number="17-17" caption="Correggere il resto degli errori di _type_ non corrispondente usando una dichiarazione di _type_ esplicita" file-name="src/main.rs">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-17/src/main.rs:here}}
@@ -107,97 +92,36 @@ explicitly annotating the type of the `futures` variable (see Listing 17-17).
 
 </Listing>
 
-This type declaration is a little involved, so let’s walk through it:
+Questa dichiarazione di _type_ è un po' complicata, quindi descriviamola pezzo
+per pezzo:
 
-1. The innermost type is the future itself. We note explicitly that the output
-   of the future is the unit type `()` by writing `Future<Output = ()>`.
-2. Then we annotate the trait with `dyn` to mark it as dynamic.
-3. The entire trait reference is wrapped in a `Box`.
-4. Finally, we state explicitly that `futures` is a `Vec` containing these
-   items.
+1. Il _type_ più interno è il _future_ stesso. Annotiamo esplicitamente che
+   l'output del _future_ è il _type_ unitario `()` scrivendo `Future<Output =
+   ()>`.
+2. Quindi annotiamo il _trait_ con `dyn` per marcarlo come dinamico.
+3. L'intero riferimento al _trait_ è avvolto in una `Box`.
+4. Infine, dichiariamo esplicitamente che `future` è un `Vec` che contiene
+   questi elementi.
 
-That already made a big difference. Now when we run the compiler, we get only
-the errors mentioning `Unpin`. Although there are three of them, their contents
-are very similar.
+Questo ha già fatto una grande differenza. Ora, quando eseguiamo la
+compilazione, otteniamo solo gli errori che menzionano `Unpin`. Anche se ce ne
+sono tre, i loro contenuti sono molto simili.
 
-<!-- manual-regeneration
-cd listings/ch17-async-await/listing-17-17
-cargo build
-# copy *only* the errors
-# fix the paths
--->
-
-```text
-error[E0277]: `dyn Future<Output = ()>` cannot be unpinned
-   --> src/main.rs:49:24
-    |
-49  |         trpl::join_all(futures).await;
-    |         -------------- ^^^^^^^ the trait `Unpin` is not implemented for `dyn Future<Output = ()>`
-    |         |
-    |         required by a bound introduced by this call
-    |
-    = note: consider using the `pin!` macro
-            consider using `Box::pin` if you need to access the pinned value outside of the current scope
-    = note: required for `Box<dyn Future<Output = ()>>` to implement `Future`
-note: required by a bound in `join_all`
-   --> file:///home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.30/src/future/join_all.rs:105:14
-    |
-102 | pub fn join_all<I>(iter: I) -> JoinAll<I::Item>
-    |        -------- required by a bound in this function
-...
-105 |     I::Item: Future,
-    |              ^^^^^^ required by this bound in `join_all`
-
-error[E0277]: `dyn Future<Output = ()>` cannot be unpinned
-  --> src/main.rs:49:9
-   |
-49 |         trpl::join_all(futures).await;
-   |         ^^^^^^^^^^^^^^^^^^^^^^^ the trait `Unpin` is not implemented for `dyn Future<Output = ()>`
-   |
-   = note: consider using the `pin!` macro
-           consider using `Box::pin` if you need to access the pinned value outside of the current scope
-   = note: required for `Box<dyn Future<Output = ()>>` to implement `Future`
-note: required by a bound in `futures_util::future::join_all::JoinAll`
-  --> file:///home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.30/src/future/join_all.rs:29:8
-   |
-27 | pub struct JoinAll<F>
-   |            ------- required by a bound in this struct
-28 | where
-29 |     F: Future,
-   |        ^^^^^^ required by this bound in `JoinAll`
-
-error[E0277]: `dyn Future<Output = ()>` cannot be unpinned
-  --> src/main.rs:49:33
-   |
-49 |         trpl::join_all(futures).await;
-   |                                 ^^^^^ the trait `Unpin` is not implemented for `dyn Future<Output = ()>`
-   |
-   = note: consider using the `pin!` macro
-           consider using `Box::pin` if you need to access the pinned value outside of the current scope
-   = note: required for `Box<dyn Future<Output = ()>>` to implement `Future`
-note: required by a bound in `futures_util::future::join_all::JoinAll`
-  --> file:///home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.30/src/future/join_all.rs:29:8
-   |
-27 | pub struct JoinAll<F>
-   |            ------- required by a bound in this struct
-28 | where
-29 |     F: Future,
-   |        ^^^^^^ required by this bound in `JoinAll`
-
-For more information about this error, try `rustc --explain E0277`.
-error: could not compile `async_await` (bin "async_await") due to 3 previous errors
+```console
+{{#include ../listings/ch17-async-await/listing-17-17/output.txt:2:56}}
 ```
 
-That is a _lot_ to digest, so let’s pull it apart. The first part of the message
-tell us that the first async block (`src/main.rs:8:23: 20:10`) does not
-implement the `Unpin` trait and suggests using `pin!` or `Box::pin` to resolve
-it. Later in the chapter, we’ll dig into a few more details about `Pin` and
-`Unpin`. For the moment, though, we can just follow the compiler’s advice to get
-unstuck. In Listing 17-18, we start by importing `Pin` from `std::pin`. Next we
-update the type annotation for `futures`, with a `Pin` wrapping each `Box`.
-Finally, we use `Box::pin` to pin the futures themselves.
+Questo è un sacco da digerire, quindi facciamolo a pezzi. La prima parte del
+messaggio ci dice che il primo blocco _async_ (`src/main.rs:8:23: 20:10`) non
+implementa il _trait_ `Unpin` e suggerisce di usare `pin!` o `Box::pin` per
+risolverlo. Più avanti nel capitolo, approfondiremo alcuni dettagli su `Pin` e
+`Unpin`. Per il momento, però, possiamo semplicemente seguire il consiglio del
+compilatore per sbloccarci. Nel Listato 17-18, iniziamo importando `Pin` da
+`std::pin`. Quindi aggiorniamo l'annotazione di _type_ per `future`, con un
+`Pin` che avvolge ogni `Box`. Infine, usiamo `Box::pin` per sistemare le stesse
+_future_.
 
-<Listing number="17-18" caption="Using `Pin` and `Box::pin` to make the `Vec` type check" file-name="src/main.rs">
+<Listing number="17-18" caption="Usare `Pin` e `Box::pin` per far sì che il _type_ `Vec` superi il controllo" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-18/src/main.rs:here}}
@@ -205,42 +129,40 @@ Finally, we use `Box::pin` to pin the futures themselves.
 
 </Listing>
 
-If we compile and run this, we finally get the output we hoped for:
-
-<!-- Not extracting output because changes to this output aren't significant;
-the changes are likely to be due to the threads running differently rather than
-changes in the compiler -->
+Se compiliamo ed eseguiamo questo, otteniamo finalmente l'output che speravamo:
 
 ```text
-received 'hi'
-received 'more'
-received 'from'
-received 'messages'
-received 'the'
-received 'for'
-received 'future'
-received 'you'
+ricevuto 'ciao'
+ricevuto 'altri'
+ricevuto 'dal'
+ricevuto 'messaggi'
+ricevuto 'futuro'
+ricevuto 'per'
+ricevuto '!!!'
+ricevuto 'te'
 ```
 
-Phew!
+Bene!
 
-There’s a bit more to explore here. For one thing, using `Pin<Box<T>>` adds a
-small amount of overhead from putting these futures on the heap with `Box`—and
-we’re only doing that to get the types to line up. We don’t actually _need_ the
-heap allocation, after all: these futures are local to this particular function.
-As noted before, `Pin` is itself a wrapper type, so we can get the benefit of
-having a single type in the `Vec`—the original reason we reached for
-`Box`—without doing a heap allocation. We can use `Pin` directly with each
-future, using the `std::pin::pin` macro.
+C'è ancora un po' da fare qui. Per prima cosa, usare `Pin<Box<T>>` aggiunge una
+piccola quantità di _overhead_ perché mettiamo queste _future_ nell'_heap_ con
+`Box`, e lo stiamo facendo solo per far sì che i _type_ si allineino. In realtà,
+non abbiamo bisogno dell'allocazione nell'_heap_: queste _future_ sono locali a
+questa particolare funzione. Come notato prima, `Pin` è esso stesso un _type_ di
+avvolgimento, quindi possiamo ottenere il beneficio di avere un singolo _type_
+nel `Vec`, la ragione originale per cui stiamo usando `Box`, senza fare
+un'allocazione nell'_heap_. Possiamo usare `Pin` direttamente con ciascuna
+_future_, usando la macro `std::pin::pin`.
 
-However, we must still be explicit about the type of the pinned reference;
-otherwise, Rust will still not know to interpret these as dynamic trait objects,
-which is what we need them to be in the `Vec`. We therefore add `pin` to our
-list of imports from `std::pin`. Then we can `pin!` each future when we define
-it and define `futures` as a `Vec` containing pinned mutable references to the
-dynamic future type, as in Listing 17-19.
+Tuttavia, dobbiamo ancora essere espliciti sul _type_ del _reference_ fissato;
+altrimenti, Rust non saprà di interpretare questi come oggetti _trait_ dinamici,
+che è ciò di cui abbiamo bisogno che siano nel `Vec`. Aggiungiamo `pin` alla
+nostra lista di importazioni da `std::pin` e quindi possiamo usare `pin!` con
+ciascuna _future_ quando la definiamo per poi definire `future` come un `Vec`
+che contiene _reference_ mutabili fissati ai _type_ _future_ dinamici, come nel
+Listato 17-19.
 
-<Listing number="17-19" caption="Using `Pin` directly with the `pin!` macro to avoid unnecessary heap allocations" file-name="src/main.rs">
+<Listing number="17-19" caption="Usare `Pin` direttamente con la macro `pin!` per evitare allocazioni nell'_heap_ non necessarie" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-19/src/main.rs:here}}
@@ -248,12 +170,12 @@ dynamic future type, as in Listing 17-19.
 
 </Listing>
 
-We got this far by ignoring the fact that we might have different `Output`
-types. For example, in Listing 17-20, the anonymous future for `a` implements
-`Future<Output = u32>`, the anonymous future for `b` implements `Future<Output =
-&str>`, and the anonymous future for `c` implements `Future<Output = bool>`.
+Siamo arrivati fin qui ignorando il fatto che potremmo avere _type_ `Output`
+diversi. Ad esempio, nel Listato 17-20, la _future_ anonima per `a` implementa
+`Future<Output = u32>`, la _future_ anonima per `b` implementa `Future<Output =
+&str>`, e la _future_ anonima per `c` implementa `Future<Output = bool>`.
 
-<Listing number="17-20" caption="Three futures with distinct types" file-name="src/main.rs">
+<Listing number="17-20" caption="Tre _future_ con _type_ distinti" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-20/src/main.rs:here}}
@@ -261,30 +183,30 @@ types. For example, in Listing 17-20, the anonymous future for `a` implements
 
 </Listing>
 
-We can use `trpl::join!` to await them, because it allows us to pass in multiple
-future types and produces a tuple of those types. We _cannot_ use
-`trpl::join_all`, because it requires all of the futures passed in to have the
-same type. Remember, that error is what got us started on this adventure with
-`Pin`!
+Possiamo usare `trpl::join!` per aspettarle, perché ci permette di passare più
+_type_ di _future_ e produce una tupla di quei _type_. _Non_ possiamo usare
+`trpl::join_all`, perché richiede che tutte le _future_ passate abbiano lo
+stesso _type_. Ricorda, quell'errore è quello che ci ha fatto iniziare questa
+avventura con `Pin`!
 
-This is a fundamental tradeoff: we can either deal with a dynamic number of
-futures with `join_all`, as long as they all have the same type, or we can deal
-with a set number of futures with the `join` functions or the `join!` macro,
-even if they have different types. This is the same scenario we’d face when
-working with any other types in Rust. Futures are not special, even though we
-have some nice syntax for working with them, and that’s a good thing.
+Questo è un compromesso fondamentale: possiamo gestire un numero dinamico di
+_future_ con `join_all`, purché abbiano tutte lo stesso _type_, oppure possiamo
+gestire un numero fisso di _future_ con le funzioni `join` o la macro `join!`,
+anche se hanno _type_ diversi. Questo è lo stesso scenario che affronteremmo
+lavorando con qualsiasi altro _type_ in Rust. Le _future_ non sono speciali,
+anche se abbiamo una bella sintassi per lavorare con loro, e questo è un bene.
 
-### Racing Futures
+### Competizione tra _Future_
 
-When we “join” futures with the `join` family of functions and macros, we
-require _all_ of them to finish before we move on. Sometimes, though, we only
-need _some_ future from a set to finish before we move on—kind of similar to
-racing one future against another.
+Quando “uniamo” le _future_ con la famiglia di funzioni e macro `join`,
+richiediamo che _tutte_ finiscano prima di andare avanti. A volte, però, abbiamo
+bisogno che solo _alcune_ _future_ di un insieme finiscano prima di proseguire,
+un po' mettere in competizione una _future_ contro un'altra.
 
-In Listing 17-21, we once again use `trpl::race` to run two futures, `slow` and
-`fast`, against each other.
+Nel Listato 17-21, utilizziamo di nuovo `trpl::race` per eseguire due _future_,
+`lenta` e `veloce`, l'una contro l'altra.
 
-<Listing number="17-21" caption="Using `race` to get the result of whichever future finishes first" file-name="src/main.rs">
+<Listing number="17-21" caption="Utilizzo di `race` per ottenere il risultato di quale _future_ finisce prima" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-21/src/main.rs:here}}
@@ -292,53 +214,55 @@ In Listing 17-21, we once again use `trpl::race` to run two futures, `slow` and
 
 </Listing>
 
-Each future prints a message when it starts running, pauses for some amount of
-time by calling and awaiting `sleep`, and then prints another message when it
-finishes. Then we pass both `slow` and `fast` to `trpl::race` and wait for one
-of them to finish. (The outcome here isn’t too surprising: `fast` wins.) Unlike
-when we used `race` back in [“Il Nostro Primo Programma _Async_”][async-program]<!--
-ignore -->, we just ignore the `Either` instance it returns here, because all of
-the interesting behavior happens in the body of the async blocks.
+Ogni _future_ stampa un messaggio quando inizia l'esecuzione, si ferma per un
+certo periodo di tempo chiamando e aspettando `sleep`, e poi stampa un altro
+messaggio quando finisce. Poi passiamo sia `lenta` che `veloce` a `trpl::race` e
+aspettiamo che una di esse finisca. (Il risultato qui non è troppo sorprendente:
+`veloce` vince.) A differenza di quando abbiamo usato `race` ne [“Il Nostro
+Primo Programma _Async_”][async-program]<!-- ignore -->, qui ignoriamo
+semplicemente l'istanza `Either` che restituisce, perché tutto il comportamento
+interessante avviene nel corpo dei blocchi _async_.
 
-Notice that if you flip the order of the arguments to `race`, the order of the
-“started” messages changes, even though the `fast` future always completes
-first. That’s because the implementation of this particular `race` function is
-not fair. It always runs the futures passed in as arguments in the order in
-which they’re passed. Other implementations _are_ fair and will randomly choose
-which future to poll first. Regardless of whether the implementation of race
-we’re using is fair, though, _one_ of the futures will run up to the first
-`await` in its body before another task can start.
+Nota che se inverti l'ordine degli argomenti a `race`, l'ordine dei messaggi
+"iniziati" cambia, anche se la _future_ `veloce` si conclude sempre per prima.
+Questo perché l'implementazione di questa particolare funzione `race` non è
+equa. Esegue sempre le _future_ passate come argomenti nell'ordine in cui sono
+passate. Altre implementazioni _sono_ eque e sceglieranno casualmente quale
+_future_ eseguire per prima. Indipendentemente dal fatto che l'implementazione
+di _race_ che stiamo usando sia equa, però, _una_ delle _future_ eseguirà fino
+al primo `await` nel suo corpo prima che un'altra attività possa iniziare.
 
-Recall from [Il Nostro Primo Programma _Async_][async-program]<!-- ignore --> that at each
-await point, Rust gives a runtime a chance to pause the task and switch to
-another one if the future being awaited isn’t ready. The inverse is also true:
-Rust _only_ pauses async blocks and hands control back to a runtime at an await
-point. Everything between await points is synchronous.
+Ricorda da [“Il Nostro Primo Programma _Async_”][async-program]<!-- ignore -->
+che ad ogni punto di attesa, Rust dà a un _runtime_ la possibilità di mettere in
+pausa l'attività e passare a un'altra se la _future_ in attesa non è pronta.
+L'inverso è anche vero: Rust _mette in pausa_ solo i blocchi _async_ e
+restituisce il controllo a un _runtime_ in un punto di attesa. Tutto ciò che si
+trova tra i punti di attesa è sincrono.
 
-That means if you do a bunch of work in an async block without an await point,
-that future will block any other futures from making progress. You may sometimes
-hear this referred to as one future _starving_ other futures. In some cases,
-that may not be a big deal. However, if you are doing some kind of expensive
-setup or long-running work, or if you have a future that will keep doing some
-particular task indefinitely, you’ll need to think about when and where to hand
-control back to the runtime.
+Questo significa che se fai un sacco di lavoro in un blocco _async_ senza un
+punto di attesa, quella _future_ bloccherà qualsiasi altra _future_ dal fare
+progressi. A volte potresti sentire questo comportamento riferito come una
+_future_ che _affama_ (_starving_) altre _future_. In alcuni casi, potrebbe non
+essere un grosso problema. Tuttavia, se stai facendo qualche tipo di
+elaborazione dispendiosa o lavoro a lungo termine, o se hai una _future_ che
+continuerà a fare un particolare compito indefinitamente, dovrai pensare a
+quando e dove restituire il controllo al _runtime_.
 
-By the same token, if you have long-running blocking operations, async can be a
-useful tool for providing ways for different parts of the program to relate to
-each other.
+Allo stesso modo, se hai operazioni bloccanti a lungo termine, l'_async_ può
+essere uno strumento utile per fornire modi affinché diverse parti del programma
+si relazionino tra loro.
 
-But _how_ would you hand control back to the runtime in those cases?
+Ma _come_ restituiresti il controllo al _runtime_ in quei casi?
 
 <!-- Old headings. Do not remove or links may break. -->
-
 <a id="yielding"></a>
 
-### Yielding Control to the Runtime
+### Restituire il Controllo al _Runtime_
 
-Let’s simulate a long-running operation. Listing 17-22 introduces a `slow`
-function.
+Simuliamo un'operazione a lungo termine. Il Listato 17-22 introduce una funzione
+`lenta`.
 
-<Listing number="17-22" caption="Using `thread::sleep` to simulate slow operations" file-name="src/main.rs">
+<Listing number="17-22" caption="Utilizzo di `thread::sleep` per simulare operazioni lente" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-22/src/main.rs:slow}}
@@ -346,15 +270,15 @@ function.
 
 </Listing>
 
-This code uses `std::thread::sleep` instead of `trpl::sleep` so that calling
-`slow` will block the current thread for some number of milliseconds. We can use
-`slow` to stand in for real-world operations that are both long-running and
-blocking.
+Questo codice utilizza `std::thread::sleep` invece di `trpl::sleep` in modo che
+chiamare `lenta` blocchi il _thread_ corrente per un certo numero di
+millisecondi. Possiamo usare `lenta` per rappresentare operazioni del mondo
+reale che sono sia a lungo termine che bloccanti.
 
-In Listing 17-23, we use `slow` to emulate doing this kind of CPU-bound work in
-a pair of futures.
+Nel Listato 17-23, utilizziamo `lenta` per emulare questo tipo di lavoro legato
+alla CPU in un paio di _future_.
 
-<Listing number="17-23" caption="Using `thread::sleep` to simulate slow operations" file-name="src/main.rs">
+<Listing number="17-23" caption="Utilizzo di `thread::sleep` per simulare operazioni lente" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-23/src/main.rs:slow-futures}}
@@ -362,43 +286,39 @@ a pair of futures.
 
 </Listing>
 
-To begin, each future only hands control back to the runtime _after_ carrying
-out a bunch of slow operations. If you run this code, you will see this output:
-
-<!-- manual-regeneration
-cd listings/ch17-async-await/listing-17-23/
-cargo run
-copy just the output
--->
+Per cominciare, ogni future restituisce il controllo al runtime _dopo_ aver
+eseguito un sacco di operazioni lente. Se esegui questo codice, vedrai questo
+output:
 
 ```text
-'a' started.
-'a' ran for 30ms
-'a' ran for 10ms
-'a' ran for 20ms
-'b' started.
-'b' ran for 75ms
-'b' ran for 10ms
-'b' ran for 15ms
-'b' ran for 350ms
-'a' finished.
+'a' iniziata.
+'a' eseguita per 30ms
+'a' eseguita per 10ms
+'a' eseguita per 20ms
+'b' iniziata.
+'b' eseguita per 75ms
+'b' eseguita per 10ms
+'b' eseguita per 15ms
+'b' eseguita per 350ms
+'a' finita.
 ```
 
-As with our earlier example, `race` still finishes as soon as `a` is done.
-There’s no interleaving between the two futures, though. The `a` future does all
-of its work until the `trpl::sleep` call is awaited, then the `b` future does
-all of its work until its own `trpl::sleep` call is awaited, and finally the `a`
-future completes. To allow both futures to make progress between their slow
-tasks, we need await points so we can hand control back to the runtime. That
-means we need something we can await!
+Come nel nostro esempio precedente, `race` termina non appena `a` è completata.
+Non c'è intreccio tra le due _future_, però. La _future_ `a` fa tutto il suo
+lavoro fino a quando la chiamata a `trpl::sleep` è in attesa, poi la _future_
+`b` fa tutto il suo lavoro fino a quando la sua chiamata a `trpl::sleep` è in
+attesa, e infine la _future_ `a` finisce. Per consentire a entrambe le _future_
+lente di fare progressi, abbiamo bisogno di punti di attesa in modo da poter
+restituire il controllo al _runtime_ di tanto in tanto per consentire anche
+all'altra di proseguire!
 
-We can already see this kind of handoff happening in Listing 17-23: if we
-removed the `trpl::sleep` at the end of the `a` future, it would complete
-without the `b` future running _at all_. Let’s try using the `sleep` function as
-a starting point for letting operations switch off making progress, as shown in
-Listing 17-24.
+Possiamo già vedere questo tipo di passaggio avvenire nel Listato 17-23: se
+rimuovessimo `trpl::sleep` alla fine della _future_ `a`, essa completerebbe la
+propria esecuzione senza che la _future_ `b` nemmeno cominciasse. Proviamo a
+utilizzare la funzione `sleep` come punto di partenza per consentire alle
+operazioni di alternarsi nel fare progressi, come mostrato nel Listato 17-24.
 
-<Listing number="17-24" caption="Using `sleep` to let operations switch off making progress" file-name="src/main.rs">
+<Listing number="17-24" caption="Utilizzo di `sleep` per consentire alle operazioni di alternarsi nel fare progressi" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-24/src/main.rs:here}}
@@ -406,39 +326,34 @@ Listing 17-24.
 
 </Listing>
 
-In Listing 17-24, we add `trpl::sleep` calls with await points between each call
-to `slow`. Now the two futures’ work is interleaved:
-
-<!-- manual-regeneration
-cd listings/ch17-async-await/listing-17-24
-cargo run
-copy just the output
--->
+Nel Listato 17-24, aggiungiamo chiamate a `trpl::sleep` con punti di attesa tra
+ogni chiamata a `lenta`. Ora il lavoro delle due _future_ è intervallato:
 
 ```text
-'a' started.
-'a' ran for 30ms
-'b' started.
-'b' ran for 75ms
-'a' ran for 10ms
-'b' ran for 10ms
-'a' ran for 20ms
-'b' ran for 15ms
-'a' finished.
+'a' iniziata.
+'a' eseguita per 30ms
+'b' iniziata.
+'b' eseguita per 75ms
+'a' eseguita per 10ms
+'b' eseguita per 10ms
+'a' eseguita per 20ms
+'b' eseguita per 15ms
+'a' finita.
 ```
 
-The `a` future still runs for a bit before handing off control to `b`, because
-it calls `slow` before ever calling `trpl::sleep`, but after that the futures
-swap back and forth each time one of them hits an await point. In this case, we
-have done that after every call to `slow`, but we could break up the work in
-whatever way makes the most sense to us.
+La _future_ `a` continua a lavorare per un po' prima di restituire il controllo
+a `b`, perché chiama `lenta` prima di chiamare `trpl::sleep`, ma dopo ciò le
+_future_ si alternano ogni volta che una di esse incontra un punto di attesa. In
+questo caso, abbiamo fatto ciò dopo ogni chiamata a `lenta`, ma potremmo
+suddividere il lavoro in qualsiasi modo abbia più senso per noi.
 
-We don’t really want to _sleep_ here, though: we want to make progress as fast
-as we can. We just need to hand back control to the runtime. We can do that
-directly, using the `yield_now` function. In Listing 17-25, we replace all those
-`sleep` calls with `yield_now`.
+Ma non vogliamo davvero _dormire_ qui, però: vogliamo eseguire le nostre
+operazioni il più velocemente possibile e restituire il controllo al _runtime_
+quando possibile. Possiamo farlo direttamente, utilizzando la funzione
+`yield_now`. Nel Listato 17-25, sostituiamo tutte quelle chiamate a `sleep` con
+`yield_now`.
 
-<Listing number="17-25" caption="Using `yield_now` to let operations switch off making progress" file-name="src/main.rs">
+<Listing number="17-25" caption="Utilizzo di `yield_now` per consentire alle operazioni di alternarsi nel fare progressi" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-25/src/main.rs:yields}}
@@ -446,18 +361,19 @@ directly, using the `yield_now` function. In Listing 17-25, we replace all those
 
 </Listing>
 
-This code is both clearer about the actual intent and can be significantly
-faster than using `sleep`, because timers such as the one used by `sleep` often
-have limits on how granular they can be. The version of `sleep` we are using,
-for example, will always sleep for at least a millisecond, even if we pass it a
-`Duration` of one nanosecond. Again, modern computers are _fast_: they can do a
-lot in one millisecond!
+Questo codice è sia più chiaro riguardo all'intento reale sia può essere
+significativamente più veloce rispetto all'uso di `sleep`, perché i timer come
+quello usato da `sleep` hanno spesso limiti su quanto possono essere granulari.
+La versione di `sleep` che stiamo usando, ad esempio, dormirà sempre per almeno
+un millisecondo, anche se le passiamo una `Duration` di un nanosecondo. Ancora
+una volta, i computer moderni sono _veloci_: possono fare molto in un
+millisecondo!
 
-You can see this for yourself by setting up a little benchmark, such as the one
-in Listing 17-26. (This isn’t an especially rigorous way to do performance
-testing, but it suffices to show the difference here.)
+Puoi vedere questo di persona impostando un piccolo _benchmark_, come quello nel
+Listato 17-26. (Questo non è un modo particolarmente rigoroso per fare test di
+prestazioni, ma è sufficiente a mostrare la differenza qui.)
 
-<Listing number="17-26" caption="Comparing the performance of `sleep` and `yield_now`" file-name="src/main.rs">
+<Listing number="17-26" caption="Confronto delle prestazioni di `sleep` e `yield_now`" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-26/src/main.rs:here}}
@@ -465,41 +381,45 @@ testing, but it suffices to show the difference here.)
 
 </Listing>
 
-Here, we skip all the status printing, pass a one-nanosecond `Duration` to
-`trpl::sleep`, and let each future run by itself, with no switching between the
-futures. Then we run for 1,000 iterations and see how long the future using
-`trpl::sleep` takes compared to the future using `trpl::yield_now`.
+Qui, saltiamo tutte le stampe di stato, passiamo una `Duration` di un
+nanosecondo a `trpl::sleep`, e lasciamo che ogni _future_ giri da sola, senza
+alternarci tra le _future_. Poi eseguiamo per 1.000 iterazioni e vediamo quanto
+tempo impiega la _future_ che utilizza `trpl::sleep` rispetto alla _future_ che
+utilizza `trpl::yield_now`.
 
-The version with `yield_now` is _way_ faster!
+La versione con `yield_now` è _di gran lunga_ più veloce!
 
-This means that async can be useful even for compute-bound tasks, depending on
-what else your program is doing, because it provides a useful tool for
-structuring the relationships between different parts of the program. This is a
-form of _cooperative multitasking_, where each future has the power to determine
-when it hands over control via await points. Each future therefore also has the
-responsibility to avoid blocking for too long. In some Rust-based embedded
-operating systems, this is the _only_ kind of multitasking!
+Questo significa che l'_async_ può essere utile anche per compiti legati al
+calcolo, a seconda di cosa sta facendo il tuo programma, perché fornisce uno
+strumento utile per strutturare le relazioni tra le diverse parti del programma.
+Questa è una forma di _multitasking cooperativo_, in cui ogni _future_ ha il
+potere di determinare quando restituisce il controllo tramite i punti di attesa.
+Ogni _future_ ha quindi anche la responsabilità di evitare di bloccarsi troppo a
+lungo. In alcuni sistemi operativi _embedded_ basati su Rust, questo è l'_unico_
+tipo di multi-tasking!
 
-In real-world code, you won’t usually be alternating function calls with await
-points on every single line, of course. While yielding control in this way is
-relatively inexpensive, it’s not free. In many cases, trying to break up a
-compute-bound task might make it significantly slower, so sometimes it’s better
-for _overall_ performance to let an operation block briefly. Always
-measure to see what your code’s actual performance bottlenecks are. The
-underlying dynamic is important to keep in mind, though, if you _are_ seeing a
-lot of work happening in serial that you expected to happen concurrently!
+Nel codice reale, di solito non lavorerai direttamente alternando chiamate di
+funzione con punti di attesa su ogni singola riga, ovviamente. Anche se
+restituire il controllo in questo modo è relativamente poco costoso, non è
+gratuito. In molti casi, cercare di suddividere un compito legato al calcolo
+potrebbe renderlo significativamente più lento, quindi a volte è meglio per le
+prestazioni _complessive_ lasciare che un'operazione si blocchi brevemente.
+Misura sempre per vedere quali sono i veri colli di bottiglia delle prestazioni
+del tuo codice. Tuttavia, la dinamica sottostante è importante da tenere a
+mente, se _stai_ vedendo molto lavoro avvenire in serie che ti aspettavi
+avvenisse in parallelo!
 
-### Building Our Own Async Abstractions
+###  Costruire le Nostre Astrazioni _Async_
 
-We can also compose futures together to create new patterns. For example, we can
-build a `timeout` function with async building blocks we already have. When
-we’re done, the result will be another building block we could use to create
-still more async abstractions.
+Possiamo anche comporre le _future_ insieme per creare nuovi schemi. Ad esempio,
+possiamo costruire una funzione `timeout` con i blocchi _async_ che abbiamo già.
+Quando abbiamo finito, il risultato sarà un altro blocco di costruzione che
+potremmo usare per creare ancora più astrazioni _async_.
 
-Listing 17-27 shows how we would expect this `timeout` to work with a slow
-future.
+Il Listato 17-27 mostra come ci aspettiamo che funzioni questo `timeout` con una
+_future_ lenta.
 
-<Listing number="17-27" caption="Using our imagined `timeout` to run a slow operation with a time limit" file-name="src/main.rs">
+<Listing number="17-27" caption="Utilizzo del nostro immaginato `timeout` per eseguire un'operazione lenta con un limite di tempo" file-name="src/main.rs">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-27/src/main.rs:here}}
@@ -507,23 +427,22 @@ future.
 
 </Listing>
 
-Let’s implement this! To begin, let’s think about the API for `timeout`:
+Implementiamolo! Per cominciare, pensiamo all'API per `timeout`:
 
-- It needs to be an async function itself so we can await it.
-- Its first parameter should be a future to run. We can make it generic to allow
-  it to work with any future.
-- Its second parameter will be the maximum time to wait. If we use a `Duration`,
-  that will make it easy to pass along to `trpl::sleep`.
-- It should return a `Result`. If the future completes successfully, the
-  `Result` will be `Ok` with the value produced by the future. If the timeout
-  elapses first, the `Result` will be `Err` with the duration that the timeout
-  waited for.
+- Deve essere essa stessa una funzione _async_ in modo da poterla attendere.
+- Il suo primo parametro dovrebbe essere una _future_ da eseguire. Possiamo
+  renderla generica per consentirle di funzionare con qualsiasi _future_.
+- Il suo secondo parametro sarà il tempo massimo da attendere. Se usiamo una
+  `Duration`, sarà facile passarla a `trpl::sleep`.
+- Dovrebbe restituire un `Result`. Se la _future_ completa con successo, il
+  `Result` sarà `Ok` con il valore prodotto dalla _future_. Se il _timeout_
+  scade prima, il `Result` sarà `Err` con la durata che il _timeout_ ha atteso.
 
-Listing 17-28 shows this declaration.
+Il Listato 17-28 mostra questa dichiarazione.
 
-<!-- This is not tested because it intentionally does not compile. -->
+<!-- Non testato, perché scritto intenzionalmente per non compoilarsi. -->
 
-<Listing number="17-28" caption="Defining the signature of `timeout`" file-name="src/main.rs">
+<Listing number="17-28" caption="Definire la firma di `timeout`" file-name="src/main.rs">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-28/src/main.rs:declaration}}
@@ -531,21 +450,23 @@ Listing 17-28 shows this declaration.
 
 </Listing>
 
-That satisfies our goals for the types. Now let’s think about the _behavior_ we
-need: we want to race the future passed in against the duration. We can use
-`trpl::sleep` to make a timer future from the duration, and use `trpl::race` to
-run that timer with the future the caller passes in.
+Questo soddisfa i nostri obiettivi per i _type_. Ora pensiamo al _comportamento_
+di cui abbiamo bisogno: vogliamo far competere la _future_ passata contro la
+durata fornita. Possiamo usare `trpl::sleep` per creare una _future_ che duri
+quanto richiesto e usare `trpl::race` per eseguirla contro la _future_ che il
+chiamante passa.
 
-We also know that `race` is not fair, polling arguments in the order in which
-they are passed. Thus, we pass `future_to_try` to `race` first so it gets a
-chance to complete even if `max_time` is a very short duration. If
-`future_to_try` finishes first, `race` will return `Left` with the output from
-`future_to_try`. If `timer` finishes first, `race` will return `Right` with the
-timer’s output of `()`.
+Sappiamo anche che `race` non è equa, processando gli argomenti nell'ordine in
+cui sono passati. Pertanto, passiamo `future_da_testare` a `race` per prima in
+modo che abbia la possibilità di completare anche se `tempo_massimo` è una
+durata molto breve. Se `future_da_testare` finisce prima, `race` restituirà
+`Left` con l'output da `future_da_testare`. Se il timer finisce prima, `race`
+restituirà `Right` con l'output del timer di `()`.
 
-In Listing 17-29, we match on the result of awaiting `trpl::race`.
+Nel Listato 17-29, facciamo il _match_ sul risultato dell'attesa di
+`trpl::race`.
 
-<Listing number="17-29" caption="Defining `timeout` with `race` and `sleep`" file-name="src/main.rs">
+<Listing number="17-29" caption="Definire `timeout` con `race` e `sleep`" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-29/src/main.rs:implementation}}
@@ -553,40 +474,40 @@ In Listing 17-29, we match on the result of awaiting `trpl::race`.
 
 </Listing>
 
-If the `future_to_try` succeeds and we get a `Left(output)`, we return
-`Ok(output)`. If the sleep timer elapses instead and we get a `Right(())`, we
-ignore the `()` with `_` and return `Err(max_time)` instead.
+Se `future_da_testare` ha successo e otteniamo un `Left(output)`, restituiamo
+`Ok(output)`. Se invece il _timer_ finisce prima e otteniamo un `Right(())`,
+ignoriamo il `()` con `_` e restituiamo `Err(max_time)`.
 
-With that, we have a working `timeout` built out of two other async helpers. If
-we run our code, it will print the failure mode after the timeout:
+Con questo, abbiamo un `timeout` funzionante combinando più blocchi _async_. Se
+eseguiamo il nostro codice, stamperà la modalità di errore dopo il timeout:
 
 ```text
-Failed after 2 seconds
+Fallito dopo 2 secondi
 ```
 
-Because futures compose with other futures, you can build really powerful tools
-using smaller async building blocks. For example, you can use this same approach
-to combine timeouts with retries, and in turn use those with operations such as
-network calls (one of the examples from the beginning of the chapter).
+Poiché le _future_ si compongono con altre _future_, puoi costruire strumenti
+davvero potenti utilizzando blocchi di costruzione _async_ più piccoli. Ad
+esempio, puoi utilizzare questo stesso approccio per combinare _timeout_ con
+ripetizioni, e a loro volta usarli con operazioni come chiamate di rete (uno
+degli esempi dall'inizio del capitolo).
 
-In practice, you’ll usually work directly with `async` and `await`, and
-secondarily with functions and macros such as `join`, `join_all`, `race`, and so
-on. You’ll only need to reach for `pin` now and again to use futures with those
-APIs.
+Nella pratica, di solito lavorerai direttamente con `async` e `await`, e
+secondariamente con funzioni e macro come `join`, `join_all`, `race`, e così
+via. Avrai bisogno di ricorrere a `pin` solo di tanto in tanto per utilizzare le
+_future_ con quelle API.
 
-We’ve now seen a number of ways to work with multiple futures at the same
-time. Up next, we’ll look at how we can work with multiple futures in a
-sequence over time with _streams_. Here are a couple more things you might want
-to consider first, though:
+Abbiamo ora visto diversi modi per lavorare con più _future_ contemporaneamente.
+Prossimamente, vedremo come possiamo lavorare con più _future_ in una sequenza
+nel tempo con gli _stream_. Ecco un paio di altre cose che potresti voler
+considerare prima, però:
 
-- We used a `Vec` with `join_all` to wait for all of the futures in some group
-  to finish. How could you use a `Vec` to process a group of futures in
-  sequence instead? What are the tradeoffs of doing that?
-
-- Take a look at the `futures::stream::FuturesUnordered` type from the `futures`
-  crate. How would using it be different from using a `Vec`? (Don’t worry about
-  the fact that it’s from the `stream` part of the crate; it works just fine
-  with any collection of futures.)
+- Abbiamo usato un `Vec` con `join_all` per attendere che tutte le _future_ in
+  un gruppo finissero. Come potresti usare un `Vec` per elaborare un gruppo di
+  _future_ in sequenza invece? Quali sono i compromessi nel farlo?
+- Dai un'occhiata al _type_ `futures::stream::FuturesUnordered` dal _crate_
+  `futures`. Come sarebbe diverso usarlo rispetto a un `Vec`? (Non preoccuparti
+  del fatto che provenga dalla parte `stream` del _crate_; funziona benissimo
+  con qualsiasi collezione di _future_.)
 
 [dyn]: ch12-03-improving-error-handling-and-modularity.html#restituire-errori-dalla-funzione-esegui
 [enum-alt]: ch08-01-vectors.html#utilizzare-unenum-per-memorizzare-più-type
