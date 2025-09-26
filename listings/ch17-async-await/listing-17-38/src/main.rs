@@ -9,7 +9,7 @@ fn main() {
         // ANCHOR: main
         let messaggi = ricevi_messaggi().timeout(Duration::from_millis(200));
         let intervalli = ricevi_intervalli()
-            .map(|conteggio| format!("Intervallo: {conteggio}")
+            .map(|conteggio| format!("Intervallo: {conteggio}"))
             .timeout(Duration::from_secs(10));
         let uniti = messaggi.merge(intervalli);
         let mut stream = pin!(uniti);

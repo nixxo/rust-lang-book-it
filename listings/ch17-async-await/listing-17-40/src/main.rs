@@ -8,7 +8,7 @@ fn main() {
     trpl::run(async {
         let messaggi = ricevi_messaggi().timeout(Duration::from_millis(200));
         let intervalli = ricevi_intervalli()
-            .map(|conteggio| format!("Intervallo: {conteggio}")
+            .map(|conteggio| format!("Intervallo: {conteggio}"))
             .throttle(Duration::from_millis(500))
             .timeout(Duration::from_secs(10));
         let uniti = messaggi.merge(intervalli).take(20);
