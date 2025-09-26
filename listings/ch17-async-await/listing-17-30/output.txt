@@ -1,0 +1,21 @@
+   Compiling async_await v0.1.0 (file:///progetti/async_await)
+error[E0599]: no method named `next` found for struct `tokio_stream::iter::Iter<I>` in the current scope
+  --> src/main.rs:10:41
+   |
+10 |         while let Some(valore) = stream.next().await {
+   |                                         ^^^^
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: the following traits which provide `next` are implemented but not in scope; perhaps you want to import one of them
+   |
+ 1 + use crate::trpl::StreamExt;
+   |
+ 1 + use futures_util::stream::stream::StreamExt;
+   |
+help: there is a method `try_next` with a similar name
+   |
+10 |         while let Some(valore) = stream.try_next().await {
+   |                                         ++++
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `async_await` (bin "async_await") due to 1 previous error
