@@ -1,7 +1,7 @@
 <!-- Old headings. Do not remove or links may break. -->
 <a id="digging-into-the-traits-for-async"></a>
 
-## Uno Sguardo Più Da Vicino ai _Trait_ per Async
+## Uno Sguardo Più Da Vicino ai _Trait_ per _Async_
 
 Nel corso del capitolo, abbiamo utilizzato i _trait_ `Future`, `Pin`, `Unpin`,
 `Stream` e `StreamExt` in vari modi. Finora, però, abbiamo evitato di

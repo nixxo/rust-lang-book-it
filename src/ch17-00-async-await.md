@@ -1,4 +1,4 @@
-# Fondamenti di Programmazione Asincrona: Async, Await, Future e Stream
+# Fondamenti di Programmazione Asincrona: _Async_, _Await_, _Future_ e _Stream_
 
 Molte operazioni che chiediamo al computer di fare possono richiedere del tempo
 per completarsi. Sarebbe bello poter fare altro mentre aspettiamo che questi

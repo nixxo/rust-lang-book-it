@@ -1,4 +1,4 @@
-### Lavorare con un Numero Qualsiasi di Futures
+### Lavorare con un Numero Qualsiasi di _Future_
 
 Quando siamo passati dall'usare due _future_ a tre nella sezione precedente,
 abbiamo dovuto passare da `join` a `join3`. Sarebbe fastidioso dover chiamare
