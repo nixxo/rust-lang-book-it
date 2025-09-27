@@ -402,9 +402,9 @@ dinamica, otterremmo un errore durante l'esecuzione se chiamassimo un metodo su
 un _type_ che non lo definisce. Ma Rust sposta questi errori in fase di
 compilazione, quindi siamo costretti a correggere i problemi prima ancora che il
 nostro codice possa essere eseguito. Inoltre, non dobbiamo scrivere codice che
-verifichi il comportamento a runtime, perché lo abbiamo già verificato in fase
-di compilazione. Ciò migliora le prestazioni senza dover rinunciare alla
-flessibilità dei _type_ generici.
+verifichi il comportamento durante l'esecuzione, perché lo abbiamo già
+verificato in fase di compilazione. Ciò migliora le prestazioni senza dover
+rinunciare alla flessibilità dei _type_ generici.
 
 [using-trait-objects]: ch18-02-trait-objects.html
 [methods]: ch05-03-method-syntax.html#definire-i-metodi

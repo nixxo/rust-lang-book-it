@@ -43,7 +43,8 @@ standard:
 - `Rc<T>`, un _type_ di conteggio dei _reference_ che consente la _ownership_
   multipla
 - `Ref<T>` e `RefMut<T>`, accessibili tramite `RefCell<T>`, un _type_ che
-  applica le regole di prestito a runtime anziché in fase di compilazione
+  applica le regole di prestito durante l'esecuzione anziché in fase di
+  compilazione
 
 Inoltre, tratteremo il _pattern_ di _mutabilità interna_, in cui un _type_
 immutabile espone un'API per la mutazione di un valore interno. Discuteremo

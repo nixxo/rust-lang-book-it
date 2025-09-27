@@ -22,7 +22,7 @@ cui le persone e i computer interpretano i dati `String`.
 Definiremo innanzitutto cosa intendiamo con il termine _stringa_. Rust ha un
 solo _type_ di stringa nel linguaggio principale, ovvero la _slice_ di stringa
 `str` che viene principalmente utilizzata come _reference_ `&str`. Nel Capitolo
-4 abbiamo parlato delle _string slice_, che sono _reference_ ad alcuni dati
+4 abbiamo parlato delle _slice_ di stringa, che sono _reference_ ad alcuni dati
 stringa codificati in UTF-8 memorizzati altrove. I letterali stringa, ad
 esempio, sono memorizzati nel binario del programma e sono quindi _slice_ di
 stringa.

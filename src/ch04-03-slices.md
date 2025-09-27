@@ -113,10 +113,10 @@ variabili non correlate e indipendenti che noi dobbiamo mantenere in sincronia.
 
 Fortunatamente, Rust ha una soluzione a questo problema: le _slice_ di stringhe.
 
-### String _Slice_
+### _Slice_ di Stringa
 
-Una _string slice_ è un _reference_ a una sequenza contigua degli elementi di
-una `String`, e appare così:
+Una _slice_ di stringa (_string slice_) è un _reference_ a una sequenza contigua
+degli elementi di una `String`, e appare così:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-17-slice/src/main.rs:here}}
@@ -136,14 +136,13 @@ di lunghezza di `5`.
 La Figura 4-7 mostra questo in un diagramma.
 
 <img alt="Tre tabelle: una tabella che rappresenta i dati dello stack di s, che
-punta al byte all'indice 0 in una tabella dei dati della stringa &quot;hello
-world&quot; nell'heap. La terza tabella rappresenta i dati sullo stack dello
+punta al byte all'indice 0 in una tabella dei dati della stringa “hello
+world” nell'heap. La terza tabella rappresenta i dati sullo stack dello
 slice world, che ha un valore di lunghezza di 5 e punta al byte 6 della tabella
 dei dati nell'heap." src="img/trpl04-07.svg" class="center" style="width: 50%;"
 />
 
-<span class="caption">Figura 4-7: String _slice_ che si riferisce a parte di una
-`String`</span>
+<span class="caption">Figura 4-7: _Slice_ di stringa che si riferisce a parte di una `String`</span>
 
 Con la sintassi d'intervallo `..` di Rust, se vuoi iniziare dall'indice 0, puoi
 omettere il valore prima dei due punti. In altre parole, questi sono
@@ -264,7 +263,7 @@ Il _type_ di `s` qui è `&str`: è una _slice_ che punta a quel punto specifico
 nel binario. Questo è anche il motivo per cui i letterali di stringhe sono
 immutabili; `&str` è un _reference_ immutabile.
 
-### String _Slice_ come Parametri
+### _Slice_ di Stringa come Parametri
 
 Sapendo che puoi avere _slice_ di letterali e di valori `String`, arriviamo a un
 ulteriore miglioramento per `prima_parola`, e cioè la sua firma:
@@ -285,15 +284,15 @@ su valori `&str`.
 
 </Listing>
 
-Se abbiamo una string _slice_, possiamo passarlo direttamente. Se abbiamo una
-`String`, possiamo passare una _slice_ della `String` o un _reference_ alla
+Se abbiamo una _slice_ di stringa, possiamo passarlo direttamente. Se abbiamo
+una `String`, possiamo passare una _slice_ della `String` o un _reference_ alla
 `String`. Questa flessibilità sfrutta la _deref coercions_ (_de-referenziazione
 forzata_), una funzionalità che tratteremo nella sezione [“De-referenziazione
 forzata implicita in Funzioni e Metodi”][deref-coercions] del Capitolo 15.
 
-Definire una funzione che come parametro prende una string _slice_ invece di un
-_reference_ a una `String` rende la nostra funzione più generica e utile senza
-perdere alcuna funzionalità:
+Definire una funzione che come parametro prende una _slice_ di stringa invece di
+un _reference_ a una `String` rende la nostra funzione più generica e utile
+senza perdere alcuna funzionalità:
 
 <Listing file-name="src/main.rs">
 
@@ -303,17 +302,17 @@ perdere alcuna funzionalità:
 
 </Listing>
 
-### Altri _Slice_
+### Altre _Slice_
 
-Le string _slice_, come puoi immaginare, sono specifici per le stringhe. Ma c'è
-anche un tipo di _slice_ più generale. Considera questo array:
+Le _slice_ di stringa, come puoi immaginare, sono specifiche per le stringhe. Ma
+c'è anche un tipo di _slice_ più generale. Considera questo array:
 
 ```rust
 let a = [1, 2, 3, 4, 5];
 ```
 
-Proprio come potremmo voler fare _reference_ a parte di una stringa, potremmo
-voler fare _reference_ a parte di un array. Lo faremmo in questo modo:
+Proprio come potremmo voler fare riferimento a parte di una stringa, potremmo
+voler fare riferimento a parte di un array. Lo faremmo in questo modo:
 
 ```rust
 let a = [1, 2, 3, 4, 5];

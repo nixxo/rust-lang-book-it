@@ -340,8 +340,8 @@ programma se il valore dell'indice o la condizione di test non sono corretti.
 Per esempio, se cambiassi la definizione dell'array `a` per avere quattro
 elementi, ma dimenticassi di aggiornare la condizione a `while indice < 4`, il
 codice andrebbe in _panic_. È anche lento, perché il compilatore aggiunge codice
-di runtime per eseguire il controllo condizionale per verificare se l'indice è
-entro i limiti dell'array a ogni iterazione del ciclo.
+di esecuzione per eseguire il controllo condizionale per verificare se l'indice
+è entro i limiti dell'array a ogni iterazione del ciclo.
 
 Come alternativa più concisa, puoi usare un ciclo `for` ed eseguire del codice
 per ogni elemento di una collezione. Un ciclo `for` assomiglia al codice del

@@ -375,7 +375,7 @@ produce un nuovo _stream_ che avvolge lo _stream_ originale, in modo che lo
 _stream_ originale venga interrogato solo alla velocità di throttle, non alla
 sua "velocità nativa". Non abbiamo un sacco di messaggi di intervallo non
 gestiti che scegliamo di ignorare. Invece, non produciamo mai quei messaggi di
-intervallo in primo luogo! Questa è l'innata "pigrizia" dei _future_ di Rust che
+intervallo in primo luogo! Questa è l'innata “pigrizia” dei _future_ di Rust che
 entra in gioco, permettendoci di scegliere le nostre caratteristiche di
 prestazione.
 

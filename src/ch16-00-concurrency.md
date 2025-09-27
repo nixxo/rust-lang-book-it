@@ -23,8 +23,7 @@ conseguenza, puoi correggere il tuo codice mentre ci stai lavorando piuttosto
 che potenzialmente dopo che è stato compilato e distribuito a chi lo utilizza.
 Abbiamo soprannominato questo aspetto di Rust _fearless concurrency_
 (_concorrenza senza paura_). La concorrenza senza paura ti permette di scrivere
-codice privo di bug subdoli e facile da ristrutturare senza introdurre nuovi
-bug.
+codice privo di bug subdoli e facile da riscrivere senza introdurre nuovi bug.
 
 > Nota: per semplicità, ci riferiremo a molti problemi come _concorrenti_
 > piuttosto che essere più precisi dicendo _concorrenti e/o paralleli_. Per

@@ -148,8 +148,9 @@ competizione e si verifica quando si verificano questi tre comportamenti:
 - Non viene utilizzato alcun meccanismo per sincronizzare l’accesso ai dati
 
 I _data race_ causano comportamenti non programmati e possono essere difficili
-da diagnosticare e risolvere quando si cerca di individuarli in _runtime_; Rust
-previene questo problema rifiutando di compilare codice contenente _data race_!
+da diagnosticare e risolvere quando si cerca di individuarli durante
+l'esecuzione; Rust previene questo problema rifiutando di compilare codice
+contenente _data race_!
 
 Come sempre, possiamo usare le parentesi graffe per creare uno _scope_ nuovo,
 consentendo di avere più _reference_ mutabili, ma non _simultanee_:
@@ -208,8 +209,8 @@ più valido, perché quella memoria assegnata a quella variabile è stata libera
 ma non si è provveduto a cancellare anche il puntatore che per l'appunto rimane
 _pendente_ puntando a qualcosa che non è più disponibile. In Rust, al contrario,
 il compilatore garantisce che i _reference_ non diverranno mai _pendenti_: se si
-ha un _reference_ ad alcuni dati, il compilatore si assicurerà che i dati non
-escano dallo _scope_ prima che lo faccia il _reference_ a quei dati.
+ha un _reference_ ad alcuni dati, il compilatore ci impedirirà di usare quel
+_reference_ dopo che i dati sono usciti dallo _scope_.
 
 Proviamo a creare un _reference_ _pendente_ per vedere come Rust li previene
 segnalando un errore in fase di compilazione:

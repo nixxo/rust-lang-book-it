@@ -51,9 +51,9 @@ Il puntatore intelligente `Rc<T>` non implementa neanche `Sync` per le stesse
 ragioni per cui non implementa `Send`. Il _type_ `RefCell<T>` (di cui abbiamo
 parlato nel Capitolo 15) e la famiglia correlata di _type_ `Cell<T>` non
 implementano `Sync`. L'implementazione del controllo dei prestiti che
-`RefCell<T>` fa a runtime non è sicura per l'uso coi _thread_. Invece il
-puntatore intelligente `Mutex<T>` implementa `Sync` e può essere utilizzato per
-condividere l'accesso con più _thread_, come hai visto in ["Condividere
+`RefCell<T>` fa durante l'esecuzione non è sicura per l'uso coi _thread_. Invece
+il puntatore intelligente `Mutex<T>` implementa `Sync` e può essere utilizzato
+per condividere l'accesso con più _thread_, come hai visto in ["Condividere
 `Mutex<T>` tra più _Thread_"][sharing-a-mutext]<!-- ignore -->.
 
 ### Implementare Manualmente `Send` e `Sync` È Insicuro

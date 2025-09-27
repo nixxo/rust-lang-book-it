@@ -151,7 +151,7 @@ di _type_ `U`.
 Ora tutte le istanze di `Punto` mostrate sono consentite! Puoi usare tutti i
 parametri di _type_ generico che vuoi in una definizione, ma usarne di più rende
 il codice difficile da leggere. Se ti accorgi di aver bisogno di molti _type_
-generici nel tuo codice, potrebbe essere necessario ristrutturarlo in parti più
+generici nel tuo codice, potrebbe essere necessario riscriverlo in parti più
 piccole.
 
 ### Nella Definizione delle _Enum_

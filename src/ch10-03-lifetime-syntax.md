@@ -126,7 +126,7 @@ stampare `La stringa più lunga è abcd`.
 
 Nota che vogliamo che la funzione accetti _slice_, che sono _reference_,
 piuttosto che stringhe, perché non vogliamo che la funzione `più_lunga` prenda
-possesso dei suoi parametri. Fai riferimento a [“String _Slice_ come
+possesso dei suoi parametri. Fai riferimento a [“_Slice_ di Stringa come
 Parametri”][string-slices-as-parameters]<!-- ignore --> nel Capitolo 4 per una
 disamina più approfondita sul motivo per cui i parametri che utilizziamo nel
 Listato 10-19 sono quelli che desideriamo.
@@ -648,5 +648,5 @@ Reference][reference] (in inglese). Ma ora imparerai come scrivere test in Rust
 in modo da poterti assicurare che il tuo codice funzioni a dovere.
 
 [references-and-borrowing]: ch04-02-references-and-borrowing.html#reference-e-borrowing
-[string-slices-as-parameters]: ch04-03-slices.html#string-slice-come-parametri
+[string-slices-as-parameters]: ch04-03-slices.html#slice-di-stringa-come-parametri
 [reference]: https://doc.rust-lang.org/stable/reference/index.html

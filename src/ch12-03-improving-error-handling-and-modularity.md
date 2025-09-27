@@ -35,7 +35,7 @@ cambiamenti. Avere tutto il codice di gestione degli errori in un unico posto
 garantirà anche la stampa di messaggi comprensibili per gli utenti della nostra
 applicazione.
 
-Affrontiamo questi quattro problemi ristrutturando il nostro progetto.
+Affrontiamo questi quattro problemi riscrivendo il nostro progetto.
 
 ### Separare le Attività per i Progetti Binari
 
@@ -95,12 +95,11 @@ a `main`. Creiamo ancora le variabili `query` e `percorso_file` in `main`, ma
 `main` non ha più la responsabilità di determinare come gli argomenti e le
 variabili della riga di comando corrispondono.
 
-Questa ristrutturazione potrebbe sembrare eccessiva per il nostro piccolo
-programma, ma stiamo eseguendo il _refactoring_ in piccoli passaggi
-incrementali. Dopo aver apportato questa modifica, esegui nuovamente il
-programma per verificare che l'analisi degli argomenti funzioni ancora. È
-consigliabile controllare spesso i progressi per aiutare a identificare la causa
-dei problemi quando si verificano.
+Questa riscrittura potrebbe sembrare eccessiva per il nostro piccolo programma,
+ma stiamo eseguendo il _refactoring_ in piccoli passaggi incrementali. Dopo aver
+apportato questa modifica, esegui nuovamente il programma per verificare che
+l'analisi degli argomenti funzioni ancora. È consigliabile controllare spesso i
+progressi per aiutare a identificare la causa dei problemi quando si verificano.
 
 #### Raggruppare i Valori di Configurazione
 

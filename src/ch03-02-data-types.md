@@ -378,9 +378,9 @@ di indicizzazione. Il programma è uscito con un messaggio di errore e non ha
 eseguito l'istruzione finale `println!`. Quando si tenta di accedere a un
 elemento utilizzando l'indicizzazione, Rust controlla che l'indice specificato
 sia inferiore alla lunghezza dell'array. Se l'indice è maggiore o uguale alla
-lunghezza, Rust va in _panic_. Questo controllo deve avvenire in _runtime_,
-soprattutto in questo caso, perché il compilatore non può sapere quale valore
-inserirà l'utente quando eseguirà il codice in seguito.
+lunghezza, Rust va in _panic_. Questo controllo deve avvenire durante
+l'esecuzione, soprattutto in questo caso, perché il compilatore non può sapere
+quale valore inserirà l'utente quando eseguirà il codice in seguito.
 
 Questo è un esempio dei principi di sicurezza della memoria di Rust in azione.
 In molti linguaggi di basso livello, questo tipo di controllo non viene fatto e

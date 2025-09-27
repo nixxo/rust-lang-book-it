@@ -14,7 +14,7 @@ development_, abbreviato _TDD_) con i seguenti passaggi:
    il motivo previsto.
 2. Scrivere o modificare solo il codice necessario per far passare il nuovo
    test.
-3. Ristrutturare il codice appena aggiunto o modificato e assicurarsi che i test
+3. Riscrivere il codice appena aggiunto o modificato e assicurarsi che i test
    continuino a passare.
 4. Ripetere dal passaggio 1!
 
@@ -184,7 +184,7 @@ Ora la funzione `cerca` dovrebbe restituire solo le righe che contengono
 Il nostro test è stato superato, quindi sappiamo che la funzione fa quello che
 ci aspettiamo!
 
-A questo punto, potremmo valutare l'opportunità di ristrutturare e migliorare
+A questo punto, potremmo valutare l'opportunità di riscrivere e migliorare
 l'implementazione della funzione di ricerca, controllando che i test continuino
 a passare per mantenere la stessa funzionalità. Il codice nella funzione di
 ricerca non è male, ma non sfrutta alcune utili funzionalità degli iteratori.

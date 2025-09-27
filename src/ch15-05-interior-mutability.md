@@ -8,9 +8,11 @@ la mutability e il borrowing. Il codice `unsafe` indica al compilatore che stiam
 controllando le regole manualmente invece di affidarci al compilatore affinché le controlli
 per noi; approfondiremo il codice `unsafe` nel Capitolo 20.
 
-Possiamo utilizzare tipi che utilizzano il pattern di mutabilità interna solo quando possiamo
-garantire che le regole di prestito vengano rispettate a runtime, anche se il
-compilatore non può garantirlo. Il codice `unsafe` coinvolto viene quindi racchiuso in un'API sicura e il tipo esterno rimane immutabile.
+Possiamo utilizzare tipi che utilizzano il pattern di mutabilità interna solo
+quando possiamo garantire che le regole di prestito vengano rispettate durante
+l'esecuzione, anche se il compilatore non può garantirlo. Il codice `unsafe`
+coinvolto viene quindi racchiuso in un'API sicura e il tipo esterno rimane
+immutabile.
 
 Esploriamo questo concetto esaminando il tipo `RefCell<T>` che segue il
 pattern di mutabilità interna.
@@ -86,14 +88,14 @@ Se provassi a compilare questo codice, otterresti il seguente errore:
 {{#include ../listings/ch15-smart-pointers/no-listing-01-cant-borrow-immutable-as-mutable/output.txt}}
 ```
 
-Tuttavia, ci sono situazioni in cui sarebbe utile che un valore mutasse
-se stesso nei suoi metodi, ma apparisse immutabile ad altro codice. Il codice esterno
-ai metodi del valore non sarebbe in grado di mutare il valore. Usare `RefCell<T>` è
-un modo per ottenere la possibilità di avere una mutabilità interna, ma `RefCell<T>`
-non aggira completamente le regole di prestito: il controllore di prestito nel
-compilatore consente questa mutabilità interna e le regole di prestito vengono invece verificate
-a runtime. Se si violano le regole, si otterrà un `panic!` invece di
-un errore del compilatore.
+Tuttavia, ci sono situazioni in cui sarebbe utile che un valore mutasse se
+stesso nei suoi metodi, ma apparisse immutabile ad altro codice. Il codice
+esterno ai metodi del valore non sarebbe in grado di mutare il valore. Usare
+`RefCell<T>` è un modo per ottenere la possibilità di avere una mutabilità
+interna, ma `RefCell<T>` non aggira completamente le regole di prestito: il
+controllore di prestito nel compilatore consente questa mutabilità interna e le
+regole di prestito vengono invece verificate durante l'esecuzione. Se si violano
+le regole, si otterrà un `panic!` invece di un errore del compilatore.
 
 Esaminiamo un esempio pratico in cui possiamo usare `RefCell<T>` per mutare
 un valore immutabile e vediamo perché è utile.
@@ -258,11 +260,11 @@ Si noti che il codice è andato in panico con il messaggio `already borrowed:
 BorrowMutError`. Ecco come `RefCell<T>` gestisce le violazioni delle regole di prestito
 in fase di esecuzione.
 
-Scegliere di rilevare gli errori di prestito a runtime anziché in fase di compilazione, come
+Scegliere di rilevare gli errori di prestito durante l'esecuzione anziché in fase di compilazione, come
 abbiamo fatto qui, significa che potenzialmente si troverebbero errori nel codice in una fase successiva
 del processo di sviluppo: probabilmente non prima del deployment del codice
-in produzione. Inoltre, il codice subirebbe una piccola penalizzazione delle prestazioni a runtime a causa
-del monitoraggio dei prestiti a runtime anziché in fase di compilazione.
+in produzione. Inoltre, il codice subirebbe una piccola penalizzazione delle prestazioni durante l'esecuzione a causa
+del monitoraggio dei prestiti durante l'esecuzione anziché in fase di compilazione.
 Tuttavia, l'utilizzo di `RefCell<T>` consente di scrivere un oggetto fittizio in grado
 di modificarsi per tenere traccia dei messaggi visualizzati durante l'utilizzo
 in un contesto in cui sono consentiti solo valori immutabili. È possibile utilizzare `RefCell<T>`
@@ -322,7 +324,7 @@ di `15` anziché `5`:
 Questa tecnica è davvero interessante! Utilizzando `RefCell<T>`, abbiamo un valore `List` esternamente
 immutabile. Ma possiamo usare i metodi su `RefCell<T>` che forniscono
 l'accesso alla sua mutabilità interna, così da poter modificare i nostri dati quando necessario.
-I controlli di runtime delle regole di prestito ci proteggono dalle data races, e a volte vale
+I controlli durante l'esecuzione delle regole di prestito ci proteggono dalle data races, e a volte vale
 la pena sacrificare un po' di velocità per questa flessibilità nelle nostre
 strutture dati. Nota che `RefCell<T>` non funziona per il codice multithread!
 `Mutex<T>` è la versione thread-safe di `RefCell<T>` e ne parleremo

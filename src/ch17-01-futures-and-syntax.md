@@ -107,7 +107,7 @@ corpo è molto grande, può volerci del tempo perché arrivi tutto. Poiché dobb
 aspettare l'_intera_ risposta, anche il metodo `text` è asincrono.
 
 Dobbiamo esplicitamente attendere entrambi questi _future_, perché i _future_ in
-Rust sono _pigri_ (_lazy_): non fanno nulla finché non gli chiedi di farlo con
+Rust sono _lazy_ (_pigri_): non fanno nulla finché non gli chiedi di farlo con
 la parola chiave `await`. (In effetti, Rust mostrerà un avviso del compilatore
 se non usi un _future_.) Questo potrebbe ricordarti la discussione del Capitolo
 13 sugli iteratori nella sezione [Elaborare una Serie di Elementi con
