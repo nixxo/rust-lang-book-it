@@ -4,30 +4,30 @@ use std::rc::{Rc, Weak};
 
 #[derive(Debug)]
 struct Node {
-    value: i32,
-    parent: RefCell<Weak<Node>>,
-    children: RefCell<Vec<Rc<Node>>>,
+    valore: i32,
+    padre: RefCell<Weak<Node>>,
+    figlio: RefCell<Vec<Rc<Node>>>,
 }
 // ANCHOR_END: here
 
 // ANCHOR: there
 fn main() {
-    let leaf = Rc::new(Node {
-        value: 3,
-        parent: RefCell::new(Weak::new()),
-        children: RefCell::new(vec![]),
+    let foglia = Rc::new(Node {
+        valore: 3,
+        padre: RefCell::new(Weak::new()),
+        figlio: RefCell::new(vec![]),
     });
 
-    println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+    println!("foglia padre = {:?}", foglia.padre.borrow().upgrade());
 
-    let branch = Rc::new(Node {
-        value: 5,
-        parent: RefCell::new(Weak::new()),
-        children: RefCell::new(vec![Rc::clone(&leaf)]),
+    let ramo = Rc::new(Node {
+        valore: 5,
+        padre: RefCell::new(Weak::new()),
+        figlio: RefCell::new(vec![Rc::clone(&foglia)]),
     });
 
-    *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
+    *foglia.padre.borrow_mut() = Rc::downgrade(&ramo);
 
-    println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+    println!("foglia padre = {:?}", foglia.padre.borrow().upgrade());
 }
 // ANCHOR_END: there

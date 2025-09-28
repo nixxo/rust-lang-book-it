@@ -3,52 +3,52 @@ use std::rc::{Rc, Weak};
 
 #[derive(Debug)]
 struct Node {
-    value: i32,
-    parent: RefCell<Weak<Node>>,
-    children: RefCell<Vec<Rc<Node>>>,
+    valore: i32,
+    padre: RefCell<Weak<Node>>,
+    figlio: RefCell<Vec<Rc<Node>>>,
 }
 
 // ANCHOR: here
 fn main() {
-    let leaf = Rc::new(Node {
-        value: 3,
-        parent: RefCell::new(Weak::new()),
-        children: RefCell::new(vec![]),
+    let foglia = Rc::new(Node {
+        valore: 3,
+        padre: RefCell::new(Weak::new()),
+        figlio: RefCell::new(vec![]),
     });
 
     println!(
-        "leaf strong = {}, weak = {}",
-        Rc::strong_count(&leaf),
-        Rc::weak_count(&leaf),
+        "foglia strong = {}, debole = {}",
+        Rc::strong_count(&foglia),
+        Rc::weak_count(&foglia),
     );
 
     {
-        let branch = Rc::new(Node {
-            value: 5,
-            parent: RefCell::new(Weak::new()),
-            children: RefCell::new(vec![Rc::clone(&leaf)]),
+        let ramo = Rc::new(Node {
+            valore: 5,
+            padre: RefCell::new(Weak::new()),
+            figlio: RefCell::new(vec![Rc::clone(&foglia)]),
         });
 
-        *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
+        *foglia.padre.borrow_mut() = Rc::downgrade(&ramo);
 
         println!(
-            "branch strong = {}, weak = {}",
-            Rc::strong_count(&branch),
-            Rc::weak_count(&branch),
+            "ramo strong = {}, weak = {}",
+            Rc::strong_count(&ramo),
+            Rc::weak_count(&ramo),
         );
 
         println!(
-            "leaf strong = {}, weak = {}",
-            Rc::strong_count(&leaf),
-            Rc::weak_count(&leaf),
+            "foglia strong = {}, weak = {}",
+            Rc::strong_count(&foglia),
+            Rc::weak_count(&foglia),
         );
     }
 
-    println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+    println!("foglia padre = {:?}", foglia.padre.borrow().upgrade());
     println!(
-        "leaf strong = {}, weak = {}",
-        Rc::strong_count(&leaf),
-        Rc::weak_count(&leaf),
+        "foglia strong = {}, weak = {}",
+        Rc::strong_count(&foglia),
+        Rc::weak_count(&foglia),
     );
 }
 // ANCHOR_END: here

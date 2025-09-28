@@ -152,13 +152,13 @@ Vogliamo che un `Node` possieda i suoi figli e vogliamo condividere tale proprie
 le variabili in modo da poter accedere direttamente a ciascun `Node` nell'albero. Per fare ciò,
 definiamo gli elementi `Vec<T>` come valori di tipo `Rc<Node>`. Vogliamo anche
 modificare quali nodi sono figli di un altro nodo, quindi abbiamo una `RefCell<T>` in
-`children` attorno a `Vec<Rc<Node>>`.
+`figlio` attorno a `Vec<Rc<Node>>`.
 
 Successivamente, utilizzeremo la nostra definizione di struttura e creeremo un'istanza `Node` denominata
-`leaf` con valore `3` e nessun elemento figlio, e un'altra istanza denominata `branch`
-con valore `5` e `leaf` come elemento figlio, come mostrato nel Listato 15-27.
+`foglia` con valore `3` e nessun elemento figlio, e un'altra istanza denominata `ramo`
+con valore `5` e `foglia` come elemento figlio, come mostrato nel Listato 15-27.
 
-<Listing number="15-27" file-name="src/main.rs" caption="Creazione di un nodo `leaf` senza figli e di un nodo `branch` con `leaf` come figlio">
+<Listing number="15-27" file-name="src/main.rs" caption="Creazione di un nodo `foglia` senza figli e di un nodo `ramo` con `foglia` come figlio">
 
 ```rust
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-27/src/main.rs:there}}
@@ -166,27 +166,27 @@ con valore `5` e `leaf` come elemento figlio, come mostrato nel Listato 15-27.
 
 </Listing>
 
-Cloniamo `Rc<Node>` in `leaf` e lo memorizziamo in `branch`, il che significa che il
-`Node` in `leaf` ora ha due proprietari: `leaf` e `branch`. Possiamo passare da
-`branch` a `leaf` tramite `branch.children`, ma non c'è modo di passare da
-`leaf` a `branch`. Il motivo è che `leaf` non ha alcun riferimento a `branch` e
-non sa che sono correlati. Vogliamo che `leaf` sappia che `branch` è il suo
+Cloniamo `Rc<Node>` in `foglia` e lo memorizziamo in `ramo`, il che significa che il
+`Node` in `foglia` ora ha due proprietari: `foglia` e `ramo`. Possiamo passare da
+`ramo` a `foglia` tramite `ramo.figlioren`, ma non c'è modo di passare da
+`foglia` a `ramo`. Il motivo è che `foglia` non ha alcun riferimento a `ramo` e
+non sa che sono correlati. Vogliamo che `foglia` sappia che `ramo` è il suo
 genitore. Lo faremo ora.
 
-#### Aggiungere un riferimento da un nodo figlio al suo padre
+#### Aggiungere un Riferimento da un Nodo Figlio al Padre
 
-Per far sì che il nodo figlio riconosca il suo padre, dobbiamo aggiungere un campo `parent` alla
+Per far sì che il nodo figlio riconosca il suo padre, dobbiamo aggiungere un campo `padre` alla
 definizione della nostra struttura `Node`. Il problema sta nel decidere quale tipo di
-`parent` debba essere. Sappiamo che non può contenere un `Rc<T>`, perché ciò creerebbe
-un ciclo di riferimenti con `leaf.parent` che punta a `branch` e
-`branch.children` che punta a `leaf`, il che farebbe sì che i loro valori `strong_count`
+`padre` debba essere. Sappiamo che non può contenere un `Rc<T>`, perché ciò creerebbe
+un ciclo di riferimenti con `foglia.padre` che punta a `ramo` e
+`ramo.figlio` che punta a `foglia`, il che farebbe sì che i loro valori `strong_count`
 non siano mai pari a 0.
 
 Pensando alle relazioni in un altro modo, un nodo padre dovrebbe possedere i suoi
 figli: se un nodo padre viene eliminato, anche i suoi nodi figli dovrebbero essere eliminati. Tuttavia, un figlio non dovrebbe possedere il suo padre: se eliminiamo un nodo figlio, il
-genitore dovrebbe comunque esistere. Questo è un caso di riferimenti deboli!
+genitore dovrebbe comunque esistere. Questo è un caso di weak references_!
 
-Quindi, invece di `Rc<T>`, faremo in modo che il tipo di `parent` utilizzi `Weak<T>`,
+Quindi, invece di `Rc<T>`, faremo in modo che il tipo di `padre` utilizzi `Weak<T>`,
 in particolare `RefCell<Weak<Node>>`. Ora la definizione della struttura `Node` appare
 così:
 
@@ -198,9 +198,9 @@ così:
 
 Un nodo potrà fare riferimento al suo nodo padre, ma non ne sarà il proprietario.
 Nel Listato 15-28, aggiorniamo `main` per utilizzare questa nuova definizione, in modo che il nodo `foglia`
-abbia un modo per fare riferimento al suo padre, `branch`.
+abbia un modo per fare riferimento al suo padre, `ramo`.
 
-<Listing number="15-28" file-name="src/main.rs" caption="Un nodo `leaf` con un riferimento debole al suo nodo padre, `branch`">
+<Listing number="15-28" file-name="src/main.rs" caption="Un nodo `foglia` con un weak reference al suo nodo padre, `ramo`">
 
 ```rust
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-28/src/main.rs:there}}
@@ -208,50 +208,50 @@ abbia un modo per fare riferimento al suo padre, `branch`.
 
 </Listing>
 
-La creazione del nodo `leaf` è simile a quella del Listato 15-27, ad eccezione
-del campo `parent`: `leaf` inizia senza un padre, quindi creiamo una nuova
+La creazione del nodo `foglia` è simile a quella del Listato 15-27, ad eccezione
+del campo `padre`: `foglia` inizia senza un padre, quindi creiamo una nuova
 istanza vuota di riferimento `Weak<Node>`.
 
-A questo punto, quando proviamo a ottenere un riferimento al padre di `leaf` utilizzando
+A questo punto, quando proviamo a ottenere un riferimento al padre di `foglia` utilizzando
 il metodo `upgrade`, otteniamo il valore `None`. Lo vediamo nell'output della
 prima istruzione `println!`:
 
 ```text
-leaf parent = None
+foglia padre = None
 ```
 
-Quando creiamo il nodo `branch`, avrà anche un nuovo riferimento `Weak<Node>`
-nel campo `parent` perché `branch` non ha un nodo padre.
-Abbiamo ancora `leaf` come uno dei figli di `branch`. Una volta che abbiamo l'istanza
-`Node` in `branch`, possiamo modificare `leaf` per assegnargli un riferimento `Weak<Node>`
+Quando creiamo il nodo `ramo`, avrà anche un nuovo riferimento `Weak<Node>`
+nel campo `padre` perché `ramo` non ha un nodo padre.
+Abbiamo ancora `foglia` come uno dei figli di `ramo`. Una volta che abbiamo l'istanza
+`Node` in `ramo`, possiamo modificare `foglia` per assegnargli un riferimento `Weak<Node>`
 al suo padre. Utilizziamo il metodo `borrow_mut` su
-`RefCell<Weak<Node>>` nel campo `parent` di `leaf`, quindi utilizziamo la funzione
-`Rc::downgrade` per creare un riferimento `Weak<Node>` a `branch` da
-`Rc<Node>` in `branch`.
+`RefCell<Weak<Node>>` nel campo `padre` di `foglia`, quindi utilizziamo la funzione
+`Rc::downgrade` per creare un riferimento `Weak<Node>` a `ramo` da
+`Rc<Node>` in `ramo`.
 
-Quando stampiamo di nuovo il genitore di `leaf`, questa volta otterremo una variante `Some`
-che contiene `branch`: ora `leaf` può accedere al suo genitore! Quando stampiamo `leaf`,
+Quando stampiamo di nuovo il genitore di `foglia`, questa volta otterremo una variante `Some`
+che contiene `ramo`: ora `foglia` può accedere al suo genitore! Quando stampiamo `foglia`,
 evitiamo anche il ciclo che alla fine si è concluso con uno stack overflow come nel
 Listato 15-26; i riferimenti `Weak<Node>` vengono stampati come `(Weak)`:
 
 ```testo
-leaf parent = Some(Node { value: 5, parent: RefCell { value: (Weak) },
-children: RefCell { value: [Node { value: 3, parent: RefCell { value: (Weak) },
-children: RefCell { value: [] } }] } })
+foglia padre = Some(Node { valore: 5, padre: RefCell { valore: (Weak) },
+figlio: RefCell { valore: [Node { valore: 3, padre: RefCell { valore: (Weak) },
+figlio: RefCell { valore: [] } }] } })
 ```
 
 L'assenza di output infinito indica che questo codice non ha creato un ciclo di riferimento. Possiamo anche dedurne questo osservando i valori ottenuti chiamando
 `Rc::strong_count` e `Rc::weak_count`.
 
-#### Visualizzazione delle modifiche a `strong_count` e `weak_count`
+#### Visualizzazione delle Modifiche a `strong_count` e `weak_count`
 
 Osserviamo come i valori di `strong_count` e `weak_count` delle istanze di `Rc<Node>`
 cambiano creando un nuovo ambito interno e spostando la creazione di
-`branch` in tale ambito. In questo modo, possiamo vedere cosa succede quando `branch` viene
+`ramo` in tale ambito. In questo modo, possiamo vedere cosa succede quando `ramo` viene
 creato e poi eliminato quando esce dall'ambito. Le modifiche sono mostrate
 nel Listato 15-29.
 
-<Numero di inserzione="15-29" nome-file="src/main.rs" didascalia="Creazione di `branch` in un ambito interno ed esame dei conteggi dei riferimenti forti e deboli">
+<Numero di inserzione="15-29" nome-file="src/main.rs" didascalia="Creazione di `ramo` in un ambito interno ed esame dei conteggi dei riferimenti forti e deboli">
 
 ```rust
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-29/src/main.rs:here}}
@@ -259,23 +259,23 @@ nel Listato 15-29.
 
 </Listing>
 
-Dopo la creazione di `leaf`, il suo `Rc<Node>` ha un conteggio forte di 1 e un conteggio debole
-di 0. Nell'ambito interno, creiamo `branch` e lo associamo a
-`leaf`; a quel punto, quando stampiamo i conteggi, `Rc<Node>` in `branch`
-avrà un conteggio forte di 1 e un conteggio debole di 1 (per `leaf.parent` che punta
-a `branch` con un `Weak<Node>`). Quando stampiamo i conteggi in `leaf`, vedremo
-che avrà un conteggio forte di 2 perché `branch` ora ha un clone di
-`Rc<Node>` di `leaf` memorizzato in `branch.children`, ma avrà ancora un conteggio debole
+Dopo la creazione di `foglia`, il suo `Rc<Node>` ha un conteggio forte di 1 e un conteggio debole
+di 0. Nell'ambito interno, creiamo `ramo` e lo associamo a
+`foglia`; a quel punto, quando stampiamo i conteggi, `Rc<Node>` in `ramo`
+avrà un conteggio forte di 1 e un conteggio debole di 1 (per `foglia.padre` che punta
+a `ramo` con un `Weak<Node>`). Quando stampiamo i conteggi in `foglia`, vedremo
+che avrà un conteggio forte di 2 perché `ramo` ora ha un clone di
+`Rc<Node>` di `foglia` memorizzato in `ramo.figlio`, ma avrà ancora un conteggio debole
 di 0.
 
-Quando l'ambito interno termina, `branch` esce dall'ambito e il conteggio forte di
+Quando l'ambito interno termina, `ramo` esce dall'ambito e il conteggio forte di
 `Rc<Node>` scende a 0, quindi il suo `Node` viene eliminato. Il conteggio debole di 1
-da `leaf.parent` non ha alcuna influenza sull'eliminazione o meno di `Node`, quindi
+da `foglia.padre` non ha alcuna influenza sull'eliminazione o meno di `Node`, quindi
 non si verificano perdite di memoria!
 
-Se proviamo ad accedere al genitore di `leaf` dopo la fine dello scope, otterremo di nuovo
-`None`. Alla fine del programma, `Rc<Node>` in `leaf` ha un conteggio forte
-di 1 e un conteggio debole di 0 perché la variabile `leaf` è ora di nuovo l'unico
+Se proviamo ad accedere al genitore di `foglia` dopo la fine dello scope, otterremo di nuovo
+`None`. Alla fine del programma, `Rc<Node>` in `foglia` ha un conteggio forte
+di 1 e un conteggio debole di 0 perché la variabile `foglia` è ora di nuovo l'unico
 riferimento a `Rc<Node>`.
 
 Tutta la logica che gestisce i conteggi e l'eliminazione dei valori è integrata in
