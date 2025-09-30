@@ -3,22 +3,22 @@ use std::cell::RefCell;
 use std::rc::Rc;
 
 #[derive(Debug)]
-struct Node {
+struct Nodo {
     valore: i32,
-    figlio: RefCell<Vec<Rc<Node>>>,
+    figli: RefCell<Vec<Rc<Nodo>>>,
 }
 // ANCHOR_END: here
 
 // ANCHOR: there
 fn main() {
-    let foglia = Rc::new(Node {
+    let foglia = Rc::new(Nodo {
         valore: 3,
-        figlio: RefCell::new(vec![]),
+        figli: RefCell::new(vec![]),
     });
 
-    let ramo = Rc::new(Node {
+    let ramo = Rc::new(Nodo {
         valore: 5,
-        figlio: RefCell::new(vec![Rc::clone(&foglia)]),
+        figli: RefCell::new(vec![Rc::clone(&foglia)]),
     });
 }
 // ANCHOR_END: there

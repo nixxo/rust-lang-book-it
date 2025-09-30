@@ -1,19 +1,19 @@
 $ cargo test
-   Compiling limit-tracker v0.1.0 (file:///projects/limit-tracker)
+   Compiling traccia-limiti v0.1.0 (file:///progetti/traccia-limiti)
 error[E0596]: cannot borrow `self.messaggi_inviati` as mutable, as it is behind a `&` reference
-  --> src/lib.rs:58:13
+  --> src/lib.rs:59:13
    |
-58 |             self.messaggi_inviati.push(String::from(messaggio));
-   |             ^^^^^^^^^^^^^^^^^^ `self` is a `&` reference, so the data it refers to cannot be borrowed as mutable
+59 |             self.messaggi_inviati.push(String::from(messaggio));
+   |             ^^^^^^^^^^^^^^^^^^^^^ `self` is a `&` reference, so the data it refers to cannot be borrowed as mutable
    |
 help: consider changing this to be a mutable reference in the `impl` method and the `trait` definition
    |
-2  ~     fn invia(&mut self, msg: &str);
-3  | }
+ 2 ~     fn invia(&mut self, msg: &str);
+ 3 | }
 ...
-56 |     impl Messaggiatore for MockMessaggiatore {
-57 ~         fn invia(&mut self, messaggio: &str) {
+57 |     impl Messaggero for MockMessaggero {
+58 ~         fn invia(&mut self, messaggio: &str) {
    |
 
 For more information about this error, try `rustc --explain E0596`.
-error: could not compile `traccia_limiti` (lib test) due to 1 previous error
+error: could not compile `traccia-limiti` (lib test) due to 1 previous error

@@ -1,20 +1,20 @@
-pub trait Messaggiatore {
+pub trait Messaggero {
     fn invia(&self, msg: &str);
 }
 
-pub struct TracciaLimiti<'a, T: Messaggiatore> {
-    messaggiatore: &'a T,
+pub struct TracciaLimiti<'a, T: Messaggero> {
+    messaggero: &'a T,
     valore: usize,
     max: usize,
 }
 
 impl<'a, T> TracciaLimiti<'a, T>
 where
-    T: Messaggiatore,
+    T: Messaggero,
 {
-    pub fn new(messaggiatore: &'a T, max: usize) -> TracciaLimiti<'a, T> {
+    pub fn new(messaggero: &'a T, max: usize) -> TracciaLimiti<'a, T> {
         TracciaLimiti {
-            messaggiatore,
+            messaggero,
             valore: 0,
             max,
         }
@@ -26,12 +26,12 @@ where
         let percentuale_di_max = self.valore as f64 / self.max as f64;
 
         if percentuale_di_max >= 1.0 {
-            self.messaggiatore.invia("Errore: Hai superato la tua quota!");
+            self.messaggero.invia("Errore: Hai superato la tua quota!");
         } else if percentuale_di_max >= 0.9 {
-            self.messaggiatore
+            self.messaggero
                 .invia("Avviso urgente: Hai utilizzato oltre il 90% della tua quota!");
         } else if percentuale_di_max >= 0.75 {
-            self.messaggiatore
+            self.messaggero
                 .invia("Avviso: Hai utilizzato oltre il 75% della tua quota!");
         }
     }

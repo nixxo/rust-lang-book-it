@@ -1,5 +1,5 @@
 $ cargo run
-   Compiling borrowing v0.1.0 (file:///projects/borrowing)
+   Compiling borrowing v0.1.0 (file:///progetti/borrowing)
 error[E0596]: cannot borrow `x` as mutable, as it is not declared as mutable
  --> src/main.rs:3:13
   |

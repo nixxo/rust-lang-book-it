@@ -1,5 +1,5 @@
 [package]
-name = "limit-tracker"
+name = "traccia-limiti"
 version = "0.1.0"
 edition = "2024"
 

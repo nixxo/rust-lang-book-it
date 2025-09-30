@@ -1,17 +1,17 @@
-use crate::List::{Cons, Nil};
+use crate::Lista::{Cons, Nil};
 use std::cell::RefCell;
 use std::rc::Rc;
 
 #[derive(Debug)]
-enum List {
-    Cons(i32, RefCell<Rc<List>>),
+enum Lista {
+    Cons(i32, RefCell<Rc<Lista>>),
     Nil,
 }
 
-impl List {
-    fn tail(&self) -> Option<&RefCell<Rc<List>>> {
+impl Lista {
+    fn coda(&self) -> Option<&RefCell<Rc<Lista>>> {
         match self {
-            Cons(_, item) => Some(item),
+            Cons(_, elemento) => Some(elemento),
             Nil => None,
         }
     }

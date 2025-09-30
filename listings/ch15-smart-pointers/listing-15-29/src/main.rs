@@ -2,51 +2,51 @@ use std::cell::RefCell;
 use std::rc::{Rc, Weak};
 
 #[derive(Debug)]
-struct Node {
+struct Nodo {
     valore: i32,
-    padre: RefCell<Weak<Node>>,
-    figlio: RefCell<Vec<Rc<Node>>>,
+    genitore: RefCell<Weak<Nodo>>,
+    figli: RefCell<Vec<Rc<Nodo>>>,
 }
 
 // ANCHOR: here
 fn main() {
-    let foglia = Rc::new(Node {
+    let foglia = Rc::new(Nodo {
         valore: 3,
-        padre: RefCell::new(Weak::new()),
-        figlio: RefCell::new(vec![]),
+        genitore: RefCell::new(Weak::new()),
+        figli: RefCell::new(vec![]),
     });
 
     println!(
-        "foglia strong = {}, debole = {}",
+        "foglia forte = {}, debole = {}",
         Rc::strong_count(&foglia),
         Rc::weak_count(&foglia),
     );
 
     {
-        let ramo = Rc::new(Node {
+        let ramo = Rc::new(Nodo {
             valore: 5,
-            padre: RefCell::new(Weak::new()),
-            figlio: RefCell::new(vec![Rc::clone(&foglia)]),
+            genitore: RefCell::new(Weak::new()),
+            figli: RefCell::new(vec![Rc::clone(&foglia)]),
         });
 
-        *foglia.padre.borrow_mut() = Rc::downgrade(&ramo);
+        *foglia.genitore.borrow_mut() = Rc::downgrade(&ramo);
 
         println!(
-            "ramo strong = {}, weak = {}",
+            "ramo forte = {}, debole = {}",
             Rc::strong_count(&ramo),
             Rc::weak_count(&ramo),
         );
 
         println!(
-            "foglia strong = {}, weak = {}",
+            "foglia forte = {}, debole = {}",
             Rc::strong_count(&foglia),
             Rc::weak_count(&foglia),
         );
     }
 
-    println!("foglia padre = {:?}", foglia.padre.borrow().upgrade());
+    println!("genitore `foglia` = {:?}", foglia.genitore.borrow().upgrade());
     println!(
-        "foglia strong = {}, weak = {}",
+        "foglia forte = {}, debole = {}",
         Rc::strong_count(&foglia),
         Rc::weak_count(&foglia),
     );

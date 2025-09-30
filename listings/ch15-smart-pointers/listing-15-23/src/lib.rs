@@ -1,20 +1,20 @@
-pub trait Messaggiatore {
+pub trait Messaggero {
     fn invia(&self, msg: &str);
 }
 
-pub struct TracciaLimiti<'a, T: Messaggiatore> {
-    messaggiatore: &'a T,
+pub struct TracciaLimiti<'a, T: Messaggero> {
+    messaggero: &'a T,
     valore: usize,
     max: usize,
 }
 
 impl<'a, T> TracciaLimiti<'a, T>
 where
-    T: Messaggiatore,
+    T: Messaggero,
 {
-    pub fn new(messaggiatore: &'a T, max: usize) -> TracciaLimiti<'a, T> {
+    pub fn new(messaggero: &'a T, max: usize) -> TracciaLimiti<'a, T> {
         TracciaLimiti {
-            messaggiatore,
+            messaggero,
             valore: 0,
             max,
         }
@@ -26,12 +26,12 @@ where
         let percentuale_di_max = self.valore as f64 / self.max as f64;
 
         if percentuale_di_max >= 1.0 {
-            self.messaggiatore.invia("Errore: Hai superato la tua quota!");
+            self.messaggero.invia("Errore: Hai superato la tua quota!");
         } else if percentuale_di_max >= 0.9 {
-            self.messaggiatore
+            self.messaggero
                 .invia("Avviso urgente: Hai utilizzato oltre il 90% della tua quota!");
         } else if percentuale_di_max >= 0.75 {
-            self.messaggiatore
+            self.messaggero
                 .invia("Avviso: Hai utilizzato oltre il 75% della tua quota!");
         }
     }
@@ -42,34 +42,37 @@ mod tests {
     use super::*;
     use std::cell::RefCell;
 
-    struct MockMessaggiatore {
+    struct MockMessaggero {
         messaggi_inviati: RefCell<Vec<String>>,
     }
 
-    impl MockMessaggiatore {
-        fn new() -> MockMessaggiatore {
-            MockMessaggiatore {
+    impl MockMessaggero {
+        fn new() -> MockMessaggero {
+            MockMessaggero {
                 messaggi_inviati: RefCell::new(vec![]),
             }
         }
     }
 
     // ANCHOR: here
-    impl Messaggiatore for MockMessaggiatore {
+    impl Messaggero for MockMessaggero {
         fn invia(&self, messaggio: &str) {
-            let mut un_borrow = self.messaggi_inviati.borrow_mut();
-            un_borrow.push(String::from(messaggio));
+            let mut borrow_uno = self.messaggi_inviati.borrow_mut();
+            let mut borrow_due = self.messaggi_inviati.borrow_mut();
+
+            borrow_uno.push(String::from(messaggio));
+            borrow_due.push(String::from(messaggio));
         }
     }
     // ANCHOR_END: here
 
     #[test]
     fn invia_un_messaggio_di_avviso_di_superamento_del_75_percento() {
-        let mock_messaggiatore = MockMessaggiatore::new();
-        let mut traccia_limiti = TracciaLimiti::new(&mock_messaggiatore, 100);
+        let mock_messaggero = MockMessaggero::new();
+        let mut traccia_limiti = TracciaLimiti::new(&mock_messaggero, 100);
 
         traccia_limiti.set_valore(80);
 
-        assert_eq!(mock_messaggiatore.messaggi_inviati.borrow().len(), 1);
+        assert_eq!(mock_messaggero.messaggi_inviati.borrow().len(), 1);
     }
 }

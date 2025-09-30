@@ -1,10 +1,10 @@
 #[derive(Debug)]
-enum List {
-    Cons(Rc<RefCell<i32>>, Rc<List>),
+enum Lista {
+    Cons(Rc<RefCell<i32>>, Rc<Lista>),
     Nil,
 }
 
-use crate::List::{Cons, Nil};
+use crate::Lista::{Cons, Nil};
 use std::cell::RefCell;
 use std::rc::Rc;
 

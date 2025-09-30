@@ -72,7 +72,7 @@
   - [Lavorare con le Variabili d'Ambiente](ch12-05-working-with-environment-variables.md)
   - [Scrivere Messaggi di Errore su _Standard Error_ invece che su _Standard Output_](ch12-06-writing-to-stderr-instead-of-stdout.md)
 
-## Thinking in Rust
+## Pensare in Rust
 
 - [Caratteristiche dei Linguaggi Funzionali: Iteratori e Chiusure](ch13-00-functional-features.md)
   - [Chiusure: Funzioni Anonime che Catturano il loro Ambiente](ch13-01-closures.md)
@@ -92,8 +92,8 @@
   - [Trattare i Puntatori Intelligenti Come Normali _Reference_ con `Deref`](ch15-02-deref.md)
   - [Eseguire del Codice Durante la Pulizia con il _Trait_ `Drop`](ch15-03-drop.md)
   - [`Rc<T>`, il Puntatore Intelligente con Conteggio dei _Reference_](ch15-04-rc.md)
-  - [`RefCell<T>` and the Interior Mutability Pattern](ch15-05-interior-mutability.md)
-  - [Reference Cycles Can Leak Memory](ch15-06-reference-cycles.md)
+  - [`RefCell<T>` e il Modello di Mutabilità Interna](ch15-05-interior-mutability.md)
+  - [Sequenze Auto-Referenziali Possono Causare Perdite di Memoria](ch15-06-reference-cycles.md)
 
 - [Concorrenza Senza Paura](ch16-00-concurrency.md)
   - [Usare i _Thread_ Per Eseguire Codice Simultaneamente](ch16-01-threads.md)
@@ -114,7 +114,7 @@
   - [Using Trait Objects That Allow for Values of Different Types](ch18-02-trait-objects.md)
   - [Implementing an Object-Oriented Design Pattern](ch18-03-oo-design-patterns.md)
 
-## Advanced Topics
+## Tematiche Avanzate
 
 - [Patterns and Matching](ch19-00-patterns.md)
   - [All the Places Patterns Can Be Used](ch19-01-all-the-places-for-patterns.md)

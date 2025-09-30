@@ -1,7 +1,7 @@
 $ cargo test
-   Compiling limit-tracker v0.1.0 (file:///projects/limit-tracker)
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.91s
-     Running unittests src/lib.rs (target/debug/deps/limit_tracker-e599811fa246dbde)
+   Compiling traccia-limiti v0.1.0 (file:///progetti/traccia-limiti)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.01s
+     Running unittests src/lib.rs (target/debug/deps/traccia_limiti-b118b9738b4f0e54)
 
 running 1 test
 test tests::invia_un_messaggio_di_avviso_di_superamento_del_75_percento ... FAILED
@@ -10,7 +10,7 @@ failures:
 
 ---- tests::invia_un_messaggio_di_avviso_di_superamento_del_75_percento stdout ----
 
-thread 'tests::iinvia_un_messaggio_di_avviso_di_superamento_del_75_percento' panicked at src/lib.rs:60:53:
+thread 'tests::invia_un_messaggio_di_avviso_di_superamento_del_75_percento' panicked at src/lib.rs:61:56:
 already borrowed: BorrowMutError
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 
