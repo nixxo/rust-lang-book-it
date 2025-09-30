@@ -69,7 +69,7 @@ nella tupla e `&item` per il singolo byte nella tupla. Poiché da
 _pattern_.
 
 All'interno del ciclo `for`, cerchiamo il byte che rappresenta lo spazio usando
-la sintassi letterale del byte. Se troviamo uno spazio, restituiamo la
+la sintassi del letterale byte. Se troviamo uno spazio, restituiamo la
 posizione. Altrimenti, restituiamo la lunghezza della stringa usando `s.len()`.
 
 ```rust,ignore
@@ -249,18 +249,18 @@ di errori durante la compilazione!
 <!-- Old heading. Do not remove or links may break. -->
 <a id="string-literals-are-slices"></a>
 
-### Letterali di Stringa come _Slice_
+### Letterali Stringa come _Slice_
 
-Ricordi che abbiamo parlato dei letterali di stringhe memorizzati all'interno
-del binario? Ora che abbiamo scoperto le _slice_, possiamo comprendere
-correttamente i letterali di stringhe:
+Ricordi che abbiamo parlato dei letterali stringa memorizzati all'interno del
+binario? Ora che abbiamo scoperto le _slice_, possiamo comprendere correttamente
+i letterali stringa:
 
 ```rust
 let s = "Hello, world!";
 ```
 
 Il _type_ di `s` qui è `&str`: è una _slice_ che punta a quel punto specifico
-nel binario. Questo è anche il motivo per cui i letterali di stringhe sono
+nel binario. Questo è anche il motivo per cui i letterali stringa sono
 immutabili; `&str` è un _reference_ immutabile.
 
 ### _Slice_ di Stringa come Parametri

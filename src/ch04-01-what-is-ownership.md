@@ -113,11 +113,11 @@ valido. Prendiamo la seguente variabile:
 let s = "ciao";
 ```
 
-La variabile `s` si riferisce a un letterale di stringa, il cui valore è
-codificato nel testo del nostro programma. La variabile è valida dal momento in
-cui viene dichiarata fino alla fine dello _scope_ corrente. Il Listato 4-1
-mostra un programma con commenti che annotano i punti in cui la variabile `s`
-sarebbe valida (in _scope_).
+La variabile `s` si riferisce a un letterale stringa, il cui valore è codificato
+nel testo del nostro programma. La variabile è valida dal momento in cui viene
+dichiarata fino alla fine dello _scope_ corrente. Il Listato 4-1 mostra un
+programma con commenti che annotano i punti in cui la variabile `s` sarebbe
+valida (in _scope_).
 
 <Listing number="4-1" caption="Una variabile e lo _scope_ in cui è valida">
 
@@ -153,17 +153,16 @@ aspetti si applicano anche ad altri _type_ di dati complessi, siano essi forniti
 dalla libreria standard o creati dall’utente. Parleremo di `String` in modo più
 approfondito nel [Capitolo 8][ch8]<!-- ignore -->.
 
-Abbiamo già visto i letterali di stringhe, in cui un valore stringa è codificato
-nel nostro programma. I letterali di stringhe sono convenienti, ma non sono
-adatti a tutte le situazioni in cui potremmo voler utilizzare del testo. Uno dei
-motivi è che sono immutabili. Un altro è che non tutti i valori di stringa
-possono essere conosciuti quando scriviamo il nostro codice: ad esempio, cosa
-succederebbe se volessimo prendere l’input dell’utente e memorizzarlo? Per
-queste situazioni, Rust ha un secondo tipo di stringa, `String`. Questo _type_
-gestisce i dati allocati nell'_heap_ e come tale è in grado di memorizzare una
-quantità di testo a noi sconosciuta in fase di compilazione. Puoi creare un
-_type_ `String` partendo da un letterale stringa utilizzando la funzione `from`,
-in questo modo:
+Abbiamo già visto i letterali stringa, in cui un valore stringa è codificato nel
+nostro programma. I letterali stringa sono convenienti, ma non sono adatti a
+tutte le situazioni in cui potremmo voler utilizzare del testo. Uno dei motivi è
+che sono immutabili. Un altro è che non tutti i valori di stringa possono essere
+conosciuti quando scriviamo il nostro codice: ad esempio, cosa succederebbe se
+volessimo prendere l’input dell’utente e memorizzarlo? Per queste situazioni,
+Rust ha un secondo tipo di stringa, `String`. Questo _type_ gestisce i dati
+allocati nell'_heap_ e come tale è in grado di memorizzare una quantità di testo
+a noi sconosciuta in fase di compilazione. Puoi creare un _type_ `String`
+partendo da un letterale stringa utilizzando la funzione `from`, in questo modo:
 
 ```rust
 let s = String::from("ciao");
@@ -189,10 +188,10 @@ memoria.
 
 ### Memoria e Allocazione
 
-Nel caso di un letterale di stringa, conosciamo il contenuto al momento della
+Nel caso di un letterale stringa, conosciamo il contenuto al momento della
 compilazione, quindi il testo è codificato direttamente nell'eseguibile finale.
-Per questo motivo i letterali di stringa sono veloci ed efficienti. Ma queste
-proprietà derivano solo dall'immutabilità del letterale di stringa.
+Per questo motivo i letterali stringa sono veloci ed efficienti. Ma queste
+proprietà derivano solo dall'immutabilità del letterale stringa.
 Sfortunatamente, non possiamo inserire una porzione di memoria indefinita nel
 binario per ogni pezzo di testo la cui dimensione è sconosciuta al momento della
 compilazione e la cui dimensione potrebbe cambiare durante l'esecuzione del

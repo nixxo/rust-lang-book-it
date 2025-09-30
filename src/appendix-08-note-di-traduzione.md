@@ -32,11 +32,11 @@ della traduzione/non-traduzione con una spiegazione della scelta se necessario.
 | String Slice | _Slice_ di stringa | Riferimento ad una porzione di stringa |
 | --- | --- | --- |
 | Reference | _Reference_ / Riferimento | Riferimento ad una variabile |
-| Trait | Trait | Tratto |
-| Trait Bound | Vincolo di Trait | |
+| Trait | _Trait_ | Tratto |
+| Trait Bound | Vincolo di _Trait_ | |
 | Handle | Handle | Puntatore ad un thread/processo |
-| String literal | letterale di stringa o stringa letterale ????
-| Numeric literal | lettarale numerico o numero letterale ????
+| String literal | Letterale stringa | |
+| Numeric literal | Lettarale numerico | |
 
 
 

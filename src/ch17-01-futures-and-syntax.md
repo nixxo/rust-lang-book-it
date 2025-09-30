@@ -189,7 +189,7 @@ fn titolo_pagina(url: &str) -> impl Future<Output = Option<String>> {
 Analizziamo ogni parte della versione trasformata:
 
 - Usa la sintassi `impl Trait` che abbiamo discusso nel Capitolo 10 nella
-  sezione ["_Trait_ come Parametri"][impl-trait]<!-- ignore -->.
+  sezione [“_Trait_ come Parametri”][impl-trait]<!-- ignore -->.
 - Il _trait_ restituito è un `Future` con un _type_ associato di `Output`. Nota
   che il _type_ `Output` è `Option<String>`, che è lo stesso _type_ di ritorno
   della versione `async fn` di `titolo_pagina`.
