@@ -9,7 +9,7 @@ Sherlock Holmes_ di Sir Arthur Conan Doyle in una `String` e cercando la parola
 _the_ nel contenuto. Ecco i risultati del _benchmark_ sulla versione di `cerca`
 che utilizza il ciclo `for` e sulla versione che utilizza gli iteratori:
 
-```text
+```console
 test bench_cerca_for  ... bench: 19.620.300 ns/iter (+/- 915.700)
 test bench_cerca_iter ... bench: 19.234.900 ns/iter (+/- 657.200)
 ```
@@ -36,7 +36,7 @@ C++, definisce _zero-overhead_ in “Foundations of C++” (2012):
 
 In molti casi, il codice Rust che utilizza gli iteratori viene compilato nello
 stesso _assembly_ che scriveresti a mano. Ottimizzazioni come lo srotolamento
-dei cicli e l'eliminazione dei limiti di controllo sull'accesso agli array si
+dei cicli e l'eliminazione dei limiti di controllo sull'accesso agli _array_ si
 applicano e rendono il codice risultante estremamente efficiente. Ora che lo
 sai, puoi usare iteratori e chiusure senza timore! Fanno sembrare il codice di
 livello superiore, ma non impongono una penalizzazione alle prestazioni in fase

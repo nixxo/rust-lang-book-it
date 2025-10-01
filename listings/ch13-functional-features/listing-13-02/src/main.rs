@@ -3,7 +3,7 @@ use std::time::Duration;
 
 fn genera_allenamento(intensità: u32, numero_casuale: u32) {
     // ANCHOR: here
-    let closure_lenta = |num: u32| -> u32 {
+    let chiusura_lenta = |num: u32| -> u32 {
         println!("calcolo lentamente...");
         thread::sleep(Duration::from_secs(2));
         num
@@ -11,15 +11,15 @@ fn genera_allenamento(intensità: u32, numero_casuale: u32) {
     // ANCHOR_END: here
 
     if intensità < 25 {
-        println!("Oggi, fai {} flessioni!", closure_lenta(intensità));
-        println!("Poi, fai {} piegamenti!", closure_lenta(intensità));
+        println!("Oggi, fai {} flessioni!", chiusura_lenta(intensità));
+        println!("Poi, fai {} piegamenti!", chiusura_lenta(intensità));
     } else {
         if numero_casuale == 3 {
             println!("Oggi fai una pausa! Ricordati di idratarti!");
         } else {
             println!(
                 "Oggi, corri per {} minuti!",
-                closure_lenta(intensità)
+                chiusura_lenta(intensità)
             );
         }
     }

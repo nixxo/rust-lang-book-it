@@ -1,6 +1,6 @@
 ## Elaborare una Serie di Elementi con Iteratori
 
-Il _pattern_ iteratore consente di eseguire un'attività su una sequenza di
+Il modello dell'iteratore consente di eseguire un'attività su una sequenza di
 elementi a turno. Un iteratore è responsabile della logica di iterazione su
 ciascun elemento e di determinare quando la sequenza è terminata. Quando si
 utilizzano gli iteratori, non è necessario re-implementare questa logica da
@@ -93,13 +93,13 @@ sull'iteratore creato dal vettore.
 
 </Listing>
 
-Nota che era necessario rendere `v1_iter` mutabile: chiamare il metodo `next` su
-un iteratore modifica lo stato interno che l'iteratore utilizza per tenere
-traccia della propria posizione nella sequenza. In altre parole, questo codice
-_consuma_, o esaurisce, l'iteratore. Ogni chiamata a `next` consuma un elemento
-dall'iteratore. Non era necessario rendere `v1_iter` mutabile quando abbiamo
-usato un ciclo `for`, perché il ciclo prendeva _ownership_ di `v1_iter` e la
-rendeva mutabile in background.
+Nota che è stato necessario rendere `v1_iter` mutabile: chiamare il metodo
+`next` su un iteratore modifica lo stato interno che l'iteratore utilizza per
+tenere traccia della propria posizione nella sequenza. In altre parole, questo
+codice _consuma_, o esaurisce, l'iteratore. Ogni chiamata a `next` consuma un
+elemento dall'iteratore. Non era necessario rendere `v1_iter` mutabile quando
+abbiamo usato un ciclo `for`, perché il ciclo prendeva _ownership_ di `v1_iter`
+e lo rendeva mutabile in background.
 
 Nota inoltre che i valori ottenuti dalle chiamate a `next` sono _reference_
 immutabili ai valori nel vettore. Il metodo `iter` produce un iteratore su

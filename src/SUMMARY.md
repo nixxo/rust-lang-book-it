@@ -75,9 +75,9 @@
 ## Pensare in Rust
 
 - [Caratteristiche dei Linguaggi Funzionali: Iteratori e Chiusure](ch13-00-functional-features.md)
-  - [Chiusure: Funzioni Anonime che Catturano il loro Ambiente](ch13-01-closures.md)
+  - [Chiusure: Funzioni Anonime che Catturano il Loro Ambiente](ch13-01-closures.md)
   - [Elaborare una Serie di Elementi con Iteratori](ch13-02-iterators.md)
-  - [Migliorare il nostro progetto I/O](ch13-03-improving-our-io-project.md)
+  - [Migliorare il Nostro Progetto I/O](ch13-03-improving-our-io-project.md)
   - [Confrontare le Prestazioni: Cicli vs. Iteratori](ch13-04-performance.md)
 
 - [Maggiori informazioni su Cargo e Crates.io](ch14-00-more-about-cargo.md)

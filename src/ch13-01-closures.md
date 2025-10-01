@@ -3,8 +3,8 @@
 
 ## Chiusure: Funzioni Anonime che Catturano il Loro Ambiente
 
-Le chiusure di Rust sono funzioni anonime che è possibile salvare in una
-variabile o passare come argomenti ad altre funzioni. È possibile creare la
+Le chiusure (_closure_) di Rust sono funzioni anonime che è possibile salvare in
+una variabile o passare come argomenti ad altre funzioni. È possibile creare la
 chiusura in un punto e poi chiamarla altrove per valutarla in un contesto
 diverso. A differenza delle funzioni, le chiusure possono catturare valori dallo
 _scope_ in cui sono definite. Dimostreremo come queste funzionalità di chiusura
@@ -30,7 +30,7 @@ riceverà il colore di cui l'azienda ha attualmente la maggiore disponibilità.
 Ci sono molti modi per implementarlo. Per questo esempio, useremo un'_enum_
 chiamata `ColoreMaglietta` che ha le varianti `Rosso` e `Blu` (limitando il
 numero di colori disponibili per semplicità). Rappresentiamo l'inventario
-dell'azienda con una struttura `Inventario` che ha un campo denominato
+dell'azienda con una _struct_ `Inventario` che ha un campo denominato
 `magliette` che contiene un `Vec<ColoreMaglietta>` che rappresenta i colori
 delle magliette attualmente disponibili in magazzino. Il metodo `regalo`
 definito su `Inventario` ottiene la preferenza opzionale per il colore della
@@ -52,7 +52,7 @@ distribuire per questa promozione in edizione limitata. Chiamiamo il metodo
 alcuna preferenza.
 
 Anche in questo caso, questo codice potrebbe essere implementato in molti modi
-e, per concentrarci sulle chiusure, ci siamo attenuti ai concetti che avete già
+e, per concentrarci sulle chiusure, ci siamo attenuti ai concetti che hai già
 imparato, ad eccezione del corpo del metodo `regalo` che utilizza una chiusura.
 Nel metodo `regalo`, otteniamo la preferenza dell'utente come parametro di
 _type_ `Option<ColoreMaglietta>` e chiamiamo il metodo `unwrap_or_else` su
@@ -65,10 +65,10 @@ restituisce il valore presente all'interno di `Some`. Se `Option<T>` è la
 variante `None` , `unwrap_or_else` chiama la chiusura e restituisce il valore
 restituito dalla chiusura.
 
-Specifichiamo l'espressione di chiusura `|| self.most_stocked()` come argomento
+Specifichiamo l'espressione di chiusura `|| self.maggior_stock()` come argomento
 di `unwrap_or_else`. Questa è una chiusura che non accetta parametri (se la
 chiusura avesse parametri, questi apparirebbero tra le due barre verticali). Il
-corpo della chiusura chiama `self.most_stocked()`. Stiamo definendo la chiusura
+corpo della chiusura chiama `self.maggior_stock()`. Stiamo definendo la chiusura
 qui, e l'implementazione di `unwrap_or_else` valuterà la chiusura in seguito, se
 il risultato è necessario.
 
@@ -138,7 +138,7 @@ let agg_uno_v4 = |x|               x + 1  ;
 
 La prima riga mostra una definizione di funzione e la seconda una definizione di
 chiusura completamente annotata. Nella terza riga, rimuoviamo le annotazioni del
-_type_ dalla definizione di chiusura. Nella quarta riga, rimuoviamo le
+_type_ dalla definizione della chiusura. Nella quarta riga, rimuoviamo le
 parentesi, che sono facoltative perché il corpo della chiusura ha una sola
 espressione. Queste sono tutte definizioni valide che produrranno lo stesso
 comportamento quando vengono chiamate. Le righe `agg_uno_v3` e `agg_uno_v4`
@@ -366,7 +366,7 @@ nella _slice_ in esame e restituisce un valore di _type_ `K` che può essere
 ordinato. Questa funzione è utile quando si desidera ordinare una _slice_ in
 base a un particolare attributo di ciascun elemento. Nel Listato 13-7, abbiamo
 un elenco di istanze di `Rettangolo` e utilizziamo `sort_by_key` per ordinarle
-in base al loro attributo `larghezza` dal più basso al più alto.
+in base al loro attributo `larghezza` dal più stretto al più largo.
 
 <Listing number="13-7" file-name="src/main.rs" caption="Utilizzo di `sort_by_key` per ordinare i rettangoli in base alla larghezza">
 
@@ -405,12 +405,12 @@ di `lista`. Questo codice tenta di effettuare questo conteggio inserendo
 `valore`, una `String` dall'ambiente della chiusura, nel vettore
 `azioni_ordinamento`. La chiusura cattura `valore` e quindi sposta `valore`
 fuori dalla chiusura trasferendo la _ownership_ di `valore` al vettore
-`azioni_ordinamento`. Questa chiusura può essere chiamata una sola volta; prova
-a chiamarla una seconda volta non funzionerebbe perché `valore` non sarebbe più
-nell'ambiente da inserire nuovamente in `azioni_ordinamento`! Pertanto, questa
-chiusura implementa solo `FnOnce`. Quando proviamo a compilare questo codice,
-otteniamo questo errore che indica che `valore` non può essere spostato fuori
-dalla chiusura perché la chiusura deve implementare `FnMut`:
+`azioni_ordinamento`. Questa chiusura può essere chiamata una sola volta; se
+provi a chiamarla una seconda volta non funzionerebbe perché `valore` non
+sarebbe più nell'ambiente da inserire nuovamente in `azioni_ordinamento`!
+Pertanto, questa chiusura implementa solo `FnOnce`. Quando proviamo a compilare
+questo codice, otteniamo questo errore che indica che `valore` non può essere
+spostato fuori dalla chiusura perché la chiusura deve implementare `FnMut`:
 
 ```console
 {{#include ../listings/ch13-functional-features/listing-13-08/output.txt}}
@@ -419,7 +419,7 @@ dalla chiusura perché la chiusura deve implementare `FnMut`:
 L'errore punta alla riga nel corpo della chiusura che sposta `valore` fuori
 dall'ambiente. Per risolvere questo problema, dobbiamo modificare il corpo della
 chiusura in modo che non sposti valori fuori dall'ambiente. Mantenere un
-contatore nell'ambiente e incrementarne il valore nel corpo della chiusura è un
+contatore nell'ambiente e incrementarne il valore nel corpo della chiusura è il
 modo più semplice per contare il numero di volte in cui la chiusura viene
 chiamata. La chiusura nel Listato 13-9 funziona con `sort_by_key` perché cattura
 solo un _reference_ mutabile al contatore `numero_azioni_ordinamento` e può
@@ -433,7 +433,7 @@ quindi essere chiamata più volte:
 
 </Listing>
 
-I traits `Fn` sono importanti quando si definiscono o si utilizzano funzioni o
+I _trait_ `Fn` sono importanti quando si definiscono o si utilizzano funzioni o
 _type_ che fanno uso di chiusure. Nella prossima sezione, parleremo degli
 iteratori. Molti metodi iteratori accettano _argomenti chiusura_, quindi tieni a
 mente questi dettagli sulle chiusure mentre proseguiamo!

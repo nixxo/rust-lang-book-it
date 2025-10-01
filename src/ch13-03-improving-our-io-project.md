@@ -13,7 +13,7 @@ e clonando i valori, consentendo alla _struct_ `Config` di avere _ownership_ di
 tali valori. Nel Listato 13-17, abbiamo riprodotto l'implementazione della
 funzione `Config::build` così com'era nel Listato 12-23.
 
-<Listing number="13-17" file-name="src/main.rs" caption="Riproduzione della funzione `Config::build` dal Listing 12-23">
+<Listing number="13-17" file-name="src/main.rs" caption="Riproduzione della funzione `Config::build` dal Listato 12-23">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch13-functional-features/listing-12-23-reproduced/src/main.rs:ch13}}
@@ -154,8 +154,8 @@ Ricorda che lo scopo della funzione `cerca` è restituire tutte le righe in
 Listato 13-16, questo codice utilizza l'adattatore `filter` per conservare solo
 le righe per le quali `line.contains(query)` restituisce `true`. Quindi
 raccogliamo le righe corrispondenti in un altro vettore con `collect`. Molto più
-semplice! Sentitevi liberi di apportare la stessa modifica per utilizzare i
-metodi di adattamento iterativo anche nella funzione `cerca_case_insensitive`.
+semplice! Sentiti libero di apportare la stessa modifica utilizzando i metodi
+adattatori anche nella funzione `cerca_case_insensitive`.
 
 Per un ulteriore miglioramento, restituisci un iteratore dalla funzione `cerca`
 rimuovendo la chiamata a `collect` e modificando il _type_ di ritorno in `impl
