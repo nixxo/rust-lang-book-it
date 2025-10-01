@@ -86,7 +86,7 @@ Se esegui questo codice e vedi solo l'output del _thread_ principale o non vedi
 alcuna sovrapposizione, prova ad aumentare i numeri negli intervalli per creare
 più opportunità per il sistema operativo di passare da un _thread_ all'altro.
 
-### Attendere Che Tutti i _Thread_ Finiscano Usando `join`
+### Attendere Che Tutti i _Thread_ Finiscano
 
 Il codice nel Listato 16-1 non solo arresta il _thread_ generato prematuramente
 nella maggior parte dei casi a causa della fine del _thread_ principale, ma

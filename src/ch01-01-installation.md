@@ -60,17 +60,17 @@ installare il pacchetto `build-essential`.
 
 ### Installare `rustup` su Windows
 
-Su Windows, vai su [https://www.rust-lang.org/tools/install][install] e segui le
-istruzioni per installare Rust. A un certo punto dell'installazione, ti verrà
-richiesto di installare Visual Studio, che fornisce un linker e le librerie
-native necessarie per compilare i programmi. Se hai bisogno di aiuto per questo
-passaggio, consulta
+Su Windows, vai su [https://www.rust-lang.org/tools/install][install]<!-- ignore
+--> e segui le istruzioni per installare Rust. A un certo punto
+dell'installazione, ti verrà richiesto di installare Visual Studio, che fornisce
+un linker e le librerie native necessarie per compilare i programmi. Se hai
+bisogno di aiuto per questo passaggio, consulta
 [https://rust-lang.github.io/rustup/installation/windows-msvc.html][msvc]
 
 Il resto di questo libro utilizza comandi che funzionano sia in _cmd.exe_ che in
 PowerShell. Se ci sono differenze specifiche, ti spiegheremo quale utilizzare.
 
-### Risoluzione dei Problemi
+### Risolvere i Problemi
 
 Per verificare se Rust è stato installato correttamente, apri il terminale e
 inserisci questo comando:
@@ -113,7 +113,7 @@ posti in cui puoi trovare aiuto. Scopri come metterti in contatto con altri
 Rustaceani (_Rustacean_ d'ora in poi) (uno stupido soprannome con cui ci
 chiamiamo) sulla [pagina della comunità][community].
 
-### Aggiornamento e Disinstallazione
+### Aggiornare e Disinstallare
 
 Una volta che Rust è stato installato tramite `rustup`, l'aggiornamento a una
 nuova versione è semplice. Dalla tua _shell_, esegui il seguente script di
@@ -130,7 +130,7 @@ dalla tua shell:
 $ rustup self uninstall
 ```
 
-### Documentazione in Locale
+### Leggere la Documentazione in Locale
 
 L'installazione di Rust include anche una copia locale della documentazione per
 poterla leggere offline. Esegui `rustup doc` per aprire la documentazione locale
@@ -140,7 +140,7 @@ Ogni qual volta hai un dubbio su un _type_ o una funzione fornita dalla libreria
 standard e non sei sicuro di cosa faccia o di come usarla, usa la documentazione
 delle _API_ per scoprirlo!
 
-### Editor di Testo e Ambienti di Sviluppo Integrati (_IDE_)
+### Usare Editor di Testo e Ambienti di Sviluppo Integrati (_IDE_)
 
 Questo libro non fa alcuna ipotesi sugli strumenti che utilizzi per scrivere il
 codice Rust. Qualsiasi editor di testo è in grado di fare il suo lavoro!

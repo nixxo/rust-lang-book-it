@@ -5,7 +5,7 @@ Condiviso”][traits-defining-shared-behavior]<!-- ignore --> in Chapter 10, but
 we didn’t discuss the more advanced details. Now that you know more about Rust,
 we can get into the nitty-gritty.
 
-### Associated Types
+### Defining Traits with Associated Types
 
 _Associated types_ connect a type placeholder with a trait such that the trait
 method definitions can use these placeholder types in their signatures. The
@@ -84,7 +84,7 @@ trait must provide a type to stand in for the associated type placeholder.
 Associated types often have a name that describes how the type will be used,
 and documenting the associated type in the API documentation is a good practice.
 
-### Default Generic Type Parameters and Operator Overloading
+### Using Default Generic Type Parameters and Operator Overloading
 
 When we use generic type parameters, we can specify a default concrete type for
 the generic type. This eliminates the need for implementors of the trait to
@@ -175,7 +175,7 @@ type parameter to an existing trait, you can give it a default to allow
 extension of the functionality of the trait without breaking the existing
 implementation code.
 
-### Disambiguating Between Methods with the Same Name
+### Disambiguating Between Identically Named Methods
 
 Nothing in Rust prevents a trait from having a method with the same name as
 another trait’s method, nor does Rust prevent you from implementing both traits
@@ -188,7 +188,7 @@ want to use. Consider the code in Listing 20-17 where we’ve defined two traits
 both traits on a type `Human` that already has a method named `fly` implemented
 on it. Each `fly` method does something different.
 
-<Listing number="20-17" file-name="src/main.rs" caption="Two traits are defined to have a `fly` method and are implemented on the `Human` type, and a `fly` method is implemented on `Human` directly.">
+<Listing number="20-17" file-name="src/main.rs" caption="Two traits are defined to have a `fly` method and are implemented on the `Human` type, and a `fly` method is implemented on `Human` directly">
 
 ```rust
 {{#rustdoc_include ../listings/ch20-advanced-features/listing-20-17/src/main.rs:here}}
@@ -404,7 +404,7 @@ Then, implementing the `OutlinePrint` trait on `Point` will compile
 successfully, and we can call `outline_print` on a `Point` instance to display
 it within an outline of asterisks.
 
-### Using the Newtype Pattern to Implement External Traits
+### Implementing External Traits with the Newtype Pattern
 
 In [“Implementare un _Trait_ su un _Type_”][implementing-a-trait-on-a-type]<!--
 ignore --> in Chapter 10, we mentioned the orphan rule that states we’re only

@@ -151,7 +151,7 @@ I commenti di documentazione all'interno degli elementi sono utili soprattutto
 per descrivere i _crate_ e i moduli. Utilizzali per spiegare lo scopo generale
 del contenitore per aiutare i tuoi utenti a capire l'organizzazione del _crate_.
 
-### Esportare un API Pubblica Facilmente con `pub use`
+### Esportare un API Pubblica Facilmente
 
 La struttura della tua API pubblica è una considerazione importante quando
 pubblichi un _crate_. Le persone che usano il tuo _crate_ hanno meno familiarità
@@ -292,7 +292,7 @@ con nessun altro. Se lo condividi con qualcuno per qualsiasi motivo, devi
 revocarlo e generare un nuovo token su [crates.io](https://crates.io/)<!--
 ignore -->.
 
-### Aggiunta di Metadati a un Nuovo _Crate_
+### Aggiungere Metadati a un Nuovo _Crate_
 
 Supponiamo che tu abbia un _crate_ che vuoi pubblicare. Prima di pubblicarlo,
 dovrai aggiungere alcuni metadati nella sezione `[package]` del file
@@ -442,7 +442,7 @@ decidere quale sia il numero di versione successivo più appropriato, in base
 alla tipologia di modifiche apportate. Quindi esegui `cargo publish` per
 caricare la nuova versione.
 
-### Deprecare Versioni da Crates.io con `cargo yank`
+### Deprecare Versioni da Crates.io
 
 Sebbene non sia possibile rimuovere le versioni precedenti di un _crate_, puoi
 impedire a qualsiasi progetto futuro di aggiungerle come nuova dipendenza.

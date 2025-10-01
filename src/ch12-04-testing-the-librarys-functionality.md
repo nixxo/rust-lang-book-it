@@ -1,4 +1,4 @@
-## Sviluppare Funzionalità della Libreria con il Test-Driven Development
+## Aggiungere Funzionalità con il Test-Driven Development
 
 Ora che abbiamo la logica di ricerca in _src/lib.rs_ separata dalla funzione
 `main`, è molto più facile scrivere test per le funzionalità principali del
@@ -223,7 +223,7 @@ variabili d'ambiente e come stampare su standard error, entrambi utili quando si
 scrivono programmi da riga di comando.
 
 [validating-references-with-lifetimes]: ch10-03-lifetime-syntax.html#validare-i-reference-con-la-lifetime
-[ch11-anatomy]: ch11-01-writing-tests.html#anatomia-di-una-funzione-di-test
+[ch11-anatomy]: ch11-01-writing-tests.html#strutturare-le-funzioni-di-test
 [ch10-lifetimes]: ch10-03-lifetime-syntax.html
 [ch13-iterators]: ch13-02-iterators.html
 [ch3-iter]: ch03-05-control-flow.html#eseguire-un-ciclo-su-una-collezione-con-for

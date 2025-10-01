@@ -78,7 +78,7 @@ Siamo autorizzati a cambiare il valore legato a `x` da `5` a `6` quando si usa
 `mut`. In definitiva, decidere se usare la mutabilità o meno dipende da te e da
 ciò che ritieni più utile in quella particolare situazione.
 
-### Costanti
+### Dichiarare le Costanti
 
 Come le variabili immutabili, le _costanti_ sono valori legati a un nome che non
 possono essere modificati, ma ci sono alcune differenze tra le costanti e le
@@ -130,7 +130,7 @@ trasmettere il significato di quel valore a chi leggerà il codice in futuro.
 Inoltre, è utile per avere un solo punto del codice da modificare se il valore
 codificato deve essere aggiornato in futuro.
 
-### Shadowing
+### _Shadowing_
 
 Come hai visto nel tutorial sul gioco dell'indovinello nel [Capitolo
 2][numero-segreto]<!-- ignore -->, puoi dichiarare una nuova variabile con lo

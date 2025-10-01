@@ -116,7 +116,7 @@ un _type_ `T` e che i campi `x` e `y` sono entrambi dello stesso _type_,
 qualunque esso sia. Se creiamo un'istanza di `Punto<T>` che ha valori di _type_
 diversi, come nel Listato 10-7, il nostro codice non verrà compilato.
 
-<Listing number="10-7" file-name="src/main.rs" caption="I campi `x` e `y` devono essere dello stesso _type_ perché entrambi hanno lo stesso _type_ di dati generico `T`.">
+<Listing number="10-7" file-name="src/main.rs" caption="I campi `x` e `y` devono essere dello stesso _type_ perché entrambi hanno lo stesso _type_ di dati generico `T`">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-07/src/main.rs}}

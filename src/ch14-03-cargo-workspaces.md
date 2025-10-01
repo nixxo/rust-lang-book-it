@@ -202,7 +202,7 @@ Hello, world! 10 plus one is 11!
 Questo esegue il codice in _sommatore/src/main.rs_, che dipende dal _crate_
 `più_uno`.
 
-#### Dipendere da un Pacchetto Esterno in un _Workspace_
+### Dipendere da un Pacchetto Esterno
 
 Avrai notato che lo spazio di lavoro ha un solo file _Cargo.lock_ al livello
 superiore, invece di avere un _Cargo.lock_ nella cartella di ogni _crate_.
@@ -295,7 +295,7 @@ Se i _crate_ nel _workspace_ specificano versioni incompatibili della stessa
 dipendenza, Cargo risolverà ciascuna di esse, ma cercherà comunque di risolvere
 il minor numero possibile di versioni.
 
-#### Aggiungere un Test a un _Workspace_
+### Aggiungere un Test a un _Workspace_
 
 Per un altro miglioramento, aggiungiamo un test della funzione
 `più_uno::più_uno` all'interno del _crate_ `più_uno`:

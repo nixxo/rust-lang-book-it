@@ -29,7 +29,7 @@ corrente. Questo dovrebbe cambiare solo lo stile del codice, non la sua
 semantica. Per maggiori informazioni su `rustfmt`, consulta [la sua
 documentazione][rustfmt].
 
-### Correggi il tuo codice con `rustfix
+### Correggere il Tuo Codice con `rustfix
 
 Lo strumento `rustfix` è incluso nelle installazioni di Rust ed è in grado di
 correggere automaticamente gli avvertimenti del compilatore in cui è specificato

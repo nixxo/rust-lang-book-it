@@ -98,7 +98,7 @@ Poiché stiamo prendendo la _ownership_ di `args` e lo muteremo iterandolo,
 possiamo aggiungere la parola chiave `mut` nella specifica del parametro `args`
 per renderlo mutabile.
 
-#### Utilizzare i Metodi del _Trait_ `Iterator` invece dell'Indicizzazione
+#### Utilizzare i Metodi del _Trait_ `Iterator`
 
 Successivamente, correggeremo il corpo di `Config::build`. Poiché `args`
 implementa il _trait_ `Iterator`, sappiamo di poter chiamare il metodo `next` su
@@ -120,10 +120,10 @@ restituisce `Some`, usiamo `match` per estrarre il valore. Se restituisce
 `None`, significa che non sono stati forniti abbastanza argomenti e restituiamo
 subito un valore `Err`. Facciamo la stessa cosa per il valore `percorso_file`.
 
-### Rendere il Codice più Chiaro con gli Adattatori
+### Chiarire il Codice con gli Adattatori
 
-Possiamo anche sfruttare gli iteratori nella funzione `cerca` nel nostro progetto di I/O,
-che è riprodotta qui nel Listato 13-21 come nel Listato 12-19.
+Possiamo anche sfruttare gli iteratori nella funzione `cerca` nel nostro
+progetto di I/O, che è riprodotta qui nel Listato 13-21 come nel Listato 12-19.
 
 <Listing number="13-21" file-name="src/lib.rs" caption="L'implementazione della funzione `cerca` del Listato 12-19">
 
@@ -188,4 +188,4 @@ Ma le due implementazioni sono davvero equivalenti? L'ipotesi intuitiva potrebbe
 essere che il ciclo di livello inferiore sia più veloce. Parliamo di
 prestazioni.
 
-[impl-trait]: ch10-02-traits.html#trait-come-parametri
+[impl-trait]: ch10-02-traits.html#usare-i-trait-come-parametri

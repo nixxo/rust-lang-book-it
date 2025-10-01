@@ -1,4 +1,4 @@
-## Chiusure: Funzioni Anonime che Catturano il Loro Ambiente
+## Chiusure
 
 Le chiusure (_closure_) di Rust sono funzioni anonime che è possibile salvare in
 una variabile o passare come argomenti ad altre funzioni. È possibile creare la
@@ -268,7 +268,7 @@ affinché il _reference_ sia valido. Prova a rimuovere la parola chiave `move` o
 a utilizzare `lista` nel _thread_ principale dopo la definizione della chiusura
 per vedere quali errori del compilatore ottieni!
 
-### Restituire i Valori Catturati dalle Chiusure e i _Trait_ `Fn`
+### Restituire i Valori Catturati dalle Chiusure
 
 Una volta che una chiusura ha catturato un _reference_ o preso la _ownership_ di
 un valore nell'ambiente in cui è definita (influenzando quindi cosa, se

@@ -1,4 +1,4 @@
-## Controllo del Flusso
+## Controllare il Flusso
 
 La possibilità di eseguire del codice a seconda che una condizione sia `vera` e
 di eseguire ripetutamente del codice finché una data condizione è `vera` sono
@@ -90,7 +90,7 @@ modo:
 
 L'esecuzione di questo codice stamperà `numero era qualcosa di diverso da zero`.
 
-#### Gestione di Condizioni Multiple con `else if`
+#### Gestire Condizioni Multiple con `else if`
 
 Puoi utilizzare condizioni multiple combinando `if` e `else` in un'espressione
 `else if`. Ad esempio:
@@ -119,7 +119,7 @@ e difficile da leggere, quindi se ne hai più di una, potresti valutare di
 riscrivere il codice. Il Capitolo 6 descrive un potente costrutto di
 ramificazione di Rust chiamato `match` per gestire casi del genere.
 
-#### Utilizzo di `if` in Una Dichiarazione `let`
+#### Utilizzare `if` in Una Dichiarazione `let`
 
 Dato che `if` è un'espressione, possiamo usarla a destra di una dichiarazione
 `let` per assegnare il risultato a una variabile, come nel Listato 3-2.
@@ -163,8 +163,8 @@ problema nel programma:
 
 L'espressione nel blocco `if` ritorna un _integer_ e l'espressione nel blocco
 `else` ritorna una stringa. Questo non funziona perché le variabili devono avere
-un _type_ univoco e Rust ha bisogno di sapere in fase di compilazione di che
-_type_ è la variabile `numero`, in modo definitivo. Conoscere il _type_ di
+un _type_ univoco e Rust ha bisogno di sapere definitivamente in fase di
+compilazione di che _type_ è la variabile `numero`. Conoscere il _type_ di
 `numero` permette al compilatore di verificare che il _type_ sia valido ovunque
 si utilizzi `numero`. Rust non sarebbe in grado di farlo se il _type_ di
 `numero` fosse determinato solo in fase di esecuzione; il compilatore sarebbe
@@ -182,7 +182,7 @@ nuovo progetto chiamato _cicli_.
 Rust mette a disposizione tre tipologie di ciclo: `loop`, `while` e `for`.
 Proviamo ciascuno di essi.
 
-#### Ripetizione del Codice con `loop`
+#### Ripetere il Codice con `loop`
 
 La parola chiave `loop` dice a Rust di eseguire un blocco di codice più e più
 volte per sempre o finché non gli dici esplicitamente di fermarsi.
@@ -198,7 +198,7 @@ in questo modo:
 
 Quando eseguiamo questo programma, vedremo `ancora!` stampato in continuazione
 fino a quando non interromperemo il programma manualmente. La maggior parte dei
-terminali supporta la scorciatoia da tastiera <kbd>ctrl</kbd>-<kbd>c</kbd> per
+terminali supporta la scorciatoia da tastiera <kbd>ctrl</kbd>-<kbd>C</kbd> per
 interrompere un programma che è bloccato in un ciclo continuo. Provaci:
 
 <!-- manual-regeneration
@@ -219,7 +219,7 @@ ancora!
 ^C!
 ```
 
-Il simbolo `^C` rappresenta quando hai premuto <kbd>ctrl</kbd>-<kbd>c</kbd>.
+Il simbolo `^C` rappresenta quando hai premuto <kbd>ctrl</kbd>-<kbd>C</kbd>.
 
 Potresti vedere o meno la parola `ancora!` stampata dopo la `^C`, a seconda di
 dove si trovava il codice nel ciclo quando ha ricevuto il segnale di
@@ -228,7 +228,7 @@ interruzione.
 Fortunatamente, Rust offre anche un modo per uscire da un ciclo utilizzando del
 codice. Puoi inserire la parola chiave `break` all'interno del ciclo per
 indicare al programma quando interrompere l'esecuzione del ciclo. Ricorda che
-abbiamo fatto questo nel gioco di indovinelli nella sezione [“Uscita dopo
+abbiamo fatto questo nel gioco di indovinelli nella sezione [“Uscire dopo
 un'ipotesi corretta”][ipotesi-corretta]<!-- ignore --> del Capitolo 2 per uscire
 dal programma quando l'utente indovinava il numero segreto.
 
@@ -236,7 +236,7 @@ Nel gioco di indovinelli abbiamo usato anche `continue`, che in un ciclo indica
 al programma di saltare tutto il codice rimanente in questa iterazione del ciclo
 e di passare all'iterazione successiva.
 
-#### Restituzione di Valori dai Cicli
+#### Restituire Valori dai Cicli
 
 Uno degli utilizzi di un `loop` è quello di riprovare un'operazione che sai che
 potrebbe fallire, come ad esempio controllare se un _thread_ ha completato il
@@ -261,7 +261,7 @@ l'istruzione che assegna il valore a `risultato`. Infine, stampiamo il valore in
 Puoi anche usare `return` all'interno di un ciclo. Mentre `break` esce solo dal
 ciclo corrente, `return` esce sempre dalla funzione corrente.
 
-#### Etichette di Loop per Distinguere tra Cicli Multipli
+#### Distinguere con le Etichette di _Loop_
 
 Se hai un ciclo annidato all'interno di un altro ciclo, `break` e `continue` si
 applicano al loop più interno in quel momento. Puoi specificare facoltativamente
@@ -283,7 +283,7 @@ esce dal ciclo esterno. Questo codice stamperà:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-32-5-loop-labels/output.txt}}
 ```
 
-#### I Cicli Condizionali con `while`
+#### Semplici Cicli Condizionali con `while`
 
 Spesso un programma ha bisogno di valutare una condizione all'interno di un
 ciclo. Quando la condizione è `true`, il ciclo viene eseguito. Quando la
@@ -403,4 +403,4 @@ Quando sarai pronto per andare avanti, parleremo di un concetto di Rust che non
 esiste in altri linguaggi di programmazione: la _ownership_.
 
 [numero-segreto]: ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
-[ipotesi-corretta]: ch02-00-guessing-game-tutorial.html#uscita-dopo-unipotesi-corretta
+[ipotesi-corretta]: ch02-00-guessing-game-tutorial.html#uscire-dopo-unipotesi-corretta

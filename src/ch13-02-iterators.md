@@ -191,7 +191,7 @@ complesse in modo leggibile. Tuttavia, poiché tutti gli iteratori sono _lazy_, 
 necessario chiamare uno dei metodi consumatori per ottenere risultati dalle
 chiamate agli adattatori.
 
-### Utilizzare Chiusure che Catturano il Loro Ambiente
+### Chiusure che Catturano il Loro Ambiente
 
 Molti adattatori accettano le chiusure come argomenti e, di solito, le chiusure
 che specificheremo come argomenti degli adattatori saranno chiusure che

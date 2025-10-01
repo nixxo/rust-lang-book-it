@@ -23,7 +23,7 @@ writing your own operating system. Working with low-level systems programming
 is one of the goals of the language. Let’s explore what we can do with unsafe
 Rust and how to do it.
 
-### Unsafe Superpowers
+### Performing Unsafe Superpowers
 
 To switch to unsafe Rust, use the `unsafe` keyword and then start a new block
 that holds the unsafe code. You can take five actions in unsafe Rust that you
@@ -414,7 +414,7 @@ variables can be mutable. Accessing and modifying mutable static variables is
 _unsafe_. Listing 20-11 shows how to declare, access, and modify a mutable
 static variable named `COUNTER`.
 
-<Listing number="20-11" file-name="src/main.rs" caption="Reading from or writing to a mutable static variable is unsafe.">
+<Listing number="20-11" file-name="src/main.rs" caption="Reading from or writing to a mutable static variable is unsafe">
 
 ```rust
 {{#rustdoc_include ../listings/ch20-advanced-features/listing-20-11/src/main.rs}}

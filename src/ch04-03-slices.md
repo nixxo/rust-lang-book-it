@@ -284,8 +284,9 @@ su valori `&str`.
 Se abbiamo una _slice_ di stringa, possiamo passarlo direttamente. Se abbiamo
 una `String`, possiamo passare una _slice_ della `String` o un _reference_ alla
 `String`. Questa flessibilità sfrutta la _deref coercions_ (_de-referenziazione
-forzata_), una funzionalità che tratteremo nella sezione [“De-referenziazione
-forzata implicita in Funzioni e Metodi”][deref-coercions] del Capitolo 15.
+forzata_), una funzionalità che tratteremo nella sezione [“Usare la
+De-Referenziazione Forzata in Funzioni e Metodi”][deref-coercions] del Capitolo
+15.
 
 Definire una funzione che come parametro prende una _slice_ di stringa invece di
 un _reference_ a una `String` rende la nostra funzione più generica e utile
@@ -342,4 +343,4 @@ Capitolo 5 e vediamo come raggruppare pezzi di dati insieme in una `struct`.
 [ch13]: ch13-02-iterators.html
 [ch6]: ch06-02-match.html#pattern-che-si-legano-ai-valori
 [strings]: ch08-02-strings.html#memorizzare-testo-codificato-utf-8-con-stringhe
-[deref-coercions]: ch15-02-deref.html#de-referenziazione-forzata-implicita-in-funzioni-e-metodi
+[deref-coercions]: ch15-02-deref.html#usare-la-de-referenziazione-forzata-in-funzioni-e-metodi

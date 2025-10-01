@@ -14,7 +14,7 @@ Dopo aver inserito un'ipotesi, il programma indicherà se l'ipotesi è troppo
 bassa o troppo alta. Se l'ipotesi è corretta, il gioco stamperà un messaggio di
 congratulazioni e terminerà.
 
-## Impostazione di un Nuovo Progetto
+## Impostare un Nuovo Progetto
 
 Per creare un nuovo progetto, vai nella cartella _progetti_ che hai creato nel
 Capitolo 1 e crea un nuovo progetto con Cargo, in questo modo:
@@ -67,7 +67,7 @@ di passare alla successiva.
 
 Riapri il file _src/main.rs_. In questo file scriverai tutto il codice.
 
-## Elaborazione di un'Ipotesi
+## Elaborare un'Ipotesi
 
 La prima parte del programma del gioco di indovinelli richiederà l'input
 dell'utente, lo elaborerà e verificherà che l'input sia nella forma prevista.
@@ -138,13 +138,13 @@ cose. Usiamo l'istruzione `let` per creare la variabile. Ecco un altro esempio:
 let mele = 5;
 ```
 
-Questa riga crea una nuova variabile di nome `mele` e la lega al valore 5. In
+Questa riga crea una nuova variabile di nome `mele` e la lega al valore `5`. In
 Rust, le variabili sono immutabili (_immutable_) come impostazione predefinita,
 il che significa che una volta assegnato un valore alla variabile, il valore non
 cambierà. Parleremo di questo concetto in dettaglio nella sezione [“Variabili e
-mutabilità”][variables-and-mutability]<!-- ignore --> del Capitolo
-3. Per rendere mutabile (_mutable_) una variabile, aggiungiamo `mut` prima del
-nome della variabile:
+mutabilità”][variables-and-mutability]<!-- ignore --> del Capitolo 3. Per
+rendere mutabile (_mutable_) una variabile, aggiungiamo `mut` prima del nome
+della variabile:
 
 ```rust,ignore
 let mele = 5; // immutabile
@@ -211,7 +211,7 @@ impostazione predefinita. Di conseguenza, devi scrivere `&mut ipotesi` piuttosto
 che solo `&ipotesi` per renderli _mutable_ (il Capitolo 4 spiegherà i
 _reference_ in modo più approfondito)
 
-### Gestione dei Potenziali Errori con `Result`
+### Gestire i Potenziali Errori con `Result`
 
 Stiamo ancora lavorando su questa riga di codice. Ora stiamo discutendo di una
 terza riga di testo, ma notiamo che fa ancora parte di un'unica riga logica di
@@ -273,7 +273,7 @@ problema mandare in crash il programma quando si verifica un problema, quindi
 possiamo usare `expect`. Imparerai a recuperare dagli errori nel [Capitolo
 9][recover]<!-- ignore -->.
 
-### Stampa di Valori con i Segnaposto in `println!`
+### Stampare i Valori con i Segnaposto in `println!`
 
 A parte la parentesi graffa di chiusura, c'è un'ultima riga da discutere nel
 codice:
@@ -335,7 +335,7 @@ divertente più di una volta. Utilizzeremo un numero casuale compreso tra 1 e
 funzionalità dei numeri casuali nella sua libreria standard, ma il team di Rust
 fornisce un [_crate_ `rand`][randcrate] con tale funzionalità.
 
-### Utilizzare un _Crate_ per Ottenere Maggiori Funzionalità
+### Aumentare le Funzionalità con un _Crate_
 
 Ricorda che un _crate_ è una raccolta di file di codice sorgente in Rust. Il
 progetto che stiamo costruendo è un _crate binario_, cioè un eseguibile. Il
@@ -456,7 +456,7 @@ Queste righe mostrano che Cargo ricompila solo le modifiche, il file
 _src/main.rs_. Le dipendenze non sono cambiate, quindi Cargo sa di poter
 riutilizzare ciò che ha già scaricato e compilato in precedenza.
 
-#### Garanzia di Build Riproducibili con il File _Cargo.lock_
+#### Garantire Build Riproducibili
 
 Cargo ha un meccanismo che ti garantisce di ricostruire lo stesso artefatto ogni
 volta che tu o chiunque altro costruisce il tuo codice: Cargo utilizzerà solo le
@@ -482,10 +482,10 @@ inserito nel controllo sorgente insieme al resto del codice del progetto.
 Quando _vuoi_ aggiornare un _crate_, Cargo mette a disposizione il comando
 `update`, che ignorerà il file _Cargo.lock_ e troverà tutte le ultime versioni
 che corrispondono alle tue specifiche in _Cargo.toml_. Cargo scriverà quindi
-queste versioni nel file _Cargo.lock_. In questo caso, Cargo cercherà solo le
-versioni maggiori di 0.8.5 e minori di 0.9.0. Se il _crate_ `rand` ha rilasciato
-nuove versioni sia per la versione 0.8 che per la 0.9, vedrai quanto segue se
-eseguirai `cargo update`:
+queste versioni nel file _Cargo.lock_. Altrimenti, di default, Cargo cercherà
+solo le versioni maggiori di 0.8.5 e minori di 0.9.0. Se il _crate_ `rand` ha
+rilasciato nuove versioni sia per la versione 0.8 che per la 0.9, vedrai quanto
+segue se eseguirai `cargo update`:
 
 <!-- manual-regeneration
 cd listings/ch02-guessing-game-tutorial/listing-02-02/
@@ -733,8 +733,8 @@ Il metodo `parse` funziona solo su caratteri che possono essere convertiti
 logicamente in numeri e quindi può facilmente causare errori. Se, ad esempio, la
 stringa contenesse `A👍%`, non ci sarebbe modo di convertirla in un numero.
 Poiché potrebbe fallire, il metodo `parse` restituisce un _type_ `Result`,
-proprio come fa il metodo `read_line` (discusso in precedenza in [“Gestione dei
-potenziali errori con `Result`”](#gestione-dei-potenziali-errori-con-result)<!--
+proprio come fa il metodo `read_line` (discusso in precedenza in [“Gestire i
+Potenziali Errori con `Result`”](#gestire-i-potenziali-errori-con-result)<!--
 ignore-->). Tratteremo questo `Result` allo stesso modo utilizzando nuovamente
 il metodo `expect`. Se `parse` restituisce una variante `Err` perché non è
 riuscito a creare un numero dalla stringa, la chiamata `expect` causerà il crash
@@ -791,7 +791,7 @@ esegui di nuovo il programma. Il programma ora chiederà sempre un'altra ipotesi
 il che introduce un nuovo problema: come fa l'utente a smettere di giocare?
 
 L'utente può sempre interrompere il programma utilizzando la scorciatoia da
-tastiera <kbd>ctrl</kbd>-<kbd>c</kbd>. Ma c'è un altro modo per sfuggire a
+tastiera <kbd>ctrl</kbd>-<kbd>C</kbd>. Ma c'è un altro modo per sfuggire a
 questo mostro insaziabile, come accennato nella discussione su `parse` in
 [“Confrontare l'ipotesi con il numero
 segreto”](#confrontare-lipotesi-con-il-numero-segreto)<!-- ignore -->: se
@@ -839,7 +839,7 @@ Digitando `esci` chiude il gioco, ma come noterai, anche l'inserimento di
 qualsiasi altro input che non sia un numero. Questo è a dir poco sub-ottimale:
 vogliamo che il gioco si fermi anche quando viene indovinato il numero corretto.
 
-### Uscita Dopo un'Ipotesi Corretta
+### Uscire Dopo un'Ipotesi Corretta
 
 Programmiamo il gioco in modo che esca quando l'utente vince, aggiungendo
 un'istruzione `break` (_uscita_):
@@ -855,7 +855,7 @@ dal ciclo quando l'utente indovina correttamente il numero segreto. Uscire dal
 ciclo significa anche uscire dal programma, perché il ciclo è l'ultima parte di
 `main`.
 
-### Gestione Degli Input Non Validi
+### Gestire Gli Input Non Validi
 
 Per perfezionare ulteriormente il comportamento del gioco, invece di mandare in
 crash il programma quando l'utente non inserisce un numero valido, facciamo in

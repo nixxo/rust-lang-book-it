@@ -22,7 +22,7 @@ Sebbene non tratteremo la _lifetime_ nella sua interezza in questo capitolo,
 discuteremo i modi più comuni in cui potresti incontrare la sintassi di
 _lifetime_ in modo che tu possa familiarizzare con il concetto.
 
-### Prevenire i _Reference_ Pendenti con la _Lifetime_
+### _Reference_ Pendenti
 
 Lo scopo principale della _lifetime_ è prevenire i _riferimenti pendenti_
 (_dangling references_), che causano al programma in esecuzione di avere
@@ -195,7 +195,7 @@ annotazioni servono a indicare a Rust come i parametri di _lifetime_ generici di
 più _reference_ si relazionano tra loro. Esaminiamo come le annotazioni di
 longevità si relazionano tra loro nel contesto della funzione `più_lunga`.
 
-### Annotare la _Lifetime_ nella Firma delle Funzioni
+### Nella Firma delle Funzioni
 
 Per utilizzare le annotazioni di longevità nelle firme delle funzioni, dobbiamo
 dichiarare i parametri _lifetime_ generici all'interno di parentesi angolari
@@ -316,7 +316,7 @@ restituito viene utilizzato. Formula ipotesi sul fatto che questi esperimenti
 supereranno o meno il _borrow checker_ prima di compilare; poi verifica se avevi
 ragione!
 
-### Pensare in Termini di _Lifetime_
+### Relazioni
 
 Il modo in cui è necessario specificare i parametri di longevità dipende da cosa
 sta facendo la tua funzione. Ad esempio, se modificassimo l'implementazione
@@ -375,7 +375,7 @@ ha informazioni sufficienti per consentire operazioni che proteggono la memoria
 e impedire operazioni che creerebbero _reference_ pendenti o comunque
 violerebbero la sicurezza della memoria.
 
-### Annotare la _Lifetime_ nella Definizione delle _Struct_
+### Nella Definizione delle _Struct_
 
 Finora, tutte le _struct_ che abbiamo definito contenevano _type_ con
 _ownership_. Possiamo definire _struct_ che contengano _reference_, ma in tal
@@ -406,7 +406,7 @@ variabile `romanzo`. I dati in `romanzo` esistono prima che l'istanza di
 anche `ParteImportante` non esce dallo _scope_, quindi il _reference_
 nell'istanza di `ParteImportante` è valido.
 
-### Elisione della _Lifetime_
+### Elidere la _Lifetime_
 
 Hai imparato che ogni _reference_ ha una _lifetime_ e che è necessario
 specificare parametri di longevità per funzioni o _struct_ che utilizzano
@@ -541,7 +541,7 @@ _lifetime_ in quel contesto per capire perché la terza regola ci consente di no
 dover annotare la longevità nelle firme dei metodi nella maggior parte dei
 casi.
 
-### Annotare la _Lifetime_ nella Definizione dei Metodi
+### Nella Definizione dei Metodi
 
 Quando implementiamo metodi su una _struct_ con _lifetime_, utilizziamo la
 stessa sintassi dei parametri di _type_ generico, come mostrato nel Listato

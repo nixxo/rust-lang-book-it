@@ -146,7 +146,7 @@ Ad esempio, invece di utilizzare una lista i cui elementi conoscono solo
 l'elemento successivo, creeremo un albero i cui elementi conoscono i loro
 elementi figlio e il loro elemento genitore.
 
-#### Creare una Struttura Dati ad Albero: un `Nodo` con Nodi Figlio
+#### Creare una Struttura Dati ad Albero
 
 Per iniziare, creeremo un albero con nodi che conoscono i loro nodi figlio.
 Creeremo una _struct_ denominata `Nodo` che contiene il proprio valore `i32` e i

@@ -7,7 +7,7 @@ alcune parole ripetute. Il Listato 12-3 contiene una poesia di Emily Dickinson
 che funzionerà bene! Crea un file chiamato _poesia.txt_ nella radice del tuo
 progetto e inserisci la poesia “Io sono Nessuno! Tu chi sei?”
 
-<Listing number="12-3" file-name="poesia.txt" caption="Una poesia di Emily Dickinson è un buon caso di test.">
+<Listing number="12-3" file-name="poesia.txt" caption="Una poesia di Emily Dickinson è un buon caso di test">
 
 ```text
 {{#include ../listings/ch12-an-io-project/listing-12-03/poesia.txt}}

@@ -30,7 +30,7 @@ _oggetto_ _trait_ (_trait object_), e [una sezione][trait-objects]<!-- ignore
 --> nel Capitolo 18 è dedicata specificamente a questo argomento. Quindi, ciò
 che imparerai qui lo applicherai di nuovo in quella sezione!
 
-### Utilizzare `Box<T>` per Memorizzare Dati nell'Heap
+### Memorizzare Dati nell'Heap
 
 Prima di discutere il caso d'uso di archiviazione nell'_heap_ per `Box<T>`,
 tratteremo la sintassi e come interagire con i valori memorizzati all'interno di
@@ -79,7 +79,7 @@ fatta eccezione per la ricorsione; pertanto, i concetti nell'esempio con cui
 lavoreremo saranno utili ogni volta che t troverai in situazioni più complesse
 che coinvolgono i _type_ ricorsivi.
 
-#### Ulteriori Informazioni Sulla _Cons List_
+#### Comprendere la _Cons List_
 
 Una _Cons List_ è una struttura dati derivata dal linguaggio di programmazione
 Lisp e dai suoi dialetti, è composta da coppie annidate ed è la versione Lisp di
@@ -194,7 +194,7 @@ variante `Cons` contiene un valore di _type_ `i32` e un valore di _type_
 
 <span class="caption">Figura 15-1: Una `Lista` infinita composta da infinite varianti `Cons`</span>
 
-#### Utilizzare `Box<T>` per Ottenere un _Type_ Ricorsivo con una Dimensione Nota
+#### Ottenere un _Type_ Ricorsivo con una Dimensione Nota
 
 Poiché Rust non riesce a calcolare quanto spazio allocare per i _type_ definiti
 ricorsivamente, il compilatore genera un errore con questo utile suggerimento:

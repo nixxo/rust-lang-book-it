@@ -32,12 +32,12 @@ dati molto comune: le stringhe.
 > Sia lo _stack_ che l’_heap_ sono parti di memoria disponibili per il codice da
 > utilizzare in fase di esecuzione, ma sono strutturate in modi diversi. Lo
 > _stack_ memorizza i valori nell’ordine in cui li ottiene e rimuove i valori
-> nell’ordine opposto. Questo viene definito _last in, first out_. Pensa a una
-> pila di piatti: quando aggiungi altri piatti, li metti in cima alla pila e
-> quando ti serve un piatto, ne togli uno dalla cima. Aggiungere o rimuovere i
-> piatti dal centro o dal fondo non funzionerebbe altrettanto bene! L’aggiunta
-> di dati sullo _stack_ viene definita _push_ (_immissione_), mentre la
-> rimozione dei dati viene definita _pop_ (_estrazione_). Tutti i dati
+> nell’ordine opposto. Questo viene definito _last in, first out_ (_LIFO_).
+> Pensa a una pila di piatti: quando aggiungi altri piatti, li metti in cima
+> alla pila e quando ti serve un piatto, ne togli uno dalla cima. Aggiungere o
+> rimuovere i piatti dal centro o dal fondo non funzionerebbe altrettanto bene!
+> L’aggiunta di dati sullo _stack_ viene definita _push_ (_immissione_), mentre
+> la rimozione dei dati viene definita _pop_ (_estrazione_). Tutti i dati
 > archiviati sullo _stack_ devono avere una dimensione nota e fissa. I dati con
 > una dimensione sconosciuta in fase di compilazione o una dimensione che
 > potrebbe cambiare devono invece essere archiviati nell’_heap_.
@@ -150,19 +150,19 @@ ottimo esempio da cui partire.
 
 Ci concentreremo sulle parti di `String` che riguardano la _ownership_. Questi
 aspetti si applicano anche ad altri _type_ di dati complessi, siano essi forniti
-dalla libreria standard o creati dall’utente. Parleremo di `String` in modo più
-approfondito nel [Capitolo 8][ch8]<!-- ignore -->.
+dalla libreria standard o creati dall’utente. Parleremo di `String` oltre
+l'aspetto della _ownership_ nel [Capitolo 8][ch8]<!-- ignore -->.
 
 Abbiamo già visto i letterali stringa, in cui un valore stringa è codificato nel
 nostro programma. I letterali stringa sono convenienti, ma non sono adatti a
 tutte le situazioni in cui potremmo voler utilizzare del testo. Uno dei motivi è
 che sono immutabili. Un altro è che non tutti i valori di stringa possono essere
 conosciuti quando scriviamo il nostro codice: ad esempio, cosa succederebbe se
-volessimo prendere l’input dell’utente e memorizzarlo? Per queste situazioni,
-Rust ha un secondo tipo di stringa, `String`. Questo _type_ gestisce i dati
-allocati nell'_heap_ e come tale è in grado di memorizzare una quantità di testo
-a noi sconosciuta in fase di compilazione. Puoi creare un _type_ `String`
-partendo da un letterale stringa utilizzando la funzione `from`, in questo modo:
+volessimo prendere l’input dell’utente e memorizzarlo? È per queste situazioni
+che Rust ha un il _type_ `String`. Questo _type_ gestisce i dati allocati
+nell'_heap_ e come tale è in grado di memorizzare una quantità di testo a noi
+sconosciuta in fase di compilazione. Puoi creare un _type_ `String` partendo da
+un letterale stringa utilizzando la funzione `from`, in questo modo:
 
 ```rust
 let s = String::from("ciao");
@@ -249,7 +249,7 @@ alcune di queste situazioni.
 #### Interazione tra Variabili e Dati con _Move_
 
 In Rust, più variabili possono interagire con gli stessi dati in modi diversi.
-Vediamo un esempio che utilizza un _integer_ nel Listato 4-2.
+Il Listato 4-2 mostra un esempio che utilizza un _integer_.
 
 <Listing number="4-2" caption="Assegnazione del valore integer della variabile `x` a `y`">
 
@@ -388,15 +388,15 @@ esempio:
 Inizialmente dichiariamo una variabile `s` e la associamo a una `String` con il
 valore `"hello"`. Poi creiamo immediatamente una nuova `String` con il valore
 `"ciao"` e la assegniamo a `s`. A questo punto, non c'è più nulla che faccia
-riferimento al valore originale nell'_heap_.
+riferimento al valore originale nell'_heap_. La Figura 4-5 mostra i dati sullo
+_stack_ e nell'_heap_ al momenmto:
 
-<img alt="Una tabella s rappresenta la stringa sullo stack, che punta ai dati
+<img alt="Una tabella rappresenta la stringa sullo stack, che punta ai dati
 della stringa (ciao) nell'heap, con i dati della stringa originale (hello)
-scuriti perché non più accessibili." src="img/trpl04-05.svg" class="center"
-style="width: 50%;" />
+scuriti perché non più accessibili."
+src="img/trpl04-05.svg" class="center" style="width: 50%;" />
 
-<span class="caption">Figura 4-5: Rappresentazione in memoria dopo che il primo
-valore è completamente sostituito.</span>
+<span class="caption">Figura 4-5: Rappresentazione in memoria dopo che il primo valore è completamente sostituito.</span>
 
 La stringa originale esce così immediatamente dallo _scope_. Rust eseguirà la
 funzione `drop` su di essa e la sua memoria verrà rilasciata immediatamente.
@@ -423,7 +423,7 @@ Quando vedi una chiamata a `clone`, sai che viene eseguito del codice arbitrario
 e che questo potrebbe essere dispendioso. È un indicatore visivo del fatto che
 sta succedendo qualcosa di diverso.
 
-#### Duplicazione di Dati Sullo _Stack_
+#### Duplicare Dati Sullo _Stack_
 
 C'è un'altra peculiarità di cui non abbiamo ancora parlato: questo codice che
 utilizza gli _integer_, in parte mostrato nel Listato 4-2, funziona ed è valido
@@ -534,8 +534,8 @@ nel Listato 4-5
 
 Ma questa è una procedura inutilmente complessa e richiede molto lavoro per un
 concetto che dovrebbe essere comune. Fortunatamente per noi, Rust ha una
-funzione che consente di utilizzare un valore senza trasferirne la _ownership_,
-chiamata _riferimento_ (_reference_ in inglese).
+funzionalità che consente di utilizzare un valore senza trasferirne la
+_ownership_, chiamata _riferimento_ (_reference_ in inglese).
 
 [data-types]: ch03-02-data-types.html#datatype---tipi-di-dato
 [ch8]: ch08-02-strings.html

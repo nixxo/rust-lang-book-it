@@ -1,4 +1,4 @@
-## Sintassi dei Metodi
+## Metodi
 
 I metodi (_method_) sono simili alle funzioni: le dichiariamo con la parola
 chiave `fn` e un nome, possono avere parametri e un valore di ritorno, e
@@ -9,7 +9,7 @@ di una _struct_ (o di un'_enum_ o di un _trait object_, che tratteremo nel
 -->, rispettivamente), e il loro primo parametro è sempre `self`, che
 rappresenta l’istanza della _struct_ su cui il metodo viene chiamato.
 
-### Definire i Metodi
+### Sintassi dei Metodi
 
 Trasformiamo la funzione `area` che prende un’istanza di `Rettangolo` come
 parametro rendendola invece un metodo definito sulla _struct_ `Rettangolo`, come

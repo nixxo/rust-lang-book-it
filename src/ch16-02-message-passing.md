@@ -1,4 +1,4 @@
-## Usare il Passaggio di Messaggi per Trasferire Dati tra _Thread_
+## Trasferire Dati tra _Thread_ Usando il Passaggio di Messaggi
 
 Un approccio sempre più diffuso per garantire una concomitanza sicura è il
 _passaggio di messaggi_ (_message passing_), in cui i _thread_ o gli attori
@@ -145,7 +145,7 @@ Ricevuto: ciao
 
 Perfetto!
 
-### Canali e Trasferimento di _Ownership_
+### Trasferire _Ownership_ Attraverso i Canali
 
 Le regole di _ownership_ giocano un ruolo fondamentale nell'invio dei messaggi
 perché ti aiutano a scrivere codice sicuro e concorrente. Prevenire gli errori
@@ -183,7 +183,7 @@ inviato, è il destinatario ne prende la _ownership_. Questo ci impedisce di
 utilizzare accidentalmente il valore dopo averlo inviato; il sistema di
 _ownership_ controlla che tutto sia a posto.
 
-### Inviare Più Valori per Vedere il Destinatario Attendere
+### Inviare Più Valori
 
 Il codice del listato 16-8 è stato compilato ed eseguito, ma non mostrava
 chiaramente che due _thread_ separati stavano parlando tra loro attraverso il
@@ -229,7 +229,7 @@ Poiché non abbiamo alcun codice che mette in pausa o ritarda il ciclo `for` nel
 _thread_ principale, possiamo dire che il _thread_ principale sta effettivamente
 aspettando di ricevere i valori dal _thread_ generato.
 
-### Creare più Produttori Clonando il Trasmettitore
+### Creare più Produttori
 
 Prima abbiamo detto che `mpsc` è l'acronimo di _multiple producer, single
 consumer_. Mettiamo in pratica `mpsc` ed espandiamo il codice del listato 16-10

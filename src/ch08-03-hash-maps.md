@@ -81,7 +81,7 @@ Gialla: 50
 Blu: 10
 ```
 
-### _Hash Map_ e _Ownership_
+### Gestire _Ownership_ nelle _Hash Map_
 
 Per i _type_ che implementano il _trait_ `Copy`, come `i32`, i valori vengono
 copiati nella _hash map_. Per i valori con _ownership_ come `String`, i valori

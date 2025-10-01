@@ -1,4 +1,4 @@
-## _Trait_: Definire il Comportamento Condiviso
+## Definire il Comportamento Condiviso con i _Trait_
 
 Un _tratto_ (_trait_) definisce la funzionalità che un particolare _type_ ha e
 può condividere con altri _type_. Possiamo usare i _trait_ per definire il
@@ -119,7 +119,7 @@ altri non possa _rompere_ il tuo codice e viceversa. Senza questa regola, due
 _crate_ potrebbero implementare lo stesso _trait_ per lo stesso _type_ e Rust
 non saprebbe quale implementazione utilizzare.
 
-### Implementazioni Predefinite
+### Usare le Implementazioni Predefinite
 
 A volte è utile avere un comportamento predefinito per alcuni o tutti i metodi
 in un _trait_ invece di richiedere implementazioni per tutti i metodi su ogni
@@ -195,7 +195,7 @@ Questo codice stampa `1 nuovo post: (Leggi di più su @horse_ebooks...)`.
 Nota che non è possibile chiamare l'implementazione predefinita da una
 implementazione sovrascritta dello stesso metodo.
 
-### _Trait_ come Parametri
+### Usare i _Trait_ come Parametri
 
 Ora che sai come definire e implementare i _trait_, possiamo esplorare come
 usarli per definire funzioni che accettano molti _type_ diversi. Useremo il
@@ -258,7 +258,7 @@ Il _type_ generico `T` specificato come _type_ dei parametri `elemento1` e
 `elemento2` vincola la funzione in modo che il _type_ concreto del valore
 passato come argomento per `elemento1` e `elemento2` debba essere lo stesso.
 
-#### Specificare più Vincoli di _Trait_ con la sintassi `+`
+#### Specificare più Vincoli di _Trait_ con la Sintassi `+`
 
 Possiamo anche specificare più di un vincolo di _trait_. Supponiamo di voler che
 `notifica` usi sia la formattazione di visualizzazione, fornita dal _trait_
@@ -303,7 +303,7 @@ La firma di questa funzione è meno confusionaria: il nome della funzione,
 l'elenco dei parametri e il _type_ di ritorno sono vicini, come in una funzione
 senza molti vincoli di _trait_.
 
-### Restituzione di _Type_ che Implementano _Trait_
+### Restituire _Type_ che Implementano _Trait_
 
 Possiamo anche usare la sintassi `impl Trait` nella posizione di ritorno per
 restituire un valore di un _type_ che implementa un _trait_, come mostrato qui:
@@ -347,12 +347,12 @@ Utilizzando un vincolo di _trait_ con un blocco `impl` che utilizza parametri di
 _type_ generico, possiamo implementare metodi in modo condizionale per i _type_
 che implementano i _trait_ specificati. Ad esempio, il _type_ `Coppia<T>` nel
 Listato 10-15 implementa sempre la funzione `new` per restituire una nuova
-istanza di `Coppia<T>` (abbiamo menzionato nella sezione [“Definire i
-Metodi”][methods]<!-- ignore --> del Capitolo 5 che `Self` è un alias di _type_
-per il _type_ del blocco `impl`, che in questo caso è `Coppia<T>`). Ma nel
-blocco `impl` successivo, `Coppia<T>` implementa il metodo `mostra_comparazione`
-solo se il suo _type_ interno `T` implementa il _trait_ `PartialOrd` che abilita
-il confronto _e_ il _trait_ `Display` che abilita la stampa.
+istanza di `Coppia<T>` (abbiamo menzionato nella sezione [“Metodi”][methods]<!--
+ignore --> del Capitolo 5 che `Self` è un alias di _type_ per il _type_ del
+blocco `impl`, che in questo caso è `Coppia<T>`). Ma nel blocco `impl`
+successivo, `Coppia<T>` implementa il metodo `mostra_comparazione` solo se il
+suo _type_ interno `T` implementa il _trait_ `PartialOrd` che abilita il
+confronto _e_ il _trait_ `Display` che abilita la stampa.
 
 <Listing number="10-15" file-name="src/lib.rs" caption="Implementazione condizionale di metodi su un _type_ generico in base ai vincoli di _trait_">
 
@@ -404,4 +404,4 @@ verificato in fase di compilazione. Ciò migliora le prestazioni senza dover
 rinunciare alla flessibilità dei _type_ generici.
 
 [using-trait-objects]: ch18-02-trait-objects.html
-[methods]: ch05-03-method-syntax.html#definire-i-metodi
+[methods]: ch05-03-method-syntax.html#metodi 

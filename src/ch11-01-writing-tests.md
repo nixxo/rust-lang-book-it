@@ -12,7 +12,7 @@ Vediamo le funzionalità che Rust mette a disposizione specificamente per
 scrivere test che eseguono queste azioni, come l'attributo `test`, alcune macro
 e l'attributo `should_panic`.
 
-### Anatomia di Una Funzione di Test
+### Strutturare le Funzioni di Test
 
 Nella sua forma più semplice, un test in Rust è una funzione annotata con
 l'attributo `test`. Gli attributi sono metadati relativi a pezzi di codice Rust;
@@ -99,14 +99,14 @@ passati, e la parte che recita `1 passed; 0 failed` tiene il conto del numero di
 test che sono passati o falliti.
 
 È possibile contrassegnare un test come da ignorare in modo che non venga
-eseguito in una particolare istanza; ne parleremo nella sezione [“Ignorare
-alcuni test se non specificamente richiesti”][ignoring]<!-- ignore --> più
-avanti in questo capitolo. Poiché non l'abbiamo fatto qui, il riepilogo mostra
-`0 ignored`. Possiamo anche passare un argomento al comando `cargo test` per
-eseguire solo i test il cui nome corrisponda a una stringa; questo si chiama
-_filtraggio_ e lo tratteremo nella sezione [“Eseguire un sottoinsieme di test in
-base al nome”][subset]<!-- ignore -->. In questo caso non abbiamo filtrato i
-test in esecuzione, quindi la fine del riepilogo mostra `0 filtered out`.
+eseguito in una particolare istanza; ne parleremo nella sezione [“Ignorare test
+se non specificamente richiesti”][ignoring]<!-- ignore --> più avanti in questo
+capitolo. Poiché non l'abbiamo fatto qui, il riepilogo mostra `0 ignored`.
+Possiamo anche passare un argomento al comando `cargo test` per eseguire solo i
+test il cui nome corrisponda a una stringa; questo si chiama _filtraggio_ e lo
+tratteremo nella sezione [“Eseguire un sottoinsieme di test in base al
+nome”][subset]<!-- ignore -->. In questo caso non abbiamo filtrato i test in
+esecuzione, quindi la fine del riepilogo mostra `0 filtered out`.
 
 La statistica `0 measured` è per i test di _benchmark_ che misurano le
 prestazioni. I test di _benchmark_, al momento, sono disponibili solo nelle
@@ -563,9 +563,9 @@ Ora che conosci diversi modi per scrivere i test, vediamo cosa succede quando li
 eseguiamo ed esploriamo le diverse opzioni che possiamo utilizzare con `cargo
 test`
 
-[format-macro]: ch08-02-strings.html#concatenare-con-loperatore--o-la-macro-format
+[format-macro]: ch08-02-strings.html#concatenare-con--o-format 
 [bench]: https://doc.rust-lang.org/stable/unstable-book/library-features/test.html
-[ignoring]: ch11-02-running-tests.html#ignorare-alcuni-test-se-non-specificamente-richiesti
+[ignoring]: ch11-02-running-tests.html#ignorare-test-se-non-specificamente-richiesti
 [subset]: ch11-02-running-tests.html#eseguire-un-sottoinsieme-di-test-in-base-al-nome
 [controlling-how-tests-are-run]: ch11-02-running-tests.html#controllare-come-vengono-eseguiti-i-test
 [derivable-traits]: appendix-03-derivable-traits.html

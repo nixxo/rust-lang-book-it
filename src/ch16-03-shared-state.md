@@ -21,7 +21,7 @@ Il sistema dei _type_ e le regole di _ownership_ di Rust aiutano molto a gestire
 correttamente questo aspetto. Per fare un esempio, vediamo i _mutex_, uno dei
 _type_ primitivi di concorrenza più comuni per la memoria condivisa.
 
-### Usare i _Mutex_ per Consentire l'Accesso ai Dati da un _Thread_ per Volta
+### Controllare l'Accesso con i _Mutex_
 
 _Mutex_ è l'abbreviazione di _mutual exclusion_ (_mutua esclusione_), ovvero un
 _mutex_ permette a un solo _thread_ di accedere ad alcuni dati in un determinato
@@ -97,7 +97,7 @@ del blocco avviene automaticamente.
 Dopo aver rilasciato il blocco, possiamo stampare il valore del _mutex_ e vedere
 che siamo riusciti a cambiare l'interno `i32` in `6`.
 
-#### Condividere `Mutex<T>` tra più _Thread_
+#### Condividere Accesso a `Mutex<T>`
 
 Ora proviamo a condividere un valore tra più _thread_ utilizzando `Mutex<T>`.
 Avvieremo 10 _thread_ e faremo in modo che ognuno di essi incrementi il valore
@@ -239,7 +239,7 @@ concorrente e atomico ai _type_ primitivi. Abbiamo scelto di utilizzare
 `Mutex<T>` con un _type_ primitivo per questo esempio, in modo da poterci
 concentrare sul funzionamento di `Mutex<T>`.
 
-### Analogie tra `RefCell<T>`/`Rc<T>` e `Mutex<T>`/`Arc<T>`
+### Comparazione tra `RefCell<T>`/`Rc<T>` e `Mutex<T>`/`Arc<T>`
 
 Avrai notato che `contatore` è immutabile ma possiamo ottenere un _reference_
 mutabile al valore al suo interno; questo significa che `Mutex<T>` fornisce la

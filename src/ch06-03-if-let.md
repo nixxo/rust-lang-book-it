@@ -1,4 +1,4 @@
-## Controllo di Flusso Conciso con `if let` e `let else`
+## Controllare il Flusso con `if let` e `let else`
 
 La sintassi `if let` consente di combinare `if` e `let` in un modo meno verboso
 per gestire i valori che corrispondono a un singolo _pattern_, ignorando gli
@@ -79,7 +79,7 @@ Poi potremmo usare `if let` per fare _matching_ sul tipo di moneta, introducendo
 una variabile `stato` all’interno del corpo della condizione, come nel Listato
 6-7.
 
-<Listing number="6-7" caption="Verificare se uno stato esisteva nel 1900 usando condizionali annidati dentro un `if let`.">
+<Listing number="6-7" caption="Verificare se uno stato esisteva nel 1900 usando condizionali annidati dentro un `if let`">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-07/src/main.rs:describe}}
@@ -94,7 +94,7 @@ espressioni producono un valore, o per produrre `stato` dall’`if let` o per
 ritornare anticipatamente, come in Listato 6-8. (Si potrebbe fare qualcosa di
 simile anche con un `match`.)
 
-<Listing number="6-8" caption="Usare `if let` per produrre un valore o ritornare anticipatamente.">
+<Listing number="6-8" caption="Usare `if let` per produrre un valore o ritornare anticipatamente">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-08/src/main.rs:describe}}
@@ -115,7 +115,7 @@ restituire dalla funzione.
 Nel Listato 6-9 puoi vedere come Listato 6-8 appare usando `let...else` al posto
 di `if let`.
 
-<Listing number="6-9" caption="Usare `let...else` per semplificare il flusso della funzione.">
+<Listing number="6-9" caption="Usare `let...else` per semplificare il flusso della funzione">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-09/src/main.rs:describe}}

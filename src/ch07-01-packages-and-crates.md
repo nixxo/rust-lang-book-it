@@ -58,7 +58,7 @@ main.rs
 ```
 
 Dopo aver eseguito `cargo new mio-progetto`, usiamo `ls` per vedere cosa crea
-Cargo. Nella cartella del progetto, c'è un file _Cargo.toml_, che definisce un
+Cargo. Nella cartella `mio-progetto`, c'è un file _Cargo.toml_, che definisce un
 pacchetto. C'è anche una cartella _src_ che contiene _main.rs_. Apri
 _Cargo.toml_ nel tuo editor di testo e nota che non c'è menzione di
 _src/main.rs_. Cargo segue una convenzione secondo cui _src/main.rs_ è la radice

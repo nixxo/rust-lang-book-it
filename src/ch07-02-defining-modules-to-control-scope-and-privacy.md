@@ -1,4 +1,4 @@
-## Definire Moduli per Controllare _Scope_ e Privacy
+## Controllare _Scope_ e Privacy con i Moduli
 
 In questa sezione, parleremo dei moduli e di altre parti del sistema dei moduli,
 in particolare dei _path_ (_percorsi_), che ti permettono di nominare gli
@@ -55,7 +55,7 @@ promemoria su come funzionano i moduli.
   solo `Asparagi` per utilizzare quel _type_ nello _scope_.
 
 Ora creiamo un _crate_ _binario_ chiamato `cortile` che illustra queste regole.
-La cartella del _crate_, anch'essa chiamata `cortile`, contiene questi file e
+La cartella del _crate_, anch'essa chiamata _cortile_, contiene questi file e
 cartelle:
 
 ```text

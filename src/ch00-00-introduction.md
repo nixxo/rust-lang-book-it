@@ -4,7 +4,7 @@
 > Language][nsprust], disponibile in formato cartaceo ed ebook presso [No Starch
 > Press][nsp].
 
-[nsprust]: https://nostarch.com/rust-programming-language-2nd-edition
+[nsprust]: https://nostarch.com/rust-programming-language-3rd-edition
 [nsp]: https://nostarch.com/
 
 Benvenuti a _Il Linguaggio di Programmazione Rust_, un libro introduttivo su
@@ -40,10 +40,11 @@ programmazione di sistemi:
 - Cargo, il gestore di dipendenze e strumento di compilazione integrato, rende
   l'aggiunta, la compilazione e la gestione delle dipendenze semplice e coerente
   in tutto l'ecosistema Rust.
-- Lo strumento di formattazione Rustfmt garantisce uno stile di programmazione
+- Lo strumento di formattazione `rustfmt` garantisce uno stile di programmazione
   coerente tra gli sviluppatori.
-- Rust-analyzer potenzia l'integrazione dell'ambiente di sviluppo integrato
-  (IDE) per il completamento del codice e i messaggi di errore in linea.
+- Il Server LSP del Linguaggio Rust potenzia l'integrazione dell'ambiente di
+  sviluppo integrato (IDE) per il completamento del codice e i messaggi di
+  errore in linea.
 
 Utilizzando questi e altri strumenti dell'ecosistema Rust, gli sviluppatori
 possono essere produttivi mentre scrivono codice a livello di sistema.
@@ -115,64 +116,64 @@ di Rust. Nei capitoli di progetto, costruiremo insieme dei piccoli programmi,
 applicando ciò che hai imparato finora. I capitoli 2, 12 e 21 sono capitoli di
 progetto; il resto sono capitoli concettuali.
 
-Il Capitolo 1 spiega come installare Rust, come scrivere un programma “Hello,
-world!” e come utilizzare Cargo, il gestore di pacchetti e lo strumento di
-compilazione di Rust. Il Capitolo 2 è un'introduzione pratica alla scrittura di
-un programma in Rust, con la creazione di un gioco di indovinelli con i numeri.
-Qui trattiamo i concetti ad un livello più superficiale e i capitoli successivi
-forniranno ulteriori dettagli. Se vuoi sporcarti subito le mani, il Capitolo 2 è
-dove puoi iniziare. Il Capitolo 3 tratta le caratteristiche di Rust simili a
-quelle di altri linguaggi di programmazione e nel Capitolo 4 imparerai a
-conoscere il sistema di controllo esclusivo (_ownership_ d'ora in poi) di Rust.
-Se sei uno studente particolarmente meticoloso, che preferisce imparare ogni
-dettaglio prima di passare al successivo, potresti voler saltare il Capitolo 2 e
-passare direttamente al Capitolo 3, tornando al Capitolo 2 quando vorrai
-lavorare su un progetto applicando i dettagli che hai imparato.
+Il **Capitolo 1** spiega come installare Rust, come scrivere un programma
+“Hello, world!” e come utilizzare Cargo, il gestore di pacchetti e lo strumento
+di compilazione di Rust. Il **Capitolo 2** è un'introduzione pratica alla
+scrittura di un programma in Rust, con la creazione di un gioco di indovinelli
+con i numeri. Qui trattiamo i concetti ad un livello più superficiale e i
+capitoli successivi forniranno ulteriori dettagli. Se vuoi sporcarti subito le
+mani, il Capitolo 2 è dove puoi iniziare. Se invece sei uno studente
+particolarmente meticoloso, che preferisce imparare ogni dettaglio prima di
+passare al successivo, potresti voler saltare il Capitolo 2 e passare
+direttamente al **Capitolo 3** che tratta le caratteristiche di Rust simili a
+quelle di altri linguaggi di programmazione; dopo, potrai ritornare al Capitolo
+2 se vorrai applicare in un porogetto quanto appreso.
 
-Il Capitolo 5 parla di strutture e metodi, mentre il Capitolo 6 tratta le
-enumerazioni, le espressioni `match` e il costrutto della struttura di controllo
-`if let`. Utilizzerai le strutture e le enumerazioni per creare _type_
-personalizzati in Rust.
+Nel **Capitolo 4** imparerai a conoscere il sistema di proprietà (_ownership_
+d'ora in poi) di Rust. Il **Capitolo 5** parla di strutture e metodi, mentre il
+**Capitolo 6** tratta le enumerazioni, le espressioni `match` e il costrutto
+della struttura di controllo `if let`. Utilizzerai le strutture e le
+enumerazioni per creare _type_ personalizzati in Rust.
 
-Nel Capitolo 7 imparerai a conoscere il sistema dei moduli di Rust, le regole di
-visibilità per l'organizzazione del codice e la sua Application Programming
-Interface (API) pubblica. Il Capitolo 8 tratta alcune strutture di dati comuni
-che la libreria standard mette a disposizione, come vettori, stringhe e mappe
-hash. Il Capitolo 9 esplora la filosofia e le tecniche di gestione degli errori
-di Rust.
+Nel **Capitolo 7** imparerai a conoscere il sistema dei moduli di Rust, le
+regole di visibilità per l'organizzazione del codice e la sua Application
+Programming Interface (API) pubblica. Il **Capitolo 8** tratta alcune strutture
+di dati comuni che la libreria standard mette a disposizione, come vettori,
+stringhe e mappe hash. Il Capitolo 9 esplora la filosofia e le tecniche di
+gestione degli errori di Rust.
 
-Il Capitolo 10 approfondisce i generici, i tratti e la longevità (_traits_ e
+Il **Capitolo 10** approfondisce i generici, i tratti e la longevità (_traits_ e
 _lifetime_ d'ora in poi), che ti danno la possibilità di definire codice
-applicabile a più tipologie di dato. Il Capitolo 11 è dedicato ai test, che
+applicabile a più tipologie di dato. Il *Capitolo 11* è dedicato ai test, che
 anche con le garanzie di sicurezza di Rust sono necessari per garantire la
-correttezza della logica del tuo programma. Nel Capitolo 12, costruiremo la
+correttezza della logica del tuo programma. Nel **Capitolo 12**, costruiremo la
 nostra implementazione di un sottoinsieme di funzionalità dello strumento da
 riga di comando `grep`, che cerca il testo all'interno dei file. Per questo,
 utilizzeremo molti dei concetti discussi nei capitoli precedenti.
 
-Il Capitolo 13 esplora le chiusure e gli iteratori: caratteristiche di Rust che
-derivano dai linguaggi di programmazione funzionale. Nel Capitolo 14 esamineremo
-Cargo in modo più approfondito e parleremo delle migliori pratiche per
-condividere le tue librerie con altri. Il Capitolo 15 parla dei puntatori
-intelligenti che la libreria standard mette a disposizione e dei _traits_ che ne
-consentono la funzionalità.
+Il **Capitolo 13** esplora le chiusure e gli iteratori: caratteristiche di Rust
+che derivano dai linguaggi di programmazione funzionale. Nel **Capitolo 14**
+esamineremo Cargo in modo più approfondito e parleremo delle migliori pratiche
+per condividere le tue librerie con altri. Il **Capitolo 15** parla dei
+puntatori intelligenti che la libreria standard mette a disposizione e dei
+_traits_ che ne consentono la funzionalità.
 
-Nel Capitolo 16, esamineremo diversi modelli di programmazione concorrente e
+Nel **Capitolo 16**, esamineremo diversi modelli di programmazione concorrente e
 parleremo di come Rust ti aiuti a programmare con più sotto-processi (_thread_
-d'ora in poi) senza paura. Nel Capitolo 17, esploreremo la sintassi _async_ e
-_await_ di Rust, insieme a _task_, _futures_ e _stream_, e il modello di
+d'ora in poi) senza paura. Nel **Capitolo 17**, esploreremo la sintassi _async_
+e _await_ di Rust, insieme a _task_, _futures_ e _stream_, e il modello di
 concomitanza leggera che consentono.
 
-Il Capitolo 18 analizza come gli idiomi di Rust si confrontano con i principi
-della programmazione orientata agli oggetti che potresti conoscere. Il Capitolo
-19 è un riferimento ai _pattern_ e al loro riconoscimento (_pattern matching_),
-che sono modi potenti di esprimere idee nei programmi Rust. Il Capitolo 20
-contiene una varietà di argomenti di interesse, tra cui Rust non sicuro (_unsafe
-Rust_ d'ora in poi), macro e altre informazioni su longevità, _trait_, tipologie
-(_type_), funzioni e chiusure.
+Il **Capitolo 18** analizza come gli idiomi di Rust si confrontano con i
+principi della programmazione orientata agli oggetti che potresti conoscere. Il
+**Capitolo 19** è un riferimento ai _pattern_ e al loro riconoscimento (_pattern
+matching_), che sono modi potenti di esprimere idee nei programmi Rust. Il
+**Capitolo 20** contiene una varietà di argomenti di interesse, tra cui Rust non
+sicuro (_unsafe Rust_ d'ora in poi), macro e altre informazioni su longevità,
+_trait_, tipologie (_type_), funzioni e chiusure.
 
-Nel Capitolo 21, completeremo un progetto in cui implementeremo un server web
-multi-thread di basso livello!
+Nel **Capitolo 21**, completeremo un progetto in cui implementeremo un server
+web multi-thread di basso livello!
 
 Infine, alcune appendici contengono informazioni utili sul linguaggio in un
 formato meno strutturato. L'**Appendice A** tratta delle parole chiave di Rust,
@@ -195,8 +196,9 @@ forniremo molti esempi che non si compilano insieme al messaggio di errore che
 il compilatore ti mostrerà in ogni situazione. Sappi che se inserisci ed esegui
 un esempio a caso, potrebbe non compilarsi! Assicurati di leggere il testo
 circostante per capire se l'esempio che stai cercando di eseguire è destinato a
-dare un errore. Ferris ti aiuterà anche a distinguere il codice che non è
-destinato a funzionare:
+dare un errore. Nella maggior parte delle situazioni, ti guideremo alla
+correzione di questi errori che comportano la mancata compilazione. Ferris ti
+aiuterà anche a distinguere il codice che non è destinato a funzionare:
 
 | Ferris | Significato |
 | --- | --- |

@@ -1,4 +1,4 @@
-## Trattare i Puntatori Intelligenti Come Normali _Reference_ con `Deref`
+## Trattare i Puntatori Intelligenti Come Normali _Reference_
 
 L'implementazione del _trait_ `Deref` consente di personalizzare il
 comportamento dell'operatore di de-referenziazione (_dereference operator_) `*`
@@ -155,10 +155,10 @@ preoccuparsene; li tratteremo più dettagliatamente nel Capitolo 20.
 
 Nel corpo del metodo `deref` inseriamo `&self.0` in modo che `deref` restituisca
 un _reference_ al valore a cui vogliamo accedere con l'operatore `*`; come detto
-in [“_Struct_ Tupla Senza Campi Denominati per Creare _Type_
-Diversi”][tuple-structs]<!-- ignore --> nel Capitolo 5, `.0` accede al primo
-valore in una _struct_ tupla. La funzione `main` nel Listato 15-10 che chiama
-`*` sul valore `MioBox<T>` ora si compila e le asserzioni vengono verificate!
+in [“Creare _Type_ Diversi con _Struct_ Tupla ”][tuple-structs]<!-- ignore -->
+nel Capitolo 5, `.0` accede al primo valore in una _struct_ tupla. La funzione
+`main` nel Listato 15-10 che chiama `*` sul valore `MioBox<T>` ora si compila e
+le asserzioni vengono verificate!
 
 Senza il _trait_ `Deref`, il compilatore può de-referenziare solo i _reference_
 `&`. Il metodo `deref` consente al compilatore di accettare un valore di
@@ -193,7 +193,7 @@ utilizziamo `*` nel nostro codice. Poiché la sostituzione dell'operatore `*` no
 è ricorsiva all'infinito, otteniamo dati di _type_ `i32`, che corrispondono al
 `5` in `assert_eq!` nel Listato 15-9.
 
-### De-Referenziazione Forzata Implicita in Funzioni e Metodi
+### Usare la De-Referenziazione Forzata in Funzioni e Metodi
 
 La _deref coercion_ converte un _reference_ a un _type_ che implementa il
 _trait_ `Deref` in un _reference_ a un altro _type_. Ad esempio, la
@@ -273,7 +273,7 @@ _reference_ che corrisponda al _type_ del parametro. Il numero di volte in cui
 quindi non ci sono penalità prestazionali in fase di esecuzione per aver
 sfruttato la _deref coercion_!
 
-### Come la De-referenziazione Forzata Interagisce con la Mutabilità
+### Gestire la De-referenziazione Forzata con _Reference_ Mutabili
 
 Analogamente a come si usa il _trait_ `Deref` per sovrascrivere l'operatore `*`
 sui _reference_ immutabili, è possibile usare il _trait_ `DerefMut` per
@@ -306,4 +306,4 @@ scontato che sia possibile convertire un _reference_ immutabile in un
 _reference_ mutabile.
 
 [impl-trait]: ch10-02-traits.html#implementare-un-trait-su-un-type
-[tuple-structs]: ch05-01-defining-structs.html#struct-tupla-senza-campi-denominati-per-creare-type-diversi
+[tuple-structs]: ch05-01-defining-structs.html#creare-type-diversi-con-struct-tupla 

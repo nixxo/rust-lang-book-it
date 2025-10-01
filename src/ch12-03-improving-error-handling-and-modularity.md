@@ -37,7 +37,7 @@ applicazione.
 
 Affrontiamo questi quattro problemi riscrivendo il nostro progetto.
 
-### Separare le Attività per i Progetti Binari
+### Separare Attività nei Progetti Binari
 
 Il problema organizzativo di allocare la responsabilità di più attività alla
 funzione `main` è comune a molti progetti binari. Di conseguenza, molti
@@ -328,17 +328,16 @@ Listato 12-8, ma otteniamo un output più pulito. Proviamolo:
 
 Ottimo! Questo output è molto più intuitivo per i nostri utenti.
 
-### Estrarre la Logica dalla Funzione `main`
+### Estrarre la Logica da `main`
 
 Ora che abbiamo completato il _refactoring_ dell'analisi della configurazione,
 passiamo alla logica del programma. Come scritto nel paragrafo [“Separare le
-Attività per i Progetti
-Binari”](#separare-le-attività-per-i-progetti-binari)<!-- ignore -->, estrarremo
-una funzione denominata `esegui` che conterrà tutta la logica attualmente
-presente nella funzione `main` che non è coinvolta nell'impostazione della
-configurazione o nella gestione degli errori. Al termine, la funzione `main`
-sarà concisa e facile da verificare tramite ispezione, e saremo in grado di
-scrivere test per tutta la restante logica.
+Attività per i Progetti Binari”](#separare-attività-nei-progetti-binari)<!--
+ignore -->, estrarremo una funzione denominata `esegui` che conterrà tutta la
+logica attualmente presente nella funzione `main` che non è coinvolta
+nell'impostazione della configurazione o nella gestione degli errori. Al
+termine, la funzione `main` sarà concisa e facile da verificare tramite
+ispezione, e saremo in grado di scrivere test per tutta la restante logica.
 
 Il Listato 12-11 mostra il piccolo miglioramento incrementale dell'estrazione di
 una funzione `esegui`.
@@ -502,8 +501,8 @@ Sfruttiamo questa nuova modularità facendo qualcosa che sarebbe stato difficile
 con il vecchio codice, ma è facile con il nuovo: scriveremo dei test!
 
 [ch13]: ch13-00-functional-features.html
-[ch9-custom-types]: ch09-03-to-panic-or-not-to-panic.html#creare-type-personalizzati-per-la-convalida
+[ch9-custom-types]: ch09-03-to-panic-or-not-to-panic.html#type-personalizzati-per-la-convalida 
 [ch9-error-guidelines]: ch09-03-to-panic-or-not-to-panic.html#linee-guida-per-la-gestione-degli-errori
 [ch9-result]: ch09-02-recoverable-errors-with-result.html
 [ch18]: ch18-00-oop.html
-[ch9-question-mark]: ch09-02-recoverable-errors-with-result.html#una-scorciatoia-per-la-propagazione-degli-errori-loperatore-
+[ch9-question-mark]: ch09-02-recoverable-errors-with-result.html#loperatore-scorciatoia-

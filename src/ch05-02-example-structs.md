@@ -40,7 +40,7 @@ più gestibile raggruppare larghezza e altezza insieme. Abbiamo già discusso un
 modo per farlo nella sezione [“Il _Type_ Tupla”][the-tuple-type]<!-- ignore -->
 del Capitolo 3: usando le tuple.
 
-### Riscrittura con le Tuple
+### Riscriverre con le Tuple
 
 Il Listato 5-9 mostra un'altra versione del nostro programma che usa le tuple.
 
@@ -65,7 +65,7 @@ qualcun altro che in futuro leggesse o usasse il nostro codice. Poiché non
 abbiamo reso palese il significato dei nostri dati nel codice, è più facile
 introdurre errori.
 
-### Riscrittura con le _Struct_: Aggiungere Più Significato
+### Riscrivere con le _Struct_
 
 Usiamo la _struct_ per aggiungere significato etichettando i dati. Possiamo
 trasformare la tupla che stiamo usando in una _struct_ con un nome per l'intero
@@ -101,7 +101,7 @@ campi `larghezza` e `altezza`. Questo comunica che larghezza e altezza sono
 correlate tra loro e fornisce nomi descrittivi ai valori invece di usare gli
 indici della tupla `0` e `1`. Questo è un vantaggio in termini di chiarezza.
 
-### Aggiungere Funzionalità Utili con i _Trait_ Derivati
+### Aggiungere Funzionalità con i _Trait_ Derivati
 
 Sarebbe utile poter stampare un'istanza di `Rettangolo` mentre eseguiamo il
 debug del nostro programma e vedere i valori di tutti i suoi campi. Il Listato

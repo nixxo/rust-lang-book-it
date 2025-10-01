@@ -114,7 +114,7 @@ Abbiamo mostrato diversi modi per definire strutture dati per memorizzare
 indirizzi IP versione quattro e versione sei. Tuttavia, risulta che voler
 memorizzare indirizzi IP e codificare di quale tipologia siano è così comune che
 la [libreria standard fornisce una definizione che possiamo usare!][IpAddr]<!--
-ignore --> Diamo un’occhiata a come la libreria standard definisce `IpAddr`: ha
+ignore --> Diamo un’occhiata a come la libreria standard definisce `IpAddr`. Ha
 l’esatta _enum_ e le varianti che abbiamo definito e usato, ma incapsula i dati
 dell’indirizzo dentro le varianti sotto forma di due diverse _struct_, definite
 in modo differente per ciascuna variante:
@@ -194,7 +194,7 @@ corpo del metodo `chiama` quando `m.chiama()` viene eseguito.
 Diamo un’occhiata a un'altra _enum_ nella libreria standard che è molto comune e
 utile: `Option`.
 
-### L'_Enum_ `Option` e i Suoi Vantaggi Rispetto ai Valori Nulli
+### L'_Enum_ `Option`
 
 Questa sezione esplora un caso di studio su `Option`, che è un'altra _enum_
 definito dalla libreria standard. Il _type_ `Option` codifica lo scenario molto

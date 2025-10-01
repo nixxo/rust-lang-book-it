@@ -6,7 +6,7 @@ facilmente interpretabile e a cui è possibile rispondere. Ad esempio, se si
 tenta di aprire un file e l'operazione fallisce perché il file non esiste,
 potrebbe essere opportuno crearlo anziché terminare il processo.
 
-Come menzionato in [“Gestione dei potenziali errori con
+Come menzionato in [“Gestire i potenziali errori con
 `Result`”][handle_failure]<!-- ignore --> nel Capitolo 2 l'_enum_ `Result` è
 definito come avente due varianti, `Ok` ed `Err`, come segue:
 
@@ -164,7 +164,7 @@ qualsiasi errore diverso dall'errore di file mancante.
 > possono sostituire enormi espressioni annidate di `match` quando si hanno
 > errori.
 
-#### Scorciatoie per _Panic_ in Caso di Errore: `unwrap` e `expect`
+#### Scorciatoie per _Panic_ in Caso di Errore
 
 L'uso di `match` funziona abbastanza bene, ma può essere un po' prolisso e non
 sempre comunica bene l'intento. Il _type_ `Result<T, E>` ha molti metodi utili
@@ -312,7 +312,7 @@ possa gestirle in modo appropriato.
 Questo schema di propagazione degli errori è così comune in Rust che Rust
 fornisce l'operatore _punto interrogativo_ `?` per semplificare la procedura.
 
-#### Una Scorciatoia per la Propagazione degli Errori: l'Operatore `?`
+#### L'Operatore Scorciatoia `?`
 
 Il Listato 9-7 mostra un'implementazione di `leggi_nomeutente_dal_file` che ha
 la stessa funzionalità del Listato 9-6, ma questa implementazione utilizza
@@ -411,7 +411,7 @@ file, crea una nuova `String`, ne legge il contenuto, lo inserisce in quella
 l'opportunità di spiegare tutta la gestione degli errori, quindi l'abbiamo fatto
 prima nel modo più lungo.
 
-#### Dove Può Essere Utilizzato l'Operatore `?`
+#### Dove Usare l'Operatore `?`
 
 L'operatore `?` può essere utilizzato solo in funzioni il cui _type_ di ritorno
 è compatibile con il valore su cui viene utilizzato `?`. Questo perché
@@ -426,7 +426,7 @@ Nel Listato 9-10, esaminiamo l'errore che otterremo se utilizziamo l'operatore
 `?` in una funzione `main` con un _type_ di ritorno incompatibile con il _type_
 del valore su cui utilizziamo `?`.
 
-<Listing number="9-10" file-name="src/main.rs" caption="Il tentativo di utilizzare `?` nella funzione `main` che restituisce `()` non verrà compilato.">
+<Listing number="9-10" file-name="src/main.rs" caption="Il tentativo di utilizzare `?` nella funzione `main` che restituisce `()` non verrà compilato">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch09-error-handling/listing-09-10/src/main.rs}}
@@ -510,7 +510,7 @@ contiene il codice del Listato 9-10, ma abbiamo modificato il _type_ di ritorno
 di `main` in `Result<(), Box<dyn Error>>` e aggiunto un valore di ritorno
 `Ok(())` alla fine. Questo codice ora verrà compilato.
 
-<Listing number="9-12" file-name="src/main.rs" caption="Modificando `main` in modo che restituisca `Result<(), E>` è possibile utilizzare l'operatore `?` sui valori `Result`.">
+<Listing number="9-12" file-name="src/main.rs" caption="Modificando `main` in modo che restituisca `Result<(), E>` è possibile utilizzare l'operatore `?` sui valori `Result`">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch09-error-handling/listing-09-12/src/main.rs}}
@@ -545,6 +545,6 @@ Ora che abbiamo discusso i dettagli della chiamata a `panic!` o della
 restituzione di `Result`, discuteremo di come decidere in quali casi sia più
 appropriato usare l'uno o l'altro.
 
-[handle_failure]: ch02-00-guessing-game-tutorial.html#gestione-dei-potenziali-errori-con-result
+[handle_failure]: ch02-00-guessing-game-tutorial.html#gestire-i-potenziali-errori-con-result
 [trait-objects]: ch18-02-trait-objects.html
 [termination]: https://doc.rust-lang.org/stable/std/process/trait.Termination.html

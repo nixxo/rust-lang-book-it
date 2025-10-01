@@ -6,7 +6,7 @@ newtypes are useful as types. Then we’ll move on to type aliases, a feature
 similar to newtypes but with slightly different semantics. We’ll also discuss
 the `!` type and dynamically sized types.
 
-### Using the Newtype Pattern for Type Safety and Abstraction
+### Type Safety and Abstraction with the Newtype Pattern
 
 This section assumes you’ve read the earlier section [“Using the Newtype Pattern
 to Implement External Traits”][using-the-newtype-pattern]<!--
@@ -33,7 +33,7 @@ hide implementation details, which we discussed in [“Encapsulation that Hides
 Implementation Details”][encapsulation-that-hides-implementation-details]<!--
 ignore --> in Chapter 18.
 
-### Creating Type Synonyms with Type Aliases
+### Type Synonyms and Type Aliases
 
 Rust provides the ability to declare a _type alias_ to give an existing type
 another name. For this we use the `type` keyword. For example, we can create

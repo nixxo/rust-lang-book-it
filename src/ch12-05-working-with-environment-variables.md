@@ -9,7 +9,7 @@ variabile d'ambiente, consentiamo ai nostri utenti di impostare la variabile
 d'ambiente una sola volta e di fare in modo che tutte le loro ricerche in quella
 sessione di terminale siano senza distinzione (_case-insensitive_).
 
-### Scrivere un Test che Fallisce per la Funzione `cerca` _Case-Insensitive_
+### Scrivere un Test che Fallisce per la Ricerca _Case-Insensitive_
 
 Aggiungiamo innanzitutto una nuova funzione `cerca_case_insensitive` alla
 libreria `minigrep` che verrà chiamata quando la variabile d'ambiente ha un

@@ -1,4 +1,4 @@
-## Turning Our Single-Threaded Server into a Multithreaded Server
+## From Single-Threaded to Multithreaded Server
 
 Right now, the server will process each request in turn, meaning it won’t
 process a second connection until the first is finished processing. If the

@@ -158,7 +158,7 @@ test chiamato `cento`. Nota anche che il modulo in cui appare un test diventa
 parte del nome del test, quindi possiamo eseguire tutti i test di un modulo
 filtrando sul nome del modulo.
 
-### Ignorare Alcuni Test Se Non Specificamente Richiesti
+### Ignorare Test Se Non Specificamente Richiesti
 
 A volte alcuni test specifici possono richiedere molto tempo per essere
 eseguiti, quindi potresti volerli escludere durante la maggior parte delle

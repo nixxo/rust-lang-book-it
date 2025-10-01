@@ -105,16 +105,16 @@ qui. Poiché i blocchi _async_ si compilano in _future_ anonime, possiamo metter
 ogni loop in un blocco _async_ e far eseguire al _runtime_ entrambe fino al
 completamento usando la funzione `trpl::join`.
 
-Nella sezione [“Attendere Che Tutti i _Thread_ Finiscano Usando
-`join`”][join-handles]<!-- ignore -->, abbiamo mostrato come usare il metodo
-`join` sul _type_ `JoinHandle` restituito quando si chiama `std::thread::spawn`.
-La funzione `trpl::join` è simile, ma per le _future_. Quando gli dai due
-_future_, produce una singola nuova _future_ il cui output è una tupla che
-contiene l'output di ciascuna _future_ che hai passato una volta che _entrambe_
-si completano. Quindi, nel Listato 17-8, usiamo `trpl::join` per aspettare che
-sia `fut1` che `fut2` finiscano. Non aspettiamo `fut1` e `fut2` ma invece la
-nuova _future_ prodotta da `trpl::join`. Ignoriamo l'output, perché è solo una
-tupla che contiene due valori unitari.
+Nella sezione [“Attendere Che Tutti i _Thread_ Finiscano”][join-handles]<!--
+ignore -->, abbiamo mostrato come usare il metodo `join` sul _type_ `JoinHandle`
+restituito quando si chiama `std::thread::spawn`. La funzione `trpl::join` è
+simile, ma per le _future_. Quando gli dai due _future_, produce una singola
+nuova _future_ il cui output è una tupla che contiene l'output di ciascuna
+_future_ che hai passato una volta che _entrambe_ si completano. Quindi, nel
+Listato 17-8, usiamo `trpl::join` per aspettare che sia `fut1` che `fut2`
+finiscano. Non aspettiamo `fut1` e `fut2` ma invece la nuova _future_ prodotta
+da `trpl::join`. Ignoriamo l'output, perché è solo una tupla che contiene due
+valori unitari.
 
 <Listing number="17-8" caption="Usare `trpl::join` per aspettare due _future_ anonime" file-name="src/main.rs">
 
@@ -391,7 +391,7 @@ Questo è un buon inizio, ma ci limita a solo una manciata di _future_: due con
 `join`, o tre con `join3`. Vediamo come potremmo lavorare con più _future_.
 
 [thread-spawn]: ch16-01-threads.html#creare-un-nuovo-thread-con-spawn
-[join-handles]: ch16-01-threads.html#attendere-che-tutti-i-thread-finiscano-usando-join
+[join-handles]: ch16-01-threads.html#attendere-che-tutti-i-thread-finiscano
 [message-passing-threads]: ch16-02-message-passing.html
 [if-let]: ch06-03-if-let.html
 [capture-or-move]: ch13-01-closures.html#catturare-i-reference-o-trasferire-la-ownership

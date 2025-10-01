@@ -289,7 +289,7 @@ Al contrario, se rendiamo un'_enum_ pubblico, tutte le sue varianti diventano
 pubbliche. Abbiamo bisogno solo di `pub` prima della parola chiave `enum`, come
 mostrato nel Listato 7-10.
 
-<Listing number="7-10" file-name="src/lib.rs" caption="Designare un'_enum_ come pubblico rende pubbliche tutte le sue varianti.">
+<Listing number="7-10" file-name="src/lib.rs" caption="Designare un'_enum_ come pubblico rende pubbliche tutte le sue varianti">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch07-managing-growing-projects/listing-07-10/src/lib.rs}}

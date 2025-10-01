@@ -65,7 +65,7 @@ variable, we would need to use a match guard conditional instead. We’ll talk
 about match guards later in [“Extra Conditionals with Match
 Guards”](#extra-conditionals-with-match-guards)<!-- ignore -->.
 
-### Multiple Patterns
+### Matching Multiple Patterns
 
 In `match` expressions, you can match multiple patterns using the `|` syntax,
 which is the pattern _or_ operator. For example, in the following code we match
@@ -114,7 +114,7 @@ ASCII letter`.
 We can also use patterns to destructure structs, enums, and tuples to use
 different parts of these values. Let’s walk through each value.
 
-#### Destructuring Structs
+#### Structs
 
 Listing 19-12 shows a `Point` struct with two fields, `x` and `y`, that we can
 break apart using a pattern with a `let` statement.
@@ -184,7 +184,7 @@ Remember that a `match` expression stops checking arms once it has found the
 first matching pattern, so even though `Point { x: 0, y: 0}` is on the `x` axis
 and the `y` axis, this code would only print `On the x axis at 0`.
 
-#### Destructuring Enums
+#### Enums
 
 We’ve destructured enums in this book (for example, Listing 6-5 in Chapter 6),
 but haven’t yet explicitly discussed that the pattern to destructure an enum
@@ -219,7 +219,7 @@ pattern is similar to the pattern we specify to match tuples. The number of
 variables in the pattern must match the number of elements in the variant we’re
 matching.
 
-#### Destructuring Nested Structs and Enums
+#### Nested Structs and Enums
 
 So far, our examples have all been matching structs or enums one level deep,
 but matching can work on nested items too! For example, we can refactor the
@@ -241,7 +241,7 @@ arm also matches a `Message::ChangeColor` enum variant, but the inner enum
 matches `Color::Hsv` instead. We can specify these complex conditions in one
 `match` expression, even though two enums are involved.
 
-#### Destructuring Structs and Tuples
+#### Structs and Tuples
 
 We can mix, match, and nest destructuring patterns in even more complex ways.
 The following example shows a complicated destructure where we nest structs and
@@ -364,7 +364,7 @@ that starts with an underscore. The syntax `_x` still binds the value to the
 variable, whereas `_` doesn’t bind at all. To show a case where this
 distinction matters, Listing 19-21 will provide us with an error.
 
-<Listing number="19-21" caption="An unused variable starting with an underscore still binds the value, which might take ownership of the value.">
+<Listing number="19-21" caption="An unused variable starting with an underscore still binds the value, which might take ownership of the value">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-21/src/main.rs:here}}
@@ -377,7 +377,7 @@ which prevents us from using `s` again. However, using the underscore by itself
 doesn’t ever bind to the value. Listing 19-22 will compile without any errors
 because `s` doesn’t get moved into `_`.
 
-<Listing number="19-22" caption="Using an underscore does not bind the value.">
+<Listing number="19-22" caption="Using an underscore does not bind the value">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-22/src/main.rs:here}}
@@ -453,7 +453,7 @@ ignore thereafter. This code could mean that we want to ignore `2`, bind
 The variable name `second` doesn’t mean anything special to Rust, so we get a
 compiler error because using `..` in two places like this is ambiguous.
 
-### Extra Conditionals with Match Guards
+### Adding Conditionals with Match Guards
 
 A _match guard_ is an additional `if` condition, specified after the pattern in
 a `match` arm, that must also match for that arm to be chosen. Match guards are
@@ -554,7 +554,7 @@ were applied only to the final value in the list of values specified using the
 `|` operator, the arm would have matched and the program would have printed
 `yes`.
 
-### `@` Bindings
+### Using `@` Bindings
 
 The _at_ operator `@` lets us create a variable that holds a value at the same
 time we’re testing that value for a pattern match. In Listing 19-29, we want to

@@ -49,7 +49,7 @@ sapere man mano che procediamo.
 Per mantenere l'attenzione di questo capitolo sull'apprendimento di _async_
 piuttosto che sulla gestione di parti dell'ecosistema, abbiamo creato il _crate_
 `trpl` (`trpl` è abbreviazione di "**T**he **R**ust **P**rogramming
-**L**anguage"). Ri-esporta tutti i _type_, i _trait_ e le funzioni di cui avrai
+**L**anguage"). Riesporta tutti i _type_, i _trait_ e le funzioni di cui avrai
 bisogno, principalmente dai _crate_ [`futures`][futures-crate]<!-- ignore --> e
 [`tokio`][tokio]<!-- ignore -->. Il _crate_ `futures` è la sede ufficiale per la
 sperimentazione Rust del codice _async_, ed è in realtà dove il _trait_ `Future`
@@ -63,9 +63,9 @@ In alcuni casi, `trpl` rinomina o incapsula le API originali per mantenerti
 concentrato sui dettagli rilevanti per questo capitolo. Se vuoi capire cosa fa
 il _crate_, ti incoraggiamo a controllare [il suo codice
 sorgente][crate-source]<!-- ignore -->. Sarai in grado di vedere da quale
-_crate_ proviene ogni ri-esportazione, e abbiamo lasciato commenti esaurienti
-che spiegano cosa fa il _crate_.
-
+_crate_ proviene ogni riesportazione, e abbiamo lasciato commenti esaurienti che
+spiegano cosa fa il _crate_.
+4
 Crea un nuovo progetto binario chiamato `hello-async` e aggiungi il _crate_
 `trpl` come dipendenza:
 
@@ -80,7 +80,7 @@ programma _async_. Costruiremo un piccolo strumento da riga di comando che
 recupera due pagine web, estrae l'elemento `<title>` da ciascuna e stampa il
 titolo della pagina che completa per prima l'intero processo.
 
-### Definire la Funzione titolo_pagina
+### Definire la Funzione `titolo_pagina`
 
 Iniziamo scrivendo una funzione che prende un URL di una pagina come parametro,
 la scarica e restituisce il testo dell'elemento del titolo (vedi Listato 17-1).
@@ -189,7 +189,7 @@ fn titolo_pagina(url: &str) -> impl Future<Output = Option<String>> {
 Analizziamo ogni parte della versione trasformata:
 
 - Usa la sintassi `impl Trait` che abbiamo discusso nel Capitolo 10 nella
-  sezione [“_Trait_ come Parametri”][impl-trait]<!-- ignore -->.
+  sezione [“Usare _Trait_ come Parametri”][impl-trait]<!-- ignore -->.
 - Il _trait_ restituito è un `Future` con un _type_ associato di `Output`. Nota
   che il _type_ `Output` è `Option<String>`, che è lo stesso _type_ di ritorno
   della versione `async fn` di `titolo_pagina`.
@@ -403,7 +403,7 @@ da un'esecuzione all'altra. Cosa più importante, hai imparato le basi del lavor
 con le _future_, quindi ora possiamo approfondire cosa possiamo fare con
 _async_.
 
-[impl-trait]: ch10-02-traits.html#trait-come-parametri
+[impl-trait]: ch10-02-traits.html#usare-trait-come-parametri
 [iterators-lazy]: ch13-02-iterators.html
 [thread-spawn]: ch16-01-threads.html#creare-un-nuovo-thread-con-spawn
 [cli-args]: ch12-01-accepting-command-line-arguments.html

@@ -34,7 +34,7 @@ cui `use` è dichiarato. Il Listato 7-12 sposta la funzione
 in uno _scope_ diverso rispetto alla dichiarazione `use`, quindi il corpo della
 funzione non si compilerà.
 
-<Listing number="7-12" file-name="src/lib.rs" caption="Una dichiarazione `use` si applica solo allo _scope_ in cui si trova.">
+<Listing number="7-12" file-name="src/lib.rs" caption="Una dichiarazione `use` si applica solo allo _scope_ in cui si trova">
 
 ```rust,noplayground,test_harness,does_not_compile,ignore
 {{#rustdoc_include ../listings/ch07-managing-growing-projects/listing-07-12/src/lib.rs}}
@@ -101,7 +101,7 @@ nello _scope_ con `use`, perché Rust non lo permette. Il Listato 7-15 mostra
 come portare due `Result` nello _scope_ che hanno lo stesso nome ma moduli
 genitore diversi, e come riferirsi a essi.
 
-<Listing number="7-15" file-name="src/lib.rs" caption="Portare due _type_ con lo stesso nome nello stesso _scope_ richiede l'uso dei loro moduli genitore.">
+<Listing number="7-15" file-name="src/lib.rs" caption="Portare due _type_ con lo stesso nome nello stesso _scope_ richiede l'uso dei loro moduli genitore">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch07-managing-growing-projects/listing-07-15/src/lib.rs:here}}
@@ -159,11 +159,11 @@ Prima di questa modifica, il codice esterno avrebbe dovuto chiamare la funzione
 `aggiungi_in_lista` usando il _path_
 `ristorante::sala::accoglienza::aggiungi_in_lista()`, che avrebbe inoltre
 richiesto che il modulo `sala` fosse marcato come `pub`. Ora che questo `pub
-use` ha ri-esportato il modulo `accoglienza` dalla radice del modulo, il codice
+use` ha riesportato il modulo `accoglienza` dalla radice del modulo, il codice
 esterno può invece usare il _path_
 `ristorante::accoglienza::aggiungi_in_lista()`.
 
-La ri-esportazione è utile quando la struttura interna del tuo codice è diversa
+La riesportazione è utile quando la struttura interna del tuo codice è diversa
 da come i programmatori che chiamano il tuo codice penserebbero al dominio. Per
 esempio, in questa metafora del ristorante, chi gestisce il ristorante pensa in
 termini di “sala” e “cucine”. Ma i clienti che visitano un ristorante
@@ -172,8 +172,8 @@ probabilmente non penseranno alle parti del ristorante in questi termini. Con
 una struttura diversa. Ciò rende la nostra libreria ben organizzata sia per i
 programmatori che lavorano sulla libreria sia per i programmatori che la usano.
 Vedremo un altro esempio di `pub use` e di come influisce sulla documentazione
-del crate in [“Esportare un API Pubblica Facilmente con `pub
-use`”][ch14-pub-use]<!-- ignore --> nel Capitolo 14.
+del _crate_ in [“Esportare un API Pubblica Facilmente”][ch14-pub-use]<!-- ignore
+--> nel Capitolo 14.
 
 ### Usare Pacchetti Esterni
 
@@ -228,7 +228,7 @@ use std::collections::HashMap;
 Questo è un _path_ assoluto che inizia con `std`, il nome del _crate_ della
 libreria standard.
 
-### Usare Percorsi Nidificati per Accorpare Lunghi Elenchi di `use`
+### Usare Percorsi Nidificati per Accorpare Elenchi di `use`
 
 Se usiamo più elementi definiti nello stesso _crate_ o nello stesso modulo,
 elencare ogni elemento su una sua riga può occupare molto spazio verticale nei
@@ -287,7 +287,7 @@ possiamo usare `self` nel _path_ nidificato, come mostrato nel Listato 7-20.
 
 Questa riga porta `std::io` e `std::io::Write` nello _scope_.
 
-### L'Operatore _Glob_
+### Importare Elementi con l'Operatore _Glob_
 
 Se vogliamo portare _tutti_ gli elementi pubblici definiti in un _path_ nello
 _scope_, possiamo specificare quel _path_ seguito dall'operatore _glob_ `*`:
@@ -312,7 +312,7 @@ a volte usato come parte del _pattern_ _prelude_: vedi [la documentazione della
 libreria standard][prelude]<!-- ignore --> per ulteriori informazioni su quel
 _pattern_.
 
-[ch14-pub-use]: ch14-02-publishing-to-crates-io.html#esportare-un-api-pubblica-facilmente-con-pub-use
+[ch14-pub-use]: ch14-02-publishing-to-crates-io.html#esportare-un-api-pubblica-facilmente
 [rand]: ch02-00-guessing-game-tutorial.html#generare-un-numero-casuale
 [writing-tests]: ch11-01-writing-tests.html#come-scrivere-dei-test
 [prelude]: https://doc.rust-lang.org/stable/std/prelude/index.html#other-preludes

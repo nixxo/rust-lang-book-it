@@ -1,4 +1,4 @@
-## Scrivere i Messaggi di Errore su _Standard Error_ invece che su _Standard Output_
+## Scrivere i Messaggi di Errore su _Standard Error_
 
 Al momento, stiamo stampando tutto il nostro output sul terminale usando la
 macro `println!`. Nella maggior parte dei terminali, esistono due tipi di

@@ -183,7 +183,7 @@ _type_ booleano in Rust viene specificato con `bool`. Ad esempio:
 
 Il modo principale per utilizzare i valori booleani è attraverso i condizionali,
 come ad esempio un'espressione `if`. Tratteremo il funzionamento delle
-espressioni `if` in Rust nella sezione [“Controllo del
+espressioni `if` in Rust nella sezione [“Controllare il
 flusso”][control-flow]<!-- ignore -->.
 
 #### Il _Type_ Carattere
@@ -198,8 +198,8 @@ primitivo del linguaggio. Ecco alcuni esempi di dichiarazione di valori `char`:
 ```
 
 Nota che specifichiamo i letterali `char` con le singole virgolette, al
-contrario dei letterali stringa, che utilizzano le virgolette doppie. Il tipo
-`char` di Rust ha la dimensione di quattro byte e rappresenta un valore scalare
+contrario dei letterali stringa, che utilizzano le virgolette doppie. Il _type_
+`char` di Rust ha la dimensione di 4 byte e rappresenta un valore scalare
 Unicode, il che significa che può rappresentare molte altre cose oltre
 all'ASCII. Le lettere accentate, i caratteri cinesi, giapponesi e coreani, le
 emoji e gli spazi a larghezza zero sono tutti valori `char` validi in Rust. I
@@ -326,7 +326,7 @@ L'array chiamato `a` conterrà `5` elementi che saranno tutti impostati
 inizialmente al valore `3`. Questo equivale a scrivere `let a = [3, 3, 3, 3,
 3];` ma in modo più conciso.
 
-##### Accesso Agli Elementi dell'Array
+#### Accedere Agli Elementi dell'Array
 
 Un array è un singolo blocco di memoria di dimensione fissa e nota che può
 essere allocato nello _stack_. Puoi accedere agli elementi di un array
@@ -342,7 +342,7 @@ In questo esempio, la variabile denominata `primo` otterrà il valore `1` perch�
 è il valore all'indice `[0]` dell'array. La variabile denominata `secondo`
 otterrà il valore `2` dall'indice `[1]` dell'array.
 
-##### Accesso All'Elemento Non Valido dell'Array
+#### Accedere All'Elemento Non Valido dell'Array
 
 Vediamo cosa succede se cerchi di accedere a un elemento di un array che si
 trova oltre la fine dell'array stesso. Supponiamo di eseguire questo codice,
@@ -394,7 +394,7 @@ memoria.
 [numero-segreto]: ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
 [complemento-a-due]: https://it.wikipedia.org/wiki/Complemento_a_due
 [ieee-754]: https://it.wikipedia.org/wiki/IEEE_754
-[control-flow]: ch03-05-control-flow.html#controllo-del-flusso
+[control-flow]: ch03-05-control-flow.html#controllare-il-flusso
 [strings]: ch08-02-strings.html#memorizzare-testo-codificato-utf-8-con-stringhe
 [stack-and-heap]: ch04-01-what-is-ownership.html#lo-stack-e-lheap
 [vectors]: ch08-01-vectors.html

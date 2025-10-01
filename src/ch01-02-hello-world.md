@@ -82,7 +82,7 @@ Hello, world!
 
 Indipendentemente dal sistema operativo, la stringa `Hello, world!` dovrebbe
 essere stampata sul terminale. Se non vedi questo output, consulta la sezione
-[“Risoluzione dei problemi”][risoluzione-dei-problemi]<!-- ignore --> nel
+[“Risolvere i Problemi”][risoluzione-dei-problemi]<!-- ignore --> nel
 capitolo Installazione per trovare aiuto.
 
 Se `Hello, world!` è stato stampato, congratulazioni! Hai ufficialmente scritto
@@ -103,7 +103,7 @@ Queste righe definiscono una funzione chiamata `main`. La funzione `main` è
 speciale: è sempre il primo codice che viene eseguito in ogni eseguibile Rust.
 Qui, la prima riga dichiara una funzione chiamata `main` che non ha parametri e
 non restituisce nulla. Se ci fossero dei parametri, andrebbero dentro le
-parentesi `()`.
+parentesi (`()`).
 
 Il corpo della funzione è racchiuso da `{}`. Rust richiede parentesi graffe
 intorno a tutti i corpi delle funzioni. È buona norma posizionare la parentesi
@@ -141,7 +141,7 @@ In terzo luogo, terminiamo la riga con un punto e virgola (`;`), che indica che
 questa espressione è terminata e che la prossima è pronta per iniziare. La
 maggior parte delle righe di codice Rust terminano con un punto e virgola
 
-### La Compilazione e l'Esecuzione Sono Fasi Separate
+### Compilare ed Eseguire
 
 Hai appena eseguito un programma appena creato, quindi esaminiamo ogni fase del
 processo.
@@ -203,6 +203,6 @@ il tuo progetto cresce, vorrai gestire tutte le opzioni e rendere facile la
 condivisione del tuo codice. A seguire, ti presenteremo lo strumento Cargo, che
 ti aiuterà a scrivere programmi Rust veri e propri.
 
-[risoluzione-dei-problemi]: ch01-01-installation.html#risoluzione-dei-problemi
+[risoluzione-dei-problemi]: ch01-01-installation.html#risolvere-i-problemi
 [devtools]: appendix-04-useful-development-tools.html
 [ch20-macros]: ch20-05-macros.html

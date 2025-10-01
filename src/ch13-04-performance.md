@@ -1,4 +1,4 @@
-## Confrontare le Prestazioni: Cicli vs. Iteratori
+## Prestazioni di Cicli e Iteratori
 
 Per determinare se utilizzare cicli o iteratori, è necessario sapere quale
 implementazione è più veloce: la versione della funzione `cerca` con un ciclo

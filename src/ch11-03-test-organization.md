@@ -23,7 +23,7 @@ nella directory _src_ in ogni file con il codice che stanno testando. La
 convenzione è quella di creare un modulo chiamato `tests` in ogni file per
 contenere le funzioni di test e di annotare il modulo con `cfg(test)`.
 
-#### Il Modulo di Test e `#[cfg(test)]`
+#### Il Modulo `tests` e `#[cfg(test)]`
 
 L'annotazione `#[cfg(test)]` sul modulo `tests` dice a Rust di compilare ed
 eseguire il codice di test solo quando si esegue `cargo test`, non quando si
@@ -53,7 +53,7 @@ compila il nostro codice di test solo se effettivamente eseguiamo i test con
 `cargo test`. Questo include qualsiasi funzione ausiliaria che potrebbero essere
 presente in questo modulo, oltre alle funzioni annotate con `#[test]`.
 
-#### Test di Funzioni Private
+#### Testare Funzioni Private
 
 All'interno della comunità dei tester si discute se le funzioni private debbano
 essere testate direttamente o meno, e altri linguaggi rendono difficile o

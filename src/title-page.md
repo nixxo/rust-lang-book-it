@@ -4,10 +4,10 @@ _di Steve Klabnik, Carol Nichols, and Chris Krycho, con contributi della
 Communiy Rust_
 
 Questa versione del testo presuppone l'utilizzo di Rust 1.85.0 (rilasciato il
-2025-02-17) o successivo con `edition = "2024"` nel file Cargo.toml di tutti i
+2025-02-17) o successivo con `edition = "2024"` nel file *Cargo.toml* di tutti i
 progetti per configurarli in modo da utilizzare gli idiomi dell'edizione 2024 di
 Rust. Consulta la sezione [“Installazione” del Capitolo 1][install]<!-- ignore
---> per installare o aggiornare Rust.
+--> per installare o aggiornare Rust, e vedi l'[Appendice E][appendix-e]<!-- ignore --> per informaszioni sulle varie edizioni.
 
 Il libro originale in inglese in formato HTML si trova su
 [https://doc.rust-lang.org/stable/book/](https://doc.rust-lang.org/stable/book/)
@@ -20,7 +20,8 @@ Questo testo, in inglese, è disponibile anche come [libro cartaceo o ebook da N
 Starch Press][nsprust].
 
 [install]: ch01-01-installation.html
-[nsprust]: https://nostarch.com/rust-programming-language-2nd-edition
+[appendix-e]: appendix-05-editions.html
+[nsprust]: https://nostarch.com/rust-programming-language-3rd-edition
 [translations]: appendix-06-translation.html
 
 > **🚨 Vuoi provare un'esperienza di apprendimento più interattiva? Prova una

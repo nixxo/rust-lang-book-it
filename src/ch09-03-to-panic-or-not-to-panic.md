@@ -29,16 +29,16 @@ Negli esempi, è sufficientemente chiaro che una chiamata a un metodo come
 cui si desidera che l'applicazione gestisca gli errori, che può differire in
 base al comportamento del resto del codice.
 
-Allo stesso modo, i metodi `unwrap` ed `expect` sono molto utili durante la
-prototipazione, prima di decidere come gestire gli errori. Lasciano chiari punti
-nel codice per quando si è pronti a riscriverlo per renderlo più robusto.
+Allo stesso modo, i metodi `unwrap` ed `expect` sono molto utili durante la fase
+di prototipazione, prima di decidere come gestire gli errori. Lasciano chiari
+punti nel codice per quando si è pronti a riscriverlo per renderlo più robusto.
 
 Se una chiamata a un metodo fallisce in un test, si desidera che l'intero test
 fallisca, anche se quel metodo non è la funzionalità in fase di test. Poiché
 `panic!` è il modo in cui un test viene contrassegnato come fallito, chiamare
 `unwrap` o `expect` è esattamente ciò che dovrebbe accadere.
 
-### Casi In Cui Si Hanno Più Informazioni Del Compilatore
+### Quando Si Hanno Più Informazioni Del Compilatore
 
 Sarebbe anche appropriato chiamare `expect` quando si dispone di un'altra logica
 che garantisce che `Result` abbia un valore `Ok`, ma la logica non è qualcosa
@@ -134,7 +134,7 @@ quindi la funzione non dovrà verificare quel caso in fase di esecuzione. Un
 altro esempio è l'utilizzo di un _type_ _integer_ senza segno come `u32`, che
 garantisce che il parametro non sia mai negativo.
 
-### Creare _Type_ Personalizzati per la Convalida
+### _Type_ Personalizzati per la Convalida
 
 Sviluppiamo ulteriormente l'idea di utilizzare il sistema dei _type_ di Rust per
 garantire un valore valido e proviamo a creare un _type_ personalizzato per la
@@ -192,8 +192,8 @@ compreso tra 1 e 100.
 Nota che questo codice in *src/gioco_indovinello.rs* dipende dall'aggiunta di
 una dichiarazione di modulo `mod gioco_indovinello;` in *src/lib.rs* che non
 abbiamo mostrato qui. All'interno del file di questo nuovo modulo, definiamo una
-_struct_ in quel modulo denominata `Ipotesi` che ha un campo denominato `valore`
-di _type_ `i32`. È qui che verrà memorizzato il numero.
+_struct_ denominata `Ipotesi` che ha un campo denominato `valore` di _type_
+`i32`. È qui che verrà memorizzato il numero.
 
 Quindi implementiamo una funzione associata denominata `new` su `Ipotesi` che
 crea istanze di valori `Ipotesi`. La funzione `new` è definita per avere un

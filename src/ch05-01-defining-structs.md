@@ -82,7 +82,7 @@ variabili è un po' noioso. Se la _struct_ avesse più campi, la ripetizione di
 ogni nome diventerebbe ancora più fastidiosa. Per fortuna esiste una comoda
 scorciatoia!
 
-### Utilizzo della Sintassi Abbreviata di Inizializzazione
+### Utilizzare la Sintassi Abbreviata di Inizializzazione
 
 Poiché i nomi dei parametri e i nomi dei campi della _struct_ sono esattamente
 gli stessi, possiamo usare la sintassi di inizializzazione abbreviata dei campi
@@ -104,7 +104,7 @@ parametro `email` della funzione `nuovo_utente`. Dato che il campo `email` e il
 parametro `email` hanno lo stesso nome, dobbiamo solo scrivere `email` invece di
 `email: email`.
 
-### Creare Istanze da Altre Istanze con la Sintassi di Aggiornamento delle _Struct_
+### Creare Istanze con la Sintassi di Aggiornamento delle _Struct_
 
 Spesso è utile creare una nuova istanza di una _struct_ che include la maggior
 parte dei valori da un'altra istanza dello stesso _type_, ma con alcune
@@ -155,11 +155,11 @@ fornito a `utente2` nuovi valori `String` sia per l’`email` che per
 `numero_accessi` di `utente1`, `utente1` sarebbe ancora valido dopo aver creato
 `utente2`. Sia `attivo` che `numero_accessi` sono _type_ che implementano il
 _trait_ `Copy`, quindi si applicherebbe il comportamento discusso nella sezione
-[”Duplicazione di dati sullo _Stack_”][stack]<!-- ignore -->. In questo esempio
+[”Duplicare dati sullo _Stack_”][stack]<!-- ignore -->. In questo esempio
 possiamo ancora utilizzare `utente1.email`, perché il suo valore non è stato
 spostato da `utente1`.
 
-### _Struct_ Tupla Senza Campi Denominati per Creare _Type_ Diversi
+### Creare _Type_ Diversi con _Struct_ Tupla 
 
 Rust supporta anche _struct_ che assomigliano alle tuple, chiamate _struct_
 tupla (_tuple_ _struct_). Le _struct_ tupla hanno il significato aggiuntivo che
@@ -192,7 +192,7 @@ nominare il _type_ di _struct_ quando le destrutturi. Ad esempio, scriveremo
 `let Punto(x, y, z) = origine;` per destrutturare i valori del `Punto` `origine`
 in variabili chiamate `x`, `y` e `z`.
 
-### _Struct_ _Unit_ Senza Campi
+### Definire _Struct_ _Unit_
 
 Puoi anche definire _struct_ che non hanno campi! Queste sono chiamate _struct_
 _unit_ (_unit-like_ _struct_) perché si comportano in modo simile a `()`, il
@@ -237,7 +237,8 @@ implementarli su qualsiasi _type_, comprese le _struct_ _unit_.
 > di Rust di cui parleremo nel Capitolo 10. _Lifetime_ garantisce che i dati a
 > cui fa riferimento una _struct_ siano validi finché lo è la _struct_.
 > Supponiamo che provi a memorizzare un _reference_ in una _struct_ senza
-> specificare la _lifetime_, come nel seguente esempio; questo non funzionerà:
+> specificare la _lifetime_, come nel seguente esempio in *src/main.rs*; questo
+> non funzionerà:
 >
 > <Listing file-name="src/main.rs">
 >
@@ -313,5 +314,4 @@ add `> ` before every line -->
 
 [tuples]: ch03-02-data-types.html#il-type-tupla
 [move]: ch04-01-what-is-ownership.html#interazione-tra-variabili-e-dati-con-move
-[stack]: ch04-01-what-is-ownership.md#duplicazione-di-dati-sullo-stack
-[copy]: ch04-01-what-is-ownership.html#duplicazione-di-dati-sullo-stack
+[stack]: ch04-01-what-is-ownership.html#duplicare-dati-sullo-stack

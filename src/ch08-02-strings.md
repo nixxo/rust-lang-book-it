@@ -17,7 +17,7 @@ differenze tra `String` e le altre collezioni, in particolare come
 l'indicizzazione in una `String` sia complicata dalle differenze tra il modo in
 cui le persone e i computer interpretano i dati `String`.
 
-### Cos'è una Stringa?
+### Difinire una Stringa
 
 Definiremo innanzitutto cosa intendiamo con il termine _stringa_. Rust ha un
 solo _type_ di stringa nel linguaggio principale, ovvero la _slice_ di stringa
@@ -106,7 +106,7 @@ come il contenuto di un `Vec<T>`, se vi si inseriscono più dati. Inoltre, è
 possibile utilizzare comodamente l'operatore `+` o la macro `format!` per
 concatenare valori `String`.
 
-#### Aggiungere a una `String` con `push_str` e `push`
+#### Aggiungere con `push_str` e `push`
 
 Possiamo far crescere una `String` utilizzando il metodo `push_str` per
 aggiungere una _slice_ di stringa, come mostrato nel Listato 8-15.
@@ -150,7 +150,7 @@ metodo `push`.
 
 Di conseguenza, `s` conterrà `lol`.
 
-#### Concatenare con l'Operatore `+` o la Macro `format!`
+#### Concatenare con `+` o `format!`
 
 Spesso, si desidera combinare due stringhe esistenti. Un modo per farlo è
 utilizzare l'operatore `+`, come mostrato nel Listato 8-18.
@@ -181,10 +181,10 @@ complesse dell'operatore `+`.
 
 Innanzitutto, `s2` ha un `&`, il che significa che stiamo aggiungendo un
 _reference_ della seconda stringa alla prima stringa. Questo è dovuto al
-parametro `s` nella funzione `add`: possiamo solo aggiungere un `&str` a una
-`String`; non possiamo aggiungere due valori `String` insieme. Ma aspetta: il
-_type_ di `&s2` è `&String`, non `&str`, come specificato nel secondo parametro
-di `add`. Quindi perché il Listato 8-18 si compila?
+parametro `s` nella funzione `add`: possiamo solo aggiungere una _slice_ di
+stringa a una `String`; non possiamo aggiungere due valori `String` insieme. Ma
+aspetta: il _type_ di `&s2` è `&String`, non `&str`, come specificato nel
+secondo parametro di `add`. Quindi perché il Listato 8-18 si compila?
 
 Il motivo per cui possiamo usare `&s2` nella chiamata a `add` è che il
 compilatore può _costringere_ l'argomento `&String` in un `&str`. Quando
@@ -246,9 +246,9 @@ Questo codice genererà il seguente errore:
 {{#include ../listings/ch08-common-collections/listing-08-19/output.txt}}
 ```
 
-L'errore e la nota spiegano la situazione: le stringhe Rust non supportano
-l'indicizzazione. Ma perché no? Per rispondere a questa domanda, dobbiamo
-discutere come Rust memorizza le stringhe in memoria.
+L'errore spiega la situazione: le stringhe Rust non supportano l'indicizzazione.
+Ma perché no? Per rispondere a questa domanda, dobbiamo discutere come Rust
+memorizza le stringhe in memoria.
 
 #### Rappresentazione Interna
 
@@ -261,7 +261,7 @@ Innanzitutto, questo:
 ```
 
 In questo caso, `len` sarà `4`, il che significa che il vettore che memorizza la
-stringa `"Hola"` è lungo 4 byte. Ognuna di queste lettere occupa un byte se
+stringa `"Hola"` è lungo 4 byte. Ognuna di queste lettere occupa 1 byte se
 codificata in UTF-8. La riga seguente, tuttavia, potrebbe sorprendervi (nota che
 questa stringa inizia con la lettera maiuscola cirillica _Ze_, non con il numero
 3):
@@ -297,7 +297,7 @@ causare bug che potrebbero non essere scoperti immediatamente, Rust non compila
 affatto questo codice e previene malintesi fin dalle prime fasi del processo di
 sviluppo.
 
-#### Byte, Valori Scalari e Cluster di Grafemi! Oddio!
+#### Byte, Valori Scalari e Cluster di Grafemi!
 
 Un altro punto su UTF-8 è che in realtà ci sono tre modi rilevanti per vedere le
 stringhe dalla prospettiva di Rust: come byte, valori scalari e cluster di
@@ -338,7 +338,7 @@ richiedere un tempo costante (O(1)). Ma non è possibile garantire tali
 prestazioni con una `String`, perché Rust dovrebbe esaminare il contenuto
 dall'inizio fino all'indice per determinare quanti caratteri validi ci sono.
 
-### Slicing delle Stringhe
+### _Slicing_ delle Stringhe
 
 Indicizzare una stringa è spesso una cattiva idea perché non è chiaro quale
 debba essere il _type_ di ritorno dell'operazione di indicizzazione della
@@ -355,7 +355,7 @@ let saluto = "Здравствуйте";
 let s = &saluto[0..4];
 ```
 
-Qui, `s` sarà un `&str` che contiene i primi quattro byte della stringa. In
+Qui, `s` sarà un `&str` che contiene i primi 4 byte della stringa. In
 precedenza, abbiamo accennato al fatto che ognuno di questi caratteri era
 composto da due byte, il che significa che `s` sarà `Зд`.
 
@@ -370,7 +370,7 @@ come se si accedesse a un indice non valido in un vettore:
 È necessario prestare attenzione quando si creano _slice_ di stringhe con
 intervalli, perché ciò potrebbe causare l'arresto anomalo del programma.
 
-### Metodi per Iterare sulle Stringhe
+### Iterare sulle Stringhe
 
 Il modo migliore per operare su stringhe è specificare esplicitamente se si
 desidera caratteri o byte. Per singoli valori scalari Unicode, utilizzare il
@@ -400,7 +400,7 @@ for b in "Зд".bytes() {
 }
 ```
 
-Questo codice stamperà i quattro byte che compongono questa stringa:
+Questo codice stamperà i 4 byte che compongono questa stringa:
 
 ```text
 208
@@ -410,14 +410,14 @@ Questo codice stamperà i quattro byte che compongono questa stringa:
 ```
 
 Ma ricorda che i valori scalari Unicode validi possono essere composti da più di
-un byte.
+1 byte.
 
 Ottenere _cluster_ di grafemi dalle stringhe, come con l'alfabeto Devanagari, è
 complesso, quindi questa funzionalità non è fornita dalla libreria standard. I
 _crate_ sono disponibili su [crates.io](https://crates.io/search?q=grapheme)<!--
 ignore --> se questa è la funzionalità di cui avete bisogno.
 
-### Le Stringhe Non Sono Così Semplici
+### Gestire le Complessità delle Stringhe
 
 In sintesi, le stringhe sono complicate. Diversi linguaggi di programmazione
 fanno scelte diverse su come presentare questa complessità al programmatore.

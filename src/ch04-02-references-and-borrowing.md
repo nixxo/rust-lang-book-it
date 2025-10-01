@@ -34,8 +34,7 @@ La Figura 4-6 illustra questo concetto.
 per s1. La tabella per s1 contiene i dati sullo stack per s1 e punta ai dati
 della stringa nell'heap." src="img/trpl04-06.svg" class="center" />
 
-<span class="caption">Figura 4-6: Schema di `&String s` che punta a `String
-s1`</span>
+<span class="caption">Figura 4-6: Schema di `&String` `s` che punta a `String` `s1`</span>
 
 > Nota: l'opposto della referenziazione tramite l'uso di `&` è la
 > _de-referenziazione_, che si realizza con l'operatore di de-referenziazione
@@ -209,7 +208,7 @@ più valido, perché quella memoria assegnata a quella variabile è stata libera
 ma non si è provveduto a cancellare anche il puntatore che per l'appunto rimane
 _pendente_ puntando a qualcosa che non è più disponibile. In Rust, al contrario,
 il compilatore garantisce che i _reference_ non diverranno mai _pendenti_: se si
-ha un _reference_ ad alcuni dati, il compilatore ci impedirirà di usare quel
+ha un _reference_ ad alcuni dati, il compilatore ci impedirà di usare quel
 _reference_ dopo che i dati sono usciti dallo _scope_.
 
 Proviamo a creare un _reference_ _pendente_ per vedere come Rust li previene

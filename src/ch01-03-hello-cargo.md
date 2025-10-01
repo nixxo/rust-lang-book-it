@@ -235,7 +235,7 @@ fare un benchmark del tempo di esecuzione del tuo codice, assicurati di eseguire
 `cargo build --release` e di fare il benchmark con l'eseguibile in
 _target/release_.
 
-### Cargo come Convenzione
+### Sfruttare Le Convenzioni di Cargo
 
 Con i progetti semplici, Cargo non offre molti vantaggi rispetto all'uso di
 `rustc`, ma si dimostrerà utile quando i tuoi programmi diventeranno più
@@ -260,11 +260,11 @@ Per maggiori informazioni su Cargo, consulta la [documentazione][cargo].
 Sei già partito alla grande nel tuo viaggio assieme a Rust! In questo capitolo
 hai imparato a..:
 
-- Installare l'ultima versione stabile di Rust usando `rustup`
-- Aggiornare a una versione più recente di Rust
-- Aprire la documentazione installata localmente
-- Scrivere ed eseguire un programma “Hello, world!” usando direttamente `rustc`
-- Creare ed eseguire un nuovo progetto usando le convenzioni di Cargo
+- Installare l'ultima versione stabile di Rust usando `rustup`.
+- Aggiornare a una versione più recente di Rust.
+- Aprire la documentazione installata localmente.
+- Scrivere ed eseguire un programma “Hello, world!” usando direttamente `rustc`.
+- Creare ed eseguire un nuovo progetto usando le convenzioni di Cargo.
 
 Questo è un ottimo momento per costruire un programma più sostanzioso per
 abituarsi a leggere e scrivere codice in Rust. Quindi, nel Capitolo 2,

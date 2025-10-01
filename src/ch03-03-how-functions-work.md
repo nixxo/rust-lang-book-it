@@ -234,9 +234,9 @@ Vediamo un altro esempio:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-22-function-parameter-and-return/src/main.rs}}
 ```
 
-Eseguendo questo codice verrà stampato `Il valore di x è: 6`. Ma se inseriamo un
-punto e virgola alla fine della riga contenente `x + 1`, trasformandola da
-espressione a dichiarazione, otterremo un errore:
+Eseguendo questo codice verrà stampato `Il valore di x è: 6`. Ma che succede se
+inseriamo un punto e virgola alla fine della riga contenente `x + 1`,
+trasformandola da espressione a dichiarazione?
 
 <span class="filename">File: src/main.rs</span>
 
@@ -244,7 +244,7 @@ espressione a dichiarazione, otterremo un errore:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-23-statements-dont-return-values/src/main.rs}}
 ```
 
-La compilazione di questo codice produce un errore, come segue:
+La compilazione di questo codice produrrà un errore, come segue:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-23-statements-dont-return-values/output.txt}}

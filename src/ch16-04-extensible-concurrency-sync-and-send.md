@@ -1,4 +1,4 @@
-## Concorrenza Estensibile con i _Trait_ `Send` e `Sync`
+## Concorrenza Estensibile con `Send` e `Sync`
 
 È interessante notare che quasi tutte le funzioni di concorrenza di cui abbiamo
 parlato finora in questo capitolo fanno parte della libreria standard, non del
@@ -10,7 +10,7 @@ Tuttavia, tra i concetti chiave della concorrenza che sono incorporati nel
 linguaggio piuttosto che nella libreria standard ci sono i _tratti_
 `std::marker`, `Send` e `Sync`.
 
-### Permettere il Trasferimento di _Ownership_ tra _Thread_ con `Send`
+### Trasferire _Ownership_ tra _Thread_
 
 Il _trait_ marcatore `Send` indica che la _ownership_ dei valori del _type_
 che implementa `Send` può essere trasferita tra i _thread_. Quasi tutti i _type_
@@ -34,7 +34,7 @@ anch'esso implementerà automaticamente il _trait_ `Send`. Quasi tutti i _type_
 primitivi implementano `Send`, a parte i puntatori grezzi, di cui parleremo nel
 Capitolo 20.
 
-### Permettere l'Accesso da Più _Thread_ con `Sync`
+### Accedere da Più _Thread_
 
 Il _trait_ marcatore `Sync` indica che il _type_ che implementa `Sync` può
 essere referenziato da più _thread_. In altre parole, qualsiasi _type_ `T`
@@ -50,8 +50,8 @@ parlato nel Capitolo 15) e la famiglia correlata di _type_ `Cell<T>` non
 implementano `Sync`. L'implementazione del controllo dei prestiti che
 `RefCell<T>` fa durante l'esecuzione non è sicura per l'uso coi _thread_. Invece
 il puntatore intelligente `Mutex<T>` implementa `Sync` e può essere utilizzato
-per condividere l'accesso con più _thread_, come hai visto in ["Condividere
-`Mutex<T>` tra più _Thread_"][sharing-a-mutext]<!-- ignore -->.
+per condividere l'accesso con più _thread_, come hai visto in [“Condividere
+Accesso a `Mutex<T>`”][sharing-a-mutext]<!-- ignore -->.
 
 ### Implementare Manualmente `Send` e `Sync` È Insicuro
 
@@ -94,5 +94,5 @@ senza i tipi di bug difficili da rintracciare comuni in altri linguaggi. La
 programmazione concorrente non è più un concetto di cui aver paura: vai avanti e
 rendi i tuoi programmi concorrenti, senza paura!
 
-[sharing-a-mutext]: ch16-03-shared-state.html#condividere-mutext-tra-più-thread
+[sharing-a-mutext]: ch16-03-shared-state.html#condividere-accesso-a-mutext
 [nomicon]: https://doc.rust-lang.org/stable/nomicon/index.html

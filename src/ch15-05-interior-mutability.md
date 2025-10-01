@@ -18,7 +18,7 @@ immutabile.
 Esploriamo questo concetto esaminando il _type_ `RefCell<T>` che segue il
 modello di mutabilità interna.
 
-### Applicare le Regole di Prestito in Fase di Esecuzione con `RefCell<T>`
+### Applicare le Regole di Prestito in Fase di Esecuzione
 
 A differenza di `Rc<T>`, il _type_ `RefCell<T>` rappresenta la _ownership_
 singola sui dati che contiene. Quindi, cosa rende `RefCell<T>` diverso da un
@@ -81,7 +81,7 @@ Mutare il valore all'interno di un valore immutabile è il modello di _Interior
 Mutability_ . Esaminiamo una situazione in cui la mutabilità interna è utile e
 vediamo come sia possibile.
 
-### Mutabilità Interna: un Prestito Mutabile di un Valore Immutabile
+### Usare la Mutabilità Interna
 
 Una conseguenza delle regole di prestito è che quando si ha un valore
 immutabile, non è possibile prenderlo in prestito mutabilmente. Ad esempio,
@@ -109,7 +109,7 @@ le regole, si otterrà un `panic!` invece di un errore del compilatore.
 Esaminiamo un esempio pratico in cui possiamo usare `RefCell<T>` per mutare un
 valore immutabile e vediamo perché è utile.
 
-#### Un Caso d'Uso per la Mutabilità Interna: Oggetti _Mock_
+#### Testare con gli Oggetti _Mock_
 
 A volte, durante i test, un programmatore usa un _type_ al posto di un altro,
 per osservare un comportamento particolare e verificare che sia implementato
@@ -241,7 +241,7 @@ quanti elementi ci sono nel vettore interno, chiamiamo `borrow` su
 
 Ora che hai visto come usare `RefCell<T>`, approfondiamo il suo funzionamento!
 
-#### Tenere Traccia dei Prestiti in Fase di Esecuzione con `RefCell<T>`
+#### Tracciare i Prestiti in Fase di Esecuzione
 
 Quando creiamo _reference_ immutabili e mutabili, utilizziamo rispettivamente la
 sintassi `&` e `&mut`. Con `RefCell<T>`, utilizziamo i metodi `borrow` e
@@ -302,7 +302,7 @@ solo valori immutabili. È possibile utilizzare `RefCell<T>` nonostante i suoi
 compromessi per ottenere più funzionalità rispetto a quelle fornite dai
 _reference_ standard.
 
-### Consentire più Proprietari di Dati Mutabili con `Rc<T>` e `RefCell<T>`
+### Consentire più Proprietari di Dati Mutabili
 
 Un modo comune per utilizzare `RefCell<T>` è in combinazione con `Rc<T>`.
 Ricorda che `Rc<T>` consente di avere più proprietari di alcuni dati, ma
