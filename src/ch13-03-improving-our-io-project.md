@@ -169,9 +169,6 @@ visualizzati man mano che viene trovata ogni riga corrispondente, perché il
 ciclo `for` nella funzione `esegui` è in grado di sfruttare “la pigrizia”
 (_laziness_) dell'iteratore.
 
-<!-- Old heading. Do not remove or links may break. -->
-<a id="choosing-between-loops-or-iterators"></a>
-
 ### Scegliere tra Cicli e Iteratori
 
 La domanda logica successiva è quale stile scegliere nel proprio codice e

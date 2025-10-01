@@ -211,9 +211,6 @@ impostazione predefinita. Di conseguenza, devi scrivere `&mut ipotesi` piuttosto
 che solo `&ipotesi` per renderli _mutable_ (il Capitolo 4 spiegherà i
 _reference_ in modo più approfondito)
 
-<!-- Old heading. Do not remove or links may break. -->
-<a id="handling-potential-failure-with-the-result-type"></a>
-
 ### Gestione dei Potenziali Errori con `Result`
 
 Stiamo ancora lavorando su questa riga di codice. Ora stiamo discutendo di una

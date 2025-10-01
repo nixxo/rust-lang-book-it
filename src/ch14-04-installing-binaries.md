@@ -1,6 +1,3 @@
-<!-- Old link, do not remove -->
-<a id="installing-binaries-from-cratesio-with-cargo-install"></a>
-
 ## Installazione di Binari con `cargo install`
 
 Il comando `cargo install` ti permette di installare e utilizzare localmente i

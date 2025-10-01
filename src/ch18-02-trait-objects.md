@@ -1,8 +1,5 @@
 ## Using Trait Objects to Abstract over Shared Behavior
 
-<!-- Old headings. Do not remove or links may break. -->
-<a id="using-trait-objects-that-allow-for-values-of-different-types"></a>
-
 In Chapter 8, we mentioned that one limitation of vectors is that they can
 store elements of only one type. We created a workaround in Listing 8-9 where
 we defined a `SpreadsheetCell` enum that had variants to hold integers, floats,

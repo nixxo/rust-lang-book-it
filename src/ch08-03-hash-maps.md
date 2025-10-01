@@ -139,9 +139,6 @@ valore per la chiave della squadra Blu entrambe le volte.
 Questo codice stamperà `{"Blu": 25}`. Il valore originale di `10` è stato
 sovrascritto.
 
-<!-- Old headings. Do not remove or links may break. -->
-<a id="only-inserting-a-value-if-the-key-has-no-value"></a>
-
 #### Aggiungere una Chiave e un Valore Solo Se una Chiave Non è Presente
 
 È comune verificare se una particolare chiave esiste già nella _hash map_ con un

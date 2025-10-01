@@ -1,6 +1,3 @@
-<!-- Old headings. Do not remove or links may break. -->
-<a id="digging-into-the-traits-for-async"></a>
-
 ## Uno Sguardo Più Da Vicino ai _Trait_ per _Async_
 
 Nel corso del capitolo, abbiamo utilizzato i _trait_ `Future`, `Pin`, `Unpin`,
@@ -12,9 +9,6 @@ comprendere queste cose più in dettaglio. In questa sezione, ci addentreremo il
 giusto in questi dettagli per aiutarti in quegli scenari, lasciando comunque il
 vero e proprio _approfondimento completo_ alla documentazione specifica di
 quello che ti interessa.
-
-<!-- Old headings. Do not remove or links may break. -->
-<a id="future"></a>
 
 ### Il _Trait_ `Future`
 
@@ -122,9 +116,6 @@ I dettagli esatti di come un _runtime_ faccia ciò vanno oltre lo scopo di quest
 libro, ma la chiave è vedere i meccanismi di base delle _future_: un _runtime_
 _interroga_ ogni _future_ di cui è responsabile, rimettendo la _future_ a
 dormire quando non è ancora pronta.
-
-<!-- Old headings. Do not remove or links may break. -->
-<a id="pinning-and-the-pin-and-unpin-traits"></a>
 
 ### I Tratti `Pin` e `Unpin`
 

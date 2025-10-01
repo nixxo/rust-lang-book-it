@@ -111,9 +111,6 @@ a un esempio che utilizza grafici composti da nodi genitore e nodi figlio per
 vedere quando le relazioni di non _ownership_ sono un modo appropriato per
 prevenire le sequenze auto-referenziali.
 
-<!-- Old link, do not remove -->
-<a id="preventing-reference-cycles-turning-an-rct-into-a-weakt"></a>
-
 ### Prevenire Sequenze Auto-Referenziali Usando `Weak<T>`
 
 Finora, abbiamo dimostrato che la chiamata a `Rc::clone` aumenta lo

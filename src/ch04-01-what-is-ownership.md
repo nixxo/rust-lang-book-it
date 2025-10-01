@@ -246,9 +246,6 @@ può essere inaspettato in situazioni più complicate quando vogliamo che più
 variabili utilizzino i dati che abbiamo allocato nell’_heap_. Esploriamo ora
 alcune di queste situazioni.
 
-<!-- Old heading. Do not remove or links may break. -->
-<a id="ways-variables-and-data-interact-move"></a>
-
 #### Interazione tra Variabili e Dati con _Move_
 
 In Rust, più variabili possono interagire con gli stessi dati in modi diversi.
@@ -404,9 +401,6 @@ valore è completamente sostituito.</span>
 La stringa originale esce così immediatamente dallo _scope_. Rust eseguirà la
 funzione `drop` su di essa e la sua memoria verrà rilasciata immediatamente.
 Quando stamperemo il valore alla fine, sarà `"ciao, world!"`.
-
-<!-- Old heading. Do not remove or links may break. -->
-<a id="ways-variables-and-data-interact-clone"></a>
 
 #### Interazione tra Variabili e Dati con _Clone_
 

@@ -254,9 +254,6 @@ si relazionino tra loro.
 
 Ma _come_ restituiresti il controllo al _runtime_ in quei casi?
 
-<!-- Old headings. Do not remove or links may break. -->
-<a id="yielding"></a>
-
 ### Restituire il Controllo al _Runtime_
 
 Simuliamo un'operazione a lungo termine. Il Listato 17-22 introduce una funzione

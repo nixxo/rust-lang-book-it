@@ -1,6 +1,3 @@
-<!-- Old link, do not remove -->
-<a id="extensible-concurrency-with-the-sync-and-send-traits"></a>
-
 ## Concorrenza Estensibile con i _Trait_ `Send` e `Sync`
 
 È interessante notare che quasi tutte le funzioni di concorrenza di cui abbiamo

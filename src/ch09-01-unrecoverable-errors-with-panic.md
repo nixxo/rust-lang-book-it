@@ -62,9 +62,6 @@ codice che alla fine ha portato alla chiamata a `panic!`.
 La seconda riga mostra il nostro messaggio di errore inserito nella chiamata a
 `panic!`.
 
-<!-- Old heading. Do not remove or links may break. -->
-<a id="using-a-panic-backtrace"></a>
-
 Possiamo usare il _backtrace_ (_andare a ritroso_) delle funzioni da cui
 proviene la chiamata `panic!` per capire la parte del nostro codice che sta
 causando il problema. Per capire come usare un _backtrace_ di `panic!`, diamo

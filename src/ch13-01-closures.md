@@ -1,6 +1,3 @@
-<!-- Old heading. Do not remove or links may break. -->
-<a id="closures-anonymous-functions-that-can-capture-their-environment"></a>
-
 ## Chiusure: Funzioni Anonime che Catturano il Loro Ambiente
 
 Le chiusure (_closure_) di Rust sono funzioni anonime che è possibile salvare in
@@ -9,11 +6,6 @@ chiusura in un punto e poi chiamarla altrove per valutarla in un contesto
 diverso. A differenza delle funzioni, le chiusure possono catturare valori dallo
 _scope_ in cui sono definite. Dimostreremo come queste funzionalità di chiusura
 consentano il riutilizzo del codice e la personalizzazione del comportamento.
-
-<!-- Old headings. Do not remove or links may break. -->
-<a id="creating-an-abstraction-of-behavior-with-closures"></a>
-<a id="refactoring-using-functions"></a>
-<a id="refactoring-with-closures-to-store-code"></a>
 
 ### Catturare l'Ambiente con le Chiusure
 
@@ -275,11 +267,6 @@ richiede che `lista` venga spostato nella chiusura assegnata al nuovo _thread_,
 affinché il _reference_ sia valido. Prova a rimuovere la parola chiave `move` o
 a utilizzare `lista` nel _thread_ principale dopo la definizione della chiusura
 per vedere quali errori del compilatore ottieni!
-
-<!-- Old headings. Do not remove or links may break. -->
-<a id="storing-closures-using-generic-parameters-and-the-fn-traits"></a>
-<a id="limitations-of-the-cacher-implementation"></a>
-<a id="moving-captured-values-out-of-the-closure-and-the-fn-traits"></a>
 
 ### Restituire i Valori Catturati dalle Chiusure e i _Trait_ `Fn`
 

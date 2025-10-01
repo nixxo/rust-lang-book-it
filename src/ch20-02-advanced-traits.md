@@ -5,9 +5,6 @@ Condiviso”][traits-defining-shared-behavior]<!-- ignore --> in Chapter 10, but
 we didn’t discuss the more advanced details. Now that you know more about Rust,
 we can get into the nitty-gritty.
 
-<!-- Old link, do not remove -->
-<a id="specifying-placeholder-types-in-trait-definitions-with-associated-types"></a>
-
 ### Associated Types
 
 _Associated types_ connect a type placeholder with a trait such that the trait
@@ -178,10 +175,6 @@ type parameter to an existing trait, you can give it a default to allow
 extension of the functionality of the trait without breaking the existing
 implementation code.
 
-<!-- Old link, do not remove -->
-
-<a id="fully-qualified-syntax-for-disambiguation-calling-methods-with-the-same-name"></a>
-
 ### Disambiguating Between Methods with the Same Name
 
 Nothing in Rust prevents a trait from having a method with the same name as
@@ -333,10 +326,6 @@ in the program. You only need to use this more verbose syntax in cases where
 there are multiple implementations that use the same name and Rust needs help
 to identify which implementation you want to call.
 
-<!-- Old link, do not remove -->
-
-<a id="using-supertraits-to-require-one-traits-functionality-within-another-trait"></a>
-
 ### Using Supertraits
 
 Sometimes you might write a trait definition that depends on another trait: for
@@ -415,9 +404,6 @@ Then, implementing the `OutlinePrint` trait on `Point` will compile
 successfully, and we can call `outline_print` on a `Point` instance to display
 it within an outline of asterisks.
 
-<!-- Old link, do not remove -->
-<a id="using-the-newtype-pattern-to-implement-external-traits-on-external-types"></a>
-
 ### Using the Newtype Pattern to Implement External Traits
 
 In [“Implementare un _Trait_ su un _Type_”][implementing-a-trait-on-a-type]<!--
@@ -457,8 +443,7 @@ all the methods of `Vec<T>` directly on `Wrapper` such that the methods
 delegate to `self.0`, which would allow us to treat `Wrapper` exactly like a
 `Vec<T>`. If we wanted the new type to have every method the inner type has,
 implementing the `Deref` trait on the `Wrapper` to return the inner type would
-be a solution (we discussed implementing the `Deref` trait in [“Treating Smart
-Pointers Like Regular References with `Deref`”][smart-pointer-deref]<!-- ignore
+be a solution (we discussed implementing the `Deref` trait in [“Trattare i Puntatori Intelligenti Come Normali _Reference_ con `Deref`”][smart-pointer-deref]<!-- ignore
 --> in Chapter 15). If we didn’t want the `Wrapper` type to have all the
 methods of the inner type—for example, to restrict the `Wrapper` type’s
 behavior—we would have to implement just the methods we do want manually.
@@ -469,5 +454,5 @@ switch focus and look at some advanced ways to interact with Rust’s type syste
 [newtype]: ch20-02-advanced-traits.html#using-the-newtype-pattern-to-implement-external-traits
 [implementing-a-trait-on-a-type]: ch10-02-traits.html#implementare-un-trait-su-un-type
 [traits-defining-shared-behavior]: ch10-02-traits.html#trait-definire-il-comportamento-condiviso
-[smart-pointer-deref]: ch15-02-deref.html#treating-smart-pointers-like-regular-references-with-the-deref-trait
+[smart-pointer-deref]: ch15-02-deref.html#trattare-i-puntatori-intelligenti-come-normali-reference-con-deref
 [tuple-structs]: ch05-01-defining-structs.html#struct-tupla-senza-campi-denominati-per-creare-type-diversi

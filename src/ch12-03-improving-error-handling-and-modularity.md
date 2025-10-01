@@ -242,9 +242,6 @@ Capitolo 9][ch9-error-guidelines]<!-- ignore -->. Invece, utilizzeremo l'altra
 tecnica che hai imparato nel Capitolo 9: [restituire un
 `Result`][ch9-result]<!-- ignore --> che indica un successo o un errore.
 
-<!-- Old headings. Do not remove or links may break. -->
-<a id="returning-a-result-from-new-instead-of-calling-panic"></a>
-
 #### Restituire un `Result` Invece di Chiamare `panic!`
 
 Possiamo invece ritornare un valore `Result` che conterrà un'istanza di `Config`
@@ -283,9 +280,6 @@ Queste modifiche rendono la funzione conforme al nuovo _type_ ritornato.
 Ritornare un valore `Err` da `Config::build` consente alla funzione `main` di
 gestire il valore `Result` ritornato dalla funzione `build` e di uscire dal
 processo in modo più pulito in caso di errore.
-
-<!-- Old headings. Do not remove or links may break. -->
-<a id="calling-confignew-and-handling-errors"></a>
 
 #### Chiamare `Config::build` e Gestire gli Errori
 
@@ -333,9 +327,6 @@ Listato 12-8, ma otteniamo un output più pulito. Proviamolo:
 ```
 
 Ottimo! Questo output è molto più intuitivo per i nostri utenti.
-
-<!-- Old headings. Do not remove or links may break. -->
-<a id="extracting-logic-from-main"></a>
 
 ### Estrarre la Logica dalla Funzione `main`
 

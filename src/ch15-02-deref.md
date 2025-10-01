@@ -1,8 +1,5 @@
 ## Trattare i Puntatori Intelligenti Come Normali _Reference_ con `Deref`
 
-<!-- Old link, do not remove -->
-<a id="treating-smart-pointers-like-regular-references-with-the-deref-trait"></a>
-
 L'implementazione del _trait_ `Deref` consente di personalizzare il
 comportamento dell'operatore di de-referenziazione (_dereference operator_) `*`
 (da non confondere con l'operatore di moltiplicazione o glob). Implementando
@@ -18,10 +15,6 @@ come l'implementazione del _trait_ `Deref` consenta ai puntatori intelligenti di
 funzionare in modo simile ai _reference_. Infine, esamineremo la funzionalità di
 Rust di _de-referenziazione forzata_ (_deref coercion_) e come ci consenta di
 lavorare sia con i _reference_ che con i puntatori intelligenti.
-
-<!-- Old links, do not remove -->
-<a id="following-the-pointer-to-the-value-with-the-dereference-operator"></a>
-<a id="following-the-pointer-to-the-value"></a>
 
 ### Seguire il _Reference_ al Valore
 
@@ -136,9 +129,6 @@ Ecco l'errore di compilazione risultante:
 Il nostro _type_ `MioBox<T>` non può essere de-referenziato perché non abbiamo
 implementato tale possibilità sul nostro _type_. Per abilitare la
 de-referenziazione con l'operatore `*`, implementiamo il _trait_ `Deref`.
-
-<!-- Old link, do not remove -->
-<a id="treating-a-type-like-a-reference-by-implementing-the-deref-trait"></a>
 
 ### Implementare il _Trait_ `Deref`
 

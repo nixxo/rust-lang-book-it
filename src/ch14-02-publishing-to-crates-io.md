@@ -442,9 +442,6 @@ decidere quale sia il numero di versione successivo più appropriato, in base
 alla tipologia di modifiche apportate. Quindi esegui `cargo publish` per
 caricare la nuova versione.
 
-<!-- Old link, do not remove -->
-<a id="removing-versions-from-cratesio-with-cargo-yank"></a>
-
 ### Deprecare Versioni da Crates.io con `cargo yank`
 
 Sebbene non sia possibile rimuovere le versioni precedenti di un _crate_, puoi

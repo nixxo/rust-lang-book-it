@@ -82,9 +82,6 @@ variabili è un po' noioso. Se la _struct_ avesse più campi, la ripetizione di
 ogni nome diventerebbe ancora più fastidiosa. Per fortuna esiste una comoda
 scorciatoia!
 
-<!-- Old heading. Do not remove or links may break. -->
-<a id="using-the-field-init-shorthand-when-variables-and-fields-have-the-same-name"></a>
-
 ### Utilizzo della Sintassi Abbreviata di Inizializzazione
 
 Poiché i nomi dei parametri e i nomi dei campi della _struct_ sono esattamente

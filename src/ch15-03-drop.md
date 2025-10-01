@@ -66,9 +66,6 @@ eliminata prima di `c`. Lo scopo di questo esempio è fornire una guida visiva a
 funzionamento del metodo `drop`; Di solito, si specifica il codice di pulizia
 che il _type_ deve eseguire anziché un messaggio di stampa.
 
-<!-- Old link, do not remove -->
-<a id="dropping-a-value-early-with-std-mem-drop"></a>
-
 Purtroppo, non è semplice disabilitare la funzionalità automatica `drop`.
 Disabilitare `drop` di solito non è necessario; lo scopo del _trait_ `Drop` è
 che venga gestito automaticamente. Occasionalmente, tuttavia, potrebbe essere

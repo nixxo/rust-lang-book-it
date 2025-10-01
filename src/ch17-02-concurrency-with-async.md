@@ -1,6 +1,3 @@
-<!-- Old headings. Do not remove or links may break. -->
-<a id="concurrency-with-async"></a>
-
 ## Applicare la Concorrenza con _Async_
 
 In questa sezione, vedremo come usare _async_ per affrontare alcune sfide di
@@ -13,9 +10,6 @@ simili a quelle per usare i _thread_. In altri casi, finiscono per essere
 piuttosto diverse. Anche quando le API sembrano simili tra _thread_ e _async_,
 spesso hanno comportamenti diversi e quasi sempre caratteristiche di prestazioni
 differenti.
-
-<!-- Old headings. Do not remove or links may break. -->
-<a id="counting"></a>
 
 ### Creare un Nuovo _Task_ con `spawn_task`
 
@@ -172,9 +166,6 @@ Prova alcune di queste varianti sull'attesa dei _future_ e vedi cosa fanno:
 
 Per una sfida extra, cerca di capire quale sarà l'output in ciascun caso _prima_
 di eseguire il codice!
-
-<!-- Old headings. Do not remove or links may break. -->
-<a id="message-passing"></a>
 
 ### Conteggiare su Due _Task_ Usando il Passaggio di Messaggi
 

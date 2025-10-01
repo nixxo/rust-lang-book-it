@@ -8,9 +8,6 @@ process, subsequent requests will have to wait until the long request is
 finished, even if the new requests can be processed quickly. We’ll need to fix
 this, but first we’ll look at the problem in action.
 
-<!-- Old headings. Do not remove or links may break. -->
-<a id="simulating-a-slow-request-in-the-current-server-implementation"></a>
-
 ### Simulating a Slow Request
 
 We’ll look at how a slow-processing request can affect other requests made to
@@ -96,10 +93,6 @@ functions we want, and then we’ll look at errors from the compiler to determin
 what we should change next to get the code to work. Before we do that, however,
 we’ll explore the technique we’re not going to use as a starting point.
 
-<!-- Old headings. Do not remove or links may break. -->
-
-<a id="code-structure-if-we-could-spawn-a-thread-for-each-request"></a>
-
 #### Spawning a Thread for Each Request
 
 First, let’s explore how our code might look if it did create a new thread for
@@ -130,10 +123,6 @@ You may also recall from Chapter 17 that this is exactly the kind of situation
 where async and await really shine! Keep that in mind as we build the thread
 pool and think about how things would look different or the same with async.
 
-<!-- Old headings. Do not remove or links may break. -->
-
-<a id="creating-a-similar-interface-for-a-finite-number-of-threads"></a>
-
 #### Creating a Finite Number of Threads
 
 We want our thread pool to work in a similar, familiar way so that switching
@@ -155,10 +144,6 @@ similar interface as `thread::spawn` in that it takes a closure the pool should
 run for each stream. We need to implement `pool.execute` so it takes the
 closure and gives it to a thread in the pool to run. This code won’t yet
 compile, but we’ll try so that the compiler can guide us in how to fix it.
-
-<!-- Old headings. Do not remove or links may break. -->
-
-<a id="building-the-threadpool-struct-using-compiler-driven-development"></a>
 
 #### Building `ThreadPool` Using Compiler-Driven Development
 
@@ -242,8 +227,7 @@ addition, we’ll implement the `execute` function so it takes the closure it’
 given and gives it to an idle thread in the pool to run.
 
 We’ll define the `execute` method on `ThreadPool` to take a closure as a
-parameter. Recall from [“Moving Captured Values Out of the Closure and the `Fn`
-Traits”][fn-traits]<!-- ignore --> in Chapter 13 that we can take closures as
+parameter. Recall from [“Restituire i Valori Catturati dalle Chiusure e i _Trait_ `Fn`”][fn-traits]<!-- ignore --> in Chapter 13 that we can take closures as
 parameters with three different traits: `Fn`, `FnMut`, and `FnOnce`. We need to
 decide which kind of closure to use here. We know we’ll end up doing something
 similar to the standard library `thread::spawn` implementation, so we can look
@@ -389,9 +373,6 @@ this allocation up front is slightly more efficient than using `Vec::new`,
 which resizes itself as elements are inserted.
 
 When you run `cargo check` again, it should succeed.
-
-<!-- Old headings. Do not remove or links may break. -->
-<a id ="a-worker-struct-responsible-for-sending-code-from-the-threadpool-to-a-thread"></a>
 
 #### Sending Code from the `ThreadPool` to a Thread
 
@@ -717,6 +698,6 @@ of the call to `job()`, meaning other `Worker` instances cannot receive jobs.
 
 [creating-type-synonyms-with-type-aliases]: ch20-03-advanced-types.html#creating-type-synonyms-with-type-aliases
 [integer-types]: ch03-02-data-types.html#il-type-intero
-[fn-traits]: ch13-01-closures.html#moving-captured-values-out-of-the-closure-and-the-fn-traits
+[fn-traits]: ch13-01-closures.html#restituire-i-valori-catturati-dalle-chiusure-e-i-trait-fn
 [builder]: https://doc.rust-lang.org/stable/std/thread/struct.Builder.html
 [builder-spawn]: https://doc.rust-lang.org/stable/std/thread/struct.Builder.html#method.spawn

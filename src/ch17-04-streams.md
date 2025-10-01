@@ -1,6 +1,3 @@
-<!-- Old headings. Do not remove or links may break. -->
-<a id="streams"></a>
-
 ## _Stream_: _Future_ in Sequenza
 
 Fino ad ora in questo capitolo, ci siamo principalmente concentrati su _future_

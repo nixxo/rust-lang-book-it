@@ -246,9 +246,6 @@ esistano contemporaneamente, e la compilazione fallisce. Non solo Rust ha reso
 la nostra funzione più facile da usare, ma ha anche eliminato un'intera classe
 di errori durante la compilazione!
 
-<!-- Old heading. Do not remove or links may break. -->
-<a id="string-literals-are-slices"></a>
-
 ### Letterali Stringa come _Slice_
 
 Ricordi che abbiamo parlato dei letterali stringa memorizzati all'interno del

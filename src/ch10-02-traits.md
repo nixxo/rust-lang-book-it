@@ -218,9 +218,6 @@ come `riassunto`. Possiamo chiamare `notifica` e passare qualsiasi istanza di
 _type_, come `String` o `i32`, non verrà compilato perché questi _type_ non
 implementano `Sommario`.
 
-<!-- Old headings. Do not remove or links may break. -->
-<a id="fixing-the-largest-function-with-trait-bounds"></a>
-
 #### Sintassi del Vincolo di _Trait_
 
 La sintassi `impl Trait` funziona per i casi più semplici, ma in realtà è solo

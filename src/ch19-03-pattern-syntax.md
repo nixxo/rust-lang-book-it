@@ -267,10 +267,6 @@ pattern (which you’ve seen), using the `_` pattern within another pattern,
 using a name that starts with an underscore, or using `..` to ignore remaining
 parts of a value. Let’s explore how and why to use each of these patterns.
 
-<!-- Old link, do not remove -->
-
-<a id="ignoring-an-entire-value-with-_"></a>
-
 #### An Entire Value with `_`
 
 We’ve used the underscore as a wildcard pattern that will match any value but
@@ -341,10 +337,6 @@ fourth values in a tuple of five items.
 
 This code will print `Some numbers: 2, 8, 32`, and the values `4` and `16` will
 be ignored.
-
-<!-- Old link, do not remove -->
-
-<a id="ignoring-an-unused-variable-by-starting-its-name-with-_"></a>
 
 #### An Unused Variable by Starting Its Name with `_`
 

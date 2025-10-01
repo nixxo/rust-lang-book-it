@@ -163,10 +163,6 @@ be empty. Listing 18-14 shows this placeholder implementation.
 With this added `content` method, everything in Listing 18-11 up to line 7
 works as intended.
 
-<!-- Old headings. Do not remove or links may break. -->
-
-<a id="requesting-a-review-of-the-post-changes-its-state"></a>
-
 #### Requesting a Review Changes the Post’s State
 
 Next, we need to add functionality to request a review of a post, which should
@@ -221,10 +217,6 @@ We’ll leave the `content` method on `Post` as is, returning an empty string
 slice. We can now have a `Post` in the `PendingReview` state as well as in the
 `Draft` state, but we want the same behavior in the `PendingReview` state.
 Listing 18-11 now works up to line 10!
-
-<!-- Old headings. Do not remove or links may break. -->
-
-<a id="adding-the-approve-method-that-changes-the-behavior-of-content"></a>
 
 #### Adding `approve` to Change the Behavior of `content`
 
@@ -435,10 +427,6 @@ The `DraftPost` struct has an `add_text` method, so we can add text to
 defined! So now the program ensures all posts start as draft posts, and draft
 posts don’t have their content available for display. Any attempt to get around
 these constraints will result in a compiler error.
-
-<!-- Old headings. Do not remove or links may break. -->
-
-<a id="implementing-transitions-as-transformations-into-different-types"></a>
 
 So how do we get a published post? We want to enforce the rule that a draft
 post has to be reviewed and approved before it can be published. A post in the

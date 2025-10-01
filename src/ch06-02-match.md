@@ -1,6 +1,3 @@
-<!-- Old heading. Do not remove or links may break. -->
-<a id="the-match-control-flow-operator"></a>
-
 ## Controllo del Flusso col Costrutto `Match`
 
 Rust offre un costrutto di controllo del flusso estremamente potente chiamato

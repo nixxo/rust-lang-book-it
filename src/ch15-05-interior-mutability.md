@@ -302,9 +302,6 @@ solo valori immutabili. È possibile utilizzare `RefCell<T>` nonostante i suoi
 compromessi per ottenere più funzionalità rispetto a quelle fornite dai
 _reference_ standard.
 
-<!-- Old link, do not remove -->
-<a id="having-multiple-owners-of-mutable-data-by-combining-rc-t-and-ref-cell-t"></a>
-
 ### Consentire più Proprietari di Dati Mutabili con `Rc<T>` e `RefCell<T>`
 
 Un modo comune per utilizzare `RefCell<T>` è in combinazione con `Rc<T>`.
