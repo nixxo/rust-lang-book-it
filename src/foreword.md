@@ -1,44 +1,50 @@
 # Prefazione
 
-Non è sempre stato così chiaro, ma il linguaggio di programmazione Rust è
-fondamentalmente un linguaggio di _emancipazione_: indipendentemente dal tipo di
-codice che stai scrivendo ora, Rust ti permette di spingerti più avanti, di
-programmare con sicurezza in una più ampia varietà di ambiti rispetto a prima.
+Il linguaggio di programmazione Rust ha fatto molta strada in pochi anni, dalla
+sua creazione e incubazione da parte di una piccola e giovane comunità di
+appassionati, fino a diventare uno dei linguaggi di programmazione più amati e
+richiesti al mondo. Ripensando a tutto ciò, era inevitabile che la potenza e le
+promesse di Rust attirassero l'attenzione e trovassero spazio nella
+programmazione di sistemi. Quello che non era scontato era la crescita globale
+dell'interesse e dell'innovazione che ha permeato le comunità open source,
+catalizzando un'adozione su larga scala in vari settori.
 
-Prendiamo, ad esempio, il lavoro a "livello di sistema" che si occupa dei
-dettagli di basso livello della gestione della memoria, della rappresentazione
-dei dati e della concorrenza. Tradizionalmente, questo regno della
-programmazione è considerato arcano, accessibile solo a pochi eletti che hanno
-dedicato gli anni necessari per evitare le sue famigerate insidie. E anche
-coloro che lo praticano lo fanno con cautela, per evitare che il loro codice sia
-esposto a exploit, crash o corruzione.
+Oggi è facile indicare le meravigliose caratteristiche che Rust offre per
+spiegare questa esplosione di interesse e adozione. Chi non vorrebbe sicurezza
+nella gestione della memoria, *e* prestazioni elevate, *e* un compilatore
+amichevole, *e* ottimi strumenti, insieme a tante altre fantastiche
+funzionalità? Il linguaggio Rust che vedi oggi combina anni di ricerca nella
+programmazione di sistemi con la saggezza pratica di una comunità vivace e
+appassionata. Questo linguaggio è stato progettato con uno scopo e realizzato
+con cura, offrendo agli sviluppatori uno strumento che rende più facile scrivere
+codice sicuro, veloce e affidabile.
 
-Rust abbatte queste barriere eliminando le vecchie insidie e fornendo un set di
-strumenti amichevoli e raffinati per aiutarti nel percorso. I programmatori che
-hanno bisogno di "immergersi" nel controllo di livello inferiore possono farlo
-con Rust, senza assumersi il rischio abituale di crash o falle di sicurezza e
-senza dover imparare i minimi dettagli di una _toolchain_ volubile. Meglio
-ancora, il linguaggio è progettato per guidarti naturalmente verso un codice
-affidabile ed efficiente in termini di velocità e utilizzo della memoria.
+Ma ciò che rende Rust davvero speciale sono le sue radici nel dare potere a te,
+l'utente, per raggiungere i tuoi obiettivi. Questo è un linguaggio che vuole che
+tu abbia successo, e il principio di _empowerment_ attraversa il cuore della
+comunità che costruisce, mantiene e promuove questo linguaggio. Dall'edizione
+precedente di questo testo definitivo, Rust si è ulteriormente sviluppato in un
+linguaggio davvero globale e affidabile. Il Rust Project è ora robustamente
+supportato dalla Rust Foundation, che investe anche in iniziative chiave per
+garantire che Rust sia sicuro, stabile e sostenibile.
 
-I programmatori che già lavorano con codice di basso livello possono usare Rust
-per aumentare le loro ambizioni. Ad esempio, introdurre il parallelismo in Rust
-è un'operazione relativamente a basso rischio: il compilatore rileverà i tipici
-errori al posto tuo. E puoi affrontare ottimizzazioni più aggressive nel tuo
-codice con la certezza di non introdurre accidentalmente crash o vulnerabilità.
+Questa edizione di *The Rust Programming Language* è un aggiornamento completo,
+che riflette l'evoluzione del linguaggio nel corso degli anni e fornisce nuove
+informazioni preziose. Ma non è solo una guida alla sintassi e alle librerie: è
+un invito a unirti a una comunità che valorizza qualità, prestazioni e design
+riflessivo. Che tu sia uno sviluppatore esperto che vuole esplorare Rust per la
+prima volta o un _Rustacean_ esperto che cerca di affinare le proprie abilità,
+questa edizione offre qualcosa per tutti.
 
-Ma Rust non si limita alla programmazione di sistemi di basso livello: è
-abbastanza espressivo ed ergonomico da rendere le applicazioni CLI, i server web
-e molti altri tipi di codice abbastanza piacevoli da scrivere - troverai
-semplici esempi di entrambi più avanti nel libro. Lavorare con Rust ti permette
-di costruire competenze che si trasferiscono da un dominio all'altro; puoi
-imparare Rust scrivendo un'applicazione web, poi applicare quelle stesse
-competenze per programmare il tuo Raspberry Pi.
+Il viaggio di Rust è stato caratterizzato da collaborazione, apprendimento e
+iterazione. La crescita del linguaggio e del suo ecosistema è un riflesso
+diretto della comunità vibrante e diversificata che lo sostiene. I contributi di
+migliaia di sviluppatori, dai progettisti del linguaggio ai collaboratori
+occasionali, sono ciò che rende Rust uno strumento così unico e potente.
+Prendendo in mano questo libro, non stai solo imparando un nuovo linguaggio di
+programmazione: stai entrando a far parte di un movimento per rendere il
+software migliore, più sicuro e più piacevole da usare.
 
-Questo libro abbraccia appieno il potenziale di Rust per potenziare i suoi
-utenti. È un testo amichevole e accessibile che ti aiuterà a migliorare non solo
-la tua conoscenza di Rust, ma anche la tua capacità e fiducia come programmatore
-in generale. Quindi tuffati, preparati a imparare e benvenuto nella community di
-Rust!
+Benvenuto nella comunità di Rust!
 
-— Nicholas Matsakis and Aaron Turon
+- Bec Rumbul, Direttore Esecutivo della Rust Foundation

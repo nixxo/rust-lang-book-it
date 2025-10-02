@@ -1,4 +1,4 @@
-# Enumerazioni e Corrispondenza dei Pattern
+# Enumerazioni e Corrispondenza dei _Pattern_
 
 In questo capitolo parleremo delle _enumerazioni_, abbreviato in _enum_, termine
 che sarà usato d'ora in poi. Le _enum_ permettono di definire un _type_

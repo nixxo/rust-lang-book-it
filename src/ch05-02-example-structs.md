@@ -1,4 +1,4 @@
-## Un Esempio di Programma che Usa _Struct_
+## Un Esempio di Programma Che Usa _Struct_
 
 Per capire quando potremmo voler usare le _struct_, scriviamo un programma che
 calcola l'area di un rettangolo. Partiremo usando variabili singole e poi

@@ -18,28 +18,28 @@
   - [Datatype - Tipi di dato](ch03-02-data-types.md)
   - [Funzioni](ch03-03-how-functions-work.md)
   - [Commenti](ch03-04-comments.md)
-  - [Controllo del flusso](ch03-05-control-flow.md)
+  - [Controllare il flusso](ch03-05-control-flow.md)
 
-- [Capire la Ownership](ch04-00-understanding-ownership.md)
-  - [Cos'è la Ownership?](ch04-01-what-is-ownership.md)
-  - [Reference e Borrowing](ch04-02-references-and-borrowing.md)
-  - [Il Type Slice](ch04-03-slices.md)
+- [Capire la _Ownership_](ch04-00-understanding-ownership.md)
+  - [Cos'è la Own_ership?](ch04-01-what-is-ownership.md)
+  - [_Reference_ e _Borrowing_](ch04-02-references-and-borrowing.md)
+  - [Il _Type_ Slice](ch04-03-slices.md)
 
-- [Utilizzare le Struct per Strutturare Dati Correlati](ch05-00-structs.md)
-  - [Definire e Istanziare le Struct](ch05-01-defining-structs.md)
-  - [Un esempio di programma che usa Struct](ch05-02-example-structs.md)
-  - [Sintassi dei Metodi](ch05-03-method-syntax.md)
+- [Utilizzare le _Struct_ per Strutturare Dati Correlati](ch05-00-structs.md)
+  - [Definire e Istanziare le _Struct_](ch05-01-defining-structs.md)
+  - [Un Esempio di Programma Che Usa _Struct_](ch05-02-example-structs.md)
+  - [Metodi](ch05-03-method-syntax.md)
 
-- [Enumerazioni e Corrispondenza dei Pattern](ch06-00-enums.md)
-  - [Definire un Enum](ch06-01-defining-an-enum.md)
-  - [Controllo del Flusso col costrutto Match](ch06-02-match.md)
-  - [Controllo di flusso conciso con if let e let else](ch06-03-if-let.md)
+- [Enumerazioni e Corrispondenza dei _Pattern_](ch06-00-enums.md)
+  - [Definire un'_Enum_](ch06-01-defining-an-enum.md)
+  - [Controllare il Flusso col costrutto `Match`](ch06-02-match.md)
+  - [Controllare il Flusso con `if let` e `let else`](ch06-03-if-let.md)
 
 ## Letteratura di Base Rust
 
-- [Gestione di Progetti in Crescita con Pacchetti, _Crates_, e Moduli](ch07-00-managing-growing-projects-with-packages-crates-and-modules.md)
-  - [Pacchetti e Crate](ch07-01-packages-and-crates.md)
-  - [Definire Moduli per Controllare _Scope_ e Privacy](ch07-02-defining-modules-to-control-scope-and-privacy.md)
+- [Gestione di Progetti in Crescita con Pacchetti, _Crate_, e Moduli](ch07-00-managing-growing-projects-with-packages-crates-and-modules.md)
+  - [Pacchetti e _Crate_](ch07-01-packages-and-crates.md)
+  - [Controllare _Scope_ e Privacy con i Moduli](ch07-02-defining-modules-to-control-scope-and-privacy.md)
   - [Percorsi per Fare Riferimento a un Elemento nell'Albero dei Moduli](ch07-03-paths-for-referring-to-an-item-in-the-module-tree.md)
   - [Portare i Percorsi in _Scope_ con la Parola Chiave `use`](ch07-04-bringing-paths-into-scope-with-the-use-keyword.md)
   - [Separare i Moduli in File Diversi](ch07-05-separating-modules-into-different-files.md)
@@ -47,7 +47,7 @@
 - [Collezioni Comuni](ch08-00-common-collections.md)
   - [Memorizzare Elenchi di Valori con Vettori](ch08-01-vectors.md)
   - [Memorizzare Testo Codificato UTF-8 con Stringhe](ch08-02-strings.md)
-  - [Memorizzare Chiavi con Valori Associati in Mappe Hash](ch08-03-hash-maps.md)
+  - [Memorizzare Chiavi con Valori Associati in Mappe _Hash_](ch08-03-hash-maps.md)
 
 - [Gestione degli Errori](ch09-00-error-handling.md)
   - [Errori Irreversibili con `panic!`](ch09-01-unrecoverable-errors-with-panic.md)
@@ -56,7 +56,7 @@
 
 - [_Type_ Generici, _Trait_ e _Lifetime_](ch10-00-generics.md)
   - [Tipi di Dati Generici](ch10-01-syntax.md)
-  - [_Trait_: Definire il Comportamento Condiviso](ch10-02-traits.md)
+  - [Definire il Comportamento Condiviso con i _Trait_](ch10-02-traits.md)
   - [Validare i _Reference_ con la _Lifetime_](ch10-03-lifetime-syntax.md)
 
 - [Scrivere Test Automatizzati](ch11-00-testing.md)
@@ -68,17 +68,17 @@
   - [Ricevere Argomenti dalla Riga di Comando](ch12-01-accepting-command-line-arguments.md)
   - [Leggere un File](ch12-02-reading-a-file.md)
   - [_Refactoring_ per Migliorare Modularità e Gestione degli Errori](ch12-03-improving-error-handling-and-modularity.md)
-  - [Sviluppare Funzionalità della Libreria con il Test-Driven Development](ch12-04-testing-the-librarys-functionality.md)
+  - [Aggiungere Funzionalità con il Test-Driven Development](ch12-04-testing-the-librarys-functionality.md)
   - [Lavorare con le Variabili d'Ambiente](ch12-05-working-with-environment-variables.md)
-  - [Scrivere Messaggi di Errore su _Standard Error_ invece che su _Standard Output_](ch12-06-writing-to-stderr-instead-of-stdout.md)
+  - [Scrivere Messaggi di Errore su _Standard Error_](ch12-06-writing-to-stderr-instead-of-stdout.md)
 
 ## Pensare in Rust
 
 - [Caratteristiche dei Linguaggi Funzionali: Iteratori e Chiusure](ch13-00-functional-features.md)
-  - [Chiusure: Funzioni Anonime che Catturano il Loro Ambiente](ch13-01-closures.md)
+  - [Chiusure](ch13-01-closures.md)
   - [Elaborare una Serie di Elementi con Iteratori](ch13-02-iterators.md)
   - [Migliorare il Nostro Progetto I/O](ch13-03-improving-our-io-project.md)
-  - [Confrontare le Prestazioni: Cicli vs. Iteratori](ch13-04-performance.md)
+  - [Prestazioni di Cicli e Iteratori](ch13-04-performance.md)
 
 - [Maggiori informazioni su Cargo e Crates.io](ch14-00-more-about-cargo.md)
   - [Personalizzare le Build con i Profili di Rilascio](ch14-01-release-profiles.md)
@@ -97,7 +97,7 @@
 
 - [Concorrenza Senza Paura](ch16-00-concurrency.md)
   - [Usare i _Thread_ Per Eseguire Codice Simultaneamente](ch16-01-threads.md)
-  - [Usare il Passaggio di Messaggi per Trasferire Dati tra _Thread_](ch16-02-message-passing.md)
+  - [Trasferire Dati tra _Thread_ Usando il Passaggio di Messaggi](ch16-02-message-passing.md)
   - [Concorrenza a Stato Condiviso](ch16-03-shared-state.md)
   - [Concorrenza Estensibile con i _Trait_ `Send` e `Sync`](ch16-04-extensible-concurrency-sync-and-send.md)
 

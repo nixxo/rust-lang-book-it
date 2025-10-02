@@ -1,4 +1,4 @@
-## Pacchetti e `Crate`
+## Pacchetti e _Crate_
 
 Le prime parti del sistema dei moduli che tratteremo sono i pacchetti e i
 _crate_.

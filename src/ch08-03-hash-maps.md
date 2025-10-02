@@ -1,4 +1,4 @@
-## Memorizzare Chiavi con Valori Associati in Mappe Hash
+## Memorizzare Chiavi con Valori Associati in Mappe _Hash_
 
 L'ultima delle nostre collezioni comuni è la _mappa hash_. Il _type_ `HashMap<K,
 V>` memorizza una mappatura di chiavi di _type_ `K` a valori di _type_ `V`

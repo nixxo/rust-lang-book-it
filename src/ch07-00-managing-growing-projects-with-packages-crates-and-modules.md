@@ -1,4 +1,4 @@
-# Gestione di Progetti in Crescita con Pacchetti, _Crates_, e Moduli
+# Gestione di Progetti in Crescita con Pacchetti, _Crate_, e Moduli
 
 Quando scriverai programmi sempre più complessi, organizzare il tuo codice
 diventerà sempre più importante. Raccogliendo funzionalità correlate e separando
