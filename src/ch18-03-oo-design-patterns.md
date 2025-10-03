@@ -270,8 +270,7 @@ we can’t move `state` out of the borrowed `&self` of the function parameter.
 We then call the `unwrap` method, which we know will never panic because we
 know the methods on `Post` ensure that `state` will always contain a `Some`
 value when those methods are done. This is one of the cases we talked about in
-[“Cases in Which You Have More Information Than the
-Compiler”][more-info-than-rustc]<!-- ignore --> in Chapter 9 when we know that
+[“Quando Si Hanno Più Informazioni Del Compilatore”][more-info-than-rustc]<!-- ignore --> in Chapter 9 when we know that
 a `None` value is never possible, even though the compiler isn’t able to
 understand that.
 
@@ -510,5 +509,5 @@ Next, we’ll look at patterns, which are another of Rust’s features that enab
 lots of flexibility. We’ve looked at them briefly throughout the book but
 haven’t seen their full capability yet. Let’s go!
 
-[more-info-than-rustc]: ch09-03-to-panic-or-not-to-panic.html#casi-in-cui-si-hanno-più-informazioni-del-compilatore
+[more-info-than-rustc]: ch09-03-to-panic-or-not-to-panic.html#quando-si-hanno-più-informazioni-del-compilatore
 [macros]: ch20-05-macros.html#macros

@@ -126,8 +126,7 @@ returned from `to_vec` will need to own its instances, so `to_vec` calls
 `clone` on each item. Thus the type stored in the slice must implement `Clone`.
 
 The `Copy` trait allows you to duplicate a value by only copying bits stored on
-the stack; no arbitrary code is necessary. See [“Stack-Only Data:
-Copy”][stack-only-data-copy]<!-- ignore --> in Chapter 4 for more information on
+the stack; no arbitrary code is necessary. See [“Duplicare Dati Sullo _Stack_”][stack-only-data-copy]<!-- ignore --> in Chapter 4 for more information on
 `Copy`.
 
 The `Copy` trait doesn’t define any methods to prevent programmers from
@@ -167,9 +166,7 @@ meaning all fields or values in the type must also implement `Default` to
 derive `Default`.
 
 The `Default::default` function is commonly used in combination with the struct
-update syntax discussed in [“Creating Instances from Other Instances with Struct
-Update
-Syntax”][creating-instances-from-other-instances-with-struct-update-syntax]<!--
+update syntax discussed in [“Creare Istanze con la Sintassi di Aggiornamento delle _Struct_”][creating-instances-from-other-instances-with-struct-update-syntax]<!--
 ignore --> in Chapter 5. You can customize a few fields of a struct and then set
 and use a default value for the rest of the fields by using
 `..Default::default()`.
@@ -179,7 +176,7 @@ The `Default` trait is required when you use the method `unwrap_or_default` on
 `unwrap_or_default` will return the result of `Default::default` for the type
 `T` stored in the `Option<T>`.
 
-[creating-instances-from-other-instances-with-struct-update-syntax]: ch05-01-defining-structs.html#creare-istanze-da-altre-istanze-con-la-sintassi-di-aggiornamento-delle-struct
-[stack-only-data-copy]: ch04-01-what-is-ownership.html#duplicazione-di-dati-sullo-stack
+[creating-instances-from-other-instances-with-struct-update-syntax]: ch05-01-defining-structs.html#creare-istanze-con-la-sintassi-di-aggiornamento-delle-struct
+[stack-only-data-copy]: ch04-01-what-is-ownership.html#duplicare-dati-sullo-stack
 [variables-and-data-interacting-with-clone]: ch04-01-what-is-ownership.html#interazione-tra-variabili-e-dati-con-clone
 [macros]: ch20-05-macros.html#macros

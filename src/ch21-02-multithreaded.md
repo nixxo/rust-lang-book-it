@@ -227,7 +227,7 @@ addition, we’ll implement the `execute` function so it takes the closure it’
 given and gives it to an idle thread in the pool to run.
 
 We’ll define the `execute` method on `ThreadPool` to take a closure as a
-parameter. Recall from [“Restituire i Valori Catturati dalle Chiusure e i _Trait_ `Fn`”][fn-traits]<!-- ignore --> in Chapter 13 that we can take closures as
+parameter. Recall from [“Restituire i Valori Catturati dalle Chiusure”][fn-traits]<!-- ignore --> in Chapter 13 that we can take closures as
 parameters with three different traits: `Fn`, `FnMut`, and `FnOnce`. We need to
 decide which kind of closure to use here. We know we’ll end up doing something
 similar to the standard library `thread::spawn` implementation, so we can look
@@ -548,8 +548,7 @@ With these changes, the code compiles! We’re getting there!
 
 Let’s finally implement the `execute` method on `ThreadPool`. We’ll also change
 `Job` from a struct to a type alias for a trait object that holds the type of
-closure that `execute` receives. As discussed in [“Creating Type Synonyms with
-Type Aliases”][creating-type-synonyms-with-type-aliases]<!-- ignore --> in
+closure that `execute` receives. As discussed in [“Type Synonyms and Type Aliases”][creating-type-synonyms-with-type-aliases]<!-- ignore --> in
 Chapter 20, type aliases allow us to make long types shorter for ease of use.
 Look at Listing 21-19.
 
@@ -696,8 +695,8 @@ let` (and `if let` and `match`) does not drop temporary values until the end of
 the associated block. In Listing 21-21, the lock remains held for the duration
 of the call to `job()`, meaning other `Worker` instances cannot receive jobs.
 
-[creating-type-synonyms-with-type-aliases]: ch20-03-advanced-types.html#creating-type-synonyms-with-type-aliases
+[creating-type-synonyms-with-type-aliases]: ch20-03-advanced-types.html#type-synonyms-and-type-aliases
 [integer-types]: ch03-02-data-types.html#il-type-intero
-[fn-traits]: ch13-01-closures.html#restituire-i-valori-catturati-dalle-chiusure-e-i-trait-fn
+[fn-traits]: ch13-01-closures.html#restituire-i-valori-catturati-dalle-chiusure
 [builder]: https://doc.rust-lang.org/stable/std/thread/struct.Builder.html
 [builder-spawn]: https://doc.rust-lang.org/stable/std/thread/struct.Builder.html#method.spawn

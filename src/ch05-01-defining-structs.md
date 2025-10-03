@@ -159,7 +159,7 @@ _trait_ `Copy`, quindi si applicherebbe il comportamento discusso nella sezione
 possiamo ancora utilizzare `utente1.email`, perché il suo valore non è stato
 spostato da `utente1`.
 
-### Creare _Type_ Diversi con _Struct_ Tupla 
+### Creare _Type_ Diversi con _Struct_ Tupla
 
 Rust supporta anche _struct_ che assomigliano alle tuple, chiamate _struct_
 tupla (_tuple_ _struct_). Le _struct_ tupla hanno il significato aggiuntivo che

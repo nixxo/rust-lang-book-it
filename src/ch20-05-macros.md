@@ -518,4 +518,4 @@ and do one more project!
 [quote]: https://crates.io/crates/quote
 [syn-docs]: https://docs.rs/syn/2.0/syn/struct.DeriveInput.html
 [quote-docs]: https://docs.rs/quote
-[decl]: #declarative-macros-with-macro_rules-for-general-metaprogramming
+[decl]: #declarative-macros-for-general-metaprogramming

@@ -62,8 +62,7 @@ the inner `y`. The last `println!` produces `at the end: x = Some(5), y = 10`.
 To create a `match` expression that compares the values of the outer `x` and
 `y`, rather than introducing a new variable that shadows the existing `y`
 variable, we would need to use a match guard conditional instead. We’ll talk
-about match guards later in [“Extra Conditionals with Match
-Guards”](#extra-conditionals-with-match-guards)<!-- ignore -->.
+about match guards later in [“Adding Conditionals with Match Guards”](#adding-conditionals-with-match-guards)<!-- ignore -->.
 
 ### Matching Multiple Patterns
 

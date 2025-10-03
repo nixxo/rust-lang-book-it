@@ -189,7 +189,7 @@ fn titolo_pagina(url: &str) -> impl Future<Output = Option<String>> {
 Analizziamo ogni parte della versione trasformata:
 
 - Usa la sintassi `impl Trait` che abbiamo discusso nel Capitolo 10 nella
-  sezione [“Usare _Trait_ come Parametri”][impl-trait]<!-- ignore -->.
+  sezione [“Usare i _Trait_ come Parametri”][impl-trait]<!-- ignore -->.
 - Il _trait_ restituito è un `Future` con un _type_ associato di `Output`. Nota
   che il _type_ `Output` è `Option<String>`, che è lo stesso _type_ di ritorno
   della versione `async fn` di `titolo_pagina`.
@@ -403,7 +403,7 @@ da un'esecuzione all'altra. Cosa più importante, hai imparato le basi del lavor
 con le _future_, quindi ora possiamo approfondire cosa possiamo fare con
 _async_.
 
-[impl-trait]: ch10-02-traits.html#usare-trait-come-parametri
+[impl-trait]: ch10-02-traits.html#usare-i-trait-come-parametri
 [iterators-lazy]: ch13-02-iterators.html
 [thread-spawn]: ch16-01-threads.html#creare-un-nuovo-thread-con-spawn
 [cli-args]: ch12-01-accepting-command-line-arguments.html

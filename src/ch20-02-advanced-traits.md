@@ -1,7 +1,7 @@
 ## Advanced Traits
 
 We first covered traits in [“_Trait_: Definire il Comportamento
-Condiviso”][traits-defining-shared-behavior]<!-- ignore --> in Chapter 10, but
+Condiviso con i _Trait_”][traits-defining-shared-behavior]<!-- ignore --> in Chapter 10, but
 we didn’t discuss the more advanced details. Now that you know more about Rust,
 we can get into the nitty-gritty.
 
@@ -141,8 +141,7 @@ default.
 
 We have two structs, `Millimeters` and `Meters`, holding values in different
 units. This thin wrapping of an existing type in another struct is known as the
-_newtype pattern_, which we describe in more detail in the [“Using the Newtype
-Pattern to Implement External Traits”][newtype]<!-- ignore
+_newtype pattern_, which we describe in more detail in the [“Implementing External Traits with the Newtype Pattern”][newtype]<!-- ignore
 --> section. We want to add values in millimeters to values in meters and have
 the implementation of `Add` do the conversion correctly. We can implement `Add`
 for `Millimeters` with `Meters` as the `Rhs`, as shown in Listing 20-16.
@@ -411,7 +410,7 @@ ignore --> in Chapter 10, we mentioned the orphan rule that states we’re only
 allowed to implement a trait on a type if either the trait or the type, or
 both, are local to our crate. It’s possible to get around this restriction
 using the _newtype pattern_, which involves creating a new type in a tuple
-struct. (We covered tuple structs in [“_Struct_ Tupla Senza Campi Denominati per Creare _Type_ Diversi”][tuple-structs]<!-- ignore --> in Chapter 5.) The
+struct. (We covered tuple structs in [“Creare _Type_ Diversi con _Struct_ Tupla”][tuple-structs]<!-- ignore --> in Chapter 5.) The
 tuple struct will have one field and be a thin wrapper around the type for
 which we want to implement a trait. Then the wrapper type is local to our
 crate, and we can implement the trait on the wrapper. _Newtype_ is a term that
@@ -443,7 +442,7 @@ all the methods of `Vec<T>` directly on `Wrapper` such that the methods
 delegate to `self.0`, which would allow us to treat `Wrapper` exactly like a
 `Vec<T>`. If we wanted the new type to have every method the inner type has,
 implementing the `Deref` trait on the `Wrapper` to return the inner type would
-be a solution (we discussed implementing the `Deref` trait in [“Trattare i Puntatori Intelligenti Come Normali _Reference_ con `Deref`”][smart-pointer-deref]<!-- ignore
+be a solution (we discussed implementing the `Deref` trait in [“Trattare i Puntatori Intelligenti Come Normali _Reference_”][smart-pointer-deref]<!-- ignore
 --> in Chapter 15). If we didn’t want the `Wrapper` type to have all the
 methods of the inner type—for example, to restrict the `Wrapper` type’s
 behavior—we would have to implement just the methods we do want manually.
@@ -451,8 +450,8 @@ behavior—we would have to implement just the methods we do want manually.
 This newtype pattern is also useful even when traits are not involved. Let’s
 switch focus and look at some advanced ways to interact with Rust’s type system.
 
-[newtype]: ch20-02-advanced-traits.html#using-the-newtype-pattern-to-implement-external-traits
+[newtype]: ch20-02-advanced-traits.html#implementing-external-traits-with-the-newtype-pattern
 [implementing-a-trait-on-a-type]: ch10-02-traits.html#implementare-un-trait-su-un-type
-[traits-defining-shared-behavior]: ch10-02-traits.html#trait-definire-il-comportamento-condiviso
-[smart-pointer-deref]: ch15-02-deref.html#trattare-i-puntatori-intelligenti-come-normali-reference-con-deref
-[tuple-structs]: ch05-01-defining-structs.html#struct-tupla-senza-campi-denominati-per-creare-type-diversi
+[traits-defining-shared-behavior]: ch10-02-traits.html#definire-il-comportamento-condiviso-con-i-trait
+[smart-pointer-deref]: ch15-02-deref.html#trattare-i-puntatori-intelligenti-come-normali-reference
+[tuple-structs]: ch05-01-defining-structs.html#creare-type-diversi-con-struct-tupla

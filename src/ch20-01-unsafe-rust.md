@@ -399,7 +399,7 @@ value.
 </Listing>
 
 Static variables are similar to constants, which we discussed in
-[“Constants”][differences-between-variables-and-constants]<!-- ignore --> in
+[“Dichiarare le Costanti”][differences-between-variables-and-constants]<!-- ignore --> in
 Chapter 3. The names of static variables are in `SCREAMING_SNAKE_CASE` by
 convention. Static variables can only store references with the `'static`
 lifetime, which means the Rust compiler can figure out the lifetime and we
@@ -473,7 +473,7 @@ By using `unsafe impl`, we’re promising that we’ll uphold the invariants tha
 the compiler can’t verify.
 
 As an example, recall the `Send` and `Sync` marker traits we discussed in
-[“Concorrenza Estensibile con i _Trait_ `Send` e `Sync`”][extensible-concurrency]<!-- ignore -->
+[“Concorrenza Estensibile con `Send` e `Sync`”][extensible-concurrency]<!-- ignore -->
 in Chapter 16: the compiler implements these traits automatically if our types
 are composed entirely of other types that implement `Send` and `Sync`. If we
 implement a type that contains a type that does not implement `Send` or `Sync`,
@@ -553,8 +553,8 @@ Rust’s official guide to the subject, the [Rustonomicon][nomicon].
 
 [dangling-references]: ch04-02-references-and-borrowing.html#reference-pendenti
 [ABI]: https://doc.rust-lang.org/stable/reference/items/external-blocks.html#abi
-[differences-between-variables-and-constants]: ch03-01-variables-and-mutability.html#costanti
-[extensible-concurrency]: ch16-04-extensible-concurrency-sync-and-send.html#concorrenza-estensibile-con-i-trait-send-e-sync
+[differences-between-variables-and-constants]: ch03-01-variables-and-mutability.html#dichiarare-le-costanti
+[extensible-concurrency]: ch16-04-extensible-concurrency-sync-and-send.html#concorrenza-estensibile-con-send-e-sync
 [the-slice-type]: ch04-03-slices.html#il-type-slice
 [unions]: https://doc.rust-lang.org/stable/reference/items/unions.html
 [miri]: https://github.com/rust-lang/miri

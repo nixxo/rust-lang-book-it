@@ -8,8 +8,7 @@ the `!` type and dynamically sized types.
 
 ### Type Safety and Abstraction with the Newtype Pattern
 
-This section assumes you’ve read the earlier section [“Using the Newtype Pattern
-to Implement External Traits”][using-the-newtype-pattern]<!--
+This section assumes you’ve read the earlier section [“Implementing External Traits with the Newtype Pattern”][using-the-newtype-pattern]<!--
 ignore -->. The newtype pattern is also useful for tasks beyond those we’ve
 discussed so far, including statically enforcing that values are never confused
 and indicating the units of a value. You saw an example of using newtypes to
@@ -155,8 +154,7 @@ here in Listing 20-27.
 
 </Listing>
 
-At the time, we skipped over some details in this code. In [“The `match`
-Control Flow Construct”][the-match-control-flow-construct]<!-- ignore --> in
+At the time, we skipped over some details in this code. In [“Controllare il Flusso col Costrutto `Match`”][the-match-control-flow-construct]<!-- ignore --> in
 Chapter 6, we discussed that `match` arms must all return the same type. So,
 for example, the following code doesn’t work:
 
@@ -290,6 +288,6 @@ Next, we’ll talk about functions and closures!
 
 [encapsulation-that-hides-implementation-details]: ch18-01-what-is-oo.html#encapsulation-that-hides-implementation-details
 [string-slices]: ch04-03-slices.html#slice-di-stringa
-[the-match-control-flow-construct]: ch06-02-match.html#controllo-del-flusso-col-costrutto-match
+[the-match-control-flow-construct]: ch06-02-match.html#controllare-il-flusso-col-costrutto-match
 [using-trait-objects-to-abstract-over-shared-behavior]: ch18-02-trait-objects.html#using-trait-objects-to-abstract-over-shared-behavior
-[using-the-newtype-pattern]: ch20-02-advanced-traits.html#using-the-newtype-pattern-to-implement-external-traits
+[using-the-newtype-pattern]: ch20-02-advanced-traits.html#implementing-external-traits-with-the-newtype-pattern
