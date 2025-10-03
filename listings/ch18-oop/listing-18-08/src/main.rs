@@ -1,15 +1,15 @@
 // ANCHOR: here
-use gui::Draw;
+use gui::Disegna;
 
-struct SelectBox {
-    width: u32,
-    height: u32,
-    options: Vec<String>,
+struct BoxSelezione {
+    larghezza: u32,
+    altezza: u32,
+    opzioni: Vec<String>,
 }
 
-impl Draw for SelectBox {
-    fn draw(&self) {
-        // code to actually draw a select box
+impl Disegna for BoxSelezione {
+    fn disegna(&self) {
+        // codice per disegnare il box di selezione
     }
 }
 // ANCHOR_END: here

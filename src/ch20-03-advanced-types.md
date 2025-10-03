@@ -202,7 +202,7 @@ Here, the loop never ends, so `!` is the value of the expression. However, this
 wouldn’t be true if we included a `break`, because the loop would terminate
 when it got to the `break`.
 
-### Dynamically Sized Types and the `Sized` Trait
+### _Type_ a Dimensione Dinamica e il _Trait_ `Sized`
 
 Rust needs to know certain details about its types, such as how much space to
 allocate for a value of a particular type. This leaves one corner of its type

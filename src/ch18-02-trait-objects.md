@@ -1,69 +1,67 @@
-## Using Trait Objects to Abstract over Shared Behavior
+## Usare gli Oggetti _Trait_ per Astrarre Comportamenti Condivisi
 
-In Chapter 8, we mentioned that one limitation of vectors is that they can
-store elements of only one type. We created a workaround in Listing 8-9 where
-we defined a `SpreadsheetCell` enum that had variants to hold integers, floats,
-and text. This meant we could store different types of data in each cell and
-still have a vector that represented a row of cells. This is a perfectly good
-solution when our interchangeable items are a fixed set of types that we know
-when our code is compiled.
+Nel Capitolo 8, abbiamo detto che un limite dei vettori è che possono contenere
+elementi di un solo _type_. Abbiamo trovato una soluzione nel Listato 8-9
+definendo una _enum_ `CellaFoglioDiCalcolo` che aveva varianti per interi, float
+e testo. Questo ci permetteva di mettere _type_ diversi in ogni cella e comunque
+avere un vettore che rappresentava una riga di celle. Questa è una soluzione
+perfetta quando gli elementi intercambiabili sono un insieme fisso di _type_
+noti a tempo di compilazione.
 
-However, sometimes we want our library user to be able to extend the set of
-types that are valid in a particular situation. To show how we might achieve
-this, we’ll create an example graphical user interface (GUI) tool that iterates
-through a list of items, calling a `draw` method on each one to draw it to the
-screen—a common technique for GUI tools. We’ll create a library crate called
-`gui` that contains the structure of a GUI library. This crate might include
-some types for people to use, such as `Button` or `TextField`. In addition,
-`gui` users will want to create their own types that can be drawn: for
-instance, one programmer might add an `Image` and another might add a
-`SelectBox`.
+Però a volte vogliamo che chi usa la nostra libreria possa estendere l’insieme
+di _type_ validi in una situazione. Per mostrare come farlo, creeremo un esempio
+di interfaccia grafica (GUI) che scorre una lista di elementi, chiamando per
+ognuno un metodo `disegna` per disegnarlo a schermo, una tecnica comune negli
+strumenti GUI. Creeremo un _crate_ libreria chiamato `gui` che contiene la
+struttura base di una libreria GUI. Questo _crate_ includerà _type_ da usare,
+come `Bottone` o `CampoTesto`. Inoltre, gli utenti della libreria vorranno
+creare i propri _type_ disegnabili: per esempio, uno aggiungerà un `Immagine` e
+un altro un `BoxSelezione`.
 
-At the time of writing the library, we can’t know and define all the types
-other programmers might want to create. But we do know that `gui` needs to keep
-track of many values of different types, and it needs to call a `draw` method
-on each of these differently typed values. It doesn’t need to know exactly what
-will happen when we call the `draw` method, just that the value will have that
-method available for us to call.
+Quando scriviamo la libreria, non possiamo sapere e definire tutti i _type_ che
+altri programmatori potrebbero voler creare. Ma sappiamo che `gui` deve tenere
+traccia di molti valori di _type_ diversi e deve chiamare un metodo `disegna` su
+ognuno di questi valori. Non deve sapere esattamente cosa succede quando chiama
+`disegna`, solo che quel metodo è disponibile.
 
-To do this in a language with inheritance, we might define a class named
-`Component` that has a method named `draw` on it. The other classes, such as
-`Button`, `Image`, and `SelectBox`, would inherit from `Component` and thus
-inherit the `draw` method. They could each override the `draw` method to define
-their custom behavior, but the framework could treat all of the types as if
-they were `Component` instances and call `draw` on them. But because Rust
-doesn’t have inheritance, we need another way to structure the `gui` library to
-allow users to create new types compatible with the library.
+In un linguaggio con ereditarietà, potremmo definire una classe `Componente` con
+un metodo `disegna`. Le altre classi, come `Bottone`, `Immagine` e
+`BoxSelezione`, erediterebbero da `Componente` e quindi avrebbero il metodo
+`disegna`. Ognuno potrebbe sovrascriverlo per comportamenti personalizzati, ma
+il framework tratterebbe tutti i _type_ come istanze di `Componente` e chiamare
+`disegna`. Ma dato che Rust non ha ereditarietà, serve un altro modo per
+strutturare `gui` permettendo agli utenti di creare nuovi _type_ compatibili con
+la libreria.
 
-### Defining a Trait for Common Behavior
+### Definire un _Trait_ per un Comportamento Comune
 
-To implement the behavior we want `gui` to have, we’ll define a trait named
-`Draw` that will have one method named `draw`. Then we can define a vector that
-takes a trait object. A _trait object_ points to both an instance of a type
-implementing our specified trait and a table used to look up trait methods on
-that type at runtime. We create a trait object by specifying some sort of
-pointer, such as an `&` reference or a `Box<T>` smart pointer, then the `dyn`
-keyword, and then specifying the relevant trait. (We’ll talk about the reason
-trait objects must use a pointer in [“Dynamically Sized Types and the `Sized`
-Trait”][dynamically-sized]<!-- ignore --> in Chapter 20.) We can use trait
-objects in place of a generic or concrete type. Wherever we use a trait object,
-Rust’s type system will ensure at compile time that any value used in that
-context will implement the trait object’s trait. Consequently, we don’t need to
-know all the possible types at compile time.
+Per implementare il comportamento che vogliamo in `gui`, definiamo un _trait_
+chiamato `Disegna` con un metodo `disegna`. Poi definiamo un vettore che
+contiene oggetti _trait_. Un oggetto _trait_ punta sia a un’istanza di un _type_
+che implementa il _trait_, sia a una tabella usata per cercare durante
+l'esecuzione i metodi _trait_ su quel _type_. Creiamo un oggetto _trait_
+specificando un puntatore (come un _reference_ `&` o uno puntatore intelligente
+`Box<T>`), poi la parola chiave `dyn` e infine il _trait_ rilevante. (Parleremo
+del motivo per cui gli oggetti _trait_ devono usare un puntatore in [“_Type_ a
+Dimensione Dinamica e il _Trait_ `Sized`”][dynamically-sized]<!-- ignore --> nel
+Capitolo 20.) Possiamo usare oggetti _trait_ al posto di _type_ generici o
+concreti. Ovunque usiamo un oggetto _trait_, il sistema dei _type_ di Rust
+garantisce durante la compilazione che ogni valore in quel contesto implementi
+il _trait_ dell’oggetto _trait_, quindi non serve conoscere tutti i _type_
+possibili al momento della compilazione.
 
-We’ve mentioned that, in Rust, we refrain from calling structs and enums
-“objects” to distinguish them from other languages’ objects. In a struct or
-enum, the data in the struct fields and the behavior in `impl` blocks are
-separated, whereas in other languages, the data and behavior combined into one
-concept is often labeled an object. Trait objects differ from objects in other
-languages in that we can’t add data to a trait object. Trait objects aren’t as
-generally useful as objects in other languages: their specific purpose is to
-allow abstraction across common behavior.
+Abbiamo detto che in Rust evitiamo di chiamare “oggetti” `struct` ed `enum` per
+distinguerli dagli oggetti di altri linguaggi. In una _struct_ o _enum_, dati e
+comportamento in blocchi `impl` sono separati, mentre in altri linguaggi dati e
+comportamento uniti formano un oggetto. Gli oggetti _trait_ differiscono dagli
+oggetti in altri linguaggi perché non possono contenere dati. Gli oggetti
+_trait_ servono specificamente per astrarre comportamenti comuni.
 
-Listing 18-3 shows how to define a trait named `Draw` with one method named
-`draw`.
+Il Listato 18-3 mostra come definire un _trait_ `Disegna` con un metodo
+`disegna`.
 
-<Listing number="18-3" file-name="src/lib.rs" caption="Definition of the `Draw` trait">
+
+<Listing number="18-3" file-name="src/lib.rs" caption="Definizione del _trait_ `Disegna`">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch18-oop/listing-18-03/src/lib.rs}}
@@ -71,13 +69,13 @@ Listing 18-3 shows how to define a trait named `Draw` with one method named
 
 </Listing>
 
-This syntax should look familiar from our discussions on how to define traits
-in Chapter 10. Next comes some new syntax: Listing 18-4 defines a struct named
-`Screen` that holds a vector named `components`. This vector is of type
-`Box<dyn Draw>`, which is a trait object; it’s a stand-in for any type inside a
-`Box` that implements the `Draw` trait.
+La sintassi dovrebbe essere familiare dalle discussioni sui _trait_ nel Capitolo
+10. Poi, nel Listato 18-4, definiamo una _struct_ `Schermo` che contiene un
+vettore `componenti`. Questo vettore è di _type_ `Box<dyn Disegna>`, un oggetto
+_trait_; è un contenitore per qualunque _type_ in una `Box` che implementi il
+_trait_ `Disegna`.
 
-<Listing number="18-4" file-name="src/lib.rs" caption="Definition of the `Screen` struct with a `components` field holding a vector of trait objects that implement the `Draw` trait">
+<Listing number="18-4" file-name="src/lib.rs" caption="Definizione della _struct_ `Schermo` con una campo `componenti` contenente un vettore di oggetti _trait_ che implemetano `Disegna`">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch18-oop/listing-18-04/src/lib.rs:here}}
@@ -85,10 +83,10 @@ in Chapter 10. Next comes some new syntax: Listing 18-4 defines a struct named
 
 </Listing>
 
-On the `Screen` struct, we’ll define a method named `run` that will call the
-`draw` method on each of its `components`, as shown in Listing 18-5.
+Definiamo un metodo `esegui` su `Schermo` che chiama `disegna` su ogni
+componente, come nel Listato 18-5.
 
-<Listing number="18-5" file-name="src/lib.rs" caption="A `run` method on `Screen` that calls the `draw` method on each component">
+<Listing number="18-5" file-name="src/lib.rs" caption="Un metodo `esegui` in `Schermo` che chiama `disegna` per ogni componente">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch18-oop/listing-18-05/src/lib.rs:here}}
@@ -96,14 +94,14 @@ On the `Screen` struct, we’ll define a method named `run` that will call the
 
 </Listing>
 
-This works differently from defining a struct that uses a generic type
-parameter with trait bounds. A generic type parameter can be substituted with
-only one concrete type at a time, whereas trait objects allow for multiple
-concrete types to fill in for the trait object at runtime. For example, we
-could have defined the `Screen` struct using a generic type and a trait bound,
-as in Listing 18-6.
+Questo funziona diversamente da una _struct_ con un parametro di _type_ generico
+con vincoli di _trait_. Un _type_ generico può essere sostituito da un solo
+_type_ concreto alla volta, mentre gli oggetti _trait_ permettono a più _type_
+concreti di poter essere usati per quel ruolo durante l'esecuzione. Per esempio,
+potremmo aver definito la _struct_ `Schermo` con un _type_ generico e un vincolo
+di _trait_, come nel Listato 18-6.
 
-<Listing number="18-6" file-name="src/lib.rs" caption="An alternate implementation of the `Screen` struct and its `run` method using generics and trait bounds">
+<Listing number="18-6" file-name="src/lib.rs" caption="Implementazione alternativa della _struct_ `Schermo` e del metodo `esegui` usando _type_ generici e vincoli di _trait_">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch18-oop/listing-18-06/src/lib.rs:here}}
@@ -111,25 +109,25 @@ as in Listing 18-6.
 
 </Listing>
 
-This restricts us to a `Screen` instance that has a list of components all of
-type `Button` or all of type `TextField`. If you’ll only ever have homogeneous
-collections, using generics and trait bounds is preferable because the
-definitions will be monomorphized at compile time to use the concrete types.
+Questo limita a istanze di `Schermo` con una lista di componenti tutte dello
+stesso _type_, per esempio tutti `Bottone` o tutti `CampoTesto`. Se si hanno
+solo collezioni omogenee, usare generici è preferibile perché il codice sarà
+monomorfizzato durante la compilazione usando i _type_ concreti.
 
-On the other hand, with the method using trait objects, one `Screen` instance
-can hold a `Vec<T>` that contains a `Box<Button>` as well as a
-`Box<TextField>`. Let’s look at how this works, and then we’ll talk about the
-runtime performance implications.
+Con gli oggetti _trait_, invece, una singola istanza di `Schermo` può contenere
+un `Vec<T>` con un `Box<Bottone>` e un `Box<CampoTesto>` insieme. Vediamo come
+funziona e poi parleremo delle implicazioni sulle prestazioni durante
+l'esecuzione.
 
-### Implementing the Trait
+### Implementare il _Trait_
 
-Now we’ll add some types that implement the `Draw` trait. We’ll provide the
-`Button` type. Again, actually implementing a GUI library is beyond the scope
-of this book, so the `draw` method won’t have any useful implementation in its
-body. To imagine what the implementation might look like, a `Button` struct
-might have fields for `width`, `height`, and `label`, as shown in Listing 18-7.
+Ora aggiungiamo _type_ che implementano il _trait_ `Disegna`. Aggiungiamo un
+_type_ `Bottone`. Scrivere una vera e propria libreria GUI va oltre lo scopo del
+libro, quindi il metodo `disegna` in `Bottone` non contiene nulla di utile nel
+corpo. Per farsi un’idea, un `Bottone` potrebbe avere campi `larghezza`,
+`altezza` e `etichetta`, come nel Listato 18-7.
 
-<Listing number="18-7" file-name="src/lib.rs" caption="A `Button` struct that implements the `Draw` trait">
+<Listing number="18-7" file-name="src/lib.rs" caption="La _struct_ `Bottone`che implementa il _trait_ `Disegna`">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch18-oop/listing-18-07/src/lib.rs:here}}
@@ -137,21 +135,19 @@ might have fields for `width`, `height`, and `label`, as shown in Listing 18-7.
 
 </Listing>
 
-The `width`, `height`, and `label` fields on `Button` will differ from the
-fields on other components; for example, a `TextField` type might have those
-same fields plus a `placeholder` field. Each of the types we want to draw on
-the screen will implement the `Draw` trait but will use different code in the
-`draw` method to define how to draw that particular type, as `Button` has here
-(without the actual GUI code, as mentioned). The `Button` type, for instance,
-might have an additional `impl` block containing methods related to what
-happens when a user clicks the button. These kinds of methods won’t apply to
-types like `TextField`.
+I campi `larghezza`, `altezza` e `etichetta` su `Bottone` sono diversi dagli
+altri componenti; per esempio, un _type_ `CampoTesto` potrebbe avere gli stessi
+campi più un campo `temporaneo`. Ogni _type_ che vogliamo disegnare implementerà
+il _trait_ `Disegna` usando codice diverso in `disegna` per definire come
+disegnarsi, come fa `Bottone` (senza codice GUI reale). `Bottone` potrebbe anche
+avere altri metodi nel suo `impl`, per esempio cosa succede al _click_, metodi
+che non si applicano a _type_ come `CampoTesto`.
 
-If someone using our library decides to implement a `SelectBox` struct that has
-`width`, `height`, and `options` fields, they would implement the `Draw` trait
-on the `SelectBox` type as well, as shown in Listing 18-8.
+Se qualcuno che usa la libreria definisce un `BoxSelezione` con campi
+`larghezza`, `altezza` e `opzioni`, implementerà il _trait_ `Disegna` anche su
+`BoxSelezione`, come nel Listato 18-8.
 
-<Listing number="18-8" file-name="src/main.rs" caption="Another crate using `gui` and implementing the `Draw` trait on a `SelectBox` struct">
+<Listing number="18-8" file-name="src/main.rs" caption="Un altro _crate_ che usa `gui` e implementa `Disegna` su `BoxSelezione`">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch18-oop/listing-18-08/src/main.rs:here}}
@@ -159,13 +155,12 @@ on the `SelectBox` type as well, as shown in Listing 18-8.
 
 </Listing>
 
-Our library’s user can now write their `main` function to create a `Screen`
-instance. To the `Screen` instance, they can add a `SelectBox` and a `Button`
-by putting each in a `Box<T>` to become a trait object. They can then call the
-`run` method on the `Screen` instance, which will call `draw` on each of the
-components. Listing 18-9 shows this implementation.
+Chi userà la nostra libreria può quindi scrivere la funzione `main` creando
+un’istanza di `Schermo`. Aggiunge un `BoxSelezione` e un `Bottone` mettendoli in
+`Box<T>`, facendoli diventare oggetti _trait_. Poi chiama `esegui` su `Schermo`,
+che a sua volta chiama `disegna` su ogni componente, come nel Listato 18-9.
 
-<Listing number="18-9" file-name="src/main.rs" caption="Using trait objects to store values of different types that implement the same trait">
+<Listing number="18-9" file-name="src/main.rs" caption="Uso di oggetti _trait_ per memorizzare valori di differente _type_ che implemetano il medesimo _trait_">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch18-oop/listing-18-09/src/main.rs:here}}
@@ -173,32 +168,30 @@ components. Listing 18-9 shows this implementation.
 
 </Listing>
 
-When we wrote the library, we didn’t know that someone might add the
-`SelectBox` type, but our `Screen` implementation was able to operate on the
-new type and draw it because `SelectBox` implements the `Draw` trait, which
-means it implements the `draw` method.
+Quando scriviamo la libreria, non sapevamo che qualcuno avrebbe aggiunto
+`BoxSelezione`, ma l’implementazione di `Schermo` funziona comunque con quel
+_type_ perché `BoxSelezione` implementa il _trait_ `Disegna` che quindi ha il
+metodo `disegna`.
 
-This concept—of being concerned only with the messages a value responds to
-rather than the value’s concrete type—is similar to the concept of _duck
-typing_ in dynamically typed languages: if it walks like a duck and quacks like
-a duck, then it must be a duck! In the implementation of `run` on `Screen` in
-Listing 18-5, `run` doesn’t need to know what the concrete type of each
-component is. It doesn’t check whether a component is an instance of a `Button`
-or a `SelectBox`, it just calls the `draw` method on the component. By
-specifying `Box<dyn Draw>` as the type of the values in the `components`
-vector, we’ve defined `Screen` to need values that we can call the `draw`
-method on.
+Questo concetto, preoccuparsi solo dei messaggi a cui un valore risponde invece
+che del _type_ concreto, somiglia al _duck typing_ (_tipizzazione ad anatra_)
+nei linguaggi a tipizzazione dinamica: _se cammina come un’anatra e fa “qua
+qua”, allora è un’anatra_! Nel metodo `esegui` di `Schermo` nel Listato 18-5,
+`esegui` non sa che _type_ concreto è ogni componente, non controlla se è
+un'istanza di `Bottone` o `BoxSelezione`, chiama semplicemente `disegna`.
+Specificando `Box<dyn Disegna>` come _type_ dei valori in `componenti`, abbiamo
+definito `Schermo` per accettare valori su cui si può chiamare `disegna`.
 
-The advantage of using trait objects and Rust’s type system to write code
-similar to code using duck typing is that we never have to check whether a
-value implements a particular method at runtime or worry about getting errors
-if a value doesn’t implement a method but we call it anyway. Rust won’t compile
-our code if the values don’t implement the traits that the trait objects need.
+Il vantaggio di usare oggetti _trait_ e il sistema dei _type_ di Rust per
+scrivere codice simile a quello con _duck typing_ è che non dobbiamo mai
+controllare durante l'esecuzione se un valore implementa un metodo o temere
+errori se non l’implementa ma lo chiamiamo. Rust non compila il codice se i
+valori non implementano i _trait_ richiesti dagli oggetti _trait_.
 
-For example, Listing 18-10 shows what happens if we try to create a `Screen`
-with a `String` as a component.
+Per esempio, il Listato 18-10 mostra cosa succede se proviamo a creare uno
+`Schermo` con una `String` come componente.
 
-<Listing number="18-10" file-name="src/main.rs" caption="Attempting to use a type that doesn’t implement the trait object’s trait">
+<Listing number="18-10" file-name="src/main.rs" caption="Tentativo di usare un _type_ che non implementa il _trait_ dell'oggetto">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch18-oop/listing-18-10/src/main.rs}}
@@ -206,41 +199,42 @@ with a `String` as a component.
 
 </Listing>
 
-We’ll get this error because `String` doesn’t implement the `Draw` trait:
+Avremo questo errore perché `String` non implementa il _trait_ `Disegna`:
 
 ```console
 {{#include ../listings/ch18-oop/listing-18-10/output.txt}}
 ```
 
-This error lets us know that either we’re passing something to `Screen` that we
-didn’t mean to pass and so should pass a different type, or we should implement
-`Draw` on `String` so that `Screen` is able to call `draw` on it.
+L’errore ci dice che o stiamo passando a `Schermo` qualcosa che non volevamo,
+oppure dobbiamo implementare `Disegna` su `String` per permettere che `Schermo`
+chiami `disegna` anche su quel _type_.
 
-### Performing Dynamic Dispatch
+### Eseguire il Dynamic Dispatch
 
-Recall in [“Prestazioni del Codice utilizzando _Type_ Generici”][performance-of-code-using-generics]<!-- ignore --> in Chapter 10 our
-discussion on the monomorphization process performed on generics by the
-compiler: the compiler generates nongeneric implementations of functions and
-methods for each concrete type that we use in place of a generic type
-parameter. The code that results from monomorphization is doing _static
-dispatch_, which is when the compiler knows what method you’re calling at
-compile time. This is opposed to _dynamic dispatch_, which is when the compiler
-can’t tell at compile time which method you’re calling. In dynamic dispatch
-cases, the compiler emits code that at runtime will know which method to call.
+Come detto in [“Prestazioni del Codice utilizzando _Type_
+Generici”][performance-of-code-using-generics]<!-- ignore --> nel Capitolo 10
+sulla monomorfizzazione eseguita dal compilatore per i _type_ generici: il
+compilatore genera implementazioni non generiche di funzioni e metodi per ogni
+_type_ concreto usato al posto del _type_ generico. Il codice che risulta dalla
+monomorfizzazione usa _static dispatch_, durante la compilazione il compilatore
+conosce quale metodo stai chiamando. Questo è all'opposto del _dynamic
+dispatch_, dove il compilatore non può sapere durante la compilazione quale
+metodo stai chiamando. Nel caso di _dynamic dispatch_, il compilatore genera
+codice che solo durante l'esecuzione saprà quale metodo chiamare.
 
-When we use trait objects, Rust must use dynamic dispatch. The compiler doesn’t
-know all the types that might be used with the code that’s using trait objects,
-so it doesn’t know which method implemented on which type to call. Instead, at
-runtime, Rust uses the pointers inside the trait object to know which method to
-call. This lookup incurs a runtime cost that doesn’t occur with static dispatch.
-Dynamic dispatch also prevents the compiler from choosing to inline a method’s
-code, which in turn prevents some optimizations, and Rust has some rules about
-where you can and cannot use dynamic dispatch, called _dyn compatibility_. Those
-rules are beyond the scope of this discussion, but you can read more about them
-[in the reference][dyn-compatibility]<!-- ignore -->. However, we did get extra
-flexibility in the code that we wrote in Listing 18-5 and were able to support
-in Listing 18-9, so it’s a trade-off to consider.
+Quando usiamo oggetti _trait_, Rust deve usare il _dynamic dispatch_. Il
+compilatore non conosce tutti i _type_ che possono essere usati con il codice
+che usa oggetti _trait_, quindi non sa quale metodo di quale _type_ chiamare.
+Durante l'esecuzione, Rust usa i puntatori dentro l’oggetto _trait_ per decidere
+il metodo da chiamare. Questa ricerca ha un costo prestazionale che non c’è con
+lo _static dispatch_. Inoltre, il _dynamic dispatch_ impedisce che il
+compilatore possa fare alcune ottimizzazioni, e Rust ha regole su dove si può
+usare _dynamic dispatch_, chiamate _compatibilità dyn_. Queste regole esulano da
+questa discussione, ma puoi leggere di più a riguardo nella
+[documentazione][dyn-compatibility]<!-- ignore -->. Però abbiamo guadagnato più
+flessibilità nel codice del Listato 18-5 e possiamo supportarla come nel Listato
+18-9, quindi è un compromesso da considerare.
 
 [performance-of-code-using-generics]: ch10-01-syntax.html#prestazioni-del-codice-utilizzando-type-generici
-[dynamically-sized]: ch20-03-advanced-types.html#dynamically-sized-types-and-the-sized-trait
+[dynamically-sized]: ch20-03-advanced-types.html#type-a-dimensione-dinamica-e-il-trait-sized
 [dyn-compatibility]: https://doc.rust-lang.org/reference/items/traits.html#dyn-compatibility

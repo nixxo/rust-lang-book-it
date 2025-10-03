@@ -1,4 +1,4 @@
-pub struct AveragedCollection {
-    list: Vec<i32>,
-    average: f64,
+pub struct CollezioneConMedia {
+    lista: Vec<i32>,
+    media: f64,
 }

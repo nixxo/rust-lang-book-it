@@ -1,13 +1,13 @@
 $ cargo run
-   Compiling gui v0.1.0 (file:///projects/gui)
-error[E0277]: the trait bound `String: Draw` is not satisfied
+   Compiling gui v0.1.0 (file:///progetti/gui)
+error[E0277]: the trait bound `String: Disegna` is not satisfied
  --> src/main.rs:5:26
   |
-5 |         components: vec![Box::new(String::from("Hi"))],
-  |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Draw` is not implemented for `String`
+5 |         componenti: vec![Box::new(String::from("Ciao"))],
+  |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Disegna` is not implemented for `String`
   |
-  = help: the trait `Draw` is implemented for `Button`
-  = note: required for the cast from `Box<String>` to `Box<dyn Draw>`
+  = help: the trait `Disegna` is implemented for `Bottone`
+  = note: required for the cast from `Box<String>` to `Box<dyn Disegna>`
 
 For more information about this error, try `rustc --explain E0277`.
 error: could not compile `gui` (bin "gui") due to 1 previous error

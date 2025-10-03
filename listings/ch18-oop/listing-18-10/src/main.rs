@@ -1,9 +1,9 @@
-use gui::Screen;
+use gui::Schermo;
 
 fn main() {
-    let screen = Screen {
-        components: vec![Box::new(String::from("Hi"))],
+    let schermo = Schermo {
+        componenti: vec![Box::new(String::from("Ciao"))],
     };
 
-    screen.run();
+    schermo.esegui();
 }

@@ -1,29 +1,29 @@
-pub trait Draw {
-    fn draw(&self);
+pub trait Disegna {
+    fn disegna(&self);
 }
 
-pub struct Screen {
-    pub components: Vec<Box<dyn Draw>>,
+pub struct Schermo {
+    pub componenti: Vec<Box<dyn Disegna>>,
 }
 
-impl Screen {
-    pub fn run(&self) {
-        for component in self.components.iter() {
-            component.draw();
+impl Schermo {
+    pub fn esegui(&self) {
+        for componente in self.componenti.iter() {
+            componente.disegna();
         }
     }
 }
 
 // ANCHOR: here
-pub struct Button {
-    pub width: u32,
-    pub height: u32,
-    pub label: String,
+pub struct Bottone {
+    pub larghezza: u32,
+    pub altezza: u32,
+    pub etichetta: String,
 }
 
-impl Draw for Button {
-    fn draw(&self) {
-        // code to actually draw a button
+impl Disegna for Bottone {
+    fn disegna(&self) {
+        // codice per disegnare il bottone
     }
 }
 // ANCHOR_END: here

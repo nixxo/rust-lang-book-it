@@ -1,16 +1,16 @@
-pub trait Draw {
-    fn draw(&self);
+pub trait Disegna {
+    fn disegna(&self);
 }
 
-pub struct Screen {
-    pub components: Vec<Box<dyn Draw>>,
+pub struct Schermo {
+    pub componenti: Vec<Box<dyn Disegna>>,
 }
 
 // ANCHOR: here
-impl Screen {
-    pub fn run(&self) {
-        for component in self.components.iter() {
-            component.draw();
+impl Schermo {
+    pub fn esegui(&self) {
+        for componente in self.componenti.iter() {
+            componente.disegna();
         }
     }
 }

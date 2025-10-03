@@ -1,19 +1,19 @@
-pub trait Draw {
-    fn draw(&self);
+pub trait Disegna {
+    fn disegna(&self);
 }
 
 // ANCHOR: here
-pub struct Screen<T: Draw> {
-    pub components: Vec<T>,
+pub struct Schermo<T: Disegna> {
+    pub componenti: Vec<T>,
 }
 
 impl<T> Screen<T>
 where
-    T: Draw,
+    T: Disegna,
 {
-    pub fn run(&self) {
-        for component in self.components.iter() {
-            component.draw();
+    pub fn esegui(&self) {
+        for componente in self.componenti.iter() {
+            componente.disegna();
         }
     }
 }

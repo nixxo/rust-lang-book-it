@@ -1,9 +1,9 @@
-pub trait Draw {
-    fn draw(&self);
+pub trait Disegna {
+    fn disegna(&self);
 }
 
 // ANCHOR: here
-pub struct Screen {
-    pub components: Vec<Box<dyn Draw>>,
+pub struct Schermo {
+    pub componenti: Vec<Box<dyn Disegna>>,
 }
 // ANCHOR_END: here
