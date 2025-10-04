@@ -66,8 +66,8 @@ implementano il _trait_ `Future`.
 > poter lavorare con una collezione dinamica di _future_ dove ci importa solo
 > che abbiano lo stesso tipo di output.
 
-Iniziamo avvolgendo ciascun _future_ nel `vec!` in un `Box::new`, come mostrato
-nel Listato 17-16.
+Iniziamo incapsulando ciascun _future_ nel `vec!` in una `Box::new`, come
+mostrato nel Listato 17-16.
 
 <Listing number="17-16" caption="Usare `Box::new` per allineare i _type_ delle _future_ in un `Vec`" file-name="src/main.rs">
 
@@ -99,7 +99,7 @@ per pezzo:
    l'output del _future_ è il _type_ unitario `()` scrivendo `Future<Output =
    ()>`.
 2. Quindi annotiamo il _trait_ con `dyn` per marcarlo come dinamico.
-3. L'intero riferimento al _trait_ è avvolto in una `Box`.
+3. L'intero riferimento al _trait_ è incapsulato in una `Box`.
 4. Infine, dichiariamo esplicitamente che `future` è un `Vec` che contiene
    questi elementi.
 
@@ -118,8 +118,8 @@ risolverlo. Più avanti nel capitolo, approfondiremo alcuni dettagli su `Pin` e
 `Unpin`. Per il momento, però, possiamo semplicemente seguire il consiglio del
 compilatore per sbloccarci. Nel Listato 17-18, iniziamo importando `Pin` da
 `std::pin`. Quindi aggiorniamo l'annotazione di _type_ per `future`, con un
-`Pin` che avvolge ogni `Box`. Infine, usiamo `Box::pin` per sistemare le stesse
-_future_.
+`Pin` che incapsula ogni `Box`. Infine, usiamo `Box::pin` per sistemare le
+stesse _future_.
 
 <Listing number="17-18" caption="Usare `Pin` e `Box::pin` per far sì che il _type_ `Vec` superi il controllo" file-name="src/main.rs">
 
@@ -149,7 +149,7 @@ piccola quantità di _overhead_ perché mettiamo queste _future_ nell'_heap_ con
 `Box`, e lo stiamo facendo solo per far sì che i _type_ si allineino. In realtà,
 non abbiamo bisogno dell'allocazione nell'_heap_: queste _future_ sono locali a
 questa particolare funzione. Come notato prima, `Pin` è esso stesso un _type_ di
-avvolgimento, quindi possiamo ottenere il beneficio di avere un singolo _type_
+incapsulamento, quindi possiamo ottenere il beneficio di avere un singolo _type_
 nel `Vec`, la ragione originale per cui stiamo usando `Box`, senza fare
 un'allocazione nell'_heap_. Possiamo usare `Pin` direttamente con ciascuna
 _future_, usando la macro `std::pin::pin`.

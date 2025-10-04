@@ -138,8 +138,8 @@ Tuttavia, qui non stiamo attendendo direttamente una _future_. Invece,
 costruiamo un nuova _future_, `JoinAll`, passando una collezione di _future_
 alla funzione `join_all`. La firma per `join_all` richiede che i _type_ degli
 elementi nella collezione implementino tutti il _trait_ `Future`, e `Box<T>`
-implementa `Future` solo se il `T` che avvolge è una _future_ che implementa il
-_trait_ `Unpin`.
+implementa `Future` solo se il `T` che incapsula è una _future_ che implementa
+il _trait_ `Unpin`.
 
 Sono un sacco di informazioni da assorbire! Per capire davvero, approfondiamo un
 po' di più come funziona effettivamente il _trait_ `Future`, in particolare
@@ -174,12 +174,12 @@ chiave:
 
 - Non può essere semplicemente qualsiasi _type_. È limitato al _type_ su cui il
   metodo è implementato, a un _reference_ o a un puntatore intelligente a quel
-  _type_, o a un `Pin` che avvolge un _reference_ a quel _type_.
+  _type_, o a un `Pin` che incapsula un _reference_ a quel _type_.
 
 Vedremo di più su questa sintassi nel [Capitolo 18][ch-18]<!-- ignore -->. Per
 ora, è sufficiente sapere che se vogliamo interrogare una _future_ per
 controllare se è `Pending` o `Ready(Output)`, abbiamo bisogno di un _reference_
-mutabile al _type_ avvolto in `Pin`.
+mutabile al _type_ incapsulato in `Pin`.
 
 `Pin` è un wrapper per _type_ simili a puntatori come `&`, `&mut`, `Box` e `Rc`.
 (Tecnicamente, `Pin` funziona con _type_ che implementano i _trait_ `Deref` o
@@ -247,10 +247,10 @@ di Rust richiede: nel codice sicuro, impedisce di spostare qualsiasi elemento
 con un riferimento attivo.
 
 `Pin` si basa su questo per darci la garanzia esatta di cui abbiamo bisogno.
-Quando “pinniamo” un valore avvolgendo un puntatore a quel valore in `Pin`, non
-può più muoversi. Quindi, se hai `Pin<Box<QualcheType>>`, in realtà blocchi il
-valore `QualcheType`, _non_ il puntatore `Box`. La Figura 17-6 illustra questo
-processo.
+Quando “pinniamo” un valore incapsulando un puntatore a quel valore in `Pin`,
+non può più muoversi. Quindi, se hai `Pin<Box<QualcheType>>`, in realtà blocchi
+il valore `QualcheType`, _non_ il puntatore `Box`. La Figura 17-6 illustra
+questo processo.
 
 <img alt="Tre scatole disposte affiancate. La prima è etichettata “Pin”, la seconda “b1”, e la terza “pinned”. All'interno di “pinned” c'è una tabella etichettata “fut”, con una singola colonna; rappresenta una `future` con celle per ciascuna parte della struttura dati. La sua prima cella ha il valore “0”, la sua seconda cella ha una freccia che esce da essa e punta alla quarta e ultima cella, che ha il valore “1”, e la terza cella ha linee tratteggiate e un'ellissi per indicare che potrebbero esserci altre parti nella struttura dati. Insieme, la tabella “fut” rappresenta una `future` che è auto-referenziale. Una freccia esce dalla scatola etichettata “Pin”, passa attraverso la scatola etichettata “b1” e termina all'interno della scatola “pinned” nella tabella “fut”." src="img/trpl17-06.svg" class="center" />
 
@@ -262,7 +262,7 @@ posto. Se un puntatore si muove, _ma i dati a cui punta sono nello stesso
 posto_, come nella Figura 17-7, non c'è alcun problema potenziale. Come
 esercizio indipendente, dai un'occhiata alla documentazione per i _type_ così
 come al modulo `std::pin` e prova a capire come faresti questo con un `Pin` che
-avvolge un `Box`. La chiave è che il tipo auto-referenziale stesso non può
+incapsula una `Box`. La chiave è che il tipo auto-referenziale stesso non può
 muoversi, perché è ancora bloccato.
 
 <img alt="Quattro scatole disposte in tre colonne approssimative, identiche al diagramma precedente con una modifica alla seconda colonna. Ora ci sono due scatole nella seconda colonna, etichettate “b1” e “b2”, “b1” è grigia, e la freccia da “Pin” passa attraverso “b2” invece di “b1”, indicando che il puntatore si è spostato da “b1” a “b2”, ma i dati in “pinned” non si sono mossi." src="img/trpl17-07.svg" class="center" />
@@ -303,9 +303,9 @@ _importa solo_ quando stai usando un puntatore bloccato a quel _type_ come
 <code>Pin<&mut <em>QualcheType</em>></code>.
 
 Per andare nel concreto, pensa a una `String`: ha una lunghezza e i caratteri
-Unicode che la compongono. Possiamo avvolgere una `String` in `Pin`, come visto
-nella Figura 17-8. Tuttavia, `String` implementa automaticamente `Unpin`, così
-come la maggior parte degli altri _type_ in Rust.
+Unicode che la compongono. Possiamo incapsulare una `String` in `Pin`, come
+visto nella Figura 17-8. Tuttavia, `String` implementa automaticamente `Unpin`,
+così come la maggior parte degli altri _type_ in Rust.
 
 <img alt="Flusso di lavoro concorrente" src="img/trpl17-08.svg" class="center" />
 

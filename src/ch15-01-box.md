@@ -34,7 +34,7 @@ che imparerai qui lo applicherai di nuovo in quella sezione!
 
 Prima di discutere il caso d'uso di archiviazione nell'_heap_ per `Box<T>`,
 tratteremo la sintassi e come interagire con i valori memorizzati all'interno di
-un `Box<T>`.
+una `Box<T>`.
 
 Il Listato 15-1 mostra come utilizzare una _box_ per memorizzare un valore `i32`
 nell'_heap_.
@@ -47,12 +47,12 @@ nell'_heap_.
 
 </Listing>
 
-Definiamo la variabile `b` come avente il valore di un `Box` che punta al valore
-`5`, allocato nell'_heap_. Questo programma stamperà `b = 5`; in questo caso,
-possiamo accedere ai dati nella _box_ in modo simile a come faremmo se questi
-dati fossero sullo _stack_. Proprio come qualsiasi valore posseduto, quando una
-_box_ esce dallo _scope_, come accade a `b` alla fine di `main`, verrà
-de-allocata. La de-allocazione avviene sia per la _box_ (memorizzato sullo
+Definiamo la variabile `b` come avente il valore di una `Box` che punta al
+valore `5`, allocato nell'_heap_. Questo programma stamperà `b = 5`; in questo
+caso, possiamo accedere ai dati nella _box_ in modo simile a come faremmo se
+questi dati fossero sullo _stack_. Proprio come qualsiasi valore posseduto,
+quando una _box_ esce dallo _scope_, come accade a `b` alla fine di `main`,
+verrà de-allocata. La de-allocazione avviene sia per la _box_ (memorizzato sullo
 _stack_) sia per i dati a cui punta (memorizzati nell'_heap_).
 
 Mettere un singolo valore nell'_heap_ non è molto utile, quindi le _box_ non
@@ -214,7 +214,7 @@ In questo suggerimento, _indirection_ significa che invece di memorizzare un
 valore direttamente, dovremmo modificare la struttura dati per memorizzarlo
 indirettamente, memorizzando invece un puntatore al valore.
 
-Poiché `Box<T>` è un puntatore, Rust sa sempre di quanto spazio un `Box<T>`
+Poiché `Box<T>` è un puntatore, Rust sa sempre di quanto spazio una `Box<T>`
 necessita: la dimensione di un puntatore non cambia in base alla quantità di
 dati a cui punta. Questo significa che possiamo inserire `Box<T>` all'interno
 della variante `Cons` invece di un altro valore `Lista` direttamente. `Box<T>`

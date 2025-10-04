@@ -8,7 +8,7 @@ file o connessioni di rete.
 
 Stiamo introducendo `Drop` nel contesto dei puntatori intelligenti perché la
 funzionalità del _trait_ `Drop` viene quasi sempre utilizzata quando si
-implementa un puntatore intelligente. Ad esempio, quando un `Box<T>` viene
+implementa un puntatore intelligente. Ad esempio, quando una `Box<T>` viene
 eliminato, de-alloca lo spazio nell'heap a cui punta il _box_.
 
 In alcuni linguaggi, per alcuni _type_, il programmatore deve richiamare il

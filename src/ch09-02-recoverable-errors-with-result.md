@@ -292,8 +292,8 @@ contenuto del file in `nomeutente`. Anche il metodo `read_to_string` restituisce
 un `Result` perché potrebbe fallire, anche se `File::open` ha avuto esito
 positivo. Abbiamo quindi bisogno di un altro `match` per gestire quel `Result`:
 se `read_to_string` ha esito positivo, la nostra funzione ha avuto successo e
-restituiamo il nome utente dal file che ora si trova in `nomeutente` avvolto in
-un `Ok`. Se `read_to_string` fallisce, restituiamo il valore di errore nello
+restituiamo il nome utente dal file che ora si trova in `nomeutente` incapsulato
+in un `Ok`. Se `read_to_string` fallisce, restituiamo il valore di errore nello
 stesso modo in cui abbiamo restituito il valore di errore nel `match` che
 gestiva il valore di ritorno di `File::open`. Tuttavia, non è necessario
 specificare esplicitamente `return`, perché questa è l'ultima espressione nella

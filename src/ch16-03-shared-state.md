@@ -85,8 +85,8 @@ chiamare `lock` per poter utilizzare il valore `i32`. Non possiamo
 dimenticarcene; altrimenti il sistema dei _type_ non ci permetterà di accedere
 al valore interno `i32`.
 
-La chiamata a `lock` restituisce un _type_ chiamato `MutexGuard`, avvolto in un
-`LockResult` che abbiamo gestito con la chiamata a `unwrap`. Il _type_
+La chiamata a `lock` restituisce un _type_ chiamato `MutexGuard`, incapsulato in
+un `LockResult` che abbiamo gestito con la chiamata a `unwrap`. Il _type_
 `MutexGuard` implementa `Deref` per puntare ai nostri dati interni; il _type_ ha
 anche un'implementazione `Drop` che rilascia automaticamente il blocco quando un
 `MutexGuard` esce dallo _scope_, cosa che accade alla fine dello _scope_
@@ -206,7 +206,7 @@ correggiamo il nostro programma cambiando la riga `use`, la chiamata a `new` e
 la chiamata a `clone`. Il codice nel Listato 16-15 verrà finalmente compilato ed
 eseguito.
 
-<Listing number="16-15" file-name="src/main.rs" caption="Utilizzo di un `Arc<T>` per avvolgere il `Mutex<T>` per poter condividere la _ownership_ tra più _thread_">
+<Listing number="16-15" file-name="src/main.rs" caption="Utilizzo di un `Arc<T>` per incapsulare il `Mutex<T>` per poter condividere la _ownership_ tra più _thread_">
 
 ```rust
 {{#rustdoc_include ../listings/ch16-fearless-concurrency/listing-16-15/src/main.rs}}

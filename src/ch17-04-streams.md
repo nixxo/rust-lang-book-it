@@ -268,9 +268,9 @@ Iniziamo definendo un `conteggio` nel _task_. (Potremmo definirlo anche al di
 fuori del _task_, ma il codice risulterà più chiaro se limitiamo ogni variabile
 allo _scope_ che la riguarda.) Poi creiamo un ciclo infinito. Ogni iterazione
 del ciclo “dorme” asincronamente per un millisecondo, incrementa il conteggio e
-poi lo invia attraverso il canale. Poiché tutto questo è avvolto nell'attività
-creata da `spawn_task`, tutto, incluso il ciclo infinito, verrà pulito insieme
-al _runtime_.
+poi lo invia attraverso il canale. Poiché tutto questo è incapsulato
+nell'attività creata da `spawn_task`, tutto, incluso il ciclo infinito, verrà
+pulito insieme al _runtime_.
 
 Questo tipo di ciclo infinito, che termina solo quando l'intero _runtime_ viene
 distrutto, è abbastanza comune in Rust _async_: molti programmi devono
@@ -368,7 +368,7 @@ dallo _stream_, e gli intervalli non sovraccaricano i messaggi. Non otteniamo
 `Interval: 100` o `Interval: 200` e così via, ma invece otteniamo `Interval: 1`,
 `Interval: 2`, e così via, anche se abbiamo uno _stream_ sorgente che _può_
 produrre un evento ogni millisecondo. Questo perché la chiamata a `throttle`
-produce un nuovo _stream_ che avvolge lo _stream_ originale, in modo che lo
+produce un nuovo _stream_ che incapsula lo _stream_ originale, in modo che lo
 _stream_ originale venga interrogato solo alla velocità di throttle, non alla
 sua "velocità nativa". Non abbiamo un sacco di messaggi di intervallo non
 gestiti che scegliamo di ignorare. Invece, non produciamo mai quei messaggi di

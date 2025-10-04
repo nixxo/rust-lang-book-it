@@ -93,7 +93,7 @@ una _struct_ privata, lo metti in un modulo.
 Gli elementi in un modulo genitore non possono utilizzare gli elementi privati
 all'interno dei moduli figli, ma gli elementi nei moduli figli possono
 utilizzare gli elementi nei loro moduli antenati. Questo perché i moduli figli
-avvolgono e nascondono i loro dettagli di implementazione, ma i moduli figli
+incapsulano e nascondono i loro dettagli di implementazione, ma i moduli figli
 possono vedere il contesto in cui sono definiti. Per continuare con la nostra
 metafora, pensa alle regole di privacy come se fossero l'ufficio posteriore di
 un ristorante: ciò che accade lì è privato e nascosto per i clienti del

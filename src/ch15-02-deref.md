@@ -77,10 +77,10 @@ _box_.
 
 ### Definire il Nostro Puntatore Intelligente
 
-Creiamo un _type_ _wrapper_ (_che avvolge_) simile al _type_ `Box<T>` fornito
-dalla libreria standard per sperimentare come i tipi di puntatore intelligente
-si comportino diversamente dai normali _reference_. Poi vedremo come aggiungere
-la possibilità di utilizzare l'operatore di de-referenziazione.
+Creiamo un _type_ _incapsulatore_, simile al _type_ `Box<T>` fornito dalla
+libreria standard, per sperimentare come i tipi di puntatore intelligente si
+comportino diversamente dai normali _reference_. Poi vedremo come aggiungere la
+possibilità di utilizzare l'operatore di de-referenziazione.
 
 > Nota: c'è una grande differenza tra il _type_ `MioBox<T>` che stiamo per
 > creare e il vero `Box<T>`: la nostra versione non memorizzerà i dati

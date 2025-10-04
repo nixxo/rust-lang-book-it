@@ -32,7 +32,7 @@ Come punto di partenza, impostiamo la nostra funzione `main` con `trpl::run` in
 modo che la nostra funzione di livello superiore possa essere _async_.
 
 > Nota: Da questo punto in poi nel capitolo, ogni esempio includerà lo stesso
-> esatto codice di avvolgimento con `trpl::run` in `main`, quindi spesso lo
+> esatto codice di incapsulamento con `trpl::run` in `main`, quindi spesso lo
 > salteremo proprio come facciamo con `main`. Non dimenticare di includerlo nel
 > tuo codice!
 
