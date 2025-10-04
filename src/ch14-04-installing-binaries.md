@@ -14,13 +14,13 @@ entrambi.
 
 Tutti i file binari installati con `cargo install` sono memorizzati nella
 cartella _bin_ della radice dell’installazione. Se hai installato Rust
-utilizzando _rustup.rs_ e non hai configurazioni personalizzate, questa cartella
+utilizzando `rustup` e non hai configurazioni personalizzate, questa cartella
 sarà *$HOME/.cargo/bin*. Assicurati che questa cartella sia presente nella tua
 `$PATH` per poter eseguire i programmi che hai installato con `cargo install`.
 
 Ad esempio, nel Capitolo 12 abbiamo accennato all’esistenza di
 un’implementazione Rust dello strumento `grep` chiamata `ripgrep` per la ricerca
-di file. Per installare `ripgrep`, possiamo eseguire la seguente procedura:
+di file. Per installare `ripgrep`, possiamo usare il seguente comando:
 
 <!-- manual-regeneration
 cargo install something you don't have, copy relevant output below

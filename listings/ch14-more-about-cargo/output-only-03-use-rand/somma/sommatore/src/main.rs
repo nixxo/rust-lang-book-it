@@ -1,4 +1,4 @@
-use più_uno;
+use piu_uno;
 use rand;
 
 fn main() {
@@ -6,6 +6,6 @@ fn main() {
     println!(
         "Ciao! {} più uno fa {}!",
         num,
-        più_uno::più_uno(num)
+        piu_uno::più_uno(num)
     );
 }

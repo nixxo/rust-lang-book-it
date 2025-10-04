@@ -1,3 +1,3 @@
 [workspace]
 resolver = "3"
-members = ["sommatore", "più_uno"]
+members = ["sommatore", "piu_uno"]

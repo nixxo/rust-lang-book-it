@@ -5,4 +5,4 @@ edition = "2024"
 
 [dependencies]
 
-più_uno = { path = "../più_uno" }
+piu_uno = { path = "../piu_uno" }

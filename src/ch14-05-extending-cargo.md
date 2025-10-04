@@ -1,7 +1,7 @@
 ## Estendere Cargo con Comandi Personalizzati
 
 Cargo è stato progettato in modo che tu possa estenderlo con nuovi sotto-comandi
-senza doverlo modificare. Se un binario nel tuo `$PATH` si chiama
+senza doverlo modificare. Se un binario nella tua `$PATH` si chiama
 `cargo-qualcosa`, puoi eseguirlo come se fosse un sotto-comando di Cargo
 eseguendo `cargo qualcosa`. I comandi personalizzati come questo sono anche
 elencati quando esegui `cargo --list`. La possibilità di usare `cargo install`

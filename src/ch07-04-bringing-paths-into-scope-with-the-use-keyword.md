@@ -172,7 +172,7 @@ probabilmente non penseranno alle parti del ristorante in questi termini. Con
 una struttura diversa. Ciò rende la nostra libreria ben organizzata sia per i
 programmatori che lavorano sulla libreria sia per i programmatori che la usano.
 Vedremo un altro esempio di `pub use` e di come influisce sulla documentazione
-del _crate_ in [“Esportare un API Pubblica Facilmente”][ch14-pub-use]<!-- ignore
+del _crate_ in [“Esportare un API Pubblica Efficace”][ch14-pub-use]<!-- ignore
 --> nel Capitolo 14.
 
 ### Usare Pacchetti Esterni
@@ -312,7 +312,7 @@ a volte usato come parte del _pattern_ _prelude_: vedi [la documentazione della
 libreria standard][prelude]<!-- ignore --> per ulteriori informazioni su quel
 _pattern_.
 
-[ch14-pub-use]: ch14-02-publishing-to-crates-io.html#esportare-un-api-pubblica-facilmente
+[ch14-pub-use]: ch14-02-publishing-to-crates-io.html#esportare-un-api-pubblica-efficace
 [rand]: ch02-00-guessing-game-tutorial.html#generare-un-numero-casuale
 [writing-tests]: ch11-01-writing-tests.html#come-scrivere-dei-test
 [prelude]: https://doc.rust-lang.org/stable/std/prelude/index.html#other-preludes

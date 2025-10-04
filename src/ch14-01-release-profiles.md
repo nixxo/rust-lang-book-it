@@ -51,12 +51,12 @@ L’impostazione `opt-level` controlla il numero di ottimizzazioni che Rust
 applicherà al tuo codice, con un range che va da 0 a 3. L’applicazione di più
 ottimizzazioni allunga i tempi di compilazione, quindi se sei in fase di
 sviluppo e compili spesso il tuo codice, vorrai meno ottimizzazioni per
-compilare più velocemente anche se il codice risultante gira più lentamente. Il
-livello `opt-level` predefinito per `dev` è quindi `0`. Quando sei pronto a
-rilasciare il tuo codice, è meglio dedicare più tempo alla compilazione.
-Compilerai in modalità _release_ una sola volta, ma eseguirai il programma
-compilato molte volte, quindi la modalità _release_ scambia un tempo di
-compilazione più lungo con un codice che gira più velocemente. Ecco perché
+compilare più velocemente anche se il codice risultante avrà prestazioni non
+ottimali. Il livello `opt-level` predefinito per `dev` è quindi `0`. Quando sei
+pronto a rilasciare il tuo codice, è meglio dedicare più tempo alla
+compilazione. Compilerai in modalità _release_ una sola volta, ma eseguirai il
+programma compilato molte volte, quindi la modalità _release_ scambia un tempo
+di compilazione più lungo con un eseguibile più prestazionale. Ecco perché
 `opt-level` predefinito per il profilo `release` è `3`.
 
 Puoi sovrascrivere un’impostazione predefinita aggiungendo un valore diverso nel

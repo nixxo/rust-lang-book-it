@@ -2,19 +2,19 @@
 
 Abbiamo utilizzato i pacchetti di [crates.io](https://crates.io/)<!-- ignore -->
 come dipendenze del nostro progetto, ma puoi anche condividere il tuo codice con
-altre persone pubblicando i tuoi pacchetti. Il registro dei crate di
+altre persone pubblicando i tuoi pacchetti. Il registro dei _crate_ di
 [crates.io](https://crates.io/)<!-- ignore --> distribuisce il codice sorgente
-dei tuoi pacchetti, quindi ospita principalmente codice open source.
+dei tuoi pacchetti, quindi ospita principalmente codice _open source_.
 
 Rust e Cargo hanno delle funzioni che rendono il tuo pacchetto pubblicato più
 facile da trovare e da usare. Parleremo di alcune di queste funzioni e poi
 spiegheremo come pubblicare un pacchetto.
 
-Nota di traduzione: Quando si realizza documentazione è buona pratica che sia
-scritta in un linguaggio internazionale come l’inglese. In questo capitolo si è
-deciso di tradurre anche la documentazione del codice in italiano per facilitare
-la comprensione, ma se vorrai pubblicare codice e la relativa documentazione è
-consigliabile farlo in inglese.
+> *Nota di traduzione: Quando si realizza documentazione è buona pratica che sia
+> scritta in un linguaggio internazionale come l’inglese. In questo capitolo si
+> è deciso di tradurre anche la documentazione del codice in italiano per
+> facilitare la comprensione, ma se vorrai pubblicare codice e la relativa
+> documentazione è consigliabile farlo in inglese.*
 
 ### Commentare il Codice a Fini di Documentazione
 
@@ -25,13 +25,13 @@ Rust usando due barre, `//`. Rust ha anche un particolare tipo di commento per
 la documentazione, noto come _commento di documentazione_, che genererà la
 documentazione HTML. L’HTML mostra il contenuto dei commenti di documentazione
 per gli elementi API pubblici destinati ai programmatori interessati a sapere
-come _usare_ il tuo crate piuttosto che come il tuo crate è _implementato_.
+come _usare_ il tuo _crate_ piuttosto che come il tuo _crate_ è _implementato_.
 
 I commenti di documentazione utilizzano tre barre, `///`, invece di due e
 supportano la notazione Markdown per la formattazione del testo. Posiziona i
 commenti di documentazione subito prima dell’elemento che stanno documentando.
-Il listato 14-1 mostra i commenti di documentazione per una funzione `più_uno`
-in un crate chiamato `mio_crate`
+Il Listato 14-1 mostra i commenti di documentazione per una funzione `più_uno`
+in un _crate_ chiamato `mio_crate`
 
 <Listing number="14-1" file-name="src/lib.rs" caption="Un commento di documentazione per una funzione">
 
@@ -42,17 +42,17 @@ in un crate chiamato `mio_crate`
 </Listing>
 
 Qui diamo una descrizione di cosa fa la funzione `più_uno`, iniziamo una sezione
-con l’intestazione `Esempi` (_Examples_) e poi forniamo del codice che dimostra come
-utilizzare la funzione `più_uno`. Possiamo generare la documentazione HTML da
-questo commento di documentazione eseguendo `cargo doc`. Questo comando esegue
-lo strumento `rustdoc` distribuito con Rust e mette la documentazione HTML
-generata nella cartella _target/doc_.
+con l’intestazione `Esempi` (_Examples_) e poi forniamo del codice che dimostra
+come utilizzare la funzione `più_uno`. Possiamo generare la documentazione HTML
+da questo commento di documentazione eseguendo `cargo doc`. Questo comando
+esegue lo strumento `rustdoc` distribuito con Rust e mette la documentazione
+HTML generata nella cartella _target/doc_.
 
 Per comodità, eseguendo `cargo doc --open` si costruisce l’HTML della
 documentazione del tuo _crate_ attuale (così come la documentazione di tutte le
 dipendenze del tuo _crate_) e si apre il risultato in un browser web. Naviga
-alla funzione `più_uno` per vedere che il testo nei commenti di
-documentazione apparirà come mostrato nella Figura 14-1.
+alla funzione `più_uno` per vedere che il testo nei commenti di documentazione
+apparirà come mostrato nella Figura 14-1.
 
 <img alt="Documentazione HTML renderizzata per la funzione `più_uno` di `mio_crate`" src="img/trpl14-01.png" class="center" />
 
@@ -60,7 +60,7 @@ documentazione apparirà come mostrato nella Figura 14-1.
 
 #### Sezioni Comunemente Utilizzate
 
-Abbiamo usato l’intestazione Markdown `# Esempi` nel listato 14-1 per creare una
+Abbiamo usato l’intestazione Markdown `# Esempi` nel Listato 14-1 per creare una
 sezione nell’HTML con il titolo “Esempi”. Ecco altre sezioni che gli autori di
 _crate_ utilizzano comunemente nella loro documentazione:
 
@@ -71,7 +71,7 @@ _crate_ utilizzano comunemente nella loro documentazione:
 - **Errori** (_Errors_): Se la funzione restituisce un `Result`, descrivere la
   tipologia di errori che potrebbero verificarsi e quali condizioni potrebbero
   causare la restituzione di tali errori può essere utile ai chiamanti, in modo
-  che possano scrivere codice per gestire i diversi tipi di errori in modi
+  che possano scrivere codice per gestire i diversi tipi di errore in modi
   diversi.
 - **Sicurezza** (_Safety_): Se la funzione è `unsafe` (ne parliamo nel Capitolo
   20), deve essere presente una sezione che spieghi perché la funzione non è
@@ -90,7 +90,7 @@ l’esecuzione di `cargo test` eseguirà gli esempi di codice nella documentazio
 come test! Non c’è niente di meglio di una documentazione con esempi, ma non c’è
 niente di peggio di esempi che non funzionano perché il codice è cambiato da
 quando è stata scritta la documentazione. Se eseguiamo `cargo test` con la
-documentazione della funzione `più_uno` del listato 14-1, vedremo una sezione
+documentazione della funzione `più_uno` del Listato 14-1, vedremo una sezione
 nei risultati del test che assomiglia a questa:
 
 <!-- manual-regeneration
@@ -100,7 +100,7 @@ copy just the doc-tests section below
 -->
 
 ```console
-   Doc-tests my_crate
+   Doc-tests mio_crate
 
 running 1 test
 test src/lib.rs - più_uno (line 5) ... ok
@@ -109,8 +109,8 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 ```
 
 Ora, se modifichiamo la funzione o l’esempio in modo che `assert_eq!`
-nell’esempio vada nel panico, ed eseguiamo di nuovo `cargo test`, vedremo che i
-test doc rilevano che l’esempio e il codice non sono compatibili tra loro!
+nell’esempio vada in _panic_, ed eseguiamo di nuovo `cargo test`, vedrai che i
+_Doc-tests_ rileveranno che l’esempio e il codice non sono compatibili tra loro!
 
 #### Commentare l’Elemento Contenitore
 
@@ -141,9 +141,9 @@ che è la radice del _crate_. Questi commenti descrivono quindi l’intero _crat
 
 Quando si esegue `cargo doc --open`, questi commenti verranno visualizzati nella
 prima pagina della documentazione di `mio_crate` sopra l’elenco degli elementi
-pubblici del crate, come mostrato nella Figura 14-2.
+pubblici del _crate_, come mostrato nella Figura 14-2.
 
-<img alt="Documentazione HTML renderizzata con un commento per l’intero crate" src="img/trpl14-02.png" class="center" />
+<img alt="Documentazione HTML renderizzata con un commento per l’intero _crate_" src="img/trpl14-02.png" class="center" />
 
 <span class="caption">Figura 14-2: Documentazione renderizzata per `mio_crate`, incluso il commento che descrive il _crate_ nel suo complesso</span>
 
@@ -151,7 +151,7 @@ I commenti di documentazione all’interno degli elementi sono utili soprattutto
 per descrivere i _crate_ e i moduli. Utilizzali per spiegare lo scopo generale
 del contenitore per aiutare i tuoi utenti a capire l’organizzazione del _crate_.
 
-### Esportare un API Pubblica Facilmente
+### Esportare un API Pubblica Efficace
 
 La struttura della tua API pubblica è una considerazione importante quando
 pubblichi un _crate_. Le persone che usano il tuo _crate_ hanno meno familiarità
@@ -162,13 +162,13 @@ Nel Capitolo 7 abbiamo visto come rendere pubblici gli elementi con la parola
 chiave `pub` e come portare gli elementi nello _scope_ con la parola chiave
 `use`. Tuttavia, la struttura che ha senso per te mentre sviluppi un _crate_
 potrebbe non essere molto comoda per i tuoi utenti. Potresti voler organizzare
-le tue _struct_ in una gerarchia che contiene più livelli, ma chi vuole usare
-un _type_ che hai definito in profondità nella gerarchia potrebbe avere problemi
-a scoprire l’esistenza di quel _type_. Potrebbe anche essere infastidito dal
-fatto di dover inserire `use mio_crate::un_modulo::altro_modulo::TypeUtile;`
-piuttosto che `use mio_crate::TypeUtile;`.
+le tue _struct_ in una gerarchia che contiene più livelli, ma chi vuole usare un
+_type_ che hai definito in profondità nella gerarchia potrebbe avere problemi a
+scoprire l’esistenza di quel _type_. Potrebbe anche essere infastidito dal fatto
+di dover scrivere `use mio_crate::un_modulo::altro_modulo::TypeUtile;` piuttosto
+che `use mio_crate::TypeUtile;`.
 
-La buona notizia è che se la struttura _non_ è facile per gi altri da usare da
+La buona notizia è che se la struttura _non_ è facile per gli altri da usare da
 un’altra libreria, non devi modificare la tua organizzazione interna: puoi
 invece riesportare gli elementi per creare una struttura pubblica diversa da
 quella privata usando `pub use`. _Riesportare_ prende un elemento pubblico in
@@ -179,7 +179,7 @@ Ad esempio, supponiamo di aver creato una libreria chiamata `arte` per modellare
 concetti artistici. All’interno di questa libreria ci sono due moduli: un modulo
 `tipologia` contenente due _enum_ chiamate `ColorePrimario` e `ColoreSecondario`
 e un modulo `utilità` contenente una funzione chiamata `mix`, come mostrato nel
-listato 14-3.
+Listato 14-3.
 
 <Listing number="14-3" file-name="src/lib.rs" caption="Una libreria `arte` con elementi organizzati nei moduli `tipologia` e `utilità`">
 
@@ -192,7 +192,7 @@ listato 14-3.
 La Figura 14-3 mostra l’aspetto della prima pagina della documentazione di
 questo _crate_ generata da `cargo doc`.
 
-<img alt="Documentazione renderizzata per il crate `arte` che elenca i moduli `tipologia` e `utilità`" src="img/trpl14-03.png" class="center" />
+<img alt="Documentazione renderizzata per il _crate_ `arte` che elenca i moduli `tipologia` e `utilità`" src="img/trpl14-03.png" class="center" />
 
 <span class="caption">Figura 14-3: Prima pagina della documentazione per `arte` che elenca i moduli `tipologia` e `utilità`</span>
 
@@ -240,7 +240,7 @@ collegherà le riesportazioni (_Re-exports_) nella prima pagina, come mostrato
 nella Figura 14-4, rendendo più facile trovare i _type_ `ColorePrimario` e
 `ColoreSecondario` e la funzione `mix`.
 
-<img alt="Documentazione renderizzata per il crate `arte` con le riesportazioni in prima pagina" src="img/trpl14-04.png" class="center" />
+<img alt="Documentazione renderizzata per il _crate_ `arte` con le riesportazioni in prima pagina" src="img/trpl14-04.png" class="center" />
 
 <span class="caption">Figura 14-4: La prima pagina della documentazione per `arte` che elenca le riesportazioni</span>
 
@@ -262,7 +262,7 @@ delle persone che utilizzano il _crate_. Un altro uso comune di `pub use` è
 quello di riesportare le definizioni di una dipendenza nel _crate_ corrente per
 rendere le definizioni di quel _crate_ parte dell’API pubblica del tuo _crate_.
 
-Creare una struttura API pubblica utile è più un’arte che una scienza e puoi
+Creare una struttura API pubblica efficace è più un’arte che una scienza e puoi
 iterare per trovare l’API che funziona meglio per i tuoi utenti. Scegliere `pub
 use` ti dà flessibilità nel modo in cui strutturi il tuo _crate_ internamente e
 disaccoppia la struttura interna da quella che presenti ai tuoi utenti. Guarda
@@ -315,7 +315,8 @@ modo:
 name = "gioco_indovinello"
 ```
 
-Anche se hai scelto un nome unico, quando esegui `cargo publish` per pubblicare il _crate_ a questo punto, riceverai un avviso e poi un errore simili a questo:
+Anche se hai scelto un nome unico, quando esegui `cargo publish` per pubblicare
+il _crate_ a questo punto, riceverai un avviso e poi un errore simili a questo:
 
 <!-- manual-regeneration
 Create a new package with an unregistered name, making no further modifications
@@ -346,7 +347,7 @@ al tuo _crate_ nei risultati di ricerca. Per il campo `license`, devi indicare
 un _valore identificativo della licenza_. Il [Linux Foundation’s Software
 Package Data Exchange (SPDX)][spdx] elenca gli identificativi che puoi usare per
 questo valore. Per esempio, per specificare che hai concesso in licenza il tuo
-crate usando la MIT License, aggiungi l’identificativo `MIT`:
+_crate_ usando la MIT License, aggiungi l’identificativo `MIT`:
 
 <span class="filename">File: Cargo.toml</span>
 
@@ -368,7 +369,9 @@ per i loro progetti nello stesso modo di Rust, utilizzando una doppia licenza
 identificatori di licenza separati da `OR` per avere più licenze per il tuo
 progetto.
 
-Con un nome univoco, la versione, la tua descrizione e la licenza aggiunta, il file _Cargo.toml_ per un progetto pronto per la pubblicazione potrebbe assomigliare a questo
+Con un nome univoco, la versione, la tua descrizione e la licenza aggiunta, il
+file _Cargo.toml_ per un progetto pronto per la pubblicazione potrebbe
+assomigliare a questo
 
 <span class="filename">File: Cargo.toml</span>
 
@@ -433,7 +436,7 @@ Congratulazioni, ora hai condiviso il tuo codice con la comunità di Rust e
 chiunque può facilmente aggiungere il tuo _crate_ come dipendenza del proprio
 progetto.
 
-### Pubblicare una Nuova Versione di un Crate
+### Pubblicare una Nuova Versione di un _Crate_
 
 Quando hai apportato delle modifiche al tuo _crate_ e sei pronto a rilasciare
 una nuova versione, cambia il valore `version` specificato nel file _Cargo.toml_
@@ -450,11 +453,6 @@ Questo è utile quando una versione del _crate_ è mal funzionante per un motivo
 per l’altro. In queste situazioni, Cargo supporta la disabilitazione di una
 versione del _crate_.
 
-_Yanking_ a version prevents new projects from depending on that version while
-allowing all existing projects that depend on it to continue. Essentially, a
-yank means that all projects with a _Cargo.lock_ will not break, and any future
-_Cargo.lock_ files generated will not use the yanked version.
-
 _Disabilitare_ una versione impedisce ai nuovi progetti di dipendere da quella
 versione, mentre permette a tutti i progetti esistenti che dipendono da essa di
 continuare. In sostanza, una _disabilitazione_ significa che tutti i progetti
@@ -464,8 +462,8 @@ generati non utilizzeranno la versione disabilitata.
 Per disabilitare una versione del _crate_, nella directory del _crate_ che hai
 pubblicato in precedenza, esegui `cargo yank` e specifica quale versione vuoi
 disabilitare. Ad esempio, se abbiamo pubblicato un _crate_ chiamato
-`gioco_indovinello` versione 1.0.1 e vogliamo eliminarlo, nella directory del
-progetto per `gioco_indovinello` eseguiamo:
+`gioco_indovinello` nella versione 1.0.1 e vogliamo disabilitarla, nella
+directory del progetto per `gioco_indovinello` eseguiamo:
 
 <!-- manual-regeneration:
 cargo yank carol-test --version 2.1.0
