@@ -1,6 +1,6 @@
 pub struct Post {
-    state: Option<Box<dyn State>>,
-    content: String,
+    stato: Option<Box<dyn Stato>>,
+    contenuto: String,
 }
 
 // ANCHOR: here
@@ -9,20 +9,20 @@ impl Post {
     // ANCHOR_END: here
     pub fn new() -> Post {
         Post {
-            state: Some(Box::new(Draft {})),
-            content: String::new(),
+            stato: Some(Box::new(Bozza {})),
+            contenuto: String::new(),
         }
     }
 
     // ANCHOR: here
-    pub fn add_text(&mut self, text: &str) {
-        self.content.push_str(text);
+    pub fn aggiungi_testo(&mut self, testo: &str) {
+        self.contenuto.push_str(testo);
     }
 }
 // ANCHOR_END: here
 
-trait State {}
+trait Stato {}
 
-struct Draft {}
+struct Bozza {}
 
-impl State for Draft {}
+impl Stato for Bozza {}

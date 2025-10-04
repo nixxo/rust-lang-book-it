@@ -1,46 +1,46 @@
 pub struct Post {
-    state: Option<Box<dyn State>>,
-    content: String,
+    stato: Option<Box<dyn Stato>>,
+    contenuto: String,
 }
 
 impl Post {
     pub fn new() -> Post {
         Post {
-            state: Some(Box::new(Draft {})),
-            content: String::new(),
+            stato: Some(Box::new(Bozza {})),
+            contenuto: String::new(),
         }
     }
 
-    pub fn add_text(&mut self, text: &str) {
-        self.content.push_str(text);
+    pub fn aggiungi_testo(&mut self, testo: &str) {
+        self.contenuto.push_str(testo);
     }
 
-    pub fn content(&self) -> &str {
-        self.state.as_ref().unwrap().content(self)
+    pub fn contenuto(&self) -> &str {
+        self.stato.as_ref().unwrap().contenuto(self)
     }
 
-    pub fn request_review(&mut self) {
-        if let Some(s) = self.state.take() {
-            self.state = Some(s.request_review())
+    pub fn richiedi_revisione(&mut self) {
+        if let Some(s) = self.stato.take() {
+            self.stato = Some(s.richiedi_revisione())
         }
     }
 
-    pub fn approve(&mut self) {
-        if let Some(s) = self.state.take() {
-            self.state = Some(s.approve())
+    pub fn approva(&mut self) {
+        if let Some(s) = self.stato.take() {
+            self.stato = Some(s.approva())
         }
     }
 }
 
 // ANCHOR: here
-trait State {
+trait Stato {
     // --taglio--
     // ANCHOR_END: here
-    fn request_review(self: Box<Self>) -> Box<dyn State>;
-    fn approve(self: Box<Self>) -> Box<dyn State>;
+    fn richiedi_revisione(self: Box<Self>) -> Box<dyn Stato>;
+    fn approva(self: Box<Self>) -> Box<dyn Stato>;
 
     // ANCHOR: here
-    fn content<'a>(&self, post: &'a Post) -> &'a str {
+    fn contenuto<'a>(&self, post: &'a Post) -> &'a str {
         ""
     }
 }
@@ -48,47 +48,47 @@ trait State {
 // --taglio--
 // ANCHOR_END: here
 
-struct Draft {}
+struct Bozza {}
 
-impl State for Draft {
-    fn request_review(self: Box<Self>) -> Box<dyn State> {
-        Box::new(PendingReview {})
+impl Stato for Bozza {
+    fn richiedi_revisione(self: Box<Self>) -> Box<dyn Stato> {
+        Box::new(AttesaRevisione {})
     }
 
-    fn approve(self: Box<Self>) -> Box<dyn State> {
+    fn approva(self: Box<Self>) -> Box<dyn Stato> {
         self
     }
 }
 
-struct PendingReview {}
+struct AttesaRevisione {}
 
-impl State for PendingReview {
-    fn request_review(self: Box<Self>) -> Box<dyn State> {
+impl Stato for AttesaRevisione {
+    fn richiedi_revisione(self: Box<Self>) -> Box<dyn Stato> {
         self
     }
 
-    fn approve(self: Box<Self>) -> Box<dyn State> {
-        Box::new(Published {})
+    fn approva(self: Box<Self>) -> Box<dyn Stato> {
+        Box::new(Pubblicato {})
     }
 }
 
 // ANCHOR: here
-struct Published {}
+struct Pubblicato {}
 
-impl State for Published {
+impl Stato for Pubblicato {
     // --taglio--
     // ANCHOR_END: here
-    fn request_review(self: Box<Self>) -> Box<dyn State> {
+    fn richiedi_revisione(self: Box<Self>) -> Box<dyn Stato> {
         self
     }
 
-    fn approve(self: Box<Self>) -> Box<dyn State> {
+    fn approva(self: Box<Self>) -> Box<dyn Stato> {
         self
     }
 
     // ANCHOR: here
-    fn content<'a>(&self, post: &'a Post) -> &'a str {
-        &post.content
+    fn contenuto<'a>(&self, post: &'a Post) -> &'a str {
+        &post.contenuto
     }
 }
 // ANCHOR_END: here

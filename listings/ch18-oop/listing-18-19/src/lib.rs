@@ -1,25 +1,25 @@
 pub struct Post {
-    content: String,
+    contenuto: String,
 }
 
-pub struct DraftPost {
-    content: String,
+pub struct PostBozza {
+    contenuto: String,
 }
 
 impl Post {
-    pub fn new() -> DraftPost {
-        DraftPost {
-            content: String::new(),
+    pub fn new() -> PostBozza {
+        PostBozza {
+            contenuto: String::new(),
         }
     }
 
-    pub fn content(&self) -> &str {
-        &self.content
+    pub fn contenuto(&self) -> &str {
+        &self.contenuto
     }
 }
 
-impl DraftPost {
-    pub fn add_text(&mut self, text: &str) {
-        self.content.push_str(text);
+impl PostBozza {
+    pub fn aggiungi_testo(&mut self, testo: &str) {
+        self.contenuto.push_str(testo);
     }
 }

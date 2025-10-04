@@ -166,8 +166,7 @@ use a trait object, as in Listing 20-34.
 </Listing>
 
 This code will compile just fine. For more about trait objects, refer to the
-section [“Using Trait Objects That Allow for Values of Different
-Types”][using-trait-objects-to-abstract-over-shared-behavior]<!-- ignore
+section [“Usare gli Oggetti _Trait_ per Astrarre Comportamenti Condivisi”][using-trait-objects-to-abstract-over-shared-behavior]<!-- ignore
 --> in Chapter 18.
 
 Next, let’s look at macros!
@@ -176,4 +175,4 @@ Next, let’s look at macros!
 [enum-values]: ch06-01-defining-an-enum.html#valori-di-enum
 [closure-types]: ch13-01-closures.html#inferenza-e-annotazione-del-type-delle-chiusure
 [any-number-of-futures]: ch17-03-more-futures.html
-[using-trait-objects-to-abstract-over-shared-behavior]: ch18-02-trait-objects.html#using-trait-objects-to-abstract-over-shared-behavior
+[using-trait-objects-to-abstract-over-shared-behavior]: ch18-02-trait-objects.html#usare-gli-oggetti-trait-per-astrarre-comportamenti-condivisi

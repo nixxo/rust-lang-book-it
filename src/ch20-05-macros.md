@@ -1,4 +1,4 @@
-## Macros
+## Macro
 
 We’ve used macros like `println!` throughout this book, but we haven’t fully
 explored what a macro is and how it works. The term _macro_ refers to a family

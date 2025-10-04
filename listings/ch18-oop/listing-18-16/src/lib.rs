@@ -1,6 +1,6 @@
 pub struct Post {
-    state: Option<Box<dyn State>>,
-    content: String,
+    stato: Option<Box<dyn Stato>>,
+    contenuto: String,
 }
 
 // ANCHOR: here
@@ -9,76 +9,76 @@ impl Post {
     // ANCHOR_END: here
     pub fn new() -> Post {
         Post {
-            state: Some(Box::new(Draft {})),
-            content: String::new(),
+            stato: Some(Box::new(Bozza {})),
+            contenuto: String::new(),
         }
     }
 
-    pub fn add_text(&mut self, text: &str) {
-        self.content.push_str(text);
+    pub fn aggiungi_testo(&mut self, testo: &str) {
+        self.contenuto.push_str(testo);
     }
 
-    pub fn content(&self) -> &str {
+    pub fn contenuto(&self) -> &str {
         ""
     }
 
-    pub fn request_review(&mut self) {
-        if let Some(s) = self.state.take() {
-            self.state = Some(s.request_review())
+    pub fn richiedi_revisione(&mut self) {
+        if let Some(s) = self.stato.take() {
+            self.stato = Some(s.richiedi_revisione())
         }
     }
 
     // ANCHOR: here
-    pub fn approve(&mut self) {
-        if let Some(s) = self.state.take() {
-            self.state = Some(s.approve())
+    pub fn approva(&mut self) {
+        if let Some(s) = self.stato.take() {
+            self.stato = Some(s.approva())
         }
     }
 }
 
-trait State {
-    fn request_review(self: Box<Self>) -> Box<dyn State>;
-    fn approve(self: Box<Self>) -> Box<dyn State>;
+trait Stato {
+    fn richiedi_revisione(self: Box<Self>) -> Box<dyn Stato>;
+    fn approva(self: Box<Self>) -> Box<dyn Stato>;
 }
 
-struct Draft {}
+struct Bozza {}
 
-impl State for Draft {
+impl Stato for Bozza {
     // --taglio--
     // ANCHOR_END: here
-    fn request_review(self: Box<Self>) -> Box<dyn State> {
-        Box::new(PendingReview {})
+    fn richiedi_revisione(self: Box<Self>) -> Box<dyn Stato> {
+        Box::new(AttesaRevisione {})
     }
 
     // ANCHOR: here
-    fn approve(self: Box<Self>) -> Box<dyn State> {
+    fn approva(self: Box<Self>) -> Box<dyn Stato> {
         self
     }
 }
 
-struct PendingReview {}
+struct AttesaRevisione {}
 
-impl State for PendingReview {
+impl Stato for AttesaRevisione {
     // --taglio--
     // ANCHOR_END: here
-    fn request_review(self: Box<Self>) -> Box<dyn State> {
+    fn richiedi_revisione(self: Box<Self>) -> Box<dyn Stato> {
         self
     }
 
     // ANCHOR: here
-    fn approve(self: Box<Self>) -> Box<dyn State> {
-        Box::new(Published {})
+    fn approva(self: Box<Self>) -> Box<dyn Stato> {
+        Box::new(Pubblicato {})
     }
 }
 
-struct Published {}
+struct Pubblicato {}
 
-impl State for Published {
-    fn request_review(self: Box<Self>) -> Box<dyn State> {
+impl Stato for Pubblicato {
+    fn richiedi_revisione(self: Box<Self>) -> Box<dyn Stato> {
         self
     }
 
-    fn approve(self: Box<Self>) -> Box<dyn State> {
+    fn approva(self: Box<Self>) -> Box<dyn Stato> {
         self
     }
 }

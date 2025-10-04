@@ -3,12 +3,12 @@ use blog::Post;
 fn main() {
     let mut post = Post::new();
 
-    post.add_text("I ate a salad for lunch today");
-    assert_eq!("", post.content());
+    post.aggiungi_testo("Oggi a pranzo ho mangiato un'instalata");
+    assert_eq!("", post.contenuto());
 
-    post.request_review();
-    assert_eq!("", post.content());
+    post.richiedi_revisione();
+    assert_eq!("", post.contenuto());
 
-    post.approve();
-    assert_eq!("I ate a salad for lunch today", post.content());
+    post.approva();
+    assert_eq!("Oggi a pranzo ho mangiato un'instalata", post.contenuto());
 }

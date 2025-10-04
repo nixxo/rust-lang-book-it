@@ -1,43 +1,43 @@
 pub struct Post {
-    content: String,
+    contenuto: String,
 }
 
-pub struct DraftPost {
-    content: String,
+pub struct PostBozza {
+    contenuto: String,
 }
 
 impl Post {
-    pub fn new() -> DraftPost {
-        DraftPost {
-            content: String::new(),
+    pub fn new() -> PostBozza {
+        PostBozza {
+            contenuto: String::new(),
         }
     }
 
-    pub fn content(&self) -> &str {
-        &self.content
+    pub fn contenuto(&self) -> &str {
+        &self.contenuto
     }
 }
 
-impl DraftPost {
-    pub fn add_text(&mut self, text: &str) {
-        self.content.push_str(text);
+impl PostBozza {
+    pub fn aggiungi_testo(&mut self, testo: &str) {
+        self.contenuto.push_str(testo);
     }
 
-    pub fn request_review(self) -> PendingReviewPost {
-        PendingReviewPost {
-            content: self.content,
+    pub fn richiedi_revisione(self) -> PostAttesaRevisione {
+        PostAttesaRevisione {
+            contenuto: self.contenuto,
         }
     }
 }
 
-pub struct PendingReviewPost {
-    content: String,
+pub struct PostAttesaRevisione {
+    contenuto: String,
 }
 
-impl PendingReviewPost {
-    pub fn approve(self) -> Post {
+impl PostAttesaRevisione {
+    pub fn approva(self) -> Post {
         Post {
-            content: self.content,
+            contenuto: self.contenuto,
         }
     }
 }

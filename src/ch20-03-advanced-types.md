@@ -28,8 +28,7 @@ associated with their name. Code using `People` would only interact with the
 public API we provide, such as a method to add a name string to the `People`
 collection; that code wouldn’t need to know that we assign an `i32` ID to names
 internally. The newtype pattern is a lightweight way to achieve encapsulation to
-hide implementation details, which we discussed in [“Encapsulation that Hides
-Implementation Details”][encapsulation-that-hides-implementation-details]<!--
+hide implementation details, which we discussed in [“Incapsulamento che Nasconde i Dettagli di Implementazione”][encapsulation-that-hides-implementation-details]<!--
 ignore --> in Chapter 18.
 
 ### Type Synonyms and Type Aliases
@@ -245,8 +244,7 @@ a pointer of some kind.
 We can combine `str` with all kinds of pointers: for example, `Box<str>` or
 `Rc<str>`. In fact, you’ve seen this before but with a different dynamically
 sized type: traits. Every trait is a dynamically sized type we can refer to by
-using the name of the trait. In [“Using Trait Objects to Abstract over Shared
-Behavior”][using-trait-objects-to-abstract-over-shared-behavior]<!-- ignore -->
+using the name of the trait. In [“Usare gli Oggetti _Trait_ per Astrarre Comportamenti Condivisi”][using-trait-objects-to-abstract-over-shared-behavior]<!-- ignore -->
 in Chapter 18, we mentioned that to use traits as trait objects, we must put
 them behind a pointer, such as `&dyn Trait` or `Box<dyn Trait>` (`Rc<dyn
 Trait>` would work too).
@@ -286,8 +284,8 @@ pointer. In this case, we’ve chosen a reference.
 
 Next, we’ll talk about functions and closures!
 
-[encapsulation-that-hides-implementation-details]: ch18-01-what-is-oo.html#encapsulation-that-hides-implementation-details
+[encapsulation-that-hides-implementation-details]: ch18-01-what-is-oo.html#incapsulamento-che-nasconde-i-dettagli-di-implementazione
 [string-slices]: ch04-03-slices.html#slice-di-stringa
 [the-match-control-flow-construct]: ch06-02-match.html#controllare-il-flusso-col-costrutto-match
-[using-trait-objects-to-abstract-over-shared-behavior]: ch18-02-trait-objects.html#using-trait-objects-to-abstract-over-shared-behavior
+[using-trait-objects-to-abstract-over-shared-behavior]: ch18-02-trait-objects.html#usare-gli-oggetti-trait-per-astrarre-comportamenti-condivisi
 [using-the-newtype-pattern]: ch20-02-advanced-traits.html#implementing-external-traits-with-the-newtype-pattern

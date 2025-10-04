@@ -16,7 +16,7 @@ strumenti GUI. Creeremo un _crate_ libreria chiamato `gui` che contiene la
 struttura base di una libreria GUI. Questo _crate_ includerà _type_ da usare,
 come `Bottone` o `CampoTesto`. Inoltre, gli utenti della libreria vorranno
 creare i propri _type_ disegnabili: per esempio, uno aggiungerà un `Immagine` e
-un altro un `BoxSelezione`.
+un altro una `BoxSelezione`.
 
 Quando scriviamo la libreria, non possiamo sapere e definire tutti i _type_ che
 altri programmatori potrebbero voler creare. Ma sappiamo che `gui` deve tenere
@@ -75,7 +75,7 @@ vettore `componenti`. Questo vettore è di _type_ `Box<dyn Disegna>`, un oggetto
 _trait_; è un contenitore per qualunque _type_ in una `Box` che implementi il
 _trait_ `Disegna`.
 
-<Listing number="18-4" file-name="src/lib.rs" caption="Definizione della _struct_ `Schermo` con una campo `componenti` contenente un vettore di oggetti _trait_ che implemetano `Disegna`">
+<Listing number="18-4" file-name="src/lib.rs" caption="Definizione della _struct_ `Schermo` con una campo `componenti` contenente un vettore di oggetti _trait_ che implementano `Disegna`">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch18-oop/listing-18-04/src/lib.rs:here}}
@@ -115,7 +115,7 @@ solo collezioni omogenee, usare generici è preferibile perché il codice sarà
 monomorfizzato durante la compilazione usando i _type_ concreti.
 
 Con gli oggetti _trait_, invece, una singola istanza di `Schermo` può contenere
-un `Vec<T>` con un `Box<Bottone>` e un `Box<CampoTesto>` insieme. Vediamo come
+un `Vec<T>` con una `Box<Bottone>` e una `Box<CampoTesto>` insieme. Vediamo come
 funziona e poi parleremo delle implicazioni sulle prestazioni durante
 l'esecuzione.
 
@@ -127,7 +127,7 @@ libro, quindi il metodo `disegna` in `Bottone` non contiene nulla di utile nel
 corpo. Per farsi un’idea, un `Bottone` potrebbe avere campi `larghezza`,
 `altezza` e `etichetta`, come nel Listato 18-7.
 
-<Listing number="18-7" file-name="src/lib.rs" caption="La _struct_ `Bottone`che implementa il _trait_ `Disegna`">
+<Listing number="18-7" file-name="src/lib.rs" caption="La _struct_ `Bottone` che implementa il _trait_ `Disegna`">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch18-oop/listing-18-07/src/lib.rs:here}}
@@ -143,7 +143,7 @@ disegnarsi, come fa `Bottone` (senza codice GUI reale). `Bottone` potrebbe anche
 avere altri metodi nel suo `impl`, per esempio cosa succede al _click_, metodi
 che non si applicano a _type_ come `CampoTesto`.
 
-Se qualcuno che usa la libreria definisce un `BoxSelezione` con campi
+Se qualcuno che usa la libreria definisce una `BoxSelezione` con campi
 `larghezza`, `altezza` e `opzioni`, implementerà il _trait_ `Disegna` anche su
 `BoxSelezione`, come nel Listato 18-8.
 
@@ -156,11 +156,12 @@ Se qualcuno che usa la libreria definisce un `BoxSelezione` con campi
 </Listing>
 
 Chi userà la nostra libreria può quindi scrivere la funzione `main` creando
-un’istanza di `Schermo`. Aggiunge un `BoxSelezione` e un `Bottone` mettendoli in
-`Box<T>`, facendoli diventare oggetti _trait_. Poi chiama `esegui` su `Schermo`,
-che a sua volta chiama `disegna` su ogni componente, come nel Listato 18-9.
+un’istanza di `Schermo`. Aggiunge una `BoxSelezione` e un `Bottone` mettendoli
+in `Box<T>`, facendoli diventare oggetti _trait_. Poi chiama `esegui` su
+`Schermo`, che a sua volta chiama `disegna` su ogni componente, come nel Listato
+18-9.
 
-<Listing number="18-9" file-name="src/main.rs" caption="Uso di oggetti _trait_ per memorizzare valori di differente _type_ che implemetano il medesimo _trait_">
+<Listing number="18-9" file-name="src/main.rs" caption="Uso di oggetti _trait_ per memorizzare valori di differente _type_ che implementano il medesimo _trait_">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch18-oop/listing-18-09/src/main.rs:here}}

@@ -45,13 +45,13 @@ calcolata ogni volta che serve. In altre parole, `CollezioneConMedia` tiene
 memorizzata la media calcolata per noi. Il Listato 18-1 mostra la definizione
 della _struct_ `CollezioneConMedia`.
 
-<Listing number="18-1" file-name="src/lib.rs" caption="Una _struct_ `CollezioneConMedia` che mantiene una lista di interi e la media degli elementi nella collezione" >
+<Listing number="18-1" file-name="src/lib.rs" caption="Una _struct_ `CollezioneConMedia` che mantiene una lista di interi e la media degli elementi nella collezione">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch18-oop/listing-18-01/src/lib.rs}}
 ```
 
-</Listing >
+</Listing>
 
 La _struct_ è marcata `pub` così il resto del codice può usarla, ma i campi
 interni restano privati. Questo è importante perché vogliamo assicurarci che
@@ -59,13 +59,13 @@ ogni volta che un valore viene aggiunto o rimosso dalla lista, anche la media
 venga aggiornata. Lo facciamo implementando i metodi `aggiungi`, `rimuovi` e
 `media` sulla struct, come nel Listato 18-2.
 
-<Listing number="18-2" file-name="src/lib.rs" caption="Implementazioni dei metodi pubblici `aggiungi`, `rimuovi` e `media` su `CollezioneConMedia`" >
+<Listing number="18-2" file-name="src/lib.rs" caption="Implementazioni dei metodi pubblici `aggiungi`, `rimuovi` e `media` su `CollezioneConMedia`">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch18-oop/listing-18-02/src/lib.rs:here}}
 ```
 
-</Listing >
+</Listing>
 
 I metodi pubblici `aggiungi`, `rimuovi` e `media` sono gli unici modi con cui
 accedere o modificare i dati in un’istanza di `CollezioneConMedia`. Quando si
