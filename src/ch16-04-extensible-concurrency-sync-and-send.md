@@ -25,12 +25,12 @@ rispetto ad una maggiore sicurezza.
 Pertanto, il sistema dei _type_ di Rust e i vincoli di _trait_ assicurano che
 non si possa mai inviare accidentalmente un valore `Rc<T>` tra i _thread_ in
 modo non sicuro. Quando abbiamo provato a farlo nel listato 16-14, abbiamo
-ottenuto l'errore `` the trait `Send` is not implemented for `Rc<Mutex<i32>>`.
+ottenuto l’errore `` the trait `Send` is not implemented for `Rc<Mutex<i32>>`.
 Quando siamo passati ad `Arc<T>`, che implementa `Send`, il codice è stato
 compilato.
 
 Qualsiasi _type_ composto interamente da _type_ che implementano `Send`,
-anch'esso implementerà automaticamente il _trait_ `Send`. Quasi tutti i _type_
+anch’esso implementerà automaticamente il _trait_ `Send`. Quasi tutti i _type_
 primitivi implementano `Send`, a parte i puntatori grezzi, di cui parleremo nel
 Capitolo 20.
 
@@ -41,16 +41,16 @@ essere referenziato da più _thread_. In altre parole, qualsiasi _type_ `T`
 implementa `Sync` se `&T` (un _reference_ immutabile a `T`) implementa `Send`,
 il che significa che il _reference_ può essere inviato in modo sicuro a un altro
 _thread_. Analogamente a `Send`, i _type_ primitivi implementano tutti `Sync` e
-i _type_ composti interamente da _type_ che implementano `Sync`, anch'essi
+i _type_ composti interamente da _type_ che implementano `Sync`, anch’essi
 implementano `Sync`.
 
 Il puntatore intelligente `Rc<T>` non implementa neanche `Sync` per le stesse
 ragioni per cui non implementa `Send`. Il _type_ `RefCell<T>` (di cui abbiamo
 parlato nel Capitolo 15) e la famiglia correlata di _type_ `Cell<T>` non
-implementano `Sync`. L'implementazione del controllo dei prestiti che
-`RefCell<T>` fa durante l'esecuzione non è sicura per l'uso coi _thread_. Invece
+implementano `Sync`. L’implementazione del controllo dei prestiti che
+`RefCell<T>` fa durante l’esecuzione non è sicura per l’uso coi _thread_. Invece
 il puntatore intelligente `Mutex<T>` implementa `Sync` e può essere utilizzato
-per condividere l'accesso con più _thread_, come hai visto in [“Condividere
+per condividere l’accesso con più _thread_, come hai visto in [“Condividere
 Accesso a `Mutex<T>`”][sharing-a-mutext]<!-- ignore -->.
 
 ### Implementare Manualmente `Send` e `Sync` È Insicuro
@@ -61,10 +61,10 @@ implementare questi _trait_ manualmente. Come _trait_ marcatori, non hanno
 nemmeno metodi da implementare. Sono solo utili per far rispettare gli
 invarianti relativi alla concorrenza.
 
-L'implementazione manuale di questi _trait_ comporta l'implementazione di codice
-Rust insicuro. Parleremo dell'utilizzo di codice Rust insicuro (_Unsafe Rust_)
-nel Capitolo 20; per ora, l'informazione importante è che la creazione di nuovi
-_type_ concorrenti non costituiti da parti `Send` e `Sync` richiede un'attenta
+L’implementazione manuale di questi _trait_ comporta l’implementazione di codice
+Rust insicuro. Parleremo dell’utilizzo di codice Rust insicuro (_Unsafe Rust_)
+nel Capitolo 20; per ora, l’informazione importante è che la creazione di nuovi
+_type_ concorrenti non costituiti da parti `Send` e `Sync` richiede un’attenta
 riflessione per mantenere le garanzie di sicurezza. [“The
 Rustonomicon”][nomicon] contiene maggiori informazioni su queste garanzie e su
 come rispettarle.
@@ -72,7 +72,7 @@ come rispettarle.
 ## Summary
 ## Riepilogo
 
-Non è l'ultima volta che vedrai la concorrenza in questo libro: il prossimo
+Non è l’ultima volta che vedrai la concorrenza in questo libro: il prossimo
 capitolo si concentra sulla programmazione asincrona e il progetto del Capitolo
 21 utilizzerà i concetti di questo capitolo in una situazione più realistica
 rispetto agli esempi minori discussi qui.
@@ -81,7 +81,7 @@ Come accennato in precedenza, dato che la gestione della concorrenza in Rust fa
 parte del linguaggio solo in minima parte, molte soluzioni per la concorrenza
 sono implementate sotto forma di _crate_. Questi si evolvono più rapidamente
 rispetto alla libreria standard, quindi assicurati di cercare online i _crate_
-più aggiornati e all'avanguardia da utilizzare in situazioni in cui necessiti di
+più aggiornati e all’avanguardia da utilizzare in situazioni in cui necessiti di
 elaborazioni _multi-thread_.
 
 La libreria standard di Rust fornisce canali per il passaggio di messaggi e

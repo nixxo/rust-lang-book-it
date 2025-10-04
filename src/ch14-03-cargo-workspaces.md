@@ -16,7 +16,7 @@ struttura del _workspace_. Esistono diversi modi per strutturare uno spazio di
 lavoro, quindi ci limiteremo a mostrarne uno comune. Avremo un _workspace_
 contenente un binario e due librerie. Il binario, che fornirà la funzionalità
 principale, dipenderà dalle due librerie. Una libreria fornirà una funzione
-`più_uno` e l'altra libreria una funzione `più_due`. Questi tre _crate_ faranno
+`più_uno` e l’altra libreria una funzione `più_due`. Questi tre _crate_ faranno
 parte dello stesso _workspace_. Inizia creando una nuova cartella per lo spazio
 di lavoro:
 
@@ -26,10 +26,10 @@ $ cd somma
 ```
 
 Successivamente, nella cartella _somma_, creiamo il file _Cargo.toml_ che
-configurerà l'intero _workspace_. Questo file non avrà una sezione `[package]`,
+configurerà l’intero _workspace_. Questo file non avrà una sezione `[package]`,
 ma inizierà con una sezione `[workspace]` che ci permetterà di aggiungere membri
-al _workspace_. Inoltre, esplicitiamo di voler usare l'ultima versione
-dell'algoritmo di risoluzione delle dipendenze di Cargo nel nostro spazio di
+al _workspace_. Inoltre, esplicitiamo di voler usare l’ultima versione
+dell’algoritmo di risoluzione delle dipendenze di Cargo nel nostro spazio di
 lavoro, impostando il valore `resolver` a `"3"`.
 
 <span class="filename">File: Cargo.toml</span>
@@ -55,7 +55,7 @@ $ cargo new sommatore
       Adding `sommatore` as member of workspace at `file:///progetti/somma`
 ```
 
-L'esecuzione di `cargo new` all'interno di uno spazio di lavoro aggiunge
+L’esecuzione di `cargo new` all’interno di uno spazio di lavoro aggiunge
 automaticamente il pacchetto appena creato alla chiave `members` nella
 definizione `[workspace]` del file _Cargo.toml_, in questo modo:
 
@@ -63,7 +63,7 @@ definizione `[workspace]` del file _Cargo.toml_, in questo modo:
 {{#include ../listings/ch14-more-about-cargo/output-only-01-adder-crate/somma/Cargo.toml}}
 ```
 
-A questo punto, possiamo costruire l'intero _workspace_ con `cargo build`. I
+A questo punto, possiamo costruire l’intero _workspace_ con `cargo build`. I
 file nella tua cartella _somma_ dovrebbero avere questo aspetto:
 
 ```text
@@ -79,10 +79,10 @@ file nella tua cartella _somma_ dovrebbero avere questo aspetto:
 Lo spazio di lavoro ha una cartella _target_ al livello superiore in cui
 verranno inseriti gli artefatti compilati; il pacchetto `sommatore` non ha una
 propria directory _target_. Anche se dovessimo eseguire `cargo build`
-dall'interno della cartella _sommatore_, gli artefatti compilati finirebbero
+dall’interno della cartella _sommatore_, gli artefatti compilati finirebbero
 comunque in _somma/target_ piuttosto che in _somma/sommatore/target_. Cargo
 struttura la cartella _target_ in uno spazio di lavoro in questo modo perché i
-_crate_ in un _workspace_ sono destinati a dipendere l'uno dall'altro. Se ogni
+_crate_ in un _workspace_ sono destinati a dipendere l’uno dall’altro. Se ogni
 _crate_ avesse la propria cartella _target_, ogni _crate_ dovrebbe ricompilare
 ogni altro _crate_ nello spazio di lavoro per posizionare gli artefatti nella
 propria cartella _target_. Condividendo una cartella _target_, i _crate_ possono
@@ -90,7 +90,7 @@ evitare inutili ricostruzioni.
 
 ### Creare un Secondo Pacchetto nel _Workspace_
 
-Ora creiamo un altro pacchetto membro dell'area di lavoro e chiamiamolo
+Ora creiamo un altro pacchetto membro dell’area di lavoro e chiamiamolo
 `più_uno`. Generiamo un nuovo _crate_ libreria chiamato `più_uno`:
 
 <!-- manual-regeneration
@@ -108,7 +108,7 @@ $ cargo new più_uno --lib
 ```
 
 Il file _Cargo.toml_ nella cartella _somma_ ora includerà il percorso _più_uno_
-nell'elenco dei membri `members`:
+nell’elenco dei membri `members`:
 
 <span class="filename">File: Cargo.toml</span>
 
@@ -151,8 +151,8 @@ _sommatore/Cargo.toml_.
 {{#include ../listings/ch14-more-about-cargo/no-listing-02-workspace-with-two-crates/somma/sommatore/Cargo.toml:6:7}}
 ```
 
-Cargo non presuppone che i _crate_ dello stesso _workspace_ dipendano l'uno
-dall'altro, quindi dobbiamo essere espliciti sulle relazioni di dipendenza.
+Cargo non presuppone che i _crate_ dello stesso _workspace_ dipendano l’uno
+dall’altro, quindi dobbiamo essere espliciti sulle relazioni di dipendenza.
 
 Quindi, utilizziamo la funzione `più_uno` (dal crate `più_uno`) nel crate
 `sommatore`. Apri il file _sommatore/src/main.rs_ e modifica la funzione `main`
@@ -183,7 +183,7 @@ $ cargo build
 ```
 
 Per eseguire il _crate_ binario dalla directory _somma_, possiamo specificare
-quale pacchetto del _workspace_ vogliamo eseguire utilizzando l'argomento `-p` e
+quale pacchetto del _workspace_ vogliamo eseguire utilizzando l’argomento `-p` e
 il nome del pacchetto con `cargo run`:
 
 <!-- manual-regeneration
@@ -208,8 +208,8 @@ Avrai notato che lo spazio di lavoro ha un solo file _Cargo.lock_ al livello
 superiore, invece di avere un _Cargo.lock_ nella cartella di ogni _crate_.
 Questo assicura che tutti i _crate_ utilizzino la stessa versione di tutte le
 dipendenze. Se aggiungiamo il pacchetto `rand` ai file _sommatore/Cargo.toml_ e
-_più_uno/Cargo.toml_, Cargo li risolverà entrambi in un'unica versione di `rand`
-e la registrerà nell'unico _Cargo.lock_. Fare in modo che tutti i _crate_ nel
+_più_uno/Cargo.toml_, Cargo li risolverà entrambi in un’unica versione di `rand`
+e la registrerà nell’unico _Cargo.lock_. Fare in modo che tutti i _crate_ nel
 _workspace_ utilizzino le stesse dipendenze significa che i _crate_ saranno
 sempre compatibili tra loro. Aggiungiamo il _crate_ `rand` alla sezione
 `[dependencies]` nel file _più_uno/Cargo.toml_ in modo da poter utilizzare il
@@ -228,7 +228,7 @@ _crate_ `rand` nel _crate_ `più_uno`:
 ```
 
 Ora possiamo aggiungere `use rand;` al file _più_uno/src/lib.rs_ e la creazione
-dell'intero _workspace_ eseguendo `cargo build` nella cartella _somma_
+dell’intero _workspace_ eseguendo `cargo build` nella cartella _somma_
 scaricherà e compilerà il _crate_ `rand`. Riceveremo un avviso perché non stiamo
 effettivamente usando `rand` che abbiamo portato nello _scope_:
 
@@ -284,9 +284,9 @@ error[E0432]: unresolved import `rand`
 
 Per risolvere questo problema, modifica il file _Cargo.toml_ per il pacchetto
 `sommatore` e indica che `rand` è una dipendenza anche per esso. Costruendo il
-pacchetto `sommatore` aggiungerà `rand` all'elenco delle dipendenze di
+pacchetto `sommatore` aggiungerà `rand` all’elenco delle dipendenze di
 `sommatore` in _Cargo.lock_, ma non verranno scaricate copie aggiuntive di
-`rand`. Cargo farà in modo che ogni _crate_ in ogni pacchetto dell'area di
+`rand`. Cargo farà in modo che ogni _crate_ in ogni pacchetto dell’area di
 lavoro che utilizza il pacchetto `rand` utilizzi la stessa versione, a patto che
 specifichi versioni compatibili di `rand`, risparmiando spazio e assicurando che
 i _crate_ nel _workspace_ siano compatibili tra loro.
@@ -298,7 +298,7 @@ il minor numero possibile di versioni.
 ### Aggiungere un Test a un _Workspace_
 
 Per un altro miglioramento, aggiungiamo un test della funzione
-`più_uno::più_uno` all'interno del _crate_ `più_uno`:
+`più_uno::più_uno` all’interno del _crate_ `più_uno`:
 
 <span class="filename">File: più_uno/src/lib.rs</span>
 
@@ -342,9 +342,9 @@ running 0 tests
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 ```
 
-La prima sezione dell'output mostra che il test `funziona` nel _crate_ `più_uno`
+La prima sezione dell’output mostra che il test `funziona` nel _crate_ `più_uno`
 è passato. La sezione successiva mostra che sono stati trovati zero test nel
-_crate_ `sommatore` e l'ultima sezione mostra che sono stati trovati zero test
+_crate_ `sommatore` e l’ultima sezione mostra che sono stati trovati zero test
 di documentazione nel _crate_ `più_uno`.
 
 Possiamo anche eseguire i test per un particolare _crate_ in un _workspace_
@@ -386,7 +386,7 @@ nome del _crate_ che vogliamo pubblicare.
 Per fare ulteriore pratica, aggiungi un _crate_ `più_due` a questo spazio di
 lavoro in modo simile al crate `più_uno`!
 
-Quando il tuo progetto cresce, prendi in considerazione l'utilizzo di uno spazio
+Quando il tuo progetto cresce, prendi in considerazione l’utilizzo di uno spazio
 di lavoro: ti permette di lavorare con componenti più piccoli e più facili da
 capire rispetto a un unico grande blocco di codice. Inoltre, mantenere i _crate_
 in uno spazio di lavoro può rendere più facile il coordinamento tra i _crate_ se

@@ -5,12 +5,12 @@ Rust. Quando si impara un nuovo linguaggio, è consuetudine scrivere un piccolo
 programma che stampi sullo schermo il testo `Hello, world!`
 
 > Nota: questo libro presuppone una certa familiarità di base con la riga di
-> comando. Rust non ha particolari esigenze per quanto riguarda l'editing o gli
+> comando. Rust non ha particolari esigenze per quanto riguarda l’editing o gli
 > strumenti o dove risiede il tuo codice, quindi se preferisci usare _IDE_
 > invece della riga di comando, sentiti libero di usare il tuo _IDE_ preferito.
 > Molti _IDE_ ora hanno un certo grado di supporto per Rust; controlla la
-> documentazione dell'_IDE_ per maggiori dettagli. Il team di Rust si è
-> concentrato sull'integrazione ottima con gli _IDE_ tramite `rust-analyzer`.
+> documentazione dell’_IDE_ per maggiori dettagli. Il team di Rust si è
+> concentrato sull’integrazione ottima con gli _IDE_ tramite `rust-analyzer`.
 > Vedi > [Appendice D][devtools] per maggiori dettagli.
 
 ### Creare una Directory di Progetto
@@ -21,7 +21,7 @@ questo libro ti consigliamo di creare una cartella _progetti_ nella tua home
 directory e di tenere tutti i tuoi progetti lì.
 
 Apri un terminale e inserisci i seguenti comandi per creare una directory
-_progetti_ e una directory per il progetto “Hello, world!” all'interno della
+_progetti_ e una directory per il progetto “Hello, world!” all’interno della
 directory _progetti_.
 
 Per Linux, macOS, e PowerShell su Windows, digita questo:
@@ -45,7 +45,7 @@ Per Windows con CMD, digita questo:
 ### Scrivere ed Eseguire un Programma Rust
 
 Adesso crea un nuovo file sorgente e chiamalo _main.rs_. I file di Rust
-terminano sempre con l'estensione _.rs_. Se usi più di una parola nel nome del
+terminano sempre con l’estensione _.rs_. Se usi più di una parola nel nome del
 file, la convenzione è di usare un trattino basso per separarle. Ad esempio, usa
 _hello_world.rs_ piuttosto che _helloworld.rs_.
 
@@ -157,7 +157,7 @@ $ rustc main.rs
 Se hai un background in C o C++, noterai che è simile a `gcc` o `clang`. Dopo
 aver compilato con successo, Rust produce un eseguibile binario.
 
-Su Linux, macOS e PowerShell su Windows, puoi vedere l'eseguibile usando il
+Su Linux, macOS e PowerShell su Windows, puoi vedere l’eseguibile usando il
 comando `ls` nella tua shell:
 
 ```console
@@ -189,11 +189,11 @@ Se il tuo _main.rs_ è il tuo programma “Hello, world!”, questa riga stampa
 `Hello, world!` sul tuo terminale.
 
 Se hai più familiarità con un linguaggio dinamico, come Ruby, Python o
-JavaScript, potresti non essere abituato alla compilazione e all'esecuzione di
+JavaScript, potresti non essere abituato alla compilazione e all’esecuzione di
 un programma come fasi separate. Rust è un linguaggio _compilato in anticipo_,
-il che significa che puoi compilare un programma e dare l'eseguibile a qualcun
+il che significa che puoi compilare un programma e dare l’eseguibile a qualcun
 altro, che potrà eseguirlo anche senza avere Rust installato. Se dai a qualcuno
-un file _.rb_, _.py_ o _.js_, deve avere un'implementazione di Ruby, Python o
+un file _.rb_, _.py_ o _.js_, deve avere un’implementazione di Ruby, Python o
 JavaScript installata (rispettivamente). Ma in questi linguaggi, hai bisogno di
 un solo comando per compilare ed eseguire il tuo programma. Sono compromessi
 diversi per ogni linguaggio di programmazione.

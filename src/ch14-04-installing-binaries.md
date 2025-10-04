@@ -13,13 +13,13 @@ nel file _README_ sul fatto che un _crate_ è una libreria, è un binario o
 entrambi.
 
 Tutti i file binari installati con `cargo install` sono memorizzati nella
-cartella _bin_ della radice dell'installazione. Se hai installato Rust
+cartella _bin_ della radice dell’installazione. Se hai installato Rust
 utilizzando _rustup.rs_ e non hai configurazioni personalizzate, questa cartella
 sarà *$HOME/.cargo/bin*. Assicurati che questa cartella sia presente nella tua
 `$PATH` per poter eseguire i programmi che hai installato con `cargo install`.
 
-Ad esempio, nel Capitolo 12 abbiamo accennato all'esistenza di
-un'implementazione Rust dello strumento `grep` chiamata `ripgrep` per la ricerca
+Ad esempio, nel Capitolo 12 abbiamo accennato all’esistenza di
+un’implementazione Rust dello strumento `grep` chiamata `ripgrep` per la ricerca
 di file. Per installare `ripgrep`, possiamo eseguire la seguente procedura:
 
 <!-- manual-regeneration
@@ -39,7 +39,7 @@ $ cargo install ripgrep
    Installed package `ripgrep v14.1.1` (executable `rg`)
 ```
 
-La penultima riga dell'output mostra la posizione e il nome del binario
+La penultima riga dell’output mostra la posizione e il nome del binario
 installato, che nel caso di `ripgrep` è `rg`. Se la directory di installazione è
 presente nel tuo `$PATH`, come detto in precedenza, puoi eseguire `rg --help` e
 iniziare a usare uno strumento più veloce e più ruspante per la ricerca dei

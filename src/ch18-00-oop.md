@@ -2,7 +2,7 @@
 
 La programmazione orientata agli oggetti (OOP) è un modo per modellare i
 programmi. Il concetto di oggetti è stato introdotto negli anni '60 nel
-linguaggio Simula. Quegli oggetti hanno influenzato l'architettura di Alan Kay,
+linguaggio Simula. Quegli oggetti hanno influenzato l’architettura di Alan Kay,
 dove gli oggetti si scambiano messaggi tra loro. Per descrivere questa
 architettura, lui ha coniato il termine _programmazione orientata agli oggetti_
 nel 1967. Ci sono un sacco di definizioni diverse su cosa sia esattamente la

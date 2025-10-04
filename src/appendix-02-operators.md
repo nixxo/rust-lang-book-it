@@ -6,8 +6,8 @@ _generics_, _traits_, _macro_, attributi, commenti, tuple e parentesi.
 
 ### Operatori
 
-La Tabella B-1 contiene gli operatori in Rust, un esempio di come l'operatore
-appare nel contesto, una breve spiegazione e se l'operatore in questione è
+La Tabella B-1 contiene gli operatori in Rust, un esempio di come l’operatore
+appare nel contesto, una breve spiegazione e se l’operatore in questione è
 sovraccaricabile. Se un operatore è sovraccaricabile, viene elencato il relativo
 _trait_ da utilizzare per sovraccaricarlo.
 
@@ -75,7 +75,7 @@ _trait_ da utilizzare per sovraccaricarlo.
 ### Simboli
 
 
-L'elenco seguente contiene tutti i simboli che non funzionano come operatori,
+L’elenco seguente contiene tutti i simboli che non funzionano come operatori,
 cioè non si comportano come una funzione o una chiamata di metodo.
 
 ----
@@ -128,7 +128,7 @@ come parametri.
 | Simbolo | Spiegazione |
 | --- | --- |
 | `percorso<...>` | Specifica parametri a _type_ generici in u n _type_ (es., `Vec<u8>`) |
-| `percorso::<...>`, `metodo::<...>` | Specifica parametri a _type_, funzioni, metodi genirici in un'espressione; spesso chiamato operatore _turbofish_ (e.g., `"42".parse::<i32>()`) |
+| `percorso::<...>`, `metodo::<...>` | Specifica parametri a _type_, funzioni, metodi genirici in un’espressione; spesso chiamato operatore _turbofish_ (e.g., `"42".parse::<i32>()`) |
 | `fn ident<...> ...` | Definizione di funzione generica |
 | `struct ident<...> ...` | Definizione di _struct_ generica |
 | `enum ident<...> ...` | Definizione di _enum_ generica |
@@ -154,7 +154,7 @@ _type_ generici come paramentri e dei corrispettivi vincoli di _trait_.
 
 ----
 
-La Tabella B-6 mostra i siumboli utilizzati nell'ambito della invocazione o
+La Tabella B-6 mostra i simboli utilizzati nell’ambito della invocazione o
 definizione di macro e degli attributi di un dato elemento.
 
 <span class="caption">Table B-6: Macro e Attributi</span>

@@ -1,29 +1,29 @@
 # Un progetto I/O: Creare un Programma da Riga di Comando
 
 Questo capitolo è un riepilogo delle numerose competenze acquisite finora e
-un'esplorazione di alcune funzionalità aggiuntive della libreria standard.
-Creeremo uno strumento da riga di comando che interagisce con l'input/output di
+un’esplorazione di alcune funzionalità aggiuntive della libreria standard.
+Creeremo uno strumento da riga di comando che interagisce con l’input/output di
 file e da riga di comando per mettere in pratica alcuni dei concetti di Rust che
 dovresti aver acquisito finora.
 
-La velocità, la sicurezza, l'output binario singolo e il supporto
+La velocità, la sicurezza, l’output binario singolo e il supporto
 multi-piattaforma di Rust lo rendono un linguaggio ideale per la creazione di
 strumenti da riga di comando, quindi per il nostro progetto creeremo la nostra
 versione del classico strumento di ricerca da riga di comando `grep`
 (**g**lobally search a **r**egular **e**xpression and **p**rint) (_cerca
-globalmente tramite espressione regolare e stampa_). Nel caso d'uso più
+globalmente tramite espressione regolare e stampa_). Nel caso d’uso più
 semplice, `grep` cerca una stringa come parametro in un file specificato. Per
 farlo, `grep` accetta come argomenti un percorso di file e una stringa. Quindi
-legge il file, trova le righe in quel file che contengono l'argomento stringa e
+legge il file, trova le righe in quel file che contengono l’argomento stringa e
 visualizza quelle righe.
 
 Lungo il capitolo, mostreremo come far sì che il nostro strumento da riga di
 comando utilizzi le funzionalità del terminale che molti altri strumenti da riga
-di comando utilizzano. Leggeremo il valore di una variabile d'ambiente per
-consentire all'utente di configurare il comportamento del nostro programma.
+di comando utilizzano. Leggeremo il valore di una variabile d’ambiente per
+consentire all’utente di configurare il comportamento del nostro programma.
 Mostreremo anche i messaggi di errore nel flusso di errore standard della
-console (`stderr`) invece che nell'output standard (`stdout`), in modo che, ad
-esempio, l'utente possa reindirizzare l'output corretto a un file continuando a
+console (`stderr`) invece che nell’output standard (`stdout`), in modo che, ad
+esempio, l’utente possa reindirizzare l’output corretto a un file continuando a
 visualizzare i messaggi di errore sullo schermo.
 
 Un membro della community Rust, Andrew Gallant, ha già creato una versione

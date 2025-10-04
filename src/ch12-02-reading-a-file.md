@@ -1,6 +1,6 @@
 ## Leggere un File
 
-Ora aggiungeremo la funzionalità per leggere il file specificato nell'argomento
+Ora aggiungeremo la funzionalità per leggere il file specificato nell’argomento
 `percorso_file` . Per prima cosa abbiamo bisogno di un file di esempio con cui
 testarlo: useremo un file con una piccola quantità di testo su più righe con
 alcune parole ripetute. Il Listato 12-3 contiene una poesia di Emily Dickinson
@@ -27,13 +27,13 @@ il file, come mostrato nel Listato 12-4.
 </Listing>
 
 Per prima cosa introduciamo una parte rilevante della libreria standard con
-un'istruzione `use`: abbiamo bisogno di `std::fs` per gestire i file.
+un’istruzione `use`: abbiamo bisogno di `std::fs` per gestire i file.
 
 In `main`, la nuova istruzione `fs::read_to_string` prende `percorso_file`, apre
 quel file e restituisce un valore di _type_ `std::io::Result<String>` che
 contiene il contenuto del file.
 
-Dopodiché, aggiungiamo di nuovo un'istruzione temporanea `println!` che stampa
+Dopodiché, aggiungiamo di nuovo un’istruzione temporanea `println!` che stampa
 il valore di `contenuto` dopo la lettura del file, in modo da poter verificare
 che il programma funzioni correttamente.
 
@@ -48,9 +48,9 @@ il file _poesia.txt_ come secondo argomento:
 Ottimo! Il codice ha letto e poi stampato il contenuto del file. Ma il codice
 presenta alcuni difetti. Al momento, la funzione `main` ha più responsabilità:
 in genere, le funzioni sono più chiare e facili da gestire se ogni funzione è
-responsabile di una sola idea. L'altro problema è che non gestiamo gli errori al
+responsabile di una sola idea. L’altro problema è che non gestiamo gli errori al
 meglio delle nostre possibilità. Il programma è ancora piccolo, quindi questi
 difetti non rappresentano un grosso problema, ma man mano che il programma
 cresce, sarà più difficile correggerli in modo pulito. È buona norma iniziare il
-_refactoring_ fin dall'inizio quando si sviluppa un programma, perché è molto
+_refactoring_ fin dall’inizio quando si sviluppa un programma, perché è molto
 più facile risistemare piccole quantità di codice. Lo faremo come prossima cosa.

@@ -8,15 +8,15 @@ conoscere il _type_ di tutte le variabili in fase di compilazione. Il
 compilatore di solito può dedurre quale _type_ vogliamo utilizzare in base al
 valore e al modo in cui lo utilizziamo. Nei casi in cui sono possibili
 molteplici _type_, come quando abbiamo convertito uno `String` in un _type_
-numerico usando `parse` nella sezione [“Confrontare l'ipotesi con il numero
+numerico usando `parse` nella sezione [“Confrontare l’ipotesi con il numero
 segreto”][numero-segreto]<!-- ignore --> del Capitolo 2, dobbiamo aggiungere
-un'annotazione, specificando il _type_ in questo modo:
+un’annotazione, specificando il _type_ in questo modo:
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/output-only-01-no-type-annotations/src/main.rs:main}}
 ```
 
-Se non aggiungiamo l'annotazione del _type_ `: u32` mostrata nel codice
+Se non aggiungiamo l’annotazione del _type_ `: u32` mostrata nel codice
 precedente, Rust visualizzerà il seguente errore, il che significa che il
 compilatore ha bisogno di ulteriori informazioni per sapere quale _type_
 vogliamo utilizzare:
@@ -36,7 +36,7 @@ funzionano in Rust.
 
 #### Il _Type_ Intero
 
-Un intero, _integer_ d'ora in poi, è un numero senza una componente frazionaria.
+Un intero, _integer_ d’ora in poi, è un numero senza una componente frazionaria.
 Nel Capitolo 2 abbiamo utilizzato un tipo _integer_, il _type_ `u32`. Questa
 dichiarazione del _type_ indica che il valore a cui è associato deve essere un
 _integer_ senza segno (i _type integer_ con segno iniziano con `i` invece che
@@ -53,7 +53,7 @@ dichiarare il _type_ di un valore intero.
 | 32-bit    | `i32`     | `u32`       |
 | 64-bit    | `i64`     | `u64`       |
 | 128-bit   | `i128`    | `u128`      |
-| in base all'architettura | `isize` | `usize` |
+| in base all’architettura | `isize` | `usize` |
 
 Ogni variante può essere con segno o senza e ha una dimensione esplicita. Con
 _segno_ e _senza segno_ si riferisce alla possibilità che il numero sia
@@ -72,9 +72,9 @@ il che equivale a -128 a 127. Le varianti senza segno possono memorizzare numeri
 da 0 a 2<sup>n</sup> - 1, quindi un `u8` può memorizzare numeri da 0 a
 2<sup>8</sup> - 1, il che equivale a 0 a 255.
 
-Inoltre, i _type_ `isize` e `usize` dipendono dall'architettura del computer su
-cui viene eseguito il programma: 64 bit se si tratta di un'architettura a 64 bit
-e 32 bit se si tratta di un'architettura a 32 bit.
+Inoltre, i _type_ `isize` e `usize` dipendono dall’architettura del computer su
+cui viene eseguito il programma: 64 bit se si tratta di un’architettura a 64 bit
+e 32 bit se si tratta di un’architettura a 32 bit.
 
 Puoi scrivere i letterali _integer_ in una qualsiasi delle forme mostrate nella
 Tabella 3-2. Nota che i letterali numerici che possono essere di più _type_
@@ -103,29 +103,29 @@ _type integer_ di default è `i32`. La situazione principale in cui puoi usare
 > compresi tra 0 e 255. Se provi a cambiare la variabile con un valore al di
 > fuori di questo intervallo, ad esempio 256, si verificherà un _integer
 > overflow_, che può portare a uno dei due comportamenti seguenti. Quando stai
-> compilando in modalità debug, Rust include controlli per l'integer overflow
-> che fanno sì che il tuo programma vada in _panico_ (_panic_ d'ora in poi) in
+> compilando in modalità debug, Rust include controlli per l’integer overflow
+> che fanno sì che il tuo programma vada in _panico_ (_panic_ d’ora in poi) in
 > fase di esecuzione se si verifica questo comportamento. Rust usa il termine
 > _panic_ quando un programma termina con un errore; parleremo in modo più
 > approfondito di _panic_ nella sezione [“Errori irreversibili con
 > `panic!`”][panic]<!-- ignore --> nel Capitolo 9.
 >
 > Quando si compila in modalità release con il flag `--release`, Rust _non_
-> include i controlli per l'overflow degli integer che causano il _panic_.
-> Invece, se si verifica l'overflow, Rust esegue l'_avvolgimento del complemento
+> include i controlli per l’overflow degli integer che causano il _panic_.
+> Invece, se si verifica l’overflow, Rust esegue l’_avvolgimento del complemento
 > a due_. In pratica, i valori maggiori del valore massimo che il _type_ può
 > contenere si “avvolgono” fino al minimo dei valori che il _type_ può
 > contenere. Nel caso di un `u8`, il valore 256 diventa 0, il valore 257 diventa
 > 1 e così via. Il programma non andrà in _panic_, ma la variabile avrà un
 > valore che probabilmente non è quello che ci si aspettava che avesse.
-> Affidarsi all'_avvolgimento del complemento a due_ degli _integer_ è
+> Affidarsi all’_avvolgimento del complemento a due_ degli _integer_ è
 > considerato un errore. Per gestire esplicitamente la possibilità di overflow,
 > puoi utilizzare queste famiglie di metodi forniti dalla libreria standard per
 > i _type_ numerici primitivi:
 > - Racchiudere tutte le modalità con i metodi `wrapping_*`, come ad esempio
 >   `wrapping_add`.
-> - Restituire il valore `None` se c'è overflow con i metodi `checked_*`.
-> - Restituire il valore e un booleano che indica se c'è stato overflow con i
+> - Restituire il valore `None` se c’è overflow con i metodi `checked_*`.
+> - Restituire il valore e un booleano che indica se c’è stato overflow con i
 >   metodi `overflowing_*`.
 > - Saturare i valori minimi o massimi del valore con i metodi `saturating_*`.
 
@@ -172,7 +172,7 @@ Rust mette a disposizione.
 
 Come nella maggior parte degli altri linguaggi di programmazione, un _type_
 booleano in Rust ha due valori possibili: _vero_ o _falso_ (`true` e `false`
-rispettivamente d'ora in poi). I booleani hanno la dimensione di un byte. Il
+rispettivamente d’ora in poi). I booleani hanno la dimensione di un byte. Il
 _type_ booleano in Rust viene specificato con `bool`. Ad esempio:
 
 <span class="filename">File: src/main.rs</span>
@@ -182,13 +182,13 @@ _type_ booleano in Rust viene specificato con `bool`. Ad esempio:
 ```
 
 Il modo principale per utilizzare i valori booleani è attraverso i condizionali,
-come ad esempio un'espressione `if`. Tratteremo il funzionamento delle
+come ad esempio un’espressione `if`. Tratteremo il funzionamento delle
 espressioni `if` in Rust nella sezione [“Controllare il
 flusso”][control-flow]<!-- ignore -->.
 
 #### Il _Type_ Carattere
 
-Il _type_ carattere (`char` d'ora in poi) di Rust è il tipo alfabetico più
+Il _type_ carattere (`char` d’ora in poi) di Rust è il tipo alfabetico più
 primitivo del linguaggio. Ecco alcuni esempi di dichiarazione di valori `char`:
 
 <span class="filename">File: src/main.rs</span>
@@ -201,7 +201,7 @@ Nota che specifichiamo i letterali `char` con le singole virgolette, al
 contrario dei letterali stringa, che utilizzano le virgolette doppie. Il _type_
 `char` di Rust ha la dimensione di 4 byte e rappresenta un valore scalare
 Unicode, il che significa che può rappresentare molte altre cose oltre
-all'ASCII. Le lettere accentate, i caratteri cinesi, giapponesi e coreani, le
+all’ASCII. Le lettere accentate, i caratteri cinesi, giapponesi e coreani, le
 emoji e gli spazi a larghezza zero sono tutti valori `char` validi in Rust. I
 valori scalari Unicode vanno da `U+0000` a `U+D7FF` e da `U+E000` a `U+10FFFF`
 inclusi. Tuttavia, un “carattere” non è un concetto vero e proprio in Unicode,
@@ -220,7 +220,7 @@ _type_ composti primitivi: le tuple e gli array.
 Una _tupla_ è un modo generale per raggruppare una serie di valori di tipo
 diverso in un unico _type_ composto. Le tuple hanno una lunghezza fissa: una
 volta dichiarate, non possono crescere o diminuire di dimensione. Creiamo una
-tupla scrivendo un elenco di valori separati da virgole all'interno di parentesi
+tupla scrivendo un elenco di valori separati da virgole all’interno di parentesi
 tonde. Ogni posizione nella tupla ha un _type_ e i _type_ dei diversi valori
 nella tupla non devono essere necessariamente gli stessi. In questo esempio
 abbiamo aggiunto annotazioni del _type_ opzionali:
@@ -231,7 +231,7 @@ abbiamo aggiunto annotazioni del _type_ opzionali:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-10-tuples/src/main.rs}}
 ```
 
-La variabile `tup` si lega all'intera tupla perché una tupla è considerata un
+La variabile `tup` si lega all’intera tupla perché una tupla è considerata un
 singolo elemento composto. Per ottenere i singoli valori di una tupla, possiamo
 fare _pattern matching_ per destrutturare il valore di una tupla, in questo
 modo:
@@ -273,7 +273,7 @@ differenza di una tupla, ogni elemento di un array deve avere lo stesso _type_.
 A differenza degli array in altri linguaggi, gli array in Rust hanno una
 lunghezza fissa.
 
-Scriviamo i valori di un array come un elenco separato da virgole all'interno di
+Scriviamo i valori di un array come un elenco separato da virgole all’interno di
 parentesi quadre:
 
 <span class="filename">File: src/main.rs</span>
@@ -283,13 +283,13 @@ parentesi quadre:
 ```
 
 Gli array sono utili quando vuoi che i tuoi dati siano allocati sullo _stack_,
-come gli altri _type_ che abbiamo visto finora, piuttosto che nell'_heap_
-(parleremo dello _stack_ e dell'_heap_ in modo più approfondito nel [Capitolo
+come gli altri _type_ che abbiamo visto finora, piuttosto che nell’_heap_
+(parleremo dello _stack_ e dell’_heap_ in modo più approfondito nel [Capitolo
 4][stack-and-heap]<!-- ignore -->) o quando vuoi assicurarti di avere sempre un
 numero fisso di elementi. Un array, però, non è flessibile come il _type
-vettore_ (_vector_ d'ora in poi). Un _vector_ è un _type_ simile, che consente
+vettore_ (_vector_ d’ora in poi). Un _vector_ è un _type_ simile, che consente
 la collezione di dati, fornito dalla libreria standard ma che è autorizzato a
-crescere o a ridursi di dimensione perché il suo contenuto risiede nell'_heap_.
+crescere o a ridursi di dimensione perché il suo contenuto risiede nell’_heap_.
 Se non sei sicuro se usare un array o un _vector_, è probabile che tu debba
 usare un _vector_. Il [Capitolo 8][vectors]<!-- ignore --> tratta i _vector_ in
 modo più dettagliato.
@@ -305,28 +305,28 @@ let mesi = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
 ```
 
 Il _type_ array si scrive utilizzando le parentesi quadre con il _type_ di ogni
-elemento, il punto e virgola e il numero di elementi dell'array, in questo modo:
+elemento, il punto e virgola e il numero di elementi dell’array, in questo modo:
 
 ```rust
 let a: [i32; 5] = [1, 2, 3, 4, 5];
 ```
 
 In questo caso, `i32` è il _type_ di ogni elemento. Dopo il punto e virgola, il
-numero `5` indica che l'array contiene cinque elementi.
+numero `5` indica che l’array contiene cinque elementi.
 
 Puoi anche inizializzare un array in modo che contenga lo stesso valore per ogni
 elemento specificando il valore iniziale, seguito da un punto e virgola, e poi
-la lunghezza dell'array tra parentesi quadre, come mostrato qui:
+la lunghezza dell’array tra parentesi quadre, come mostrato qui:
 
 ```rust
 let a = [3; 5];
 ```
 
-L'array chiamato `a` conterrà `5` elementi che saranno tutti impostati
+L’array chiamato `a` conterrà `5` elementi che saranno tutti impostati
 inizialmente al valore `3`. Questo equivale a scrivere `let a = [3, 3, 3, 3,
 3];` ma in modo più conciso.
 
-#### Accedere Agli Elementi dell'Array
+#### Accedere Agli Elementi dell’Array
 
 Un array è un singolo blocco di memoria di dimensione fissa e nota che può
 essere allocato nello _stack_. Puoi accedere agli elementi di un array
@@ -339,15 +339,15 @@ utilizzando l’indicizzazione, in questo modo:
 ```
 
 In questo esempio, la variabile denominata `primo` otterrà il valore `1` perché
-è il valore all'indice `[0]` dell'array. La variabile denominata `secondo`
-otterrà il valore `2` dall'indice `[1]` dell'array.
+è il valore all’indice `[0]` dell’array. La variabile denominata `secondo`
+otterrà il valore `2` dall’indice `[1]` dell’array.
 
-#### Accedere All'Elemento Non Valido dell'Array
+#### Accedere All’Elemento Non Valido dell’Array
 
 Vediamo cosa succede se cerchi di accedere a un elemento di un array che si
-trova oltre la fine dell'array stesso. Supponiamo di eseguire questo codice,
-simile al gioco di indovinelli del Capitolo 2, per ottenere un indice dell'array
-dall'utente:
+trova oltre la fine dell’array stesso. Supponiamo di eseguire questo codice,
+simile al gioco di indovinelli del Capitolo 2, per ottenere un indice dell’array
+dall’utente:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -356,8 +356,8 @@ dall'utente:
 ```
 
 Se esegui questo codice utilizzando `cargo run` e inserisci `0`, `1`, `2`, `3` o
-`4`, il programma stamperà il valore corrispondente a quell'indice nell'array.
-Se invece inserisci un numero oltre la fine dell'array, come ad esempio `10`,
+`4`, il programma stamperà il valore corrispondente a quell’indice nell’array.
+Se invece inserisci un numero oltre la fine dell’array, come ad esempio `10`,
 vedrai un risultato come questo:
 
 <!-- manual-regeneration
@@ -372,23 +372,23 @@ index out of bounds: the len is 5 but the index is 10
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ```
 
-Il programma ha generato un errore _durante l'esecuzione_ (_at runtime_ in
-inglese) nel momento in cui ha utilizzato un valore non valido nell'operazione
+Il programma ha generato un errore _durante l’esecuzione_ (_at runtime_ in
+inglese) nel momento in cui ha utilizzato un valore non valido nell’operazione
 di indicizzazione. Il programma è uscito con un messaggio di errore e non ha
-eseguito l'istruzione finale `println!`. Quando si tenta di accedere a un
-elemento utilizzando l'indicizzazione, Rust controlla che l'indice specificato
-sia inferiore alla lunghezza dell'array. Se l'indice è maggiore o uguale alla
+eseguito l’istruzione finale `println!`. Quando si tenta di accedere a un
+elemento utilizzando l’indicizzazione, Rust controlla che l’indice specificato
+sia inferiore alla lunghezza dell’array. Se l’indice è maggiore o uguale alla
 lunghezza, Rust va in _panic_. Questo controllo deve avvenire durante
-l'esecuzione, soprattutto in questo caso, perché il compilatore non può sapere
-quale valore inserirà l'utente quando eseguirà il codice in seguito.
+l’esecuzione, soprattutto in questo caso, perché il compilatore non può sapere
+quale valore inserirà l’utente quando eseguirà il codice in seguito.
 
 Questo è un esempio dei principi di sicurezza della memoria di Rust in azione.
 In molti linguaggi di basso livello, questo tipo di controllo non viene fatto e
 quando si fornisce un indice errato, si può accedere a una memoria non valida.
 Rust ti protegge da questo tipo di errore uscendo immediatamente invece di
-consentire l'accesso alla memoria e continuare. Il [Capitolo 9][panic] tratta di
+consentire l’accesso alla memoria e continuare. Il [Capitolo 9][panic] tratta di
 altri aspetti della gestione degli errori di Rust e di come puoi scrivere codice
-leggibile e sicuro che non va in _panic_ né consente l'accesso non valido alla
+leggibile e sicuro che non va in _panic_ né consente l’accesso non valido alla
 memoria.
 
 [numero-segreto]: ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto

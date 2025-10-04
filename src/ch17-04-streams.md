@@ -1,7 +1,7 @@
 ## _Stream_: _Future_ in Sequenza
 
 Fino ad ora in questo capitolo, ci siamo principalmente concentrati su _future_
-singole. L'unica grande eccezione è stata il canale _async_ che abbiamo usato.
+singole. L’unica grande eccezione è stata il canale _async_ che abbiamo usato.
 Ricorda come abbiamo utilizzato il ricevitore per il nostro canale _async_ in
 precedenza in questo capitolo nella sezione [“Conteggiare su Due _Task_ Usando
 il Passaggio di Messaggi”][17-02-messages]<!-- ignore -->. Il metodo _async_
@@ -13,19 +13,19 @@ il _trait_ `Iterator` nella sezione [“Il _Trait_ `Iterator` e il Metodo
 `next`”][iterator-trait]<!-- ignore -->, ma ci sono due differenze tra gli
 iteratori e il ricevitore del canale _async_. La prima differenza è il tempo:
 gli iteratori sono sincroni, mentre il ricevitore del canale è asincrono. La
-seconda è l'API. Quando lavoriamo direttamente con `Iterator`, chiamiamo il suo
+seconda è l’API. Quando lavoriamo direttamente con `Iterator`, chiamiamo il suo
 metodo sincrono `next`. Con lo _stream_ `trpl::Receiver`, in particolare,
 abbiamo chiamato un metodo asincrono `recv`. A parte questo, le API si
 somigliano molto, e questa somiglianza non è una coincidenza. Uno _stream_ è
 come una forma asincrona di iterazione. Mentre il `trpl::Receiver` aspetta
-specificamente di ricevere messaggi, però, l'API dello _stream_ di uso generale
+specificamente di ricevere messaggi, però, l’API dello _stream_ di uso generale
 è molto più ampia: fornisce il prossimo elemento come fa `Iterator`, ma in modo
 asincrono.
 
 La somiglianza tra iteratori e _stream_ in Rust significa che possiamo
 effettivamente creare uno _stream_ da qualsiasi iteratore. Come con un
 iteratore, possiamo lavorare con uno _stream_ chiamando il suo metodo `next` e
-poi aspettare l'output, come nel Listato 17-30.
+poi aspettare l’output, come nel Listato 17-30.
 
 <Listing number="17-30" caption="Creare uno _stream_ da un iteratore e stampare i suoi valori" file-name="src/main.rs">
 
@@ -36,19 +36,19 @@ poi aspettare l'output, come nel Listato 17-30.
 </Listing>
 
 Iniziamo con un array di numeri, che convertiamo in un iteratore e poi chiamiamo
-`map` su di esso per raddoppiare tutti i valori. Poi convertiamo l'iteratore in
+`map` su di esso per raddoppiare tutti i valori. Poi convertiamo l’iteratore in
 uno _stream_ usando la funzione `trpl::stream_from_iter`. Successivamente,
 iteriamo sugli elementi nello _stream_ man mano che arrivano con il ciclo `while
 let`.
 
 Sfortunatamente, quando proviamo a eseguire il codice, non si compila, ma invece
-riporta che non c'è alcun metodo `next` disponibile:
+riporta che non c’è alcun metodo `next` disponibile:
 
 ```console
 {{#include ../listings/ch17-async-await/listing-17-30/output.txt:2:18}}
 ```
 
-Come spiega questo output, la ragione dell'errore del compilatore è che abbiamo
+Come spiega questo output, la ragione dell’errore del compilatore è che abbiamo
 bisogno del _trait_ giusto in _scope_ per poter utilizzare il metodo `next`.
 Dato il nostro discorso finora, potresti ragionevolmente aspettarti che quel
 _trait_ sia `Stream`, ma in realtà è `StreamExt`. Abbreviazione di _estensione_,
@@ -57,14 +57,14 @@ altro.
 
 Spiegheremo i _trait_ `Stream` e `StreamExt` in modo un po' più dettagliato alla
 fine del capitolo, ma per ora tutto ciò che devi sapere è che il _trait_
-`Stream` definisce un'interfaccia a basso livello che combina efficacemente i
+`Stream` definisce un’interfaccia a basso livello che combina efficacemente i
 _trait_ `Iterator` e `Future`. `StreamExt` fornisce un insieme di API di livello
 superiore costruite sulla base di `Stream`, inclusi il metodo `next` e altri
 metodi utili simili a quelli forniti dal _trait_ `Iterator`. `Stream` e
 `StreamExt` non fanno ancora parte della libreria standard di Rust, ma la
-maggior parte dei _crate_ dell'ecosistema utilizza la stessa definizione.
+maggior parte dei _crate_ dell’ecosistema utilizza la stessa definizione.
 
-La soluzione all'errore del compilatore è aggiungere una dichiarazione `use` per
+La soluzione all’errore del compilatore è aggiungere una dichiarazione `use` per
 `trpl::StreamExt`, come nel Listato 17-31.
 
 <Listing number="17-31" caption="Utilizzare con successo un iteratore come base per uno _stream_" file-name="src/main.rs">
@@ -97,12 +97,12 @@ unico per gli _stream_.
 
 Molti concetti sono naturalmente rappresentati come _stream_: elementi che
 diventano disponibili in una coda, porzioni di dati che vengono estratti
-incrementalmente dal filesystem quando l'intero set di dati è troppo grande per
+incrementalmente dal filesystem quando l’intero set di dati è troppo grande per
 la memoria del computer, o dati che arrivano attraverso la rete nel tempo.
 Poiché gli _stream_ sono _future_, possiamo usarli con qualsiasi altro tipo di
 _future_ e combinarli in modi interessanti. Ad esempio, possiamo raggruppare
 eventi per evitare di attivare troppe chiamate di rete, impostare _timeout_ su
-sequenze di operazioni a lungo termine, o limitare gli eventi dell'interfaccia
+sequenze di operazioni a lungo termine, o limitare gli eventi dell’interfaccia
 utente per evitare di fare lavoro inutile.
 
 Iniziamo costruendo un piccolo _stream_ di messaggi come sostituto di uno
@@ -119,7 +119,7 @@ comunicazione in tempo reale, come mostrato nel Listato 17-33.
 
 Per prima cosa, creiamo una funzione chiamata `ricevi_messaggi` che restituisce
 `impl Stream<Item = String>`. Per la sua implementazione, creiamo un canale
-_async_, iteriamo sulle prime 10 lettere dell'alfabeto inglese e le inviamo
+_async_, iteriamo sulle prime 10 lettere dell’alfabeto inglese e le inviamo
 attraverso il canale.
 
 Utilizziamo anche un nuovo _type_: `ReceiverStream`, che converte il ricevitore
@@ -143,8 +143,8 @@ Messaggio: 'i'
 Messaggio: 'j'
 ```
 
-Ancora una volta, potremmo fare questo con l'API `Receiver` regolare o anche con
-l'API `Iterator` regolare, quindi aggiungiamo una funzionalità che richiede
+Ancora una volta, potremmo fare questo con l’API `Receiver` regolare o anche con
+l’API `Iterator` regolare, quindi aggiungiamo una funzionalità che richiede
 _stream_: aggiungere un _timeout_ che si applica a ogni elemento nello _stream_
 e un ritardo sugli elementi che emettiamo, come mostrato nel Listato 17-34.
 
@@ -178,9 +178,9 @@ che inviamo, come mostrato nel Listato 17-35.
 
 </Listing>
 
-In `ricevi_messaggi`, utilizziamo il metodo `enumerate` dell'iteratore con
-l'array `messaggi` in modo da poter ottenere l'indice di ogni elemento che
-stiamo inviando insieme all'elemento stesso. Poi applichiamo un ritardo di 100
+In `ricevi_messaggi`, utilizziamo il metodo `enumerate` dell’iteratore con
+l’array `messaggi` in modo da poter ottenere l’indice di ogni elemento che
+stiamo inviando insieme all’elemento stesso. Poi applichiamo un ritardo di 100
 millisecondi agli elementi con indice pari e un ritardo di 300 millisecondi agli
 elementi con indice dispari per simulare i diversi ritardi che potremmo vedere
 da uno _stream_ di messaggi nel mondo reale. Poiché il nostro _timeout_ è di 200
@@ -269,10 +269,10 @@ fuori del _task_, ma il codice risulterà più chiaro se limitiamo ogni variabil
 allo _scope_ che la riguarda.) Poi creiamo un ciclo infinito. Ogni iterazione
 del ciclo “dorme” asincronamente per un millisecondo, incrementa il conteggio e
 poi lo invia attraverso il canale. Poiché tutto questo è incapsulato
-nell'attività creata da `spawn_task`, tutto, incluso il ciclo infinito, verrà
+nell’attività creata da `spawn_task`, tutto, incluso il ciclo infinito, verrà
 pulito insieme al _runtime_.
 
-Questo tipo di ciclo infinito, che termina solo quando l'intero _runtime_ viene
+Questo tipo di ciclo infinito, che termina solo quando l’intero _runtime_ viene
 distrutto, è abbastanza comune in Rust _async_: molti programmi devono
 continuare a girare indefinitamente. Con _async_, questo non blocca nulla,
 purché ci sia almeno un punto di attesa in ogni iterazione del ciclo.
@@ -303,7 +303,7 @@ diversi. Lo _stream_ `messaggi` ha il _type_ `Timeout<impl Stream<Item =
 String>>`, dove `Timeout` è il _type_ che implementa `Stream` per una chiamata
 di `timeout`. Lo _stream_ `intervalli` ha il _type_ `impl Stream<Item = u32>`.
 Per unire questi due _stream_, dobbiamo trasformare uno di essi per farlo
-corrispondere all'altro. Rielaboreremo lo _stream_ degli intervalli, perché
+corrispondere all’altro. Rielaboreremo lo _stream_ degli intervalli, perché
 `messaggi` è già nel formato di base che vogliamo e deve gestire gli errori di
 _timeout_ (vedi Listato 17-38).
 
@@ -327,7 +327,7 @@ che le chiamate `next` del ciclo `while let` possano iterare attraverso lo
 _stream_, e fissarlo in modo che sia sicuro farlo. Questo ci porta _quasi_ dove
 dobbiamo essere. Tutto è dello stesso _type_. Se lo esegui in questo momento,
 però, ci saranno due problemi. Primo, non si fermerà mai! Dovrai fermarlo con
-<kbd>ctrl</kbd>-<kbd>c</kbd>. Secondo, i messaggi dall'alfabeto inglese saranno
+<kbd>ctrl</kbd>-<kbd>c</kbd>. Secondo, i messaggi dall’alfabeto inglese saranno
 sepolti in mezzo a tutti i messaggi del contatore degli intervalli:
 
 ```text
@@ -360,8 +360,8 @@ dovrebbe andare bene, perché è più o meno quanto spesso arrivano i nostri
 messaggi.
 
 Per limitare il numero di elementi che accetteremo da uno _stream_, applichiamo
-il metodo `take` allo _stream_ `uniti`, perché vogliamo limitare l'output
-finale, non solo uno _stream_ o l'altro.
+il metodo `take` allo _stream_ `uniti`, perché vogliamo limitare l’output
+finale, non solo uno _stream_ o l’altro.
 
 Ora, quando eseguiamo il programma, si ferma dopo aver estratto 20 elementi
 dallo _stream_, e gli intervalli non sovraccaricano i messaggi. Non otteniamo
@@ -372,7 +372,7 @@ produce un nuovo _stream_ che incapsula lo _stream_ originale, in modo che lo
 _stream_ originale venga interrogato solo alla velocità di throttle, non alla
 sua "velocità nativa". Non abbiamo un sacco di messaggi di intervallo non
 gestiti che scegliamo di ignorare. Invece, non produciamo mai quei messaggi di
-intervallo in primo luogo! Questa è l'innata “pigrizia” dei _future_ di Rust che
+intervallo in primo luogo! Questa è l’innata “pigrizia” dei _future_ di Rust che
 entra in gioco, permettendoci di scegliere le nostre caratteristiche di
 prestazione.
 
@@ -380,12 +380,12 @@ prestazione.
 {{#include ../listings/ch17-async-await/listing-17-39/output.txt}}
 ```
 
-C'è un'ultima cosa che dobbiamo gestire: gli errori! Con entrambi questi
+C’è un’ultima cosa che dobbiamo gestire: gli errori! Con entrambi questi
 _stream_ basati su canali, le chiamate a `send` potrebbero fallire quando
-l'altra estremità del canale si chiude, e questo è solo una questione di come il
+l’altra estremità del canale si chiude, e questo è solo una questione di come il
 _runtime_ esegue le _future_ che compongono lo _stream_. Fino ad ora, abbiamo
-ignorato questa possibilità chiamando `unwrap`, ma in un'applicazione ben
-progettata, dovremmo gestire esplicitamente l'errore, almeno terminando il ciclo
+ignorato questa possibilità chiamando `unwrap`, ma in un’applicazione ben
+progettata, dovremmo gestire esplicitamente l’errore, almeno terminando il ciclo
 in modo da non provare a inviare ulteriori messaggi. Il listato 17-40 mostra una
 semplice strategia per gli errori: stampare il problema e poi uscire dai cicli
 con `break`.
@@ -403,7 +403,7 @@ varierà; assicurati solo di avere una strategia.
 
 Ora che abbiamo visto un sacco di _async_ nella pratica, facciamo un passo
 indietro e approfondiamo alcuni dettagli su come Rust usa `Future`, `Stream` e
-gli altri _trait_ chiave per far funzionare l'async.
+gli altri _trait_ chiave per far funzionare l’async.
 
 [17-02-messages]: ch17-02-concurrency-with-async.html#conteggiare-su-due-task-usando-il-passaggio-di-messaggi
 [iterator-trait]: ch13-02-iterators.html#il-trait-iterator-e-il-metodo-next

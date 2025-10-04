@@ -1,7 +1,7 @@
 ## Appendice F: Traduzioni del Libro
 
-Per le risorse in lingue diverse dall'inglese, la maggior parte sono ancora in
-traduzione; consulta [l'etichetta Traduzioni][label] per aiutarci o segnalarci
+Per le risorse in lingue diverse dall’inglese, la maggior parte sono ancora in
+traduzione; consulta [l’etichetta Traduzioni][label] per aiutarci o segnalarci
 una nuova traduzione!
 
 [label]:

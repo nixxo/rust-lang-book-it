@@ -72,8 +72,8 @@ della traduzione/non-traduzione con una spiegazione della scelta se necessario.
 | Return | Restituire / Ritornare | |
 | Return Value | Valore di ritorno / Valore restituito | |
 | Iterator | Iteratore |
-| Iterator Adapter | Adattatore | Sarebbe "Adattatore all'iteratore" |
-| Consuming Adapters | Consumatore | Sarebbe "Adattatore all'iteratore che consuma l'adattatore" |
+| Iterator Adapter | Adattatore | Sarebbe "Adattatore all’iteratore" |
+| Consuming Adapters | Consumatore | Sarebbe "Adattatore all’iteratore che consuma l’adattatore" |
 | Lazy | _Lazy_ | Pigro / Pigrizia |
 
 ### Rust Asincrono

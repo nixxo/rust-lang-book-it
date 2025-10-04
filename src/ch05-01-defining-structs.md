@@ -4,14 +4,14 @@ Le _struct_ sono simili alle tuple, discussi nella sezione [“Il _Type_
 Tupla”][tuples]<!-- ignore -->, in quanto entrambi possono contenere più valori
 correlati. Come per le tuple, i componenti di una _struct_ possono essere di
 _type_ diversi. A differenza delle tuple, in una _struct_ puoi denominare ogni
-pezzo di dati in modo che sia chiaro il significato dei valori. L'aggiunta di
+pezzo di dati in modo che sia chiaro il significato dei valori. L’aggiunta di
 questi nomi significa che le _struct_ sono più flessibili delle tuple: non devi
-fare affidamento sull'ordine dei dati per specificare o accedere ai valori di
-un'istanza.
+fare affidamento sull’ordine dei dati per specificare o accedere ai valori di
+un’istanza.
 
 Per definire una _struct_, inseriamo la parola chiave `struct` e diamo un nome
-all'intera _struct_. Il nome di una _struct_ dovrebbe descrivere il significato
-dei dati raggruppati insieme. Poi, all'interno di parentesi graffe, definiamo i
+all’intera _struct_. Il nome di una _struct_ dovrebbe descrivere il significato
+dei dati raggruppati insieme. Poi, all’interno di parentesi graffe, definiamo i
 nomi e i _type_ dei pezzi di dati, che chiamiamo _campi_ (_field_ in inglese).
 Ad esempio, il Listato 5-1 mostra una _struct_ che memorizza informazioni su un
 account utente.
@@ -25,8 +25,8 @@ account utente.
 
 </Listing>
 
-Per utilizzare una _struct_ dopo averla definita, creiamo un'_istanza_ di quella
-_struct_ specificando valori concreti per ciascuno dei campi. Creiamo un'istanza
+Per utilizzare una _struct_ dopo averla definita, creiamo un’_istanza_ di quella
+_struct_ specificando valori concreti per ciascuno dei campi. Creiamo un’istanza
 indicando il nome della _struct_ e poi aggiungendo parentesi graffe contenenti
 coppie _`chiave: valore`_, dove le chiavi sono i nomi dei campi e i valori sono
 i dati che vogliamo memorizzare in quei campi. Non dobbiamo specificare i campi
@@ -36,7 +36,7 @@ e le istanze riempiono quel modello con dati particolari per creare valori del
 _type_. Ad esempio, possiamo dichiarare un utente particolare come mostrato nel
 Listato 5-2.
 
-<Listing number="5-2" file-name="src/main.rs" caption="Creazione di un'istanza della _struct_ `Utente`">
+<Listing number="5-2" file-name="src/main.rs" caption="Creazione di un’istanza della _struct_ `Utente`">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-02/src/main.rs:here}}
@@ -45,13 +45,13 @@ Listato 5-2.
 </Listing>
 
 Per ottenere un valore specifico da una _struct_, usiamo la notazione col punto.
-Ad esempio, per accedere all'indirizzo email di questo utente, usiamo
-`utente1.email`. Se l'istanza è mutabile, possiamo cambiare un valore usando la
+Ad esempio, per accedere all’indirizzo email di questo utente, usiamo
+`utente1.email`. Se l’istanza è mutabile, possiamo cambiare un valore usando la
 notazione col punto assegnando un valore a un campo in particolare. Il Listato
-5-3 mostra come modificare il valore del campo `email` di un'istanza `Utente`
+5-3 mostra come modificare il valore del campo `email` di un’istanza `Utente`
 mutabile.
 
-<Listing number="5-3" file-name="src/main.rs" caption="Cambiare valore del campo `email` di un'istanza `Utente`">
+<Listing number="5-3" file-name="src/main.rs" caption="Cambiare valore del campo `email` di un’istanza `Utente`">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-03/src/main.rs:here}}
@@ -59,16 +59,16 @@ mutabile.
 
 </Listing>
 
-Nota che l'intera istanza deve essere mutabile; Rust non ci permette di
+Nota che l’intera istanza deve essere mutabile; Rust non ci permette di
 contrassegnare solo alcuni campi come mutabili. Come per qualsiasi espressione,
 possiamo costruire una nuova istanza della _struct_ come ultima espressione nel
 corpo di una funzione per restituire implicitamente quella nuova istanza.
 
-Il Listato 5-4 mostra la funzione `nuovo_utente` che restituisce un'istanza
-`Utente` con l'email e il nome utente indicati. Il campo `attivo` assume il
+Il Listato 5-4 mostra la funzione `nuovo_utente` che restituisce un’istanza
+`Utente` con l’email e il nome utente indicati. Il campo `attivo` assume il
 valore di `true` e `numero_accessi` prende il valore di `1`.
 
-<Listing number="5-4" file-name="src/main.rs" caption="Una funzione `nuovo_utente` che prende una email e un nome utente per ritornare un'istanza `Utente`">
+<Listing number="5-4" file-name="src/main.rs" caption="Una funzione `nuovo_utente` che prende una email e un nome utente per ritornare un’istanza `Utente`">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-04/src/main.rs:here}}
@@ -107,7 +107,7 @@ parametro `email` hanno lo stesso nome, dobbiamo solo scrivere `email` invece di
 ### Creare Istanze con la Sintassi di Aggiornamento delle _Struct_
 
 Spesso è utile creare una nuova istanza di una _struct_ che include la maggior
-parte dei valori da un'altra istanza dello stesso _type_, ma con alcune
+parte dei valori da un’altra istanza dello stesso _type_, ma con alcune
 modifiche. Puoi farlo usando la _sintassi di aggiornamento delle struct_
 (_struct_ _update_).
 
@@ -129,7 +129,7 @@ con meno codice, come mostrato nel Listato 5-7. La sintassi `..` specifica che i
 restanti campi non impostati esplicitamente dovrebbero avere lo stesso valore
 dei campi nell’istanza data.
 
-<Listing number="5-7" file-name="src/main.rs" caption="Utilizzo della sintassi _struct update_ per impostare un nuovo valore di `email` per un'istanza di `Utente`, ma utilizzando o restanti valori da `utente1`">
+<Listing number="5-7" file-name="src/main.rs" caption="Utilizzo della sintassi _struct update_ per impostare un nuovo valore di `email` per un’istanza di `Utente`, ma utilizzando o restanti valori da `utente1`">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-07/src/main.rs:here}}
@@ -165,7 +165,7 @@ Rust supporta anche _struct_ che assomigliano alle tuple, chiamate _struct_
 tupla (_tuple_ _struct_). Le _struct_ tupla hanno il significato aggiuntivo che
 il nome della _struct_ fornisce, ma non hanno nomi associati ai loro campi;
 piuttosto, hanno solo i _type_ dei campi. Le _struct_ tupla sono utili quando si
-vuole dare un nome all'intera tupla e renderla un _type_ diverso da altre tuple,
+vuole dare un nome all’intera tupla e renderla un _type_ diverso da altre tuple,
 e quando denominare ogni campo come in una _struct_ regolare sarebbe poco utile
 o ridondante. Per definire una _struct_ tupla, inizia con la parola chiave
 `struct` e il nome della _struct_ seguito dai _type_ della tupla. Ad esempio,

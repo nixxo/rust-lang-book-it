@@ -4,7 +4,7 @@ I metodi (_method_) sono simili alle funzioni: le dichiariamo con la parola
 chiave `fn` e un nome, possono avere parametri e un valore di ritorno, e
 contengono del codice che viene eseguito quando il metodo viene chiamato da
 un’altra parte. Diversamente dalle funzioni, i metodi sono definiti nel contesto
-di una _struct_ (o di un'_enum_ o di un _trait object_, che tratteremo nel
+di una _struct_ (o di un’_enum_ o di un _trait object_, che tratteremo nel
 [Capitolo 6][enums]<!-- ignore --> e [Capitolo 18][trait-objects]<!-- ignore
 -->, rispettivamente), e il loro primo parametro è sempre `self`, che
 rappresenta l’istanza della _struct_ su cui il metodo viene chiamato.
@@ -183,7 +183,7 @@ un Booleano, e l’implementazione verificherà se la larghezza e l’altezza di
 `Rettangolo`, rispettivamente. Aggiungiamo il nuovo metodo `può_contenere` al
 blocco `impl` del Listato 5-13, come mostrato nel Listato 5-15.
 
-<Listing number="5-15" file-name="src/main.rs" caption="Implementazione del metodo `può_contenere` in `Rettangolo` che riceve un'altra istanza di `Rettangolo` come parametro">
+<Listing number="5-15" file-name="src/main.rs" caption="Implementazione del metodo `può_contenere` in `Rettangolo` che riceve un’altra istanza di `Rettangolo` come parametro">
 
 ```rust
 {{#rustdoc_include ../listings/ch05-using-structs-to-structure-related-data/listing-05-15/src/main.rs:here}}

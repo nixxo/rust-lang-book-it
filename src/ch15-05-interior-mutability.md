@@ -3,7 +3,7 @@
 _Interior mutability_ è un modello di design in Rust che consente di mutare i
 dati anche in presenza di _reference_ immutabili a tali dati; normalmente,
 questa azione non è consentita dalle regole di prestito. Per mutare i dati, il
-modello utilizza codice `unsafe` all'interno di una struttura dati per
+modello utilizza codice `unsafe` all’interno di una struttura dati per
 modificare le normali regole di Rust che governano la mutabilità e il prestito.
 Il codice `unsafe` indica al compilatore che stiamo controllando le regole
 manualmente invece di affidarci al compilatore affinché le controlli per noi;
@@ -11,8 +11,8 @@ approfondiremo il codice `unsafe` nel Capitolo 20.
 
 Possiamo utilizzare _type_ che utilizzano il modello di mutabilità interna solo
 quando possiamo garantire che le regole di prestito vengano rispettate durante
-l'esecuzione, anche se il compilatore non può garantirlo. Il codice `unsafe`
-coinvolto viene quindi racchiuso in un'API sicura e il _type_ esterno rimane
+l’esecuzione, anche se il compilatore non può garantirlo. Il codice `unsafe`
+coinvolto viene quindi racchiuso in un’API sicura e il _type_ esterno rimane
 immutabile.
 
 Esploriamo questo concetto esaminando il _type_ `RefCell<T>` che segue il
@@ -36,18 +36,18 @@ regole, il programma andrà in _panic_ e si chiuderà.
 
 I vantaggi del controllo delle regole di prestito in fase di compilazione sono
 che gli errori vengono rilevati durante il processo di sviluppo e non vi è alcun
-impatto sulle prestazioni in fase di esecuzione perché tutta l'analisi viene
+impatto sulle prestazioni in fase di esecuzione perché tutta l’analisi viene
 completata in anticipo. Per questi motivi, il controllo delle regole di prestito
 in fase di compilazione è la scelta migliore nella maggior parte dei casi, ed è
 per questo che questa è la scelta predefinita di Rust.
 
 Il vantaggio del controllo delle regole di prestito in fase di esecuzione è che
 vengono consentiti determinati scenari di sicurezza della memoria, laddove
-sarebbero stati non consentiti dai controlli in fase di compilazione. L'analisi
+sarebbero stati non consentiti dai controlli in fase di compilazione. L’analisi
 statica, come il compilatore Rust, è intrinsecamente conservativa. Alcune
 proprietà del codice sono impossibili da rilevare analizzando il codice:
-l'esempio più famoso è il _problema della terminazione_ (_Halting Problem_), che
-esula dall'ambito di questo libro ma è un argomento interessante da approfondire
+l’esempio più famoso è il _problema della terminazione_ (_Halting Problem_), che
+esula dall’ambito di questo libro ma è un argomento interessante da approfondire
 se vuoi.
 
 Poiché alcune analisi sono impossibili, se il compilatore Rust non può essere
@@ -74,10 +74,10 @@ Ecco un riepilogo delle ragioni per scegliere `Box<T>`, `Rc<T>` o `RefCell<T>`:
   compilazione; `RefCell<T>` consente prestiti immutabili o mutabili controllati
   in fase di esecuzione.
 - Poiché `RefCell<T>` consente prestiti mutabili controllati in fase di
-  esecuzione, è possibile modificare il valore all'interno di `RefCell<T>` anche
+  esecuzione, è possibile modificare il valore all’interno di `RefCell<T>` anche
   quando `RefCell<T>` è immutabile.
 
-Mutare il valore all'interno di un valore immutabile è il modello di _Interior
+Mutare il valore all’interno di un valore immutabile è il modello di _Interior
 Mutability_ . Esaminiamo una situazione in cui la mutabilità interna è utile e
 vediamo come sia possibile.
 
@@ -103,7 +103,7 @@ esterno ai metodi del valore non sarebbe in grado di mutare il valore. Usare
 `RefCell<T>` è un modo per ottenere la possibilità di avere una mutabilità
 interna, ma `RefCell<T>` non aggira completamente le regole di prestito: il
 controllore di prestito nel compilatore consente questa mutabilità interna e le
-regole di prestito vengono invece verificate durante l'esecuzione. Se si violano
+regole di prestito vengono invece verificate durante l’esecuzione. Se si violano
 le regole, si otterrà un `panic!` invece di un errore del compilatore.
 
 Esaminiamo un esempio pratico in cui possiamo usare `RefCell<T>` per mutare un
@@ -116,7 +116,7 @@ per osservare un comportamento particolare e verificare che sia implementato
 correttamente. Questo _type_ segnaposto è chiamato _test double_ (_doppione di
 test_). Pensatelo come una controfigura nel cinema, dove una persona interviene
 e sostituisce un attore per girare una scena particolarmente difficile. I _test
-double_ sostituiscono altri _type_ durante l'esecuzione dei test. Gli _oggetti
+double_ sostituiscono altri _type_ durante l’esecuzione dei test. Gli _oggetti
 mock_ sono _type_ specifici di _test double_ che registrano ciò che accade
 durante un test, in modo da poter verificare che sono state eseguite le azioni
 corrette.
@@ -135,8 +135,8 @@ chiamate API che gli è consentito effettuare.
 La nostra libreria fornirà solo la funzionalità di tracciare quanto un valore è
 vicino al massimo e quali messaggi dovrebbero essere inviati e in quali momenti.
 Le applicazioni che utilizzano la nostra libreria dovranno fornire il meccanismo
-per l'invio dei messaggi: l'applicazione potrebbe inserire un messaggio al suo
-interno, inviare un'email, inviare un messaggio di testo o fare altro. La
+per l’invio dei messaggi: l’applicazione potrebbe inserire un messaggio al suo
+interno, inviare un’email, inviare un messaggio di testo o fare altro. La
 libreria non ha bisogno di conoscere questo dettaglio. Tutto ciò di cui ha
 bisogno è qualcosa che implementi una caratteristica che forniremo chiamata
 `Messaggero`. Il Listato 15-20 mostra il codice della libreria.
@@ -151,9 +151,9 @@ bisogno è qualcosa che implementi una caratteristica che forniremo chiamata
 
 Una parte importante di questo codice è che il _trait_ `Messaggero` ha un metodo
 chiamato `invia` che accetta un _reference_ immutabile a `self` e il testo del
-messaggio. Questo _trait_ è l'interfaccia che il nostro _oggetto mock_ deve
+messaggio. Questo _trait_ è l’interfaccia che il nostro _oggetto mock_ deve
 implementare in modo che il _mock_ possa essere utilizzato allo stesso modo di
-un oggetto reale. L'altra parte importante è che vogliamo testare il
+un oggetto reale. L’altra parte importante è che vogliamo testare il
 comportamento del metodo `setta_valore` su `TracciaLimiti`. Possiamo modificare
 ciò che passiamo per il parametro `valore`, ma `setta_valore` non restituisce
 nulla su cui fare asserzioni. Vogliamo poter dire che se creiamo un
@@ -161,11 +161,11 @@ nulla su cui fare asserzioni. Vogliamo poter dire che se creiamo un
 specifico per `max`, quando passiamo numeri diversi per `valore`, al messaggero
 viene detto di inviare i messaggi appropriati.
 
-Abbiamo bisogno di un oggetto _mock_ che, invece di inviare un'email o un
+Abbiamo bisogno di un oggetto _mock_ che, invece di inviare un’email o un
 messaggio di testo quando chiamiamo `invia`, tenga traccia solo dei messaggi che
-gli viene detto di inviare. Possiamo creare una nuova istanza dell'oggetto
-_mock_, creare un `TracciaLimiti` che utilizzi l'oggetto _mock_, chiamare il
-metodo `setta_valore` su `TracciaLimiti` e quindi verificare che l'oggetto
+gli viene detto di inviare. Possiamo creare una nuova istanza dell’oggetto
+_mock_, creare un `TracciaLimiti` che utilizzi l’oggetto _mock_, chiamare il
+metodo `setta_valore` su `TracciaLimiti` e quindi verificare che l’oggetto
 _mock_ contenga i messaggi che ci aspettiamo. Il Listato 15-21 mostra un
 tentativo di implementare un oggetto _mock_ per fare proprio questo, ma il
 controllo dei prestiti non lo consente.
@@ -197,7 +197,7 @@ su `TracciaLimiti` con un valore di `80`, che è superiore al 75% di 100. Quindi
 verifichiamo che la lista di messaggi di cui `MockMessaggero` sta tenendo
 traccia dovrebbe ora contenere un messaggio.
 
-Tuttavia, c'è un problema con questo test, come mostrato qui:
+Tuttavia, c’è un problema con questo test, come mostrato qui:
 
 ```console
 {{#include ../listings/ch15-smart-pointers/listing-15-21/output.txt}}
@@ -211,8 +211,8 @@ il _trait_ `Messaggero` solo per il funzionamento del test. Dobbiamo invece
 trovare un modo per far funzionare il nostro codice di test correttamente con il
 nostro design esistente.
 
-Questa è una situazione in cui la mutabilità interna può essere d'aiuto!
-Memorizzeremo `messaggi_inviati` all'interno di un `RefCell<T>`, e poi il metodo
+Questa è una situazione in cui la mutabilità interna può essere d’aiuto!
+Memorizzeremo `messaggi_inviati` all’interno di un `RefCell<T>`, e poi il metodo
 `invia` sarà in grado di modificare `messaggi_inviati` per memorizzare i
 messaggi che abbiamo visto. Il Listato 15-22 mostra come fare.
 
@@ -228,14 +228,14 @@ Il campo `messaggi_inviati` è ora di _type_ `RefCell<Vec<String>>` invece di
 `Vec<String>`. Nella funzione `new`, creiamo una nuova istanza di
 `RefCell<Vec<String>>` attorno al vettore vuoto.
 
-Per l'implementazione del metodo `send`, il primo parametro è ancora un prestito
+Per l’implementazione del metodo `send`, il primo parametro è ancora un prestito
 immutabile di `self`, che corrisponde alla definizione del _trait_. Chiamiamo
 `borrow_mut` su `RefCell<Vec<String>>` in `self.messaggi_inviati` per ottenere
-un _reference_ mutabile al valore all'interno di `RefCell<Vec<String>>`, che è
+un _reference_ mutabile al valore all’interno di `RefCell<Vec<String>>`, che è
 il vettore. Quindi possiamo chiamare `push` sul _reference_ mutabile al vettore
 per tenere traccia dei messaggi inviati durante il test.
 
-L'ultima modifica che dobbiamo apportare riguarda l'asserzione: per vedere
+L’ultima modifica che dobbiamo apportare riguarda l’asserzione: per vedere
 quanti elementi ci sono nel vettore interno, chiamiamo `borrow` su
 `RefCell<Vec<String>>` per ottenere un _reference_ immutabile al vettore.
 
@@ -245,7 +245,7 @@ Ora che hai visto come usare `RefCell<T>`, approfondiamo il suo funzionamento!
 
 Quando creiamo _reference_ immutabili e mutabili, utilizziamo rispettivamente la
 sintassi `&` e `&mut`. Con `RefCell<T>`, utilizziamo i metodi `borrow` e
-`borrow_mut`, che fanno parte dell'API sicura di `RefCell<T>`. Il metodo
+`borrow_mut`, che fanno parte dell’API sicura di `RefCell<T>`. Il metodo
 `borrow` restituisce il _type_ di puntatore intelligente `Ref<T>`, mentre
 `borrow_mut` restituisce il _type_ di puntatore intelligente `RefMut<T>`.
 Entrambi i _type_ implementano `Deref`, quindi possiamo trattarli come normali
@@ -260,9 +260,9 @@ diminuisce di 1. Proprio come per le regole di prestito in fase di compilazione,
 mutabile in qualsiasi momento.
 
 Se proviamo a violare queste regole, anziché ottenere un errore di compilazione
-come accadrebbe con i _reference_, l'implementazione di `RefCell<T>` andrà in
+come accadrebbe con i _reference_, l’implementazione di `RefCell<T>` andrà in
 _panic_ in fase di esecuzione. Il Listato 15-23 mostra una modifica
-dell'implementazione di `invia` nel Listato 15-22. Stiamo deliberatamente
+dell’implementazione di `invia` nel Listato 15-22. Stiamo deliberatamente
 cercando di creare due prestiti mutabili attivi per nello stesso _scope_ per
 dimostrare che `RefCell<T>` ci impedisce di farlo in fase di esecuzione.
 
@@ -289,15 +289,15 @@ Nota che il codice è andato in _panic_ con il messaggio `already borrowed:
 BorrowMutError`. Ecco come `RefCell<T>` gestisce le violazioni delle regole di
 prestito in fase di esecuzione.
 
-Scegliere di rilevare gli errori di prestito durante l'esecuzione anziché in
+Scegliere di rilevare gli errori di prestito durante l’esecuzione anziché in
 fase di compilazione, come abbiamo fatto qui, significa che potenzialmente si
 troverebbero errori nel codice in una fase successiva del processo di sviluppo:
 probabilmente non prima del rilascio del codice in produzione. Inoltre, il
 codice subirebbe una piccola penalizzazione delle prestazioni durante
-l'esecuzione a causa del monitoraggio dei prestiti durante l'esecuzione anziché
-in fase di compilazione. Tuttavia, l'utilizzo di `RefCell<T>` consente di
+l’esecuzione a causa del monitoraggio dei prestiti durante l’esecuzione anziché
+in fase di compilazione. Tuttavia, l’utilizzo di `RefCell<T>` consente di
 scrivere un oggetto fittizio in grado di modificarsi per tenere traccia dei
-messaggi visualizzati durante l'utilizzo in un contesto in cui sono consentiti
+messaggi visualizzati durante l’utilizzo in un contesto in cui sono consentiti
 solo valori immutabili. È possibile utilizzare `RefCell<T>` nonostante i suoi
 compromessi per ottenere più funzionalità rispetto a quelle fornite dai
 _reference_ standard.
@@ -310,10 +310,10 @@ fornisce solo un accesso immutabile a tali dati. Se hai un `Rc<T>` che contiene
 un `RefCell<T>`, puoi ottenere un valore che può avere più proprietari _e_ che
 puoi mutare!
 
-Ad esempio, ricorda l'esempio della _cons list_ nel Listato 15-18, dove abbiamo
+Ad esempio, ricorda l’esempio della _cons list_ nel Listato 15-18, dove abbiamo
 utilizzato `Rc<T>` per consentire a più liste di condividere la proprietà di
-un'altra lista. Poiché `Rc<T>` contiene solo valori immutabili, non possiamo
-modificare nessuno dei valori nell'elenco una volta creato. Aggiungiamo
+un’altra lista. Poiché `Rc<T>` contiene solo valori immutabili, non possiamo
+modificare nessuno dei valori nell’elenco una volta creato. Aggiungiamo
 `RefCell<T>` per la sua capacità di modificare i valori negli elenchi. Il
 Listato 15-24 mostra che utilizzando `RefCell<T>` nella definizione di `Cons`,
 possiamo modificare il valore memorizzato in tutte le liste.
@@ -326,7 +326,7 @@ possiamo modificare il valore memorizzato in tutte le liste.
 
 </Listing>
 
-Creiamo un valore che è un'istanza di `Rc<RefCell<i32>>` e lo memorizziamo in
+Creiamo un valore che è un’istanza di `Rc<RefCell<i32>>` e lo memorizziamo in
 una variabile denominata `valore` in modo da potervi accedere direttamente in
 seguito. Quindi creiamo una `Lista` in `a` con una variante `Cons` che contiene
 `valore`. Dobbiamo clonare `valore` in modo che sia `a` che `valore` abbiano la
@@ -339,11 +339,11 @@ e `c`, possano entrambe fare riferimento ad `a`, come abbiamo fatto nel Listato
 
 Dopo aver creato le liste in `a`, `b` e `c`, vogliamo aggiungere 10 al valore in
 `valore`. Lo facciamo chiamando `borrow_mut` su `valore`, che utilizza la
-funzione di de-referenziazione automatica di cui abbiamo parlato in [“Dov'è
-l'operatore `->`?”][wheres-the---operator]<!-- ignore -->) nel Capitolo 5 per
+funzione di de-referenziazione automatica di cui abbiamo parlato in [“Dov’è
+l’operatore `->`?”][wheres-the---operator]<!-- ignore -->) nel Capitolo 5 per
 de-referenziare `Rc<T>` al valore interno `RefCell<T>`. Il metodo `borrow_mut`
 restituisce un puntatore intelligente `RefMut<T>`, su cui utilizziamo
-l'operatore di de-referenziazione e modifichiamo il valore interno.
+l’operatore di de-referenziazione e modifichiamo il valore interno.
 
 Quando stampiamo `a`, `b` e `c`, possiamo vedere che hanno tutti il valore
 modificato di `15` anziché `5`:
@@ -354,8 +354,8 @@ modificato di `15` anziché `5`:
 
 Questa tecnica è davvero interessante! Utilizzando `RefCell<T>`, abbiamo un
 valore `List` esternamente immutabile. Ma possiamo usare i metodi su
-`RefCell<T>` che forniscono l'accesso alla sua mutabilità interna, così da poter
-modificare i nostri dati quando necessario. I controlli durante l'esecuzione
+`RefCell<T>` che forniscono l’accesso alla sua mutabilità interna, così da poter
+modificare i nostri dati quando necessario. I controlli durante l’esecuzione
 delle regole di prestito ci proteggono dalle _data race_, e a volte vale la pena
 sacrificare un po' di prestazioni per questa flessibilità nelle nostre strutture
 dati. Nota che `RefCell<T>` non funziona per il codice _multi-thread_!

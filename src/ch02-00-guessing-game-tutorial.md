@@ -9,9 +9,9 @@ capitolo ti limiterai a mettere in pratica le nozioni fondamentali.
 
 Implementeremo un classico problema di programmazione per principianti: un gioco
 di indovinelli. Ecco come funziona: il programma genererà un numero intero
-casuale compreso tra 1 e 100. Poi chiederà al giocatore di inserire un'ipotesi.
-Dopo aver inserito un'ipotesi, il programma indicherà se l'ipotesi è troppo
-bassa o troppo alta. Se l'ipotesi è corretta, il gioco stamperà un messaggio di
+casuale compreso tra 1 e 100. Poi chiederà al giocatore di inserire un’ipotesi.
+Dopo aver inserito un’ipotesi, il programma indicherà se l’ipotesi è troppo
+bassa o troppo alta. Se l’ipotesi è corretta, il gioco stamperà un messaggio di
 congratulazioni e terminerà.
 
 ## Impostare un Nuovo Progetto
@@ -28,7 +28,7 @@ Il primo comando, `cargo new`, prende il nome del progetto (`gioco_indovinello`)
 come primo argomento. Il secondo comando entra nella directory del nuovo
 progetto.
 
-Diamo un'occhiata al file _Cargo.toml_ appena generato:
+Diamo un’occhiata al file _Cargo.toml_ appena generato:
 
 <!-- manual-regeneration
 cd listings/ch02-guessing-game-tutorial
@@ -67,14 +67,14 @@ di passare alla successiva.
 
 Riapri il file _src/main.rs_. In questo file scriverai tutto il codice.
 
-## Elaborare un'Ipotesi
+## Elaborare un’Ipotesi
 
-La prima parte del programma del gioco di indovinelli richiederà l'input
-dell'utente, lo elaborerà e verificherà che l'input sia nella forma prevista.
-Per iniziare, permetteremo al giocatore di inserire un'ipotesi. Inserisci il
+La prima parte del programma del gioco di indovinelli richiederà l’input
+dell’utente, lo elaborerà e verificherà che l’input sia nella forma prevista.
+Per iniziare, permetteremo al giocatore di inserire un’ipotesi. Inserisci il
 codice del Listato 2-1 in _src/main.rs_.
 
-<Listing number="2-1" file-name="src/main.rs" caption="Codice che riceve l'ipotesi dall'utente e la stampa">
+<Listing number="2-1" file-name="src/main.rs" caption="Codice che riceve l’ipotesi dall’utente e la stampa">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch02-guessing-game-tutorial/listing-02-01/src/main.rs:all}}
@@ -83,7 +83,7 @@ codice del Listato 2-1 in _src/main.rs_.
 </Listing>
 
 Questo codice contiene molte informazioni, quindi analizziamolo riga per riga.
-Per ottenere l'input dell'utente e poi stampare il risultato come output,
+Per ottenere l’input dell’utente e poi stampare il risultato come output,
 dobbiamo utilizzare il modulo di input/output `io`. Il modulo `io` proviene
 dalla libreria standard, nota come `std`:
 
@@ -93,13 +93,13 @@ dalla libreria standard, nota come `std`:
 
 Come impostazione predefinita, Rust ha un insieme di risorse definite nella
 libreria standard che vengono inserite in ogni programma. Questo insieme è
-chiamato preludio (_prelude_ d'ora in poi) e puoi vedere tutto ciò che contiene
+chiamato preludio (_prelude_ d’ora in poi) e puoi vedere tutto ciò che contiene
 [nella documentazione della libreria standard][prelude].
 
 Se una risorsa che vuoi utilizzare non è presente nel _prelude_, devi renderla
-disponibile esplicitamente con un'istruzione `use`. L'utilizzo del modulo
+disponibile esplicitamente con un’istruzione `use`. L’utilizzo del modulo
 `std::io` ti offre una serie di utili funzioni, tra cui la possibilità di
-ricevere input dall'utente.
+ricevere input dall’utente.
 
 Come hai visto nel Capitolo 1, la funzione `main` è il punto di ingresso del
 programma:
@@ -120,11 +120,11 @@ stringa sullo schermo:
 ```
 
 Questo codice stampa un messaggio che introduce il gioco e richiede un input da
-parte dell'utente.
+parte dell’utente.
 
 ### Memorizzare i Valori con le Variabili
 
-Successivamente, creeremo una _variabile_ per memorizzare l'input dell'utente,
+Successivamente, creeremo una _variabile_ per memorizzare l’input dell’utente,
 in questo modo:
 
 ```rust,ignore
@@ -132,7 +132,7 @@ in questo modo:
 ```
 
 Ora il programma si fa interessante! In questa piccola riga succedono molte
-cose. Usiamo l'istruzione `let` per creare la variabile. Ecco un altro esempio:
+cose. Usiamo l’istruzione `let` per creare la variabile. Ecco un altro esempio:
 
 ```rust,ignore
 let mele = 5;
@@ -158,7 +158,7 @@ let mut banane = 5; // mutabile
 Torniamo al nostro gioco di indovinelli. Ora sai che `let mut ipotesi`
 introdurrà una variabile mutabile di nome `ipotesi`. Il segno di uguale (`=`)
 indica a Rust che vogliamo legare qualcosa alla variabile in quel momento. A
-destra del segno di uguale c'è il valore a cui `ipotesi` è legata, che è il
+destra del segno di uguale c’è il valore a cui `ipotesi` è legata, che è il
 risultato della chiamata a `String::new`, una funzione che restituisce una nuova
 istanza di una `String`. [`String`][string]<!-- ignore --> è un _type_ di
 stringa fornito dalla libreria standard che è un pezzo di testo codificato UTF-8
@@ -173,34 +173,34 @@ una funzione che crea un nuovo valore di qualche tipo.
 In pratica, la linea `let mut ipotesi = String::new();` ha creato una variabile
 _mutable_ che è attualmente legata a una nuova istanza vuota di `String`. Wow!
 
-### Ricevere l'Input dell'Utente
+### Ricevere l’Input dell’Utente
 
 Ricordiamo che abbiamo incluso le funzionalità di input/output della libreria
 standard con `use std::io;` nella prima riga del programma. Ora chiameremo la
-funzione `stdin` dal modulo `io`, che ci permetterà di gestire l'input
-dell'utente:
+funzione `stdin` dal modulo `io`, che ci permetterà di gestire l’input
+dell’utente:
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch02-guessing-game-tutorial/listing-02-01/src/main.rs:read}}
 ```
 
-Se non avessimo importato il modulo `io` con `use std::io;` all'inizio del
+Se non avessimo importato il modulo `io` con `use std::io;` all’inizio del
 programma, potremmo comunque utilizzare la funzione scrivendo questa chiamata di
-funzione come `std::io::stdin`. La funzione `stdin` restituisce un'istanza di
+funzione come `std::io::stdin`. La funzione `stdin` restituisce un’istanza di
 [`std::io::Stdin`][iostdin]<!-- ignore -->, che è un _type_ che rappresenta un
-_handle_ all'input standard del tuo terminale.
+_handle_ all’input standard del tuo terminale.
 
 Successivamente, la riga `.read_line(&mut ipotesi)` chiama il metodo
-[`read_line`][read_line]<!-- ignore --> sull'handle di input standard per
-ottenere un input dall'utente. Passiamo anche `&mut ipotesi` come argomento a
-`read_line` per dirgli in quale stringa memorizzare l'input dell'utente. Il
-compito di `read_line` è quello di prendere tutto ciò che l'utente digita
-nell'input standard e aggiungerlo a una stringa (senza sovrascriverne il
-contenuto), quindi passiamo tale stringa come argomento. L'argomento stringa
+[`read_line`][read_line]<!-- ignore --> sull’handle di input standard per
+ottenere un input dall’utente. Passiamo anche `&mut ipotesi` come argomento a
+`read_line` per dirgli in quale stringa memorizzare l’input dell’utente. Il
+compito di `read_line` è quello di prendere tutto ciò che l’utente digita
+nell’input standard e aggiungerlo a una stringa (senza sovrascriverne il
+contenuto), quindi passiamo tale stringa come argomento. L’argomento stringa
 deve essere _mutable_ in modo che il metodo possa cambiare il contenuto della
 stringa.
 
-Il simbolo `&` indica che questo argomento è un riferimento (_reference_ d'ora
+Il simbolo `&` indica che questo argomento è un riferimento (_reference_ d’ora
 in poi), il che ti dà la possibilità di permettere a più parti del codice di
 accedere a un dato senza doverlo copiare più volte in memoria. I _reference_
 sono una funzionalità complessa e uno dei principali vantaggi di Rust è la
@@ -214,7 +214,7 @@ _reference_ in modo più approfondito)
 ### Gestire i Potenziali Errori con `Result`
 
 Stiamo ancora lavorando su questa riga di codice. Ora stiamo discutendo di una
-terza riga di testo, ma notiamo che fa ancora parte di un'unica riga logica di
+terza riga di testo, ma notiamo che fa ancora parte di un’unica riga logica di
 codice. La prossima parte è questo metodo:
 
 ```rust,ignore
@@ -232,7 +232,7 @@ dividerla. Spesso è consigliabile andare a capo e aggiungere degli spazi bianch
 per aiutare a spezzare le righe lunghe quando chiami un metodo con la sintassi
 `.nome_metodo()`. Ora vediamo cosa fa questa riga.
 
-Come accennato in precedenza, `read_line` inserisce qualsiasi cosa l'utente
+Come accennato in precedenza, `read_line` inserisce qualsiasi cosa l’utente
 inserisca nella stringa che gli passiamo, ma restituisce anche un valore
 `Result`. [`Result`][result]<!-- ignore --> è una [enumerazione][enums]<!--
 ignore --> (_enum_ per brevità), che è un _type_ che può trovarsi in uno dei
@@ -243,20 +243,20 @@ dettagliato. Lo scopo di questi _type_ `Result` è quello di fornire informazion
 sulla gestione degli errori.
 
 Le varianti di `Result` sono `Ok` e `Err`. La variante `Ok` indica che
-l'operazione è andata a buon fine e contiene il valore generato con successo. La
-variante `Err` indica che l'operazione non è andata a buon fine e contiene
-informazioni su come o perché l'operazione è fallita.
+l’operazione è andata a buon fine e contiene il valore generato con successo. La
+variante `Err` indica che l’operazione non è andata a buon fine e contiene
+informazioni su come o perché l’operazione è fallita.
 
 I valori del tipo `Result`, come i valori di qualsiasi _type_, hanno dei metodi
-definiti su di essi. Un'istanza di `Result` ha un metodo [`expect`][expect]<!--
+definiti su di essi. Un’istanza di `Result` ha un metodo [`expect`][expect]<!--
 ignore --> che puoi chiamare. Se questa istanza di `Result` è un valore `Err`,
-`expect` causerà l'arresto del programma e visualizzerà il messaggio che hai
+`expect` causerà l’arresto del programma e visualizzerà il messaggio che hai
 passato come argomento a `expect`. Se il metodo `read_line` restituisce un
 `Err`, è probabile che sia il risultato di un errore proveniente dal sistema
 operativo sottostante. Se questa istanza di `Result` è un valore `Ok`, `expect`
 prenderà il valore di ritorno che `Ok` sta tenendo e ti restituirà solo quel
 valore in modo che tu possa usarlo. In questo caso, quel valore è il numero di
-byte nell'input dell'utente.
+byte nell’input dell’utente.
 
 Se non chiami `expect`, il programma verrà compilato, ma riceverai un avviso:
 
@@ -267,7 +267,7 @@ Se non chiami `expect`, il programma verrà compilato, ma riceverai un avviso:
 Rust avverte che non è stato utilizzato il valore `Result` restituito da
 `read_line`, indicando che il programma non ha gestito un possibile errore.
 
-Il modo corretto per sopprimere l'avvertimento è quello di scrivere del codice
+Il modo corretto per sopprimere l’avvertimento è quello di scrivere del codice
 che gestisca questi potenziali errori, ma nel nostro caso non è un grosso
 problema mandare in crash il programma quando si verifica un problema, quindi
 possiamo usare `expect`. Imparerai a recuperare dagli errori nel [Capitolo
@@ -275,22 +275,22 @@ possiamo usare `expect`. Imparerai a recuperare dagli errori nel [Capitolo
 
 ### Stampare i Valori con i Segnaposto in `println!`
 
-A parte la parentesi graffa di chiusura, c'è un'ultima riga da discutere nel
+A parte la parentesi graffa di chiusura, c’è un’ultima riga da discutere nel
 codice:
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch02-guessing-game-tutorial/listing-02-01/src/main.rs:print_guess}}
 ```
 
-Questa riga stampa la stringa che ora contiene l'input dell'utente. La serie di
+Questa riga stampa la stringa che ora contiene l’input dell’utente. La serie di
 parentesi graffe `{}` è un _segnaposto_: pensa a `{}` come a delle piccole chele
 di granchio che tengono fermo un valore. Quando stampi il valore di una
-variabile, il nome della variabile può essere inserito all'interno delle
+variabile, il nome della variabile può essere inserito all’interno delle
 parentesi graffe. Quando devi stampare il risultato della valutazione di
-un'espressione, inserisci delle parentesi graffe vuote nella stringa di formato,
+un’espressione, inserisci delle parentesi graffe vuote nella stringa di formato,
 quindi fai seguire alla stringa di formato un elenco separato da virgole di
 espressioni da stampare in ogni segnaposto vuoto, nello stesso ordine. Stampare
-una variabile e il risultato di un'espressione in un'unica chiamata a `println!`
+una variabile e il risultato di un’espressione in un’unica chiamata a `println!`
 sarebbe così:
 
 ```rust
@@ -328,7 +328,7 @@ dalla tastiera e poi li stiamo stampando.
 
 ## Generare un Numero Segreto
 
-Ora dobbiamo generare un numero segreto che l'utente cercherà di indovinare. Il
+Ora dobbiamo generare un numero segreto che l’utente cercherà di indovinare. Il
 numero segreto dovrebbe essere diverso ogni volta, in modo da rendere il gioco
 divertente più di una volta. Utilizzeremo un numero casuale compreso tra 1 e
 100, in modo che il gioco non sia troppo difficile. Rust non include ancora la
@@ -344,7 +344,7 @@ utilizzato in altri programmi e non può essere eseguito da solo.
 
 Prima di poter scrivere del codice che utilizzi `rand`, dobbiamo modificare il
 file _Cargo.toml_ per includere il _crate_ `rand` come dipendenza. Apri il file
-e aggiungi la seguente riga in fondo, sotto l'intestazione della sezione delle
+e aggiungi la seguente riga in fondo, sotto l’intestazione della sezione delle
 dipendenze `[dependencies]` che Cargo ha creato per te. Assicurati di
 specificare `rand` esattamente come abbiamo fatto qui, con questo numero di
 versione, altrimenti gli esempi di codice di questo tutorial potrebbero non
@@ -362,18 +362,18 @@ funzionare:
 {{#include ../listings/ch02-guessing-game-tutorial/listing-02-02/Cargo.toml:8:}}
 ```
 
-Nel file _Cargo.toml_, tutto ciò che segue un'intestazione fa parte di quella
-sezione che continua fino all'inizio di un'altra sezione. In `[dependencies]`
+Nel file _Cargo.toml_, tutto ciò che segue un’intestazione fa parte di quella
+sezione che continua fino all’inizio di un’altra sezione. In `[dependencies]`
 indichi a Cargo quali sono i _crate_ esterni da cui dipende il tuo progetto e
 quali sono le versioni di tali _crate_ richieste. In questo caso, specifichiamo
 il _crate_ `rand` con lo specificatore di versione semantica `0.8.5`. Cargo
 comprende il [Versionamento Semantico][semver]<!-- ignore --> (a volte chiamato
 _SemVer_ per brevità), che è uno standard per la scrittura dei numeri di
-versione. Lo specificatore `0.8.5` è in realtà un'abbreviazione di `^0.8.5`, che
+versione. Lo specificatore `0.8.5` è in realtà un’abbreviazione di `^0.8.5`, che
 indica qualsiasi versione che sia almeno 0.8.5 ma inferiore a 0.9.0.
 
 Cargo considera queste versioni con API pubbliche compatibili con la versione
-0.8.5 e questa specifica ti garantisce di ottenere l'ultima release della patch
+0.8.5 e questa specifica ti garantisce di ottenere l’ultima release della patch
 che si compila ancora con il codice di questo capitolo. Qualsiasi versione 0.9.0
 o superiore non garantisce di avere le stesse API utilizzate negli esempi
 seguenti.
@@ -387,7 +387,7 @@ rm Cargo.lock
 cargo clean
 cargo build -->
 
-<Listing number="2-2" caption="L'output dall'esecuzione di `cargo build` dopo l'aggiunta del crate `rand` come dipendenza">
+<Listing number="2-2" caption="L’output dall’esecuzione di `cargo build` dopo l’aggiunta del crate `rand` come dipendenza">
 
 ```console
 $ cargo build
@@ -421,7 +421,7 @@ righe potrebbero essere in un ordine diverso.
 Quando includiamo una dipendenza esterna, Cargo recupera le ultime versioni di
 tutto ciò di cui la dipendenza ha bisogno dal registro, _registry_, che è una
 copia dei dati di [Crates.io][cratesio]. Crates.io è il sito in cui le persone
-che fanno parte dell'ecosistema Rust pubblicano i loro progetti Rust open source
+che fanno parte dell’ecosistema Rust pubblicano i loro progetti Rust open source
 che possono essere utilizzati da altri.
 
 Dopo aver aggiornato il registro, Cargo controlla la sezione `[dependencies]` e
@@ -436,7 +436,7 @@ non otterrai alcun risultato a parte la riga `Finished`. Cargo sa che ha già
 scaricato e compilato le dipendenze e che non hai modificato nulla nel tuo file
 _Cargo.toml_. Cargo sa anche che non hai modificato nulla del tuo codice, quindi
 non ricompila nemmeno quello. Non avendo nulla da fare, semplicemente termina
-l'esecuzione.
+l’esecuzione.
 
 Se apri il file _src/main.rs_, apporti una modifica banale e poi salvi e
 ricostruisci, vedrai solo due righe di output:
@@ -462,7 +462,7 @@ Cargo ha un meccanismo che ti garantisce di ricostruire lo stesso artefatto ogni
 volta che tu o chiunque altro costruisce il tuo codice: Cargo utilizzerà solo le
 versioni delle dipendenze che hai specificato fino a quando non indicherai il
 contrario. Per esempio, supponiamo che la prossima settimana esca la versione
-0.8.6 del _crate_ `rand`, che contiene un'importante correzione di un bug, ma
+0.8.6 del _crate_ `rand`, che contiene un’importante correzione di un bug, ma
 anche una regressione incompatibile con il tuo codice. Per gestire questo
 problema, Rust crea il file _Cargo.lock_ la prima volta che esegui `cargo
 build`, che quindi ora si trova nella directory _gioco_indovinello_.
@@ -515,7 +515,7 @@ La prossima volta che eseguirai `cargo build`, Cargo aggiornerà il registro dei
 _crate_ disponibili e rivaluterà i requisiti di `rand` in base alla nuova
 versione che hai specificato.
 
-C'è molto altro da dire su [Cargo][doccargo]<!-- ignore --> e sul [suo
+C’è molto altro da dire su [Cargo][doccargo]<!-- ignore --> e sul [suo
 ecosistema][doccratesio]<!-- ignore -->, di cui parleremo nel Capitolo 14, ma
 per ora questo è tutto ciò che devi sapere. Cargo rende molto facile il
 riutilizzo delle librerie, per cui i _Rustacean_ sono in grado di scrivere
@@ -536,23 +536,23 @@ successivo è aggiornare _src/main.rs_, come mostrato nel Listato 2-3.
 
 Per prima cosa aggiungiamo la riga `use rand::Rng;`. Il _trait_ `Rng` definisce
 i metodi che i generatori di numeri casuali implementano e questo _trait_ deve
-essere nell'ambito di utilizzo (in _scope_ d'ora in poi), per poter utilizzare
+essere nell’ambito di utilizzo (in _scope_ d’ora in poi), per poter utilizzare
 tali metodi. Il Capitolo 10 tratterà in dettaglio i _trait_.
 
 Nella prima riga, chiamiamo la funzione `rand::thread_rng` che ci fornisce il
 particolare generatore di numeri casuali che utilizzeremo: un generatore locale
 che si appoggia al sistema operativo. Poi chiamiamo il metodo `gen_range` sul
 generatore di numeri casuali. Questo metodo è definito dal _trait_ `Rng` che
-abbiamo portato in _scope_ con l'istruzione `use rand::Rng;`. Il metodo
-`gen_range` prende un'espressione di intervallo come argomento e genera un
-numero casuale nell'intervallo. Il tipo di espressione di intervallo che stiamo
+abbiamo portato in _scope_ con l’istruzione `use rand::Rng;`. Il metodo
+`gen_range` prende un’espressione di intervallo come argomento e genera un
+numero casuale nell’intervallo. Il tipo di espressione di intervallo che stiamo
 usando qui ha la forma `inizio..=fine` ed è inclusivo dei limiti inferiore e
 superiore, quindi dobbiamo specificare `1..=100` per richiedere un numero
 compreso tra 1 e 100.
 
 > Nota: non sarai sempre a conoscenza di quali _trait_ utilizzare e quali metodi
 > e funzioni chiamare di un _crate_, quindi ogni _crate_ ha una documentazione
-> con le istruzioni per utilizzarlo. Un'altra caratteristica interessante di
+> con le istruzioni per utilizzarlo. Un’altra caratteristica interessante di
 > Cargo è che eseguendo il comando `cargo doc --open`, la documentazione fornita
 > da tutte le tue dipendenze viene creata localmente e aperta nel browser. Se
 > sei interessato ad altre funzionalità del _crate_ `rand`, ad esempio, esegui
@@ -597,9 +597,9 @@ Hai ipotizzato: 5
 Dovresti ottenere diversi numeri casuali, tutti compresi tra 1 e 100. Ottimo
 lavoro!
 
-## Confrontare l'Ipotesi con il Numero Segreto
+## Confrontare l’Ipotesi con il Numero Segreto
 
-Ora che abbiamo l'input dell'utente e un numero casuale, possiamo confrontarli.
+Ora che abbiamo l’input dell’utente e un numero casuale, possiamo confrontarli.
 Questo passo è mostrato nel Listato 2-4. Nota che questo codice non è
 compilabile per il momento, come spiegheremo.
 
@@ -611,23 +611,23 @@ compilabile per il momento, come spiegheremo.
 
 </Listing>
 
-Per prima cosa aggiungiamo un'altra istruzione `use`, che porta un _type_
+Per prima cosa aggiungiamo un’altra istruzione `use`, che porta un _type_
 chiamato `std::cmp::Ordering` dalla libreria standard. Il _type_ `Ordering` è
-un'altra _enum_ e ha le varianti `Less`, `Greater` e `Equal`. Questi sono i tre
+un’altra _enum_ e ha le varianti `Less`, `Greater` e `Equal`. Questi sono i tre
 risultati possibili quando si confrontano due valori.
 
 Poi aggiungiamo cinque nuove righe in basso che utilizzano il _type_ `Ordering`.
 Il metodo `cmp` confronta due valori e può essere richiamato su qualsiasi cosa
 possa essere confrontata. Come parametro prende un _reference_ a qualsiasi cosa
 si voglia confrontare: in questo caso sta confrontando `ipotesi` con
-`numero_segreto`. Poi restituisce una variante dell'_enum_ `Ordering` che
-abbiamo portato nello _scope_ con l'istruzione `use`. Utilizziamo un'espressione
+`numero_segreto`. Poi restituisce una variante dell’_enum_ `Ordering` che
+abbiamo portato nello _scope_ con l’istruzione `use`. Utilizziamo un’espressione
 [`match`][match]<!-- ignore --> per decidere cosa fare successivamente in base a
 quale variante di `Ordering` è stata restituita dalla chiamata a `cmp` con i
 valori in `ipotesi` e `numero_segreto`.
 
-Un'espressione `match` è composta da due _rami_. Da una parte un _pattern_ su
-cui fare il confronto, dall'altra il codice da eseguire se il valore dato a
+Un’espressione `match` è composta da due _rami_. Da una parte un _pattern_ su
+cui fare il confronto, dall’altra il codice da eseguire se il valore dato a
 `match` corrisponde al _pattern_. Rust prende il valore dato a `match` e lo
 confronta con il _ pattern_ dei vari rami, eseguendo poi il codice se
 corrispondono. I _pattern_ e il costrutto `match` sono potenti caratteristiche
@@ -636,20 +636,20 @@ codice potrebbe imbattersi e ti assicurano di gestirle tutte. Queste
 caratteristiche saranno trattate in dettaglio nel Capitolo 6 e nel Capitolo 19,
 rispettivamente.
 
-Facciamo un esempio con l'espressione `match` che utilizziamo qui. Supponiamo
-che l'utente abbia ipotizzato 50 e che il numero segreto generato in modo
+Facciamo un esempio con l’espressione `match` che utilizziamo qui. Supponiamo
+che l’utente abbia ipotizzato 50 e che il numero segreto generato in modo
 casuale questa volta sia 38.
 
 Quando il codice confronta 50 con 38, il metodo `cmp` restituirà
-`Ordering::Greater` perché 50 è maggiore di 38. L'espressione `match` ottiene il
+`Ordering::Greater` perché 50 è maggiore di 38. L’espressione `match` ottiene il
 valore `Ordering::Greater` e inizia a controllare il _pattern_ di ciascun ramo.
 Esamina il _pattern_ del primo ramo, `Ordering::Less`, e vede che il valore
 `Ordering::Greater` non corrisponde a `Ordering::Less`, quindi ignora il codice
 in quel ramo e passa al ramo successivo. Il modello del ramo successivo è
 `Ordering::Greater`, che _corrisponde_ a `Ordering::Greater`! Il codice
 associato in quel ramo verrà eseguito e stamperà `Troppo grande!` sullo schermo.
-L'espressione `match` termina dopo la prima corrispondenza riuscita, quindi non
-esaminerà l'ultimo ramo in questo scenario.
+L’espressione `match` termina dopo la prima corrispondenza riuscita, quindi non
+esaminerà l’ultimo ramo in questo scenario.
 
 Tuttavia, il codice del Listato 2-4 non viene compilato. Proviamo:
 
@@ -664,16 +664,16 @@ anchor or snip comments
 
 Il messaggio di errore afferma che ci sono _mismatched types_ (_type_ non
 corrispondenti). Rust ha un sistema di _type_ forte e statico. Tuttavia, ha
-anche l'inferenza del _type_. Quando abbiamo scritto `let mut ipotesi =
+anche l’inferenza del _type_. Quando abbiamo scritto `let mut ipotesi =
 String::new()`, Rust è stato in grado di dedurre che `ipotesi` doveva essere un
-`String` e non ci ha fatto scrivere il _type_. Il `numero_segreto`, d'altra
+`String` e non ci ha fatto scrivere il _type_. Il `numero_segreto`, d’altra
 parte, è un _type_ numerico. Alcuni _type_ numerici di Rust possono avere un
 valore compreso tra 1 e 100: `i32`, un numero a 32 bit; `u32`, un numero a 32
 bit senza segno; `i64`, un numero a 64 bit; e altri ancora. Se non diversamente
 specificato, Rust imposta come predefinito un `i32`, che è il _type_ di
 `numero_segreto` a meno che non si aggiungano informazioni sul _type_ altrove
 che indurrebbero Rust a dedurre un _type_ numerico differente. Il motivo
-dell'errore è che Rust non può confrontare una _type_ stringa e un _type_
+dell’errore è che Rust non può confrontare una _type_ stringa e un _type_
 numerico.
 
 In definitiva, vogliamo convertire la `String` che il programma legge come input
@@ -702,14 +702,14 @@ in modo più dettagliato nel [Capitolo 3][shadowing]<!-- ignore -->, ma per ora,
 sappi che questa funzione è spesso usata quando vuoi convertire un valore da un
 _type_ ad un altro.
 
-Leghiamo questa nuova variabile all'espressione `ipotesi.trim().parse()`.
-L'`ipotesi` nell'espressione si riferisce alla variabile `ipotesi` originale che
-contiene l'input come stringa. Il metodo `trim` su un'istanza di `String`
+Leghiamo questa nuova variabile all’espressione `ipotesi.trim().parse()`.
+L’`ipotesi` nell’espressione si riferisce alla variabile `ipotesi` originale che
+contiene l’input come stringa. Il metodo `trim` su un’istanza di `String`
 elimina ogni spazio bianco ad inizio e fine, cosa da fare prima di convertire la
-stringa in `u32`, che può contenere solo dati numerici. L'utente deve premere
-<kbd>invio</kbd> per confermare l'input da terminale e questo aggiunge un
-carattere _nuova_linea_ (_newline_ d'ora in poi) alla stringa letta da
-`read_line`. Per esempio, se l'utente digita <kbd>5</kbd> e poi preme
+stringa in `u32`, che può contenere solo dati numerici. L’utente deve premere
+<kbd>invio</kbd> per confermare l’input da terminale e questo aggiunge un
+carattere _nuova_linea_ (_newline_ d’ora in poi) alla stringa letta da
+`read_line`. Per esempio, se l’utente digita <kbd>5</kbd> e poi preme
 <kbd>invio</kbd>, `ipotesi` conterrà: `5\n`. Il carattere `\n` rappresenta
 _newline_. (Su Windows, premere <kbd>invio</kbd> aggiunge anche il carattere di
 _ritorno a capo_ oltre a _newline_, risultando in `\r\n`.) Il metodo `trim`
@@ -724,7 +724,7 @@ annoteremo il tipo di variabile. Rust ha alcuni _type_ numerici incorporati;
 per un piccolo numero positivo. Imparerai a conoscere altri _type_ numerici
 [Capitolo 3][integers]<!-- ignore -->.
 
-Inoltre, l'annotazione `u32` in questo programma di esempio e il confronto con
+Inoltre, l’annotazione `u32` in questo programma di esempio e il confronto con
 `numero_segreto` significa che Rust dedurrà che anche `numero_segreto` dovrebbe
 essere un `u32`. Quindi ora il confronto sarà tra due valori con lo stesso
 _type_!
@@ -765,12 +765,12 @@ Troppo grande!
 ```
 
 Bene! Anche se sono stati aggiunti degli spazi prima del numero, il programma ha
-capito che l'utente aveva ipotizzato 76. Esegui il programma alcune volte per
+capito che l’utente aveva ipotizzato 76. Esegui il programma alcune volte per
 verificare il diverso comportamento con diversi tipi di input: ipotizzare il
 numero corretto, ipotizzare un numero troppo alto e ipotizzare un numero troppo
 basso.
 
-Ora la maggior parte del gioco funziona, ma l'utente può fare una sola ipotesi.
+Ora la maggior parte del gioco funziona, ma l’utente può fare una sola ipotesi.
 Cambiamo questa situazione aggiungendo un ciclo!
 
 ## Consentire Più Ipotesi con la Ripetizione
@@ -785,18 +785,18 @@ ciclo per dare agli utenti più possibilità di indovinare il numero:
 ```
 
 Come puoi vedere, abbiamo spostato tutto ciò che va dalla richiesta di
-indovinare in poi all'interno di un ciclo. Assicurati di aggiungere degli spazi
-ad inizio riga per indentare correttamente il codice all'interno del ciclo ed
-esegui di nuovo il programma. Il programma ora chiederà sempre un'altra ipotesi,
-il che introduce un nuovo problema: come fa l'utente a smettere di giocare?
+indovinare in poi all’interno di un ciclo. Assicurati di aggiungere degli spazi
+ad inizio riga per indentare correttamente il codice all’interno del ciclo ed
+esegui di nuovo il programma. Il programma ora chiederà sempre un’altra ipotesi,
+il che introduce un nuovo problema: come fa l’utente a smettere di giocare?
 
-L'utente può sempre interrompere il programma utilizzando la scorciatoia da
-tastiera <kbd>ctrl</kbd>-<kbd>C</kbd>. Ma c'è un altro modo per sfuggire a
+L’utente può sempre interrompere il programma utilizzando la scorciatoia da
+tastiera <kbd>ctrl</kbd>-<kbd>C</kbd>. Ma c’è un altro modo per sfuggire a
 questo mostro insaziabile, come accennato nella discussione su `parse` in
-[“Confrontare l'ipotesi con il numero
+[“Confrontare l’ipotesi con il numero
 segreto”](#confrontare-lipotesi-con-il-numero-segreto)<!-- ignore -->: se
-l'utente inserisce una risposta non numerica, il programma si blocca. Possiamo
-approfittarne per consentire all'utente di uscire, come mostrato qui:
+l’utente inserisce una risposta non numerica, il programma si blocca. Possiamo
+approfittarne per consentire all’utente di uscire, come mostrato qui:
 
 <!-- manual-regeneration
 cd listings/ch02-guessing-game-tutorial/no-listing-04-looping/
@@ -835,14 +835,14 @@ Inserisci un numero!: ParseIntError { kind: InvalidDigit }
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ```
 
-Digitando `esci` chiude il gioco, ma come noterai, anche l'inserimento di
+Digitando `esci` chiude il gioco, ma come noterai, anche l’inserimento di
 qualsiasi altro input che non sia un numero. Questo è a dir poco sub-ottimale:
 vogliamo che il gioco si fermi anche quando viene indovinato il numero corretto.
 
-### Uscire Dopo un'Ipotesi Corretta
+### Uscire Dopo un’Ipotesi Corretta
 
-Programmiamo il gioco in modo che esca quando l'utente vince, aggiungendo
-un'istruzione `break` (_uscita_):
+Programmiamo il gioco in modo che esca quando l’utente vince, aggiungendo
+un’istruzione `break` (_uscita_):
 
 <span class="filename">File: src/main.rs</span>
 
@@ -850,20 +850,20 @@ un'istruzione `break` (_uscita_):
 {{#rustdoc_include ../listings/ch02-guessing-game-tutorial/no-listing-05-quitting/src/main.rs:here}}
 ```
 
-L'aggiunta della riga `break` dopo `Hai indovinato!` fa sì che il programma esca
-dal ciclo quando l'utente indovina correttamente il numero segreto. Uscire dal
-ciclo significa anche uscire dal programma, perché il ciclo è l'ultima parte di
+L’aggiunta della riga `break` dopo `Hai indovinato!` fa sì che il programma esca
+dal ciclo quando l’utente indovina correttamente il numero segreto. Uscire dal
+ciclo significa anche uscire dal programma, perché il ciclo è l’ultima parte di
 `main`.
 
 ### Gestire Gli Input Non Validi
 
 Per perfezionare ulteriormente il comportamento del gioco, invece di mandare in
-crash il programma quando l'utente non inserisce un numero valido, facciamo in
-modo che il gioco ignori un valore non numerico in modo che l'utente possa
+crash il programma quando l’utente non inserisce un numero valido, facciamo in
+modo che il gioco ignori un valore non numerico in modo che l’utente possa
 continuare a indovinare. Possiamo farlo modificando la riga in cui `ipotesi`
 viene convertito da `String` in `u32`, come mostrato nel Listato 2-5.
 
-<Listing number="2-5" file-name="src/main.rs" caption="Ignorare un valore non numerico e continuare a chiedere un'ipotesi anziché terminare il programma">
+<Listing number="2-5" file-name="src/main.rs" caption="Ignorare un valore non numerico e continuare a chiedere un’ipotesi anziché terminare il programma">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch02-guessing-game-tutorial/listing-02-05/src/main.rs:here}}
@@ -871,26 +871,26 @@ viene convertito da `String` in `u32`, come mostrato nel Listato 2-5.
 
 </Listing>
 
-Passiamo da una chiamata `expect` a un'espressione `match` per passare dal
-_crash_ su un errore alla gestione di quell'errore. Ricorda che `parse`
-restituisce un _type_ `Result` e `Result` è un'_enum_ che ha le varianti `Ok` e
-`Err`. Stiamo usando un'espressione `match` qui, come abbiamo fatto con il
+Passiamo da una chiamata `expect` a un’espressione `match` per passare dal
+_crash_ su un errore alla gestione di quell’errore. Ricorda che `parse`
+restituisce un _type_ `Result` e `Result` è un’_enum_ che ha le varianti `Ok` e
+`Err`. Stiamo usando un’espressione `match` qui, come abbiamo fatto con il
 risultato `Ordering` del metodo `cmp`.
 
 Se `parse` riesce a trasformare la stringa in un numero, restituirà un valore
 `Ok` che contiene il numero risultante. Questo valore `Ok` corrisponderà allo
-schema del primo ramo e l'espressione `match` restituirà il valore `num` che
-`parse` ha prodotto e messo all'interno del valore `Ok`. Quel numero finirà
+schema del primo ramo e l’espressione `match` restituirà il valore `num` che
+`parse` ha prodotto e messo all’interno del valore `Ok`. Quel numero finirà
 proprio dove vogliamo nella nuova variabile `ipotesi` che stiamo creando.
 
 Se `parse` non riesce a trasformare la stringa in un numero, restituirà un
-valore `Err` che contiene ulteriori informazioni sull'errore. Il valore `Err`
+valore `Err` che contiene ulteriori informazioni sull’errore. Il valore `Err`
 non corrisponde allo schema `Ok(num)` del primo ramo `match`, ma corrisponde
 allo schema `Err(_)` del secondo ramo. Il trattino basso, `_`, è un valore
 _piglia-tutto_; in questo esempio, stiamo dicendo che va bene qualsiasi valore
 di `Err`, indipendentemente dalle informazioni che contene. Quindi il programma
 eseguirà il codice del secondo ramo, `continue`, che dice al programma di
-passare alla successiva iterazione del `loop` e di chiedere un'altra ipotesi.
+passare alla successiva iterazione del `loop` e di chiedere un’altra ipotesi.
 Quindi, in effetti, il programma ignora tutti gli errori che `parse` potrebbe
 incontrare!
 
@@ -928,7 +928,7 @@ Hai ipotizzato: 61
 Hai vinto!
 ```
 
-Perfetto! Con un'ultima piccola modifica, finiremo il gioco di indovinelli.
+Perfetto! Con un’ultima piccola modifica, finiremo il gioco di indovinelli.
 Ricorda che il programma continua a stampare il numero segreto. Questo funziona
 bene per testare il funzionamento, ma rovina il gioco. Eliminiamo il `println!`
 che produce il numero segreto. Il Listato 2-6 mostra il codice finale.
@@ -941,13 +941,13 @@ che produce il numero segreto. Il Listato 2-6 mostra il codice finale.
 
 </Listing>
 
-A questo punto, hai costruito con successo il gioco dell'indovinello:
+A questo punto, hai costruito con successo il gioco dell’indovinello:
 complimenti!
 
 ## Riepilogo
 
 Questo progetto è stato un modo pratico per introdurti a molti nuovi concetti di
-Rust: `let`, `match`, le funzioni, l'uso di _crate_ esterni e altro ancora. Nei
+Rust: `let`, `match`, le funzioni, l’uso di _crate_ esterni e altro ancora. Nei
 prossimi capitoli imparerai a conoscere questi concetti in modo più dettagliato.
 Il Capitolo 3 tratta i concetti che la maggior parte dei linguaggi di
 programmazione possiede, come le variabili, i tipi di dati e le funzioni, e

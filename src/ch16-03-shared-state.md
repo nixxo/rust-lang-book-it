@@ -1,7 +1,7 @@
 ## Concorrenza a Stato Condiviso
 
 Il passaggio di messaggi è un buon modo per gestire la concorrenza, ma non è
-l'unico. Un altro metodo potrebbe essere quello di far accedere più _thread_
+l’unico. Un altro metodo potrebbe essere quello di far accedere più _thread_
 agli stessi dati condivisi. Considera ancora una volta questa parte dello slogan
 della documentazione del linguaggio Go: “Non comunicare condividendo la
 memoria”.
@@ -21,9 +21,9 @@ Il sistema dei _type_ e le regole di _ownership_ di Rust aiutano molto a gestire
 correttamente questo aspetto. Per fare un esempio, vediamo i _mutex_, uno dei
 _type_ primitivi di concorrenza più comuni per la memoria condivisa.
 
-### Controllare l'Accesso con i _Mutex_
+### Controllare l’Accesso con i _Mutex_
 
-_Mutex_ è l'abbreviazione di _mutual exclusion_ (_mutua esclusione_), ovvero un
+_Mutex_ è l’abbreviazione di _mutual exclusion_ (_mutua esclusione_), ovvero un
 _mutex_ permette a un solo _thread_ di accedere ad alcuni dati in un determinato
 momento. Per accedere ai dati di un _mutex_, un _thread_ deve prima segnalare
 che vuole accedervi chiedendo di acquisire il blocco del _mutex_. Il _blocco_
@@ -53,12 +53,12 @@ persone sono entusiaste dei canali. Tuttavia, grazie al sistema dei _type_ e
 alle regole di _ownership_ di Rust, non è possibile sbagliare il blocco e lo
 sblocco.
 
-#### L'API di `Mutex<T>`
+#### L’API di `Mutex<T>`
 
-Come esempio di utilizzo di un _mutex_, iniziamo con l'utilizzo di un _mutex_ in
+Come esempio di utilizzo di un _mutex_, iniziamo con l’utilizzo di un _mutex_ in
 un contesto a _thread_ singolo, come mostrato nel Listato 16-12.
 
-<Listing number="16-12" file-name="src/main.rs" caption="Uso dell'API di `Mutex<T>` in un contesto a _thread_ singolo per semplicità">
+<Listing number="16-12" file-name="src/main.rs" caption="Uso dell’API di `Mutex<T>` in un contesto a _thread_ singolo per semplicità">
 
 ```rust
 {{#rustdoc_include ../listings/ch16-fearless-concurrency/listing-16-12/src/main.rs}}
@@ -67,7 +67,7 @@ un contesto a _thread_ singolo, come mostrato nel Listato 16-12.
 </Listing>
 
 Come per molti altri _type_, creiamo un `Mutex<T>` utilizzando la funzione
-associata `new`. Per accedere ai dati all'interno del _mutex_, utilizziamo il
+associata `new`. Per accedere ai dati all’interno del _mutex_, utilizziamo il
 metodo `lock` per acquisire il blocco. Questa chiamata bloccherà il _thread_
 corrente in modo che non possa svolgere alcuna attività finché non sarà il
 nostro turno di avere il blocco.
@@ -78,7 +78,7 @@ abbiamo scelto di usare `unwrap` e di far andare in panico questo _thread_ se ci
 troviamo in quella situazione.
 
 Dopo aver acquisito il blocco, possiamo trattare il valore di ritorno, chiamato
-`num` in questo caso, come un _reference_ mutabile ai dati all'interno. Il
+`num` in questo caso, come un _reference_ mutabile ai dati all’interno. Il
 sistema dei _type_ assicura che acquisiamo un blocco prima di utilizzare il
 valore in `m`. Il _type_ di `m` è `Mutex<i32>`, non `i32`, quindi dobbiamo
 chiamare `lock` per poter utilizzare il valore `i32`. Non possiamo
@@ -88,22 +88,22 @@ al valore interno `i32`.
 La chiamata a `lock` restituisce un _type_ chiamato `MutexGuard`, incapsulato in
 un `LockResult` che abbiamo gestito con la chiamata a `unwrap`. Il _type_
 `MutexGuard` implementa `Deref` per puntare ai nostri dati interni; il _type_ ha
-anche un'implementazione `Drop` che rilascia automaticamente il blocco quando un
+anche un’implementazione `Drop` che rilascia automaticamente il blocco quando un
 `MutexGuard` esce dallo _scope_, cosa che accade alla fine dello _scope_
 interno. Di conseguenza, non rischiamo di dimenticarci di rilasciare il blocco e
-di bloccare l'utilizzo del _mutex_ da parte di altri _thread_ perché il rilascio
+di bloccare l’utilizzo del _mutex_ da parte di altri _thread_ perché il rilascio
 del blocco avviene automaticamente.
 
 Dopo aver rilasciato il blocco, possiamo stampare il valore del _mutex_ e vedere
-che siamo riusciti a cambiare l'interno `i32` in `6`.
+che siamo riusciti a cambiare l’interno `i32` in `6`.
 
 #### Condividere Accesso a `Mutex<T>`
 
 Ora proviamo a condividere un valore tra più _thread_ utilizzando `Mutex<T>`.
 Avvieremo 10 _thread_ e faremo in modo che ognuno di essi incrementi il valore
-di un contatore di 1, in modo che il contatore vada da 0 a 10. L'esempio nel
+di un contatore di 1, in modo che il contatore vada da 0 a 10. L’esempio nel
 listato 16-13 avrà un errore del compilatore, che useremo per imparare di più
-sull'uso di `Mutex<T>` e su come Rust ci aiuta a usarlo correttamente.
+sull’uso di `Mutex<T>` e su come Rust ci aiuta a usarlo correttamente.
 
 <Listing number="16-13" file-name="src/main.rs" caption="Dieci _thread_, ognuno dei quali incrementa un contatore custodito da un `Mutex<T>`">
 
@@ -113,12 +113,12 @@ sull'uso di `Mutex<T>` e su come Rust ci aiuta a usarlo correttamente.
 
 </Listing>
 
-Creiamo una variabile `contatore` per contenere un `i32` all'interno di un
+Creiamo una variabile `contatore` per contenere un `i32` all’interno di un
 `Mutex<T>`, come abbiamo fatto nel listato 16-12. Poi creiamo 10 _thread_
 iterando su un intervallo di numeri. Usiamo `thread::spawn` e diamo a tutti i
 _thread_ la stessa chiusura: una che sposta il contatore nel _thread_,
 acquisisce un blocco sul `Mutex<T>` chiamando il metodo `lock` e poi aggiunge 1
-al valore nel mutex. Quando un _thread_ termina l'esecuzione della sua chiusura,
+al valore nel mutex. Quando un _thread_ termina l’esecuzione della sua chiusura,
 `num` uscirà dallo _scope_ e rilascerà il blocco in modo che un altro _thread_
 possa acquisirlo.
 
@@ -135,9 +135,9 @@ scopriamo perché!
 ```
 
 Il messaggio di errore indica che il valore `contatore` è stato spostato
-nell'iterazione precedente del ciclo. Rust ci sta dicendo che non possiamo
+nell’iterazione precedente del ciclo. Rust ci sta dicendo che non possiamo
 spostare la _ownership_ del blocco `contatore` in più _thread_. Risolviamo
-l'errore del compilatore con il metodo della _ownership_ multipla di cui abbiamo
+l’errore del compilatore con il metodo della _ownership_ multipla di cui abbiamo
 parlato nel Capitolo 15.
 
 #### _Ownership_ Multipla con _Thread_ Multipli
@@ -169,7 +169,7 @@ compilatore ci dice anche il motivo: `` the trait `Send` is not implemented for
 `Rc<Mutex<i32>>` (`` (il _trait_ `Send` non è implementato per
 `Rc<Mutex<i32>>`). Parleremo di `Send` nella prossima sezione: è uno dei _trait_
 che garantisce che i _type_ che utilizziamo con i _thread_ siano pensati per
-l'uso in situazioni concorrenti.
+l’uso in situazioni concorrenti.
 
 Sfortunatamente, `Rc<T>` non è sicuro da condividere tra i _thread_. Quando
 `Rc<T>` gestisce il conteggio dei _reference_, aggiunge al conteggio per ogni
@@ -198,7 +198,7 @@ _type_ della libreria standard non sono implementati in modo da utilizzare
 `Arc<T>` come impostazione predefinita. Il motivo è che la sicurezza dei
 _thread_ comporta una penalizzazione delle prestazioni che vorrai scegliere di
 usare solo quando ne hai veramente bisogno. Se stai eseguendo operazioni su
-valori all'interno di un singolo _thread_, il tuo codice può funzionare più
+valori all’interno di un singolo _thread_, il tuo codice può funzionare più
 velocemente se non deve applicare le garanzie che gli atomici forniscono.
 
 Torniamo al nostro esempio: `Arc<T>` e `Rc<T>` hanno la stessa API, quindi
@@ -224,7 +224,7 @@ changes in the compiler -->
 Risultato: 10
 ```
 
-Ce l'abbiamo fatta! Abbiamo contato da 0 a 10, il che può non sembrare molto
+Ce l’abbiamo fatta! Abbiamo contato da 0 a 10, il che può non sembrare molto
 impressionante, ma ci ha insegnato molto su `Mutex<T>` e sulla sicurezza dei
 _thread_. Puoi anche utilizzare la struttura di questo programma per fare
 operazioni più complicate del semplice incremento di un contatore. Utilizzando
@@ -245,17 +245,17 @@ Avrai notato che `contatore` è immutabile ma possiamo ottenere un _reference_
 mutabile al valore al suo interno; questo significa che `Mutex<T>` fornisce la
 mutabilità interna, come fa la famiglia `Cell`. Nello stesso modo in cui abbiamo
 usato `RefCell<T>` nel Capitolo 15 per permetterci di mutare i contenuti
-all'interno di un `Rc<T>`, usiamo `Mutex<T>` per mutare i contenuti all'interno
+all’interno di un `Rc<T>`, usiamo `Mutex<T>` per mutare i contenuti all’interno
 di un `Arc<T>`.
 
 Un altro dettaglio da notare è che Rust non può proteggerti da tutti i tipi di
-errori logici quando usi `Mutex<T>`. Ricordiamo dal Capitolo 15 che l'uso di
+errori logici quando usi `Mutex<T>`. Ricordiamo dal Capitolo 15 che l’uso di
 `Rc<T>` comporta il rischio di creare sequenze auto-referenziali, in cui due
-valori `Rc<T>` fanno riferimento l'uno all'altro, causando perdite di memoria.
+valori `Rc<T>` fanno riferimento l’uno all’altro, causando perdite di memoria.
 Allo stesso modo, `Mutex<T>` comporta il rischio di creare dei _deadlock_
-(_stallo_). Questi si verificano quando un'operazione deve bloccare due risorse
+(_stallo_). Questi si verificano quando un’operazione deve bloccare due risorse
 e due thread hanno acquisito ciascuno uno dei blocchi, facendoli attendere
-all'infinito l'un l'altro. Se ti interessano i _deadlock_, prova a creare un
+all’infinito l’un l’altro. Se ti interessano i _deadlock_, prova a creare un
 programma Rust che abbia un _deadlock_; quindi ricerca le strategie di
 mitigazione degli stalli per i _mutex_ in qualsiasi altro linguaggio e prova a
 implementarle in Rust. La documentazione API della libreria standard per

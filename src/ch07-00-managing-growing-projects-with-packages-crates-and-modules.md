@@ -18,11 +18,11 @@ evolvono insieme, Cargo fornisce degli _spazi di lavoro_ (_workspace_), che
 tratteremo in [“Cargo Workspace”](ch14-03-cargo-workspaces.html)<!-- ignore -->
 nel Capitolo 14.
 
-Discuteremo anche l'incapsulamento dei dettagli di implementazione, che ti
+Discuteremo anche l’incapsulamento dei dettagli di implementazione, che ti
 consente di riutilizzare il codice a un livello più alto: una volta implementata
-un'operazione, l'altro codice può chiamare il tuo codice tramite la sua
-interfaccia pubblica senza dover sapere come funziona l'implementazione. Il modo
-in cui scrivi il codice definisce quali parti sono pubbliche per l'uso da parte
+un’operazione, l’altro codice può chiamare il tuo codice tramite la sua
+interfaccia pubblica senza dover sapere come funziona l’implementazione. Il modo
+in cui scrivi il codice definisce quali parti sono pubbliche per l’uso da parte
 di altri codici e quali parti sono dettagli di implementazione privati che ti
 riservi il diritto di modificare. Questo è un altro modo per limitare la
 quantità di dettagli che devi tenere a mente.
@@ -32,11 +32,11 @@ codice ha un insieme di nomi definiti come “in _scope_”. Quando si legge, si
 scrive e si compila il codice, i programmatori e i compilatori devono sapere se
 un particolare nome in un particolare punto si riferisce a una variabile,
 funzione, _struct_, _enum_, modulo, costante o altro elemento e cosa significa
-quell'elemento. Puoi creare _scope_ e modificare quali nomi sono in o fuori
+quell’elemento. Puoi creare _scope_ e modificare quali nomi sono in o fuori
 _scope_. Non puoi avere due elementi con lo stesso nome nello stesso _scope_;
 sono disponibili strumenti per risolvere i conflitti di nomenclatura.
 
-Rust ha una serie di funzionalità che ti consentono di gestire l'organizzazione
+Rust ha una serie di funzionalità che ti consentono di gestire l’organizzazione
 del tuo codice, inclusi i dettagli esposti, i dettagli privati e quali nomi sono
 in ogni _scope_ nei tuoi programmi. Queste funzionalità, a volte definite
 collettivamente _sistema dei moduli_ (_module system_), includono:
@@ -44,7 +44,7 @@ collettivamente _sistema dei moduli_ (_module system_), includono:
 * **Pacchetti**: Una funzionalità di Cargo che ti consente di costruire, testare
   e condividere _crate_
 * **Crate**: Un albero di _moduli_ che produce una libreria o un eseguibile
-* **Moduli** e **use**: Ti consentono di controllare l'organizzazione, lo
+* **Moduli** e **use**: Ti consentono di controllare l’organizzazione, lo
   _scope_ e la privacy dei percorsi (_paths_)
 * **Path**: Un modo per nominare un elemento, come una _struct_, una funzione o
   un modulo

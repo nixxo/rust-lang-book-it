@@ -6,7 +6,7 @@ chiamata a `calcola_lunghezza`, perché la `String` è stata spostata in
 `calcola_lunghezza`. Possiamo invece fornire un riferimento (_reference_) al
 valore `String`. Un _reference_ è come un puntatore in quanto è un indirizzo che
 possiamo seguire per accedere ai dati archiviati a quell’indirizzo di memoria;
-la _ownership_ di quei dati appartiene ad un'altra variabile. A differenza di un
+la _ownership_ di quei dati appartiene ad un’altra variabile. A differenza di un
 puntatore, è garantito che un _reference_ punti a un valore valido di un certo
 _type_ finché il _reference_ è ancora valido.
 
@@ -32,17 +32,17 @@ La Figura 4-6 illustra questo concetto.
 
 <img alt="Tre tabelle: la tabella per s contiene solo un puntatore alla tabella
 per s1. La tabella per s1 contiene i dati sullo stack per s1 e punta ai dati
-della stringa nell'heap." src="img/trpl04-06.svg" class="center" />
+della stringa nell’heap." src="img/trpl04-06.svg" class="center" />
 
 <span class="caption">Figura 4-6: Schema di `&String` `s` che punta a `String` `s1`</span>
 
-> Nota: l'opposto della referenziazione tramite l'uso di `&` è la
-> _de-referenziazione_, che si realizza con l'operatore di de-referenziazione
-> `*` (_dereference operator_). Vedremo alcuni usi dell'operatore di
+> Nota: l’opposto della referenziazione tramite l’uso di `&` è la
+> _de-referenziazione_, che si realizza con l’operatore di de-referenziazione
+> `*` (_dereference operator_). Vedremo alcuni usi dell’operatore di
 > de-referenziazione nel Capitolo 8 e discuteremo i dettagli della
 > de-referenziazione nel Capitolo 15.
 
-Diamo un'occhiata più da vicino alla chiamata di funzione:
+Diamo un’occhiata più da vicino alla chiamata di funzione:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-07-reference/src/main.rs:here}}
@@ -66,7 +66,7 @@ _ownership_. Quando le funzioni hanno _reference_ come parametri anziché valori
 effettivi, non avremo bisogno di restituire i valori per restituire la
 _ownership_, perché la _ownership_ non ci è mai stata trasferita.
 
-L'azione di creare un _reference_ viene chiamata _borrowing_ (_fare un prestito_
+L’azione di creare un _reference_ viene chiamata _borrowing_ (_fare un prestito_
 in italiano). Come nella vita reale, se una persona possiede qualcosa, puoi
 chiedergliela in prestito. Quando hai finito, devi restituirla. Non la possiedi.
 
@@ -81,7 +81,7 @@ Prova il codice nel Listato 4-6. Avviso spoiler: non funziona!
 
 </Listing>
 
-Ecco l'errore:
+Ecco l’errore:
 
 ```console
 {{#include ../listings/ch04-understanding-ownership/listing-04-06/output.txt}}
@@ -121,13 +121,13 @@ mutabili a `s` fallirà:
 
 </Listing>
 
-Ecco l'errore:
+Ecco l’errore:
 
 ```console
 {{#include ../listings/ch04-understanding-ownership/no-listing-10-multiple-mut-not-allowed/output.txt}}
 ```
 
-L'errore dice che questo codice non è valido perché non possiamo avere più di un
+L’errore dice che questo codice non è valido perché non possiamo avere più di un
 _reference_ mutabile alla volta ad `s`. Il primo _reference_ mutabile è in `r1`
 e deve durare fino a quando non viene utilizzato nel `println!`, ma tra la
 creazione di quel _reference_ mutabile e il suo utilizzo, abbiamo cercato di
@@ -148,7 +148,7 @@ competizione e si verifica quando si verificano questi tre comportamenti:
 
 I _data race_ causano comportamenti non programmati e possono essere difficili
 da diagnosticare e risolvere quando si cerca di individuarli durante
-l'esecuzione; Rust previene questo problema rifiutando di compilare codice
+l’esecuzione; Rust previene questo problema rifiutando di compilare codice
 contenente _data race_!
 
 Come sempre, possiamo usare le parentesi graffe per creare uno _scope_ nuovo,
@@ -165,7 +165,7 @@ Questo codice genera un errore:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-12-immutable-and-mutable-not-allowed/src/main.rs:here}}
 ```
 
-Ecco l'errore:
+Ecco l’errore:
 
 ```console
 {{#include ../listings/ch04-understanding-ownership/no-listing-12-immutable-and-mutable-not-allowed/output.txt}}
@@ -180,8 +180,8 @@ perché nessuno che stia leggendo i dati ha la possibilità di influenzare la
 lettura dei dati da parte di altri.
 
 Nota che lo _scope_ di un _reference_ inizia dal punto in cui viene introdotto e
-continua fino all'ultima volta che viene utilizzato. Ad esempio, questo codice
-verrà compilato perché l'ultimo utilizzo dei _reference_ immutabili avviene nel
+continua fino all’ultima volta che viene utilizzato. Ad esempio, questo codice
+verrà compilato perché l’ultimo utilizzo dei _reference_ immutabili avviene nel
 `println!`, prima che venga introdotto il _reference_ mutabile:
 
 ```rust
@@ -189,7 +189,7 @@ verrà compilato perché l'ultimo utilizzo dei _reference_ immutabili avviene ne
 ```
 
 Gli _scope_ dei _reference_ immutabili `r1` e `r2` terminano dopo il `println!`
-in cui sono stati utilizzati per l'ultima volta, ovvero prima che venga creato
+in cui sono stati utilizzati per l’ultima volta, ovvero prima che venga creato
 il _reference_ mutabile `r3`. Questi _scope_ non si sovrappongono, quindi questo
 codice è consentito: il compilatore capisce che il _reference_ non verrà più
 utilizzato in nessun altro punto prima della fine dello _scope_.
@@ -205,7 +205,7 @@ dati non sono quelli che pensavi fossero quando il programma è in esecuzione.
 Nei linguaggi con puntatori, è facile creare erroneamente un _puntatore
 pendente_, cioè un puntatore che fa riferimento a una posizione in memoria non
 più valido, perché quella memoria assegnata a quella variabile è stata liberata,
-ma non si è provveduto a cancellare anche il puntatore che per l'appunto rimane
+ma non si è provveduto a cancellare anche il puntatore che per l’appunto rimane
 _pendente_ puntando a qualcosa che non è più disponibile. In Rust, al contrario,
 il compilatore garantisce che i _reference_ non diverranno mai _pendenti_: se si
 ha un _reference_ ad alcuni dati, il compilatore ci impedirà di usare quel
@@ -222,13 +222,13 @@ segnalando un errore in fase di compilazione:
 
 </Listing>
 
-Ecco l'errore:
+Ecco l’errore:
 
 ```console
 {{#include ../listings/ch04-understanding-ownership/no-listing-14-dangling-reference/output.txt}}
 ```
 Questo messaggio di errore si riferisce a una funzionalità che non abbiamo
-ancora trattato: la longevità (_lifetime_ d'ora in poi). Parleremo in dettaglio
+ancora trattato: la longevità (_lifetime_ d’ora in poi). Parleremo in dettaglio
 della _lifetime_ nel Capitolo 10. Ma, se trascuriamo le parti relative alla
 _lifetime_, il messaggio contiene la chiave del motivo per cui questo codice è
 un problema:
@@ -238,10 +238,10 @@ this function's return type contains a borrowed value, but there is no value
 for it to be borrowed from
 
 (traduzione: il type di ritorno di questa funzione contiene un valore in prestito,
-ma non c'è alcun valore da cui prenderlo in prestito)
+ma non c’è alcun valore da cui prenderlo in prestito)
 ```
 
-Diamo un'occhiata più da vicino a cosa succede esattamente in ogni fase della
+Diamo un’occhiata più da vicino a cosa succede esattamente in ogni fase della
 nostra funzione `pendente`:
 
 <Listing file-name="src/main.rs">
@@ -252,7 +252,7 @@ nostra funzione `pendente`:
 
 </Listing>
 
-Poiché `s` viene creato all'interno di `pendente`, quando il codice di
+Poiché `s` viene creato all’interno di `pendente`, quando il codice di
 `pendente` sarà terminato, `s` e la memoria ad essa assegnata verranno
 rilasciate. Ma abbiamo cercato di restituire un _reference_ a questa memoria.
 Ciò significa che questo _reference_ punterebbe a una `String` non valida.
@@ -264,7 +264,7 @@ La soluzione è restituire direttamente la `String`:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-16-no-dangle/src/main.rs:here}}
 ```
 
-Questo funziona senza problemi: la _ownership_ viene spostata all'esterno e non
+Questo funziona senza problemi: la _ownership_ viene spostata all’esterno e non
 viene rilasciato nulla.
 
 ### Le Regole dei _Reference_
@@ -275,5 +275,5 @@ Ricapitoliamo quello che abbiamo detto sui _reference_:
 qualsiasi di _reference_ immutabili.
 - I _reference_ devono essere sempre validi.
 
-Successivamente, analizzeremo un'altra tipologia di _reference_: le _sezioni_
+Successivamente, analizzeremo un’altra tipologia di _reference_: le _sezioni_
 (_slice_ in inglese).

@@ -1,11 +1,11 @@
-## Definire un'_Enum_
+## Definire un’_Enum_
 
 Laddove le _struct_ ti danno un modo per raggruppare campi e dati correlati, per
 esempio un `Rettangolo` con i propri `larghezza` e `altezza`, le _enum_ ti danno
 un modo per indicare che un valore è uno di un insieme possibile di valori. Per
 esempio, potremmo voler dire che `Rettangolo` è una delle possibili forme che
 include anche `Cerchio` e `Triangolo`. Per farlo, Rust ci permette di codificare
-queste possibilità come un'_enum_.
+queste possibilità come un’_enum_.
 
 Esaminiamo una situazione che potremmo voler esprimere nel codice e vediamo
 perché le _enum_ sono utili e più appropriati delle _struct_ in questo caso.
@@ -21,9 +21,9 @@ struttura dati _enum_ appropriata perché un valore di _enum_ può essere solo u
 delle sue varianti. Sia i versione quattro sia i versione sei sono comunque
 fondamentalmente indirizzi IP, quindi dovrebbero essere trattati come dati dello
 stesso _type_ quando il codice andrà a gestire situazioni che si applicano agli
-indirizzi IP d'ogni genere.
+indirizzi IP d’ogni genere.
 
-Possiamo esprimere questo concetto nel codice definendo un'_enum_
+Possiamo esprimere questo concetto nel codice definendo un’_enum_
 `VersioneIndirizzoIp` e elencando le possibili tipologie che un indirizzo IP può
 essere: `V4` e `V6`. Queste sono le varianti dell’_enum_:
 
@@ -82,8 +82,8 @@ il valore `VersioneIndirizzoIp::V4` come suo `tipo` con l’indirizzo associato
 l’indirizzo `::1`. Abbiamo usato una _struct_ per raggruppare i valori `tipo` e
 `indirizzo`, così la variante è ora associata al valore.
 
-Tuttavia, rappresentare lo stesso concetto usando solo un'_enum_ è più conciso:
-invece di un'_enum_ dentro una _struct_, possiamo mettere i dati direttamente in
+Tuttavia, rappresentare lo stesso concetto usando solo un’_enum_ è più conciso:
+invece di un’_enum_ dentro una _struct_, possiamo mettere i dati direttamente in
 ogni variante dell’_enum_. Questa nuova definizione dell’_enum_ `IpAddr` indica
 che entrambe le varianti `V4` e `V6` avranno valori `String` associati:
 
@@ -99,7 +99,7 @@ Cioè, `IpAddr::V4()` è una chiamata di funzione che prende un argomento `Strin
 e ritorna un’istanza del _type_ `IpAddr`. Otteniamo automaticamente questa
 funzione costruttrice come risultato della definizione dell’_enum_.
 
-C’è un altro vantaggio nell’usare un'_enum_ invece di una _struct_: ogni
+C’è un altro vantaggio nell’usare un’_enum_ invece di una _struct_: ogni
 variante può avere _type_ e quantità diverse di dati associati. Gli indirizzi
 versione quattro, ad esempio, avranno sempre quattro componenti numeriche con
 valori tra 0 e 255. Se volessimo memorizzare gli indirizzi `V4` come quattro
@@ -136,7 +136,7 @@ enum IpAddr {
 
 Questo codice illustra che puoi mettere qualsiasi tipologia di dato dentro una
 variante di _enum_: stringhe, _type_ numerici o _struct_, per esempio. Puoi
-persino includere un'altra _enum_! Inoltre, i _type_ della libreria standard
+persino includere un’altra _enum_! Inoltre, i _type_ della libreria standard
 spesso non sono molto più complicati di quello che potresti creare tu.
 
 Nota che anche se la libreria standard contiene una definizione per `IpAddr`,
@@ -147,7 +147,7 @@ Parleremo più avanti dell’importazione dei _type_ nello _scope_ nel Capitolo 
 Diamo un’occhiata a un altro esempio di _enum_ nel Listato 6-2: questo ha una
 grande varietà di _type_ incorporati nelle sue varianti.
 
-<Listing number="6-2" caption="Un'_enum_ `Messaggio` le cui varianti memorizzano ciascuna quantità e _type_ diversi di valori">
+<Listing number="6-2" caption="Un’_enum_ `Messaggio` le cui varianti memorizzano ciascuna quantità e _type_ diversi di valori">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-02/src/main.rs:here}}
@@ -162,7 +162,7 @@ Questa _enum_ ha quattro varianti con _type_ diversi:
 - `Scrivi`: include una singola `String`
 - `CambiaColore`: include tre valori `i32`
 
-Definire un'_enum_ con varianti come quelle nel Listato 6-2 è simile a definire
+Definire un’_enum_ con varianti come quelle nel Listato 6-2 è simile a definire
 diversi _type_ di _struct_, eccetto che l’_enum_ non usa la parola chiave
 `struct` e tutte le varianti sono raggruppate sotto il _type_ `Messaggio`. Le
 seguenti _struct_ potrebbero contenere gli stessi dati che le varianti
@@ -191,12 +191,12 @@ chiamato il metodo. In questo esempio, abbiamo creato una variabile `m` che ha
 il valore `Messaggio::Scrivi(String::from("ciao"))`, e quello sarà `self` nel
 corpo del metodo `chiama` quando `m.chiama()` viene eseguito.
 
-Diamo un’occhiata a un'altra _enum_ nella libreria standard che è molto comune e
+Diamo un’occhiata a un’altra _enum_ nella libreria standard che è molto comune e
 utile: `Option`.
 
-### L'_Enum_ `Option`
+### L’_Enum_ `Option`
 
-Questa sezione esplora un caso di studio su `Option`, che è un'altra _enum_
+Questa sezione esplora un caso di studio su `Option`, che è un’altra _enum_
 definito dalla libreria standard. Il _type_ `Option` codifica lo scenario molto
 comune in cui un valore può essere qualcosa oppure niente.
 
@@ -209,7 +209,7 @@ programmazione.
 
 La progettazione dei linguaggi di programmazione è spesso pensata in termini
 delle funzionalità che includi, ma anche le funzionalità che escludi sono
-importanti. Rust non prevede l'uso di _null_ che molti altri linguaggi
+importanti. Rust non prevede l’uso di _null_ che molti altri linguaggi
 possiedono. _Null_ è un valore che significa che non c’è alcun valore. Nei
 linguaggi con _null_, le variabili possono essere sempre in uno dei due stati:
 _null_ o non-_null_.
@@ -225,7 +225,7 @@ Tony Hoare, l’inventore del _null_, disse:
 > inserire un _reference_ nullo, semplicemente perché era così facile da
 > implementare. Questo ha portato a innumerevoli errori, vulnerabilità e crash
 > di sistema, che probabilmente hanno causato un miliardo di dollari di dolore e
-> danni negli ultimi quarant'anni.
+> danni negli ultimi quarant’anni.
 
 Il problema con i valori _null_ è che se provi a usare un valore _null_ come se
 fosse un valore non-_null_, otterrai un errore di qualche tipo. Poiché questa
@@ -236,7 +236,7 @@ Tuttavia, il concetto che il _null_ cerca di esprimere è ancora utile: _null_ �
 un valore che è attualmente invalido o assente per qualche motivo.
 
 Il problema non è veramente il concetto ma l’implementazione. Di conseguenza,
-Rust non ha i _null_, ma ha un'_enum_ che può codificare il concetto di un
+Rust non ha i _null_, ma ha un’_enum_ che può codificare il concetto di un
 valore presente o assente. Questa _enum_ è `Option<T>`, ed è [definito dalla
 libreria standard][option]<!-- ignore --> come segue:
 
@@ -248,7 +248,7 @@ enum Option<T> {
 ```
 
 L’_enum_ `Option<T>` è così utile che è incluso nel _prelude_ (_preludio_ è
-l'insieme di funzionalità che Rust include di default in ogni programma fornite
+l’insieme di funzionalità che Rust include di default in ogni programma fornite
 dalla libreria standard); non è necessario portarlo nello _scope_
 esplicitamente. Le sue varianti sono anch’esse incluse nel _prelude_: puoi usare
 `Some` e `None` direttamente senza il prefisso `Option::`. L’_enum_ `Option<T>`

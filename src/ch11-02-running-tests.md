@@ -3,9 +3,9 @@
 Così come `cargo run` compila il tuo codice e poi esegue il binario risultante,
 `cargo test` compila il tuo codice in modalità test ed esegue il binario
 risultante. Il comportamento predefinito del binario prodotto da `cargo test` è
-quello di eseguire tutti i test in parallelo e di catturare l'output generato
-durante l'esecuzione dei test, impedendo la visualizzazione dell'output e
-rendendo più facile la lettura dell'output relativo ai risultati dei test. Puoi,
+quello di eseguire tutti i test in parallelo e di catturare l’output generato
+durante l’esecuzione dei test, impedendo la visualizzazione dell’output e
+rendendo più facile la lettura dell’output relativo ai risultati dei test. Puoi,
 tuttavia, specificare alcune opzioni della riga di comando per modificare questo
 comportamento predefinito.
 
@@ -25,9 +25,9 @@ Quando esegui più test, come impostazione predefinita questi vengono eseguiti i
 parallelo utilizzando i _thread_, il che significa che finiscono di essere
 eseguiti più velocemente e che ricevi più rapidamente un feedback. Poiché i test
 vengono eseguiti contemporaneamente, devi assicurarti che i tuoi test non
-dipendano l'uno dall'altro o da un qualsivoglia stato condiviso, incluso un
+dipendano l’uno dall’altro o da un qualsivoglia stato condiviso, incluso un
 ambiente condiviso, come la directory di lavoro corrente o le variabili
-d'ambiente.
+d’ambiente.
 
 Ad esempio, supponiamo che ogni test esegua del codice che crea un file su disco
 chiamato _test-output.txt_ e scrive alcuni dati in quel file. Poi ogni test
@@ -35,10 +35,10 @@ legge i dati in quel file e verifica che il file contiene un particolare valore,
 che è diverso in ogni test. Poiché i test vengono eseguiti contemporaneamente,
 un test potrebbe sovrascrivere il file nel tempo che intercorre tra la scrittura
 e la lettura del file da parte di un altro test. Il secondo test fallirà, non
-perché il codice non è corretto, ma perché i test hanno interferito l'uno con
-l'altro durante l'esecuzione in parallelo. Una soluzione può essere
-nell'assicurarsi che ogni test scriva in un file diverso; un'altra soluzione
-consiste nell'eseguire i test uno alla volta.
+perché il codice non è corretto, ma perché i test hanno interferito l’uno con
+l’altro durante l’esecuzione in parallelo. Una soluzione può essere
+nell’assicurarsi che ogni test scriva in un file diverso; un’altra soluzione
+consiste nell’eseguire i test uno alla volta.
 
 Se non vuoi eseguire i test in parallelo o se vuoi un controllo più preciso sul
 numero di _thread_ utilizzati, puoi usare il flag `--test-threads` e il numero
@@ -49,15 +49,15 @@ $ cargo test -- --test-threads=1
 ```
 
 Impostiamo il numero di _thread_ di test a `1`, indicando al programma di non
-utilizzare alcun parallelismo. L'esecuzione dei test con un solo _thread_
-richiederà più tempo rispetto all'esecuzione in parallelo, ma i test non
-interferiranno l'uno con l'altro se condividono lo stato.
+utilizzare alcun parallelismo. L’esecuzione dei test con un solo _thread_
+richiederà più tempo rispetto all’esecuzione in parallelo, ma i test non
+interferiranno l’uno con l’altro se condividono lo stato.
 
-### Mostrare l'Output Della Funzione
+### Mostrare l’Output Della Funzione
 
 Per impostazione predefinita, se un test viene superato, la libreria di test di
 Rust cattura tutto ciò che viene stampato sullo standard output. Ad esempio, se
-chiamiamo `println!` in un test e il test viene superato, non vedremo l'output
+chiamiamo `println!` in un test e il test viene superato, non vedremo l’output
 `println!` nel terminale; vedremo solo la riga che indica che il test è stato
 superato. Se un test fallisce, vedremo tutto ciò che è stato stampato sullo
 standard output con il resto del messaggio di fallimento.
@@ -81,13 +81,13 @@ Quando eseguiamo i test con `cargo test`, vedremo il seguente output:
 ```
 
 Nota che in nessun punto di questo output vediamo `Ho ricevuto il valore 4`, che
-viene stampato quando viene eseguito il test che passa. Quell'output è stato
-catturato. L'output del test che è fallito, `Ho ricevuto il valore 8`, appare
-nella sezione dell'output di riepilogo del test, che mostra anche la causa del
+viene stampato quando viene eseguito il test che passa. Quell’output è stato
+catturato. L’output del test che è fallito, `Ho ricevuto il valore 8`, appare
+nella sezione dell’output di riepilogo del test, che mostra anche la causa del
 fallimento del test.
 
 Se vogliamo vedere anche i valori stampati per i test superati, possiamo dire a
-Rust di mostrare anche l'output dei test riusciti con `--show-output`:
+Rust di mostrare anche l’output dei test riusciti con `--show-output`:
 
 ```console
 $ cargo test -- --show-output
@@ -102,7 +102,7 @@ Quando eseguiamo nuovamente i test del Listato 11-10 con il flag
 
 ### Eseguire un Sottoinsieme di Test in Base al Nome
 
-A volte, l'esecuzione di tutti i test che abbiamo definito può richiedere molto
+A volte, l’esecuzione di tutti i test che abbiamo definito può richiedere molto
 tempo. Se stai lavorando sul codice di una particolare area, potresti voler
 eseguire solo i test relativi a quel codice. Puoi scegliere quali test eseguire
 passando a `cargo test` il nome o i nomi dei test che vuoi eseguire come
@@ -137,7 +137,7 @@ eseguire solo quel test:
 ```
 
 Solo il test con il nome `cento` è stato eseguito; gli altri due test non
-corrispondevano a quel nome. L'output del test ci fa sapere che ci sono altri
+corrispondevano a quel nome. L’output del test ci fa sapere che ci sono altri
 test che non sono stati eseguiti mostrando `2 filtered out` alla fine.
 
 Non possiamo specificare più di un nome in questo modo; verrà utilizzato solo il
@@ -164,7 +164,7 @@ A volte alcuni test specifici possono richiedere molto tempo per essere
 eseguiti, quindi potresti volerli escludere durante la maggior parte delle
 esecuzioni di `cargo test`. Invece di elencare come argomenti tutti i test che
 vuoi eseguire, puoi annotare i test che richiedono molto tempo utilizzando
-l'attributo `ignore` per escluderli, come mostrato qui:
+l’attributo `ignore` per escluderli, come mostrato qui:
 
 <span class="filename">File: src/lib.rs</span>
 

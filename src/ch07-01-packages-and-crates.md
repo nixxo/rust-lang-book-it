@@ -5,7 +5,7 @@ _crate_.
 
 Un _crate_ è la quantità minima di codice che il compilatore Rust considera in
 un dato momento. Anche se esegui `rustc` invece di `cargo` e passi un singolo
-file di codice sorgente (come abbiamo fatto all'inizio in “Scrivere ed eseguire
+file di codice sorgente (come abbiamo fatto all’inizio in “Scrivere ed eseguire
 un programma Rust” nel Capitolo 1), il compilatore considera quel file come un
 _crate_. I _crate_ possono contenere moduli, e i moduli possono essere definiti
 in altri file che vengono compilati con il _crate_, come vedremo nelle sezioni
@@ -15,7 +15,7 @@ Un _crate_ può presentarsi in una delle due forme: un _crate_ _binario_ o un
 _crate_ _libreria_. I _crate_ _binari_ sono programmi che puoi compilare in un
 eseguibile che puoi eseguire, come un programma da riga di comando o un server.
 Ognuno deve avere una funzione chiamata `main` che definisce cosa succede quando
-l'eseguibile viene eseguito. Tutti i _crate_ che abbiamo creato finora sono
+l’eseguibile viene eseguito. Tutti i _crate_ che abbiamo creato finora sono
 stati _crate_ _binari_.
 
 I _crate_ _libreria_ non hanno una funzione `main`, e non si compilano in un
@@ -33,7 +33,7 @@ Privacy”][modules]<!-- ignore -->).
 
 Un _pacchetto_ (_package_) è un insieme di uno o più _crate_ che fornisce un
 insieme di funzionalità. Un pacchetto contiene un file _Cargo.toml_ che descrive
-come costruire quei _crate_. Cargo è anch'esso in realtà un pacchetto che
+come costruire quei _crate_. Cargo è anch’esso in realtà un pacchetto che
 contiene il _crate_ _binario_ per lo strumento da riga di comando che hai usato
 per costruire il tuo codice finora. Il pacchetto Cargo contiene anche un _crate
 libreria_ di cui il _crate_ _binario_ ha bisogno. Altri progetti possono
@@ -58,9 +58,9 @@ main.rs
 ```
 
 Dopo aver eseguito `cargo new mio-progetto`, usiamo `ls` per vedere cosa crea
-Cargo. Nella cartella `mio-progetto`, c'è un file _Cargo.toml_, che definisce un
-pacchetto. C'è anche una cartella _src_ che contiene _main.rs_. Apri
-_Cargo.toml_ nel tuo editor di testo e nota che non c'è menzione di
+Cargo. Nella cartella `mio-progetto`, c’è un file _Cargo.toml_, che definisce un
+pacchetto. C’è anche una cartella _src_ che contiene _main.rs_. Apri
+_Cargo.toml_ nel tuo editor di testo e nota che non c’è menzione di
 _src/main.rs_. Cargo segue una convenzione secondo cui _src/main.rs_ è la radice
 del _crate_ di un _crate_ _binario_ con lo stesso nome del pacchetto. Allo
 stesso modo, Cargo sa che se la cartella del pacchetto contiene _src/lib.rs_, il

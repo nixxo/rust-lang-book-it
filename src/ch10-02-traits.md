@@ -25,9 +25,9 @@ ripubblicazione o una risposta a un altro post.
 
 Vogliamo creare una libreria di aggregazione multimediale denominata
 `aggregatore` in grado di visualizzare riepiloghi dei dati che potrebbero essere
-memorizzati in un'istanza di `Articolo` o `PostSocial`. Per fare ciò,
+memorizzati in un’istanza di `Articolo` o `PostSocial`. Per fare ciò,
 abbiamo bisogno di un riepilogo per ciascun _type_ e richiederemo tale riepilogo
-chiamando un metodo `riassunto` su un'istanza. Il Listato 10-12 mostra la
+chiamando un metodo `riassunto` su un’istanza. Il Listato 10-12 mostra la
 definizione di un _trait_ pubblico `Sommario` che esprime questo comportamento.
 
 <Listing number="10-12" file-name="src/lib.rs" caption="Un _trait_ `Sommario` che consiste nel comportamento fornito da un metodo `riassunto`">
@@ -41,12 +41,12 @@ definizione di un _trait_ pubblico `Sommario` che esprime questo comportamento.
 Qui, dichiariamo un _trait_ usando la parola chiave `trait` e poi il nome del
 _trait_, che in questo caso è `Sommario`. Dichiariamo anche il _trait_ come
 `pub` in modo che anche i _crate_ che dipendono da questo _crate_ possano
-utilizzare questo _trait_, come vedremo in alcuni esempi. All'interno delle
+utilizzare questo _trait_, come vedremo in alcuni esempi. All’interno delle
 parentesi graffe, dichiariamo le firme dei metodi che descrivono i comportamenti
 dei _type_ che implementano questo _trait_, che in questo caso è `fn
 riassunto(&self) -> String`.
 
-Dopo la firma del metodo, invece di fornire un'implementazione tra parentesi
+Dopo la firma del metodo, invece di fornire un’implementazione tra parentesi
 graffe, utilizziamo un punto e virgola. Ogni _type_ che implementa questo
 _trait_ deve fornire il proprio comportamento personalizzato per il corpo del
 metodo. Il compilatore imporrà che qualsiasi _type_ che abbia il _trait_
@@ -59,10 +59,10 @@ elencate una per riga e ogni riga termina con un punto e virgola.
 
 Ora che abbiamo definito le firme desiderate dei metodi del _trait_ `Sommario`,
 possiamo implementarlo sui _type_ nel nostro aggregatore multimediale. Il
-Listato 10-13 mostra un'implementazione del _trait_ `Sommario` sulla _struct_
-`Articolo` che utilizza il titolo, l'autore e la posizione per creare il valore
+Listato 10-13 mostra un’implementazione del _trait_ `Sommario` sulla _struct_
+`Articolo` che utilizza il titolo, l’autore e la posizione per creare il valore
 di ritorno di `riassunto`. Per la _struct_ `PostSocial`, definiamo `riassunto`
-come il nome utente seguito dall'intero testo del post, supponendo che il
+come il nome utente seguito dall’intero testo del post, supponendo che il
 contenuto del post sia già limitato a 280 caratteri.
 
 <Listing number="10-13" file-name="src/lib.rs" caption="Implementazione del _trait_ `Sommario` sui _type_ `Articolo` e `PostSocial`">
@@ -77,7 +77,7 @@ Implementare un _trait_ su un _type_ è simile a come normalmente sono
 implementati i metodi. La differenza è che dopo `impl`, inseriamo il nome del
 _trait_ che vogliamo implementare, poi utilizziamo la parola chiave `for` e
 infine specifichiamo il nome del _type_ per cui vogliamo implementare il
-_trait_. All'interno del blocco `impl`, inseriamo le firme dei metodi definite
+_trait_. All’interno del blocco `impl`, inseriamo le firme dei metodi definite
 dalla definizione del _trait_. Invece di aggiungere un punto e virgola dopo ogni
 firma, utilizziamo le parentesi graffe e riempiamo il corpo del metodo con il
 comportamento specifico che vogliamo che i metodi del _trait_ abbiano per quel
@@ -86,7 +86,7 @@ particolare _type_.
 Ora che la libreria ha implementato il _trait_ `Sommario` su `Articolo` e
 `PostSocial`, gli utenti del _crate_ possono chiamare i metodi del _trait_ sulle
 istanze di `Articolo` e `PostSocial` nello stesso modo in cui chiamiamo i metodi
-normali. L'unica differenza è che l'utente deve includere il _trait_ nello
+normali. L’unica differenza è che l’utente deve includere il _trait_ nello
 _scope_ oltre ai _type_. Ecco un esempio di come un _crate_ binario potrebbe
 utilizzare il nostro _crate_ libreria `aggregatore`:
 
@@ -109,11 +109,11 @@ nostro _crate_ `aggregatore`, perché il _trait_ `Sommario` è locale al nostro
 _crate_ `aggregatore`.
 
 Ma non possiamo implementare _trait_ esterni su _type_ esterni. Ad esempio, non
-possiamo implementare il _trait_ `Display` su `Vec<T>` all'interno del nostro
+possiamo implementare il _trait_ `Display` su `Vec<T>` all’interno del nostro
 _crate_ `aggregatore` perché `Display` e `Vec<T>` sono entrambi definiti nella
 libreria standard e non sono locali al nostro _crate_ `aggregatore`. Questa
 restrizione fa parte di una proprietà chiamata _coerenza_ (_coherence_), e più
-specificamente della _regola dell'orfano_ (_orphan rule_), così chiamata perché
+specificamente della _regola dell’orfano_ (_orphan rule_), così chiamata perché
 il _type_ genitore non è presente. Questa regola garantisce che il codice di
 altri non possa _rompere_ il tuo codice e viceversa. Senza questa regola, due
 _crate_ potrebbero implementare lo stesso _trait_ per lo stesso _type_ e Rust
@@ -131,7 +131,7 @@ Nel Listato 10-14, specifichiamo una stringa predefinita per il metodo
 `riassunto` del _trait_ `Sommario` invece di definire solo la firma del metodo,
 come abbiamo fatto nel Listato 10-12.
 
-<Listing number="10-14" file-name="src/lib.rs" caption="Definizione di un _trait_ `Sommario` con un'implementazione predefinita del metodo `riassunto`">
+<Listing number="10-14" file-name="src/lib.rs" caption="Definizione di un _trait_ `Sommario` con un’implementazione predefinita del metodo `riassunto`">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-14/src/lib.rs:here}}
@@ -139,14 +139,14 @@ come abbiamo fatto nel Listato 10-12.
 
 </Listing>
 
-Per utilizzare un'implementazione predefinita per riassumere le istanze di
+Per utilizzare un’implementazione predefinita per riassumere le istanze di
 `Articolo`, specifichiamo un blocco `impl` vuoto con `impl Sommario for Articolo
 {}`.
 
 Anche se non definiamo più il metodo `riassunto` su `Articolo` direttamente,
-abbiamo fornito un'implementazione predefinita e specificato che `Articolo`
+abbiamo fornito un’implementazione predefinita e specificato che `Articolo`
 implementa il _trait_ `Sommario`. Di conseguenza, possiamo comunque chiamare il
-metodo `riassunto` su un'istanza di `Articolo`, in questo modo:
+metodo `riassunto` su un’istanza di `Articolo`, in questo modo:
 
 ```rust,ignore {{#rustdoc_include
 ../listings/ch10-generic-types-traits-and-lifetimes/no-listing-02-calling-default-impl/src/main.rs:here}}
@@ -154,19 +154,19 @@ metodo `riassunto` su un'istanza di `Articolo`, in questo modo:
 
 Questo codice stampa `Nuovo articolo disponibile! (Leggi di più...)`.
 
-La creazione di un'implementazione predefinita non richiede alcuna modifica
-all'implementazione di `Sommario` su `PostSocial` nel Listato 10-13. Il motivo è
-che la sintassi per sovrascrivere un'implementazione predefinita è la stessa
+La creazione di un’implementazione predefinita non richiede alcuna modifica
+all’implementazione di `Sommario` su `PostSocial` nel Listato 10-13. Il motivo è
+che la sintassi per sovrascrivere un’implementazione predefinita è la stessa
 della sintassi per implementare un metodo di un _trait_ che non ha
-un'implementazione predefinita.
+un’implementazione predefinita.
 
 Le implementazioni predefinite possono chiamare altri metodi nello stesso
-_trait_, anche se questi non hanno un'implementazione predefinita. In questo
+_trait_, anche se questi non hanno un’implementazione predefinita. In questo
 modo, un _trait_ può fornire molte funzionalità utili e richiedere agli
 implementatori di specificarne solo una piccola parte. Ad esempio, potremmo
 definire il _trait_ `Sommario` in modo che abbia un metodo `riassunto_autore` la
 cui implementazione è richiesta, e quindi definire un metodo `riassunto` con
-un'implementazione predefinita che chiama il metodo `riassunto_autore`:
+un’implementazione predefinita che chiama il metodo `riassunto_autore`:
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/no-listing-03-default-impl-calls-other-methods/src/lib.rs:here}}
@@ -180,7 +180,7 @@ Per utilizzare questa versione di `Sommario`, dobbiamo definire
 ```
 
 Dopo aver definito `riassunto_autore`, possiamo chiamare `riassunto` sulle
-istanze della _struct_ `PostSocial` e l'implementazione predefinita di
+istanze della _struct_ `PostSocial` e l’implementazione predefinita di
 `riassunto` chiamerà la definizione di `riassunto_autore` che abbiamo fornito.
 Poiché abbiamo implementato `riassunto_autore`, il _trait_ `Sommario` ci ha
 fornito il comportamento del metodo `riassunto` senza richiedere ulteriore
@@ -192,7 +192,7 @@ codice. Ecco come appare:
 
 Questo codice stampa `1 nuovo post: (Leggi di più su @horse_ebooks...)`.
 
-Nota che non è possibile chiamare l'implementazione predefinita da una
+Nota che non è possibile chiamare l’implementazione predefinita da una
 implementazione sovrascritta dello stesso metodo.
 
 ### Usare i _Trait_ come Parametri
@@ -230,7 +230,7 @@ pub fn notifica<T: Sommario>(elemento: &T) {
 }
 ```
 
-Questa forma più lunga è equivalente all'esempio della sezione precedente, ma è
+Questa forma più lunga è equivalente all’esempio della sezione precedente, ma è
 più dettagliata. Posizioniamo il vincolo di _trait_ con la dichiarazione del
 parametro di _type_ generico dopo i due punti e tra parentesi angolari.
 
@@ -244,7 +244,7 @@ ottiene in questo modo:
 pub fn notifica(elemento1: &impl Sommario, elemento2: &impl Sommario) {
 ```
 
-L'utilizzo di `impl Trait` è appropriato se vogliamo che questa funzione
+L’utilizzo di `impl Trait` è appropriato se vogliamo che questa funzione
 consenta a `elemento1` e `elemento2` di avere _type_ diversi (purché entrambi i
 _type_ implementino `Sommario`). Tuttavia, se vogliamo forzare entrambi i
 parametri ad avere lo stesso _type_, dobbiamo usare un vincolo di _trait_, in
@@ -281,12 +281,12 @@ Con i due vincoli di _trait_ specificati, il corpo di `notifica` può chiamare
 
 #### Specificare i Vincoli di _Trait_ con le Clausole `where`
 
-L'utilizzo di troppi vincoli di _trait_ ha i suoi svantaggi. Ogni generico ha i
+L’utilizzo di troppi vincoli di _trait_ ha i suoi svantaggi. Ogni generico ha i
 suoi vincoli di _trait_, quindi le funzioni con più parametri di _type_ generico
 possono contenere molte informazioni sui vincoli di _trait_ tra il nome della
 funzione e il suo elenco di parametri, rendendo la firma della funzione
 difficile da leggere. Per questo motivo, Rust ha una sintassi alternativa per
-specificare i vincoli di _trait_ all'interno di una clausola `where` dopo la
+specificare i vincoli di _trait_ all’interno di una clausola `where` dopo la
 firma della funzione. Quindi, invece di scrivere:
 
 ```rust,ignore
@@ -300,7 +300,7 @@ possiamo usare una clausola `where`, in questo modo:
 ```
 
 La firma di questa funzione è meno confusionaria: il nome della funzione,
-l'elenco dei parametri e il _type_ di ritorno sono vicini, come in una funzione
+l’elenco dei parametri e il _type_ di ritorno sono vicini, come in una funzione
 senza molti vincoli di _trait_.
 
 ### Restituire _Type_ che Implementano _Trait_
@@ -336,7 +336,7 @@ funzionerebbe:
 ```
 
 Restituire un `Articolo` o un `PostSocial` non è consentito a causa di
-restrizioni relative all'implementazione della sintassi `impl Trait` nel
+restrizioni relative all’implementazione della sintassi `impl Trait` nel
 compilatore. Spiegheremo come scrivere una funzione con questo comportamento
 nella sezione sugli [“Oggetti _Trait_”][using-trait-objects]<!-- ignore --> del
 Capitolo 18.
@@ -395,11 +395,11 @@ specificare al compilatore che desideriamo che il _type_ generico abbia un
 comportamento particolare. Il compilatore può quindi utilizzare le informazioni
 sui vincoli di _trait_ per verificare che tutti i _type_ concreti utilizzati nel
 nostro codice forniscano il comportamento corretto. Nei linguaggi a tipizzazione
-dinamica, otterremmo un errore durante l'esecuzione se chiamassimo un metodo su
+dinamica, otterremmo un errore durante l’esecuzione se chiamassimo un metodo su
 un _type_ che non lo definisce. Ma Rust sposta questi errori in fase di
 compilazione, quindi siamo costretti a correggere i problemi prima ancora che il
 nostro codice possa essere eseguito. Inoltre, non dobbiamo scrivere codice che
-verifichi il comportamento durante l'esecuzione, perché lo abbiamo già
+verifichi il comportamento durante l’esecuzione, perché lo abbiamo già
 verificato in fase di compilazione. Ciò migliora le prestazioni senza dover
 rinunciare alla flessibilità dei _type_ generici.
 

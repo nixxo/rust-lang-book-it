@@ -1,6 +1,6 @@
 ## Memorizzare Chiavi con Valori Associati in Mappe _Hash_
 
-L'ultima delle nostre collezioni comuni è la _mappa hash_. Il _type_ `HashMap<K,
+L’ultima delle nostre collezioni comuni è la _mappa hash_. Il _type_ `HashMap<K,
 V>` memorizza una mappatura di chiavi di _type_ `K` a valori di _type_ `V`
 utilizzando una _funzione di hashing_, che determina come queste chiavi e valori
 vengono inseriti in memoria. Molti linguaggi di programmazione supportano questo
@@ -8,14 +8,14 @@ tipo di struttura dati, ma spesso usano un nome diverso, come _hash_, _map_,
 _object_, _hash table_, _dictionary_ o _associative array_, solo per citarne
 alcuni.
 
-Le _mappe hash_ (_hash map_ d'ora in poi) sono utili quando si desidera
+Le _mappe hash_ (_hash map_ d’ora in poi) sono utili quando si desidera
 ricercare dati non utilizzando un indice, come è possibile con i vettori, ma
 utilizzando una chiave che può essere di qualsiasi _type_. Ad esempio, in una
 partita, è possibile tenere traccia del punteggio di ogni squadra in una _hash
 map_ in cui ogni chiave è il nome di una squadra e i valori sono il punteggio di
 ogni squadra. Dato il nome di una squadra, è possibile recuperarne il punteggio.
 
-In questa sezione esamineremo l'API di base delle _hash map_, ma molte altre
+In questa sezione esamineremo l’API di base delle _hash map_, ma molte altre
 funzionalità si nascondono nelle funzioni definite su `HashMap<K, V>` dalla
 libreria standard. Come sempre, consultate la documentazione della libreria
 standard per ulteriori informazioni.
@@ -42,7 +42,7 @@ aggiunte allo _scope_ dal _preludio_. Le _hash map_ hanno anche un supporto
 minore dalla libreria standard; ad esempio, non esiste una macro integrata per
 costruirle.
 
-Proprio come i vettori, le _hash map_ memorizzano i loro dati nell'_heap_.
+Proprio come i vettori, le _hash map_ memorizzano i loro dati nell’_heap_.
 Questa `HashMap` ha chiavi di _type_ `String` e valori di _type_ `i32`. Come i
 vettori, le _hash map_ sono omogenee: tutte le chiavi devono avere lo stesso
 _type_ e tutti i valori devono avere lo stesso _type_.
@@ -61,7 +61,7 @@ Possiamo ottenere un valore dalla _hash map_ fornendo la sua chiave al metodo
 </Listing>
 
 Qui, `punteggio` avrà il valore associato alla squadra Blu e il risultato sarà
-`10`. Il metodo `get` restituisce `Option<&V>`; se non c'è alcun valore per
+`10`. Il metodo `get` restituisce `Option<&V>`; se non c’è alcun valore per
 quella chiave nella _hash map_, `get` restituirà `None`. Questo programma
 gestisce `Option` chiamando `copied` per ottenere `Option<i32>` anziché
 `Option<&i32>`, quindi `unwrap_or` per impostare `punteggio` a zero se
@@ -146,12 +146,12 @@ valore e quindi eseguire le seguenti azioni: se la chiave esiste nella _hash
 map_, il valore esistente deve rimanere invariato; se la chiave non esiste,
 inserirla e assegnarle un valore.
 
-Le _hash map_ dispongono di un'API speciale per questo scopo, chiamata `entry`,
+Le _hash map_ dispongono di un’API speciale per questo scopo, chiamata `entry`,
 che accetta la chiave che si desidera controllare come parametro. Il valore
-restituito dal metodo `entry` è un'_enum_ chiamato `Entry` che rappresenta un
+restituito dal metodo `entry` è un’_enum_ chiamato `Entry` che rappresenta un
 valore che potrebbe esistere o meno. Supponiamo di voler verificare se la chiave
 per la squadra Gialla ha un valore associato. In caso contrario, vogliamo
-inserire il valore `50`, e lo stesso vale per la squadra Blu. Utilizzando l'API
+inserire il valore `50`, e lo stesso vale per la squadra Blu. Utilizzando l’API
 `entry`, il codice appare come nel Listato 8-24.
 
 <Listing number="8-24" caption="Utilizzo del metodo `entry` per inserire solo se la chiave non ha già un valore">
@@ -169,7 +169,7 @@ restituisce un _reference_ mutabile al nuovo valore. Questa tecnica è molto pi�
 pulita rispetto alla scrittura manuale della logica e, inoltre, si integra
 meglio con il _borrow checker_.
 
-L'esecuzione del codice nel Listato 8-24 stamperà `{"Gialla": 50, "Blu": 10}`.
+L’esecuzione del codice nel Listato 8-24 stamperà `{"Gialla": 50, "Blu": 10}`.
 La prima chiamata a `entry` inserirà la chiave per la squadra Gialla con il
 valore `50` perché la squadra Gialla non ha già un valore. La seconda chiamata a
 `entry` non modificherà la _hash map_ perché la squadra Blu ha già il valore
@@ -177,7 +177,7 @@ valore `50` perché la squadra Gialla non ha già un valore. La seconda chiamata
 
 #### Aggiornare un Valore in Base al Valore Precedente
 
-Un altro caso d'uso comune per le _hash map_ è cercare il valore di una chiave e
+Un altro caso d’uso comune per le _hash map_ è cercare il valore di una chiave e
 quindi aggiornarlo in base al valore precedente. Ad esempio, il Listato 8-25
 mostra un codice che conta quante volte ogni parola appare in un testo.
 Utilizziamo una _hash map_ con le parole come chiavi e incrementiamo il valore
@@ -196,14 +196,14 @@ a `0`.
 Questo codice stamperà `{"world": 2, "hello": 1, "wonderful": 1}`. Potresti
 vedere le stesse coppie chiave-valore stampate in un ordine diverso: ricorda
 che, come menzionato precedentemente in [“Accesso ai Valori in una _Hash
-Map_”][access]<!-- ignore -->, l'iterazione su una _hash map_ avviene in un
+Map_”][access]<!-- ignore -->, l’iterazione su una _hash map_ avviene in un
 ordine arbitrario.
 
 Il metodo `split_whitespace` restituisce un iteratore su _slice_, separate da
 spazi, del valore in `testo`. Il metodo `or_insert` restituisce un _reference_
 mutabile (`&mut V`) al valore della chiave specificata. Qui, memorizziamo quel
 _reference_ mutabile nella variabile `conteggio`, quindi per assegnare quel
-valore, dobbiamo prima de-referenziare `conteggio` usando l'asterisco (`*`). Il
+valore, dobbiamo prima de-referenziare `conteggio` usando l’asterisco (`*`). Il
 _reference_ mutabile esce dallo _scope_ alla fine del ciclo `for`, quindi tutte
 queste modifiche sono sicure e consentite dalle regole di prestito.
 
@@ -212,10 +212,10 @@ queste modifiche sono sicure e consentite dalle regole di prestito.
 Come impostazione predefinita, `HashMap` utilizza una funzione di _hashing_
 chiamata _SipHash_ che può fornire resistenza agli attacchi denial-of-service
 (DoS) che coinvolgono tabelle di hash[^siphash]<!-- ignore -->. Questo non è
-l'algoritmo di _hashing_ più veloce disponibile, ma è un buon compromesso in
+l’algoritmo di _hashing_ più veloce disponibile, ma è un buon compromesso in
 termini di maggiore sicurezza che ne deriva, nonostante il costo prestazionale
 derivato. Se si profila il codice e si scopre che la funzione di _hashing_
-predefinita è troppo lenta per i propri scopi, è possibile passare a un'altra
+predefinita è troppo lenta per i propri scopi, è possibile passare a un’altra
 funzione specificando un _hasher_ diverso. Un _hasher_ è un _type_ che
 implementa il _trait_ `BuildHasher`. Parleremo dei _trait_ e di come
 implementarli nel [Capitolo 10][traits]<!-- ignore -->. Non è necessario
@@ -235,16 +235,16 @@ risolvere:
 
 1. Dato un elenco di interi, usa un vettore e restituisci la mediana (quando
    ordinati, il valore in posizione centrale) e la moda (il valore che ricorre
-   più spesso; una _hash map_ sarà utile in questo caso) dell'elenco.
+   più spesso; una _hash map_ sarà utile in questo caso) dell’elenco.
 1. Converti delle stringhe in [pig latin][pig-latin]. La prima consonante di
    ogni parola viene spostata alla fine della parola e viene aggiunto _ay_,
    quindi _**p**rimo_ diventa _rimo-**p**ay_. Le parole che iniziano con una
    vocale hanno invece _hay_ aggiunto alla fine (_ananas_ diventa _ananas-hay_).
    Tieni a mente i dettagli sulla codifica UTF-8!
-1. Utilizzando _hash map_ e vettori, crea un'interfaccia testuale che consenta a
-   un utente di aggiungere i nomi dei dipendenti a un reparto di un'azienda; ad
+1. Utilizzando _hash map_ e vettori, crea un’interfaccia testuale che consenta a
+   un utente di aggiungere i nomi dei dipendenti a un reparto di un’azienda; ad
    esempio, “Aggiungi Sally a Ingegneria” o “Aggiungi Amir a Vendite”. Quindi,
-   consenti all'utente di recuperare un elenco di tutte le persone in un reparto
+   consenti all’utente di recuperare un elenco di tutte le persone in un reparto
    o di tutte le persone in azienda per reparto, ordinate alfabeticamente.
 
 La documentazione API della libreria standard descrive i metodi di vettori,

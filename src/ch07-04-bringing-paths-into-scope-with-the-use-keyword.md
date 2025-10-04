@@ -42,17 +42,17 @@ funzione non si compilerà.
 
 </Listing>
 
-L'errore del compilatore mostra che il collegamento non si applica più
-all'interno del modulo `cliente`:
+L’errore del compilatore mostra che il collegamento non si applica più
+all’interno del modulo `cliente`:
 
 ```console
 {{#include ../listings/ch07-managing-growing-projects/listing-07-12/output.txt}}
 ```
 
-Nota che c'è l'avviso che il `use` non è più usato nel suo _scope_! Per
-risolvere questo problema, sposta il `use` anche all'interno del modulo
+Nota che c’è l’avviso che il `use` non è più usato nel suo _scope_! Per
+risolvere questo problema, sposta il `use` anche all’interno del modulo
 `cliente`, o riferisciti al collegamento dal modulo genitore con
-`super::accoglienza` all'interno del modulo figlio `cliente`.
+`super::accoglienza` all’interno del modulo figlio `cliente`.
 
 ### Creare Percorsi `use` Idiomatici
 
@@ -79,7 +79,7 @@ chiaro che la funzione non è definita localmente riducendo comunque la
 ripetizione del _path_ completo. Il codice in Listato 7-13 non chiarisce dove
 sia definita `aggiungi_in_lista`.
 
-D'altra parte, quando portiamo `struct`, `enum` e altri elementi con `use`, è
+D’altra parte, quando portiamo `struct`, `enum` e altri elementi con `use`, è
 idiomatico specificare il _path_ completo. Il Listato 7-14 mostra il modo
 idiomatico per portare, ad esempio, `HashMap` della libreria standard nello
 _scope_ di un _crate binario_.
@@ -92,16 +92,16 @@ _scope_ di un _crate binario_.
 
 </Listing>
 
-Non c'è una ragione forte dietro questo uso: è semplicemente la convenzione che
+Non c’è una ragione forte dietro questo uso: è semplicemente la convenzione che
 è emersa, e le persone si sono abituate a leggere e scrivere codice Rust in
 questo modo.
 
-L'eccezione a questa idioma è se stiamo portando due elementi con lo stesso nome
+L’eccezione a questa idioma è se stiamo portando due elementi con lo stesso nome
 nello _scope_ con `use`, perché Rust non lo permette. Il Listato 7-15 mostra
 come portare due `Result` nello _scope_ che hanno lo stesso nome ma moduli
 genitore diversi, e come riferirsi a essi.
 
-<Listing number="7-15" file-name="src/lib.rs" caption="Portare due _type_ con lo stesso nome nello stesso _scope_ richiede l'uso dei loro moduli genitore">
+<Listing number="7-15" file-name="src/lib.rs" caption="Portare due _type_ con lo stesso nome nello stesso _scope_ richiede l’uso dei loro moduli genitore">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch07-managing-growing-projects/listing-07-15/src/lib.rs:here}}
@@ -116,7 +116,7 @@ quando avremmo usato `Result`.
 
 ### Fornire Nuovi Nomi con la Parola Chiave `as`
 
-C'è un'altra soluzione al problema di portare due _type_ con lo stesso nome
+C’è un’altra soluzione al problema di portare due _type_ con lo stesso nome
 nello stesso _scope_ con `use`: dopo il _path_, possiamo specificare `as` e un
 nuovo nome locale, o _alias_, per il _type_. Il Listato 7-16 mostra un altro
 modo di scrivere il codice del Listato 7-15 rinominando uno dei due _type_
@@ -132,7 +132,7 @@ modo di scrivere il codice del Listato 7-15 rinominando uno dei due _type_
 
 Nella seconda dichiarazione `use`, abbiamo scelto il nuovo _alias_ `IoResult`
 per il _type_ `std::io::Result`, che non entrerà in conflitto con il `Result` di
-`std::fmt` che abbiamo anch'esso portato nello _scope_. Sia il Listato 7-15 che
+`std::fmt` che abbiamo anch’esso portato nello _scope_. Sia il Listato 7-15 che
 il Listato 7-16 sono considerati idiomatici, quindi la scelta spetta a te!
 
 ### Riesportare Nomi con `pub use`
@@ -215,7 +215,7 @@ Membri della community Rust hanno reso molti pacchetti disponibili su
 implica gli stessi passi: elencarlo nel file _Cargo.toml_ del tuo pacchetto e
 usare `use` per portare elementi dai loro _crate_ nello _scope_.
 
-Nota che la libreria standard `std` è anch'essa un _crate_ esterno al nostro
+Nota che la libreria standard `std` è anch’essa un _crate_ esterno al nostro
 pacchetto. Poiché la libreria standard è distribuita con il linguaggio Rust, non
 dobbiamo modificare _Cargo.toml_ per includere `std`. Ma dobbiamo comunque
 riferirci ad essa con `use` per portare elementi da lì nello _scope_ del nostro
@@ -287,17 +287,17 @@ possiamo usare `self` nel _path_ nidificato, come mostrato nel Listato 7-20.
 
 Questa riga porta `std::io` e `std::io::Write` nello _scope_.
 
-### Importare Elementi con l'Operatore _Glob_
+### Importare Elementi con l’Operatore _Glob_
 
 Se vogliamo portare _tutti_ gli elementi pubblici definiti in un _path_ nello
-_scope_, possiamo specificare quel _path_ seguito dall'operatore _glob_ `*`:
+_scope_, possiamo specificare quel _path_ seguito dall’operatore _glob_ `*`:
 
 ```rust
 use std::collections::*;
 ```
 
 Questa dichiarazione `use` porta tutti gli elementi pubblici definiti in
-`std::collections` nello _scope_ corrente. Stai attento quando usi l'operatore
+`std::collections` nello _scope_ corrente. Stai attento quando usi l’operatore
 _glob_! Il _glob_ può rendere più difficile capire quali nomi sono nello _scope_
 e da dove proviene un nome usato nel tuo programma. Inoltre, se la dipendenza
 cambia le sue definizioni, ciò che hai importato cambia a sua volta, il che può
@@ -305,9 +305,9 @@ portare a errori del compilatore quando aggiorni la dipendenza se la dipendenza
 aggiunge una definizione con lo stesso nome di una tua definizione nello stesso
 _scope_, per esempio.
 
-L'operatore _glob_ viene spesso usato durante i test per portare tutto ciò che è
+L’operatore _glob_ viene spesso usato durante i test per portare tutto ciò che è
 sotto test nel modulo `tests`; parleremo di questo in [“Come Scrivere dei
-Test”][writing-tests]<!-- ignore --> nel Capitolo 11. L'operatore _glob_ è anche
+Test”][writing-tests]<!-- ignore --> nel Capitolo 11. L’operatore _glob_ è anche
 a volte usato come parte del _pattern_ _prelude_: vedi [la documentazione della
 libreria standard][prelude]<!-- ignore --> per ulteriori informazioni su quel
 _pattern_.

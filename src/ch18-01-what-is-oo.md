@@ -125,7 +125,7 @@ ereditato.
 L’altra ragione per usare l’ereditarietà riguarda il sistema dei _type_:
 permettere a un _type_ figlio di essere usato nei posti in cui si usa il _type_
 genitore. Questo si chiama anche _polimorfismo_, che significa poter sostituire
-oggetti diversi durante l'esecuzione se hanno certe caratteristiche in comune.
+oggetti diversi durante l’esecuzione se hanno certe caratteristiche in comune.
 
 > ### Polimorfismo
 >

@@ -4,7 +4,7 @@ In questa sezione, parleremo dei moduli e di altre parti del sistema dei moduli,
 in particolare dei _path_ (_percorsi_), che ti permettono di nominare gli
 elementi; la parola chiave `use` che porta un _path_ in _scope_; e la parola
 chiave `pub` per rendere pubblici gli elementi. Discuteremo anche della parola
-chiave `as`, dei pacchetti esterni e dell'operatore _glob_.
+chiave `as`, dei pacchetti esterni e dell’operatore _glob_.
 
 ### Scheda Informativa sui Moduli
 
@@ -22,16 +22,16 @@ promemoria su come funzionano i moduli.
 - **Dichiarare moduli**: Nel file di radice del _crate_, puoi dichiarare nuovi
   moduli; ad esempio, dichiari un modulo “giardino” con `mod giardino;`. Il
   compilatore cercherà il codice del modulo in questi luoghi:
-  - Sulla linea, all'interno delle parentesi graffe che sostituiscono il punto e
+  - Sulla linea, all’interno delle parentesi graffe che sostituiscono il punto e
     virgola dopo `mod giardino`
   - Nel file _src/giardino.rs_
   - Nel file _src/giardino/mod.rs_
 - **Dichiarare sottomoduli**: In qualsiasi file diverso dalla radice del
   _crate_, puoi dichiarare sottomoduli. Ad esempio, potresti dichiarare `mod
   verdure;` in _src/giardino.rs_. Il compilatore cercherà il codice del
-  sottomodulo all'interno della cartella nominata per il modulo genitore
+  sottomodulo all’interno della cartella nominata per il modulo genitore
   (_parent_) in questi luoghi:
-  - Sulla linea, direttamente dopo `mod verdure`, all'interno delle parentesi
+  - Sulla linea, direttamente dopo `mod verdure`, all’interno delle parentesi
     graffe invece del punto e virgola
   - Nel file _src/giardino/verdure.rs_
   - Nel file _src/giardino/verdure/mod.rs_
@@ -41,13 +41,13 @@ promemoria su come funzionano i moduli.
   utilizzando il _path_ per il codice. Ad esempio, un _type_ `Asparagi` nel
   modulo delle verdure del giardino si troverebbe al _path_
   `crate::giardino::verdure::Asparagi`.
-- **Privato vs. pubblico**: Il codice all'interno di un modulo è non
+- **Privato vs. pubblico**: Il codice all’interno di un modulo è non
   utilizzabile, _privato_, dai suoi moduli genitore come impostazione
   predefinita. Per rendere un modulo utilizzabile, _pubblico_, è necessario
   dichiaralo con `pub mod` invece di `mod`. Per rendere _pubblici_ anche gli
-  elementi all'interno di un modulo pubblico, usa `pub` prima delle loro
+  elementi all’interno di un modulo pubblico, usa `pub` prima delle loro
   dichiarazioni.
-- **La parola chiave `use`**: All'interno di uno _scope_, la parola chiave `use`
+- **La parola chiave `use`**: All’interno di uno _scope_, la parola chiave `use`
   crea scorciatoie per gli elementi per ridurre la ripetizione di lunghi _path_.
   In qualsiasi _scope_ che può fare riferimento a
   `crate::giardino::verdure::Asparagi`, puoi creare una scorciatoia con `use
@@ -55,7 +55,7 @@ promemoria su come funzionano i moduli.
   solo `Asparagi` per utilizzare quel _type_ nello _scope_.
 
 Ora creiamo un _crate_ _binario_ chiamato `cortile` che illustra queste regole.
-La cartella del _crate_, anch'essa chiamata _cortile_, contiene questi file e
+La cartella del _crate_, anch’essa chiamata _cortile_, contiene questi file e
 cartelle:
 
 ```text
@@ -91,7 +91,7 @@ in _src/giardino.rs_, che è:
 </Listing>
 
 Qui, `pub mod verdure;` significa che il codice in _src/giardino/verdure.rs_ è
-incluso anch'esso. Quel codice è:
+incluso anch’esso. Quel codice è:
 
 ```rust,noplayground,ignore
 {{#rustdoc_include ../listings/ch07-managing-growing-projects/quick-reference-example/src/giardino/verdure.rs}}
@@ -101,22 +101,22 @@ Ora entriamo nei dettagli di queste regole e dimostriamo come funzionano!
 
 ### Raggruppare Codice Correlato in Moduli
 
-I _moduli_ ci permettono di organizzare il codice all'interno di un _crate_ per
+I _moduli_ ci permettono di organizzare il codice all’interno di un _crate_ per
 migliore leggibilità e facilità di riutilizzo. I moduli ci consentono anche di
-controllare la _privacy_ degli elementi, poiché il codice all'interno di un
+controllare la _privacy_ degli elementi, poiché il codice all’interno di un
 modulo è privato come impostazione predefinita. Gli elementi privati sono
-dettagli di implementazione interni non disponibili per l'uso esterno. Possiamo
+dettagli di implementazione interni non disponibili per l’uso esterno. Possiamo
 scegliere di rendere pubblici i moduli e gli elementi al loro interno, il che li
 espone per consentire al codice esterno di utilizzarli e dipendere da essi.
 
 Come esempio, scriviamo un _crate_ _libreria_ che fornisce la funzionalità di un
 ristorante. Definiremo le firme delle funzioni ma lasceremo i loro corpi vuoti
-per concentrarci sull'organizzazione del codice piuttosto che
-sull'implementazione vera e propria.
+per concentrarci sull’organizzazione del codice piuttosto che
+sull’implementazione vera e propria.
 
 Nel settore della ristorazione, alcune “funzioni” di un ristorante sono chiamate
 _sala_ e altre _cucina_. La “sala” è dove si trovano i clienti; questo comprende
-dove l'oste riceve i clienti, i camerieri prendono ordini e pagamenti, e i
+dove l’oste riceve i clienti, i camerieri prendono ordini e pagamenti, e i
 baristi preparano drink. La “cucina” è dove gli chef e i cuochi lavorano in
 cucina, i lavapiatti puliscono e i manager svolgono lavori amministrativi.
 
@@ -135,8 +135,8 @@ la sezione _sala_.
 </Listing>
 
 Definiamo un modulo con la parola chiave `mod` seguita dal nome del modulo (in
-questo caso, `sala`). Il corpo del modulo va quindi all'interno delle parentesi
-graffe. All'interno dei moduli, possiamo inserire altri moduli, come in questo
+questo caso, `sala`). Il corpo del modulo va quindi all’interno delle parentesi
+graffe. All’interno dei moduli, possiamo inserire altri moduli, come in questo
 caso con i moduli `accoglienza` e `servizio`. I moduli possono anche contenere
 definizioni per altri elementi, come _struct_, _enum_, costanti, _trait_ e, come
 nel Listato 7-1, funzioni.
@@ -153,9 +153,9 @@ radici del _crate_. Il motivo del loro nome è che i contenuti di uno di questi
 due file formano un modulo chiamato `crate` alla radice della struttura del
 modulo del _crate_, nota come _albero dei moduli_ (_module tree_).
 
-Il Listato 7-2 mostra l'albero dei moduli per la struttura nel Listato 7-1.
+Il Listato 7-2 mostra l’albero dei moduli per la struttura nel Listato 7-1.
 
-<Listing number="7-2" caption="L'albero dei moduli per il codice nel Listato 7-1">
+<Listing number="7-2" caption="L’albero dei moduli per il codice nel Listato 7-1">
 
 ```text
 crate
@@ -171,16 +171,16 @@ crate
 
 </Listing>
 
-Questo albero mostra come alcuni dei moduli si annidano all'interno di altri
-moduli; ad esempio, `accoglienza` si annida all'interno di `sala`. L'albero
+Questo albero mostra come alcuni dei moduli si annidano all’interno di altri
+moduli; ad esempio, `accoglienza` si annida all’interno di `sala`. L’albero
 mostra anche che alcuni moduli sono _fratelli_, il che significa che sono
 definiti nello stesso modulo; `accoglienza` e `servizio` sono fratelli definiti
-all'interno di `sala`. Se il modulo A è contenuto all'interno del modulo B,
+all’interno di `sala`. Se il modulo A è contenuto all’interno del modulo B,
 diciamo che il modulo A è il _figlio_ del modulo B e che il modulo B è il
-_genitore_ del modulo A. Nota che l'intero albero dei moduli è radicato sotto il
+_genitore_ del modulo A. Nota che l’intero albero dei moduli è radicato sotto il
 modulo implicito chiamato `crate`.
 
-L'albero dei moduli potrebbe ricordarti l'albero delle cartelle del filesystem
+L’albero dei moduli potrebbe ricordarti l’albero delle cartelle del filesystem
 sul tuo computer; questo è un confronto molto appropriato! Proprio come le
 cartelle in un filesystem, usi i moduli per organizzare il tuo codice. E proprio
 come i file in una cartella, abbiamo bisogno di un modo per trovare i nostri

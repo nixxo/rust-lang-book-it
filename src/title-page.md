@@ -3,11 +3,11 @@
 _di Steve Klabnik, Carol Nichols, and Chris Krycho, con contributi della
 Communiy Rust_
 
-Questa versione del testo presuppone l'utilizzo di Rust 1.85.0 (rilasciato il
+Questa versione del testo presuppone l’utilizzo di Rust 1.85.0 (rilasciato il
 2025-02-17) o successivo con `edition = "2024"` nel file *Cargo.toml* di tutti i
-progetti per configurarli in modo da utilizzare gli idiomi dell'edizione 2024 di
+progetti per configurarli in modo da utilizzare gli idiomi dell’edizione 2024 di
 Rust. Consulta la sezione [“Installazione” del Capitolo 1][install]<!-- ignore
---> per installare o aggiornare Rust, e vedi l'[Appendice E][appendix-e]<!-- ignore --> per informaszioni sulle varie edizioni.
+--> per installare o aggiornare Rust, e vedi l’[Appendice E][appendix-e]<!-- ignore --> per informaszioni sulle varie edizioni.
 
 Il libro originale in inglese in formato HTML si trova su
 [https://doc.rust-lang.org/stable/book/](https://doc.rust-lang.org/stable/book/)
@@ -24,7 +24,7 @@ Starch Press][nsprust].
 [nsprust]: https://nostarch.com/rust-programming-language-3rd-edition
 [translations]: appendix-06-translation.html
 
-> **🚨 Vuoi provare un'esperienza di apprendimento più interattiva? Prova una
+> **🚨 Vuoi provare un’esperienza di apprendimento più interattiva? Prova una
 > versione modificata del Libro (in inglese), con aggiunta di quiz,
 > sottolineature, visualizzazioni e molto altro**:
 > <https://rust-book.cs.brown.edu>

@@ -15,7 +15,7 @@ metodi diversi. Con il tempo, il team ha scoperto che i sistemi di _ownership_ e
 dei _type_ sono un potente insieme di strumenti che aiutano a gestire la
 sicurezza della memoria _e_ i problemi di concorrenza! Sfruttando la _ownership_
 e il controllo dei _type_, molti errori di concorrenza sono rilevati in fase di
-compilazione in Rust piuttosto che presentarsi durante l'esecuzione. Pertanto,
+compilazione in Rust piuttosto che presentarsi durante l’esecuzione. Pertanto,
 invece di farti perdere molto tempo a cercare di riprodurre le circostanze
 esatte in cui si verifica un bug di concorrenza in fase di esecuzione, il codice
 errato non verrà compilato e presenterà un errore che spiega il problema. Di
@@ -39,7 +39,7 @@ sottoinsieme di soluzioni possibili è una strategia ragionevole per i linguaggi
 di livello superiore, perché un linguaggio di livello superiore promette di
 trarre vantaggio dalla rinuncia a un po' di controllo per ottenere astrazioni.
 Tuttavia, i linguaggi di livello inferiore devono fornire la soluzione con le
-migliori prestazioni in ogni situazione e hanno meno astrazioni sull'hardware.
+migliori prestazioni in ogni situazione e hanno meno astrazioni sull’hardware.
 Per questo motivo, Rust offre una varietà di strumenti per modellare i problemi
 in qualsiasi modo sia appropriato per la tua situazione e i tuoi requisiti.
 
@@ -51,5 +51,5 @@ Ecco gli argomenti che tratteremo in questo capitolo:
 - Concorrenza con _stato condiviso_ (_Shared-state_ concurrency), in cui più
   _thread_ hanno accesso ad alcuni dati
 - I _trait_ `Sync` e `Send`, che estendono le garanzie di concorrenza di Rust ai
-  _type_ definiti dall'utente oltre che ai _type_ forniti dalla libreria
+  _type_ definiti dall’utente oltre che ai _type_ forniti dalla libreria
   standard

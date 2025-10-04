@@ -11,7 +11,7 @@ mantenere il suo stato, che può essere uno stato "bozza", "in revisione" o
 Gli oggetti stato condividono la funzionalità: in Rust, ovviamente, usiamo
 _struct_ e _trait_ invece di oggetti e ereditarietà. Ogni oggetto stato è
 responsabile del proprio comportamento e di decidere quando deve cambiare stato.
-Il valore che contiene l'oggetto stato non sa nulla del comportamento specifico
+Il valore che contiene l’oggetto stato non sa nulla del comportamento specifico
 degli stati o di quando avvengono le transizioni tra stati.
 
 Il vantaggio dello _state pattern_ è che, quando cambiano i requisiti del
@@ -47,7 +47,7 @@ esperienza solo con OOP. Confronteremo le due soluzioni per capire i compromessi
 di progettare in Rust in modo diverso da altri linguaggi.
 
 Il Listato 18-11 mostra questo flusso di lavoro in forma di codice: un esempio
-dell'uso dell'API che implementeremo nel _crate_ `blog`. Ancora non si compila
+dell’uso dell’API che implementeremo nel _crate_ `blog`. Ancora non si compila
 perché il _crate_ `blog` non è implementato.
 
 <Listing number="18-11" file-name="src/main.rs" caption="Codice che dimostra il comportamento che vogliamo per il _crate_ `blog`">
@@ -58,29 +58,29 @@ perché il _crate_ `blog` non è implementato.
 
 </Listing>
 
-Vogliamo permettere all'utente di creare una nuova bozza con `Post::new`.
+Vogliamo permettere all’utente di creare una nuova bozza con `Post::new`.
 Vogliamo permettere di aggiungere testo al post. Se proviamo a richiedere subito
-il contenuto del post, prima dell'approvazione, non dobbiamo ricevere alcun
+il contenuto del post, prima dell’approvazione, non dobbiamo ricevere alcun
 testo perché il post è ancora una bozza. Abbiamo aggiunto `assert_eq!` come
 dimostrazione, che in un test potrebbe verificare che il contenuto di una bozza
 sia vuoto, ma non scriveremo test in questo esempio.
 
 Vogliamo poi abilitare la richiesta di revisione, e `contenuto` deve restituire
-una stringa vuota durante l'attesa di revisione. Quando il post riceve
-l'approvazione, viene pubblicato e il testo sarà disponibile quando chiamiamo
+una stringa vuota durante l’attesa di revisione. Quando il post riceve
+l’approvazione, viene pubblicato e il testo sarà disponibile quando chiamiamo
 `contenuto`.
 
-Nota che l'unico _type_ con cui interagiamo dal _crate_ è `Post`. Questo _type_
+Nota che l’unico _type_ con cui interagiamo dal _crate_ è `Post`. Questo _type_
 userà lo _state pattern_ e conterrà un valore che sarà uno tra tre oggetti
-stato: bozza, revisione o pubblicato. Il passaggio da uno stato all'altro sarà
+stato: bozza, revisione o pubblicato. Il passaggio da uno stato all’altro sarà
 gestito internamente da `Post`. Gli stati cambiano rispondendo ai metodi
-chiamati dall'utente su `Post`, ma l'utente non gestisce direttamente le
-transizioni. Inoltre, l'utente non può sbagliare gli stati, per esempio
+chiamati dall’utente su `Post`, ma l’utente non gestisce direttamente le
+transizioni. Inoltre, l’utente non può sbagliare gli stati, per esempio
 pubblicando senza revisione.
 
 #### Definire `Post` e Creare una Nuova Istanza
 
-Cominciamo l'implementazione della libreria! Sappiamo di aver bisogno di una
+Cominciamo l’implementazione della libreria! Sappiamo di aver bisogno di una
 _struct_ pubblica `Post` che tenga un contenuto, quindi partiamo dalla
 definizione della _struct_ e da una funzione associata pubblica `new` per creare
 istanze di `Post`, come mostrato nel Listato 18-12. Creeremo anche un _trait_
@@ -104,7 +104,7 @@ tutti `Stato`. Per ora il _trait_ è vuoto; inizieremo con `Bozza` perché è lo
 stato iniziale del post.
 
 Quando creiamo un nuovo `Post`, impostiamo il campo `stato` con `Some` che
-contiene una `Box` che punta a un'istanza di `Bozza`. Così un nuovo `Post`
+contiene una `Box` che punta a un’istanza di `Bozza`. Così un nuovo `Post`
 inizia sempre come bozza. Poiché il campo `stato` è privato, non si può creare
 un `Post` in altri stati! La funzione `Post::new` imposta il campo `contenuto`
 come una `String` vuota.
@@ -149,7 +149,7 @@ definizione.
 
 </Listing>
 
-Con l'aggiunta del metodo `contenuto`, tutto nel Listato 18-11 fino alla linea 7
+Con l’aggiunta del metodo `contenuto`, tutto nel Listato 18-11 fino alla linea 7
 funziona come previsto.
 
 #### Richiedere una Revisione Cambia lo Stato del Post
@@ -180,7 +180,7 @@ una `Box` che contiene il _type_. Questa sintassi prende _ownership_ di
 `Post` possa trasformarsi in un nuovo stato.
 
 Per consumare il vecchio stato, il metodo `richiedi_revisione` prende
-_ownership_ del valore di stato. Qui entra in gioco l'`Option` nel campo `stato`
+_ownership_ del valore di stato. Qui entra in gioco l’`Option` nel campo `stato`
 di `Post`: chiamiamo il metodo `take` per prendere il valore `Some` dal campo
 `stato` e lasciare un `None` al suo posto, perché Rust non permette campi non
 popolati nelle _struct_. Questo ci permette di spostare il valore `stato` fuori
@@ -203,7 +203,7 @@ Qui si vedono i vantaggi dello _state pattern_: il metodo `richiedi_revisione`
 su `Post` è lo stesso qualunque sia il valore di `stato`. Ogni stato gestisce le
 sue regole.
 
-Lasciamo il metodo `contenuto` su `Post` così com'è, che restituisce una _slice_
+Lasciamo il metodo `contenuto` su `Post` così com’è, che restituisce una _slice_
 di stringa vuota. Ora possiamo avere un `Post` sia nello stato `AttesaRevisione`
 sia nello stato `Bozza`, ma vogliamo lo stesso comportamento in entrambi gli
 stati. Il Listato 18-11 funziona ora fino alla riga 10!
@@ -246,13 +246,13 @@ come mostrato nel Listato 18-17.
 
 </Listing>
 
-Poiché l'obiettivo è tenere tutte queste regole dentro le _struct_ che
+Poiché l’obiettivo è tenere tutte queste regole dentro le _struct_ che
 implementano `Stato`, chiamiamo un metodo `contenuto` sul valore in `stato`
-passando l'istanza del post (`self`) come argomento. Quindi restituiamo il
-valore restituito dall'uso del metodo `contenuto` sul valore `stato`.
+passando l’istanza del post (`self`) come argomento. Quindi restituiamo il
+valore restituito dall’uso del metodo `contenuto` sul valore `stato`.
 
-Chiamiamo il metodo `as_ref` sull'`Option` perché vogliamo un _reference_ al
-valore dentro l'`Option` piuttosto che la _ownership_ del valore. Poiché `stato`
+Chiamiamo il metodo `as_ref` sull’`Option` perché vogliamo un _reference_ al
+valore dentro l’`Option` piuttosto che la _ownership_ del valore. Poiché `stato`
 è un `Option<Box<dyn Stato>>`, chiamando `as_ref` otteniamo un `Option<&Box<dyn
 Stato>>`. Se non chiamassimo `as_ref`, otterremmo un errore perché non possiamo
 spostare `stato` fuori dal prestito `&self` del parametro funzione.
@@ -279,7 +279,7 @@ Listato 18-18.
 
 </Listing>
 
-Aggiungiamo un'implementazione di default per il metodo `contenuto` che
+Aggiungiamo un’implementazione di default per il metodo `contenuto` che
 restituisce una _slice_ di stringa vuota. Ciò significa che non dobbiamo
 implementare `contenuto` nelle _struct_ `Bozza` e `AttesaRevisione`. La _struct_
 `Pubblicato` sovrascriverà il metodo `contenuto` e restituirà il valore in
@@ -290,18 +290,18 @@ determina il contenuto di `Post` sfuma i confini tra la responsabilità di
 Nota che abbiamo bisogno di annotazioni di _lifetime_ su questo metodo, come
 discusso nel Capitolo 10. Stiamo prendendo un _reference_ a un `post` come
 argomento e restituiamo un _reference_ ad una parte di quel `post`, quindi la
-longevità del _reference_ restituito è legata alla longevità dell'argomento
+longevità del _reference_ restituito è legata alla longevità dell’argomento
 `post`.
 
 E abbiamo finito: tutto il Listato 18-11 ora funziona! Abbiamo implementato lo _state pattern_ con le regole del flusso di lavoro del blog. La logica relativa alle regole vive negli oggetti di stato invece di essere sparsa in `Post`.
 
-> ### Perché Non un'_enum_?
+> ### Perché Non un’_enum_?
 >
 > Potresti chiederti perché non abbiamo usato un `enum` con i diversi possibili
 > stati del post come varianti. È certamente una soluzione possibile; provalo e
 > confronta i risultati finali per vedere cosa preferisci! Uno svantaggio
-> dell'uso di un'_enum_ è che ogni posto che verifica il valore dell'_enum_ avrà
-> bisogno di un'espressione `match` o simile per gestire ogni variante
+> dell’uso di un’_enum_ è che ogni posto che verifica il valore dell’_enum_ avrà
+> bisogno di un’espressione `match` o simile per gestire ogni variante
 > possibile. Questo potrebbe diventare più ripetitivo rispetto a questa
 > soluzione con un oggetto _trait_.
 
@@ -312,9 +312,9 @@ agli oggetti per incapsulare i diversi tipi di comportamento che un post
 dovrebbe avere in ogni stato. I metodi su `Post` non sanno nulla dei vari
 comportamenti. Organizzando il codice in questo modo, dobbiamo guardare in un
 solo posto per conoscere i diversi modi in cui un post pubblicato può
-comportarsi: l'implementazione del _trait_ `Stato` sulla _struct_ `Pubblicato`.
+comportarsi: l’implementazione del _trait_ `Stato` sulla _struct_ `Pubblicato`.
 
-Se creassimo un'implementazione alternativa che non usasse lo _state pattern_,
+Se creassimo un’implementazione alternativa che non usasse lo _state pattern_,
 potremmo invece usare espressioni `match` nei metodi su `Post` o anche nel
 codice `main` che verifica lo stato del post e cambia comportamento in quei
 posti. Ciò significherebbe dover guardare in più posti per capire tutte le
@@ -325,7 +325,7 @@ bisogno di espressioni `match`, e per aggiungere un nuovo stato dovremmo solo
 aggiungere una nuova _struct_ e implementare i metodi del _trait_ su quella
 _struct_ in un solo punto.
 
-L'implementazione usando lo _state pattern_ è facile da estendere per aggiungere
+L’implementazione usando lo _state pattern_ è facile da estendere per aggiungere
 più funzionalità. Per vedere la semplicità di mantenere codice che usa lo _state
 pattern_, prova ad implementare qualcuna di queste proposte:
 
@@ -334,7 +334,7 @@ pattern_, prova ad implementare qualcuna di queste proposte:
 - Richiedi due chiamate al metodo `approva` prima che lo stato possa essere
   cambiato in `Pubblicato`.
 - Permetti agli utenti di aggiungere testo al contenuto testo solo quando il
-  post è nello stato `Bozza`. Suggerimento: fai in modo che l'oggetto stato sia
+  post è nello stato `Bozza`. Suggerimento: fai in modo che l’oggetto stato sia
   responsabile di cosa può cambiare del contenuto ma non responsabile di
   modificare `Post`.
 
@@ -342,7 +342,7 @@ Un lato negativo dello _state pattern_ è che, siccome gli stati implementano le
 transizioni tra stati, alcuni stati sono accoppiati tra loro. Se aggiungessimo
 un altro stato tra `AttesaRevisione` e `Pubblicato`, come `Programmato`,
 dovremmo modificare il codice in `AttesaRevisione` per passare a `Programmato`.
-Sarebbe meno lavoro se `AttesaRevisione` non dovesse cambiare con l'aggiunta di
+Sarebbe meno lavoro se `AttesaRevisione` non dovesse cambiare con l’aggiunta di
 un nuovo stato, ma ciò significherebbe passare a un altro modello di design.
 
 Un altro lato negativo è che abbiamo duplicato un po' di logica. Per eliminare
@@ -356,7 +356,7 @@ regole di compatibilità `dyn` menzionate prima.)
 Altra duplicazione è nelle implementazioni simili dei metodi
 `richiedi_revisione` e `approva` su `Post`. Entrambi i metodi usano
 `Option::take` con il campo `stato` di `Post`, e se `stato` è `Some`, delegano
-all'implementazione del metodo con lo stesso nome del valore incapsulato e
+all’implementazione del metodo con lo stesso nome del valore incapsulato e
 impostano il nuovo valore del campo `stato` al risultato. Se avessimo molti
 metodi su `Post` che seguono questo schema, potremmo considerare di definire una
 macro per eliminare la ripetizione (vedi [“Macro”][macros]<!-- ignore --> nel
@@ -411,10 +411,10 @@ stiamo spostando la codifica dello stato nei _type_ delle _struct_. La _struct_
 `Post` rappresenta un post pubblicato e ha un metodo `contenuto` che restituisce
 il contenuto.
 
-Abbiamo ancora una funzione `Post::new`, ma invece di restituire un'istanza di
-`Post`, restituisce un'istanza di `PostBozza`. Poiché `contenuto` è privato e
+Abbiamo ancora una funzione `Post::new`, ma invece di restituire un’istanza di
+`Post`, restituisce un’istanza di `PostBozza`. Poiché `contenuto` è privato e
 non ci sono funzioni che restituiscono `Post`, al momento non è possibile creare
-un'istanza di `Post`.
+un’istanza di `Post`.
 
 La _struct_ `PostBozza` ha un metodo `aggiungi_testo`, quindi possiamo
 aggiungere testo a `contenuto` come prima, ma nota che `PostBozza` non ha un
@@ -426,7 +426,7 @@ errore di compilazione.
 Come facciamo allora a ottenere un post pubblicato? Vogliamo imporre la regola
 che un post bozza deve essere revisionato e approvato prima di poter essere
 pubblicato. Un post nello stato di attesa di revisione non dovrebbe comunque
-mostrare contenuti. Implementiamo questi vincoli aggiungendo un'altra _struct_,
+mostrare contenuti. Implementiamo questi vincoli aggiungendo un’altra _struct_,
 `PostAttesaRevisione`, definendo il metodo `richiedi_revisione` su `PostBozza`
 che restituisce un `PostAttesaRevisione` e un metodo `approva` su
 `PostAttesaRevisione` che restituisce un `Post`, come mostrato nel Listato
@@ -446,9 +446,9 @@ rispettivamente in un `PostAttesaRevisione` e un `Post` pubblicato. In questo
 modo non avremo istanze residue di `PostBozza` dopo aver chiamato
 `richiedi_revisione` su di loro, e così via. La _struct_ `PostAttesaRevisione`
 non ha un metodo `contenuto` definito, quindi tentare di leggere il suo
-contenuto causa un errore di compilazione, come per `PostBozza`. Poiché l'unico
-modo per ottenere un'istanza di `Post` pubblicato che ha un metodo `contenuto`
-definito è chiamare `approva` su un `PostAttesaRevisione`, e l'unico modo per
+contenuto causa un errore di compilazione, come per `PostBozza`. Poiché l’unico
+modo per ottenere un’istanza di `Post` pubblicato che ha un metodo `contenuto`
+definito è chiamare `approva` su un `PostAttesaRevisione`, e l’unico modo per
 ottenere un `PostAttesaRevisione` è chiamare `richiedi_revisione` su un
 `PostBozza`, abbiamo ora codificato il flusso di lavoro del blog col sistema dei
 _type_.
@@ -479,8 +479,8 @@ compilazione! Questo assicura che alcuni bug, come la visualizzazione del
 contenuto di un post non pubblicato, vengano scoperti prima che arrivino in
 produzione.
 
-Prova a realizzare i compiti suggeriti all'inizio di questa sezione sul _crate_
-`blog` così com'è dopo il Listato 18-21 per vedere cosa pensi del design di
+Prova a realizzare i compiti suggeriti all’inizio di questa sezione sul _crate_
+`blog` così com’è dopo il Listato 18-21 per vedere cosa pensi del design di
 questa versione del codice. Nota che alcune attività potrebbero essere già
 implementate con questo design.
 
@@ -500,14 +500,14 @@ Indipendentemente dal fatto che tu pensi che Rust sia un linguaggio orientato
 agli oggetti dopo aver letto questo capitolo, ora sai che puoi usare oggetti
 _trait_ per ottenere alcune funzionalità orientate agli oggetti in Rust. Il
 _dynamic dispatch_ può dare al tuo codice un po' di flessibilità in cambio di
-una piccola perdita in prestazioni durante l'esecuzione. Puoi usare questa
+una piccola perdita in prestazioni durante l’esecuzione. Puoi usare questa
 flessibilità per implementare modelli orientati agli oggetti che possono aiutare
 nella manutenibilità del tuo codice. Rust ha anche altre caratteristiche, come
 la _ownership_, che i linguaggi orientati agli oggetti non hanno. Un modello
 orientato agli oggetti non sarà sempre il modo migliore per sfruttare i punti di
-forza di Rust, ma è un'opzione disponibile.
+forza di Rust, ma è un’opzione disponibile.
 
-In seguito parleremo di _pattern_, un'altra delle caratteristiche di Rust che
+In seguito parleremo di _pattern_, un’altra delle caratteristiche di Rust che
 consente molta flessibilità. Li abbiamo visti brevemente in precedenza nel
 libro, ma non ne abbiamo ancora visto tutto il potenziale. Cominciamo!
 

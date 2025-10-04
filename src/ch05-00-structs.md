@@ -1,6 +1,6 @@
 # Utilizzare le _Struct_ per Strutturare Dati Correlati
 
-Una _struttura_ (_struct_ d'ora in poi) è un tipo di dati personalizzato che ti
+Una _struttura_ (_struct_ d’ora in poi) è un tipo di dati personalizzato che ti
 permette di raggruppare e denominare più valori correlati che formano un gruppo
 significativo. Se sei familiare con un linguaggio orientato agli oggetti, una
 _struct_ è simile agli attributi di dati di un oggetto. In questo capitolo,

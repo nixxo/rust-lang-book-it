@@ -14,10 +14,10 @@ funzionalità utili quando tali byte vengono interpretati come testo. In questa
 sezione, parleremo delle operazioni su `String` che ogni tipo di collezione
 prevede, come creazione, aggiornamento e lettura. Discuteremo anche le
 differenze tra `String` e le altre collezioni, in particolare come
-l'indicizzazione in una `String` sia complicata dalle differenze tra il modo in
+l’indicizzazione in una `String` sia complicata dalle differenze tra il modo in
 cui le persone e i computer interpretano i dati `String`.
 
-### Difinire una Stringa
+### Definire una Stringa
 
 Definiremo innanzitutto cosa intendiamo con il termine _stringa_. Rust ha un
 solo _type_ di stringa nel linguaggio principale, ovvero la _slice_ di stringa
@@ -41,7 +41,7 @@ _slice_ sono codificate in UTF-8.
 Molte delle operazioni disponibili con `Vec<T>` sono disponibili anche con
 `String` perché `String` è in realtà implementata come _wrapper_ (_involucro_)
 attorno a un vettore di byte con alcune garanzie, restrizioni e funzionalità
-aggiuntive. Ad esempio, la funzione `new` per creare un'istanza, funziona allo
+aggiuntive. Ad esempio, la funzione `new` per creare un’istanza, funziona allo
 stesso modo sia con `Vec<T>` che con `String`. Eccola mostrata nel Listato 8-11.
 
 <Listing number="8-11" caption="Creazione di una nuova `String` vuota">
@@ -103,7 +103,7 @@ Tutti questi sono valori `String` validi.
 
 Una `String` può crescere di dimensione e il suo contenuto può cambiare, proprio
 come il contenuto di un `Vec<T>`, se vi si inseriscono più dati. Inoltre, è
-possibile utilizzare comodamente l'operatore `+` o la macro `format!` per
+possibile utilizzare comodamente l’operatore `+` o la macro `format!` per
 concatenare valori `String`.
 
 #### Aggiungere con `push_str` e `push`
@@ -133,7 +133,7 @@ parametro. Ad esempio, nel codice del Listato 8-16, vogliamo poter utilizzare
 </Listing>
 
 Se il metodo `push_str` prendesse _ownership_ di `s2`, non saremmo in grado di
-stamparne il valore sull'ultima riga. Tuttavia, questo codice funziona come
+stamparne il valore sull’ultima riga. Tuttavia, questo codice funziona come
 previsto!
 
 Il metodo `push` prende un singolo carattere come parametro e lo aggiunge alla
@@ -153,9 +153,9 @@ Di conseguenza, `s` conterrà `lol`.
 #### Concatenare con `+` o `format!`
 
 Spesso, si desidera combinare due stringhe esistenti. Un modo per farlo è
-utilizzare l'operatore `+`, come mostrato nel Listato 8-18.
+utilizzare l’operatore `+`, come mostrato nel Listato 8-18.
 
-<Listing number="8-18" caption="Utilizzo dell'operatore `+` per combinare due valori `String` in un nuovo valore `String`">
+<Listing number="8-18" caption="Utilizzo dell’operatore `+` per combinare due valori `String` in un nuovo valore `String`">
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-18/src/main.rs:here}}
@@ -164,9 +164,9 @@ utilizzare l'operatore `+`, come mostrato nel Listato 8-18.
 </Listing>
 
 La stringa `s3` conterrà `Hello, world!`. Il motivo per cui `s1` non è più
-valido dopo l'aggiunta, e il motivo per cui abbiamo utilizzato un _reference_ a
+valido dopo l’aggiunta, e il motivo per cui abbiamo utilizzato un _reference_ a
 `s2`, ha a che fare con la firma del metodo chiamato quando utilizziamo
-l'operatore `+`. L'operatore `+` utilizza il metodo `add`, la cui firma è simile
+l’operatore `+`. L’operatore `+` utilizza il metodo `add`, la cui firma è simile
 a questa:
 
 ```rust,ignore
@@ -177,7 +177,7 @@ Nella libreria standard, `add` è definito utilizzando _type_ generici e _type_
 associati. Qui, abbiamo sostituito _type_ concreti, che è ciò che accade quando
 chiamiamo questo metodo con valori `String`. Parleremo dei generici nel Capitolo
 10. Questa firma ci fornisce gli indizi necessari per comprendere le parti più
-complesse dell'operatore `+`.
+complesse dell’operatore `+`.
 
 Innanzitutto, `s2` ha un `&`, il che significa che stiamo aggiungendo un
 _reference_ della seconda stringa alla prima stringa. Questo è dovuto al
@@ -187,7 +187,7 @@ aspetta: il _type_ di `&s2` è `&String`, non `&str`, come specificato nel
 secondo parametro di `add`. Quindi perché il Listato 8-18 si compila?
 
 Il motivo per cui possiamo usare `&s2` nella chiamata a `add` è che il
-compilatore può _costringere_ l'argomento `&String` in un `&str`. Quando
+compilatore può _costringere_ l’argomento `&String` in un `&str`. Quando
 chiamiamo il metodo `add` , Rust usa una _deref coercion_ (_de-referenziazione
 forzata_), che qui trasforma `&s2` in `&s2[..]`. Discuteremo la _deref coercion_
 più approfonditamente nel Capitolo 15. Poiché `add` non prende _ownership_ del
@@ -200,9 +200,9 @@ poi. Quindi, sebbene `let s3 = s1 + &s2;` sembri copiare entrambe le stringhe e
 crearne una nuova, questa istruzione in realtà prende _ownership_ di `s1`,
 aggiunge una copia del contenuto di `s2` per poi restituire la _ownership_ del
 risultato. In altre parole, sembra che stia facendo molte copie, ma non è così;
-l'implementazione è più efficiente della semplice copia.
+l’implementazione è più efficiente della semplice copia.
 
-Se dobbiamo concatenare più stringhe, il comportamento dell'operatore `+`
+Se dobbiamo concatenare più stringhe, il comportamento dell’operatore `+`
 diventa poco pratico:
 
 ```rust
@@ -218,7 +218,7 @@ complessi, possiamo invece usare la macro `format!`:
 ```
 
 Anche questo codice risulterà in `s` che contiene `uno-due-tre`. La macro
-`format!` funziona come `println!`, ma invece di visualizzare l'output sullo
+`format!` funziona come `println!`, ma invece di visualizzare l’output sullo
 schermo, restituisce una `String` con il contenuto. La versione del codice che
 utilizza `format!` è molto più facile da leggere e il codice generato dalla
 macro `format!` utilizza _reference_ in modo che questa chiamata non assuma
@@ -226,8 +226,8 @@ _ownership_ di nessuno dei suoi parametri.
 
 ### Indicizzazione in `String`
 
-In molti altri linguaggi di programmazione, l'accesso a singoli caratteri in una
-stringa facendovi riferimento tramite indice è un'operazione valida e comune.
+In molti altri linguaggi di programmazione, l’accesso a singoli caratteri in una
+stringa facendovi riferimento tramite indice è un’operazione valida e comune.
 Tuttavia, se si tenta di accedere a parti di una `String` utilizzando la
 sintassi di indicizzazione in Rust, si otterrà un errore. Considera il codice
 non valido nel Listato 8-19.
@@ -246,13 +246,13 @@ Questo codice genererà il seguente errore:
 {{#include ../listings/ch08-common-collections/listing-08-19/output.txt}}
 ```
 
-L'errore spiega la situazione: le stringhe Rust non supportano l'indicizzazione.
+L’errore spiega la situazione: le stringhe Rust non supportano l’indicizzazione.
 Ma perché no? Per rispondere a questa domanda, dobbiamo discutere come Rust
 memorizza le stringhe in memoria.
 
 #### Rappresentazione Interna
 
-Una `String` è un _wrapper_ di un `Vec<u8>`. Diamo un'occhiata ad alcune delle
+Una `String` è un _wrapper_ di un `Vec<u8>`. Diamo un’occhiata ad alcune delle
 nostre stringhe di esempio correttamente codificate UTF-8 dal Listato 8-14.
 Innanzitutto, questo:
 
@@ -286,8 +286,8 @@ Sapete già che `risposta` non sarà `З`, la prima lettera. Quando codificato i
 UTF-8, il primo byte di `З` è `208` e il secondo è `151`, quindi sembrerebbe che
 `risposta` dovrebbe in effetti essere `208`, ma `208` non è un carattere valido
 da solo. Restituire `208` probabilmente non è ciò che un utente vorrebbe se
-chiedesse la prima lettera di questa stringa; Tuttavia, questo è l'unico dato
-che Rust ha all'indice di byte 0. Gli utenti generalmente non vogliono che venga
+chiedesse la prima lettera di questa stringa; Tuttavia, questo è l’unico dato
+che Rust ha all’indice di byte 0. Gli utenti generalmente non vogliono che venga
 restituito il valore in byte, anche se la stringa contiene solo lettere latine:
 se `&"hi"[0]` fosse codice valido che restituisce il valore in byte,
 restituirebbe `104`, non `h`.
@@ -329,19 +329,19 @@ lettere che compongono la parola hindi:
 ```
 
 Rust fornisce diversi modi di interpretare i dati stringa grezzi che i computer
-memorizzano, in modo che ogni programma possa scegliere l'interpretazione di cui
+memorizzano, in modo che ogni programma possa scegliere l’interpretazione di cui
 ha bisogno, indipendentemente dal linguaggio umano in cui sono espressi i dati.
 
 Un ultimo motivo per cui Rust non ci consente di indicizzare una `String` per
 ottenere un carattere è che le operazioni di indicizzazione dovrebbero sempre
 richiedere un tempo costante (O(1)). Ma non è possibile garantire tali
 prestazioni con una `String`, perché Rust dovrebbe esaminare il contenuto
-dall'inizio fino all'indice per determinare quanti caratteri validi ci sono.
+dall’inizio fino all’indice per determinare quanti caratteri validi ci sono.
 
 ### _Slicing_ delle Stringhe
 
 Indicizzare una stringa è spesso una cattiva idea perché non è chiaro quale
-debba essere il _type_ di ritorno dell'operazione di indicizzazione della
+debba essere il _type_ di ritorno dell’operazione di indicizzazione della
 stringa: un valore byte, un carattere, un cluster di grafemi o una _slice_. Se
 proprio si ha bisogno di usare gli indici per creare _slice_ di stringa, Rust
 chiede di essere più specifici.
@@ -368,7 +368,7 @@ come se si accedesse a un indice non valido in un vettore:
 ```
 
 È necessario prestare attenzione quando si creano _slice_ di stringhe con
-intervalli, perché ciò potrebbe causare l'arresto anomalo del programma.
+intervalli, perché ciò potrebbe causare l’arresto anomalo del programma.
 
 ### Iterare sulle Stringhe
 
@@ -412,7 +412,7 @@ Questo codice stamperà i 4 byte che compongono questa stringa:
 Ma ricorda che i valori scalari Unicode validi possono essere composti da più di
 1 byte.
 
-Ottenere _cluster_ di grafemi dalle stringhe, come con l'alfabeto Devanagari, è
+Ottenere _cluster_ di grafemi dalle stringhe, come con l’alfabeto Devanagari, è
 complesso, quindi questa funzionalità non è fornita dalla libreria standard. I
 _crate_ sono disponibili su [crates.io](https://crates.io/search?q=grapheme)<!--
 ignore --> se questa è la funzionalità di cui avete bisogno.
@@ -433,6 +433,6 @@ La buona notizia è che la libreria standard offre numerose funzionalità basate
 sui _type_ `String` e `&str` per aiutare a gestire correttamente queste
 situazioni complesse. Assicuratevi di consultare la documentazione per metodi
 utili come `contains` per la ricerca in una stringa e `replace` per sostituire
-parti di una stringa con un'altra stringa.
+parti di una stringa con un’altra stringa.
 
 Passiamo a qualcosa di un po' meno complesso: le _mappe hash_!

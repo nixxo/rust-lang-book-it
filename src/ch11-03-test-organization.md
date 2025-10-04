@@ -1,14 +1,14 @@
 ## Organizzare i Test
 
-Come accennato all'inizio del capitolo, i test sono una disciplina complessa e
-diverse persone tendono ad utilizzare una terminologia e un'organizzazione
+Come accennato all’inizio del capitolo, i test sono una disciplina complessa e
+diverse persone tendono ad utilizzare una terminologia e un’organizzazione
 diverse. La comunità di Rust pensa ai test in termini di due categorie
 principali: i _test unitari_ (_unit test_) e i _test di integrazione_
 (_integration test_). Gli _unit test_ sono piccoli e più mirati, testano un
 singolo modulo alla volta e possono testare interfacce private. Gli _integration
 test_ sono invece esterni alla tua libreria e utilizzano il tuo codice nello
 stesso modo in cui lo farebbe qualsiasi altro codice esterno, utilizzando solo
-l'interfaccia pubblica e potenzialmente utilizzando più moduli per test.
+l’interfaccia pubblica e potenzialmente utilizzando più moduli per test.
 
 Scrivere entrambi i tipi di test è importante per garantire che i pezzi della
 tua libreria facciano ciò che ti aspetti, sia separatamente che quando integrate
@@ -25,13 +25,13 @@ contenere le funzioni di test e di annotare il modulo con `cfg(test)`.
 
 #### Il Modulo `tests` e `#[cfg(test)]`
 
-L'annotazione `#[cfg(test)]` sul modulo `tests` dice a Rust di compilare ed
+L’annotazione `#[cfg(test)]` sul modulo `tests` dice a Rust di compilare ed
 eseguire il codice di test solo quando si esegue `cargo test`, non quando si
 esegue `cargo build`. In questo modo si risparmia tempo di compilazione quando
-si vuole costruire solo la libreria e si risparmia spazio nell'artefatto
+si vuole costruire solo la libreria e si risparmia spazio nell’artefatto
 compilato risultante perché i test non sono inclusi. Vedrai che, poiché i test
 di integrazione si trovano in una directory diversa, non hanno bisogno
-dell'annotazione `#[cfg(test)]`. Tuttavia, poiché gli _unit test_ si trovano
+dell’annotazione `#[cfg(test)]`. Tuttavia, poiché gli _unit test_ si trovano
 negli stessi file del codice, dovrai specificare `#[cfg(test)]` per evitare che
 siano inclusi nel risultato compilato.
 
@@ -44,20 +44,20 @@ sezione di questo capitolo, Cargo ha generato questo codice per noi:
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/listing-11-01/src/lib.rs}}
 ```
 
-Nel modulo `tests` generato automaticamente, l'attributo `cfg` sta per
+Nel modulo `tests` generato automaticamente, l’attributo `cfg` sta per
 _configuration_ (_configurazione_) e indica a Rust che il seguente elemento deve
 essere incluso solo in presenza di una determinata opzione di configurazione. In
-questo caso, l'opzione di configurazione è `test`, che viene fornita da Rust per
-la compilazione e l'esecuzione dei test. Utilizzando l'attributo `cfg`, Cargo
+questo caso, l’opzione di configurazione è `test`, che viene fornita da Rust per
+la compilazione e l’esecuzione dei test. Utilizzando l’attributo `cfg`, Cargo
 compila il nostro codice di test solo se effettivamente eseguiamo i test con
 `cargo test`. Questo include qualsiasi funzione ausiliaria che potrebbero essere
 presente in questo modulo, oltre alle funzioni annotate con `#[test]`.
 
 #### Testare Funzioni Private
 
-All'interno della comunità dei tester si discute se le funzioni private debbano
+All’interno della comunità dei tester si discute se le funzioni private debbano
 essere testate direttamente o meno, e altri linguaggi rendono difficile o
-impossibile testare le funzioni private. Indipendentemente dall'ideologia di
+impossibile testare le funzioni private. Indipendentemente dall’ideologia di
 testing a cui aderisci, le regole sulla privacy di Rust ti permettono di testare
 le funzioni private. Considera il codice nel Listato 11-12 con la funzione
 privata `addizione_privata`.
@@ -72,19 +72,19 @@ privata `addizione_privata`.
 
 Nota che la funzione `addizione_privata` non è contrassegnata come `pub`. I test
 sono solo codice Rust e il modulo `tests` è solo un altro modulo. Come abbiamo
-discusso in [“Percorsi per Fare Riferimento a un Elemento nell'Albero dei
+discusso in [“Percorsi per Fare Riferimento a un Elemento nell’Albero dei
 Moduli”][paths]<!-- ignore -->, gli elementi dei moduli figli possono utilizzare
 gli elementi dei loro moduli antenati. In questo test, portiamo tutti gli
 elementi dei moduli genitore del modulo `tests` nello _scope_ con `use
 super::*`, e poi il test può chiamare `addizione_privata`. Se non pensi che le
-funzioni private debbano essere testate, non c'è nulla in Rust che ti costringa
+funzioni private debbano essere testate, non c’è nulla in Rust che ti costringa
 a farlo.
 
 ### Test di Integrazione
 
 In Rust, i test di integrazione sono esterni alla tua libreria. Utilizzano la
 libreria nello stesso modo in cui lo farebbe qualsiasi altro codice, il che
-significa che possono chiamare solo le funzioni che fanno parte dell'API
+significa che possono chiamare solo le funzioni che fanno parte dell’API
 pubblica della libreria. Il loro scopo è quello di verificare se molte parti
 della libreria funzionano correttamente insieme. Unità di codice che funzionano
 correttamente da sole potrebbero avere problemi quando vengono integrate, quindi
@@ -94,7 +94,7 @@ cartella _tests_.
 
 #### La Cartella _tests_
 
-Creiamo una cartella _tests_ all'inizio della nostra cartella di progetto,
+Creiamo una cartella _tests_ all’inizio della nostra cartella di progetto,
 accanto a _src_. Cargo sa che deve cercare i file di test di integrazione in
 questa cartella. Possiamo quindi creare tutti i file di test che vogliamo e
 Cargo compilerà ciascuno di essi come _crate_ separati.
@@ -126,7 +126,7 @@ Inserisci il codice del Listato 11-13 nel file _tests/test_integrazione.rs_.
 
 Ogni file della cartella _tests_ è un _crate_ separato, quindi dobbiamo portare
 la nostra libreria nello _scope_ di ogni _crate_ di test. Per questo motivo
-aggiungiamo `use addizione::aggiungi_due;` all'inizio del codice, che non era
+aggiungiamo `use addizione::aggiungi_due;` all’inizio del codice, che non era
 necessario negli _unit test_ usati finora.
 
 Non abbiamo bisogno di annotare alcun codice in _tests/test_integrazione.rs_ con
@@ -149,9 +149,9 @@ riga per ogni _unit test_ (una denominata `privata` che abbiamo aggiunto nel
 Listato 11-12) e poi una riga di riepilogo per i _unit test_.
 
 La sezione dei test di integrazione inizia con la riga `Running
-test/test_integrazione.rs`. Poi, c'è una riga per ogni funzione di test in quel
+test/test_integrazione.rs`. Poi, c’è una riga per ogni funzione di test in quel
 test di integrazione e una riga di riepilogo dei risultati del test di
-integrazione appena prima dell'inizio della sezione `Doc-tests addizione`.
+integrazione appena prima dell’inizio della sezione `Doc-tests addizione`.
 
 Ogni file di test di integrazione ha una propria sezione, quindi se aggiungiamo
 altri file nella cartella _tests_, ci saranno più sezioni di test di
@@ -160,7 +160,7 @@ integrazione.
 Possiamo comunque eseguire una particolare funzione di test di integrazione
 specificando il nome della funzione di test come argomento di `cargo test`. Per
 eseguire tutti i test in un particolare file di test di integrazione, usa
-l'argomento `--test` di `cargo test` seguito dal nome del file:
+l’argomento `--test` di `cargo test` seguito dal nome del file:
 
 ```console
 {{#include ../listings/ch11-writing-automated-tests/output-only-05-single-integration/output.txt}}
@@ -194,7 +194,7 @@ che vogliamo chiamare da più funzioni di test in più file di test:
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-12-shared-test-code-problem/tests/comune.rs}}
 ```
 
-Quando eseguiamo nuovamente i test, vedremo una nuova sezione nell'output del
+Quando eseguiamo nuovamente i test, vedremo una nuova sezione nell’output del
 test per il file _comune.rs_, anche se questo file non contiene alcuna funzione
 di test né abbiamo chiamato la funzione `inizializzazione` da nessuna parte:
 
@@ -205,7 +205,7 @@ di test né abbiamo chiamato la funzione `inizializzazione` da nessuna parte:
 Il fatto che `comune` appaia nei risultati dei test con `running 0 tests`
 (_eseguiti 0 test_) non è quello che volevamo. Volevamo solo condividere un po'
 di codice con gli altri file dei test di integrazione. Per evitare che `comune`
-appaia nell'output dei test, invece di creare _tests/comune.rs_, creeremo
+appaia nell’output dei test, invece di creare _tests/comune.rs_, creeremo
 _tests/comune/mod.rs_. La cartella del progetto ora ha questo aspetto:
 
 ```text
@@ -224,9 +224,9 @@ cui abbiamo parlato in [“Percorsi di File Alternativi”][alt-paths]<!-- ignor
 --> nel Capitolo 7. Nominare il file in questo modo indica a Rust di non
 trattare il modulo `comune` come un file di test di integrazione. Quando
 spostiamo il codice della funzione `inizializzazione` in _tests/comune/mod.rs_ e
-cancelliamo il file _tests/comune.rs_, la sezione nell'output del test non
+cancelliamo il file _tests/comune.rs_, la sezione nell’output del test non
 apparirà più. I file nelle sottocartelle della cartella _tests_ non vengono
-compilati come _crate_ separati né hanno sezioni nell'output del test.
+compilati come _crate_ separati né hanno sezioni nell’output del test.
 
 Dopo aver creato _tests/comune/mod.rs_, possiamo utilizzarlo da qualsiasi file
 di test di integrazione come modulo. Ecco un esempio di chiamata della funzione
@@ -265,8 +265,8 @@ Le funzionalità di testing di Rust forniscono un modo per specificare come il
 codice debba funzionare e ci si assicuri che continui a funzionare come ci si
 aspetta, anche quando si apportano delle modifiche. I test unitari usano e
 testano le diverse parti di una libreria separatamente e possono testare i
-dettagli privati dell'implementazione. I test di integrazione verificano che
-molte parti della libreria funzionino insieme correttamente e utilizzano l'API
+dettagli privati dell’implementazione. I test di integrazione verificano che
+molte parti della libreria funzionino insieme correttamente e utilizzano l’API
 pubblica della libreria per testare il codice nello stesso modo in cui lo
 utilizzerà il codice esterno. Anche se il sistema dei _type_ e le regole di
 _ownership_ di Rust aiutano a prevenire alcuni tipi di bug, i test sono comunque

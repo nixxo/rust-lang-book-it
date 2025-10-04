@@ -2,7 +2,7 @@
 
 Nella maggior parte dei sistemi operativi attuali, il codice di un programma
 viene eseguito in un _processo_ e il sistema operativo gestisce più processi
-contemporaneamente. All'interno di un programma, è possibile avere anche parti
+contemporaneamente. All’interno di un programma, è possibile avere anche parti
 indipendenti che vengono eseguite simultaneamente. Le funzioni che eseguono
 queste parti indipendenti sono chiamate _thread_. Ad esempio, un server web
 potrebbe avere più _thread_ in modo da poter rispondere a più richieste
@@ -10,24 +10,24 @@ contemporaneamente.
 
 Suddividere i calcoli del tuo programma in più _thread_ per eseguire più
 attività contemporaneamente può migliorare le prestazioni, ma aggiunge anche
-complessità. Poiché i _thread_ possono essere eseguiti simultaneamente, non c'è
-alcuna garanzia intrinseca sull'ordine di esecuzione dei _thread_ del tuo
+complessità. Poiché i _thread_ possono essere eseguiti simultaneamente, non c’è
+alcuna garanzia intrinseca sull’ordine di esecuzione dei _thread_ del tuo
 codice. Questo può portare a problemi, come ad esempio:
 
 - Competizione (_race condition_), in cui i _thread_ accedono ai dati o alle
   risorse in un ordine incoerente
-- Stallo (_deadlock_), in cui due _thread_ sono in attesa l'uno dell'altro,
+- Stallo (_deadlock_), in cui due _thread_ sono in attesa l’uno dell’altro,
   impedendo a entrambi di continuare
 - Bug che si verificano solo in determinate situazioni e sono difficili da
   riprodurre e risolvere in modo affidabile
 
-Rust cerca di mitigare gli effetti negativi dell'uso dei _thread_, ma
-programmare in un contesto multi-_thread_ richiede comunque un'attenta
+Rust cerca di mitigare gli effetti negativi dell’uso dei _thread_, ma
+programmare in un contesto multi-_thread_ richiede comunque un’attenta
 riflessione e una struttura del codice diversa da quella dei programmi eseguiti
 in un singolo _thread_.
 
 I linguaggi di programmazione implementano i _thread_ in diversi modi e molti
-sistemi operativi forniscono un'API che il linguaggio di programmazione può
+sistemi operativi forniscono un’API che il linguaggio di programmazione può
 richiamare per creare nuovi _thread_. La libreria standard di Rust utilizza un
 modello _1:1_ di implementazione dei _thread_, in base al quale un programma
 utilizza un _thread_ del sistema operativo per ogni _thread_ del linguaggio.
@@ -41,10 +41,10 @@ concorrenza.)
 Per creare un nuovo _thread_, chiamiamo la funzione `thread::spawn` e le
 passiamo una chiusura (abbiamo parlato delle chiusure nel [Capitolo
 13][closures]) contenente il codice che vogliamo eseguire nel nuovo _thread_.
-L'esempio nel Listato 16-1 stampa del testo da un _thread_ principale e altro
+L’esempio nel Listato 16-1 stampa del testo da un _thread_ principale e altro
 testo da un nuovo _thread_.
 
-<Listing number="16-1" file-name="src/main.rs" caption="Creazione di un nuovo _thread_ per stampare una cosa mentre il _thread_ principale stampa qualcos'altro">
+<Listing number="16-1" file-name="src/main.rs" caption="Creazione di un nuovo _thread_ per stampare una cosa mentre il _thread_ principale stampa qualcos’altro">
 
 ```rust
 {{#rustdoc_include ../listings/ch16-fearless-concurrency/listing-16-01/src/main.rs}}
@@ -77,20 +77,20 @@ Le chiamate a `thread::sleep` costringono un _thread_ a interrompere la sua
 esecuzione per un breve periodo, consentendo a un altro _thread_ di funzionare.
 I _thread_ probabilmente si alterneranno, ma questo non è garantito: dipende da
 come il sistema operativo pianifica i _thread_. In questa esecuzione, il
-_thread_ principale ha stampato per primo, anche se l'istruzione di stampa del
+_thread_ principale ha stampato per primo, anche se l’istruzione di stampa del
 _thread_ generato (_spawned_) appare per prima nel codice. E anche se abbiamo
 detto al _thread_ generato di stampare finché `i` non è `9`, è arrivato solo a
 `5` prima che il _thread_ principale si spegnesse.
 
-Se esegui questo codice e vedi solo l'output del _thread_ principale o non vedi
+Se esegui questo codice e vedi solo l’output del _thread_ principale o non vedi
 alcuna sovrapposizione, prova ad aumentare i numeri negli intervalli per creare
-più opportunità per il sistema operativo di passare da un _thread_ all'altro.
+più opportunità per il sistema operativo di passare da un _thread_ all’altro.
 
 ### Attendere Che Tutti i _Thread_ Finiscano
 
 Il codice nel Listato 16-1 non solo arresta il _thread_ generato prematuramente
 nella maggior parte dei casi a causa della fine del _thread_ principale, ma
-poiché non c'è alcuna garanzia sull'ordine di esecuzione dei _thread_, non
+poiché non c’è alcuna garanzia sull’ordine di esecuzione dei _thread_, non
 possiamo nemmeno garantire che il _thread_ generato venga eseguito!
 
 Possiamo risolvere il problema del _thread_ generato che non viene eseguito o
@@ -110,11 +110,11 @@ chiamare `join` per assicurarsi che il _thread_ generato finisca prima che
 
 </Listing>
 
-La chiamata a `join` sull'_handle_ blocca il _thread_ attualmente in esecuzione
-fino a quando il _thread_ rappresentato dall'_handle_ non termina. _Bloccare_ un
+La chiamata a `join` sull’_handle_ blocca il _thread_ attualmente in esecuzione
+fino a quando il _thread_ rappresentato dall’_handle_ non termina. _Bloccare_ un
 _thread_ significa che a quel _thread_ viene impedito di eseguire lavori o di
 uscire. Poiché abbiamo inserito la chiamata a `join` dopo il ciclo `for` del
-_thread_ principale, l'esecuzione del Listato 16-2 dovrebbe produrre un
+_thread_ principale, l’esecuzione del Listato 16-2 dovrebbe produrre un
 risultato simile a questo:
 
 <!-- Not extracting output because changes to this output aren't significant;
@@ -153,7 +153,7 @@ Ma vediamo cosa succede se spostiamo `handle.join()` prima del ciclo `for` di
 </Listing>
 
 Il _thread_ principale aspetterà che il _thread_ generato finisca e poi eseguirà
-il suo ciclo `for`, quindi l'output non sarà più alternato, come mostrato qui:
+il suo ciclo `for`, quindi l’output non sarà più alternato, come mostrato qui:
 
 <!-- Not extracting output because changes to this output aren't significant;
 the changes are likely to be due to the threads running differently rather than
@@ -176,16 +176,16 @@ ciao numero 4 dal thread principale!
 ```
 
 Piccoli dettagli, come il punto in cui viene chiamato `join`, possono
-influenzare l'esecuzione simultanea o meno dei _thread_.
+influenzare l’esecuzione simultanea o meno dei _thread_.
 
 ### Usare le Chiusure `move` con i `Thread`
 
 Spesso useremo la parola chiave `move` con le chiusure passate a `thread::spawn`
 perché la chiusura prenderà la _ownership_ dei valori che utilizza
-dall'ambiente, trasferendo così la _ownership_ di quei valori da un _thread_
-all'altro. In [“Catturare i _Reference_ o Trasferire la
+dall’ambiente, trasferendo così la _ownership_ di quei valori da un _thread_
+all’altro. In [“Catturare i _Reference_ o Trasferire la
 _Ownership_”][capture]<!-- ignore --> del Capitolo 13, abbiamo parlato di `move`
-nel contesto delle chiusure. Ora ci concentreremo maggiormente sull'interazione
+nel contesto delle chiusure. Ora ci concentreremo maggiormente sull’interazione
 tra `move` e `thread::spawn`.
 
 Nota nel Listato 16-1 che la chiusura che passiamo a `thread::spawn` non accetta
@@ -204,9 +204,9 @@ funziona ancora, come vedrai tra poco.
 
 </Listing>
 
-La chiusura utilizza `v`, quindi catturerà `v` e lo renderà parte dell'ambiente
+La chiusura utilizza `v`, quindi catturerà `v` e lo renderà parte dell’ambiente
 della chiusura. Poiché `thread::spawn` esegue questa chiusura in un nuovo
-_thread_, dovremmo essere in grado di accedere a `v` all'interno di questo nuovo
+_thread_, dovremmo essere in grado di accedere a `v` all’interno di questo nuovo
 _thread_. Ma quando compiliamo questo esempio, otteniamo il seguente errore:
 
 ```console
@@ -214,7 +214,7 @@ _thread_. Ma quando compiliamo questo esempio, otteniamo il seguente errore:
 ```
 
 Rust _inserisce_ come catturare `v` e, poiché `println!` ha bisogno solo di un
-_reference_ a `v`, la chiusura cerca di prendere in prestito `v`. Tuttavia, c'è
+_reference_ a `v`, la chiusura cerca di prendere in prestito `v`. Tuttavia, c’è
 un problema: Rust non può sapere per quanto tempo verrà eseguito il _thread_
 generato, quindi non sa se il _reference_ a `v` sarà sempre valido.
 
@@ -237,7 +237,7 @@ abbiamo parlato nel Capitolo 15. Poi, quando il _thread_ generato inizia viene
 eseguito, `v` non è più valido, quindi anche il _reference_ ad esso non è
 valido. Oh no!
 
-Per risolvere l'errore del compilatore nel Listato 16-3, possiamo utilizzare i
+Per risolvere l’errore del compilatore nel Listato 16-3, possiamo utilizzare i
 consigli del messaggio di errore:
 
 <!-- manual-regeneration
@@ -269,7 +269,7 @@ Potremmo essere tentati di fare la stessa cosa per correggere il codice del
 Listato 16-4 in cui il _thread_ principale chiamava `drop` utilizzando una
 chiusura `move`. Tuttavia, questa correzione non funzionerà perché ciò che il
 Listato 16-4 sta cercando di fare è vietato per un motivo diverso. Se
-aggiungessimo `move` alla chiusura, sposteremmo `v` nell'ambiente della chiusura
+aggiungessimo `move` alla chiusura, sposteremmo `v` nell’ambiente della chiusura
 e non potremmo più chiamare `drop` su di essa nel _thread_ principale.
 Otterremmo invece questo errore del compilatore:
 
@@ -288,7 +288,7 @@ cercheremo di usare `v` nel _thread_ principale. La parola chiave `move`
 sovrascrive il comportamento conservativo di Rust di prendere in prestito; non
 ci permette di violare le regole di _ownership_.
 
-Ora che abbiamo analizzato cosa sono i _thread_ e i metodi forniti dall'API dei
+Ora che abbiamo analizzato cosa sono i _thread_ e i metodi forniti dall’API dei
 _thread_, vediamo alcune situazioni in cui possiamo utilizzarli.
 
 [closures]: ch13-01-closures.html

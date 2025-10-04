@@ -20,10 +20,10 @@ development_, abbreviato _TDD_) con i seguenti passaggi:
 
 Sebbene sia solo uno dei tanti modi per scrivere software, il TDD può aiutare a
 guidare la progettazione del codice. Scrivere il test prima di scrivere il
-codice che lo supera aiuta a mantenere un'elevata copertura dei test durante
-l'intero processo.
+codice che lo supera aiuta a mantenere un’elevata copertura dei test durante
+l’intero processo.
 
-Testeremo l'implementazione della funzionalità che effettivamente eseguirà la
+Testeremo l’implementazione della funzionalità che effettivamente eseguirà la
 ricerca della stringa di query nel contenuto del file e produrrà un elenco di
 righe che corrispondono alla query. Aggiungeremo questa funzionalità in una
 funzione chiamata `cerca`.
@@ -47,7 +47,7 @@ testo che contengono la query. Il Listato 12-15 mostra questo test.
 Questo test cerca la stringa `"dut"`. Il testo che stiamo cercando è composto da
 tre righe, solo una delle quali contiene `"dut"` (nota che la barra rovesciata
 dopo le virgolette doppie di apertura indica a Rust di non inserire un carattere
-di nuova linea all'inizio del contenuto di questo letterale stringa). Affermiamo
+di nuova linea all’inizio del contenuto di questo letterale stringa). Affermiamo
 che il valore restituito dalla funzione `cerca` contiene solo la riga che ci
 aspettiamo.
 
@@ -68,16 +68,16 @@ corrisponde a un vettore contenente la riga `"sicuro, veloce, produttivo."`
 </Listing>
 
 Ora parliamo del perché è necessario esplicitare la longevità `'a` nella firma
-di `cerca` e utilizzare tale longevità con l'argomento `contenuto` e con il
+di `cerca` e utilizzare tale longevità con l’argomento `contenuto` e con il
 valore di ritorno. Ricorda che nel [Capitolo 10][ch10-lifetimes]<!-- ignore
---> i parametri di _lifetime_ specificano quale _lifetime_ dell'argomento è
+--> i parametri di _lifetime_ specificano quale _lifetime_ dell’argomento è
 collegata a quella del valore di ritorno. In questo caso, indichiamo che il
 vettore restituito deve contenere _slice_ di stringa che fanno riferimento alla
-_slice_ dell'argomento `contenuto` (piuttosto che all'argomento `query`).
+_slice_ dell’argomento `contenuto` (piuttosto che all’argomento `query`).
 
 In altre parole, diciamo a Rust che i dati restituiti dalla funzione `cerca`
 rimarranno validi finché saranno validi i dati passati alla funzione `cerca`
-nell'argomento `contenuto`. Questo è importante! I dati referenziati da una
+nell’argomento `contenuto`. Questo è importante! I dati referenziati da una
 _slice_ devono essere validi affinché il _reference_ sia valido; se il
 compilatore presume che stiamo creando _slice_ di `query` anziché di
 `contenuto`, eseguirà i suoi controlli di sicurezza in modo errato.
@@ -89,12 +89,12 @@ funzione, otterremo questo errore:
 {{#include ../listings/ch12-an-io-project/output-only-02-missing-lifetimes/output.txt}}
 ```
 
-Rust non può sapere quale dei due parametri ci serve per l'output, quindi
+Rust non può sapere quale dei due parametri ci serve per l’output, quindi
 dobbiamo indicarlo esplicitamente. Nota che il testo di aiuto suggerisce di
 specificare lo stesso parametro di longevità per tutti i parametri e il _type_
 di output, il che è sbagliato! Poiché `contenuto` è il parametro che contiene
 tutto il nostro testo e vogliamo restituire le parti di quel testo che
-corrispondono, sappiamo che `contenuto` è l'unico parametro che dovrebbe essere
+corrispondono, sappiamo che `contenuto` è l’unico parametro che dovrebbe essere
 collegato al valore di ritorno utilizzando la sintassi di longevità.
 
 Altri linguaggi di programmazione non richiedono di collegare gli argomenti ai
@@ -112,15 +112,15 @@ seguire questi passaggi:
 
 1. Iterare ogni riga del contenuto.
 2. Verificare che la riga contenga la nostra stringa di query.
-3. In caso affermativo, aggiungerla all'elenco dei valori ritornati.
+3. In caso affermativo, aggiungerla all’elenco dei valori ritornati.
 4. In caso contrario, non fare nulla.
-5. Ritornare l'elenco dei risultati corrispondenti.
+5. Ritornare l’elenco dei risultati corrispondenti.
 
-Esaminiamo ogni passaggio, iniziando con l'iterazione delle righe.
+Esaminiamo ogni passaggio, iniziando con l’iterazione delle righe.
 
 #### Iterare le Righe con il Metodo `lines`
 
-Rust dispone di un metodo utile per gestire l'iterazione riga per riga delle
+Rust dispone di un metodo utile per gestire l’iterazione riga per riga delle
 stringhe, opportunamente chiamato `lines`, che funziona come mostrato nel
 Listato 12-17. Nota che questo non verrà ancora compilato.
 
@@ -184,15 +184,15 @@ Ora la funzione `cerca` dovrebbe restituire solo le righe che contengono
 Il nostro test è stato superato, quindi sappiamo che la funzione fa quello che
 ci aspettiamo!
 
-A questo punto, potremmo valutare l'opportunità di riscrivere e migliorare
-l'implementazione della funzione di ricerca, controllando che i test continuino
+A questo punto, potremmo valutare l’opportunità di riscrivere e migliorare
+l’implementazione della funzione di ricerca, controllando che i test continuino
 a passare per mantenere la stessa funzionalità. Il codice nella funzione di
 ricerca non è male, ma non sfrutta alcune utili funzionalità degli iteratori.
 Torneremo su questo esempio nel [Capitolo 13][ch13-iterators]<!--
 ignore -->, dove esploreremo gli iteratori in dettaglio e vedremo come
 migliorarla.
 
-Ora l'intero programma dovrebbe funzionare! Proviamolo, prima con una parola che
+Ora l’intero programma dovrebbe funzionare! Proviamolo, prima con una parola che
 dovrebbe restituire esattamente una riga della poesia di Emily Dickinson:
 _rana_.
 
@@ -215,11 +215,11 @@ che non è presente da nessuna parte nella poesia, come _monomorfizzazione_:
 
 Ottimo! Abbiamo creato la nostra versione in miniatura di uno strumento classico
 e abbiamo imparato molto su come strutturare le applicazioni. Abbiamo anche
-imparato qualcosa sull'input e l'output dei file, sulle _lifetime_, sui test e
-sull'analisi della riga di comando.
+imparato qualcosa sull’input e l’output dei file, sulle _lifetime_, sui test e
+sull’analisi della riga di comando.
 
 Per completare questo progetto, mostreremo brevemente come lavorare con le
-variabili d'ambiente e come stampare su standard error, entrambi utili quando si
+variabili d’ambiente e come stampare su standard error, entrambi utili quando si
 scrivono programmi da riga di comando.
 
 [validating-references-with-lifetimes]: ch10-03-lifetime-syntax.html#validare-i-reference-con-la-lifetime

@@ -1,4 +1,4 @@
-## Percorsi per Fare Riferimento a un Elemento nell'Albero dei Moduli
+## Percorsi per Fare Riferimento a un Elemento nell’Albero dei Moduli
 
 Per mostrare a Rust dove trovare un elemento in un albero dei moduli,
 utilizziamo un _path_ (_percorso_) nello stesso modo in cui usiamo un _path_
@@ -24,10 +24,10 @@ dei moduli e delle funzioni rimossi.
 
 Mostreremo due modi per chiamare la funzione `aggiungi_in_lista` da una nuova
 funzione, `mangiare_al_ristorante`, definita nella radice del _crate_. Questi
-_path_ sono corretti, ma c'è un altro problema che impedirà a questo esempio di
-compilare così com'è. Spiegheremo perché tra poco.
+_path_ sono corretti, ma c’è un altro problema che impedirà a questo esempio di
+compilare così com’è. Spiegheremo perché tra poco.
 
-La funzione `mangiare_al_ristorante` fa parte dell'API pubblica del nostro
+La funzione `mangiare_al_ristorante` fa parte dell’API pubblica del nostro
 _crate_ _libreria_, quindi la contrassegniamo con la parola chiave `pub`. Nella
 sezione [“Esporre _Path_ con la Parola Chiave `pub`”][pub]<!-- ignore -->,
 entreremo nei dettagli di `pub`.
@@ -53,15 +53,15 @@ filesystem nel tuo terminale.
 
 La seconda volta che chiamiamo `aggiungi_in_lista` in `mangiare_al_ristorante`,
 utilizziamo un _path_ relativo. Il _path_ inizia con `sala`, il nome del modulo
-definito allo stesso livello dell'albero dei moduli di `mangiare_al_ristorante`.
-Qui l'equivalente nel filesystem sarebbe utilizzare il _path_
+definito allo stesso livello dell’albero dei moduli di `mangiare_al_ristorante`.
+Qui l’equivalente nel filesystem sarebbe utilizzare il _path_
 `sala/accoglienza/aggiungi_in_lista`. Iniziare con un nome di modulo significa
 che il _path_ è relativo.
 
 Scegliere se utilizzare un _path_ relativo o assoluto è una decisione che
 prenderai in base al tuo progetto, e dipende da se è più probabile che tu sposti
-il codice di definizione dell'elemento separatamente o insieme al codice che
-utilizza l'elemento. Ad esempio, se spostassimo il modulo `sala` e la funzione
+il codice di definizione dell’elemento separatamente o insieme al codice che
+utilizza l’elemento. Ad esempio, se spostassimo il modulo `sala` e la funzione
 `mangiare_al_ristorante` in un modulo chiamato `gestione_cliente`, dovremmo
 aggiornare il _path_ assoluto per `aggiungi_in_lista`, ma il _path_ relativo
 rimarrebbe valido. Tuttavia, se spostassimo la funzione `mangiare_al_ristorante`
@@ -69,7 +69,7 @@ separatamente in un modulo chiamato `cena`, il _path_ assoluto per la chiamata a
 `aggiungi_in_lista` rimarrebbe lo stesso, ma il _path_ relativo dovrebbe essere
 aggiornato. La nostra preferenza in generale è specificare _path_ assoluti
 perché è più probabile che vogliamo spostare le definizioni di codice e le
-chiamate agli elementi in modo indipendente l'una dall'altra.
+chiamate agli elementi in modo indipendente l’una dall’altra.
 
 Proviamo a compilare il Listato 7-3 e scopriamo perché non si compila ancora!
 Gli errori che otteniamo sono mostrati nel Listato 7-4.
@@ -91,13 +91,13 @@ impostazione predefinita. Se desideri rendere un elemento come una funzione o
 una _struct_ privata, lo metti in un modulo.
 
 Gli elementi in un modulo genitore non possono utilizzare gli elementi privati
-all'interno dei moduli figli, ma gli elementi nei moduli figli possono
+all’interno dei moduli figli, ma gli elementi nei moduli figli possono
 utilizzare gli elementi nei loro moduli antenati. Questo perché i moduli figli
 incapsulano e nascondono i loro dettagli di implementazione, ma i moduli figli
 possono vedere il contesto in cui sono definiti. Per continuare con la nostra
-metafora, pensa alle regole di privacy come se fossero l'ufficio posteriore di
+metafora, pensa alle regole di privacy come se fossero l’ufficio posteriore di
 un ristorante: ciò che accade lì è privato e nascosto per i clienti del
-ristorante, ma i manager dell'ufficio possono vedere e fare tutto nel ristorante
+ristorante, ma i manager dell’ufficio possono vedere e fare tutto nel ristorante
 che gestiscono.
 
 Rust ha scelto che far funzionare il sistema dei moduli in questo modo,
@@ -109,7 +109,7 @@ utilizzando la parola chiave `pub` per rendere pubblico un elemento.
 
 ### Esporre _Path_ con la Parola Chiave `pub`
 
-Torniamo all'errore nel Listato 7-4 che ci diceva che il modulo `accoglienza` è
+Torniamo all’errore nel Listato 7-4 che ci diceva che il modulo `accoglienza` è
 privato. Vogliamo che la funzione `mangiare_al_ristorante` nel modulo genitore
 abbia accesso alla funzione `aggiungi_in_lista` nel modulo figlio, quindi
 contrassegniamo il modulo `accoglienza` con la parola chiave `pub`, come
@@ -142,7 +142,7 @@ parola chiave `pub` su un modulo consente solo al codice nei suoi moduli
 genitore di fare riferimento ad esso, non di accedere al suo codice interno.
 Poiché i moduli sono contenitori, non possiamo fare molto semplicemente rendendo
 pubblico il modulo; dobbiamo andare oltre e scegliere di rendere pubblici uno o
-più degli elementi all'interno del modulo.
+più degli elementi all’interno del modulo.
 
 Gli errori nel Listato 7-6 dicono che la funzione `aggiungi_in_lista` è privata.
 Le regole di _privacy_ si applicano a _struct_, _enum_, funzioni e metodi, così
@@ -162,14 +162,14 @@ aggiungendo la parola chiave `pub` prima della sua definizione, come nel Listato
 
 Ora il codice si compilerà! Per capire perché aggiungere la parola chiave `pub`
 ci consente di utilizzare questi _path_ in `mangiare_al_ristorante` rispetto
-alle regole di _privacy_, diamo un'occhiata ai _path_ assoluti e relativi.
+alle regole di _privacy_, diamo un’occhiata ai _path_ assoluti e relativi.
 
-Nel _path_ assoluto, iniziamo con `crate`, la radice dell'albero dei moduli del
+Nel _path_ assoluto, iniziamo con `crate`, la radice dell’albero dei moduli del
 nostro _crate_. Il modulo `sala` è definito nella radice del _crate_. Anche se
 `sala` non è pubblico, poiché la funzione `mangiare_al_ristorante` è definita
 nello stesso modulo di `sala` (cioè, `mangiare_al_ristorante` e `sala` sono
 _fratelli_), possiamo fare riferimento a `sala` da `mangiare_al_ristorante`.
-Successivamente, c'è il modulo `accoglienza` contrassegnato con `pub`. Possiamo
+Successivamente, c’è il modulo `accoglienza` contrassegnato con `pub`. Possiamo
 accedere al modulo genitore di `accoglienza`, quindi possiamo accedere a
 `accoglienza`. Infine, la funzione `aggiungi_in_lista` è contrassegnata con
 `pub` e possiamo accedere al suo modulo genitore, quindi questa chiamata di
@@ -177,7 +177,7 @@ funzione funziona!
 
 Nel _path_ relativo, la logica è la stessa del _path_ assoluto, tranne per il
 primo passaggio: invece di partire dalla radice del _crate_, il _path_ inizia da
-`sala`. Il modulo `sala` è definito all'interno dello stesso modulo di
+`sala`. Il modulo `sala` è definito all’interno dello stesso modulo di
 `mangiare_al_ristorante`, quindi il _path_ relativo che inizia dal modulo in cui
 è definita `mangiare_al_ristorante` funziona. Poi, poiché `accoglienza` e
 `aggiungi_in_lista` sono contrassegnati con `pub`, il resto del _path_ funziona,
@@ -188,8 +188,8 @@ possano utilizzare il tuo codice, la tua API pubblica è il tuo contratto con gl
 utenti del tuo _crate_ che determina come possono interagire con il tuo codice.
 Ci sono molte considerazioni relative alla gestione delle modifiche alla tua API
 pubblica per facilitare la dipendenza delle persone dal tuo _crate_. Queste
-considerazioni vanno oltre l'ambito di questo libro; se sei interessato a questo
-argomento, consulta [Le Linee Guida per l'API di Rust][api-guidelines].
+considerazioni vanno oltre l’ambito di questo libro; se sei interessato a questo
+argomento, consulta [Le Linee Guida per l’API di Rust][api-guidelines].
 
 > #### Buone Pratiche per Pacchetti con un Binario e una Libreria
 >
@@ -203,13 +203,13 @@ argomento, consulta [Le Linee Guida per l'API di Rust][api-guidelines].
 > parte delle funzionalità che il pacchetto fornisce, poiché il codice del
 > _crate_ _libreria_ può essere condiviso.
 >
-> L'albero dei moduli dovrebbe essere definito in _src/lib.rs_. Quindi,
+> L’albero dei moduli dovrebbe essere definito in _src/lib.rs_. Quindi,
 > qualsiasi elemento pubblico può essere utilizzato nel _crate_ _binario_
 > facendo iniziare i _path_ con il nome del pacchetto. Il _crate_ _binario_
 > diventa un utilizzatore del _crate_ _libreria_ proprio come un _crate_
 > completamente esterno utilizzerebbe il _crate_ _libreria_: può utilizzare solo
-> l'API pubblica. Questo ti aiuta a progettare una buona API; non solo sei
-> l'autore, ma sei anche un cliente!
+> l’API pubblica. Questo ti aiuta a progettare una buona API; non solo sei
+> l’autore, ma sei anche un cliente!
 >
 > Nel [Capitolo 12][ch12]<!-- ignore -->, dimostreremo questa pratica
 > organizzativa con un programma da riga di comando che conterrà sia un _crate_
@@ -219,12 +219,12 @@ argomento, consulta [Le Linee Guida per l'API di Rust][api-guidelines].
 
 Possiamo costruire _path_ relative che iniziano nel modulo genitore, piuttosto
 che nel modulo corrente o nella radice del _crate_, utilizzando `super`
-all'inizio del _path_. Questo è simile a iniziare un _path_ del filesystem con
+all’inizio del _path_. Questo è simile a iniziare un _path_ del filesystem con
 la sintassi `..` che significa andare nella directory genitore. Utilizzare
 `super` ci consente di fare riferimento a un elemento che sappiamo essere nel
-modulo genitore, il che può rendere più facile riorganizzare l'albero dei moduli
+modulo genitore, il che può rendere più facile riorganizzare l’albero dei moduli
 quando il modulo è strettamente correlato al genitore, ma il genitore potrebbe
-essere spostato altrove nell'albero dei moduli in futuro.
+essere spostato altrove nell’albero dei moduli in futuro.
 
 Considera il codice nel Listato 7-8 che modella la situazione in cui un cuoco
 corregge un ordine errato e lo porta personalmente al cliente. La funzione
@@ -244,15 +244,15 @@ La funzione `correzione_ordine` si trova nel modulo `cucine`, quindi possiamo
 usare `super` per andare al modulo genitore di `cucine`, che in questo caso è
 `crate`, la radice. Da lì, cerchiamo `servi_ordine` e lo troviamo. Successo!
 Pensiamo che il modulo `cucine` e la funzione `servi_ordine` siano probabilmente
-destinati a rimanere nella stessa relazione l'uno con l'altro e verranno
-spostati insieme se decidiamo di riorganizzare l'albero dei moduli del _crate_.
+destinati a rimanere nella stessa relazione l’uno con l’altro e verranno
+spostati insieme se decidiamo di riorganizzare l’albero dei moduli del _crate_.
 Pertanto abbiamo usato `super` in modo da avere meno posti da aggiornare nel
 codice in futuro se questo codice viene spostato in un modulo diverso.
 
 ### Rendere Pubbliche _Struct_ e _Enum_
 
 Possiamo anche utilizzare `pub` per designare _struct_ ed _enum_ come pubblici,
-ma ci sono alcuni dettagli aggiuntivi nell'uso di `pub` con _struct_ ed _enum_.
+ma ci sono alcuni dettagli aggiuntivi nell’uso di `pub` con _struct_ ed _enum_.
 Se utilizziamo `pub` prima di una definizione di _struct_, rendiamo la _struct_
 pubblica, ma i campi della _struct_ rimarranno privati (come per i moduli).
 Possiamo rendere pubblici o meno ciascun campo caso per caso. Nel Listato 7-9,
@@ -279,17 +279,17 @@ privato. Prova a de-commentare la riga che modifica il valore del campo
 `frutta_di_stagione` per vedere quale errore ottieni!
 
 Inoltre, nota che poiché `cucine::Colazione` ha un campo privato, la _struct_
-deve fornire una funzione associata pubblica che costruisce un'istanza di
-`Colazione` (qui l'abbiamo chiamata `estate`). Se `Colazione` non avesse una
-funzione del genere, non potremmo creare un'istanza di `Colazione` in
+deve fornire una funzione associata pubblica che costruisce un’istanza di
+`Colazione` (qui l’abbiamo chiamata `estate`). Se `Colazione` non avesse una
+funzione del genere, non potremmo creare un’istanza di `Colazione` in
 `mangiare_al_ristorante` perché non potremmo impostare il valore del campo
 privato `frutta_di_stagione` in `mangiare_al_ristorante`.
 
-Al contrario, se rendiamo un'_enum_ pubblico, tutte le sue varianti diventano
+Al contrario, se rendiamo un’_enum_ pubblico, tutte le sue varianti diventano
 pubbliche. Abbiamo bisogno solo di `pub` prima della parola chiave `enum`, come
 mostrato nel Listato 7-10.
 
-<Listing number="7-10" file-name="src/lib.rs" caption="Designare un'_enum_ come pubblico rende pubbliche tutte le sue varianti">
+<Listing number="7-10" file-name="src/lib.rs" caption="Designare un’_enum_ come pubblico rende pubbliche tutte le sue varianti">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch07-managing-growing-projects/listing-07-10/src/lib.rs}}
@@ -297,7 +297,7 @@ mostrato nel Listato 7-10.
 
 </Listing>
 
-Poiché abbiamo reso pubblico l'_enum_ `Antipasti`, possiamo utilizzare le
+Poiché abbiamo reso pubblico l’_enum_ `Antipasti`, possiamo utilizzare le
 varianti `Zuppa` e `Insalata` in `mangiare_al_ristorante`.
 
 Le _enum_ non sono molto utili a meno che le loro varianti non siano pubbliche;
@@ -307,7 +307,7 @@ _struct_ sono spesso utili senza che i loro campi siano pubblici, quindi i campi
 delle _struct_ seguono la regola generale che tutto è privato come impostazione
 predefinita, a meno che non sia annotato con `pub`.
 
-C'è un'ultima situazione che coinvolge `pub` che non abbiamo trattato, ed è la
+C’è un’ultima situazione che coinvolge `pub` che non abbiamo trattato, ed è la
 nostra ultima caratteristica del sistema dei moduli: la parola chiave `use`.
 Tratteremo `use` da solo prima, e poi mostreremo come combinare `pub` e `use`.
 

@@ -37,7 +37,7 @@ in dettaglio nel [Capitolo 13][ch13]<!-- ignore -->. Per ora, è sufficiente
 conoscere solo due dettagli sugli iteratori: gli iteratori producono una serie
 di valori e possiamo chiamare il metodo `collect` su un iteratore per
 trasformarlo in una collezione, come un vettore, che contiene tutti gli elementi
-prodotti dall'iteratore.
+prodotti dall’iteratore.
 
 Il codice nel Listato 12-1 consente al programma `minigrep` di leggere qualsiasi
 argomento della riga di comando passato e quindi raccogliere i valori in un
@@ -51,14 +51,14 @@ vettore.
 
 </Listing>
 
-Per prima cosa, portiamo il modulo `std::env` nello _scope_ con un'istruzione
+Per prima cosa, portiamo il modulo `std::env` nello _scope_ con un’istruzione
 `use` in modo da poter utilizzare la sua funzione `args`. Nota che la funzione
 `std::env::args` è annidata in due livelli di moduli. Come discusso nel
 [Capitolo 7][ch7-idiomatic-use]<!-- ignore -->, nei casi in cui la funzione
 desiderata è annidata in più di un modulo, abbiamo scelto di portare nello
 _scope_ il modulo genitore anziché la funzione. In questo modo, possiamo
 facilmente utilizzare altre funzioni da `std::env`. È anche meno ambiguo
-rispetto all'aggiunta di `use std::env::args` e quindi alla chiamata della
+rispetto all’aggiunta di `use std::env::args` e quindi alla chiamata della
 funzione con solo `args`, perché `args` potrebbe essere facilmente confuso con
 una funzione definita nel modulo corrente.
 
@@ -73,8 +73,8 @@ una funzione definita nel modulo corrente.
 > gestire rispetto ai valori `String`.
 
 Nella prima riga del corpo di `main`, chiamiamo `env::args` e utilizziamo
-immediatamente `collect` per trasformare l'iteratore in un vettore contenente
-tutti i valori prodotti dall'iteratore. Possiamo usare la funzione `collect` per
+immediatamente `collect` per trasformare l’iteratore in un vettore contenente
+tutti i valori prodotti dall’iteratore. Possiamo usare la funzione `collect` per
 creare molti tipi di collezioni, quindi annotiamo esplicitamente il _type_ di
 `args` per specificare che vogliamo un vettore di stringhe. Sebbene sia molto
 raro dover annotare i _type_ in Rust, `collect` è una funzione che spesso
@@ -93,11 +93,11 @@ codice prima senza argomenti e poi con due argomenti:
 ```
 
 Nota che il primo valore nel vettore è `"target/debug/minigrep"`, che è il nome
-del nostro binario. Questo corrisponde al comportamento dell'elenco degli
+del nostro binario. Questo corrisponde al comportamento dell’elenco degli
 argomenti in C, consentendo ai programmi di utilizzare il nome con cui sono
-stati invocati durante l'esecuzione. Spesso è comodo avere accesso al nome del
+stati invocati durante l’esecuzione. Spesso è comodo avere accesso al nome del
 programma nel caso in cui si voglia visualizzarlo nei messaggi o modificarne il
-comportamento in base all'alias della riga di comando utilizzato per invocarlo.
+comportamento in base all’alias della riga di comando utilizzato per invocarlo.
 Ma ai fini di questo capitolo, lo ignoreremo e salveremo solo i due argomenti di
 cui abbiamo bisogno.
 
@@ -108,7 +108,7 @@ argomenti della riga di comando. Ora dobbiamo salvare i valori dei due argomenti
 nelle variabili in modo da poterli utilizzare nel resto del programma. Lo
 facciamo nel Listato 12-2.
 
-<Listing number="12-2" file-name="src/main.rs" caption="Creazione di variabili per contenere l'argomento `query` e l'argomento `percorso_file`">
+<Listing number="12-2" file-name="src/main.rs" caption="Creazione di variabili per contenere l’argomento `query` e l’argomento `percorso_file`">
 
 ```rust,should_panic,noplayground
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-02/src/main.rs}}
@@ -118,7 +118,7 @@ facciamo nel Listato 12-2.
 
 Come abbiamo visto quando abbiamo stampato il vettore, il nome del programma
 occupa il primo valore nel vettore in `args[0]`, quindi gli argomenti che
-servono a noi iniziano dall'indice 1. Il primo argomento preso da `minigrep` è
+servono a noi iniziano dall’indice 1. Il primo argomento preso da `minigrep` è
 la stringa che stiamo cercando, quindi inseriamo un _reference_ al primo
 argomento nella variabile `query`. Il secondo argomento sarà il percorso del
 file, quindi inseriamo un _reference_ al secondo argomento nella variabile
@@ -135,8 +135,8 @@ argomenti `test` e `esempio.txt`:
 Ottimo, il programma funziona! I valori degli argomenti di cui abbiamo bisogno
 vengono salvati nelle variabili corrette. In seguito aggiungeremo una gestione
 degli errori per gestire alcune potenziali situazioni errate, come quando
-l'utente non fornisce argomenti; per ora ignoreremo questa situazione e
-lavoreremo invece sull'aggiunta di funzionalità per la lettura dei file.
+l’utente non fornisce argomenti; per ora ignoreremo questa situazione e
+lavoreremo invece sull’aggiunta di funzionalità per la lettura dei file.
 
 [ch13]: ch13-00-functional-features.html
 [ch7-idiomatic-use]: ch07-04-bringing-paths-into-scope-with-the-use-keyword.html#creare-percorsi-use-idiomatici

@@ -3,7 +3,7 @@
 Come abbiamo visto nel [Capitolo 16][ch16]<!-- ignore -->, i _thread_ offrono un
 approccio alla concorrenza. Abbiamo visto un altro approccio in questo capitolo:
 utilizzare _async_ con _future_ e _stream_. Se ti stai chiedendo quando
-scegliere un metodo rispetto all'altro, la risposta è: dipende! E in molti casi,
+scegliere un metodo rispetto all’altro, la risposta è: dipende! E in molti casi,
 la scelta non è tra _thread_ __o__ _async_, ma piuttosto tra _thread_ __e__
 _async_.
 
@@ -11,8 +11,8 @@ Molti sistemi operativi hanno fornito modelli di concorrenza basati su _thread_
 per decenni, e molti linguaggi di programmazione li supportano di conseguenza.
 Tuttavia, questi modelli non sono privi di compromessi. Su molti sistemi
 operativi, utilizzano una buona quantità di memoria per ogni _thread_ e
-comportano un certo _overhead_ per l'avvio e lo spegnimento. I _thread_ sono
-anche un'opzione solo quando il tuo sistema operativo e hardware li supportano.
+comportano un certo _overhead_ per l’avvio e lo spegnimento. I _thread_ sono
+anche un’opzione solo quando il tuo sistema operativo e hardware li supportano.
 A differenza dei computer desktop e smartphone mainstream, alcuni sistemi
 _embedded_ non hanno affatto un OS, quindi non hanno nemmeno _thread_.
 
@@ -39,9 +39,9 @@ e `thread::sleep` della libreria standard nella funzione `ricevi_intervalli`.
 
 </Listing>
 
-Se esegui questo codice, l'output è identico a quello del listato 17-40. E nota
+Se esegui questo codice, l’output è identico a quello del listato 17-40. E nota
 quanto poco cambia qui dalla prospettiva del codice chiamante. Inoltre, anche se
-una delle nostre funzioni ha avviato un _task_ _async_ sul _runtime_ e l'altra
+una delle nostre funzioni ha avviato un _task_ _async_ sul _runtime_ e l’altra
 ha avviato un _thread_ del sistema operativo, gli _stream_ risultanti non sono
 stati influenzati dalle differenze.
 
@@ -51,12 +51,12 @@ semplice. Potremmo avviare milioni di _task_ _async_ su qualsiasi computer
 moderno. Se provassimo a farlo con i _thread_, esauriremmo letteralmente la
 memoria!
 
-Tuttavia, c'è un motivo per cui queste API sono così simili. I _thread_ agiscono
+Tuttavia, c’è un motivo per cui queste API sono così simili. I _thread_ agiscono
 come un confine per insiemi di operazioni sincrone; la concorrenza è possibile
 _tra_ i _thread_. I _task_ agiscono come un confine per insiemi di operazioni
-_asincrone_; la concorrenza è possibile sia _tra_ che _all'interno_ dei _task_,
+_asincrone_; la concorrenza è possibile sia _tra_ che _all’interno_ dei _task_,
 perché un _task_ può passare tra _future_ nel suo corpo. Infine, le _future_
-sono l'unità di concorrenza più granulare di Rust, e ogni _future_ può
+sono l’unità di concorrenza più granulare di Rust, e ogni _future_ può
 rappresentare un albero di altre _future_. Il _runtime_, specificamente, il suo
 esecutore, gestisce i _task_, e i _task_ gestiscono le _future_. In questo
 senso, i _task_ sono simili a _thread_ leggeri gestiti dal _runtime_ con
@@ -97,7 +97,7 @@ _future_.
 
 Quando si pensa a quale metodo utilizzare, considera queste regole pratiche:
 
-- Se il lavoro è _molto parallelizzabile_, come l'elaborazione di un insieme di
+- Se il lavoro è _molto parallelizzabile_, come l’elaborazione di un insieme di
   dati in cui ogni parte può essere elaborata separatamente, i _thread_ sono una
   scelta migliore.
 - Se il lavoro è _molto concorrente_, come gestire messaggi provenienti da
@@ -118,7 +118,7 @@ piuttosto comune di questo tipo di mix nel codice Rust reale.
 </Listing>
 
 Iniziamo creando un canale _async_, quindi avviamo un _thread_ che prende
-possesso della estremità del mittente del canale. All'interno del _thread_,
+possesso della estremità del mittente del canale. All’interno del _thread_,
 inviamo i numeri da 1 a 10, dormendo per un secondo tra ciascuno. Infine,
 eseguiamo una _future_ creata con un blocco _async_ passato a `trpl::run`,
 proprio come abbiamo fatto in tutto il capitolo. In quella _future_, attendiamo
@@ -127,13 +127,13 @@ visto.
 
 Per tornare allo scenario con cui abbiamo aperto il capitolo, immagina di
 eseguire un insieme di _task_ di codifica video utilizzando un _thread_ dedicato
-(perché la codifica video è vincolata al calcolo) ma notificando l'interfaccia
+(perché la codifica video è vincolata al calcolo) ma notificando l’interfaccia
 utente che quelle operazioni sono terminate con un canale _async_. Ci sono
-innumerevoli esempi di queste combinazioni in casi d'uso reali.
+innumerevoli esempi di queste combinazioni in casi d’uso reali.
 
 ## Riepilogo
 
-Questa non è l'ultima volta che vedrai la concorrenza in questo libro. Il
+Questa non è l’ultima volta che vedrai la concorrenza in questo libro. Il
 progetto nel [Capitolo 21][ch21] applicherà questi concetti in una situazione
 più realistica rispetto agli esempi più semplici discussi qui e confronterà la
 risoluzione dei problemi con i _thread_ rispetto ai _task_ in modo più diretto.

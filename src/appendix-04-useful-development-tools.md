@@ -2,7 +2,7 @@
 
 In questa appendice parliamo di alcuni utili strumenti di sviluppo che il
 progetto Rust mette a disposizione: la formattazione automatica, i modi rapidi
-per applicare le correzioni degli avvisi, un linter e l'integrazione con gli
+per applicare le correzioni degli avvisi, un linter e l’integrazione con gli
 IDE.
 
 ### Formattazione automatica con `rustfmt
@@ -24,7 +24,7 @@ inserisci quanto segue:
 $ cargo fmt
 ```
 
-L'esecuzione di questo comando riformatta tutto il codice Rust nel _crate_
+L’esecuzione di questo comando riformatta tutto il codice Rust nel _crate_
 corrente. Questo dovrebbe cambiare solo lo stile del codice, non la sua
 semantica. Per maggiori informazioni su `rustfmt`, consulta [la sua
 documentazione][rustfmt].
@@ -33,7 +33,7 @@ documentazione][rustfmt].
 
 Lo strumento `rustfix` è incluso nelle installazioni di Rust ed è in grado di
 correggere automaticamente gli avvertimenti del compilatore in cui è specificato
-in modo preciso come quell'errore vada risolto. Probabilmente hai già visto
+in modo preciso come quell’errore vada risolto. Probabilmente hai già visto
 degli avvertimenti del compilatore. Per esempio, considera questo codice:
 
 <span class="filename">File: src/main.rs</span>
@@ -62,7 +62,7 @@ warning: variable does not need to be mutable
   = note: `#[warn(unused_mut)]` on by default
 ```
 
-L'avviso suggerisce di rimuovere la parola chiave `mut`. Possiamo applicare
+L’avviso suggerisce di rimuovere la parola chiave `mut`. Possiamo applicare
 automaticamente questo suggerimento utilizzando lo strumento `rustfix` eseguendo
 il comando `cargo fix`:
 
@@ -84,10 +84,10 @@ fn main() {
     println!("{x}");
 }
 ```
-La variabile `x` è ora immutabile e l'avviso non appare più.
+La variabile `x` è ora immutabile e l’avviso non appare più.
 
 Puoi anche usare il comando `cargo fix` per far passare il tuo codice tra
-diverse edizioni di Rust. Le edizioni sono trattate nell'[Appendice
+diverse edizioni di Rust. Le edizioni sono trattate nell’[Appendice
 E][editions].
 
 ### Altri strumenti di analisi del codice con Clippy
@@ -104,7 +104,7 @@ segue:
 $ cargo clippy
 ```
 
-Ad esempio, supponiamo di scrivere un programma che utilizza un'approssimazione
+Ad esempio, supponiamo di scrivere un programma che utilizza un’approssimazione
 di una costante matematica, come il pi greco, come fa questo programma:
 
 <Listing file-name="src/main.rs">
@@ -133,7 +133,7 @@ error: approximate value of `f{32, 64}::consts::PI` found
   = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#approx_constant
 ```
 
-Questo errore ti informa che in Rust c'è già definita una costante `PI` più
+Questo errore ti informa che in Rust c’è già definita una costante `PI` più
 precisa e che il tuo programma sarebbe più corretto se usassi questa costante.
 Dovresti quindi modificare il tuo codice per usare la costante `PI`.
 
@@ -153,9 +153,9 @@ fn main() {
 
 Per maggiori informazioni su Clippy, consulta [la sua documentazione][clippy].
 
-### Integrazione nell'IDE con `rust-analyzer
+### Integrazione nell’IDE con `rust-analyzer
 
-Per aiutare l'integrazione con l'IDE, la comunità di Rust raccomanda l'uso di
+Per aiutare l’integrazione con l’IDE, la comunità di Rust raccomanda l’uso di
 [`rust-analyzer`][rust-analyzer]<!-- ignore -->. Questo strumento è un insieme
 di utility incentrate sul compilatore che _parlano_ in [Language Server
 Protocol][lsp]<!-- ignore -->, che è una specifica per gli IDE e i linguaggi di
@@ -166,7 +166,7 @@ Code][vscode].
 Visita la [home page] del progetto `rust-analyzer`[rust-analyzer]<!-- ignore -->
 per le istruzioni di installazione, quindi installa il supporto per il server
 linguistico nel tuo IDE specifico. Il tuo IDE otterrà funzionalità come
-l'autocompletamento, il salto alla definizione e gli errori in linea.
+l’autocompletamento, il salto alla definizione e gli errori in linea.
 
 [rustfmt]: https://rust-lang.github.io/rustfmt/
 [editions]: appendix-05-editions.md

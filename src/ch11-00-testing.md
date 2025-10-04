@@ -2,7 +2,7 @@
 
 Nel suo saggio del 1972 “The Humble Programmer”, Edsger W. Dijkstra ha affermato
 che “il testing dei programmi può essere un modo molto efficace per mostrare la
-presenza di bug, ma è irrimediabilmente inadeguato per mostrarne l'assenza.”
+presenza di bug, ma è irrimediabilmente inadeguato per mostrarne l’assenza.”
 Questo non significa che non dovremmo cercare di testare il più possibile!
 
 La correttezza dei nostri programmi è la misura in cui il nostro codice fa ciò
@@ -28,9 +28,9 @@ alla funzione `aggiungi_due`, il valore restituito sia `5`. Possiamo eseguire
 questi test ogni volta che apportiamo delle modifiche al nostro codice per
 assicurarci che il comportamento corretto esistente non sia cambiato.
 
-Il testing è un'abilità complessa: anche se non possiamo trattare in un solo
+Il testing è un’abilità complessa: anche se non possiamo trattare in un solo
 capitolo tutti i dettagli su come scrivere dei buoni test, in questo capitolo
 parleremo dei meccanismi delle strutture di test di Rust. Parleremo delle
 annotazioni e delle macro a tua disposizione quando scrivi i tuoi test, del
-comportamento predefinito e delle opzioni fornite per l'esecuzione dei tuoi test
+comportamento predefinito e delle opzioni fornite per l’esecuzione dei tuoi test
 e di come organizzare i test in unità di test e test di integrazione.

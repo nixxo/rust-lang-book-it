@@ -6,7 +6,7 @@ impostazione predefinita, le variabili sono immutabili. Questo è uno dei tanti
 stimoli che Rust ti dà per scrivere il tuo codice in modo da sfruttare la
 sicurezza e la facilità di concorrenza che Rust offre. Tuttavia, hai ancora la
 possibilità di rendere le tue variabili mutabili. Esploriamo come e perché Rust
-ti incoraggia a favorire l'immutabilità e perché a volte potresti voler
+ti incoraggia a favorire l’immutabilità e perché a volte potresti voler
 rinunciare a questa cosa.
 
 Quando una variabile è immutabile, una volta che un valore è legato a un nome,
@@ -43,7 +43,7 @@ Hai ricevuto il messaggio di errore `` cannot assign twice to immutable variable
 È importante che ci vengano segnalati errori in tempo di compilazione quando si
 tenta di modificare un valore che è stato definito immutabile, perché proprio
 questa situazione può portare a dei bug. Se una parte del nostro codice opera
-sulla base del presupposto che un valore non cambierà mai e un'altra parte del
+sulla base del presupposto che un valore non cambierà mai e un’altra parte del
 codice modifica quel valore, è possibile che la prima parte del codice non
 faccia ciò per cui è stata progettata. La causa di questo tipo di bug può essere
 difficile da rintracciare a posteriori, soprattutto quando la seconda parte del
@@ -56,7 +56,7 @@ Ma la mutabilità può essere molto utile e può rendere il codice più comodo d
 scrivere. Sebbene le variabili siano immutabili come impostazione predefinita,
 puoi renderle mutabili aggiungendo `mut` davanti al nome della variabile, come
 hai fatto nel [Capitolo 2][memorizzare-i-valori-con-le-variabili]<!-- ignore
--->. L'aggiunta di `mut` rende anche palese quando si andrà a rileggere il
+-->. L’aggiunta di `mut` rende anche palese quando si andrà a rileggere il
 codice in futuro che altre parti del codice cambieranno il valore di questa
 variabile.
 
@@ -96,8 +96,8 @@ Le costanti possono essere dichiarate in qualsiasi _scope_, compreso quello
 globale, il che le rende utili per i valori che molte parti del codice devono
 conoscere.
 
-L'ultima differenza è che le costanti possono essere impostate solo su
-un'espressione costante, non sul risultato di un valore che può essere calcolato
+L’ultima differenza è che le costanti possono essere impostate solo su
+un’espressione costante, non sul risultato di un valore che può essere calcolato
 solo in fase di esecuzione.
 
 Ecco un esempio di dichiarazione di una costante:
@@ -108,10 +108,10 @@ const TRE_ORE_IN_SECONDI: u32 = 60 * 60 * 3;
 
 Il nome della costante è `TRE_ORE_IN_SECONDI` e il suo valore è impostato come
 il risultato della moltiplicazione di 60 (il numero di secondi in un minuto) per
-60 (il numero di minuti in un'ora) per 3 (il numero di ore che vogliamo contare
+60 (il numero di minuti in un’ora) per 3 (il numero di ore che vogliamo contare
 in questo programma). La convenzione di Rust per la denominazione delle costanti
-prevede l'uso di maiuscole con trattini bassi tra le parole. Il compilatore è in
-grado di valutare il risultato di un'operazione in fase di compilazione, il che
+prevede l’uso di maiuscole con trattini bassi tra le parole. Il compilatore è in
+grado di valutare il risultato di un’operazione in fase di compilazione, il che
 ci permette di scegliere di scrivere questo valore in un modo più facile da
 capire e da verificare, piuttosto che impostare questa costante al valore
 10.800. Consulta la sezione [Valutazione delle costanti (in
@@ -119,7 +119,7 @@ inglese)][const-eval] per maggiori informazioni sulle operazioni che possono
 essere utilizzate quando si dichiarano le costanti.
 
 Le costanti sono valide per tutto il tempo di esecuzione di un programma,
-all'interno dello _scope_ in cui sono state dichiarate. Questa proprietà rende
+all’interno dello _scope_ in cui sono state dichiarate. Questa proprietà rende
 le costanti utili per dei valori nella tua applicazione che più parti del
 programma potrebbero avere bisogno di conoscere, come ad esempio il numero
 massimo di punti che un giocatore di un gioco può guadagnare o la velocità della
@@ -132,7 +132,7 @@ codificato deve essere aggiornato in futuro.
 
 ### _Shadowing_
 
-Come hai visto nel tutorial sul gioco dell'indovinello nel [Capitolo
+Come hai visto nel tutorial sul gioco dell’indovinello nel [Capitolo
 2][numero-segreto]<!-- ignore -->, puoi dichiarare una nuova variabile con lo
 stesso nome di una variabile precedente. I _Rustacean_ dicono che la prima
 variabile è _messa in ombra_, _shadowing_, dalla seconda, il che significa che
@@ -140,7 +140,7 @@ la seconda variabile è quella che il compilatore vedrà quando userai il nome
 della variabile. In effetti, la seconda variabile mette in ombra la prima,
 portando a sé qualsiasi uso del nome della variabile fino a quando non sarà essa
 stessa messa in ombra o lo _scope_ terminerà. Possiamo fare _shadowing_ di una
-variabile usando lo stesso nome della variabile e ripetendo l'uso della parola
+variabile usando lo stesso nome della variabile e ripetendo l’uso della parola
 chiave `let` come segue:
 
 <span class="filename">File: src/main.rs</span>
@@ -151,7 +151,7 @@ chiave `let` come segue:
 
 Questo programma vincola innanzitutto `x` a un valore di `5`. Poi crea una nuova
 variabile `x` ripetendo `let x =`, prendendo il valore originale e aggiungendo
-`1` in modo che il valore di `x` sia `6`. Quindi, all'interno di uno _scope_
+`1` in modo che il valore di `x` sia `6`. Quindi, all’interno di uno _scope_
 interno creato con le parentesi graffe, la terza istruzione `let` _mette in
 ombra_ `x` e crea una nuova variabile, moltiplicando il valore precedente per
 `2` per dare a `x` un valore di `12`. Quando lo _scope_ termina, finisce pure lo
@@ -162,17 +162,17 @@ ottiene il seguente risultato:
 {{#include ../listings/ch03-common-programming-concepts/no-listing-03-shadowing/output.txt}}
 ```
 
-Lo _shadowing_ è diverso dall'indicare una variabile come `mut` perché otterremo
+Lo _shadowing_ è diverso dall’indicare una variabile come `mut` perché otterremo
 un errore in fase di compilazione se cercassimo accidentalmente di riassegnare
 questa variabile senza usare la parola chiave `let`. Usando `let`, possiamo
 eseguire alcune trasformazioni su un valore ma far sì che la variabile sia
 immutabile dopo che le trasformazioni sono state completate.
 
-L'altra differenza tra `mut` e lo _shadowing_ è che, poiché stiamo
+L’altra differenza tra `mut` e lo _shadowing_ è che, poiché stiamo
 effettivamente creando una nuova variabile quando usiamo di nuovo la parola
 chiave `let`, possiamo cambiare il _type_ del valore ma riutilizzare lo stesso
 nome. Ad esempio, supponiamo che il nostro programma chieda a un utente di
-scriverci quanti spazi vuole tra un testo e l'altro inserendo dei caratteri di
+scriverci quanti spazi vuole tra un testo e l’altro inserendo dei caratteri di
 spazio, e poi vogliamo memorizzare questo input come un numero:
 
 ```rust
@@ -189,7 +189,7 @@ come mostrato qui, otterremo un errore di compilazione:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-05-mut-cant-change-types/src/main.rs:here}}
 ```
 
-L'errore dice che non è consentito mutare il _type_ di una variabile:
+L’errore dice che non è consentito mutare il _type_ di una variabile:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-05-mut-cant-change-types/output.txt}}

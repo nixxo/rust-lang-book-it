@@ -4,11 +4,11 @@ Al momento, stiamo stampando tutto il nostro output sul terminale usando la
 macro `println!`. Nella maggior parte dei terminali, esistono due tipi di
 output: _standard output_ (`stdout`) per informazioni generali e _standard
 error_ (`stderr`) per i messaggi di errore. Questa distinzione consente agli
-utenti di scegliere di indirizzare l'output corretto di un programma a un file,
+utenti di scegliere di indirizzare l’output corretto di un programma a un file,
 ma di visualizzare comunque i messaggi di errore sullo schermo.
 
 La macro `println!` è in grado di stampare solo sullo _standard output_, quindi
-dobbiamo usare qualcos'altro per stampare sullo _standard error_.
+dobbiamo usare qualcos’altro per stampare sullo _standard error_.
 
 ### Controllare dove Vengono Scritti gli Errori
 
@@ -24,7 +24,7 @@ Ci si aspetta che i programmi a riga di comando inviino messaggi di errore al
 flusso di _standard error_, in modo da poterli comunque visualizzare sullo
 schermo anche se reindirizziamo il flusso di output standard a un file. Il
 nostro programma al momento non si comporta bene: stiamo per vedere che salverà
-l'output del messaggio di errore in un file!
+l’output del messaggio di errore in un file!
 
 Per dimostrare questo comportamento, esegui il programma con `>` e il percorso
 del file, _output.txt_, a cui vogliamo reindirizzare il flusso di _standard
@@ -45,7 +45,7 @@ Problema nella lettura degli argomenti: non ci sono abbastanza argomenti
 
 Sì, il nostro messaggio di errore viene visualizzato sullo _standard output_. È
 molto più utile che messaggi di errore come questo vengano visualizzati sullo
-_standard error_, in modo che solo i dati di un'esecuzione senza errori
+_standard error_, in modo che solo i dati di un’esecuzione senza errori
 finiscano nel file. Cambieremo questa impostazione.
 
 ### Visualizzazione degli Errori sullo _Standard Error_
@@ -53,7 +53,7 @@ finiscano nel file. Cambieremo questa impostazione.
 Useremo il codice del Listato 12-24 per modificare la modalità di
 visualizzazione dei messaggi di errore. A causa del _refactoring_ effettuato in
 precedenza in questo capitolo, tutto il codice che visualizza i messaggi di
-errore si trova in un'unica funzione, `main`. La libreria standard fornisce la
+errore si trova in un’unica funzione, `main`. La libreria standard fornisce la
 macro `eprintln!` che stampa sullo _standard error_, quindi modifichiamo i due
 punti in cui chiamavamo `println!` per visualizzare gli errori in modo che
 utilizzino `eprintln!` al loro posto.
@@ -74,11 +74,11 @@ $ cargo run > output.txt
 Problema nella lettura degli argomenti: non ci sono abbastanza argomenti
 ```
 
-Ora vediamo l'errore sullo schermo e _output.txt_ non contiene nulla, che è il
+Ora vediamo l’errore sullo schermo e _output.txt_ non contiene nulla, che è il
 comportamento che ci aspettiamo dai programmi a riga di comando.
 
 Eseguiamo di nuovo il programma con argomenti che non causano errori ma che
-comunque reindirizziamo l'output standard a un file, in questo modo:
+comunque reindirizziamo l’output standard a un file, in questo modo:
 
 ```console
 $ cargo run -- che poesia.txt > output.txt
@@ -94,15 +94,15 @@ Sei Nessuno anche tu?
 che gracida il tuo nome — tutto giugno —
 ```
 
-Questo dimostra che ora stiamo utilizzando lo _standard output_ per l'output
-corretto e lo _standard error_ per l'output dei messaggi di errore, a seconda
+Questo dimostra che ora stiamo utilizzando lo _standard output_ per l’output
+corretto e lo _standard error_ per l’output dei messaggi di errore, a seconda
 dei casi.
 
 ## Riepilogo
 
 Questo capitolo ha messo in pratica alcuni dei concetti principali appresi
 finora e ha spiegato come eseguire operazioni di I/O comuni in Rust. Utilizzando
-argomenti della riga di comando, file, variabili d'ambiente e la macro
+argomenti della riga di comando, file, variabili d’ambiente e la macro
 `eprintln!` per la stampa degli errori, ora sei pronto a scrivere applicazioni
 da riga di comando. In combinazione con i concetti dei capitoli precedenti, il
 codice sarà ben organizzato, memorizzerà i dati in modo efficace nelle strutture

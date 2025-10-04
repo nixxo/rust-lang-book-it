@@ -42,7 +42,7 @@ let` dipende da cosa stai facendo in quella situazione particolare e se un
 codice più conciso valga la perdita del controllo esaustivo.
 
 In altre parole, puoi pensare a `if let` come ad una espressione `match` ridotta
-all'osso che esegue codice quando il valore corrisponde a un _pattern_ e poi
+all’osso che esegue codice quando il valore corrisponde a un _pattern_ e poi
 ignora tutti gli altri valori.
 
 Possiamo includere un `else` con un `if let`. Il blocco di codice che accompagna

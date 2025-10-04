@@ -1,7 +1,7 @@
 ## `panic!` o non `panic!`
 
 Quindi, come si decide quando chiamare `panic!` e quando restituire `Result`?
-Quando il codice va in _panic_, non c'è modo di tornare indietro. Si potrebbe
+Quando il codice va in _panic_, non c’è modo di tornare indietro. Si potrebbe
 chiamare `panic!` per qualsiasi situazione di errore, indipendentemente dal
 fatto che ci sia o meno una possibile soluzione, ma in tal caso si sta prendendo
 la decisione che una situazione non è reversibile per conto del codice
@@ -23,24 +23,24 @@ quando scrivi codice per una libreria.
 ### Codice di Esempio, Prototipale e Test
 
 Quando si scrive un esempio per illustrare un concetto, includere anche un
-codice robusto per la gestione degli errori può rendere l'esempio meno chiaro.
+codice robusto per la gestione degli errori può rendere l’esempio meno chiaro.
 Negli esempi, è sufficientemente chiaro che una chiamata a un metodo come
 `unwrap` che potrebbe andare in panico è intesa come segnaposto per il modo in
-cui si desidera che l'applicazione gestisca gli errori, che può differire in
+cui si desidera che l’applicazione gestisca gli errori, che può differire in
 base al comportamento del resto del codice.
 
 Allo stesso modo, i metodi `unwrap` ed `expect` sono molto utili durante la fase
 di prototipazione, prima di decidere come gestire gli errori. Lasciano chiari
 punti nel codice per quando si è pronti a riscriverlo per renderlo più robusto.
 
-Se una chiamata a un metodo fallisce in un test, si desidera che l'intero test
+Se una chiamata a un metodo fallisce in un test, si desidera che l’intero test
 fallisca, anche se quel metodo non è la funzionalità in fase di test. Poiché
 `panic!` è il modo in cui un test viene contrassegnato come fallito, chiamare
 `unwrap` o `expect` è esattamente ciò che dovrebbe accadere.
 
 ### Quando Si Hanno Più Informazioni Del Compilatore
 
-Sarebbe anche appropriato chiamare `expect` quando si dispone di un'altra logica
+Sarebbe anche appropriato chiamare `expect` quando si dispone di un’altra logica
 che garantisce che `Result` abbia un valore `Ok`, ma la logica non è qualcosa
 che il compilatore capisce. Si avrà comunque un valore `Result` che bisogna
 gestire: qualsiasi operazione si stia chiamando ha comunque la possibilità di
@@ -48,25 +48,25 @@ fallire, anche se è logicamente impossibile nella propria situazione specifica.
 Se puoi assicurarti, ispezionando manualmente il codice, che non avrai mai una
 variante `Err`, è perfettamente accettabile chiamare `expect` e documentare il
 motivo per cui pensi di non avere mai una variante `Err` nel testo
-dell'argomento. Ecco un esempio:
+dell’argomento. Ecco un esempio:
 
 ```rust
 {{#rustdoc_include ../listings/ch09-error-handling/no-listing-08-unwrap-that-cant-fail/src/main.rs:here}}
 ```
 
-Stiamo creando un'istanza di `IpAddr` analizzando una stringa scritta
+Stiamo creando un’istanza di `IpAddr` analizzando una stringa scritta
 direttamente. Possiamo vedere che `127.0.0.1` è un indirizzo IP valido, quindi è
 accettabile usare `expect` qui. Tuttavia, avere una stringa valida specificata
 nel codice non cambia il _type_ di ritorno del metodo `parse`: otteniamo
 comunque un valore `Result` e il compilatore ci farà comunque gestire `Result`
 come se la variante `Err` fosse una possibilità perché il compilatore non è
 abbastanza intelligente da vedere che questa stringa è sempre un indirizzo IP
-valido. Se la stringa dell'indirizzo IP provenisse da un utente anziché essere
+valido. Se la stringa dell’indirizzo IP provenisse da un utente anziché essere
 scritta direttamente nel programma e quindi _avesse_ una possibilità di errore,
 vorremmo sicuramente gestire `Result` in un modo più robusto. Menzionare il
 presupposto che questo indirizzo IP sia definito ci indurrà a modificare
 `expect` con un codice di gestione degli errori migliore se, in futuro,
-dovessimo ottenere l'indirizzo IP da un'altra fonte.
+dovessimo ottenere l’indirizzo IP da un’altra fonte.
 
 ### Linee Guida Per la Gestione degli Errori
 
@@ -87,7 +87,7 @@ contraddittori o valori mancanti, più almeno una delle seguenti cose:
   Comportamenti Come _Type_”][encoding]<!-- ignore --> nel Capitolo 18.
 
 Se qualcuno chiama il tuo codice e passa valori che non hanno senso, è meglio
-restituire un errore, se possibile, in modo che l'utente della libreria possa
+restituire un errore, se possibile, in modo che l’utente della libreria possa
 decidere cosa fare in quel caso. Tuttavia, nei casi in cui continuare potrebbe
 essere insicuro o dannoso, la scelta migliore potrebbe essere quella di chiamare
 `panic!` e avvisare la persona che utilizza la tua libreria del _bug_ nel suo
@@ -102,7 +102,7 @@ il raggiungimento di un limite di connessioni. In questi casi, restituire un
 `Result` indica che un errore è una possibilità prevista che il codice chiamante
 deve decidere come gestire.
 
-Quando il codice esegue un'operazione che potrebbe mettere a rischio un utente
+Quando il codice esegue un’operazione che potrebbe mettere a rischio un utente
 se viene chiamata utilizzando valori non validi, il codice dovrebbe prima
 verificare che i valori siano validi e generare un errore di _panic_ se i valori
 non sono validi. Questo avviene principalmente per motivi di sicurezza: tentare
@@ -126,32 +126,32 @@ Rust (e quindi il controllo dei _type_ effettuato dal compilatore) per eseguire
 molti dei controlli al tuo posto. Se la tua funzione ha un _type_ particolare
 come parametro, potete procedere con la logica del codice sapendo che il
 compilatore ha già verificato la presenza di un valore valido. Ad esempio, se
-avete un _type_ anziché un'`Option`, il tuo programma si aspetta di avere
+avete un _type_ anziché un’`Option`, il tuo programma si aspetta di avere
 _qualcosa_ anziché _niente_. Il codice non dovrà quindi gestire due casi per le
 varianti `Some` e `None`: gestirà solo il caso che ha sicuramente un valore. Il
 codice che tenta di non passare nulla alla funzione non verrà nemmeno compilato,
 quindi la funzione non dovrà verificare quel caso in fase di esecuzione. Un
-altro esempio è l'utilizzo di un _type_ _integer_ senza segno come `u32`, che
+altro esempio è l’utilizzo di un _type_ _integer_ senza segno come `u32`, che
 garantisce che il parametro non sia mai negativo.
 
 ### _Type_ Personalizzati per la Convalida
 
-Sviluppiamo ulteriormente l'idea di utilizzare il sistema dei _type_ di Rust per
+Sviluppiamo ulteriormente l’idea di utilizzare il sistema dei _type_ di Rust per
 garantire un valore valido e proviamo a creare un _type_ personalizzato per la
 convalida. Riprendiamo il gioco di indovinelli del Capitolo 2 in cui il nostro
-codice chiedeva all'utente di indovinare un numero compreso tra 1 e 100. Non
-abbiamo mai verificato che la risposta dell'utente fosse compresa tra quei
+codice chiedeva all’utente di indovinare un numero compreso tra 1 e 100. Non
+abbiamo mai verificato che la risposta dell’utente fosse compresa tra quei
 numeri prima di confrontarla con il nostro numero segreto; abbiamo solo
 verificato che la risposta fosse positiva. In questo caso, le conseguenze non
 sono state poi così gravi: il nostro output “Troppo alto” o “Troppo basso”
 sarebbe stato comunque corretto. Ma sarebbe stato un utile miglioramento guidare
-l'utente verso risposte valide e avere un comportamento diverso quando l'utente
-ipotizza un numero fuori dall'intervallo rispetto a quando l'utente digita, ad
+l’utente verso risposte valide e avere un comportamento diverso quando l’utente
+ipotizza un numero fuori dall’intervallo rispetto a quando l’utente digita, ad
 esempio, delle lettere.
 
-Un modo per farlo sarebbe analizzare l'ipotesi come `i32` invece che solo come
+Un modo per farlo sarebbe analizzare l’ipotesi come `i32` invece che solo come
 `u32` per consentire numeri potenzialmente negativi, e quindi aggiungere un
-controllo per verificare che il numero sia compreso nell'intervallo, in questo
+controllo per verificare che il numero sia compreso nell’intervallo, in questo
 modo:
 
 <Listing file-name="src/main.rs">
@@ -162,9 +162,9 @@ modo:
 
 </Listing>
 
-L'espressione `if` verifica se il nostro valore è fuori dall'intervallo, informa
-l'utente del problema e chiama `continue` per avviare l'iterazione successiva
-del ciclo e richiedere un'altra ipotesi. Dopo l'espressione `if`, possiamo
+L’espressione `if` verifica se il nostro valore è fuori dall’intervallo, informa
+l’utente del problema e chiama `continue` per avviare l’iterazione successiva
+del ciclo e richiedere un’altra ipotesi. Dopo l’espressione `if`, possiamo
 procedere con i confronti tra `ipotesi` e il numero segreto, sapendo che
 `ipotesi` è compreso tra 1 e 100.
 
@@ -174,11 +174,11 @@ funzioni con questo requisito, avere un controllo di questo tipo in ogni
 funzione sarebbe ripetitivo (e potrebbe influire sulle prestazioni).
 
 Invece, possiamo creare un nuovo _type_ in un modulo dedicato e inserire le
-validazioni in una funzione per creare un'istanza del _type_, anziché ripetere
+validazioni in una funzione per creare un’istanza del _type_, anziché ripetere
 le validazioni ovunque. In questo modo, le funzioni possono utilizzare il nuovo
 _type_ nelle loro firme in tutta sicurezza e utilizzare con sicurezza i valori
 che ricevono. Il Listato 9-13 mostra un modo per definire un _type_ `Ipotesi`
-che creerà un'istanza di `Ipotesi` solo se la funzione `new` riceve un valore
+che creerà un’istanza di `Ipotesi` solo se la funzione `new` riceve un valore
 compreso tra 1 e 100.
 
 <Listing number="9-13" caption="Un _type_ `Ipotesi` che continuerà solo con valori compresi tra 1 e 100" file-name="src/gioco_indovinello.rs">
@@ -189,9 +189,9 @@ compreso tra 1 e 100.
 
 </Listing>
 
-Nota che questo codice in *src/gioco_indovinello.rs* dipende dall'aggiunta di
+Nota che questo codice in *src/gioco_indovinello.rs* dipende dall’aggiunta di
 una dichiarazione di modulo `mod gioco_indovinello;` in *src/lib.rs* che non
-abbiamo mostrato qui. All'interno del file di questo nuovo modulo, definiamo una
+abbiamo mostrato qui. All’interno del file di questo nuovo modulo, definiamo una
 _struct_ denominata `Ipotesi` che ha un campo denominato `valore` di _type_
 `i32`. È qui che verrà memorizzato il numero.
 
@@ -204,7 +204,7 @@ chiamata `panic!`, che avviserà il programmatore che sta scrivendo il codice
 chiamante che ha un _bug_ da correggere, perché creare un `Ipotesi` con un
 `valore` al di fuori di questo intervallo violerebbe il contratto su cui si basa
 `Ipotesi::new`. Le condizioni in cui `Ipotesi::new` potrebbe generare un errore
-di _panic_ dovrebbero essere discusse nella documentazione dell'API pubblica;
+di _panic_ dovrebbero essere discusse nella documentazione dell’API pubblica;
 tratteremo le convenzioni di documentazione che indicano la possibilità di un
 errore `panic!` nella documentazione delle API che creerai nel Capitolo 14. Se
 `valore` supera il test, creiamo un nuovo `Ipotesi` con il suo campo `valore`
@@ -218,7 +218,7 @@ questo metodo come public perché il campo `valore` della struttura `Ipotesi` è
 privato. È importante che il campo `valore` sia privato, in modo che il codice
 che utilizza la struttura `Ipotesi` non possa impostare `valore` direttamente:
 il codice esterno al modulo `gioco_indovinello` _deve_ utilizzare la funzione
-`Ipotesi::new` per creare un'istanza di `Ipotesi`, garantendo così che `Ipotesi`
+`Ipotesi::new` per creare un’istanza di `Ipotesi`, garantendo così che `Ipotesi`
 non possa avere un `valore` che non sia stato verificato dalle condizioni della
 funzione `Ipotesi::new`.
 
@@ -233,10 +233,10 @@ Le funzionalità di gestione degli errori di Rust sono progettate per aiutarti a
 scrivere codice più robusto. La macro `panic!` segnala che il programma si trova
 in uno stato che non può gestire e ti consente di dire al processo di
 interrompersi invece di provare a procedere con valori non validi o errati.
-L'_enum_ `Result` utilizza il sistema dei _type_ di Rust per indicare che le
+L’_enum_ `Result` utilizza il sistema dei _type_ di Rust per indicare che le
 operazioni potrebbero fallire in un modo “recuperabile”. Puoi usare `Result`
 anche per indicare al codice chiamante che deve gestire potenziali successi o
-fallimenti. L'utilizzo di `panic!` e `Result` nelle situazioni appropriate
+fallimenti. L’utilizzo di `panic!` e `Result` nelle situazioni appropriate
 renderà il tuo codice più affidabile di fronte a inevitabili problemi.
 
 Ora che hai visto i modi utili in cui la libreria standard utilizza i _type_

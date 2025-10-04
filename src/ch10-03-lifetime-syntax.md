@@ -1,6 +1,6 @@
 ## Validare i _Reference_ con la _Lifetime_
 
-Le _lifetime_ (_longevità_) sono un'altra tipologia di generico che abbiamo già
+Le _lifetime_ (_longevità_) sono un’altra tipologia di generico che abbiamo già
 utilizzato. Invece di garantire che un _type_ abbia il comportamento desiderato,
 le _lifetime_ assicurano che i _reference_ siano validi finché ne abbiamo
 bisogno.
@@ -134,7 +134,7 @@ Listato 10-19 sono quelli che desideriamo.
 Se proviamo a implementare la funzione `più_lunga` come mostrato nel Listato
 10-20, non verrà compilata.
 
-<Listing number="10-20" file-name="src/main.rs" caption="Un'implementazione della funzione `più_lunga` che restituisce la più lunga tra due stringhe ma non viene ancora compilata">
+<Listing number="10-20" file-name="src/main.rs" caption="Un’implementazione della funzione `più_lunga` che restituisce la più lunga tra due stringhe ma non viene ancora compilata">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-20/src/main.rs:here}}
@@ -165,7 +165,7 @@ correggere questo errore, aggiungeremo parametri di _lifetime_ generici che
 definiscono la relazione tra i _reference_ in modo che il _borrow checker_ possa
 eseguire la sua analisi.
 
-### Sintassi dell'Annotazione di _Lifetime_
+### Sintassi dell’Annotazione di _Lifetime_
 
 Le annotazioni di _lifetime_ non modificano la longevità di alcun _reference_.
 Piuttosto, descrivono e dettagliano le relazioni tra le longevità di più
@@ -179,7 +179,7 @@ parametri di _lifetime_ devono iniziare con un apostrofo (`'`) e sono
 solitamente tutti in minuscolo e molto brevi, come i _type_ generici. La maggior
 parte delle persone usa il nome `'a` per la prima annotazione di _lifetime_.
 Posizioniamo le annotazioni dei parametri di _lifetime_ dopo la `&` di un
-_reference_, utilizzando uno spazio per separare l'annotazione dal _type_ del
+_reference_, utilizzando uno spazio per separare l’annotazione dal _type_ del
 _reference_.
 
 Ecco alcuni esempi:
@@ -190,7 +190,7 @@ Ecco alcuni esempi:
 &'a mut i32 // `reference` mutabile con annotazione della longevità
 ```
 
-Un'annotazione di longevità di per sé non ha molto significato perché le
+Un’annotazione di longevità di per sé non ha molto significato perché le
 annotazioni servono a indicare a Rust come i parametri di _lifetime_ generici di
 più _reference_ si relazionano tra loro. Esaminiamo come le annotazioni di
 longevità si relazionano tra loro nel contesto della funzione `più_lunga`.
@@ -198,8 +198,8 @@ longevità si relazionano tra loro nel contesto della funzione `più_lunga`.
 ### Nella Firma delle Funzioni
 
 Per utilizzare le annotazioni di longevità nelle firme delle funzioni, dobbiamo
-dichiarare i parametri _lifetime_ generici all'interno di parentesi angolari
-tra il nome della funzione e l'elenco dei parametri, proprio come abbiamo fatto
+dichiarare i parametri _lifetime_ generici all’interno di parentesi angolari
+tra il nome della funzione e l’elenco dei parametri, proprio come abbiamo fatto
 con i parametri _type_ generici.
 
 Vogliamo che la firma esprima la seguente restrizione: il _reference_ restituito
@@ -239,7 +239,7 @@ Quando si annotano le longevità nelle funzioni, le annotazioni vanno nella firm
 della funzione, non nel corpo della funzione. Le annotazioni di _lifetime_
 diventano parte del contratto della funzione, proprio come i _type_ nella firma.
 Avere le firme delle funzioni che contengono il contratto di longevità significa
-che l'analisi effettuata dal compilatore Rust può essere più semplice. Se c'è un
+che l’analisi effettuata dal compilatore Rust può essere più semplice. Se c’è un
 problema con il modo in cui una funzione è annotata o con il modo in cui viene
 chiamata, gli errori del compilatore possono indicare la parte del nostro codice
 e le restrizioni in modo più preciso. Se, invece, il compilatore Rust facesse
@@ -276,9 +276,9 @@ stamperà `La stringa più lunga è una stringa bella lunga`.
 Proviamo ora un esempio che mostra come la _lifetime_ del _reference_ in
 `risultato` deve essere la _lifetime_ più breve tra i due argomenti. Sposteremo
 la dichiarazione della variabile `risultato` al di fuori dello _scope_ interno,
-ma lasceremo l'assegnazione del valore alla variabile `risultato` all'interno
+ma lasceremo l’assegnazione del valore alla variabile `risultato` all’interno
 dello _scope_ con `stringa2`. Quindi sposteremo `println!` che utilizza
-`risultato` al di fuori dello _scope_ interno, dopo che quest'ultimo è
+`risultato` al di fuori dello _scope_ interno, dopo che quest’ultimo è
 terminato. Il codice nel Listato 10-23 non verrà compilato.
 
 <Listing number="10-23" file-name="src/main.rs" caption="Tentativo di utilizzare `risultato` dopo che `stringa2` è uscita dallo _scope_">
@@ -295,7 +295,7 @@ Quando proviamo a compilare questo codice, otteniamo questo errore:
 {{#include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-23/output.txt}}
 ```
 
-L'errore indica che, affinché `risultato` sia valido per l'istruzione
+L’errore indica che, affinché `risultato` sia valido per l’istruzione
 `println!`, `stringa2` dovrebbe essere valido fino alla fine dello _scope_
 esterno. Rust lo sa perché abbiamo annotato le _lifetime_ dei parametri della
 funzione e del valore di ritorno utilizzando lo stesso parametro `'a`.
@@ -303,7 +303,7 @@ funzione e del valore di ritorno utilizzando lo stesso parametro `'a`.
 Come esseri umani, possiamo guardare questo codice e vedere che `stringa1` è più
 lungo di `stringa2` e, pertanto, `risultato` conterrà un _reference_ a
 `stringa1`. Poiché `stringa1` non è ancora uscito dallo _scope_, un _reference_
-a `stringa1` sarà ancora valido per l'istruzione `println!`. Tuttavia, il
+a `stringa1` sarà ancora valido per l’istruzione `println!`. Tuttavia, il
 compilatore non può verificare che il _reference_ sia valido in questo caso.
 Abbiamo detto a Rust che la _lifetime_ del _reference_ restituito dalla funzione
 `più_lunga` è uguale alla più breve tra le _lifetime_ dei riferimenti passati.
@@ -319,7 +319,7 @@ ragione!
 ### Relazioni
 
 Il modo in cui è necessario specificare i parametri di longevità dipende da cosa
-sta facendo la tua funzione. Ad esempio, se modificassimo l'implementazione
+sta facendo la tua funzione. Ad esempio, se modificassimo l’implementazione
 della funzione `più_lunga` in modo che restituisca sempre il primo parametro
 anziché la _slice_ di stringa più lunga, non avremmo bisogno di specificare una
 _lifetime_ per il parametro `y`. Il codice seguente verrà compilato:
@@ -339,7 +339,7 @@ ha alcuna relazione con la _lifetime_ di `x` o con il valore di ritorno.
 Quando si restituisce un _reference_ da una funzione, il parametro di longevità
 per il _type_ di ritorno deve corrispondere al parametro di longevità per uno
 dei parametri. Se il _reference_ restituito _non_ fa riferimento ad uno dei
-parametri, deve fare riferimento ad un valore creato all'interno di questa
+parametri, deve fare riferimento ad un valore creato all’interno di questa
 funzione. Tuttavia, questo sarebbe un _reference_ pendente perché il valore
 uscirà dallo _scope_ al termine della funzione. Considera questo tentativo di
 implementazione della funzione `più_lunga` che non verrà compilato:
@@ -363,7 +363,7 @@ messaggio di errore che riceviamo:
 
 Il problema è che `risultato` esce dallo _scope_ e viene ripulito alla fine
 della funzione `più_lunga`. Stiamo anche cercando di restituire un _reference_ a
-`risultato` dalla funzione. Non c'è modo di specificare parametri di longevità
+`risultato` dalla funzione. Non c’è modo di specificare parametri di longevità
 che modifichino il _reference_ pendente, e Rust non ci permette di creare un
 _reference_ pendente. In questo caso, la soluzione migliore sarebbe restituire
 un _type_ piuttosto che un _reference_, in modo che la funzione chiamante sia
@@ -379,11 +379,11 @@ violerebbero la sicurezza della memoria.
 
 Finora, tutte le _struct_ che abbiamo definito contenevano _type_ con
 _ownership_. Possiamo definire _struct_ che contengano _reference_, ma in tal
-caso dovremmo aggiungere un'annotazione di longevità su ogni _reference_ nella
+caso dovremmo aggiungere un’annotazione di longevità su ogni _reference_ nella
 definizione della _struct_. Il Listato 10-24 ha una _struct_ denominata
 `ParteImportante` che contiene una _slice_ di stringa.
 
-<Listing number="10-24" file-name="src/main.rs" caption="Una _struct_ che contiene un _reference_, che richiede un'annotazione di longevità">
+<Listing number="10-24" file-name="src/main.rs" caption="Una _struct_ che contiene un _reference_, che richiede un’annotazione di longevità">
 
 ```rust
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-24/src/main.rs}}
@@ -395,16 +395,16 @@ Questa _struct_ ha il singolo campo `parte` che contiene una _slice_ di stringa,
 che è un _reference_. Come per i _type_ generici, dichiariamo il nome del
 parametro _lifetime_ generico tra parentesi angolari dopo il nome della
 _struct_, in modo da poter utilizzare il parametro _lifetime_ nel corpo della
-definizione della _struct_. Questa annotazione significa che un'istanza di
+definizione della _struct_. Questa annotazione significa che un’istanza di
 `ParteImportante` avrà una longevità non superiore a quella del _reference_ che
 contiene nel suo campo `parte`.
 
-La funzione `main` qui crea un'istanza della _struct_ `ParteImportante` che
+La funzione `main` qui crea un’istanza della _struct_ `ParteImportante` che
 contiene un _reference_ alla prima frase della `String` di proprietà della
-variabile `romanzo`. I dati in `romanzo` esistono prima che l'istanza di
+variabile `romanzo`. I dati in `romanzo` esistono prima che l’istanza di
 `ParteImportante` venga creata. Inoltre, `romanzo` non esce dallo _scope_ finché
 anche `ParteImportante` non esce dallo _scope_, quindi il _reference_
-nell'istanza di `ParteImportante` è valido.
+nell’istanza di `ParteImportante` è valido.
 
 ### Elidere la _Lifetime_
 
@@ -442,14 +442,14 @@ Questo pezzo di storia di Rust è rilevante perché è possibile che emergano e
 vengano aggiunti al compilatore altri schemi deterministici. In futuro,
 potrebbero essere necessarie ancora meno annotazioni di longevità.
 
-Gli schemi programmati nell'analisi dei riferimenti di Rust sono chiamati
+Gli schemi programmati nell’analisi dei riferimenti di Rust sono chiamati
 _regole di elisione della longevità_ (_lifetime elision rules_). Queste non sono
 regole che i programmatori devono seguire; sono un insieme di casi particolari
 che il compilatore prenderà in considerazione e, se il codice si adatta a questi
 casi, non sarà necessario esplicitare le _lifetime_.
 
-Le regole di elisione non forniscono un'inferenza completa. Se persiste
-un'ambiguità sulle _lifetime_ dei _reference_ dopo che Rust ha applicato le
+Le regole di elisione non forniscono un’inferenza completa. Se persiste
+un’ambiguità sulle _lifetime_ dei _reference_ dopo che Rust ha applicato le
 regole, il compilatore non inferirà quale dovrebbe essere la longevità dei
 _reference_ rimanenti. E quindi, invece di indovinare, il compilatore genererà
 un errore indicando dove è necessario aggiungere le annotazioni di longevità.
@@ -472,7 +472,7 @@ riceve un parametro di _lifetime_: `fn foo<'a>(x: &'a i32)`; una funzione con
 due parametri riceve due parametri di _lifetime_ separati: `fn foo<'a, 'b>(x:
 &'a i32, y: &'b i32)`; e così via.
 
-La seconda regola è che, se c'è esattamente un parametro di _lifetime_ in input,
+La seconda regola è che, se c’è esattamente un parametro di _lifetime_ in input,
 quel _lifetime_ viene assegnato a tutti i parametri di _lifetime_ in output: `fn
 foo<'a>(x: &'a i32) -> &'a i32`.
 
@@ -512,7 +512,7 @@ Ora tutti i _reference_ in questa firma di funzione hanno una longevità e il
 compilatore può continuare la sua analisi senza che il programmatore debba
 annotare le _lifetime_ in questa firma di funzione.
 
-Diamo un'occhiata a un altro esempio, questa volta utilizzando la funzione
+Diamo un’occhiata a un altro esempio, questa volta utilizzando la funzione
 `più_lunga` che non aveva parametri di longevità quando abbiamo iniziato a
 lavorarci nel Listato 10-20:
 
@@ -527,7 +527,7 @@ volta abbiamo due parametri invece di uno, quindi abbiamo due _lifetime_:
 fn più_lunga<'a, 'b>(x: &'a str, y: &'b str) -> &str {
 ```
 
-Puoi già notare che la seconda regola non si applica perché c'è più di una
+Puoi già notare che la seconda regola non si applica perché c’è più di una
 _lifetime_ di input. Nemmeno la terza regola si applica, perché `più_lunga` è
 una funzione e non un metodo, quindi nessuno dei parametri è `self`. Dopo aver
 elaborato tutte e tre le regole, non abbiamo ancora capito qual è la longevità
@@ -553,11 +553,11 @@ I nomi delle _lifetime_ per i campi della _struct_ devono sempre essere
 dichiarati dopo la parola chiave `impl` e quindi utilizzati dopo il nome della
 _struct_, poiché tali _lifetime_ fanno parte del _type_ della _struct_.
 
-Nelle firme dei metodi all'interno del blocco `impl`, i _reference_ potrebbero
+Nelle firme dei metodi all’interno del blocco `impl`, i _reference_ potrebbero
 essere legati alla longevità dei _reference_ nei campi della _struct_, oppure
 potrebbero essere indipendenti. Inoltre, le regole di elisione della _lifetime_
 spesso fanno sì che le annotazioni della longevità non siano necessarie nelle
-firme dei metodi. Diamo un'occhiata ad alcuni esempi utilizzando la _struct_
+firme dei metodi. Diamo un’occhiata ad alcuni esempi utilizzando la _struct_
 denominata `ParteImportante` che abbiamo definito nel Listato 10-24.
 
 Per prima cosa useremo un metodo chiamato `livello` il cui unico parametro è un
@@ -602,7 +602,7 @@ che è sempre disponibile. Pertanto, la longevità di tutti i letterali stringa 
 Potresti trovare suggerimenti nei messaggi di errore del compilatore di
 utilizzare la _lifetime_ `'static`. Ma prima di specificare `'static` come
 _lifetime_ per un _reference_, valuta se quel _reference_ ha effettivamente
-necessità di rimanere valido per l'intera durata dell'esecuzione del tuo
+necessità di rimanere valido per l’intera durata dell’esecuzione del tuo
 programma. Nella maggior parte dei casi, un messaggio di errore che suggerisce
 la _lifetime_ `'static` deriva dal tentativo di creare un _reference_ pendente o
 da una mancata corrispondenza delle longevità disponibili. In questi casi, la
@@ -611,7 +611,7 @@ soluzione è risolvere questi problemi, non specificare la _lifetime_ `'static`.
 ## Parametri di _Type_ Generico, Vincoli del _Trait_ e _Lifetime_ Insieme
 
 Esaminiamo brevemente la sintassi per specificare parametri di _type_ generico,
-vincoli di _trait_ e _lifetime_, tutto in un'unica funzione!
+vincoli di _trait_ e _lifetime_, tutto in un’unica funzione!
 
 ```rust
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/no-listing-11-generics-traits-and-lifetimes/src/main.rs:here}}
@@ -624,7 +624,7 @@ generico `T`, che può ricevere qualsiasi _type_ che implementi il _trait_
 verrà stampato utilizzando `{}`, motivo per cui il vincolo del _trait_ `Display`
 è necessario. Poiché le _lifetime_ sono un _type_ generico, le dichiarazioni del
 parametro di longevità `'a` e del parametro di _type_ generico `T` vanno nella
-stessa lista all'interno delle parentesi angolari dopo il nome della funzione.
+stessa lista all’interno delle parentesi angolari dopo il nome della funzione.
 
 ## Riepilogo
 
@@ -639,7 +639,7 @@ questo codice flessibile non abbia _reference_ pendenti. E tutta questa analisi
 avviene in fase di compilazione, il che non influisce sulle prestazioni in fase
 di esecuzione!
 
-Che ci crediate o no, c'è molto altro da imparare sugli argomenti trattati in
+Che ci crediate o no, c’è molto altro da imparare sugli argomenti trattati in
 questo capitolo: il Capitolo 18 tratta degli oggetti _trait_, che rappresentano
 un altro modo di utilizzare i _trait_. Esistono anche scenari più complessi che
 coinvolgono le annotazioni della _lifetime_, che ti serviranno solo in scenari

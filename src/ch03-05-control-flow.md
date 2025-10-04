@@ -6,15 +6,15 @@ elementi fondamentali della maggior parte dei linguaggi di programmazione. I
 costrutti più comuni che ti permettono di controllare il flusso di esecuzione
 del codice in Rust sono le espressioni `if` e i cicli.
 
-### L'Espressione `if`
+### L’Espressione `if`
 
-Un'espressione `if` (`se` in italiano) ti permette di ramificare il tuo codice a
+Un’espressione `if` (`se` in italiano) ti permette di ramificare il tuo codice a
 seconda delle condizioni. Fornisci una condizione e poi dici: “Se questa
 condizione è soddisfatta, esegui questo blocco di codice. Se la condizione non è
 soddisfatta, non eseguire questo blocco di codice”.
 
 Crea un nuovo progetto chiamato _ramificazioni_ nella tua directory _progetti_
-per sperimentare con l'espressione `if`. Nel file _src/main.rs_, inserisci
+per sperimentare con l’espressione `if`. Nel file _src/main.rs_, inserisci
 quanto segue:
 
 <span class="filename">File: src/main.rs</span>
@@ -26,16 +26,16 @@ quanto segue:
 Tutte le espressioni `if` iniziano con la parola chiave `if`, seguita da una
 condizione. In questo caso, la condizione verifica se la variabile `numero` ha o
 meno un valore inferiore a 5. Il blocco di codice da eseguire se la condizione è
-`true` viene posizionato subito dopo la condizione, all'interno di parentesi
+`true` viene posizionato subito dopo la condizione, all’interno di parentesi
 graffe. I blocchi di codice associati alle condizioni nelle espressioni `if`
 possono esser viste come dei _rami_, proprio come i _rami_ nelle espressioni
-`match` di cui abbiamo parlato nella sezione [“Confrontare l'ipotesi con il
+`match` di cui abbiamo parlato nella sezione [“Confrontare l’ipotesi con il
 numero segreto”][numero-segreto]<!-- ignore --> del Capitolo 2.
 
-Opzionalmente, possiamo anche includere un'espressione `else` (`altrimenti` in
+Opzionalmente, possiamo anche includere un’espressione `else` (`altrimenti` in
 italiano), come abbiamo scelto di fare in questo caso, per dare al programma un
 blocco di codice alternativo da eseguire nel caso in cui la condizione sia
-valutata `false`. Se non fornisci un'espressione `else` e la condizione è
+valutata `false`. Se non fornisci un’espressione `else` e la condizione è
 `false`, il programma salterà il blocco `if` e passerà alla parte di codice
 successiva.
 
@@ -52,7 +52,7 @@ Proviamo a cambiare il valore di `numero` con un valore che renda la condizione
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-27-if-false/src/main.rs:here}}
 ```
 
-Esegui nuovamente il programma e guarda l'output:
+Esegui nuovamente il programma e guarda l’output:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-27-if-false/output.txt}}
@@ -74,12 +74,12 @@ Questa volta la condizione `if` valuta un valore di `3` e Rust lancia un errore:
 {{#include ../listings/ch03-common-programming-concepts/no-listing-28-if-condition-must-be-bool/output.txt}}
 ```
 
-L'errore indica che Rust si aspettava un `bool` ma ha ottenuto un numero intero.
+L’errore indica che Rust si aspettava un `bool` ma ha ottenuto un numero intero.
 A differenza di linguaggi come Ruby e JavaScript, Rust non cercherà
 automaticamente di convertire i _type_ non booleani in booleani. Devi essere
-esplicito e fornire sempre ad `if` un'espressione booleana come condizione. Se
+esplicito e fornire sempre ad `if` un’espressione booleana come condizione. Se
 vogliamo che il blocco di codice `if` venga eseguito solo quando un numero non è
-uguale a `0`, ad esempio, possiamo modificare l'espressione `if` nel seguente
+uguale a `0`, ad esempio, possiamo modificare l’espressione `if` nel seguente
 modo:
 
 <span class="filename">File: src/main.rs</span>
@@ -88,11 +88,11 @@ modo:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-29-if-not-equal-0/src/main.rs}}
 ```
 
-L'esecuzione di questo codice stamperà `numero era qualcosa di diverso da zero`.
+L’esecuzione di questo codice stamperà `numero era qualcosa di diverso da zero`.
 
 #### Gestire Condizioni Multiple con `else if`
 
-Puoi utilizzare condizioni multiple combinando `if` e `else` in un'espressione
+Puoi utilizzare condizioni multiple combinando `if` e `else` in un’espressione
 `else if`. Ad esempio:
 
 <span class="filename">File: src/main.rs</span>
@@ -109,22 +109,22 @@ vedere il seguente output:
 ```
 Quando questo programma viene eseguito, controlla ogni espressione `if` a turno
 ed esegue il primo corpo per il quale la condizione è valutata `true`. Nota che
-anche se 6 è divisibile per 2, non vediamo l'output `numero è divisibile per 2`,
+anche se 6 è divisibile per 2, non vediamo l’output `numero è divisibile per 2`,
 né vediamo il testo `numero non è divisibile per 4, 3 o 2` del blocco `else`.
 Questo perché Rust esegue il blocco solo per la prima condizione `true` e una
 volta che ne trova una, le restanti non vengono controllate.
 
-L'uso di troppe espressioni `else if` può rendere il codice un po' confusionario
+L’uso di troppe espressioni `else if` può rendere il codice un po' confusionario
 e difficile da leggere, quindi se ne hai più di una, potresti valutare di
 riscrivere il codice. Il Capitolo 6 descrive un potente costrutto di
 ramificazione di Rust chiamato `match` per gestire casi del genere.
 
 #### Utilizzare `if` in Una Dichiarazione `let`
 
-Dato che `if` è un'espressione, possiamo usarla a destra di una dichiarazione
+Dato che `if` è un’espressione, possiamo usarla a destra di una dichiarazione
 `let` per assegnare il risultato a una variabile, come nel Listato 3-2.
 
-<Listing number="3-2" file-name="src/main.rs" caption="Assegnazione del risultato di un'espressione `if` as una variabile">
+<Listing number="3-2" file-name="src/main.rs" caption="Assegnazione del risultato di un’espressione `if` as una variabile">
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/listing-03-02/src/main.rs}}
@@ -133,19 +133,19 @@ Dato che `if` è un'espressione, possiamo usarla a destra di una dichiarazione
 </Listing>
 
 La variabile `numero` sarà legata a un valore basato sul risultato
-dell'espressione `if`. Esegui questo codice per vedere cosa succede:
+dell’espressione `if`. Esegui questo codice per vedere cosa succede:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/listing-03-02/output.txt}}
 ```
 
-Ricorda che i blocchi di codice valutano l'ultima espressione in essi contenuta
-e i numeri da soli sono anch'essi espressioni. In questo caso, il valore
-dell'intera espressione `if` dipende da quale blocco di codice viene eseguito.
+Ricorda che i blocchi di codice valutano l’ultima espressione in essi contenuta
+e i numeri da soli sono anch’essi espressioni. In questo caso, il valore
+dell’intera espressione `if` dipende da quale blocco di codice viene eseguito.
 Ciò significa che i valori che possono essere i risultati di ogni _ramo_ di `if`
 devono essere dello stesso tipo; nel Listato 3-2, i risultati sia del _ramo_
 `if` che del _ramo_ `else` erano numeri interi `i32`. Se i _type_ non sono
-corrispondenti, come nell'esempio seguente, otterremo un errore:
+corrispondenti, come nell’esempio seguente, otterremo un errore:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -161,7 +161,7 @@ problema nel programma:
 {{#include ../listings/ch03-common-programming-concepts/no-listing-31-arms-must-return-same-type/output.txt}}
 ```
 
-L'espressione nel blocco `if` ritorna un _integer_ e l'espressione nel blocco
+L’espressione nel blocco `if` ritorna un _integer_ e l’espressione nel blocco
 `else` ritorna una stringa. Questo non funziona perché le variabili devono avere
 un _type_ univoco e Rust ha bisogno di sapere definitivamente in fase di
 compilazione di che _type_ è la variabile `numero`. Conoscere il _type_ di
@@ -175,8 +175,8 @@ più disparati _type_ possibili per ogni variabile.
 
 Spesso è utile eseguire un blocco di codice più di una volta. Per questo
 compito, Rust mette a disposizione diversi _cicli_ (_loop_ in inglese), che
-eseguono il codice all'interno del corpo del ciclo fino alla fine e poi
-ripartono immediatamente dall'inizio. Per sperimentare con i cicli, creiamo un
+eseguono il codice all’interno del corpo del ciclo fino alla fine e poi
+ripartono immediatamente dall’inizio. Per sperimentare con i cicli, creiamo un
 nuovo progetto chiamato _cicli_.
 
 Rust mette a disposizione tre tipologie di ciclo: `loop`, `while` e `for`.
@@ -226,23 +226,23 @@ dove si trovava il codice nel ciclo quando ha ricevuto il segnale di
 interruzione.
 
 Fortunatamente, Rust offre anche un modo per uscire da un ciclo utilizzando del
-codice. Puoi inserire la parola chiave `break` all'interno del ciclo per
-indicare al programma quando interrompere l'esecuzione del ciclo. Ricorda che
+codice. Puoi inserire la parola chiave `break` all’interno del ciclo per
+indicare al programma quando interrompere l’esecuzione del ciclo. Ricorda che
 abbiamo fatto questo nel gioco di indovinelli nella sezione [“Uscire dopo
-un'ipotesi corretta”][ipotesi-corretta]<!-- ignore --> del Capitolo 2 per uscire
-dal programma quando l'utente indovinava il numero segreto.
+un’ipotesi corretta”][ipotesi-corretta]<!-- ignore --> del Capitolo 2 per uscire
+dal programma quando l’utente indovinava il numero segreto.
 
 Nel gioco di indovinelli abbiamo usato anche `continue`, che in un ciclo indica
 al programma di saltare tutto il codice rimanente in questa iterazione del ciclo
-e di passare all'iterazione successiva.
+e di passare all’iterazione successiva.
 
 #### Restituire Valori dai Cicli
 
-Uno degli utilizzi di un `loop` è quello di riprovare un'operazione che sai che
+Uno degli utilizzi di un `loop` è quello di riprovare un’operazione che sai che
 potrebbe fallire, come ad esempio controllare se un _thread_ ha completato il
 suo lavoro. Potresti anche aver bisogno di passare il risultato di questa
 operazione al di fuori del ciclo al resto del tuo codice. Per farlo, puoi
-aggiungere il valore che vuoi che venga restituito dopo l'espressione `break`
+aggiungere il valore che vuoi che venga restituito dopo l’espressione `break`
 che utilizzi per interrompere il ciclo; quel valore verrà restituito al di fuori
 del ciclo in modo da poterlo utilizzare, come mostrato qui:
 
@@ -255,18 +255,18 @@ contenere il valore restituito dal ciclo. A ogni iterazione del ciclo,
 aggiungiamo `1` alla variabile `contatore` e poi controlliamo se `contatore` è
 uguale a `10`. Quando lo è, usiamo la parola chiave `break` con il valore
 `contatore * 2`. Dopo il ciclo, usiamo un punto e virgola per terminare
-l'istruzione che assegna il valore a `risultato`. Infine, stampiamo il valore in
+l’istruzione che assegna il valore a `risultato`. Infine, stampiamo il valore in
 `risultato`, che in questo caso è `20`.
 
-Puoi anche usare `return` all'interno di un ciclo. Mentre `break` esce solo dal
+Puoi anche usare `return` all’interno di un ciclo. Mentre `break` esce solo dal
 ciclo corrente, `return` esce sempre dalla funzione corrente.
 
 #### Distinguere con le Etichette di _Loop_
 
-Se hai un ciclo annidato all'interno di un altro ciclo, `break` e `continue` si
+Se hai un ciclo annidato all’interno di un altro ciclo, `break` e `continue` si
 applicano al loop più interno in quel momento. Puoi specificare facoltativamente
-un'_etichetta_ (_loop label_) su uno specifico ciclo per poi usare con `break` o
-`continue` quell'etichetta per specificare a quale ciclo applicare l'istruzione.
+un’_etichetta_ (_loop label_) su uno specifico ciclo per poi usare con `break` o
+`continue` quell’etichetta per specificare a quale ciclo applicare l’istruzione.
 Le _loop label_ devono iniziare con una virgoletta singola. Ecco un esempio con
 due cicli annidati:
 
@@ -276,7 +276,7 @@ due cicli annidati:
 
 Il ciclo esterno ha la _label_ `'aumenta_conteggio` e conta da 0 a 2. Il ciclo
 interno senza _label_ conta da 10 a 9. Il primo `break` che non specifica una
-_label_ esce solo dal ciclo interno. L'istruzione `break 'aumenta_conteggio;`
+_label_ esce solo dal ciclo interno. L’istruzione `break 'aumenta_conteggio;`
 esce dal ciclo esterno. Questo codice stamperà:
 
 ```console
@@ -285,7 +285,7 @@ esce dal ciclo esterno. Questo codice stamperà:
 
 #### Semplici Cicli Condizionali con `while`
 
-Spesso un programma ha bisogno di valutare una condizione all'interno di un
+Spesso un programma ha bisogno di valutare una condizione all’interno di un
 ciclo. Quando la condizione è `true`, il ciclo viene eseguito. Quando la
 condizione cessa di essere `true`, il programma chiama `break`, interrompendo il
 ciclo. È possibile implementare un comportamento del genere utilizzando una
@@ -312,7 +312,7 @@ condizione risulta `true`, il codice viene eseguito; altrimenti, esce dal ciclo.
 
 Puoi scegliere di utilizzare il costrutto `while` per eseguire un ciclo sugli
 elementi di una collezione, come un array. Ad esempio, il ciclo nel Listato 3-4
-stampa ogni elemento dell'array `a`.
+stampa ogni elemento dell’array `a`.
 
 <Listing number="3-4" file-name="src/main.rs" caption="Passare in rassegna gli elementi di una collezione con un ciclo `while`">
 
@@ -322,26 +322,26 @@ stampa ogni elemento dell'array `a`.
 
 </Listing>
 
-In questo caso, il codice conteggia tutti gli elementi dell'_array_: inizia
-dall'indice `0` e poi esegue un ciclo fino a raggiungere l'ultimo indice
-dell'_array_ (cioè quando `indice < 5` non è più `true`). L'esecuzione di questo
-codice stamperà ogni elemento dell'array:
+In questo caso, il codice conteggia tutti gli elementi dell’_array_: inizia
+dall’indice `0` e poi esegue un ciclo fino a raggiungere l’ultimo indice
+dell’_array_ (cioè quando `indice < 5` non è più `true`). L’esecuzione di questo
+codice stamperà ogni elemento dell’array:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/listing-03-04/output.txt}}
 ```
 
-Tutti e cinque i valori dell'_array_ appaiono nel terminale, come previsto.
+Tutti e cinque i valori dell’_array_ appaiono nel terminale, come previsto.
 Anche se `indice` raggiungerà un valore di `5` a un certo punto, il ciclo viene
-bloccato prima che si tenti di leggere un sesto elemento dell'_array_.
+bloccato prima che si tenti di leggere un sesto elemento dell’_array_.
 
-Tuttavia, questo approccio è incline all'errore; potremmo causare il _panic_ del
-programma se il valore dell'indice o la condizione di test non sono corretti.
-Per esempio, se cambiassi la definizione dell'array `a` per avere quattro
+Tuttavia, questo approccio è incline all’errore; potremmo causare il _panic_ del
+programma se il valore dell’indice o la condizione di test non sono corretti.
+Per esempio, se cambiassi la definizione dell’array `a` per avere quattro
 elementi, ma dimenticassi di aggiornare la condizione a `while indice < 4`, il
 codice andrebbe in _panic_. È anche lento, perché il compilatore aggiunge codice
-di esecuzione per eseguire il controllo condizionale per verificare se l'indice
-è entro i limiti dell'array a ogni iterazione del ciclo.
+di esecuzione per eseguire il controllo condizionale per verificare se l’indice
+è entro i limiti dell’array a ogni iterazione del ciclo.
 
 Come alternativa più concisa, puoi usare un ciclo `for` ed eseguire del codice
 per ogni elemento di una collezione. Un ciclo `for` assomiglia al codice del
@@ -357,18 +357,18 @@ Listato 3-5.
 
 Quando eseguiamo questo codice, vedremo lo stesso risultato del Listato 3-4. Ma,
 cosa più importante, abbiamo aumentato la sicurezza del codice ed eliminato la
-possibilità di bug che potrebbero derivare dall'andare oltre la fine dell'array
-o dal non accedere ad ogni elemento dell'array. Il codice macchina generato dai
-cicli `for` può essere anche più efficiente, perché l'indice non deve essere
-confrontato con la lunghezza dell'array a ogni iterazione.
+possibilità di bug che potrebbero derivare dall’andare oltre la fine dell’array
+o dal non accedere ad ogni elemento dell’array. Il codice macchina generato dai
+cicli `for` può essere anche più efficiente, perché l’indice non deve essere
+confrontato con la lunghezza dell’array a ogni iterazione.
 
 Utilizzando il ciclo `for`, non dovrai ricordarti di modificare altro codice se
-cambierai il numero di valori nell'array, come invece faresti con il metodo
+cambierai il numero di valori nell’array, come invece faresti con il metodo
 `while` usato nel Listato 3-4.
 
 La sicurezza e la concisione dei cicli `for` li rendono il costrutto di ciclo
 più usato in Rust. Anche nelle situazioni in cui vuoi eseguire un certo numero
-di volte il codice, come nell'esempio del conto alla rovescia che utilizzava un
+di volte il codice, come nell’esempio del conto alla rovescia che utilizzava un
 ciclo `while` nel Listato 3-3, la maggior parte dei _Rustacean_ userebbe un ciclo
 `for`. Il modo per farlo sarebbe quello di usare un `Range`, fornito dalla
 libreria standard, che genera tutti i numeri in sequenza partendo da un numero e
@@ -376,7 +376,7 @@ finendo prima di un altro numero.
 
 Ecco come apparirebbe il conto alla rovescia utilizzando un ciclo `for` e un
 altro metodo di cui non abbiamo ancora parlato, `rev`, per invertire
-l'intervallo.
+l’intervallo.
 
 <span class="filename">File: src/main.rs</span>
 
@@ -388,14 +388,14 @@ Questo codice è un po' più carino, vero?
 
 ## Riepilogo
 
-Ce l'hai fatta! Questo capitolo è stato molto impegnativo: hai imparato a
+Ce l’hai fatta! Questo capitolo è stato molto impegnativo: hai imparato a
 conoscere le variabili, i _type_ di dati scalari e composti, le funzioni, i
 commenti, le espressioni `if` e i cicli! Per esercitarti con i concetti discussi
 in questo capitolo, prova a costruire dei programmi per eseguire le seguenti
 operazioni:
 
 - Convertire le temperature tra Fahrenheit e Celsius.
-- Generare l'*n*-esimo numero di Fibonacci.
+- Generare l’*n*-esimo numero di Fibonacci.
 - Stampare il testo del canto natalizio “The Twelve Days of Christmas”,
   sfruttando la ripetizione della canzone.
 

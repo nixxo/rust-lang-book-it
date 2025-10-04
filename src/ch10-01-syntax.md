@@ -16,7 +16,7 @@ evitando al contempo la duplicazione del codice.
 
 Continuando con la nostra funzione `maggiore`, il Listato 10-4 mostra due
 funzioni che trovano entrambe il valore più grande in una _slice_. Le
-combineremo quindi in un'unica funzione che utilizza i _type_ generici.
+combineremo quindi in un’unica funzione che utilizza i _type_ generici.
 
 <Listing number="10-4" file-name="src/main.rs" caption="Due funzioni che differiscono solo per i nomi e per i _type_ nelle loro firme">
 
@@ -27,7 +27,7 @@ combineremo quindi in un'unica funzione che utilizza i _type_ generici.
 </Listing>
 
 La funzione `maggior_i32` è quella che abbiamo estratto nel Listato 10-3 e che
-trova l'`i32` più grande in una _slice_. La funzione `maggior_char` trova il
+trova l’`i32` più grande in una _slice_. La funzione `maggior_char` trova il
 `char` più grande in una _slice_. I corpi delle funzioni hanno lo stesso codice,
 quindi eliminiamo la duplicazione introducendo un parametro di _type_ generico
 in una singola funzione.
@@ -47,7 +47,7 @@ significato. Allo stesso modo, quando usiamo un _type_ come parametro nella
 firma di una funzione, dobbiamo dichiarare il nome del _type_ prima di
 utilizzarlo. Per definire la funzione generica `maggiore`, inseriamo le
 dichiarazioni del nome del _type_ tra parentesi angolari, `<>`, tra il nome
-della funzione e l'elenco dei parametri, in questo modo:
+della funzione e l’elenco dei parametri, in questo modo:
 
 ```rust,ignore
 fn maggiore<T>(lista: &[T]) -> &T {
@@ -83,7 +83,7 @@ indica che il corpo di `maggiore` non funzionerà per tutti i possibili _type_ d
 `T`. Poiché vogliamo confrontare valori di _type_ `T` nel corpo, possiamo
 utilizzare solo _type_ i cui valori possono essere ordinati. Per abilitare i
 confronti, la libreria standard include il _trait_ `std::cmp::PartialOrd` che è
-possibile implementare sui _type_ (vedere l'[Appendice C][app-c] per maggiori
+possibile implementare sui _type_ (vedere l’[Appendice C][app-c] per maggiori
 informazioni su questo _trait_). Per correggere il Listato 10-5, possiamo
 seguire il suggerimento del testo di aiuto e limitare i _type_ validi per `T`
 solo a quelli che implementano `PartialOrd`. Il Listato verrà quindi compilato,
@@ -104,7 +104,7 @@ qualsiasi _type_.
 
 </Listing>
 
-La sintassi per l'utilizzo di _type_ generici nelle definizioni di _struct_ è
+La sintassi per l’utilizzo di _type_ generici nelle definizioni di _struct_ è
 simile a quella utilizzata nelle definizioni di funzione. Per prima cosa
 dichiariamo il nome del _type_ tra parentesi angolari subito dopo il nome della
 _struct_. Quindi utilizziamo il _type_ generico nella definizione della
@@ -113,7 +113,7 @@ _struct_, dove altrimenti specificheremmo _type_ di dati concreti.
 Nota che, poiché abbiamo utilizzato un solo _type_ generico per definire
 `Punto<T>`, questa definizione afferma che la _struct_ `Punto<T>` è generica su
 un _type_ `T` e che i campi `x` e `y` sono entrambi dello stesso _type_,
-qualunque esso sia. Se creiamo un'istanza di `Punto<T>` che ha valori di _type_
+qualunque esso sia. Se creiamo un’istanza di `Punto<T>` che ha valori di _type_
 diversi, come nel Listato 10-7, il nostro codice non verrà compilato.
 
 <Listing number="10-7" file-name="src/main.rs" caption="I campi `x` e `y` devono essere dello stesso _type_ perché entrambi hanno lo stesso _type_ di dati generico `T`">
@@ -157,7 +157,7 @@ piccole.
 ### Nella Definizione delle _Enum_
 
 Come abbiamo fatto con le _struct_, possiamo definire le _enum_ per contenere
-_type_ di dati generici nelle loro varianti. Diamo un'altra occhiata all'_enum_
+_type_ di dati generici nelle loro varianti. Diamo un’altra occhiata all’_enum_
 `Option<T>` fornito dalla libreria standard, che abbiamo usato nel Capitolo 6:
 
 ```rust
@@ -167,14 +167,14 @@ enum Option<T> {
 }
 ```
 
-Questa definizione dovrebbe ora esserti più chiara. Come puoi vedere, l'_enum_
+Questa definizione dovrebbe ora esserti più chiara. Come puoi vedere, l’_enum_
 `Option<T>` è generico sul _type_ `T` e ha due varianti: `Some`, che contiene un
 valore di _type_ `T`, e una variante `None` che non contiene alcun valore.
-Utilizzando l'_enum_ `Option<T>`, possiamo esprimere il concetto astratto di un
+Utilizzando l’_enum_ `Option<T>`, possiamo esprimere il concetto astratto di un
 valore opzionale e, poiché `Option<T>` è generico, possiamo usare questa
 astrazione indipendentemente dal _type_ del valore opzionale.
 
-Anche le _enum_ possono usare più _type_ generici. La definizione dell'_enum_
+Anche le _enum_ possono usare più _type_ generici. La definizione dell’_enum_
 `Result` che abbiamo usato nel Capitolo 9 ne è un esempio:
 
 ```rust
@@ -184,15 +184,15 @@ enum Result<T, E> {
 }
 ```
 
-L'_enum_ `Result` è generico su due _type_, `T` ed `E`, e ha due varianti: `Ok`,
+L’_enum_ `Result` è generico su due _type_, `T` ed `E`, e ha due varianti: `Ok`,
 che contiene un valore di _type_ `T`, e `Err`, che contiene un valore di _type_
-`E`. Questa definizione rende comodo usare l'_enum_ `Result` ovunque abbiamo
-un'operazione che potrebbe avere successo (restituire un valore di _type_ `T`) o
+`E`. Questa definizione rende comodo usare l’_enum_ `Result` ovunque abbiamo
+un’operazione che potrebbe avere successo (restituire un valore di _type_ `T`) o
 fallire (restituire un errore di _type_ `E`). In effetti, questo è ciò che
 abbiamo usato per aprire un file nel Listato 9-3, dove `T` veniva riempito con
 il _type_ `std::fs::File` quando il file veniva aperto correttamente ed `E`
 veniva riempito con il _type_ `std::io::Error` quando si verificavano problemi
-durante l'apertura del file.
+durante l’apertura del file.
 
 Quando trovi situazioni nel codice con più definizioni di _struct_ o _enum_ che
 differiscono solo per il _type_ dei valori che contengono, è possibile evitare
@@ -223,7 +223,7 @@ _type_ tra parentesi angolari in `Punto` è un _type_ generico piuttosto che un
 _type_ concreto. Avremmo potuto scegliere un nome diverso per questo parametro
 generico rispetto al parametro generico dichiarato nella definizione della
 _struct_, ma utilizzare lo stesso nome è convenzionale. Se si scrive un metodo
-all'interno di un `impl` che dichiara un _type_ generico, tale metodo verrà
+all’interno di un `impl` che dichiara un _type_ generico, tale metodo verrà
 definito su qualsiasi istanza del _type_, indipendentemente dal _type_ concreto
 che finisce per sostituire il _type_ generico.
 
@@ -250,7 +250,7 @@ matematiche disponibili solo per i _type_ a virgola mobile.
 I parametri di _type_ generico nella definizione di una _struct_ non sono sempre
 gli stessi di quelli utilizzati nelle firme dei metodi della stessa _struct_. Il
 Listato 10-11 utilizza i _type_ generici `X1` e `Y1` per la _struct_ `Punto` e
-`X2` e `Y2` per la firma del metodo `misto` per rendere l'esempio più chiaro. Il
+`X2` e `Y2` per la firma del metodo `misto` per rendere l’esempio più chiaro. Il
 metodo crea una nuova istanza di `Punto` con il valore `x` dal `self` `Punto`
 (di _type_ `X1`) e il valore `y` dal `Punto` passato come argomento (di _type_
 `Y2`).
@@ -266,7 +266,7 @@ metodo crea una nuova istanza di `Punto` con il valore `x` dal `self` `Punto`
 In `main`, abbiamo definito un `Punto` che ha un `i32` per `x` (con valore `5`)
 e un `f64` per `y` (con valore `10.4`). La variabile `p2` è una _struct_ `Punto`
 che ha una _slice_ di stringa per `x` (con valore `"Ciao"`) e un `char` per `y`
-(con valore `c`). Chiamando `misto` su `p1` con l'argomento `p2` otteniamo `p3`,
+(con valore `c`). Chiamando `misto` su `p1` con l’argomento `p2` otteniamo `p3`,
 che avrà un `i32` per `x` perché `x` proviene da `p1`. La variabile `p3` avrà un
 `char` per `y` perché `y` proviene da `p2`. La chiamata alla macro `println!`
 stamperà `p3.x = 5, p3.y = c`.
@@ -279,21 +279,21 @@ dopo `fn misto` perché sono rilevanti solo per il metodo.
 
 ### Prestazioni del Codice Utilizzando _Type_ Generici
 
-Potresti chiederti se l'utilizzo di parametri di _type_ generico costi in
-termini prestazionali durante l'esecuzione del codice. La buona notizia è che
-l'utilizzo di _type_ generici non renderà il tuo programma più lento di quanto
+Potresti chiederti se l’utilizzo di parametri di _type_ generico costi in
+termini prestazionali durante l’esecuzione del codice. La buona notizia è che
+l’utilizzo di _type_ generici non renderà il tuo programma più lento di quanto
 lo sarebbe con _type_ concreti.
 
 Rust ottiene questo risultato eseguendo la _monomorfizzazione_ del codice
 utilizzando i generici in fase di compilazione. La _monomorfizzazione_ è il
 processo di trasformazione del codice generico in codice specifico inserendo i
 _type_ concreti utilizzati in fase di compilazione. In questo processo, il
-compilatore esegue l'opposto dei passaggi che abbiamo utilizzato per creare la
+compilatore esegue l’opposto dei passaggi che abbiamo utilizzato per creare la
 funzione generica nel Listato 10-5: il compilatore esamina tutti i punti in cui
 viene chiamato il codice generico e genera codice per i _type_ concreti con cui
 viene chiamato il codice generico.
 
-Vediamo come funziona utilizzando l'_enum_ generico `Option<T>` della libreria
+Vediamo come funziona utilizzando l’_enum_ generico `Option<T>` della libreria
 standard:
 
 ```rust
@@ -303,7 +303,7 @@ let float = Some(5.0);
 
 Quando Rust compila questo codice, esegue la monomorfizzazione. Durante questo
 processo, il compilatore legge i valori utilizzati nelle istanze di `Option<T>`
-e identifica due _type_ di `Option<T>`: uno è `i32` e l'altro è `f64`. Pertanto,
+e identifica due _type_ di `Option<T>`: uno è `i32` e l’altro è `f64`. Pertanto,
 espande la definizione generica di `Option<T>` in due definizioni specializzate
 per `i32` e `f64`, sostituendo così la definizione generica con quelle
 specifiche.
@@ -335,7 +335,7 @@ fn main() {
 Il generico `Option<T>` viene sostituito con le definizioni specifiche create
 dal compilatore. Poiché Rust compila il codice generico in codice che specifica
 il _type_ in ogni istanza, non si paga alcun costo prestazionale durante
-l'esecuzione per l'utilizzo di _type_ generici. Quando il codice viene eseguito,
+l’esecuzione per l’utilizzo di _type_ generici. Quando il codice viene eseguito,
 si comporta esattamente come se avessimo duplicato ogni definizione manualmente.
 Il processo di monomorfizzazione rende i generici di Rust estremamente
 efficienti in fase di esecuzione.

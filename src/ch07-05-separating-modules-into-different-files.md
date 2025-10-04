@@ -29,7 +29,7 @@ chiamato _src/sala.rs_, come mostrato nel Listato 7-22. Il compilatore sa di
 dover cercare in questo file perché ha incontrato la dichiarazione del modulo
 nella radice del _crate_ con il nome `sala`.
 
-<Listing number="7-22" file-name="src/sala.rs" caption="Definizioni all'interno del modulo `sala` in *src/sala.rs*">
+<Listing number="7-22" file-name="src/sala.rs" caption="Definizioni all’interno del modulo `sala` in *src/sala.rs*">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch07-managing-growing-projects/listing-07-21-and-22/src/sala.rs}}
@@ -38,18 +38,18 @@ nella radice del _crate_ con il nome `sala`.
 </Listing>
 
 Nota che è necessario caricare un file usando una dichiarazione `mod` _una sola
-volta_ nell'albero dei moduli. Una volta che il compilatore sa che il file fa
-parte del progetto (e sa dove si trova nell'albero dei moduli grazie a dove hai
+volta_ nell’albero dei moduli. Una volta che il compilatore sa che il file fa
+parte del progetto (e sa dove si trova nell’albero dei moduli grazie a dove hai
 messo la dichiarazione `mod`), gli altri file del progetto dovrebbero riferirsi
 al codice del file caricato usando un _path_ verso il punto in cui è stato
 dichiarato, come trattato nella sezione [“Percorsi per fare riferimento a un
-elemento nell'albero dei moduli”][paths]<!-- ignore -->. In altre parole, `mod`
-_non_ è un'operazione di “include” come potresti aver visto in altri linguaggi.
+elemento nell’albero dei moduli”][paths]<!-- ignore -->. In altre parole, `mod`
+_non_ è un’operazione di “include” come potresti aver visto in altri linguaggi.
 
 Successivamente, sposteremo il modulo `accoglienza` in un suo file. Il processo
 è un po' diverso perché `accoglienza` è un modulo figlio di `sala`, non della
 radice. Metteremo il file per `accoglienza` in una nuova cartella che sarà
-chiamata come i suoi antenati nell'albero dei moduli, in questo caso _src/sala_.
+chiamata come i suoi antenati nell’albero dei moduli, in questo caso _src/sala_.
 
 Per iniziare a spostare `accoglienza`, cambiamo _src/sala.rs_ in modo che
 contenga solo la dichiarazione del modulo `accoglienza`:
@@ -77,7 +77,7 @@ Se invece mettessimo _accoglienza.rs_ nella cartella _src_, il compilatore si
 aspetterebbe che il codice di _accoglienza.rs_ sia in un modulo `accoglienza`
 dichiarato nella radice del _crate_, e non come figlio del modulo `sala`. Le
 regole del compilatore su quali file cercare per il codice di quali moduli fanno
-sì che cartelle e file rispecchino più da vicino l'albero dei moduli.
+sì che cartelle e file rispecchino più da vicino l’albero dei moduli.
 
 > ### Percorsi di File Alternativi
 >
@@ -101,9 +101,9 @@ sì che cartelle e file rispecchino più da vicino l'albero dei moduli.
 >
 > Lo svantaggio principale dello stile con file chiamati _mod.rs_ è che il
 > progetto può finire con molti file chiamati _mod.rs_, il che può diventare
-> confusionario quando li hai aperti contemporaneamente nell'editor.
+> confusionario quando li hai aperti contemporaneamente nell’editor.
 
-Abbiamo spostato il codice di ogni modulo in file separati e l'albero dei moduli
+Abbiamo spostato il codice di ogni modulo in file separati e l’albero dei moduli
 rimane lo stesso. Le chiamate di funzione in `mangiare_al_ristorante`
 funzioneranno senza alcuna modifica, anche se le definizioni vivono in file
 diversi. Questa tecnica ti permette di muovere i moduli in nuovi file man mano
@@ -120,7 +120,7 @@ Rust ti permette di dividere un pacchetto in più _crate_ e un _crate_ in moduli
 così da poter riferire elementi definiti in un modulo da un altro modulo. Puoi
 farlo specificando _path_ assoluti o relativi. Questi _path_ possono essere
 portati nello _scope_ con una dichiarazione `use` così da poter usare un _path_
-più corto per usi ripetuti dell'elemento in quello _scope_. Il codice dei moduli
+più corto per usi ripetuti dell’elemento in quello _scope_. Il codice dei moduli
 è privato per default, ma puoi rendere le definizioni pubbliche aggiungendo la
 parola chiave `pub`.
 

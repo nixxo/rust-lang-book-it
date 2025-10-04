@@ -8,11 +8,11 @@ strumenti associati. Per il download è necessaria una connessione a internet.
 > pagina [Altri metodi di installazione di Rust][otherinstall] per ulteriori
 > opzioni.
 
-I passaggi seguenti installano l'ultima versione stabile del compilatore Rust.
+I passaggi seguenti installano l’ultima versione stabile del compilatore Rust.
 Le garanzie di stabilità di Rust assicurano che tutti gli esempi del libro che
 vengono compilati continueranno a essere compilati anche con le versioni più
-recenti di Rust. L'output potrebbe differire leggermente da una versione
-all'altra perché Rust spesso migliora i messaggi di errore e gli avvertimenti.
+recenti di Rust. L’output potrebbe differire leggermente da una versione
+all’altra perché Rust spesso migliora i messaggi di errore e gli avvertimenti.
 In altre parole, qualsiasi versione più recente e stabile di Rust che
 installerai utilizzando questi passaggi dovrebbe funzionare come previsto con il
 contenuto di questo libro.
@@ -22,8 +22,8 @@ contenuto di questo libro.
 > In questo capitolo e in tutto il libro, mostreremo alcuni comandi utilizzati
 > nel terminale. Le linee che dovresti inserire in un terminale iniziano tutte
 > con `$`. Non è necessario digitare il carattere `$`; è il prompt della riga di
-> comando mostrato per indicare l'inizio di ogni comando. Le linee che non
-> iniziano con `$` mostrano solitamente l'output del comando precedente.
+> comando mostrato per indicare l’inizio di ogni comando. Le linee che non
+> iniziano con `$` mostrano solitamente l’output del comando precedente.
 > Inoltre, gli esempi specifici per PowerShell useranno `>` anziché `$`.
 
 ### Installare `rustup` su Linux o macOS
@@ -34,9 +34,9 @@ Se stai usando Linux o macOS, apri un terminale e inserisci il seguente comando:
 $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
-Il comando scarica uno script e avvia l'installazione dello strumento `rustup`,
-che installa l'ultima versione stabile di Rust. Potrebbe esserti richiesta la
-tua password. Se l'installazione ha successo, apparirà la seguente riga:
+Il comando scarica uno script e avvia l’installazione dello strumento `rustup`,
+che installa l’ultima versione stabile di Rust. Potrebbe esserti richiesta la
+tua password. Se l’installazione ha successo, apparirà la seguente riga:
 
 ```text
 Rust is installed now. Great!
@@ -62,7 +62,7 @@ installare il pacchetto `build-essential`.
 
 Su Windows, vai su [https://www.rust-lang.org/tools/install][install]<!-- ignore
 --> e segui le istruzioni per installare Rust. A un certo punto
-dell'installazione, ti verrà richiesto di installare Visual Studio, che fornisce
+dell’installazione, ti verrà richiesto di installare Visual Studio, che fornisce
 un linker e le librerie native necessarie per compilare i programmi. Se hai
 bisogno di aiuto per questo passaggio, consulta
 [https://rust-lang.github.io/rustup/installation/windows-msvc.html][msvc]
@@ -79,8 +79,8 @@ inserisci questo comando:
 $ rustc --version
 ```
 
-Dovresti vedere il numero di versione, l'hash del commit e la data del commit
-dell'ultima versione stabile rilasciata, nel seguente formato:
+Dovresti vedere il numero di versione, l’hash del commit e la data del commit
+dell’ultima versione stabile rilasciata, nel seguente formato:
 
 ```text
 rustc x.y.z (abcabcabc yyyy-mm-dd)
@@ -110,12 +110,12 @@ $ echo $PATH
 
 Se sembra essere tutto in ordine ma Rust non funziona ancora, ci sono diversi
 posti in cui puoi trovare aiuto. Scopri come metterti in contatto con altri
-Rustaceani (_Rustacean_ d'ora in poi) (uno stupido soprannome con cui ci
+Rustaceani (_Rustacean_ d’ora in poi) (uno stupido soprannome con cui ci
 chiamiamo) sulla [pagina della comunità][community].
 
 ### Aggiornare e Disinstallare
 
-Una volta che Rust è stato installato tramite `rustup`, l'aggiornamento a una
+Una volta che Rust è stato installato tramite `rustup`, l’aggiornamento a una
 nuova versione è semplice. Dalla tua _shell_, esegui il seguente script di
 aggiornamento:
 
@@ -132,7 +132,7 @@ $ rustup self uninstall
 
 ### Leggere la Documentazione in Locale
 
-L'installazione di Rust include anche una copia locale della documentazione per
+L’installazione di Rust include anche una copia locale della documentazione per
 poterla leggere offline. Esegui `rustup doc` per aprire la documentazione locale
 nel tuo browser.
 
@@ -144,7 +144,7 @@ delle _API_ per scoprirlo!
 
 Questo libro non fa alcuna ipotesi sugli strumenti che utilizzi per scrivere il
 codice Rust. Qualsiasi editor di testo è in grado di fare il suo lavoro!
-Tuttavia, molti editor di testo e ambienti di sviluppo integrati (_IDE_ d'ora in
+Tuttavia, molti editor di testo e ambienti di sviluppo integrati (_IDE_ d’ora in
 poi) hanno un supporto integrato per Rust. Puoi sempre trovare un elenco
 abbastanza aggiornato di molti editor e _IDE_ nella [pagina degli
 strumenti][tools] sul sito web di Rust.
@@ -154,7 +154,7 @@ strumenti][tools] sul sito web di Rust.
 In diversi esempi, utilizzeremo pacchetti Rust oltre alla libreria standard. Per
 lavorare a questi esempi, dovrai disporre di una connessione a internet o aver
 scaricato le dipendenze in anticipo. Per scaricare le dipendenze in anticipo,
-puoi eseguire i seguenti comandi. (Spiegheremo cos'è `cargo` e cosa fa ciascuno
+puoi eseguire i seguenti comandi. (Spiegheremo cos’è `cargo` e cosa fa ciascuno
 di questi comandi in dettaglio più avanti)
 
 ```console

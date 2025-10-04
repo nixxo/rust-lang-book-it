@@ -7,11 +7,11 @@ _reference_, quindi non ha _ownership_.
 
 Ecco un piccolo problema di programmazione: scrivi una funzione che prenda una
 stringa di parole separate da spazi e restituisca la prima parola che trova in
-quella stringa. Se la funzione non trova uno spazio nella stringa, l'intera
+quella stringa. Se la funzione non trova uno spazio nella stringa, l’intera
 stringa deve essere considerata come una sola parola, quindi deve essere
-restituita l'intera stringa.
+restituita l’intera stringa.
 
-> Nota: Ai fini dell'introduzione alle _slice_ di stringhe, stiamo assumendo
+> Nota: Ai fini dell’introduzione alle _slice_ di stringhe, stiamo assumendo
 > solo caratteri ASCII in questa sezione; una discussione più approfondita sulla
 > gestione di UTF-8 si trova nella sezione [“Memorizzare testo codificato UTF-8
 > con le stringhe”][strings] del Capitolo 8.
@@ -28,7 +28,7 @@ bisogno di _ownership_, quindi va bene. (In Rust idiomatico, le funzioni non
 prendono la _ownership_ dei loro argomenti se non strettamente necessario, e i
 motivi per questo diventeranno chiari man mano che andremo avanti.) Ma cosa
 dovremmo ritornare? Non abbiamo davvero un modo per descrivere una *parte* di
-una stringa. Tuttavia, potremmo restituire l'indice della fine della parola,
+una stringa. Tuttavia, potremmo restituire l’indice della fine della parola,
 indicato da uno spazio. Proviamo a farlo, come mostrato nel Listato 4-7.
 
 <Listing number="4-7" file-name="src/main.rs" caption="La funzione `prima_parola` che restituisce un valore di indice byte nella variabile `String`">
@@ -47,7 +47,7 @@ il metodo `as_bytes`.
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-07/src/main.rs:as_bytes}}
 ```
 
-Successivamente, creiamo un iteratore sull'array di byte usando il metodo
+Successivamente, creiamo un iteratore sull’array di byte usando il metodo
 `iter`:
 
 ```rust,ignore
@@ -58,17 +58,17 @@ Discuteremo gli iteratori in modo più dettagliato nel [Capitolo 13][ch13]<!--
 ignore -->. Per ora, sappi che `iter` è un metodo che restituisce ogni elemento
 in una collezione e che `enumerate` prende il risultato di `iter` e restituisce
 ogni elemento come parte di una tupla. Il primo elemento della tupla restituita
-da `enumerate` è l'indice, e il secondo elemento è un riferimento all'elemento.
-Questo è un po' più conveniente rispetto a calcolarci l'indice da soli.
+da `enumerate` è l’indice, e il secondo elemento è un riferimento all’elemento.
+Questo è un po' più conveniente rispetto a calcolarci l’indice da soli.
 
 Poiché il metodo `enumerate` restituisce una tupla, possiamo usare i _pattern_
 per destrutturare quella tupla. Discuteremo meglio i _pattern_ nel [Capitolo
-6][ch6]. Nel ciclo `for`, specifichiamo un _pattern_ che ha `i` per l'indice
+6][ch6]. Nel ciclo `for`, specifichiamo un _pattern_ che ha `i` per l’indice
 nella tupla e `&item` per il singolo byte nella tupla. Poiché da
-`.iter().enumerate()` otteniamo un _reference_ all'elemento, usiamo `&` nel
+`.iter().enumerate()` otteniamo un _reference_ all’elemento, usiamo `&` nel
 _pattern_.
 
-All'interno del ciclo `for`, cerchiamo il byte che rappresenta lo spazio usando
+All’interno del ciclo `for`, cerchiamo il byte che rappresenta lo spazio usando
 la sintassi del letterale byte. Se troviamo uno spazio, restituiamo la
 posizione. Altrimenti, restituiamo la lunghezza della stringa usando `s.len()`.
 
@@ -76,10 +76,10 @@ posizione. Altrimenti, restituiamo la lunghezza della stringa usando `s.len()`.
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-07/src/main.rs:inside_for}}
 ```
 
-Ora abbiamo un metodo per scoprire l'indice della fine della prima parola nella
-stringa, ma c'è un problema. Stiamo ritornando un `usize` da solo, che è un
+Ora abbiamo un metodo per scoprire l’indice della fine della prima parola nella
+stringa, ma c’è un problema. Stiamo ritornando un `usize` da solo, che è un
 numero significativo solo se usato in contesto con `&String`. In altre parole,
-poiché è un valore separato dalla `String`, non c'è garanzia che rimarrà valido
+poiché è un valore separato dalla `String`, non c’è garanzia che rimarrà valido
 in futuro. Considera il programma nel Listing 4-8 che utilizza la funzione
 `prima_parola` dal Listing 4-7.
 
@@ -98,7 +98,7 @@ la variabile `s` per cercare di estrarre la prima parola, ma questo sarebbe un
 bug perché il contenuto di `s` è cambiato da quando abbiamo salvato `5` in
 `parola`.
 
-Doversi preoccupare dell'indice in `parola` che si disallinea con i dati in `s`
+Doversi preoccupare dell’indice in `parola` che si disallinea con i dati in `s`
 è noioso e soggetto a errori! Gestire questi indici è ancora più fragile se
 scriviamo una funzione `seconda_parola`. La sua firma dovrebbe apparire così:
 
@@ -122,29 +122,29 @@ degli elementi di una `String`, e appare così:
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-17-slice/src/main.rs:here}}
 ```
 
-Invece di un _reference_ all'intera `String`, `hello` è un _reference_ a una
-porzione della `String`, specificata con l'aggiunta di `[0..5]`. Creiamo le
-_slice_ usando un intervallo all'interno delle parentesi quadre specificando
+Invece di un _reference_ all’intera `String`, `hello` è un _reference_ a una
+porzione della `String`, specificata con l’aggiunta di `[0..5]`. Creiamo le
+_slice_ usando un intervallo all’interno delle parentesi quadre specificando
 `[indice_inizio..indice_fine]`, dove _`indice_inizio`_ è la prima posizione
-nella _slice_ e _`indice_fine`_ è l'ultima posizione nella _slice_ più uno.
+nella _slice_ e _`indice_fine`_ è l’ultima posizione nella _slice_ più uno.
 Internamente, la struttura dati della _slice_ memorizza la posizione iniziale e
 la lunghezza della _slice_, che corrisponde a _`indice_fine`_ meno
 _`indice_inizio`_. Quindi, nel caso di `let world = &s[6..11];`, `world` sarebbe
-una _slice_ che contiene un puntatore al byte all'indice 6 di `w` con un valore
+una _slice_ che contiene un puntatore al byte all’indice 6 di `w` con un valore
 di lunghezza di `5`.
 
 La Figura 4-7 mostra questo in un diagramma.
 
 <img alt="Tre tabelle: una tabella che rappresenta i dati dello stack di s, che
-punta al byte all'indice 0 in una tabella dei dati della stringa “hello
-world” nell'heap. La terza tabella rappresenta i dati sullo stack dello
+punta al byte all’indice 0 in una tabella dei dati della stringa “hello
+world” nell’heap. La terza tabella rappresenta i dati sullo stack dello
 slice world, che ha un valore di lunghezza di 5 e punta al byte 6 della tabella
-dei dati nell'heap." src="img/trpl04-07.svg" class="center" style="width: 50%;"
+dei dati nell’heap." src="img/trpl04-07.svg" class="center" style="width: 50%;"
 />
 
 <span class="caption">Figura 4-7: _Slice_ di stringa che si riferisce a parte di una `String`</span>
 
-Con la sintassi d'intervallo `..` di Rust, se vuoi iniziare dall'indice 0, puoi
+Con la sintassi d’intervallo `..` di Rust, se vuoi iniziare dall’indice 0, puoi
 omettere il valore prima dei due punti. In altre parole, questi sono
 equivalenti:
 
@@ -155,7 +155,7 @@ let slice = &s[0..2];
 let slice = &s[..2];
 ```
 
-Allo stesso modo, se la tua _slice_ include l'ultimo byte della `String`, puoi
+Allo stesso modo, se la tua _slice_ include l’ultimo byte della `String`, puoi
 omettere il numero finale. Ciò significa che questi sono equivalenti:
 
 ```rust
@@ -167,7 +167,7 @@ let slice = &s[3..len];
 let slice = &s[3..];
 ```
 
-Puoi anche omettere entrambi i valori per prendere una _slice_ dell'intera
+Puoi anche omettere entrambi i valori per prendere una _slice_ dell’intera
 stringa. Quindi questi sono equivalenti:
 
 ```rust
@@ -196,10 +196,10 @@ come `&str`:
 
 </Listing>
 
-Otteniamo l'indice per la fine della parola nello stesso modo in cui lo abbiamo
+Otteniamo l’indice per la fine della parola nello stesso modo in cui lo abbiamo
 fatto nel Listato 4-7, cercando la prima occorrenza di uno spazio. Quando
-troviamo uno spazio, restituiamo una _slice_ di stringa usando l'inizio della
-stringa e l'indice dello spazio come indici di inizio e fine.
+troviamo uno spazio, restituiamo una _slice_ di stringa usando l’inizio della
+stringa e l’indice dello spazio come indici di inizio e fine.
 
 Ora, quando chiamiamo `prima_parola`, otteniamo un singolo valore che è legato
 ai dati sottostanti. Il valore è composto da un _reference_ al punto di partenza
@@ -214,10 +214,10 @@ fn seconda_parola(s: &String) -> &str {
 Ora abbiamo una funzione più semplice in cui è molto più difficile succedano
 cose strane perché il compilatore garantirà che i _reference_ alla `String`
 rimangano validi. Ricordi il bug nel programma nel Listato 4-8, quando abbiamo
-ottenuto l'indice per la fine della prima parola ma poi abbiamo svuotato la
+ottenuto l’indice per la fine della prima parola ma poi abbiamo svuotato la
 stringa, rendendo il nostro indice non valido? Quel codice era logicamente
 errato ma non mostrava immediatamente errori. I problemi si sarebbero
-manifestati più tardi se avessimo continuato a cercare di usare l'indice della
+manifestati più tardi se avessimo continuato a cercare di usare l’indice della
 prima parola con una stringa svuotata. Le _slice_ rendono questo bug impossibile
 e ci fanno sapere che abbiamo un problema con il nostro codice molto prima.
 Usare la versione _slice_ di `prima_parola` genererà un errore di compilazione:
@@ -230,7 +230,7 @@ Usare la versione _slice_ di `prima_parola` genererà un errore di compilazione:
 
 </Listing>
 
-Ecco l'errore del compilatore:
+Ecco l’errore del compilatore:
 
 ```console
 {{#include ../listings/ch04-understanding-ownership/no-listing-19-slice-error/output.txt}}
@@ -243,12 +243,12 @@ deve troncare la `String`, ha bisogno di ottenere un _reference_ mutabile. Il
 il _reference_ immutabile deve essere ancora attivo a quel punto. Rust vieta che
 il _reference_ mutabile in `clear` e il _reference_ immutabile a `parola`
 esistano contemporaneamente, e la compilazione fallisce. Non solo Rust ha reso
-la nostra funzione più facile da usare, ma ha anche eliminato un'intera classe
+la nostra funzione più facile da usare, ma ha anche eliminato un’intera classe
 di errori durante la compilazione!
 
 ### Letterali Stringa come _Slice_
 
-Ricordi che abbiamo parlato dei letterali stringa memorizzati all'interno del
+Ricordi che abbiamo parlato dei letterali stringa memorizzati all’interno del
 binario? Ora che abbiamo scoperto le _slice_, possiamo comprendere correttamente
 i letterali stringa:
 
@@ -303,7 +303,7 @@ senza perdere alcuna funzionalità:
 ### Altre _Slice_
 
 Le _slice_ di stringa, come puoi immaginare, sono specifiche per le stringhe. Ma
-c'è anche un tipo di _slice_ più generale. Considera questo array:
+c’è anche un tipo di _slice_ più generale. Considera questo array:
 
 ```rust
 let a = [1, 2, 3, 4, 5];
@@ -336,7 +336,7 @@ altri linguaggi di programmazione di sistema, ma avere un _proprietario_
 quando se ne va (non più in _scope_), significa non dover scrivere e debuggare
 codice extra per ottenere questo controllo.
 
-L'_ownership_ influisce su come molte altre parti di Rust funzionano, quindi
+L’_ownership_ influisce su come molte altre parti di Rust funzionano, quindi
 parleremo di questi concetti ulteriormente nel resto del libro. Passiamo al
 Capitolo 5 e vediamo come raggruppare pezzi di dati insieme in una `struct`.
 

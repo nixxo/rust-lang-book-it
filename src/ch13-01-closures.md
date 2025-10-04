@@ -7,22 +7,22 @@ diverso. A differenza delle funzioni, le chiusure possono catturare valori dallo
 _scope_ in cui sono definite. Dimostreremo come queste funzionalità di chiusura
 consentano il riutilizzo del codice e la personalizzazione del comportamento.
 
-### Catturare l'Ambiente con le Chiusure
+### Catturare l’Ambiente con le Chiusure
 
 Esamineremo innanzitutto come possiamo utilizzare le chiusure per catturare
-valori dall'ambiente in cui sono definite per un uso successivo. Ecco lo
+valori dall’ambiente in cui sono definite per un uso successivo. Ecco lo
 scenario: ogni tanto, la nostra azienda di magliette regala una maglietta
 esclusiva in edizione limitata a qualcuno nella nostra _mailing list_ come
 promozione. Gli utenti della _mailing list_ possono facoltativamente aggiungere
 il loro colore preferito al proprio profilo. Se la persona a cui viene assegnata
 una maglietta gratuita ha impostato il suo colore preferito, riceverà la
 maglietta di quel colore. Se la persona non ha specificato un colore preferito,
-riceverà il colore di cui l'azienda ha attualmente la maggiore disponibilità.
+riceverà il colore di cui l’azienda ha attualmente la maggiore disponibilità.
 
-Ci sono molti modi per implementarlo. Per questo esempio, useremo un'_enum_
+Ci sono molti modi per implementarlo. Per questo esempio, useremo un’_enum_
 chiamata `ColoreMaglietta` che ha le varianti `Rosso` e `Blu` (limitando il
-numero di colori disponibili per semplicità). Rappresentiamo l'inventario
-dell'azienda con una _struct_ `Inventario` che ha un campo denominato
+numero di colori disponibili per semplicità). Rappresentiamo l’inventario
+dell’azienda con una _struct_ `Inventario` che ha un campo denominato
 `magliette` che contiene un `Vec<ColoreMaglietta>` che rappresenta i colori
 delle magliette attualmente disponibili in magazzino. Il metodo `regalo`
 definito su `Inventario` ottiene la preferenza opzionale per il colore della
@@ -30,7 +30,7 @@ maglietta del vincitore della maglietta gratuita e restituisce il colore della
 maglietta che la persona riceverà. Questa configurazione è mostrata nel Listato
 13-1.
 
-<Listing number="13-1" file-name="src/main.rs" caption="Situazione di un'azienda di magliette che deve fare un regalo">
+<Listing number="13-1" file-name="src/main.rs" caption="Situazione di un’azienda di magliette che deve fare un regalo">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch13-functional-features/listing-13-01/src/main.rs}}
@@ -46,37 +46,37 @@ alcuna preferenza.
 Anche in questo caso, questo codice potrebbe essere implementato in molti modi
 e, per concentrarci sulle chiusure, ci siamo attenuti ai concetti che hai già
 imparato, ad eccezione del corpo del metodo `regalo` che utilizza una chiusura.
-Nel metodo `regalo`, otteniamo la preferenza dell'utente come parametro di
+Nel metodo `regalo`, otteniamo la preferenza dell’utente come parametro di
 _type_ `Option<ColoreMaglietta>` e chiamiamo il metodo `unwrap_or_else` su
 `preferenza_utente`. Il metodo [`unwrap_or_else` su
 `Option<T>`][unwrap-or-else]<!-- ignore --> è definito dalla libreria standard.
 Accetta un argomento: una chiusura senza argomenti che restituisce un valore `T`
 (lo stesso _type_ memorizzato nella variante `Some` di `Option<T>`, in questo
 caso `ColoreMaglietta`). Se `Option<T>` è la variante `Some`, `unwrap_or_else`
-restituisce il valore presente all'interno di `Some`. Se `Option<T>` è la
+restituisce il valore presente all’interno di `Some`. Se `Option<T>` è la
 variante `None` , `unwrap_or_else` chiama la chiusura e restituisce il valore
 restituito dalla chiusura.
 
-Specifichiamo l'espressione di chiusura `|| self.maggior_stock()` come argomento
+Specifichiamo l’espressione di chiusura `|| self.maggior_stock()` come argomento
 di `unwrap_or_else`. Questa è una chiusura che non accetta parametri (se la
 chiusura avesse parametri, questi apparirebbero tra le due barre verticali). Il
 corpo della chiusura chiama `self.maggior_stock()`. Stiamo definendo la chiusura
-qui, e l'implementazione di `unwrap_or_else` valuterà la chiusura in seguito, se
+qui, e l’implementazione di `unwrap_or_else` valuterà la chiusura in seguito, se
 il risultato è necessario.
 
-L'esecuzione di questo codice stampa quanto segue:
+L’esecuzione di questo codice stampa quanto segue:
 
 ```console
 {{#include ../listings/ch13-functional-features/listing-13-01/output.txt}}
 ```
 
 Un aspetto interessante è che abbiamo passato una chiusura che chiama
-`self.maggior_stock()` sull'istanza corrente di `Inventario`. La libreria
+`self.maggior_stock()` sull’istanza corrente di `Inventario`. La libreria
 standard non aveva bisogno di sapere nulla sui _type_ `Inventario` o
 `ColoreMaglietta` che abbiamo definito, né sulla logica che vogliamo utilizzare
-in questo scenario. La chiusura cattura un _reference_ immutabile all'istanza
+in questo scenario. La chiusura cattura un _reference_ immutabile all’istanza
 `self` di `Inventario` e lo passa con il codice che specifichiamo al metodo
-`unwrap_or_else`. Le funzioni, d'altra parte, non sono in grado di catturare il
+`unwrap_or_else`. Le funzioni, d’altra parte, non sono in grado di catturare il
 loro ambiente in questo modo.
 
 ### Inferenza e Annotazione del _Type_ Delle Chiusure
@@ -84,10 +84,10 @@ loro ambiente in questo modo.
 Esistono ulteriori differenze tra funzioni e chiusure. Le chiusure di solito non
 richiedono di annotare i _type_ dei parametri o dei valori di ritorno, come
 fanno le funzioni `fn`. Le annotazioni del _type_ sono necessarie sulle funzioni
-perché i _type_ fanno parte di un'interfaccia esplicita esposta agli utenti.
+perché i _type_ fanno parte di un’interfaccia esplicita esposta agli utenti.
 Definire rigidamente questa interfaccia è importante per garantire che tutti
 concordino sui tipi di valori che una funzione utilizza e restituisce. Le
-chiusure, d'altra parte, non vengono utilizzate in un'interfaccia esposta come
+chiusure, d’altra parte, non vengono utilizzate in un’interfaccia esposta come
 questa: vengono memorizzate in variabili e utilizzate senza denominarle ed
 esporle agli utenti della nostra libreria.
 
@@ -99,8 +99,8 @@ simile a come è in grado di dedurre i _type_ della maggior parte delle variabil
 anche per le chiusure).
 
 Come per le variabili, possiamo aggiungere annotazioni del _type_ se vogliamo
-aumentare l'esplicitezza e la chiarezza, a costo di essere più prolissi del
-necessario. L'annotazione dei _type_ per una chiusura sarebbe simile alla
+aumentare l’esplicitezza e la chiarezza, a costo di essere più prolissi del
+necessario. L’annotazione dei _type_ per una chiusura sarebbe simile alla
 definizione mostrata nel Listato 13-2. In questo esempio, definiamo una chiusura
 e la memorizziamo in una variabile, anziché definirla nel punto in cui la
 passiamo come argomento, come abbiamo fatto nel Listato 13-1.
@@ -113,12 +113,12 @@ passiamo come argomento, come abbiamo fatto nel Listato 13-1.
 
 </Listing>
 
-Con l'aggiunta delle annotazioni del _type_, la sintassi delle chiusure appare
+Con l’aggiunta delle annotazioni del _type_, la sintassi delle chiusure appare
 più simile alla sintassi delle funzioni. Qui, per confronto, definiamo una
 funzione che aggiunge 1 al suo parametro e una chiusura che ha lo stesso
 comportamento. Abbiamo aggiunto alcuni spazi per allineare le parti rilevanti.
 Questo illustra come la sintassi delle chiusure sia simile a quella delle
-funzioni, fatta eccezione per l'uso delle barre verticali e per la quantità di
+funzioni, fatta eccezione per l’uso delle barre verticali e per la quantità di
 sintassi che è facoltativa:
 
 ```rust,ignore
@@ -221,18 +221,18 @@ Questo codice si compila, esegue e stampa:
 {{#include ../listings/ch13-functional-features/listing-13-05/output.txt}}
 ```
 
-Nota che non c'è più `println!` tra la definizione e la chiamata della chiusura
+Nota che non c’è più `println!` tra la definizione e la chiamata della chiusura
 `prestito_mutabile`: quando `prestito_mutabile` è definita, cattura un
 _reference_ mutabile a `lista`. Non usiamo più la chiusura dopo che è stata
 chiamata, quindi il prestito mutabile termina. Tra la definizione della chiusura
 e la chiamata alla chiusura, non è consentito un prestito immutabile per
-stampare perché, quando c'è un prestito mutabile, non sono consentiti altri
+stampare perché, quando c’è un prestito mutabile, non sono consentiti altri
 prestiti. Prova ad aggiungere `println!` per vedere quale messaggio di errore
 ottieni!
 
 Se vuoi forzare la chiusura ad assumere la _ownership_ dei valori che usa
-nell'ambiente, anche se il corpo della chiusura non ne ha strettamente bisogno,
-puoi usare la parola chiave `move` prima dell'elenco dei parametri.
+nell’ambiente, anche se il corpo della chiusura non ne ha strettamente bisogno,
+puoi usare la parola chiave `move` prima dell’elenco dei parametri.
 
 Questa tecnica è utile soprattutto quando si passa una chiusura a un nuovo
 _thread_ per spostare i dati in modo che siano di proprietà del nuovo _thread_.
@@ -256,7 +256,7 @@ chiusura catturava solo `lista` utilizzando un _reference_ immutabile, perché
 questo rappresenta il minimo accesso a `lista` necessario per stamparlo. In
 questo esempio, anche se il corpo della chiusura richiede ancora solo un
 _reference_ immutabile, dobbiamo specificare che `lista` debba essere spostato
-nella chiusura inserendo la parola chiave `move` all'inizio della definizione
+nella chiusura inserendo la parola chiave `move` all’inizio della definizione
 della chiusura. Se il _thread_ principale eseguisse più operazioni prima di
 chiamare `join` sul nuovo _thread_, il nuovo _thread_ potrebbe terminare prima
 del _thread_ principale, oppure il _thread_ principale potrebbe terminare per
@@ -271,17 +271,17 @@ per vedere quali errori del compilatore ottieni!
 ### Restituire i Valori Catturati dalle Chiusure
 
 Una volta che una chiusura ha catturato un _reference_ o preso la _ownership_ di
-un valore nell'ambiente in cui è definita (influenzando quindi cosa, se
-presente, viene spostato _all'interno_ della chiusura), il codice nel corpo
+un valore nell’ambiente in cui è definita (influenzando quindi cosa, se
+presente, viene spostato _all’interno_ della chiusura), il codice nel corpo
 della chiusura definisce cosa succede ai _reference_ o ai valori quando la
 chiusura viene valutata in seguito (influenzando quindi cosa, se presente, viene
 spostato _fuori_ dalla chiusura).
 
 Il corpo di una chiusura può eseguire una delle seguenti operazioni: spostare un
 valore catturato fuori dalla chiusura, mutare il valore catturato, non spostare
-né mutare il valore, oppure non catturare nulla dall'ambiente fin dall'inizio.
+né mutare il valore, oppure non catturare nulla dall’ambiente fin dall’inizio.
 
-Il modo in cui una chiusura cattura e gestisce i valori dell'ambiente influenza
+Il modo in cui una chiusura cattura e gestisce i valori dell’ambiente influenza
 quali _trait_ implementa la chiusura, e i _trait_ sono il modo in cui funzioni e
 _struct_ possono specificare quali tipi di chiusure possono utilizzare. Le
 chiusure implementeranno automaticamente uno, due o tutti e tre questi _trait_
@@ -302,7 +302,7 @@ valori:
   più di una volta senza mutare il loro ambiente, il che è importante in casi
   come quando una chiusura viene chiamata più volte contemporaneamente.
 
-Diamo un'occhiata alla definizione del metodo `unwrap_or_else` su `Option<T>` che
+Diamo un’occhiata alla definizione del metodo `unwrap_or_else` su `Option<T>` che
 abbiamo usato nel Listato 13-1:
 
 ```rust,ignore
@@ -320,9 +320,9 @@ impl<T> Option<T> {
 ```
 
 Ricorda che `T` è il _type_ generico che rappresenta il _type_ del valore nella
-variante `Some` di un'`Option`. Quel `T` è anche il _type_ restituito dalla
+variante `Some` di un’`Option`. Quel `T` è anche il _type_ restituito dalla
 funzione `unwrap_or_else`: il codice che chiama `unwrap_or_else` su
-un'`Option<String>`, ad esempio, otterrà una `String`.
+un’`Option<String>`, ad esempio, otterrà una `String`.
 
 Nota inoltre che la funzione `unwrap_or_else` ha il parametro di _type_ generico
 aggiuntivo `F`. `F` è il _type_ del parametro denominato `f`, che è la chiusura
@@ -330,25 +330,25 @@ che forniamo quando chiamiamo `unwrap_or_else`.
 
 Il vincolo di _trait_ specificato sul _type_ generico `F` è `FnOnce() -> T`, il
 che significa che `F` deve poter essere chiamato una sola volta, non accettare
-argomenti e restituire una `T`. L'utilizzo di `FnOnce` nel vincolo del _trait_
+argomenti e restituire una `T`. L’utilizzo di `FnOnce` nel vincolo del _trait_
 esprime il limite che `unwrap_or_else` chiamerà `f` al massimo una volta. Nel
 corpo di `unwrap_or_else`, possiamo vedere che se `Option` è `Some`, `f` non
 verrà chiamata. Se `Option` è `None`, `f` verrà chiamata una volta. Poiché tutte
 le chiusure implementano `FnOnce`, `unwrap_or_else` accetta tutti e tre i tipi
 di chiusure ed è il più flessibile possibile.
 
-> Nota: se ciò che vogliamo fare non richiede l'acquisizione di un valore
-> dall'ambiente, possiamo usare il nome di una funzione anziché una chiusura
+> Nota: se ciò che vogliamo fare non richiede l’acquisizione di un valore
+> dall’ambiente, possiamo usare il nome di una funzione anziché una chiusura
 > quando abbiamo bisogno di qualcosa che implementi uno dei _trait_ `Fn`. Ad
 > esempio, su un valore `Option<Vec<T>>`, potremmo chiamare
 > `unwrap_or_else(Vec::new)` per ottenere un nuovo vettore vuoto se il valore è
 > `None`. Il compilatore implementa automaticamente qualsiasi dei _trait_ `Fn`
 > applicabile per una definizione di funzione.
 
-Ora diamo un'occhiata al metodo della libreria standard `sort_by_key`, definito
+Ora diamo un’occhiata al metodo della libreria standard `sort_by_key`, definito
 sulle _slice_, per vedere in che modo differisce da `unwrap_or_else` e perché
 `sort_by_key` utilizza `FnMut` invece di `FnOnce` come vincolo del _trait_. La
-chiusura riceve un argomento sotto forma di _reference_ all'elemento corrente
+chiusura riceve un argomento sotto forma di _reference_ all’elemento corrente
 nella _slice_ in esame e restituisce un valore di _type_ `K` che può essere
 ordinato. Questa funzione è utile quando si desidera ordinare una _slice_ in
 base a un particolare attributo di ciascun elemento. Nel Listato 13-7, abbiamo
@@ -375,7 +375,7 @@ chiusura `|r| r.larghezza` non cattura, modifica o sposta nulla dal suo
 ambiente, quindi soddisfa i requisiti del _vincolo_ di _trait_.
 
 Al contrario, il Listato 13-8 mostra un esempio di una chiusura che implementa
-solo il _trait_ `FnOnce`, perché sposta un valore fuori dall'ambiente. Il
+solo il _trait_ `FnOnce`, perché sposta un valore fuori dall’ambiente. Il
 compilatore non ci permette di usare questa chiusura con `sort_by_key`.
 
 <Listing number="13-8" file-name="src/main.rs" caption="Tentativo di usare una chiusura `FnOnce` con `sort_by_key`">
@@ -387,14 +387,14 @@ compilatore non ci permette di usare questa chiusura con `sort_by_key`.
 </Listing>
 
 Questo è un modo artificioso e contorto (che non funziona) per provare a contare
-il numero di volte in cui `sort_by_key` chiama la chiusura durante l'ordinamento
+il numero di volte in cui `sort_by_key` chiama la chiusura durante l’ordinamento
 di `lista`. Questo codice tenta di effettuare questo conteggio inserendo
-`valore`, una `String` dall'ambiente della chiusura, nel vettore
+`valore`, una `String` dall’ambiente della chiusura, nel vettore
 `azioni_ordinamento`. La chiusura cattura `valore` e quindi sposta `valore`
 fuori dalla chiusura trasferendo la _ownership_ di `valore` al vettore
 `azioni_ordinamento`. Questa chiusura può essere chiamata una sola volta; se
 provi a chiamarla una seconda volta non funzionerebbe perché `valore` non
-sarebbe più nell'ambiente da inserire nuovamente in `azioni_ordinamento`!
+sarebbe più nell’ambiente da inserire nuovamente in `azioni_ordinamento`!
 Pertanto, questa chiusura implementa solo `FnOnce`. Quando proviamo a compilare
 questo codice, otteniamo questo errore che indica che `valore` non può essere
 spostato fuori dalla chiusura perché la chiusura deve implementare `FnMut`:
@@ -403,16 +403,16 @@ spostato fuori dalla chiusura perché la chiusura deve implementare `FnMut`:
 {{#include ../listings/ch13-functional-features/listing-13-08/output.txt}}
 ```
 
-L'errore punta alla riga nel corpo della chiusura che sposta `valore` fuori
-dall'ambiente. Per risolvere questo problema, dobbiamo modificare il corpo della
-chiusura in modo che non sposti valori fuori dall'ambiente. Mantenere un
-contatore nell'ambiente e incrementarne il valore nel corpo della chiusura è il
+L’errore punta alla riga nel corpo della chiusura che sposta `valore` fuori
+dall’ambiente. Per risolvere questo problema, dobbiamo modificare il corpo della
+chiusura in modo che non sposti valori fuori dall’ambiente. Mantenere un
+contatore nell’ambiente e incrementarne il valore nel corpo della chiusura è il
 modo più semplice per contare il numero di volte in cui la chiusura viene
 chiamata. La chiusura nel Listato 13-9 funziona con `sort_by_key` perché cattura
 solo un _reference_ mutabile al contatore `numero_azioni_ordinamento` e può
 quindi essere chiamata più volte:
 
-<Listing number="13-9" file-name="src/main.rs" caption="È consentito l'utilizzo di una chiusura `FnMut` con `sort_by_key`">
+<Listing number="13-9" file-name="src/main.rs" caption="È consentito l’utilizzo di una chiusura `FnMut` con `sort_by_key`">
 
 ```rust
 {{#rustdoc_include ../listings/ch13-functional-features/listing-13-09/src/main.rs}}

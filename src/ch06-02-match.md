@@ -21,7 +21,7 @@ funzione che prende una moneta USA sconosciuta e, in modo simile alla macchina
 conta-monete, determina quale moneta sia e restituisce il suo valore in
 centesimi, come mostrato nel Listato 6-3.
 
-<Listing number="6-3" caption="Un'_enum_ e un'espressione `match` che ha come _pattern_ le varianti dell'_enum_">
+<Listing number="6-3" caption="Un’_enum_ e un’espressione `match` che ha come _pattern_ le varianti dell’_enum_">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-03/src/main.rs:here}}
@@ -78,7 +78,7 @@ statali, quindi solo i _quarter_ hanno questa caratteristica peculiare. Possiamo
 aggiungere questa informazione al nostra _enum_ cambiando la variante `Quarter`
 per includere un valore `StatoUSA` all’interno, come fatto nel Listato 6-4.
 
-<Listing number="6-4" caption="Un'_enum_ `Moneta` in cui la variante `Quarter` contiene anche un valore `StatoUSA`">
+<Listing number="6-4" caption="Un’_enum_ `Moneta` in cui la variante `Quarter` contiene anche un valore `StatoUSA`">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-04/src/main.rs:here}}
@@ -125,7 +125,7 @@ operazione.
 Questa funzione è molto semplice da scrivere, grazie a `match`, e apparirà come
 nel Listato 6-5.
 
-<Listing number="6-5" caption="Una funzione che utilizza un'espressione `match` su una `Option<i32>`">
+<Listing number="6-5" caption="Una funzione che utilizza un’espressione `match` su una `Option<i32>`">
 
 ```rust
 {{#rustdoc_include ../listings/ch06-enums-and-pattern-matching/listing-06-05/src/main.rs:here}}
@@ -166,7 +166,7 @@ e restituisce il valore `None` sul lato destro di `=>`. Poiché il primo ramo ha
 corrisposto, nessun altro ramo viene confrontato.
 
 Combinare `match` ed _enum_ è utile in molte situazioni. Vedrai questo schema
-spesso nel codice Rust: fai `match` su un'_enum_, leghi una variabile ai dati
+spesso nel codice Rust: fai `match` su un’_enum_, leghi una variabile ai dati
 interni e poi esegui codice basato su di essi. All’inizio è un po’ ostico, ma
 una volta che ci prendi la mano vorrai averlo in tutti i linguaggi. È un
 costrutto tra i preferiti dagli utenti.
@@ -194,7 +194,7 @@ _pattern_ abbiamo dimenticato! I `match` in Rust sono esaustivi (_exhaustive_):
 dobbiamo coprire ogni possibilità affinché il codice sia valido. Soprattutto nel
 caso di `Option<T>`, quando Rust ci impedisce di dimenticare di gestire
 esplicitamente il caso `None`, ci protegge dall’assumere che abbiamo un valore
-quando potremmo avere _null_, rendendo impossibile “l'errore da un miliardo di
+quando potremmo avere _null_, rendendo impossibile “l’errore da un miliardo di
 dollari” accennato nel capitolo precedente.
 
 ### _Pattern_ Pigliatutto e Segnaposto `_`

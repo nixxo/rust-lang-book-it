@@ -5,7 +5,7 @@ la duplicazione di concetti. In Rust, uno di questi strumenti sono i _type_
 generici: sostituti astratti per _type_ concreti o altre proprietà. Possiamo
 esprimere il comportamento dei _type_ generici o come si relazionano ad altri
 _type_ generici senza sapere cosa ci sarà al loro posto durante la compilazione
-e l'esecuzione del codice.
+e l’esecuzione del codice.
 
 Le funzioni possono accettare parametri di un _type_ generico, invece di un
 _type_ concreto come `i32` o `String`, allo stesso modo in cui accettano
@@ -33,7 +33,7 @@ sufficienti sui valori presi in prestito in modo che possa garantire che i
 _reference_ siano validi in più situazioni di quante ne potrebbe avere senza il
 nostro aiuto.
 
-## Rimuovere la Duplicazione Mediante l'Estrazione di una Funzione
+## Rimuovere la Duplicazione Mediante l’Estrazione di una Funzione
 
 I _type_ generici ci permettono di sostituire _type_ specifici con un segnaposto
 che rappresenta più _type_ per evitare la duplicazione del codice. Prima di
@@ -57,13 +57,13 @@ grande in un elenco.
 </Listing>
 
 Memorizziamo un elenco di numeri interi nella variabile `lista_numeri` e
-inseriamo un _reference_ al primo numero dell'elenco in una variabile denominata
-`maggiore`. Quindi eseguiamo un'iterazione su tutti i numeri dell'elenco e, se
+inseriamo un _reference_ al primo numero dell’elenco in una variabile denominata
+`maggiore`. Quindi eseguiamo un’iterazione su tutti i numeri dell’elenco e, se
 il numero corrente è più grande del numero memorizzato in `maggiore`,
 sostituiamo il _reference_ in quella variabile. Tuttavia, se il numero corrente
 è minore o uguale al numero più grande visto finora, la variabile non cambia e
-il codice passa al numero successivo nell'elenco. Dopo aver considerato tutti i
-numeri nell'elenco, `maggiore` dovrebbe riferirsi al numero più grande, che in
+il codice passa al numero successivo nell’elenco. Dopo aver considerato tutti i
+numeri nell’elenco, `maggiore` dovrebbe riferirsi al numero più grande, che in
 questo caso è 100.
 
 Ora ci è stato chiesto di trovare il numero più grande in due diversi elenchi di
@@ -83,7 +83,7 @@ Sebbene questo codice funzioni, duplicarlo è noioso e soggetto a errori.
 Dobbiamo anche ricordarci di aggiornare il codice in più punti quando vogliamo
 modificarlo.
 
-Per eliminare questa duplicazione, creeremo un'astrazione definendo una funzione
+Per eliminare questa duplicazione, creeremo un’astrazione definendo una funzione
 che opera su qualsiasi elenco di _integer_ passati come parametro. Questa
 soluzione rende il nostro codice più chiaro e ci permette di esprimere il
 concetto di ricerca del numero più grande in un elenco in modo astratto.
@@ -119,6 +119,6 @@ ridurre la duplicazione del codice. Allo stesso modo in cui il corpo della
 funzione può operare su una `lista` astratta anziché su valori specifici, i
 _type_ generici consentono al codice di operare su _type_ astratti.
 
-Ad esempio, supponiamo di avere due funzioni: una che trova l'elemento più
-grande in un insieme di valori `i32` e una che trova l'elemento più grande in un
+Ad esempio, supponiamo di avere due funzioni: una che trova l’elemento più
+grande in un insieme di valori `i32` e una che trova l’elemento più grande in un
 insieme di valori `char`. Come elimineremmo questa duplicazione? Scopriamolo!

@@ -21,7 +21,7 @@
   - [Controllare il flusso](ch03-05-control-flow.md)
 
 - [Capire la _Ownership_](ch04-00-understanding-ownership.md)
-  - [Cos'è la Own_ership?](ch04-01-what-is-ownership.md)
+  - [Cos’è la _Ownership_?](ch04-01-what-is-ownership.md)
   - [_Reference_ e _Borrowing_](ch04-02-references-and-borrowing.md)
   - [Il _Type_ Slice](ch04-03-slices.md)
 
@@ -31,7 +31,7 @@
   - [Metodi](ch05-03-method-syntax.md)
 
 - [Enumerazioni e Corrispondenza dei _Pattern_](ch06-00-enums.md)
-  - [Definire un'_Enum_](ch06-01-defining-an-enum.md)
+  - [Definire un’_Enum_](ch06-01-defining-an-enum.md)
   - [Controllare il Flusso col costrutto `Match`](ch06-02-match.md)
   - [Controllare il Flusso con `if let` e `let else`](ch06-03-if-let.md)
 
@@ -40,7 +40,7 @@
 - [Gestione di Progetti in Crescita con Pacchetti, _Crate_, e Moduli](ch07-00-managing-growing-projects-with-packages-crates-and-modules.md)
   - [Pacchetti e _Crate_](ch07-01-packages-and-crates.md)
   - [Controllare _Scope_ e Privacy con i Moduli](ch07-02-defining-modules-to-control-scope-and-privacy.md)
-  - [Percorsi per Fare Riferimento a un Elemento nell'Albero dei Moduli](ch07-03-paths-for-referring-to-an-item-in-the-module-tree.md)
+  - [Percorsi per Fare Riferimento a un Elemento nell’Albero dei Moduli](ch07-03-paths-for-referring-to-an-item-in-the-module-tree.md)
   - [Portare i Percorsi in _Scope_ con la Parola Chiave `use`](ch07-04-bringing-paths-into-scope-with-the-use-keyword.md)
   - [Separare i Moduli in File Diversi](ch07-05-separating-modules-into-different-files.md)
 
@@ -69,7 +69,7 @@
   - [Leggere un File](ch12-02-reading-a-file.md)
   - [_Refactoring_ per Migliorare Modularità e Gestione degli Errori](ch12-03-improving-error-handling-and-modularity.md)
   - [Aggiungere Funzionalità con il Test-Driven Development](ch12-04-testing-the-librarys-functionality.md)
-  - [Lavorare con le Variabili d'Ambiente](ch12-05-working-with-environment-variables.md)
+  - [Lavorare con le Variabili d’Ambiente](ch12-05-working-with-environment-variables.md)
   - [Scrivere Messaggi di Errore su _Standard Error_](ch12-06-writing-to-stderr-instead-of-stdout.md)
 
 ## Pensare in Rust
@@ -88,7 +88,7 @@
   - [Estendere Cargo con Comandi Personalizzati](ch14-05-extending-cargo.md)
 
 - [Puntatori Intelligenti](ch15-00-smart-pointers.md)
-  - [Utilizzare `Box<T>` per Puntare ai Dati nell'Heap](ch15-01-box.md)
+  - [Utilizzare `Box<T>` per Puntare ai Dati nell’Heap](ch15-01-box.md)
   - [Trattare i Puntatori Intelligenti Come Normali _Reference_ con `Deref`](ch15-02-deref.md)
   - [Eseguire del Codice Durante la Pulizia con il _Trait_ `Drop`](ch15-03-drop.md)
   - [`Rc<T>`, il Puntatore Intelligente con Conteggio dei _Reference_](ch15-04-rc.md)

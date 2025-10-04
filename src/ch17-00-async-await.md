@@ -7,21 +7,21 @@ tecniche per lavorare su più operazioni contemporaneamente: parallelismo e
 concorrenza. Tuttavia, non appena iniziamo a scrivere programmi che coinvolgono
 operazioni parallele o concorrenti, ci imbattiamo rapidamente in nuove sfide
 intrinseche alla _programmazione asincrona_, dove le operazioni potrebbero non
-finire sequenzialmente nell'ordine in cui sono state avviate. Questo capitolo si
-basa sull'uso dei _thread_ per parallelismo e concorrenza del Capitolo 16,
+finire sequenzialmente nell’ordine in cui sono state avviate. Questo capitolo si
+basa sull’uso dei _thread_ per parallelismo e concorrenza del Capitolo 16,
 introducendo un approccio alternativo alla programmazione asincrona: i _Future_
 , gli _Stream_, la sintassi `async` e `await` che li supporta, e gli strumenti
 per gestire e coordinare operazioni asincrone.
 
 Consideriamo un esempio. Immagina di esportare un video che hai creato di una
-celebrazione familiare, un'operazione che potrebbe durare da alcuni minuti a
-ore. L'esportazione del video userà tutta la potenza disponibile di CPU e GPU.
+celebrazione familiare, un’operazione che potrebbe durare da alcuni minuti a
+ore. L’esportazione del video userà tutta la potenza disponibile di CPU e GPU.
 Se avessi solo un core CPU e il tuo sistema operativo non mettesse in pausa
-quell'esportazione fino al suo completamento - cioè, se la eseguisse
+quell’esportazione fino al suo completamento - cioè, se la eseguisse
 _sincronicamente_ - non potresti fare nient'altro sul tuo computer mentre quel
-compito è in esecuzione. Sarebbe un'esperienza davvero frustrante.
+compito è in esecuzione. Sarebbe un’esperienza davvero frustrante.
 Fortunatamente, il sistema operativo del tuo computer può, e lo fa, interrompere
-invisibilmente l'esportazione abbastanza spesso da permetterti di fare altro
+invisibilmente l’esportazione abbastanza spesso da permetterti di fare altro
 lavoro contemporaneamente.
 
 Ora immagina di scaricare un video condiviso da qualcun altro, che può
@@ -36,24 +36,24 @@ una volta, il tuo sistema operativo interromperà invisibilmente il tuo programm
 per permettere alla CPU di eseguire altro lavoro mentre aspetta che la chiamata
 di rete finisca.
 
-L'esportazione video è un esempio di operazione _vincolata dalla CPU_ o
+L’esportazione video è un esempio di operazione _vincolata dalla CPU_ o
 _vincolata dal calcolo_. È limitata dalla velocità potenziale di elaborazione
-dati all'interno della CPU o GPU e da quanto di quella velocità può dedicare
-all'operazione. Il download video è un esempio di operazione _vincolata da I/O_,
+dati all’interno della CPU o GPU e da quanto di quella velocità può dedicare
+all’operazione. Il download video è un esempio di operazione _vincolata da I/O_,
 perché è limitata dalla velocità di _input e output_ del computer; può andare
 solo veloce quanto i dati possono essere inviati attraverso la rete.
 
 In entrambi questi esempi, le invisibili interruzioni del sistema operativo
 forniscono una forma di concorrenza. Quella concorrenza avviene solo al livello
-dell'intero programma: il sistema operativo interrompe un programma per
+dell’intero programma: il sistema operativo interrompe un programma per
 permettere ad altri programmi di fare lavoro. In molti casi, poiché comprendiamo
 i nostri programmi a un livello molto più granulare di quanto faccia il sistema
 operativo, possiamo individuare opportunità di concorrenza che il sistema
 operativo non vede.
 
 Ad esempio, se stiamo costruendo uno strumento per gestire download di file,
-dovremmo essere in grado di scrivere il nostro programma in modo che l'avvio di
-un download non blocchi l'interfaccia utente, e gli utenti dovrebbero essere in
+dovremmo essere in grado di scrivere il nostro programma in modo che l’avvio di
+un download non blocchi l’interfaccia utente, e gli utenti dovrebbero essere in
 grado di avviare più download contemporaneamente. Molte API del sistema
 operativo per interagire con la rete sono _bloccanti_; ovvero, bloccano il
 progresso del programma finché i dati che stanno elaborando non sono
@@ -63,12 +63,12 @@ completamente pronti.
 > ci pensate. Tuttavia, il termine _bloccante_ è solitamente riservato per
 > chiamate di funzioni che interagiscono con file, rete o altre risorse del
 > computer, perché questi sono i casi in cui un singolo programma trarrebbe
-> beneficio se l'operazione fosse non-bloccante.
+> beneficio se l’operazione fosse non-bloccante.
 
 Potremmo evitare di bloccare il nostro _thread_ principale creando un _thread_
-dedicato per scaricare ogni file. Tuttavia, l'_overhead_ di questi _thread_
+dedicato per scaricare ogni file. Tuttavia, l’_overhead_ di questi _thread_
 diventerebbe presto un problema. Sarebbe preferibile se la chiamata non
-bloccasse fin dall'inizio. Sarebbe anche meglio se potessimo scrivere nello
+bloccasse fin dall’inizio. Sarebbe anche meglio se potessimo scrivere nello
 stesso stile diretto che usiamo nel codice bloccante, qualcosa di simile a:
 
 ```rust,ignore,does_not_compile
@@ -76,7 +76,7 @@ let data = fetch_data_from(url).await;
 println!("{data}");
 ```
 
-Proprio questo è ciò che l'astrazione _async_ di Rust ci offre. In questo
+Proprio questo è ciò che l’astrazione _async_ di Rust ci offre. In questo
 capitolo, imparerai tutto su _async_ mentre affronteremo i seguenti argomenti:
 
 - Come usare la sintassi `async` e `await` di Rust
@@ -100,10 +100,10 @@ a ciascun membro un compito, o usare un mix dei due approcci.
 
 Quando un individuo lavora su diversi compiti prima che uno di essi sia
 completato, questo è _concorrenza_. Magari hai due progetti diversi aperti sul
-tuo computer, e quando ti annoi o ti blocchi su un progetto, passi all'altro.
+tuo computer, e quando ti annoi o ti blocchi su un progetto, passi all’altro.
 Sei una sola persona, quindi non puoi fare progressi su entrambi i compiti
 esattamente nello stesso momento, ma puoi fare multi-tasking, facendo progressi
-su uno alla volta passando dall'uno all'altro (vedi Figura 17-1).
+su uno alla volta passando dall’uno all’altro (vedi Figura 17-1).
 
 <img src="img/trpl17-01.svg" class="center" alt="Un diagramma con riquadri etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti. Ci sono frecce che vanno da A1 a B1, B1 a A2, A2 a B2, B2 a A3, A3 a A4, e A4 a B3. Le frecce tra i sotto-compiti attraversano i riquadri tra Compito A e Compito B." />
 
@@ -119,10 +119,10 @@ team può fare progressi esattamente nello stesso momento (vedi Figura 17-2).
 
 In entrambi questi flussi di lavoro, potresti dover coordinare tra diversi
 compiti. Forse _pensavi_ che il compito assegnato a una persona fosse totalmente
-indipendente dal lavoro di tutti gli altri, ma in realtà richiede che un'altra
+indipendente dal lavoro di tutti gli altri, ma in realtà richiede che un’altra
 persona del team completi prima il proprio compito. Parte del lavoro potrebbe
 essere eseguita in parallelo, ma parte di esso sarebbe effettivamente _seriale_:
-potrebbe avvenire solo in serie, un compito dopo l'altro, come nella Figura
+potrebbe avvenire solo in serie, un compito dopo l’altro, come nella Figura
 17-3.
 
 <img src="img/trpl17-03.svg" class="center" alt="Un diagramma con riquadri etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti. Ci sono frecce che vanno da A1 a A2, A2 a un paio di linee verticali spesse come un simbolo di “pausa”, da quel simbolo a A3, B1 a B2, B2 a B3, che è sotto quel simbolo, B3 a A3, e B3 a B4." />
@@ -138,17 +138,17 @@ concentrerai tutti i tuoi sforzi su quel compito per "sbloccare" il tuo collega.
 Tu e il tuo collega non siete più in grado di lavorare in parallelo, e non siete
 nemmeno più in grado di lavorare concorrentemente sui vostri compiti.
 
-Le stesse dinamiche di base si applicano al software e all'hardware. Su una
-macchina con un singolo core CPU, la CPU può eseguire solo un'operazione alla
+Le stesse dinamiche di base si applicano al software e all’hardware. Su una
+macchina con un singolo core CPU, la CPU può eseguire solo un’operazione alla
 volta, ma può comunque lavorare concorrentemente. Utilizzando strumenti come
-_thread_, processi e _async_, il computer può mettere in pausa un'attività e
+_thread_, processi e _async_, il computer può mettere in pausa un’attività e
 passare ad altre prima di tornare eventualmente a quella prima attività. Su una
 macchina con più core CPU, può anche eseguire lavoro in parallelo. Un core può
 eseguire un compito mentre un altro core esegue un compito completamente
 indipendente, e quelle operazioni accadono effettivamente nello stesso momento.
 
 Quando si lavora con _async_ in Rust, stiamo sempre trattando con la
-concorrenza. A seconda dell'hardware, del sistema operativo e del _runtime_
+concorrenza. A seconda dell’hardware, del sistema operativo e del _runtime_
 _async_ che stiamo utilizzando (parleremo presto dei _runtime_ _async_), quella
 concorrenza potrebbe anche star utilizzando in realtà il parallelismo.
 

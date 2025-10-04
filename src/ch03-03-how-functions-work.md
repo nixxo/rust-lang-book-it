@@ -22,21 +22,21 @@ dove inizia e finisce il corpo della funzione.
 
 Possiamo chiamare qualsiasi funzione che abbiamo definito inserendo il suo nome
 seguito da una serie di parentesi tonde. Poiché `altra_funzione` è definita nel
-programma, può essere chiamata dall'interno della funzione `main`. Nota che
+programma, può essere chiamata dall’interno della funzione `main`. Nota che
 abbiamo definito `altra_funzione` _dopo_ la funzione `main` nel codice sorgente;
 avremmo potuto definirla anche prima. A Rust non interessa dove definisci le tue
 funzioni, ma solo che siano definite in una parte del codice che sia “visibile”,
 in _scope_, al chiamante.
 
 Cominciamo un nuovo progetto binario chiamato _funzioni_ per esplorare
-ulteriormente le funzioni. Inserisci l'esempio `altra_funzione` in _src/main.rs_
+ulteriormente le funzioni. Inserisci l’esempio `altra_funzione` in _src/main.rs_
 ed eseguilo. Dovresti vedere il seguente output:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-16-functions/output.txt}}
 ```
 
-Le righe vengono eseguite nell'ordine in cui appaiono nella funzione `main`.
+Le righe vengono eseguite nell’ordine in cui appaiono nella funzione `main`.
 Prima viene stampato il messaggio “Hello, world!”, poi viene chiamata
 `altra_funzione` e viene stampato il suo messaggio.
 
@@ -90,7 +90,7 @@ chiama `unita_misura` ed è di _type_ `char`. La funzione stampa quindi un testo
 contenente sia il `valore` che `unita_misura`.
 
 Eseguiamo il codice. Sostituisci il codice attualmente presente nel file
-src/main.rs_ del tuo progetto _funzioni_ con l'esempio precedente ed eseguilo
+src/main.rs_ del tuo progetto _funzioni_ con l’esempio precedente ed eseguilo
 con `cargo run`:
 
 ```console
@@ -98,19 +98,19 @@ con `cargo run`:
 ```
 
 Poiché abbiamo chiamato la funzione con `5` come valore per `valore` e `'h'`
-come valore per `unita_misura`, l'output del programma contiene questi valori.
+come valore per `unita_misura`, l’output del programma contiene questi valori.
 
 ### Dichiarazioni ed Espressioni
 
 I corpi delle funzioni sono costituiti da una serie di dichiarazioni che possono
-eventualmente terminare con un'espressione. Finora le funzioni che abbiamo
-trattato non hanno incluso un'espressione finale, ma hai visto un'espressione
+eventualmente terminare con un’espressione. Finora le funzioni che abbiamo
+trattato non hanno incluso un’espressione finale, ma hai visto un’espressione
 come parte di una dichiarazione. Poiché Rust è un linguaggio basato sulle
 espressioni, questa è una distinzione importante da capire. Altri linguaggi non
 hanno le stesse distinzioni, quindi vediamo cosa sono le dichiarazioni e le
 espressioni e come le loro differenze influenzano il corpo delle funzioni.
 
-- Le dichiarazioni sono istruzioni che eseguono un'azione e non restituiscono un
+- Le dichiarazioni sono istruzioni che eseguono un’azione e non restituiscono un
   valore.
 - Le espressioni vengono valutate e restituiscono un valore risultante.
 
@@ -128,12 +128,12 @@ Nel Listato 3-1, `let y = 6;` è una dichiarazione.
 
 </Listing>
 
-Anche la definizione di una funzione è una dichiarazione; l'intero esempio
+Anche la definizione di una funzione è una dichiarazione; l’intero esempio
 precedente è, di per sé, una dichiarazione. (Come vedremo più avanti, però,
 chiamare una funzione non è una dichiarazione)
 
 Le dichiarazioni non restituiscono valori. Pertanto, non puoi assegnare una
-dichiarazione `let` a un'altra variabile, come cerca di fare il codice seguente;
+dichiarazione `let` a un’altra variabile, come cerca di fare il codice seguente;
 otterrai un errore:
 
 <span class="filename">File: src/main.rs</span>
@@ -142,24 +142,24 @@ otterrai un errore:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-19-statements-vs-expressions/src/main.rs}}
 ```
 
-Quando esegui questo programma, l'errore che otterrai è simile a questo:
+Quando esegui questo programma, l’errore che otterrai è simile a questo:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-19-statements-vs-expressions/output.txt}}
 ```
 
-La dichiarazione `let y = 6` non restituisce un valore, quindi non c'è nulla a
+La dichiarazione `let y = 6` non restituisce un valore, quindi non c’è nulla a
 cui `x` possa legarsi. Questo è diverso da ciò che accade in altri linguaggi,
-come C e Ruby, dove l'assegnazione restituisce il valore dell'assegnazione. In
+come C e Ruby, dove l’assegnazione restituisce il valore dell’assegnazione. In
 questi linguaggi, puoi scrivere `x = y = 6` e far sì che sia `x` che `y` abbiano
 il valore `6`; questo non è il caso di Rust.
 
 Le espressioni che valutate restituiscono un valore costituiscono la maggior
-parte del resto del codice che scriverai in Rust. Considera un'operazione
-matematica, come `5 + 6`, che è un'espressione che restituisce il valore `11`.
+parte del resto del codice che scriverai in Rust. Considera un’operazione
+matematica, come `5 + 6`, che è un’espressione che restituisce il valore `11`.
 Le espressioni possono far parte di dichiarazioni: nel Listato 3-1, il `6` nella
-dichiarazione `let y = 6;` è un'espressione che valuta il valore `6`. Chiamare
-una funzione è un'espressione. Chiamare una macro è un'espressione. Pure
+dichiarazione `let y = 6;` è un’espressione che valuta il valore `6`. Chiamare
+una funzione è un’espressione. Chiamare una macro è un’espressione. Pure
 definire tramite parentesi graffe un nuovo _scope_ ad esempio:
 
 <span class="filename">File: src/main.rs</span>
@@ -177,10 +177,10 @@ Questa espressione:
 }
 ```
 è un blocco che, in questo caso, valuta `4`. Questo valore viene legato a `y`
-come parte dell'istruzione `let`. Nota che la riga `x + 1` non ha un punto e
+come parte dell’istruzione `let`. Nota che la riga `x + 1` non ha un punto e
 virgola alla fine, il che è diverso dalla maggior parte delle righe che hai
 visto finora. Le espressioni non includono il punto e virgola finale. Se
-aggiungi un punto e virgola alla fine di un'espressione, la trasformi in una
+aggiungi un punto e virgola alla fine di un’espressione, la trasformi in una
 dichiarazione e quindi non restituirà un valore. Tienilo a mente mentre leggi il
 prossimo paragrafo sui valori di ritorno delle funzioni e le espressioni.
 
@@ -189,10 +189,10 @@ prossimo paragrafo sui valori di ritorno delle funzioni e le espressioni.
 Le funzioni possono restituire dei valori al codice che le chiama. Non
 assegniamo un nome ai valori di ritorno, ma dobbiamo esplicitarne il _type_ dopo
 una freccia (`->`). In Rust, il valore di ritorno della funzione è sinonimo del
-valore dell'espressione finale nel blocco del corpo della funzione. Puoi far
+valore dell’espressione finale nel blocco del corpo della funzione. Puoi far
 ritornare un valore anche in anticipo alla funzione usando la parola chiave
 `return` e specificando un valore, ma la maggior parte delle funzioni
-restituisce l'ultima espressione in modo implicito. Ecco un esempio di funzione
+restituisce l’ultima espressione in modo implicito. Ecco un esempio di funzione
 che restituisce un valore:
 
 <span class="filename">File: src/main.rs</span>
@@ -204,7 +204,7 @@ che restituisce un valore:
 Non ci sono chiamate di funzione, macro o dichiarazioni `let` nella funzione
 `cinque`, ma solo il numero `5` da solo. Si tratta di una funzione perfettamente
 valida in Rust. Nota che anche il _type_ di ritorno della funzione è specificato
-come `-> i32`. Prova a eseguire questo codice; l'output dovrebbe essere simile a
+come `-> i32`. Prova a eseguire questo codice; l’output dovrebbe essere simile a
 questo:
 
 ```console
@@ -224,7 +224,7 @@ let x = 5;
 
 In secondo luogo, la funzione `cinque` non ha parametri e definisce il _type_
 del valore di ritorno, ma il corpo della funzione è un solitario `5` senza punto
-e virgola perché è un'espressione il cui valore vogliamo restituire.
+e virgola perché è un’espressione il cui valore vogliamo restituire.
 
 Vediamo un altro esempio:
 
@@ -256,4 +256,4 @@ rivela il problema principale di questo codice. La definizione della funzione
 valore, restituendo un `()`, il _type_ _unit_. Pertanto, non viene restituito
 nulla, il che contraddice la definizione della funzione e provoca un errore. In
 questo output, Rust fornisce un messaggio che può aiutare a correggere questo
-problema: suggerisce di rimuovere il punto e virgola, che risolverebbe l'errore.
+problema: suggerisce di rimuovere il punto e virgola, che risolverebbe l’errore.

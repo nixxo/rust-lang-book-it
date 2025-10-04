@@ -11,7 +11,7 @@ integrati di Cargo è un vantaggio super conveniente del design di Cargo!
 ## Riepilogo
 
 La condivisione di codice con Cargo e [crates.io](https://crates.io/)<!-- ignore
---> è parte di ciò che rende l'ecosistema Rust utile per molti compiti diversi.
+--> è parte di ciò che rende l’ecosistema Rust utile per molti compiti diversi.
 La libreria standard di Rust è piccola e stabile, ma i _crate_ sono facili da
 condividere, usare e migliorare con una tempistica diversa da quella del
 linguaggio. Non essere timido nel condividere il codice che ti è utile su

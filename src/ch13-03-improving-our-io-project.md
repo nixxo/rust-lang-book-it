@@ -3,15 +3,15 @@
 Con queste nuove conoscenze sugli iteratori, possiamo migliorare il progetto I/O
 del Capitolo 12 utilizzando gli iteratori per rendere alcuni punti del codice
 più chiari e concisi. Vediamo come gli iteratori possono migliorare
-l'implementazione della funzione `Config::build` e della funzione `cerca`.
+l’implementazione della funzione `Config::build` e della funzione `cerca`.
 
 ### Rimuovere `clone` Utilizzando un Iteratore
 
 Nel Listato 12-6, abbiamo aggiunto del codice che prendeva una _slice_ di valori
-`String` e creava un'istanza della _struct_ `Config` indicizzando nella _slice_
+`String` e creava un’istanza della _struct_ `Config` indicizzando nella _slice_
 e clonando i valori, consentendo alla _struct_ `Config` di avere _ownership_ di
-tali valori. Nel Listato 13-17, abbiamo riprodotto l'implementazione della
-funzione `Config::build` così com'era nel Listato 12-23.
+tali valori. Nel Listato 13-17, abbiamo riprodotto l’implementazione della
+funzione `Config::build` così com’era nel Listato 12-23.
 
 <Listing number="13-17" file-name="src/main.rs" caption="Riproduzione della funzione `Config::build` dal Listato 12-23">
 
@@ -26,23 +26,23 @@ perché le avremmo rimosse in futuro. Bene, quel momento è arrivato!
 
 Qui ci serviva `clone` perché abbiamo una _slice_ con elementi `String` nel
 parametro `args`, ma la funzione `build` non ha _ownership_ su `args`. Per
-restituire la _ownership_ di un'istanza di `Config`, abbiamo dovuto clonare i
-valori dai campi `query` e `percorso_file` di `Config` in modo che l'istanza di
+restituire la _ownership_ di un’istanza di `Config`, abbiamo dovuto clonare i
+valori dai campi `query` e `percorso_file` di `Config` in modo che l’istanza di
 `Config` possa possederne i valori.
 
 Grazie alle nostre nuove conoscenze sugli iteratori, possiamo modificare la
 funzione `build` per prendere la _ownership_ di un iteratore come argomento
 invece di prendere in prestito una _slice_. Utilizzeremo la funzionalità
-dell'iteratore invece del codice che controlla la lunghezza della _slice_ e la
+dell’iteratore invece del codice che controlla la lunghezza della _slice_ e la
 indicizza in posizioni specifiche. Questo chiarirà cosa fa la funzione
-`Config::build`, perché l'iteratore accederà ai valori.
+`Config::build`, perché l’iteratore accederà ai valori.
 
-Una volta che `Config::build` assume la _ownership_ dell'iteratore e smette di
+Una volta che `Config::build` assume la _ownership_ dell’iteratore e smette di
 utilizzare le operazioni di indicizzazione che prendono in prestito, possiamo
-spostare i valori `String` dall'iteratore a `Config` anziché chiamare `clone` ed
+spostare i valori `String` dall’iteratore a `Config` anziché chiamare `clone` ed
 effettuare una nuova allocazione.
 
-#### Utilizzare Direttamente l'Iteratore Restituito
+#### Utilizzare Direttamente l’Iteratore Restituito
 
 Apri il file _src/main.rs_ del tuo progetto I/O, che dovrebbe apparire così:
 
@@ -52,7 +52,7 @@ Apri il file _src/main.rs_ del tuo progetto I/O, che dovrebbe apparire così:
 {{#rustdoc_include ../listings/ch13-functional-features/listing-12-24-reproduced/src/main.rs:ch13}}
 ```
 
-Per prima cosa modifichiamo l'inizio della funzione `main` che avevamo nel
+Per prima cosa modifichiamo l’inizio della funzione `main` che avevamo nel
 Listato 12-24 con il codice nel Listato 13-18, che questa volta utilizza un
 iteratore. Questo non verrà compilato finché non aggiorneremo anche
 `Config::build`.
@@ -66,8 +66,8 @@ iteratore. Questo non verrà compilato finché non aggiorneremo anche
 </Listing>
 
 La funzione `env::args` restituisce un iteratore! Invece di raccogliere i valori
-dell'iteratore in un vettore e poi passare una _slice_ a `Config::build`, ora
-passiamo la _ownership_ dell'iteratore restituito da `env::args` direttamente a
+dell’iteratore in un vettore e poi passare una _slice_ a `Config::build`, ora
+passiamo la _ownership_ dell’iteratore restituito da `env::args` direttamente a
 `Config::build`.
 
 Dobbiamo quindi aggiornare la definizione di `Config::build`. Modifichiamo la
@@ -125,7 +125,7 @@ subito un valore `Err`. Facciamo la stessa cosa per il valore `percorso_file`.
 Possiamo anche sfruttare gli iteratori nella funzione `cerca` nel nostro
 progetto di I/O, che è riprodotta qui nel Listato 13-21 come nel Listato 12-19.
 
-<Listing number="13-21" file-name="src/lib.rs" caption="L'implementazione della funzione `cerca` del Listato 12-19">
+<Listing number="13-21" file-name="src/lib.rs" caption="L’implementazione della funzione `cerca` del Listato 12-19">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-19/src/lib.rs:ch13}}
@@ -138,10 +138,10 @@ In questo modo evitiamo anche di avere un vettore mutabile `risultato`. Lo stile
 di programmazione funzionale preferisce ridurre al minimo la quantità di stato
 mutabile per rendere il codice più chiaro. La rimozione dello stato mutabile
 potrebbe consentire un miglioramento futuro per far sì che la ricerca avvenga in
-parallelo, poiché non dovremmo gestire l'accesso simultaneo al vettore
+parallelo, poiché non dovremmo gestire l’accesso simultaneo al vettore
 `risultati`. Il Listato 13-22 mostra questa modifica.
 
-<Listing number="13-22" file-name="src/lib.rs" caption="Utilizzo degli adattatori nell'implementazione della funzione `cerca`">
+<Listing number="13-22" file-name="src/lib.rs" caption="Utilizzo degli adattatori nell’implementazione della funzione `cerca`">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch13-functional-features/listing-13-22/src/lib.rs:here}}
@@ -150,8 +150,8 @@ parallelo, poiché non dovremmo gestire l'accesso simultaneo al vettore
 </Listing>
 
 Ricorda che lo scopo della funzione `cerca` è restituire tutte le righe in
-`contenuto` che contengono la `query`. Analogamente all'esempio `filter` nel
-Listato 13-16, questo codice utilizza l'adattatore `filter` per conservare solo
+`contenuto` che contengono la `query`. Analogamente all’esempio `filter` nel
+Listato 13-16, questo codice utilizza l’adattatore `filter` per conservare solo
 le righe per le quali `line.contains(query)` restituisce `true`. Quindi
 raccogliamo le righe corrispondenti in un altro vettore con `collect`. Molto più
 semplice! Sentiti libero di apportare la stessa modifica utilizzando i metodi
@@ -167,24 +167,24 @@ di questa modifica, il programma non visualizzava alcun risultato finché non
 aveva raccolto tutti i risultati, ma dopo la modifica, i risultati verranno
 visualizzati man mano che viene trovata ogni riga corrispondente, perché il
 ciclo `for` nella funzione `esegui` è in grado di sfruttare “la pigrizia”
-(_laziness_) dell'iteratore.
+(_laziness_) dell’iteratore.
 
 ### Scegliere tra Cicli e Iteratori
 
 La domanda logica successiva è quale stile scegliere nel proprio codice e
-perché: l'implementazione originale nel Listato 13-21 o la versione che utilizza
+perché: l’implementazione originale nel Listato 13-21 o la versione che utilizza
 gli iteratori nel Listato 13-22 (supponendo che stiamo raccogliendo tutti i
-risultati prima di restituirli piuttosto che restituire l'iteratore). La maggior
+risultati prima di restituirli piuttosto che restituire l’iteratore). La maggior
 parte dei programmatori Rust preferisce usare lo stile iteratore. È un po' più
-difficile da capire all'inizio, ma una volta che si è presa familiarità con i
+difficile da capire all’inizio, ma una volta che si è presa familiarità con i
 vari adattatori e con il loro funzionamento, gli iteratori possono essere più
 facili da capire. Invece di armeggiare con i vari pezzi del ciclo e creare nuovi
-vettori, il codice si concentra sull'obiettivo di alto livello del ciclo. Questo
+vettori, il codice si concentra sull’obiettivo di alto livello del ciclo. Questo
 astrae parte del codice più comune, rendendo più facile comprendere i concetti
 specifici di questo codice, come la condizione di filtro che ogni elemento
-dell'iteratore deve soddisfare.
+dell’iteratore deve soddisfare.
 
-Ma le due implementazioni sono davvero equivalenti? L'ipotesi intuitiva potrebbe
+Ma le due implementazioni sono davvero equivalenti? L’ipotesi intuitiva potrebbe
 essere che il ciclo di livello inferiore sia più veloce. Parliamo di
 prestazioni.
 

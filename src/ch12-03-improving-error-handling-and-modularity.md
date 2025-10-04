@@ -7,7 +7,7 @@ il file. Man mano che il nostro programma cresce, il numero di attività separat
 gestite dalla funzione `main` aumenterà. Man mano che una funzione acquisisce
 responsabilità, diventa più difficile esaminare, testare e apportare modificare
 senza danneggiare una delle sue parti. È meglio separare le funzionalità in modo
-che ogni funzione sia responsabile di un'attività.
+che ogni funzione sia responsabile di un’attività.
 
 Questo problema si collega anche al secondo problema: sebbene `query` e
 `percorso_file` siano variabili di configurazione del nostro programma,
@@ -15,7 +15,7 @@ variabili come `contenuto` vengono utilizzate per eseguire la struttura logica
 del programma. Più `main` diventa lungo, più variabili dovremo includere nello
 _scope_; più variabili abbiamo nello _scope_, più difficile sarà tenere traccia
 di cosa faccia ciascuna. È meglio raggruppare le variabili di configurazione in
-un'unica struttura per chiarirne lo scopo.
+un’unica struttura per chiarirne lo scopo.
 
 Il terzo problema è che abbiamo usato `expect` per visualizzare un messaggio di
 errore quando la lettura del file fallisce, ma il messaggio di errore visualizza
@@ -23,9 +23,9 @@ solo `Dovrebbe essere stato possibile leggere il file`. La lettura di un file
 può fallire in diversi modi: ad esempio, il file potrebbe essere mancante o
 potremmo non avere i permessi per aprirlo. Al momento, indipendentemente dalla
 situazione, visualizzeremo lo stesso messaggio di errore per tutto, il che non
-fornirebbe alcuna informazione all'utente!
+fornirebbe alcuna informazione all’utente!
 
-In quarto luogo, usiamo `expect` per gestire un errore e, se l'utente esegue il
+In quarto luogo, usiamo `expect` per gestire un errore e, se l’utente esegue il
 nostro programma senza specificare argomenti sufficienti, riceverà un errore
 `index out of bounds` da Rust che non spiega chiaramente il problema. Sarebbe
 meglio se tutto il codice di gestione degli errori fosse in un unico posto, in
@@ -59,10 +59,10 @@ dovrebbero essere limitate a quanto segue:
   argomenti
 - Impostare qualsiasi altra configurazione
 - Chiamare una funzione `esegui` in _lib.rs_
-- Gestire l'errore se `esegui` restituisce un errore
+- Gestire l’errore se `esegui` restituisce un errore
 
 Questo schema riguarda la separazione delle attività: _main.rs_ gestisce
-l'esecuzione del programma e _lib.rs_ gestisce tutta la logica dell'attività in
+l’esecuzione del programma e _lib.rs_ gestisce tutta la logica dell’attività in
 corso. Poiché non è possibile testare direttamente la funzione `main`, questa
 struttura consente inoltre di scrivere test e quindi testare tutta la logica del
 programma spostandola fuori dalla funzione `main`. Il codice che rimane nella
@@ -72,7 +72,7 @@ processo.
 
 #### Estrarre il _Parser_ degli Argomenti
 
-Estrarremo la funzionalità per l'analisi degli argomenti in una funzione che
+Estrarremo la funzionalità per l’analisi degli argomenti in una funzione che
 verrà chiamata da `main`. Il Listato 12-5 mostra il nuovo avvio della funzione
 `main` che chiama una nuova funzione `leggi_config`, che definiremo in
 _src/main.rs_.
@@ -86,9 +86,9 @@ _src/main.rs_.
 </Listing>
 
 Stiamo ancora raccogliendo gli argomenti della riga di comando in un vettore, ma
-invece di assegnare il valore dell'argomento all'indice 1 alla variabile `query`
-e il valore dell'argomento all'indice 2 alla variabile `percorso_file`
-all'interno della funzione `main`, passiamo l'intero vettore alla funzione
+invece di assegnare il valore dell’argomento all’indice 1 alla variabile `query`
+e il valore dell’argomento all’indice 2 alla variabile `percorso_file`
+all’interno della funzione `main`, passiamo l’intero vettore alla funzione
 `leggi_config`. La funzione `leggi_config` contiene quindi la logica che
 determina quale argomento debba andare in quale variabile e restituisce i valori
 a `main`. Creiamo ancora le variabili `query` e `percorso_file` in `main`, ma
@@ -98,7 +98,7 @@ variabili della riga di comando corrispondono.
 Questa riscrittura potrebbe sembrare eccessiva per il nostro piccolo programma,
 ma stiamo eseguendo il _refactoring_ in piccoli passaggi incrementali. Dopo aver
 apportato questa modifica, esegui nuovamente il programma per verificare che
-l'analisi degli argomenti funzioni ancora. È consigliabile controllare spesso i
+l’analisi degli argomenti funzioni ancora. È consigliabile controllare spesso i
 progressi per aiutare a identificare la causa dei problemi quando si verificano.
 
 #### Raggruppare i Valori di Configurazione
@@ -106,21 +106,21 @@ progressi per aiutare a identificare la causa dei problemi quando si verificano.
 Possiamo fare un altro piccolo passo per migliorare ulteriormente la funzione
 `leggi_config`. Al momento, restituiamo una tupla, ma poi la suddividiamo
 immediatamente in singole parti. Questo è un segno che forse non abbiamo ancora
-l'astrazione giusta.
+l’astrazione giusta.
 
-Un altro indicatore che mostra che c'è margine di miglioramento è la parte
+Un altro indicatore che mostra che c’è margine di miglioramento è la parte
 `config` di `leggi_config`, che implica che i due valori restituiti sono
 correlati e fanno entrambi parte di un unico valore di configurazione. Al
 momento non stiamo evidenziando questo significato nella struttura dei dati se
 non raggruppando i due valori in una tupla; inseriremo invece i due valori in
-un'unica _struct_ e daremo a ciascuno dei campi della _struct_ un nome
+un’unica _struct_ e daremo a ciascuno dei campi della _struct_ un nome
 significativo. In questo modo, sarà più facile per i futuri manutentori di
 questo codice comprendere come i diversi valori si relazionano tra loro e qual è
 il loro scopo.
 
 Il Listato 12-6 mostra i miglioramenti alla funzione `leggi_config`.
 
-<Listing number="12-6" file-name="src/main.rs" caption="_Refactoring_ di `leggi_config` per ritornare un'istanza di una struttura `Config`">
+<Listing number="12-6" file-name="src/main.rs" caption="_Refactoring_ di `leggi_config` per ritornare un’istanza di una struttura `Config`">
 
 ```rust,should_panic,noplayground
 {{#rustdoc_include ../listings/ch12-an-io-project/listing-12-06/src/main.rs:here}}
@@ -140,14 +140,14 @@ _ownership_ dei valori in `args`.
 
 Ci sono diversi modi per gestire i dati `String`; il modo più semplice, anche se
 un po' inefficiente, è chiamare il metodo `clone` sui valori. Questo creerà una
-copia completa dei dati per l'istanza di `Config`, che ne diverrà proprietaria,
+copia completa dei dati per l’istanza di `Config`, che ne diverrà proprietaria,
 il che richiede più tempo e memoria rispetto alla memorizzazione di un
 _reference_ ai dati stringa. Tuttavia, clonare i dati rende anche il nostro
 codice molto semplice perché non dobbiamo gestire la _lifetime_ di quei
 _reference_; in questo caso, rinunciare a un po' di prestazioni per guadagnare
 semplicità è un compromesso che vale la pena accettare.
 
-> ### I Compromessi dell'Utilizzo di `Clone`
+> ### I Compromessi dell’Utilizzo di `Clone`
 >
 > Molti utenti di Rust tendono a evitare di usare `clone` per non incorrere in
 > problemi di _ownership_ a causa del suo costo di esecuzione. Nel [Capitolo
@@ -160,27 +160,27 @@ semplicità è un compromesso che vale la pena accettare.
 > facile iniziare con la soluzione più efficiente, ma per ora è perfettamente
 > accettabile chiamare `clone`.
 
-Abbiamo aggiornato `main` in modo che inserisca l'istanza di `Config` restituita
+Abbiamo aggiornato `main` in modo che inserisca l’istanza di `Config` restituita
 da `leggi_config` in una variabile denominata `config`, e abbiamo aggiornato il
 codice che in precedenza utilizzava le variabili separate `query` e
 `percorso_file`, in modo che ora utilizzi i campi della _struct_ `Config`.
 
 Ora il nostro codice comunica più chiaramente che `query` e `percorso_file` sono
 correlati e che il loro scopo è configurare il funzionamento del programma.
-Qualsiasi codice che utilizza questi valori sa come trovarli nell'istanza di
+Qualsiasi codice che utilizza questi valori sa come trovarli nell’istanza di
 `config` nei campi denominati appositamente per il loro scopo.
 
 #### Creare un Costruttore per `Config`
 
-Finora, abbiamo estratto la logica responsabile dell'analisi degli argomenti
-della riga di comando da `main` e l'abbiamo inserita nella funzione
+Finora, abbiamo estratto la logica responsabile dell’analisi degli argomenti
+della riga di comando da `main` e l’abbiamo inserita nella funzione
 `leggi_config`. In questo modo abbiamo visto che i valori `query` e
 `percorso_file` erano correlati e che questa relazione doveva essere comunicata
 nel nostro codice. Abbiamo quindi aggiunto una _struct_ `Config` per denominare
 lo scopo correlato di `query` e `percorso_file` e per poter ritornare i nomi dei
 valori come nomi di campo della _struct_ dalla funzione `leggi_config`.
 
-Ora che lo scopo della funzione `leggi_config` è creare un'istanza di `Config`,
+Ora che lo scopo della funzione `leggi_config` è creare un’istanza di `Config`,
 possiamo modificare `leggi_config` da una semplice funzione a una funzione
 chiamata `new` associata alla _struct_ `Config`. Questa modifica renderà il
 codice più idiomatico. Possiamo creare istanze di _type_ nella libreria
@@ -219,7 +219,7 @@ visualizza un messaggio di errore più chiaro.
 
 Questo codice è simile alla [funzione `Ipotesi::new` che abbiamo scritto nel
 Listato 9-13][ch9-custom-types]<!-- ignore -->, dove abbiamo chiamato `panic!`
-quando l'argomento `valore` era fuori dall'intervallo di valori validi. Invece
+quando l’argomento `valore` era fuori dall’intervallo di valori validi. Invece
 di controllare un intervallo di valori, qui controlliamo che la lunghezza di
 `args` sia di almeno `3` e che il resto della funzione possa funzionare
 presupponendo che questa condizione sia stata soddisfatta. Se `args` ha meno di
@@ -227,7 +227,7 @@ tre elementi, questa condizione sarà `true` e chiameremo la macro `panic!` per
 terminare immediatamente il programma.
 
 Con queste poche righe di codice in `new`, eseguiamo di nuovo il programma senza
-argomenti per vedere come appare ora l'errore:
+argomenti per vedere come appare ora l’errore:
 
 ```console
 {{#include ../listings/ch12-an-io-project/listing-12-08/output.txt}}
@@ -238,20 +238,20 @@ Tuttavia, abbiamo anche informazioni estranee che non vogliamo fornire ai nostri
 utenti. Forse la tecnica che abbiamo usato nel Listato 9-13 non è la migliore da
 usare in questo contesto: una chiamata a `panic!` è più appropriata per un
 problema di programmazione che per un problema di utilizzo, [come discusso nel
-Capitolo 9][ch9-error-guidelines]<!-- ignore -->. Invece, utilizzeremo l'altra
+Capitolo 9][ch9-error-guidelines]<!-- ignore -->. Invece, utilizzeremo l’altra
 tecnica che hai imparato nel Capitolo 9: [restituire un
 `Result`][ch9-result]<!-- ignore --> che indica un successo o un errore.
 
 #### Restituire un `Result` Invece di Chiamare `panic!`
 
-Possiamo invece ritornare un valore `Result` che conterrà un'istanza di `Config`
+Possiamo invece ritornare un valore `Result` che conterrà un’istanza di `Config`
 nel caso di successo e descriverà il problema nel caso di errore. Cambieremo
 anche il nome della funzione da `new` a `build` perché è buona pratica e molti
 programmatori si aspettano che le funzioni `new` non falliscano mai. Quando
 `Config::build` comunica con `main`, possiamo usare il _type_ `Result` per
 segnalare che si è verificato un problema. Possiamo quindi modificare `main` per
 convertire una variante `Err` in un errore più pratico per i nostri utenti,
-senza sporcare l'output con il testo su `thread 'main'` e `RUST_BACKTRACE`
+senza sporcare l’output con il testo su `thread 'main'` e `RUST_BACKTRACE`
 causata da una chiamata a `panic!`.
 
 Il Listato 12-9 mostra le modifiche che dobbiamo apportare al valore di ritorno
@@ -268,12 +268,12 @@ Listato.
 
 </Listing>
 
-La nostra funzione `build` ritorna un `Result` con un'istanza di `Config` in
+La nostra funzione `build` ritorna un `Result` con un’istanza di `Config` in
 caso di successo e un letterale stringa in caso di errore. I nostri valori di
 errore saranno sempre letterali stringa con _lifetime_ `'static`.
 
 Abbiamo apportato due modifiche al corpo della funzione: invece di chiamare
-`panic!` quando l'utente non passa abbastanza argomenti, ora restituiamo un
+`panic!` quando l’utente non passa abbastanza argomenti, ora restituiamo un
 valore `Err` e abbiamo racchiuso il valore restituito da `Config` in un `Ok`.
 Queste modifiche rendono la funzione conforme al nuovo _type_ ritornato.
 
@@ -301,7 +301,7 @@ uscito con uno stato di errore.
 
 In questo Listato, abbiamo utilizzato un metodo che non abbiamo ancora trattato
 in dettaglio: `unwrap_or_else`, definito su `Result<T, E>` dalla libreria
-standard. L'utilizzo di `unwrap_or_else` ci consente di definire una gestione
+standard. L’utilizzo di `unwrap_or_else` ci consente di definire una gestione
 degli errori personalizzata, a differenza di `panic!`. Se `Result` è un valore
 `Ok`, il comportamento di questo metodo è simile a `unwrap`: restituisce il
 valore interno che `Ok` sta racchiudendo. Tuttavia, se il valore è un valore
@@ -311,8 +311,8 @@ le _closure_ (_chiusure_) più in dettaglio nel [Capitolo 13][ch13]<!-- ignore
 -->. Per ora, è sufficiente sapere che `unwrap_or_else` passerà il valore
 interno di `Err`, che in questo caso è la stringa statica `"Non ci sono
 abbastanza argomenti"` che abbiamo aggiunto nel Listato 12-9, alla nostra
-chiusura nell'argomento `err` che appare tra le barre verticali. Il codice nella
-chiusura può quindi utilizzare il valore `err` durante l'esecuzione.
+chiusura nell’argomento `err` che appare tra le barre verticali. Il codice nella
+chiusura può quindi utilizzare il valore `err` durante l’esecuzione.
 
 Abbiamo aggiunto una nuova riga `use` per portare `process` dalla libreria
 standard nello _scope_. Il codice nella chiusura che verrà eseguito in caso di
@@ -330,16 +330,16 @@ Ottimo! Questo output è molto più intuitivo per i nostri utenti.
 
 ### Estrarre la Logica da `main`
 
-Ora che abbiamo completato il _refactoring_ dell'analisi della configurazione,
+Ora che abbiamo completato il _refactoring_ dell’analisi della configurazione,
 passiamo alla logica del programma. Come scritto nel paragrafo [“Separare le
 Attività per i Progetti Binari”](#separare-attività-nei-progetti-binari)<!--
 ignore -->, estrarremo una funzione denominata `esegui` che conterrà tutta la
 logica attualmente presente nella funzione `main` che non è coinvolta
-nell'impostazione della configurazione o nella gestione degli errori. Al
+nell’impostazione della configurazione o nella gestione degli errori. Al
 termine, la funzione `main` sarà concisa e facile da verificare tramite
 ispezione, e saremo in grado di scrivere test per tutta la restante logica.
 
-Il Listato 12-11 mostra il piccolo miglioramento incrementale dell'estrazione di
+Il Listato 12-11 mostra il piccolo miglioramento incrementale dell’estrazione di
 una funzione `esegui`.
 
 <Listing number="12-11" file-name="src/main.rs" caption="Estrazione di una funzione `esegui` contenente il resto della logica del programma">
@@ -351,7 +351,7 @@ una funzione `esegui`.
 </Listing>
 
 La funzione `esegui` ora contiene tutta la logica rimanente di `main`, a partire
-dalla lettura del file. La funzione `esegui` prende l'istanza `Config` come
+dalla lettura del file. La funzione `esegui` prende l’istanza `Config` come
 argomento.
 
 #### Restituire Errori dalla Funzione `esegui`
@@ -377,17 +377,17 @@ _type_ di ritorno della funzione `esegui` in `Result<(), Box<dyn Error>>`. Quest
 funzione in precedenza restituiva il _type_ unitario, `()`, e lo manteniamo come
 valore restituito nel caso `Ok`.
 
-Per il _type_ di errore, abbiamo utilizzato l'oggetto _trait_ `Box<dyn Error>`
-(e abbiamo portato `std::error::Error` nello _scope_ con un'istruzione `use`
-all'inizio). Tratteremo gli oggetti _trait_ nel [Capitolo 18][ch18]<!-- ignore
+Per il _type_ di errore, abbiamo utilizzato l’oggetto _trait_ `Box<dyn Error>`
+(e abbiamo portato `std::error::Error` nello _scope_ con un’istruzione `use`
+all’inizio). Tratteremo gli oggetti _trait_ nel [Capitolo 18][ch18]<!-- ignore
 -->. Per ora, sappi solo che `Box<dyn Error>` significa che la funzione
 restituirà un _type_ che implementa il _trait_ `Error`, ma non dobbiamo
 specificare di quale _type_ specifico sarà il valore restituito. Questo ci offre
 la flessibilità di restituire valori di errore che possono essere di _type_
-diverso in diversi casi di errore. La parola chiave `dyn` è l'abbreviazione di
+diverso in diversi casi di errore. La parola chiave `dyn` è l’abbreviazione di
 _dynamic_.
 
-In secondo luogo, abbiamo rimosso la chiamata a `expect` a favore dell'operatore
+In secondo luogo, abbiamo rimosso la chiamata a `expect` a favore dell’operatore
 `?`, come abbiamo illustrato nel [Capitolo 9][ch9-question-mark]<!-- ignore -->.
 Invece di `panic!` in caso di errore, `?` ritornerà il valore di errore dalla
 funzione corrente affinché il chiamante possa gestirlo.
@@ -427,13 +427,13 @@ leggera differenza:
 Utilizziamo `if let` anziché `unwrap_or_else` per verificare se `esegui`
 restituisce un valore `Err` e per chiamare `process::exit(1)` in tal caso. La
 funzione `esegui` non restituisce un valore di cui abbiamo bisogno come nel caso
-di `Config::build` che restituisce l'istanza di `Config`. Poiché `esegui`
+di `Config::build` che restituisce l’istanza di `Config`. Poiché `esegui`
 restituisce `()` in caso di successo, ci interessa solo rilevare un errore,
 quindi non abbiamo bisogno di `unwrap_or_else` per restituire il valore estratto
 da `Ok`, che sarebbe solo `()`.
 
 I corpi delle funzioni `if let` e `unwrap_or_else` sono gli stessi in entrambi i
-casi: stampiamo l'errore ed usciamo.
+casi: stampiamo l’errore ed usciamo.
 
 ### Suddividere il Codice in un _Crate_ Libreria
 
@@ -449,7 +449,7 @@ al nostro binario `minigrep`.
 
 Per prima cosa, definiamo la firma della funzione `cerca` in _src/lib.rs_ come
 mostrato nel Listato 12-13, con un corpo che richiama la macro `unimplemented!`.
-Spiegheremo la firma più dettagliatamente quando completeremo l'implementazione.
+Spiegheremo la firma più dettagliatamente quando completeremo l’implementazione.
 
 <Listing number="12-13" file-name="src/lib.rs" caption="Definizione della funzione `cerca` in _src/lib.rs_">
 
@@ -460,7 +460,7 @@ Spiegheremo la firma più dettagliatamente quando completeremo l'implementazione
 </Listing>
 
 Abbiamo utilizzato la parola chiave `pub` nella definizione della funzione per
-designare `cerca` come parte dell'API pubblica del nostro _crate_ libreria. Ora
+designare `cerca` come parte dell’API pubblica del nostro _crate_ libreria. Ora
 abbiamo un _crate_ libreria che possiamo utilizzare dal nostro binario e che
 possiamo testare!
 

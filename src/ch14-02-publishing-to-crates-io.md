@@ -11,7 +11,7 @@ facile da trovare e da usare. Parleremo di alcune di queste funzioni e poi
 spiegheremo come pubblicare un pacchetto.
 
 Nota di traduzione: Quando si realizza documentazione è buona pratica che sia
-scritta in un linguaggio internazionale come l'inglese. In questo capitolo si è
+scritta in un linguaggio internazionale come l’inglese. In questo capitolo si è
 deciso di tradurre anche la documentazione del codice in italiano per facilitare
 la comprensione, ma se vorrai pubblicare codice e la relativa documentazione è
 consigliabile farlo in inglese.
@@ -23,13 +23,13 @@ come e quando usarli, quindi vale la pena investire del tempo per scrivere la
 documentazione. Nel Capitolo 3 abbiamo parlato di come commentare il codice di
 Rust usando due barre, `//`. Rust ha anche un particolare tipo di commento per
 la documentazione, noto come _commento di documentazione_, che genererà la
-documentazione HTML. L'HTML mostra il contenuto dei commenti di documentazione
+documentazione HTML. L’HTML mostra il contenuto dei commenti di documentazione
 per gli elementi API pubblici destinati ai programmatori interessati a sapere
 come _usare_ il tuo crate piuttosto che come il tuo crate è _implementato_.
 
 I commenti di documentazione utilizzano tre barre, `///`, invece di due e
 supportano la notazione Markdown per la formattazione del testo. Posiziona i
-commenti di documentazione subito prima dell'elemento che stanno documentando.
+commenti di documentazione subito prima dell’elemento che stanno documentando.
 Il listato 14-1 mostra i commenti di documentazione per una funzione `più_uno`
 in un crate chiamato `mio_crate`
 
@@ -42,13 +42,13 @@ in un crate chiamato `mio_crate`
 </Listing>
 
 Qui diamo una descrizione di cosa fa la funzione `più_uno`, iniziamo una sezione
-con l'intestazione `Esempi` (_Examples_) e poi forniamo del codice che dimostra come
+con l’intestazione `Esempi` (_Examples_) e poi forniamo del codice che dimostra come
 utilizzare la funzione `più_uno`. Possiamo generare la documentazione HTML da
 questo commento di documentazione eseguendo `cargo doc`. Questo comando esegue
 lo strumento `rustdoc` distribuito con Rust e mette la documentazione HTML
 generata nella cartella _target/doc_.
 
-Per comodità, eseguendo `cargo doc --open` si costruisce l'HTML della
+Per comodità, eseguendo `cargo doc --open` si costruisce l’HTML della
 documentazione del tuo _crate_ attuale (così come la documentazione di tutte le
 dipendenze del tuo _crate_) e si apre il risultato in un browser web. Naviga
 alla funzione `più_uno` per vedere che il testo nei commenti di
@@ -60,8 +60,8 @@ documentazione apparirà come mostrato nella Figura 14-1.
 
 #### Sezioni Comunemente Utilizzate
 
-Abbiamo usato l'intestazione Markdown `# Esempi` nel listato 14-1 per creare una
-sezione nell'HTML con il titolo “Esempi”. Ecco altre sezioni che gli autori di
+Abbiamo usato l’intestazione Markdown `# Esempi` nel listato 14-1 per creare una
+sezione nell’HTML con il titolo “Esempi”. Ecco altre sezioni che gli autori di
 _crate_ utilizzano comunemente nella loro documentazione:
 
 - **Panic** (_Panics_): Gli scenari in cui la funzione documentata potrebbe
@@ -84,10 +84,10 @@ del tuo codice che gli utenti saranno interessati a conoscere.
 
 #### Commenti di Documentazione Come Test
 
-L'aggiunta di blocchi di codice di esempio nei commenti di documentazione può
-aiutare a dimostrare l'uso della libreria e ha un ulteriore vantaggio:
-l'esecuzione di `cargo test` eseguirà gli esempi di codice nella documentazione
-come test! Non c'è niente di meglio di una documentazione con esempi, ma non c'è
+L’aggiunta di blocchi di codice di esempio nei commenti di documentazione può
+aiutare a dimostrare l’uso della libreria e ha un ulteriore vantaggio:
+l’esecuzione di `cargo test` eseguirà gli esempi di codice nella documentazione
+come test! Non c’è niente di meglio di una documentazione con esempi, ma non c’è
 niente di peggio di esempi che non funzionano perché il codice è cambiato da
 quando è stata scritta la documentazione. Se eseguiamo `cargo test` con la
 documentazione della funzione `più_uno` del listato 14-1, vedremo una sezione
@@ -108,24 +108,24 @@ test src/lib.rs - più_uno (line 5) ... ok
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.27s
 ```
 
-Ora, se modifichiamo la funzione o l'esempio in modo che `assert_eq!`
-nell'esempio vada nel panico, ed eseguiamo di nuovo `cargo test`, vedremo che i
-test doc rilevano che l'esempio e il codice non sono compatibili tra loro!
+Ora, se modifichiamo la funzione o l’esempio in modo che `assert_eq!`
+nell’esempio vada nel panico, ed eseguiamo di nuovo `cargo test`, vedremo che i
+test doc rilevano che l’esempio e il codice non sono compatibili tra loro!
 
-#### Commentare l'Elemento Contenitore
+#### Commentare l’Elemento Contenitore
 
 Lo stile dei commenti di documentazione `//!` aggiunge la documentazione
-all'elemento che *contiene* i commenti piuttosto che agli elementi che *seguono*
-i commenti. Di solito usiamo questi commenti di documentazione all'interno del
-file radice del _crate_ (_src/lib.rs_ per convenzione) o all'interno di un
+all’elemento che *contiene* i commenti piuttosto che agli elementi che *seguono*
+i commenti. Di solito usiamo questi commenti di documentazione all’interno del
+file radice del _crate_ (_src/lib.rs_ per convenzione) o all’interno di un
 modulo per documentare il _crate_ o il modulo nel suo complesso.
 
 Ad esempio, per aggiungere la documentazione che descrive lo scopo del _crate_
 `mio_crate` che contiene la funzione `più_uno`, aggiungiamo i commenti di
-documentazione che iniziano con `//!` all'inizio del file _src/lib.rs_, come
+documentazione che iniziano con `//!` all’inizio del file _src/lib.rs_, come
 mostrato nel Listato 14-2.
 
-<Listing number="14-2" file-name="src/lib.rs" caption="Documentazione generale per l'intero _crate_ `mio_crate`">
+<Listing number="14-2" file-name="src/lib.rs" caption="Documentazione generale per l’intero _crate_ `mio_crate`">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch14-more-about-cargo/listing-14-02/src/lib.rs:here}}
@@ -133,23 +133,23 @@ mostrato nel Listato 14-2.
 
 </Listing>
 
-Nota che non c'è codice dopo l'ultima riga che inizia con `//!`. Poiché abbiamo
+Nota che non c’è codice dopo l’ultima riga che inizia con `//!`. Poiché abbiamo
 iniziato i commenti con `//!` invece che con `//`, stiamo documentando
-l'elemento che contiene questo commento piuttosto che un elemento che segue
+l’elemento che contiene questo commento piuttosto che un elemento che segue
 questo commento. In questo caso, questo elemento è il file _src/lib.rs_ stesso,
-che è la radice del _crate_. Questi commenti descrivono quindi l'intero _crate_.
+che è la radice del _crate_. Questi commenti descrivono quindi l’intero _crate_.
 
 Quando si esegue `cargo doc --open`, questi commenti verranno visualizzati nella
-prima pagina della documentazione di `mio_crate` sopra l'elenco degli elementi
+prima pagina della documentazione di `mio_crate` sopra l’elenco degli elementi
 pubblici del crate, come mostrato nella Figura 14-2.
 
-<img alt="Documentazione HTML renderizzata con un commento per l'intero crate" src="img/trpl14-02.png" class="center" />
+<img alt="Documentazione HTML renderizzata con un commento per l’intero crate" src="img/trpl14-02.png" class="center" />
 
 <span class="caption">Figura 14-2: Documentazione renderizzata per `mio_crate`, incluso il commento che descrive il _crate_ nel suo complesso</span>
 
-I commenti di documentazione all'interno degli elementi sono utili soprattutto
+I commenti di documentazione all’interno degli elementi sono utili soprattutto
 per descrivere i _crate_ e i moduli. Utilizzali per spiegare lo scopo generale
-del contenitore per aiutare i tuoi utenti a capire l'organizzazione del _crate_.
+del contenitore per aiutare i tuoi utenti a capire l’organizzazione del _crate_.
 
 ### Esportare un API Pubblica Facilmente
 
@@ -164,19 +164,19 @@ chiave `pub` e come portare gli elementi nello _scope_ con la parola chiave
 potrebbe non essere molto comoda per i tuoi utenti. Potresti voler organizzare
 le tue _struct_ in una gerarchia che contiene più livelli, ma chi vuole usare
 un _type_ che hai definito in profondità nella gerarchia potrebbe avere problemi
-a scoprire l'esistenza di quel _type_. Potrebbe anche essere infastidito dal
+a scoprire l’esistenza di quel _type_. Potrebbe anche essere infastidito dal
 fatto di dover inserire `use mio_crate::un_modulo::altro_modulo::TypeUtile;`
 piuttosto che `use mio_crate::TypeUtile;`.
 
 La buona notizia è che se la struttura _non_ è facile per gi altri da usare da
-un'altra libreria, non devi modificare la tua organizzazione interna: puoi
+un’altra libreria, non devi modificare la tua organizzazione interna: puoi
 invece riesportare gli elementi per creare una struttura pubblica diversa da
 quella privata usando `pub use`. _Riesportare_ prende un elemento pubblico in
-una posizione e lo rende pubblico in un'altra posizione, come se fosse stato
-definito nell'altra posizione.
+una posizione e lo rende pubblico in un’altra posizione, come se fosse stato
+definito nell’altra posizione.
 
 Ad esempio, supponiamo di aver creato una libreria chiamata `arte` per modellare
-concetti artistici. All'interno di questa libreria ci sono due moduli: un modulo
+concetti artistici. All’interno di questa libreria ci sono due moduli: un modulo
 `tipologia` contenente due _enum_ chiamate `ColorePrimario` e `ColoreSecondario`
 e un modulo `utilità` contenente una funzione chiamata `mix`, come mostrato nel
 listato 14-3.
@@ -189,7 +189,7 @@ listato 14-3.
 
 </Listing>
 
-La Figura 14-3 mostra l'aspetto della prima pagina della documentazione di
+La Figura 14-3 mostra l’aspetto della prima pagina della documentazione di
 questo _crate_ generata da `cargo doc`.
 
 <img alt="Documentazione renderizzata per il crate `arte` che elenca i moduli `tipologia` e `utilità`" src="img/trpl14-03.png" class="center" />
@@ -213,7 +213,7 @@ _crate_ che utilizza gli elementi `ColorePrimario` e `mix` del _crate_ `arte`.
 
 </Listing>
 
-L'autore del codice del Listato 14-4, che utilizza il _crate_ `arte`, ha dovuto
+L’autore del codice del Listato 14-4, che utilizza il _crate_ `arte`, ha dovuto
 capire che `ColorePrimario` si trova nel modulo `tipologia` e `mix` nel modulo
 `utilità`. La struttura dei moduli del _crate_ `arte` è più importante per gli
 sviluppatori che lavorano sul _crate_ `arte` che per quelli che lo utilizzano.
@@ -222,7 +222,7 @@ come utilizzare il _crate_ `arte`, ma piuttosto crea confusione perché gli
 sviluppatori che lo utilizzano devono capire dove cercare e devono specificare i
 nomi dei moduli nelle dichiarazioni `use`.
 
-Per rimuovere l'organizzazione interna dall'API pubblica, possiamo modificare il
+Per rimuovere l’organizzazione interna dall’API pubblica, possiamo modificare il
 codice nel _crate_ `arte` del Listato 14-3 per aggiungere le dichiarazioni `pub
 use` per riesportare gli elementi al livello superiore, come mostrato nel
 Listato 14-5.
@@ -257,13 +257,13 @@ struttura più comoda del Listato 14-5, come mostrato nel Listato 14-6.
 </Listing>
 
 Nei casi in cui ci sono molti moduli annidati, riesportare i _type_ al livello
-superiore con `pub use` può fare una differenza significativa nell'esperienza
+superiore con `pub use` può fare una differenza significativa nell’esperienza
 delle persone che utilizzano il _crate_. Un altro uso comune di `pub use` è
 quello di riesportare le definizioni di una dipendenza nel _crate_ corrente per
-rendere le definizioni di quel _crate_ parte dell'API pubblica del tuo _crate_.
+rendere le definizioni di quel _crate_ parte dell’API pubblica del tuo _crate_.
 
-Creare una struttura API pubblica utile è più un'arte che una scienza e puoi
-iterare per trovare l'API che funziona meglio per i tuoi utenti. Scegliere `pub
+Creare una struttura API pubblica utile è più un’arte che una scienza e puoi
+iterare per trovare l’API che funziona meglio per i tuoi utenti. Scegliere `pub
 use` ti dà flessibilità nel modo in cui strutturi il tuo _crate_ internamente e
 disaccoppia la struttura interna da quella che presenti ai tuoi utenti. Guarda
 il codice di alcuni _crate_ che hai installato per vedere se la loro struttura
@@ -274,8 +274,8 @@ interna differisce dalla loro API pubblica.
 Prima di poter pubblicare qualsiasi _crate_, devi creare un account su
 [crates.io](https://crates.io/)<!-- ignore --> e ottenere un token API. Per
 farlo, visita la home page di crates.io e accedi con un account GitHub
-(attualmente l'account GitHub è un requisito, ma il sito potrebbe supportare
-altri modi di creare un account in futuro). Una volta effettuato l'accesso,
+(attualmente l’account GitHub è un requisito, ma il sito potrebbe supportare
+altri modi di creare un account in futuro). Una volta effettuato l’accesso,
 visita le impostazioni del tuo account su
 [https://crates.io/me/](https://crates.io/me/)<!-- ignore --> e genera la nuova
 chiave API. Quindi esegui il comando `cargo login` e incolla la tua chiave API
@@ -301,7 +301,7 @@ _Cargo.toml_ del _crate_.
 Il tuo _crate_ avrà bisogno di un nome univoco. Mentre stai lavorando su un
 _crate_ in locale, puoi dargli il nome che preferisci. Tuttavia, i nomi dei
 _crate_ su [crates.io](https://crates.io/)<!-- ignore --> sono assegnati in base
-all'ordine di arrivo. Una volta che il nome di un _crate_ è stato preso, nessun
+all’ordine di arrivo. Una volta che il nome di un _crate_ è stato preso, nessun
 altro può pubblicare un _crate_ con quel nome. Prima di provare a pubblicare un
 _crate_, cerca il nome che vuoi usare. Se il nome è già stato usato, dovrai
 trovarne un altro e modificare il campo `name` nel file _Cargo.toml_ sotto la
@@ -343,10 +343,10 @@ descrizione e una licenza sono necessarie affinché le persone sappiano cosa fa
 la il tuo _crate_ e a quali condizioni possono utilizzarla. In _Cargo.toml_,
 aggiungi una descrizione che sia solo una frase o due, perché apparirà insieme
 al tuo _crate_ nei risultati di ricerca. Per il campo `license`, devi indicare
-un _valore identificativo della licenza_. Il [Linux Foundation's Software
+un _valore identificativo della licenza_. Il [Linux Foundation’s Software
 Package Data Exchange (SPDX)][spdx] elenca gli identificativi che puoi usare per
 questo valore. Per esempio, per specificare che hai concesso in licenza il tuo
-crate usando la MIT License, aggiungi l'identificativo `MIT`:
+crate usando la MIT License, aggiungi l’identificativo `MIT`:
 
 <span class="filename">File: Cargo.toml</span>
 
@@ -356,7 +356,7 @@ name = "gioco_indovinello"
 license = "MIT"
 ```
 
-Se vuoi usare una licenza che non compare nell'SPDX, devi inserire il testo
+Se vuoi usare una licenza che non compare nell’SPDX, devi inserire il testo
 della licenza in un file, includere il file nel tuo progetto e poi usare
 `license-file` per specificare il nome del file invece di usare la chiave
 `license`.
@@ -401,7 +401,7 @@ circostanze. Uno degli obiettivi principali di Crates.io è quello di fungere da
 archivio permanente del codice in modo che le compilazioni di tutti i progetti
 che dipendono dai _crate_ di [crates.io](https://crates.io/)<!-- ignore -->
 continuino a funzionare. Consentire la cancellazione delle versioni renderebbe
-impossibile il raggiungimento di questo obiettivo. Tuttavia, non c'è limite al
+impossibile il raggiungimento di questo obiettivo. Tuttavia, non c’è limite al
 numero di versioni del _crate_ che puoi pubblicare.
 
 Esegui di nuovo il comando `cargo publish`: ora dovrebbe andare a buon fine:
@@ -447,7 +447,7 @@ caricare la nuova versione.
 Sebbene non sia possibile rimuovere le versioni precedenti di un _crate_, puoi
 impedire a qualsiasi progetto futuro di aggiungerle come nuova dipendenza.
 Questo è utile quando una versione del _crate_ è mal funzionante per un motivo o
-per l'altro. In queste situazioni, Cargo supporta la disabilitazione di una
+per l’altro. In queste situazioni, Cargo supporta la disabilitazione di una
 versione del _crate_.
 
 _Yanking_ a version prevents new projects from depending on that version while

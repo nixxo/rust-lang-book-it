@@ -39,7 +39,7 @@ Per implementare il comportamento che vogliamo in `gui`, definiamo un _trait_
 chiamato `Disegna` con un metodo `disegna`. Poi definiamo un vettore che
 contiene oggetti _trait_. Un oggetto _trait_ punta sia a un’istanza di un _type_
 che implementa il _trait_, sia a una tabella usata per cercare durante
-l'esecuzione i metodi _trait_ su quel _type_. Creiamo un oggetto _trait_
+l’esecuzione i metodi _trait_ su quel _type_. Creiamo un oggetto _trait_
 specificando un puntatore (come un _reference_ `&` o uno puntatore intelligente
 `Box<T>`), poi la parola chiave `dyn` e infine il _trait_ rilevante. (Parleremo
 del motivo per cui gli oggetti _trait_ devono usare un puntatore in [“_Type_ a
@@ -97,7 +97,7 @@ componente, come nel Listato 18-5.
 Questo funziona diversamente da una _struct_ con un parametro di _type_ generico
 con vincoli di _trait_. Un _type_ generico può essere sostituito da un solo
 _type_ concreto alla volta, mentre gli oggetti _trait_ permettono a più _type_
-concreti di poter essere usati per quel ruolo durante l'esecuzione. Per esempio,
+concreti di poter essere usati per quel ruolo durante l’esecuzione. Per esempio,
 potremmo aver definito la _struct_ `Schermo` con un _type_ generico e un vincolo
 di _trait_, come nel Listato 18-6.
 
@@ -117,7 +117,7 @@ monomorfizzato durante la compilazione usando i _type_ concreti.
 Con gli oggetti _trait_, invece, una singola istanza di `Schermo` può contenere
 un `Vec<T>` con una `Box<Bottone>` e una `Box<CampoTesto>` insieme. Vediamo come
 funziona e poi parleremo delle implicazioni sulle prestazioni durante
-l'esecuzione.
+l’esecuzione.
 
 ### Implementare il _Trait_
 
@@ -179,20 +179,20 @@ che del _type_ concreto, somiglia al _duck typing_ (_tipizzazione ad anatra_)
 nei linguaggi a tipizzazione dinamica: _se cammina come un’anatra e fa “qua
 qua”, allora è un’anatra_! Nel metodo `esegui` di `Schermo` nel Listato 18-5,
 `esegui` non sa che _type_ concreto è ogni componente, non controlla se è
-un'istanza di `Bottone` o `BoxSelezione`, chiama semplicemente `disegna`.
+un’istanza di `Bottone` o `BoxSelezione`, chiama semplicemente `disegna`.
 Specificando `Box<dyn Disegna>` come _type_ dei valori in `componenti`, abbiamo
 definito `Schermo` per accettare valori su cui si può chiamare `disegna`.
 
 Il vantaggio di usare oggetti _trait_ e il sistema dei _type_ di Rust per
 scrivere codice simile a quello con _duck typing_ è che non dobbiamo mai
-controllare durante l'esecuzione se un valore implementa un metodo o temere
+controllare durante l’esecuzione se un valore implementa un metodo o temere
 errori se non l’implementa ma lo chiamiamo. Rust non compila il codice se i
 valori non implementano i _trait_ richiesti dagli oggetti _trait_.
 
 Per esempio, il Listato 18-10 mostra cosa succede se proviamo a creare uno
 `Schermo` con una `String` come componente.
 
-<Listing number="18-10" file-name="src/main.rs" caption="Tentativo di usare un _type_ che non implementa il _trait_ dell'oggetto">
+<Listing number="18-10" file-name="src/main.rs" caption="Tentativo di usare un _type_ che non implementa il _trait_ dell’oggetto">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch18-oop/listing-18-10/src/main.rs}}
@@ -218,15 +218,15 @@ sulla monomorfizzazione eseguita dal compilatore per i _type_ generici: il
 compilatore genera implementazioni non generiche di funzioni e metodi per ogni
 _type_ concreto usato al posto del _type_ generico. Il codice che risulta dalla
 monomorfizzazione usa _static dispatch_, durante la compilazione il compilatore
-conosce quale metodo stai chiamando. Questo è all'opposto del _dynamic
+conosce quale metodo stai chiamando. Questo è all’opposto del _dynamic
 dispatch_, dove il compilatore non può sapere durante la compilazione quale
 metodo stai chiamando. Nel caso di _dynamic dispatch_, il compilatore genera
-codice che solo durante l'esecuzione saprà quale metodo chiamare.
+codice che solo durante l’esecuzione saprà quale metodo chiamare.
 
 Quando usiamo oggetti _trait_, Rust deve usare il _dynamic dispatch_. Il
 compilatore non conosce tutti i _type_ che possono essere usati con il codice
 che usa oggetti _trait_, quindi non sa quale metodo di quale _type_ chiamare.
-Durante l'esecuzione, Rust usa i puntatori dentro l’oggetto _trait_ per decidere
+Durante l’esecuzione, Rust usa i puntatori dentro l’oggetto _trait_ per decidere
 il metodo da chiamare. Questa ricerca ha un costo prestazionale che non c’è con
 lo _static dispatch_. Inoltre, il _dynamic dispatch_ impedisce che il
 compilatore possa fare alcune ottimizzazioni, e Rust ha regole su dove si può

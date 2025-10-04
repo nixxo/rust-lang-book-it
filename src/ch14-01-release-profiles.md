@@ -11,7 +11,7 @@ esegui `cargo build` e il profilo `release` che Cargo utilizza quando esegui
 predefiniti per lo sviluppo, mentre il profilo `release` ha buoni valori
 predefiniti per le build di rilascio.
 
-I nomi di questi profili potrebbero esserti familiari dall'output che hai visto
+I nomi di questi profili potrebbero esserti familiari dall’output che hai visto
 finora quando compilavi il tuo codice:
 
 <!-- manual-regeneration
@@ -35,7 +35,7 @@ non hai aggiunto esplicitamente alcuna sezione `[profile.*]` nel file
 _Cargo.toml_ del progetto. Aggiungendo le sezioni `[profile.*]` per ogni profilo
 che vuoi personalizzare, puoi sovrascrivere qualsiasi sottoinsieme delle
 impostazioni predefinite. Ad esempio, ecco i valori predefiniti per
-l'impostazione `opt-level` per i profili `dev` e `release`:
+l’impostazione `opt-level` per i profili `dev` e `release`:
 
 <span class="filename">File: Cargo.toml</span>
 
@@ -47,8 +47,8 @@ opt-level = 0
 opt-level = 3
 ```
 
-L'impostazione `opt-level` controlla il numero di ottimizzazioni che Rust
-applicherà al tuo codice, con un range che va da 0 a 3. L'applicazione di più
+L’impostazione `opt-level` controlla il numero di ottimizzazioni che Rust
+applicherà al tuo codice, con un range che va da 0 a 3. L’applicazione di più
 ottimizzazioni allunga i tempi di compilazione, quindi se sei in fase di
 sviluppo e compili spesso il tuo codice, vorrai meno ottimizzazioni per
 compilare più velocemente anche se il codice risultante gira più lentamente. Il
@@ -59,7 +59,7 @@ compilato molte volte, quindi la modalità _release_ scambia un tempo di
 compilazione più lungo con un codice che gira più velocemente. Ecco perché
 `opt-level` predefinito per il profilo `release` è `3`.
 
-Puoi sovrascrivere un'impostazione predefinita aggiungendo un valore diverso nel
+Puoi sovrascrivere un’impostazione predefinita aggiungendo un valore diverso nel
 file _Cargo.toml_. Ad esempio, se vogliamo utilizzare il livello di
 ottimizzazione 1 nel profilo di sviluppo, possiamo aggiungere queste due righe
 al file _Cargo.toml_ del nostro progetto:
@@ -71,13 +71,13 @@ al file _Cargo.toml_ del nostro progetto:
 opt-level = 1
 ```
 
-Questo codice sovrascrive l'impostazione predefinita di `0`. Ora, quando
+Questo codice sovrascrive l’impostazione predefinita di `0`. Ora, quando
 lanciamo `cargo build`, Cargo utilizzerà le impostazioni predefinite per il
 profilo `dev` più la nostra personalizzazione di `opt-level`. Poiché abbiamo
 impostato `opt-level` a `1`, Cargo applicherà un maggior numero di
 ottimizzazioni rispetto a quelle predefinite, ma non così tante come in una
 build di rilascio.
 
-Per l'elenco completo delle opzioni di configurazione e dei valori predefiniti
+Per l’elenco completo delle opzioni di configurazione e dei valori predefiniti
 per ogni profilo, consulta [la documentazione di
 Cargo](https://doc.rust-lang.org/cargo/reference/profiles.html).
