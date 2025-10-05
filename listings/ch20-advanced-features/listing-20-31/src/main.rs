@@ -1,10 +1,10 @@
 fn main() {
     // ANCHOR: here
-    enum Status {
-        Value(u32),
+    enum Stato {
+        Valore(u32),
         Stop,
     }
 
-    let list_of_statuses: Vec<Status> = (0u32..20).map(Status::Value).collect();
+    let lista_stati: Vec<Stato> = (0u32..20).map(Stato::Valore).collect();
     // ANCHOR_END: here
 }

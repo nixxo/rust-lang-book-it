@@ -1,7 +1,7 @@
 fn main() {
     // ANCHOR: here
-    let list_of_numbers = vec![1, 2, 3];
-    let list_of_strings: Vec<String> =
-        list_of_numbers.iter().map(ToString::to_string).collect();
+    let lista_di_numeri = vec![1, 2, 3];
+    let lista_di_stringhe: Vec<String> =
+        lista_di_numeri.iter().map(ToString::to_string).collect();
     // ANCHOR_END: here
 }

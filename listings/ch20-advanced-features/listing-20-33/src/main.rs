@@ -1,15 +1,15 @@
 fn main() {
-    let handlers = vec![returns_closure(), returns_initialized_closure(123)];
+    let handlers = vec![ritorna_chiusura(), ritorna_chiusura_inizializzata(123)];
     for handler in handlers {
         let output = handler(5);
         println!("{output}");
     }
 }
 
-fn returns_closure() -> impl Fn(i32) -> i32 {
+fn ritorna_chiusura() -> impl Fn(i32) -> i32 {
     |x| x + 1
 }
 
-fn returns_initialized_closure(init: i32) -> impl Fn(i32) -> i32 {
+fn ritorna_chiusura_inizializzata(init: i32) -> impl Fn(i32) -> i32 {
     move |x| x + init
 }

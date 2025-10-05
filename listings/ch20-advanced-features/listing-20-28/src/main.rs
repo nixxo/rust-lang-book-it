@@ -1,13 +1,13 @@
-fn add_one(x: i32) -> i32 {
+fn più_uno(x: i32) -> i32 {
     x + 1
 }
 
-fn do_twice(f: fn(i32) -> i32, arg: i32) -> i32 {
+fn raddoppia(f: fn(i32) -> i32, arg: i32) -> i32 {
     f(arg) + f(arg)
 }
 
 fn main() {
-    let answer = do_twice(add_one, 5);
+    let risposta = raddoppia(più_uno, 5);
 
-    println!("The answer is: {answer}");
+    println!("La risposta è: {risposta}");
 }
