@@ -27,8 +27,8 @@ il _runtime_.
 Nella sezione precedente, abbiamo visto che potevamo costruire uno _stream_
 utilizzando un canale _async_ e avviando un _task_ asincrono che potevamo
 chiamare da codice sincrono. Possiamo fare esattamente la stessa cosa con un
-_thread_. Nel listato 17-40, abbiamo utilizzato `trpl::spawn_task` e
-`trpl::sleep`. Nel listato 17-41, sostituiamo questi con le API `thread::spawn`
+_thread_. Nel Listato 17-40, abbiamo utilizzato `trpl::spawn_task` e
+`trpl::sleep`. Nel Listato 17-41, sostituiamo questi con le API `thread::spawn`
 e `thread::sleep` della libreria standard nella funzione `ricevi_intervalli`.
 
 <Listing number="17-41" caption="Utilizzo delle API `std::thread` invece delle API _async_ `trpl` per la funzione `ricevi_intervalli`" file-name="src/main.rs">
@@ -39,7 +39,7 @@ e `thread::sleep` della libreria standard nella funzione `ricevi_intervalli`.
 
 </Listing>
 
-Se esegui questo codice, l’output è identico a quello del listato 17-40. E nota
+Se esegui questo codice, l’output è identico a quello del Listato 17-40. E nota
 quanto poco cambia qui dalla prospettiva del codice chiamante. Inoltre, anche se
 una delle nostre funzioni ha avviato un _task_ _async_ sul _runtime_ e l’altra
 ha avviato un _thread_ del sistema operativo, gli _stream_ risultanti non sono
@@ -106,7 +106,7 @@ Quando si pensa a quale metodo utilizzare, considera queste regole pratiche:
 
 E se hai bisogno sia di parallelismo che di concorrenza, non devi scegliere tra
 _thread_ e _async_. Puoi usarli insieme liberamente, lasciando a ciascuno il
-compito che svolge meglio. Ad esempio, il listato 17-42 mostra un esempio
+compito che svolge meglio. Ad esempio, il Listato 17-42 mostra un esempio
 piuttosto comune di questo tipo di mix nel codice Rust reale.
 
 <Listing number="17-42" caption="Invio di messaggi con codice bloccante in un _thread_ e attesa dei messaggi in un blocco _async_" file-name="src/main.rs">

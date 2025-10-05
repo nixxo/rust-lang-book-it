@@ -21,7 +21,7 @@ loro funzionalità descritta.
 - `break` - uscire immediatamente da un ciclo
 - `const` - definire elementi costanti o puntatori raw costanti
 - `continue` - continuare all’iterazione successiva del ciclo
-- `crate` - in un percorso di modulo, si riferisce alla radice del crate
+- `crate` - in un percorso di modulo, si riferisce alla radice del _crate_
 - `dyn` - dispatch dinamico a un oggetto _trait_
 - `else` - alternativa per i costrutti di controllo di flusso `if` e `if let`
 - `enum` - definire un’enumerazione

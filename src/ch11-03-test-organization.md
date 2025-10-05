@@ -19,7 +19,7 @@ in altro codice.
 Lo scopo degli _unit test_ è quello di testare ogni unità di codice in modo
 isolato dal resto del codice per individuare rapidamente i punti in cui il
 codice funziona e non funziona come previsto. Gli _unit test_ vengono inseriti
-nella directory _src_ in ogni file con il codice che stanno testando. La
+nella cartella _src_ in ogni file con il codice che stanno testando. La
 convenzione è quella di creare un modulo chiamato `tests` in ogni file per
 contenere le funzioni di test e di annotare il modulo con `cfg(test)`.
 
@@ -30,7 +30,7 @@ eseguire il codice di test solo quando si esegue `cargo test`, non quando si
 esegue `cargo build`. In questo modo si risparmia tempo di compilazione quando
 si vuole costruire solo la libreria e si risparmia spazio nell’artefatto
 compilato risultante perché i test non sono inclusi. Vedrai che, poiché i test
-di integrazione si trovano in una directory diversa, non hanno bisogno
+di integrazione si trovano in una cartella diversa, non hanno bisogno
 dell’annotazione `#[cfg(test)]`. Tuttavia, poiché gli _unit test_ si trovano
 negli stessi file del codice, dovrai specificare `#[cfg(test)]` per evitare che
 siano inclusi nel risultato compilato.
@@ -131,7 +131,7 @@ necessario negli _unit test_ usati finora.
 
 Non abbiamo bisogno di annotare alcun codice in _tests/test_integrazione.rs_ con
 `#[cfg(test)]`. Cargo tratta la cartella _tests_ in modo speciale e compila i
-file in questa directory solo quando eseguiamo `cargo test`. Esegui ora `cargo
+file in questa cartella solo quando eseguiamo `cargo test`. Esegui ora `cargo
 test`:
 
 ```console

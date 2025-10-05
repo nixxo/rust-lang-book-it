@@ -102,7 +102,7 @@ che siamo riusciti a cambiare l’interno `i32` in `6`.
 Ora proviamo a condividere un valore tra più _thread_ utilizzando `Mutex<T>`.
 Avvieremo 10 _thread_ e faremo in modo che ognuno di essi incrementi il valore
 di un contatore di 1, in modo che il contatore vada da 0 a 10. L’esempio nel
-listato 16-13 avrà un errore del compilatore, che useremo per imparare di più
+Listato 16-13 avrà un errore del compilatore, che useremo per imparare di più
 sull’uso di `Mutex<T>` e su come Rust ci aiuta a usarlo correttamente.
 
 <Listing number="16-13" file-name="src/main.rs" caption="Dieci _thread_, ognuno dei quali incrementa un contatore custodito da un `Mutex<T>`">
@@ -114,7 +114,7 @@ sull’uso di `Mutex<T>` e su come Rust ci aiuta a usarlo correttamente.
 </Listing>
 
 Creiamo una variabile `contatore` per contenere un `i32` all’interno di un
-`Mutex<T>`, come abbiamo fatto nel listato 16-12. Poi creiamo 10 _thread_
+`Mutex<T>`, come abbiamo fatto nel Listato 16-12. Poi creiamo 10 _thread_
 iterando su un intervallo di numeri. Usiamo `thread::spawn` e diamo a tutti i
 _thread_ la stessa chiusura: una che sposta il contatore nel _thread_,
 acquisisce un blocco sul `Mutex<T>` chiamando il metodo `lock` e poi aggiunge 1
@@ -123,7 +123,7 @@ al valore nel mutex. Quando un _thread_ termina l’esecuzione della sua chiusur
 possa acquisirlo.
 
 Nel _thread_ principale, sugli _handle_ dei _thread_ raccolti in un vettore,
-come fatto nel listato 16-2, chiamiamo `join` su ognuno di essi per assicurarci
+come fatto nel Listato 16-2, chiamiamo `join` su ognuno di essi per assicurarci
 che tutti i _thread_ finiscano. A quel punto, il _thread_ principale acquisirà
 il blocco e stamperà il risultato di questo programma.
 

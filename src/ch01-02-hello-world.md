@@ -20,8 +20,8 @@ Inizierai creando una directory per memorizzare il tuo codice Rust. Per Rust non
 questo libro ti consigliamo di creare una cartella _progetti_ nella tua home
 directory e di tenere tutti i tuoi progetti lì.
 
-Apri un terminale e inserisci i seguenti comandi per creare una directory
-_progetti_ e una directory per il progetto “Hello, world!” all’interno della
+Apri un terminale e inserisci i seguenti comandi per creare una cartella
+_progetti_ e una cartella per il progetto “Hello, world!” all’interno della
 directory _progetti_.
 
 Per Linux, macOS, e PowerShell su Windows, digita questo:

@@ -386,7 +386,7 @@ l’altra estremità del canale si chiude, e questo è solo una questione di com
 _runtime_ esegue le _future_ che compongono lo _stream_. Fino ad ora, abbiamo
 ignorato questa possibilità chiamando `unwrap`, ma in un’applicazione ben
 progettata, dovremmo gestire esplicitamente l’errore, almeno terminando il ciclo
-in modo da non provare a inviare ulteriori messaggi. Il listato 17-40 mostra una
+in modo da non provare a inviare ulteriori messaggi. Il Listato 17-40 mostra una
 semplice strategia per gli errori: stampare il problema e poi uscire dai cicli
 con `break`.
 

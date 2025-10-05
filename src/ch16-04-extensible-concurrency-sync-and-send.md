@@ -24,7 +24,7 @@ rispetto ad una maggiore sicurezza.
 
 Pertanto, il sistema dei _type_ di Rust e i vincoli di _trait_ assicurano che
 non si possa mai inviare accidentalmente un valore `Rc<T>` tra i _thread_ in
-modo non sicuro. Quando abbiamo provato a farlo nel listato 16-14, abbiamo
+modo non sicuro. Quando abbiamo provato a farlo nel Listato 16-14, abbiamo
 ottenuto l’errore `` the trait `Send` is not implemented for `Rc<Mutex<i32>>`.
 Quando siamo passati ad `Arc<T>`, che implementa `Send`, il codice è stato
 compilato.

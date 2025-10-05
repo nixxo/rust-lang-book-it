@@ -387,7 +387,7 @@ rm Cargo.lock
 cargo clean
 cargo build -->
 
-<Listing number="2-2" caption="L’output dall’esecuzione di `cargo build` dopo l’aggiunta del crate `rand` come dipendenza">
+<Listing number="2-2" caption="L’output dall’esecuzione di `cargo build` dopo l’aggiunta del _crate_ `rand` come dipendenza">
 
 ```console
 $ cargo build
@@ -501,7 +501,7 @@ $ cargo update
 ```
 
 Cargo ignora la versione 0.9.0. A questo punto, noterai anche un cambiamento nel
-tuo file _Cargo.lock_ che indica che la versione del crate `rand` che stai
+tuo file _Cargo.lock_ che indica che la versione del _crate_ `rand` che stai
 utilizzando è la 0.8.6. Per utilizzare la versione 0.9.0 di `rand` o qualsiasi
 altra versione della serie 0.9._x_, dovrai aggiornare il file _Cargo.toml_ in
 questo modo:

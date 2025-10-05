@@ -101,7 +101,7 @@ valore, l’operazione di invio restituirà un errore. In questo esempio, chiami
 lo gestiremmo in modo corretto: torna al Capitolo 9 per rivedere le strategie
 per una corretta gestione degli errori.
 
-Nel listato 16-8, otterremo il valore dal ricevitore nel _thread_ principale. È
+Nel Listato 16-8, otterremo il valore dal ricevitore nel _thread_ principale. È
 come recuperare la paperella di gomma dall’acqua alla fine del fiume o ricevere
 un messaggio di chat.
 
@@ -153,7 +153,7 @@ nella programmazione concorrente è il vantaggio di pensare alla _ownership_ in
 tutti i tuoi programmi Rust. Facciamo un esperimento per mostrare come i canali
 e la _ownership_ lavorino insieme per prevenire i problemi: proveremo a usare un
 valore `val` nel _thread_ generato _dopo_ che lo abbiamo inviato nel canale.
-Prova a compilare il codice nel listato 16-9 per vedere perché questo codice non
+Prova a compilare il codice nel Listato 16-9 per vedere perché questo codice non
 è consentito.
 
 <Listing number="16-9" file-name="src/main.rs" caption="Tentativo di utilizzare `val` dopo averlo inviato nel canale">
@@ -171,7 +171,7 @@ potrebbe modificarlo o liberarne la memoria prima che noi cerchiamo di
 utilizzarlo di nuovo. Potenzialmente, le modifiche dell’altro _thread_
 potrebbero causare errori o risultati inaspettati a causa di dati incoerenti o
 inesistenti. Tuttavia, Rust ci dà un errore se proviamo a compilare il codice
-del listato 16-9:
+del Listato 16-9:
 
 ```console
 {{#include ../listings/ch16-fearless-concurrency/listing-16-09/output.txt}}
@@ -185,12 +185,12 @@ _ownership_ controlla che tutto sia a posto.
 
 ### Inviare Più Valori
 
-Il codice del listato 16-8 è stato compilato ed eseguito, ma non mostrava
+Il codice del Listato 16-8 è stato compilato ed eseguito, ma non mostrava
 chiaramente che due _thread_ separati stavano parlando tra loro attraverso il
 canale.
 
-Nel listato 16-10 abbiamo apportato alcune modifiche che dimostreranno che il
-codice del listato 16-8 è in esecuzione simultanea: il _thread_ generato ora
+Nel Listato 16-10 abbiamo apportato alcune modifiche che dimostreranno che il
+codice del Listato 16-8 è in esecuzione simultanea: il _thread_ generato ora
 invierà più messaggi e farà una pausa di un secondo tra un messaggio e l’altro.
 
 <Listing number="16-10" file-name="src/main.rs" caption="Invio di più messaggi e pausa tra uno e l’altro">
@@ -211,7 +211,7 @@ trattiamo `rx` come un iteratore. Per ogni valore ricevuto, lo stampiamo. Quando
 il canale viene chiuso perché i messaggi inviati finiscono, l’iterazione
 termina.
 
-Quando esegui il codice del listato 16-10, dovresti vedere il seguente output
+Quando esegui il codice del Listato 16-10, dovresti vedere il seguente output
 con una pausa di 1 secondo tra una riga e l’altra:
 
 <!-- Not extracting output because changes to this output aren't significant;
@@ -232,9 +232,9 @@ aspettando di ricevere i valori dal _thread_ generato.
 ### Creare più Produttori
 
 Prima abbiamo detto che `mpsc` è l’acronimo di _multiple producer, single
-consumer_. Mettiamo in pratica `mpsc` ed espandiamo il codice del listato 16-10
+consumer_. Mettiamo in pratica `mpsc` ed espandiamo il codice del Listato 16-10
 per creare _thread_ multipli che tutti inviano i valori allo stesso ricevitore.
-Possiamo farlo clonando il trasmettitore, come mostrato nel listato 16-11.
+Possiamo farlo clonando il trasmettitore, come mostrato nel Listato 16-11.
 
 <Listing number="16-11" file-name="src/main.rs" caption="Invio di più messaggi da più produttori">
 

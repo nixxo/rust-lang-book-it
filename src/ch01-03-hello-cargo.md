@@ -42,12 +42,12 @@ $ cargo new hello_cargo
 $ cd hello_cargo
 ```
 
-Il primo comando crea una nuova directory e un nuovo progetto chiamato
+Il primo comando crea una nuova cartella e un nuovo progetto chiamato
 _hello_cargo_. Abbiamo chiamato il nostro progetto _hello_cargo_ e Cargo crea i
-suoi file in una directory con lo stesso nome.
+suoi file in una cartella con lo stesso nome.
 
-Vai nella directory _hello_cargo_ ed elenca i file. Vedrai che Cargo ha generato
-due file e una directory per noi: un file _Cargo.toml_ e una directory _src_ con
+Vai nella cartella _hello_cargo_ ed elenca i file. Vedrai che Cargo ha generato
+due file e una cartella per noi: un file _Cargo.toml_ e una cartella _src_ con
 un file _main.rs_ al suo interno.
 
 Ha anche inizializzato un nuovo repository Git insieme a un file _.gitignore_. I
@@ -106,26 +106,21 @@ fn main() {
 
 Cargo ha generato per te un programma “Hello, world!”, proprio come quello che
 abbiamo scritto nel Listato 1-1! Finora, le differenze tra il nostro progetto e
-quello generato da Cargo sono che Cargo ha inserito il codice nella directory
+quello generato da Cargo sono che Cargo ha inserito il codice nella cartella
 _src_ e che c’è un file di configurazione _Cargo.toml_ nella directory
 principale.
 
-Cargo si aspetta che i tuoi file sorgente si trovino all’interno della directory
+Cargo si aspetta che i tuoi file sorgente si trovino all’interno della cartella
 _src_. La directory principale del progetto è solo per i file README, le
 informazioni sulla licenza, i file di configurazione e tutto ciò che non
 riguarda il tuo codice. L’utilizzo di Cargo ti aiuta a organizzare i tuoi
 progetti: c’è un posto per ogni cosa e ogni cosa è al suo posto.
 
-If you started a project that doesn’t use Cargo, as we did with the “Hello,
-world!” project, you can convert it to a project that does use Cargo. Move the
-project code into the _src_ directory and create an appropriate _Cargo.toml_
-file. One easy way to get that _Cargo.toml_ file is to run `cargo init`, which
-will create it for you automatically. Se hai iniziato un progetto che non
-utilizza Cargo, come abbiamo fatto con il progetto “Hello, world!”, puoi
-convertirlo in un progetto che utilizza Cargo. Sposta il codice del progetto
-nella directory _src_ e crea un file _Cargo.toml_ appropriato. Un modo semplice
-per ottenere il file _Cargo.toml_ è eseguire `cargo init`, che lo creerà
-automaticamente.
+Se hai iniziato un progetto che non utilizza Cargo, come abbiamo fatto con il
+progetto “Hello, world!”, puoi convertirlo in un progetto che utilizza Cargo.
+Sposta il codice del progetto nella cartella _src_ e crea un file _Cargo.toml_
+appropriato. Un modo semplice per ottenere il file _Cargo.toml_ è eseguire
+`cargo init`, che lo creerà automaticamente.
 
 ### Costruire e Eseguire un Progetto Cargo
 
@@ -140,10 +135,10 @@ $ cargo build
 ```
 
 Questo comando crea un file eseguibile in _target/debug/hello_cargo_ (o
-_target\debug\hello_cargo_.exe_ su Windows) anziché nella tua directory
-corrente. Poiché la compilazione predefinita è una compilazione di debug, Cargo
-mette il binario in una directory chiamata _debug_. Puoi eseguire l’eseguibile
-con questo comando:
+_target\debug\hello_cargo_.exe_ su Windows) anziché nella tua cartella corrente.
+Poiché la compilazione predefinita è una compilazione di debug, Cargo mette il
+binario in una cartella chiamata _debug_. Puoi eseguire l’eseguibile con questo
+comando:
 
 ```console
 $ ./target/debug/hello_cargo # o .\target\debug\hello_cargo.exe su Windows
