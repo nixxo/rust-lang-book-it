@@ -1,29 +1,27 @@
-# Patterns and Matching
+# Pattern e Matching
 
-_Patterns_ are a special syntax in Rust for matching against the structure of
-types, both complex and simple. Using patterns in conjunction with `match`
-expressions and other constructs gives you more control over a program’s
-control flow. A pattern consists of some combination of the following:
+I _Pattern_ sono una sintassi speciale in Rust per il matching con la struttura dei
+tipi, sia complessi che semplici. L'utilizzo di pattern insieme a espressioni `match`
+e altri costrutti offre un maggiore controllo sul flusso di controllo di un programma.
+Un pattern consiste in una combinazione dei seguenti elementi:
 
-- Literals
-- Destructured arrays, enums, structs, or tuples
-- Variables
-- Wildcards
-- Placeholders
+- Letterali
+- Array destrutturati, enum, struct o tuple
+- Variabili
+- Caratteri jolly
+- Segnaposto
 
-Some example patterns include `x`, `(a, 3)`, and `Some(Color::Red)`. In the
-contexts in which patterns are valid, these components describe the shape of
-data. Our program then matches values against the patterns to determine whether
-it has the correct shape of data to continue running a particular piece of code.
+Alcuni esempi di pattern includono `x`, `(a, 3)` e `Some(Color::Red)`. Nei
+contesti in cui i pattern sono validi, questi componenti descrivono la forma dei
+dati. Il nostro programma confronta quindi i valori con i pattern per determinare se
+ha la forma corretta dei dati per continuare a eseguire una particolare porzione di codice.
 
-To use a pattern, we compare it to some value. If the pattern matches the
-value, we use the value parts in our code. Recall the `match` expressions in
-Chapter 6 that used patterns, such as the coin-sorting machine example. If the
-value fits the shape of the pattern, we can use the named pieces. If it
-doesn’t, the code associated with the pattern won’t run.
+Per utilizzare un pattern, lo confrontiamo con un valore. Se il pattern corrisponde al
+valore, utilizziamo le parti del valore nel nostro codice. Ricordate le espressioni `match` nel
+Capitolo 6 che utilizzavano pattern, come l'esempio della macchina selezionatrice di monete. Se il
+valore corrisponde alla forma del pattern, possiamo usare i pezzi indicati. In caso contrario, il codice associato al pattern non verrà eseguito.
 
-This chapter is a reference on all things related to patterns. We’ll cover the
-valid places to use patterns, the difference between refutable and irrefutable
-patterns, and the different kinds of pattern syntax that you might see. By the
-end of the chapter, you’ll know how to use patterns to express many concepts in
-a clear way.
+Questo capitolo è un riferimento su tutto ciò che riguarda i pattern. Tratteremo le situazioni valide in cui utilizzare i pattern, la differenza tra pattern confutabili e inconfutabili
+e i diversi tipi di sintassi dei pattern che potreste incontrare. Entro
+la fine del capitolo, saprete come usare i pattern per esprimere molti concetti in modo
+chiaro.
