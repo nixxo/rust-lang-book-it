@@ -44,21 +44,20 @@ per questo che questa è la scelta predefinita di Rust.
 Il vantaggio del controllo delle regole di prestito in fase di esecuzione è che
 vengono consentiti determinati scenari di sicurezza della memoria, laddove
 sarebbero stati non consentiti dai controlli in fase di compilazione. L’analisi
-statica, come il compilatore Rust, è intrinsecamente conservativa. Alcune
-proprietà del codice sono impossibili da rilevare analizzando il codice:
-l’esempio più famoso è il _problema della terminazione_ (_Halting Problem_), che
-esula dall’ambito di questo libro ma è un argomento interessante da approfondire
-se vuoi.
+statica, come quella effettuata dal compilatore Rust, è intrinsecamente
+conservativa. Alcune proprietà del codice sono impossibili da rilevare
+analizzando il codice: l’esempio più famoso è il _problema della terminazione_
+(_Halting Problem_), che esula dall’ambito di questo libro ma è un argomento
+interessante da approfondire se vuoi.
 
 Poiché alcune analisi sono impossibili, se il compilatore Rust non può essere
 sicuro che il codice sia conforme alle regole di _ownership_, potrebbe rifiutare
 di compilare un programma corretto; in questo modo, è conservativo. Se Rust
 accettasse un programma errato, gli utenti non potrebbero fidarsi delle garanzie
-fornite da Rust. Tuttavia, se Rust rifiuta un programma corretto, il
-programmatore subirà un inconveniente, ma non può verificarsi nulla di
-catastrofico. Il _type_ `RefCell<T>` è utile quando si è certi che il codice
-segua le regole di prestito, ma il compilatore non è in grado di comprenderlo e
-garantirlo.
+fornite da Rust. Tuttavia, se Rust rifiuta di compilare un programma corretto,
+il programmatore non sarà certo contento, anche se non è nulla di catastrofico.
+Il _type_ `RefCell<T>` è utile quando si è certi che il codice segua le regole
+di prestito, ma il compilatore non è in grado di comprenderlo e garantirlo.
 
 Simile a `Rc<T>`, `RefCell<T>` è utilizzabile solo in scenari a _thread_ singolo
 e genererà un errore in fase di compilazione se si tenta di utilizzarlo in un
@@ -101,10 +100,10 @@ Tuttavia, ci sono situazioni in cui sarebbe utile che un valore mutasse se
 stesso nei suoi metodi, ma apparisse immutabile ad altro codice. Il codice
 esterno ai metodi del valore non sarebbe in grado di mutare il valore. Usare
 `RefCell<T>` è un modo per ottenere la possibilità di avere una mutabilità
-interna, ma `RefCell<T>` non aggira completamente le regole di prestito: il
-controllore di prestito nel compilatore consente questa mutabilità interna e le
-regole di prestito vengono invece verificate durante l’esecuzione. Se si violano
-le regole, si otterrà un `panic!` invece di un errore del compilatore.
+interna, senza però aggirare completamente le regole di prestito: il controllore
+di prestito nel compilatore consente questa mutabilità interna e le regole di
+prestito vengono invece verificate durante l’esecuzione. Se si violano le
+regole, si otterrà un `panic!` invece di un errore del compilatore.
 
 Esaminiamo un esempio pratico in cui possiamo usare `RefCell<T>` per mutare un
 valore immutabile e vediamo perché è utile.
@@ -114,7 +113,7 @@ valore immutabile e vediamo perché è utile.
 A volte, durante i test, un programmatore usa un _type_ al posto di un altro,
 per osservare un comportamento particolare e verificare che sia implementato
 correttamente. Questo _type_ segnaposto è chiamato _test double_ (_doppione di
-test_). Pensatelo come una controfigura nel cinema, dove una persona interviene
+test_). Pensalo come ad una controfigura nel cinema, dove una persona interviene
 e sostituisce un attore per girare una scena particolarmente difficile. I _test
 double_ sostituiscono altri _type_ durante l’esecuzione dei test. Gli _oggetti
 mock_ sono _type_ specifici di _test double_ che registrano ciò che accade
@@ -123,7 +122,7 @@ corrette.
 
 Rust non ha oggetti nello stesso senso in cui li hanno altri linguaggi, e Rust
 non ha funzionalità di _oggetti mock_ integrate nella libreria standard come
-altri linguaggi. Tuttavia, è sicuramente possibile creare una struttura che
+altri linguaggi. Tuttavia, è sicuramente possibile creare una _struct_ che
 svolgerà le stesse funzioni di un _oggetto mock_.
 
 Ecco lo scenario che testeremo: creeremo una libreria che tiene traccia di un
@@ -138,7 +137,7 @@ Le applicazioni che utilizzano la nostra libreria dovranno fornire il meccanismo
 per l’invio dei messaggi: l’applicazione potrebbe inserire un messaggio al suo
 interno, inviare un’email, inviare un messaggio di testo o fare altro. La
 libreria non ha bisogno di conoscere questo dettaglio. Tutto ciò di cui ha
-bisogno è qualcosa che implementi una caratteristica che forniremo chiamata
+bisogno è qualcosa che implementi un _trait_ che forniremo chiamato
 `Messaggero`. Il Listato 15-20 mostra il codice della libreria.
 
 <Listing number="15-20" file-name="src/lib.rs" caption="Una libreria per tenere traccia di quanto un valore sia vicino a un valore massimo e avvisare quando il valore raggiunge determinati livelli">
@@ -226,7 +225,7 @@ messaggi che abbiamo visto. Il Listato 15-22 mostra come fare.
 
 Il campo `messaggi_inviati` è ora di _type_ `RefCell<Vec<String>>` invece di
 `Vec<String>`. Nella funzione `new`, creiamo una nuova istanza di
-`RefCell<Vec<String>>` attorno al vettore vuoto.
+`RefCell<Vec<String>>` incapsulando il vettore vuoto.
 
 Per l’implementazione del metodo `send`, il primo parametro è ancora un prestito
 immutabile di `self`, che corrisponde alla definizione del _trait_. Chiamiamo
@@ -263,7 +262,7 @@ Se proviamo a violare queste regole, anziché ottenere un errore di compilazione
 come accadrebbe con i _reference_, l’implementazione di `RefCell<T>` andrà in
 _panic_ in fase di esecuzione. Il Listato 15-23 mostra una modifica
 dell’implementazione di `invia` nel Listato 15-22. Stiamo deliberatamente
-cercando di creare due prestiti mutabili attivi per nello stesso _scope_ per
+cercando di creare due prestiti mutabili attivi nello stesso _scope_ per
 dimostrare che `RefCell<T>` ci impedisce di farlo in fase di esecuzione.
 
 <Listing number="15-23" file-name="src/lib.rs" caption="Creazione di due _reference_ mutabili nello stesso _scope_ per verificare che `RefCell<T>` generi un _panic_">
@@ -353,13 +352,13 @@ modificato di `15` anziché `5`:
 ```
 
 Questa tecnica è davvero interessante! Utilizzando `RefCell<T>`, abbiamo un
-valore `List` esternamente immutabile. Ma possiamo usare i metodi su
+valore `Lista` esternamente immutabile. Ma possiamo usare i metodi su
 `RefCell<T>` che forniscono l’accesso alla sua mutabilità interna, così da poter
 modificare i nostri dati quando necessario. I controlli durante l’esecuzione
 delle regole di prestito ci proteggono dalle _data race_, e a volte vale la pena
 sacrificare un po' di prestazioni per questa flessibilità nelle nostre strutture
 dati. Nota che `RefCell<T>` non funziona per il codice _multi-thread_!
-`Mutex<T>` è la versione di `RefCell<T>` che funzioni an ambito _multi-thread_ e
+`Mutex<T>` è la versione di `RefCell<T>` che funzioni ai ambito _multi-thread_ e
 ne parleremo nel Capitolo 16.
 
 [wheres-the---operator]: ch05-03-method-syntax.html#dovè-loperatore--

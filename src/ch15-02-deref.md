@@ -84,7 +84,7 @@ possibilità di utilizzare l’operatore di de-referenziazione.
 
 > Nota: c’è una grande differenza tra il _type_ `MioBox<T>` che stiamo per
 > creare e il vero `Box<T>`: la nostra versione non memorizzerà i dati
-> nell’heap. Ci stiamo concentrando su `Deref`, quindi dove vengono
+> nell’_heap_. Ci stiamo concentrando su `Deref`, quindi dove vengono
 > effettivamente memorizzati i dati è meno importante del comportamento “simile”
 > a un puntatore.
 
@@ -226,12 +226,12 @@ parametro di _type_ _slice_ stringa.
 
 </Listing>
 
-Possiamo chiamare la funzione `ciao` con un parametro di _type_ `slice` stringa
+Possiamo chiamare la funzione `ciao` con un parametro di _type_ _slice_ stringa
 come argomento, ad esempio `ciao("Rust");`. La _deref coercion_ consente di
 chiamare `ciao` con un _reference_ a un valore di _type_ `MioBox<String>`, come
 mostrato nel Listato 15-12.
 
-<Listing number="15-12" file-name="src/main.rs" caption="Chiamata di `ciao` con un _reference a un valore `MioBox<String>`, che funziona grazie alla _deref coercion_">
+<Listing number="15-12" file-name="src/main.rs" caption="Chiamata di `ciao` con un _reference_ a un valore `MioBox<String>`, che funziona grazie alla _deref coercion_">
 
 ```rust
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-12/src/main.rs:here}}

@@ -112,7 +112,7 @@ capire come le _box_ ci consentano di definire un tipo di dati ricorsivo senza
 troppe distrazioni.
 
 Il Listato 15-2 contiene una definizione _enum_ per una _cons list_. Nota che
-questo codice non verrà ancora compilato perché il _type_ `List` non ha una
+questo codice non verrà ancora compilato perché il _type_ `Lista` non ha una
 dimensione nota, che dimostreremo.
 
 <Listing number="15-2" file-name="src/main.rs" caption="Il primo tentativo di definire una _enum_ per rappresentare una struttura dati di tipo _cons list_ di valori `i32`">
@@ -128,10 +128,10 @@ dimensione nota, che dimostreremo.
 > generici, come discusso nel Capitolo 10, per definire un tipo di _cons list_
 > in grado di memorizzare valori di qualsiasi _type_.
 
-L’utilizzo del _type_ `List` per memorizzare l’elenco `1, 2, 3` sarebbe simile al codice nel
-Listato 15-3.
+L’utilizzo del _type_ `Lista` per memorizzare l’elenco `1, 2, 3` sarebbe simile
+al codice nel Listato 15-3.
 
-<Listing number="15-3" file-name="src/main.rs" caption="Utilizzo dell’_enum_ `List` per memorizzare la lista `1, 2, 3`">
+<Listing number="15-3" file-name="src/main.rs" caption="Utilizzo dell’_enum_ `Lista` per memorizzare la lista `1, 2, 3`">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-03/src/main.rs:here}}
@@ -139,10 +139,10 @@ Listato 15-3.
 
 </Listing>
 
-Il primo valore `Cons` contiene `1` e un altro valore `List`. Questo valore
-`List` è un altro valore `Cons` che contiene `2` e un altro valore `List`.
-Questo valore `List` è un altro valore `Cons` che contiene `3` e un valore
-`List`, che è infine `Nil`, la variante non ricorsiva che segnala la fine della
+Il primo valore `Cons` contiene `1` e un altro valore `Lista`. Questo valore
+`Lista` è un altro valore `Cons` che contiene `2` e un altro valore `Lista`.
+Questo valore `Lista` è un altro valore `Cons` che contiene `3` e un valore
+`Lista`, che è infine `Nil`, la variante non ricorsiva che segnala la fine della
 lista.
 
 Se proviamo a compilare il codice nel Listato 15-3, otteniamo l’errore mostrato
@@ -157,9 +157,9 @@ nel Listato 15-4.
 </Listing>
 
 L’errore indica che questo _type_ “ha dimensione infinita”. Il motivo è che
-abbiamo definito `List` con una variante che è ricorsiva: contiene direttamente
+abbiamo definito `Lista` con una variante che è ricorsiva: contiene direttamente
 un altro valore di se stessa. Di conseguenza, Rust non riesce a calcolare quanto
-spazio è necessario per memorizzare un valore `List`. Analizziamo il motivo per
+spazio è necessario per memorizzare un valore `Lista`. Analizziamo il motivo per
 cui otteniamo questo errore. Innanzitutto, vedremo come Rust determina quanto
 spazio è necessario per memorizzare un valore di un _type_ non ricorsivo.
 
@@ -181,7 +181,7 @@ Poiché verrà utilizzata una sola variante, lo spazio massimo di cui un valore
 grande delle sue varianti.
 
 Confrontiamo questo con ciò che accade quando Rust cerca di determinare di
-quanto spazio necessita un _type_ ricorsivo come l’_enum_ `List` nel Listato
+quanto spazio necessita un _type_ ricorsivo come l’_enum_ `Lista` nel Listato
 15-2. Il compilatore inizia esaminando la variante `Cons`, che contiene un
 valore di _type_ `i32` e un valore di _type_ `Lista`. Pertanto, `Cons` necessita
 di una quantità di spazio pari alla dimensione di un `i32` più la dimensione di
@@ -261,10 +261,10 @@ abbiamo bisogno. Esamineremo altri casi d’uso per le _box_ nel Capitolo 18.
 Il _type_ `Box<T>` è un puntatore intelligente perché implementa il _trait_
 `Deref`, che consente di trattare i valori `Box<T>` come _reference_. Quando un
 valore `Box<T>` esce dallo _scope_, anche i dati dell’_heap_ a cui punta il
-_box_ vengono ripuliti grazie all’implementazione del _trait_ `Drop`. Questi due
-_trait_ saranno ancora più importanti per le funzionalità fornite dagli altri
-tipi di puntatore intelligente che discuteremo nel resto di questo capitolo.
-Vediamo  questi due _trait_ più in dettaglio.
+_box_ vengono de-allocati grazie all’implementazione del _trait_ `Drop`. Questi
+due _trait_ saranno ancora più importanti per le funzionalità fornite dagli
+altri tipi di puntatore intelligente che discuteremo nel resto di questo
+capitolo. Vediamo  questi due _trait_ più in dettaglio.
 
 [stack-heap]: ch04-01-what-is-ownership.html#lo-stack-e-lheap
 [trait-objects]: ch18-02-trait-objects.html

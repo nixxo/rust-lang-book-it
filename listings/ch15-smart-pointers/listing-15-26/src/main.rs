@@ -38,7 +38,7 @@ fn main() {
     println!("a conteggio rc dopo modifica a = {}", Rc::strong_count(&a));
 
     // Togli il commento alla prossima riga per vedere che
-    // abbiamo una sequenza; causerà un overflow dello stack.
+    // abbiamo un ciclo; causerà un overflow dello stack.
     // println!("a prossimo elemento = {:?}", a.coda());
 }
 // ANCHOR_END: here

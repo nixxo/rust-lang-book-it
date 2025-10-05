@@ -26,7 +26,8 @@ where
         let percentuale_di_max = self.valore as f64 / self.max as f64;
 
         if percentuale_di_max >= 1.0 {
-            self.messaggero.invia("Errore: Hai superato la tua quota!");
+            self.messaggero
+                .invia("Errore: Hai superato la tua quota!");
         } else if percentuale_di_max >= 0.9 {
             self.messaggero
                 .invia("Avviso urgente: Hai utilizzato oltre il 90% della tua quota!");

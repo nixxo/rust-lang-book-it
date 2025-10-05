@@ -93,7 +93,7 @@
   - [Eseguire del Codice Durante la Pulizia con il _Trait_ `Drop`](ch15-03-drop.md)
   - [`Rc<T>`, il Puntatore Intelligente con Conteggio dei _Reference_](ch15-04-rc.md)
   - [`RefCell<T>` e il Modello di Mutabilità Interna](ch15-05-interior-mutability.md)
-  - [Sequenze Auto-Referenziali Possono Causare Perdite di Memoria](ch15-06-reference-cycles.md)
+  - [Cicli di Riferimento Possono Causare Perdite di Memoria](ch15-06-reference-cycles.md)
 
 - [Concorrenza Senza Paura](ch16-00-concurrency.md)
   - [Usare i _Thread_ Per Eseguire Codice Simultaneamente](ch16-01-threads.md)
