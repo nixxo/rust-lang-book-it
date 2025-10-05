@@ -1,3 +1,3 @@
-fn generic<T: ?Sized>(t: &T) {
+fn generica<T: ?Sized>(t: &T) {
     // --taglio--
 }

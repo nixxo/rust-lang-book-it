@@ -1,6 +1,6 @@
 fn main() {
     // ANCHOR: here
-    let s1: str = "Hello there!";
-    let s2: str = "How's it going?";
+    let s1: str = "Ciao!";
+    let s2: str = "Come va?";
     // ANCHOR_END: here
 }

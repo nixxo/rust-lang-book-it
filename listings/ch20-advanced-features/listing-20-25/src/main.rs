@@ -1,12 +1,12 @@
 fn main() {
     // ANCHOR: here
-    let f: Box<dyn Fn() + Send + 'static> = Box::new(|| println!("hi"));
+    let f: Box<dyn Fn() + Send + 'static> = Box::new(|| println!("ciao"));
 
-    fn takes_long_type(f: Box<dyn Fn() + Send + 'static>) {
+    fn prende_type_long(f: Box<dyn Fn() + Send + 'static>) {
         // --taglio--
     }
 
-    fn returns_long_type() -> Box<dyn Fn() + Send + 'static> {
+    fn ritorna_type_long() -> Box<dyn Fn() + Send + 'static> {
         // --taglio--
         // ANCHOR_END: here
         Box::new(|| ())

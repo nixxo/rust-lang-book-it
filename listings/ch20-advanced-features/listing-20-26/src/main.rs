@@ -4,11 +4,11 @@ fn main() {
 
     let f: Thunk = Box::new(|| println!("hi"));
 
-    fn takes_long_type(f: Thunk) {
+    fn prende_type_long(f: Thunk) {
         // --taglio--
     }
 
-    fn returns_long_type() -> Thunk {
+    fn ritorna_type_long() -> Thunk {
         // --taglio--
         // ANCHOR_END: here
         Box::new(|| ())

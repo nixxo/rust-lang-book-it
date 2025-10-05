@@ -1,16 +1,16 @@
-enum Option<T> {
+enum Opzione<T> {
     Some(T),
     None,
 }
 
-use crate::Option::*;
+use crate::Opzione::*;
 
 // ANCHOR: here
-impl<T> Option<T> {
+impl<T> Opzione<T> {
     pub fn unwrap(self) -> T {
         match self {
             Some(val) => val,
-            None => panic!("called `Option::unwrap()` on a `None` value"),
+            None => panic!("chiamato `Opzione::unwrap()` su un valore `None`"),
         }
     }
 }

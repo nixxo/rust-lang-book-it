@@ -1,3 +1,3 @@
-fn generic<T>(t: T) {
+fn generica<T>(t: T) {
     // --taglio--
 }
