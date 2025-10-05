@@ -15,7 +15,7 @@ facilitare l’individuazione della causa del _panic_.
 >
 > Per impostazione predefinita, quando si verifica un _panic_ il programma avvia
 > l’_unwinding_, il che significa che Rust risale lo _stack_ e pulisce i dati da
-> ogni funzione che incontra. Tuttavia, risalire lo stack e pulire richiede
+> ogni funzione che incontra. Tuttavia, risalire lo _stack_ e pulire richiede
 > molto lavoro. Rust, quindi, consente di scegliere l’alternativa di _abortire_
 > immediatamente, che termina il programma senza pulizia. La memoria che il
 > programma stava utilizzando dovrà quindi essere ripulita dal sistema

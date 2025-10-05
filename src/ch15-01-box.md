@@ -14,7 +14,7 @@ funzionalità extra. Li userai più spesso in queste situazioni:
   compilazione e vuoi utilizzare un valore di quel _type_ in un contesto che
   richiede una dimensione esatta
 - Quando hai una grande quantità di dati e vuoi trasferirne la _ownership_ ma
-  senza che i dati non vengano copiati quando lo fai
+  vuoi evitare che i dati vengano copiati quando lo fai
 - Quando vuoi possedere un valore e ti interessa solo che sia un _type_ con un
   determinato _trait_ piuttosto che essere di un _type_ specifico
 
@@ -30,7 +30,7 @@ _oggetto_ _trait_ (_trait object_), e [una sezione][trait-objects]<!-- ignore
 --> nel Capitolo 18 è dedicata specificamente a questo argomento. Quindi, ciò
 che imparerai qui lo applicherai di nuovo in quella sezione!
 
-### Memorizzare Dati nell’Heap
+### Memorizzare Dati nell’_Heap_
 
 Prima di discutere il caso d’uso di archiviazione nell’_heap_ per `Box<T>`,
 tratteremo la sintassi e come interagire con i valori memorizzati all’interno di
@@ -52,7 +52,7 @@ valore `5`, allocato nell’_heap_. Questo programma stamperà `b = 5`; in quest
 caso, possiamo accedere ai dati nella _box_ in modo simile a come faremmo se
 questi dati fossero sullo _stack_. Proprio come qualsiasi valore posseduto,
 quando una _box_ esce dallo _scope_, come accade a `b` alla fine di `main`,
-verrà de-allocata. La de-allocazione avviene sia per la _box_ (memorizzato sullo
+verrà de-allocata. La de-allocazione avviene sia per la _box_ (memorizzata sullo
 _stack_) sia per i dati a cui punta (memorizzati nell’_heap_).
 
 Mettere un singolo valore nell’_heap_ non è molto utile, quindi le _box_ non
@@ -66,17 +66,18 @@ definire se non avessimo le _box_.
 
 Un valore di un _type_ ricorsivo (_recursive type_) può avere un altro valore
 dello stesso _type_ come parte di sé. I _type_ ricorsivi pongono un problema
-perché Rust deve sapere in fase di compilazione quanto spazio occupa un _type_.
-Tuttavia, l’annidamento dei valori dei _type_ ricorsivi potrebbe teoricamente
-continuare all’infinito, quindi Rust non può sapere di quanto spazio ha bisogno
-il valore. Poiché le _box_ hanno dimensioni note, possiamo abilitare i _type_
-ricorsivi inserendo una _box_ nella definizione del _type_ ricorsivo.
+perché Rust deve sapere in fase di compilazione quanto spazio occupa un certo
+_type_. Tuttavia, l’annidamento dei valori dei _type_ ricorsivi potrebbe
+teoricamente continuare all’infinito, quindi Rust non può sapere di quanto
+spazio ha bisogno il valore. Poiché le _box_ hanno dimensioni note, possiamo
+abilitare i _type_ ricorsivi inserendo una _box_ nella definizione del _type_
+ricorsivo.
 
 Come esempio di _type_ ricorsivo, esploriamo la _cons list_ (_lista di
 costrutti_). Questo è un tipo di dato comunemente presente nei linguaggi di
 programmazione funzionale. Il _type_ di _cons list_ che definiremo è semplice,
 fatta eccezione per la ricorsione; pertanto, i concetti nell’esempio con cui
-lavoreremo saranno utili ogni volta che t troverai in situazioni più complesse
+lavoreremo saranno utili ogni volta che ti troverai in situazioni più complesse
 che coinvolgono i _type_ ricorsivi.
 
 #### Comprendere la _Cons List_

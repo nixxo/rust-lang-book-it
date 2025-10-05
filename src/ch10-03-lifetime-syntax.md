@@ -361,13 +361,13 @@ messaggio di errore che riceviamo:
 {{#include ../listings/ch10-generic-types-traits-and-lifetimes/no-listing-09-unrelated-lifetime/output.txt}}
 ```
 
-Il problema è che `risultato` esce dallo _scope_ e viene ripulito alla fine
+Il problema è che `risultato` esce dallo _scope_ e viene de-allocato alla fine
 della funzione `più_lunga`. Stiamo anche cercando di restituire un _reference_ a
 `risultato` dalla funzione. Non c’è modo di specificare parametri di longevità
 che modifichino il _reference_ pendente, e Rust non ci permette di creare un
 _reference_ pendente. In questo caso, la soluzione migliore sarebbe restituire
 un _type_ piuttosto che un _reference_, in modo che la funzione chiamante sia
-responsabile della pulizia del valore.
+responsabile della de-allocazione del valore.
 
 In definitiva, la sintassi di longevità serve a collegare le _lifetime_ dei vari
 parametri e valori di ritorno delle funzioni. Una volta messi in relazione, Rust

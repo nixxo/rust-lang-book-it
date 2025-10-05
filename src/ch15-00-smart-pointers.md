@@ -17,7 +17,7 @@ _reference_. Per esplorare il concetto generale, esamineremo un paio di esempi
 diversi di puntatori intelligenti, incluso un tipo di puntatore intelligente con
 _conteggio dei riferimenti_. Questo puntatore consente ai dati di avere più
 proprietari tenendo traccia del loro numero e, quando non ne rimane nessuno,
-ripulire i dati.
+de-allocare i dati.
 
 Rust, con il suo concetto di _ownership_ e _borrowing_, presenta un’ulteriore differenza
 tra _reference_ e i puntatori intelligenti: mentre i _reference_ prendono solo in prestito dati, in
@@ -39,16 +39,15 @@ intelligenti esistenti. Molte librerie hanno i propri puntatori intelligenti, ed
 è anche possibile scriverne di propri. Tratteremo i più comuni nella libreria
 standard:
 
-- `Box<T>`, per l’allocazione di valori nell’heap
+- `Box<T>`, per l’allocazione di valori nell’_heap_
 - `Rc<T>`, un _type_ di conteggio dei _reference_ che consente la _ownership_
   multipla
-- `Ref<T>` e `RefMut<T>`, accessibili tramite `RefCell<T>`, un _type_ che
-  applica le regole di prestito durante l’esecuzione anziché in fase di
-  compilazione
+- `Ref<T>` e `RefMut<T>`, accessibili tramite `RefCell<T>`, _type_ che applicano
+  le regole di prestito durante l’esecuzione anziché in fase di compilazione
 
-Inoltre, tratteremo il _pattern_ di _mutabilità interna_, in cui un _type_
+Inoltre, tratteremo il modello di _mutabilità interna_, in cui un _type_
 immutabile espone un’API per la mutazione di un valore interno. Discuteremo
-anche delle sequenze auto-referenziali e di come possono causare perdite di
+anche dei _cicli di riferimento_ e di come possono causare perdite di
 memoria e come prevenirle.
 
 Cominciamo!

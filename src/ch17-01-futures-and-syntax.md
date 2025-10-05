@@ -252,7 +252,7 @@ Rust no. Invece, ci sono molti _runtime_ asincroni disponibili, ognuno dei quali
 fa compromessi diversi adatti al caso d’uso che intende coprire. Ad esempio, un
 server web che gestisce grandi quantità di dati eseguito su CPU multi-core e una
 grande quantità di RAM ha esigenze molto diverse da un micro-controllore con un
-singolo core, poca RAM e nessuna capacità di allocazione nell’heap. I _crate_
+singolo core, poca RAM e nessuna capacità di allocazione nell’_heap_. I _crate_
 che forniscono questi _runtime_ spesso forniscono anche versioni _async_ di
 funzionalità comuni come I/O su file o di rete.
 

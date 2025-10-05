@@ -263,10 +263,10 @@ _scope_, come annotato nel Listato 8-10.
 </Listing>
 
 Quando il vettore viene rilasciato, anche tutto il suo contenuto viene
-rilasciato, il che significa che gli interi in esso contenuti verranno
-ripuliti. Il _borrow checker_ (_controllo dei prestiti_) garantisce che
-qualsiasi _reference_ al contenuto di un vettore venga utilizzato solo finché
-il vettore stesso è valido.
+de-allocato, il che significa che gli interi in esso contenuti verranno
+de-allocati. Il _borrow checker_ (_controllo dei prestiti_) garantisce che
+qualsiasi _reference_ al contenuto di un vettore venga utilizzato solo finché il
+vettore stesso è valido.
 
 Passiamo al tipo di collezione successivo: `String`!
 

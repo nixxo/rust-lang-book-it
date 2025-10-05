@@ -213,9 +213,9 @@ Tuttavia, la seconda parte è diversa. Nei linguaggi con un _garbage collector_
 (GC), il GC tiene traccia e ripulisce la memoria che non viene più utilizzata e
 non abbiamo bisogno di pensarci. Nella maggior parte dei linguaggi senza GC, è
 nostra responsabilità identificare quando la memoria non viene più utilizzata e
-chiamare il codice per liberarla esplicitamente, proprio come abbiamo fatto per
-richiederla. Farlo correttamente è stato storicamente un difficile problema di
-programmazione. Se ce lo dimentichiamo, sprecheremo memoria. Se lo facciamo
+chiamare il codice per de-allocarla esplicitamente, proprio come abbiamo fatto
+per richiederla. Farlo correttamente è stato storicamente un difficile problema
+di programmazione. Se ce lo dimentichiamo, sprecheremo memoria. Se lo facciamo
 troppo presto, avremo una variabile non valida. Se lo facciamo due volte, anche
 questo è un bug. Dobbiamo accoppiare esattamente un’_allocazione_ con
 esattamente una _de-allocazione_ (o _rilascio_, _liberazione_).
@@ -288,8 +288,7 @@ valore della seconda tabella. La seconda tabella contiene una rappresentazione
 del contenuto della stringa nell’heap, byte per byte." src="img/trpl04-01.svg"
 class="center" style="width: 50%;" />
 
-<span class="caption">Figura 4-1: Representazione in memoria di una `String` con
-valore `"hello"` assegnato a `s1`</span>
+<span class="caption">Figura 4-1: Representazione in memoria di una `String` con valore `"hello"` assegnato a `s1`</span>
 
 La lunghezza è la quantità di memoria, in byte, utilizzata attualmente dal
 contenuto della `String`. La capienza è la quantità totale di memoria, in byte,
@@ -306,8 +305,7 @@ rappresentazione dei dati in memoria è simile alla Figura 4-2.
 stack, indipendentemente, ed entrambe puntano agli stessi dati della stringa
 nell’heap." src="img/trpl04-02.svg" class="center" style="width: 50%;" />
 
-<span class="caption">Figura 4-2: Rappresentazione in memoria della variabile
-`s2` che contiene una copia del puntatore, lunghezza e capienza di `s1`</span>
+<span class="caption">Figura 4-2: Rappresentazione in memoria della variabile `s2` che contiene una copia del puntatore, lunghezza e capienza di `s1`</span>
 
 La rappresentazione non assomiglia alla Figura 4-3, che è l’aspetto che avrebbe
 la memoria se Rust copiasse anche i dati dell’_heap_. Se Rust facesse così,
@@ -319,21 +317,20 @@ dimensioni.
 s2, ognuna delle quali punta alla propria copia di dati nell’heap."
 src="img/trpl04-03.svg" class="center" style="width: 50%;" />
 
-<span class="caption">Figura 4-3: Un’altra possibilità di come potrebbe essere
-`s2 = s1` se Rust copiasse anche i dati dell’_heap_</span>
+<span class="caption">Figura 4-3: Un’altra possibilità di come potrebbe essere `s2 = s1` se Rust copiasse anche i dati dell’_heap_</span>
 
 In precedenza, abbiamo detto che quando una variabile esce dallo _scope_, Rust
 chiama automaticamente la funzione `drop` e ripulisce la memoria nell’_heap_ di
 quella variabile. Ma la Figura 4-2 mostra entrambi i puntatori di dati che
 puntano alla stessa posizione. Questo è un problema: quando `s2` e `s1` escono
-dallo _scope_, entrambe tenteranno di liberare la stessa memoria. Questo è noto
-come _errore da doppia de-allocazione_ (_double free error_ in inglese) ed è uno
-dei bug di sicurezza della memoria menzionati in precedenza. Rilasciare la
+dallo _scope_, entrambe tenteranno di de-allocare la stessa memoria. Questo è
+noto come _errore da doppia de-allocazione_ (_double free error_ in inglese) ed
+è uno dei bug di sicurezza della memoria menzionati in precedenza. Rilasciare la
 memoria due volte può portare a corruzione di memoria, che può potenzialmente
 esporre il programma a vulnerabilità di sicurezza.
 
 Per garantire la sicurezza della memoria, dopo la riga `let s2 = s1;`, Rust
-considera `s1` come non più valido. Pertanto, Rust non ha bisogno di liberare
+considera `s1` come non più valido. Pertanto, Rust non ha bisogno di de-allocare
 nulla quando `s1` esce dallo _scope_. Controlla cosa succede quando provi a
 usare `s1` dopo che `s2` è stato creato: non funzionerà:
 
@@ -362,8 +359,7 @@ Tabella s1 è scurita perché s1 non è più valida; solo s2 può essere usata p
 accedere ai dati nell’heap." src="img/trpl04-04.svg" class="center"
 style="width: 50%;" />
 
-<span class="caption">Figura 4-4: Rappresentazione in memoria dopo che `s1` è
-resa non valida</span>
+<span class="caption">Figura 4-4: Rappresentazione in memoria dopo che `s1` è resa non valida</span>
 
 Questo risolve il nostro problema! Con la sola `s2` valida, quando essa uscirà
 dallo _scope_, solo lei rilascerà la memoria e il gioco è fatto.

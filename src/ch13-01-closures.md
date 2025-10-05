@@ -261,7 +261,7 @@ della chiusura. Se il _thread_ principale eseguisse più operazioni prima di
 chiamare `join` sul nuovo _thread_, il nuovo _thread_ potrebbe terminare prima
 del _thread_ principale, oppure il _thread_ principale potrebbe terminare per
 primo. Se il _thread_ principale mantenesse la _ownership_ di `lista` ma
-terminasse prima del nuovo _thread_ e liberasse la memoria di `lista`, il
+terminasse prima del nuovo _thread_ e de-allocasse la memoria di `lista`, il
 _reference_ immutabile nel _thread_ non sarebbe valido. Pertanto, il compilatore
 richiede che `lista` venga spostato nella chiusura assegnata al nuovo _thread_,
 affinché il _reference_ sia valido. Prova a rimuovere la parola chiave `move` o

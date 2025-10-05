@@ -177,10 +177,10 @@ chiamata a `clone` e sottrae dal conteggio quando ogni clone viene rilasciato.
 Ma non utilizza alcun _type_ primitivo di concorrenza per assicurarsi che le
 modifiche al conteggio non possano essere interrotte da un altro _thread_.
 Questo potrebbe portare a conteggi sbagliati - bug che potrebbero a loro volta
-portare a perdite di memoria o alla liberazione di un valore prima che abbiamo
-finito di usarlo. Ciò di cui abbiamo bisogno è un _type_ che sia esattamente
-come `Rc<T>`, ma che apporti modifiche al conteggio dei _reference_ in modo
-sicuro quando usato con i _thread_.
+portare a perdite di memoria o alla de-allocazione di un valore prima che
+abbiamo finito di usarlo. Ciò di cui abbiamo bisogno è un _type_ che sia
+esattamente come `Rc<T>`, ma che apporti modifiche al conteggio dei _reference_
+in modo sicuro quando usato con i _thread_.
 
 #### Conteggio di _Reference_ Atomico con `Arc<T>`
 
@@ -250,16 +250,16 @@ di un `Arc<T>`.
 
 Un altro dettaglio da notare è che Rust non può proteggerti da tutti i tipi di
 errori logici quando usi `Mutex<T>`. Ricordiamo dal Capitolo 15 che l’uso di
-`Rc<T>` comporta il rischio di creare sequenze auto-referenziali, in cui due
-valori `Rc<T>` fanno riferimento l’uno all’altro, causando perdite di memoria.
-Allo stesso modo, `Mutex<T>` comporta il rischio di creare dei _deadlock_
-(_stallo_). Questi si verificano quando un’operazione deve bloccare due risorse
-e due thread hanno acquisito ciascuno uno dei blocchi, facendoli attendere
-all’infinito l’un l’altro. Se ti interessano i _deadlock_, prova a creare un
-programma Rust che abbia un _deadlock_; quindi ricerca le strategie di
-mitigazione degli stalli per i _mutex_ in qualsiasi altro linguaggio e prova a
-implementarle in Rust. La documentazione API della libreria standard per
-`Mutex<T>` e `MutexGuard` offre informazioni utili.
+`Rc<T>` comporta il rischio di creare cicli di riferiemnto, in cui due valori
+`Rc<T>` fanno riferimento l’uno all’altro, causando perdite di memoria. Allo
+stesso modo, `Mutex<T>` comporta il rischio di creare dei _deadlock_ (_stallo_).
+Questi si verificano quando un’operazione deve bloccare due risorse e due thread
+hanno acquisito ciascuno uno dei blocchi, facendoli attendere all’infinito l’un
+l’altro. Se ti interessano i _deadlock_, prova a creare un programma Rust che
+abbia un _deadlock_; quindi ricerca le strategie di mitigazione degli stalli per
+i _mutex_ in qualsiasi altro linguaggio e prova a implementarle in Rust. La
+documentazione API della libreria standard per `Mutex<T>` e `MutexGuard` offre
+informazioni utili.
 
 Concluderemo questo capitolo parlando dei _trait_ `Send` e `Sync` e di come
 possiamo utilizzarli con i _type_ personalizzati.
