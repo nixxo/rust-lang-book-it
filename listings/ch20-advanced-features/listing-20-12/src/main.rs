@@ -1,10 +1,10 @@
 // ANCHOR: here
 unsafe trait Foo {
-    // methods go here
+    // metodi vanno qui
 }
 
 unsafe impl Foo for i32 {
-    // method implementations go here
+    // implementazioni dei metodi vanno qui
 }
 // ANCHOR_END: here
 

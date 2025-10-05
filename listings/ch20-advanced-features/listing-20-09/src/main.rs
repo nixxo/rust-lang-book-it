@@ -3,5 +3,5 @@ unsafe extern "C" {
 }
 
 fn main() {
-    println!("Absolute value of -3 according to C: {}", abs(-3));
+    println!("Valore assoluto di -3 secondo C: {}", abs(-3));
 }

@@ -1,9 +1,9 @@
 fn main() {
     // ANCHOR: here
-    unsafe fn dangerous() {}
+    unsafe fn pericolosa() {}
 
     unsafe {
-        dangerous();
+        pericolosa();
     }
     // ANCHOR_END: here
 }
