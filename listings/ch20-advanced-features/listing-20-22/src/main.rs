@@ -1,23 +1,23 @@
-trait Animal {
-    fn baby_name() -> String;
+trait Animale {
+    fn nomignolo() -> String;
 }
 
-struct Dog;
+struct Cane;
 
-impl Dog {
-    fn baby_name() -> String {
-        String::from("Spot")
+impl Cane {
+    fn nomignolo() -> String {
+        String::from("Rex")
     }
 }
 
-impl Animal for Dog {
-    fn baby_name() -> String {
-        String::from("puppy")
+impl Animale for Cane {
+    fn nomignolo() -> String {
+        String::from("cucciolo")
     }
 }
 
 // ANCHOR: here
 fn main() {
-    println!("A baby dog is called a {}", <Dog as Animal>::baby_name());
+    println!("Un piccolo di cane è detto {}", <Cane as Animale>::nomignolo());
 }
 // ANCHOR_END: here

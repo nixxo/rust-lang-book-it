@@ -1,29 +1,29 @@
 // ANCHOR: here
-trait Pilot {
-    fn fly(&self);
+trait Pilota {
+    fn vola(&self);
 }
 
-trait Wizard {
-    fn fly(&self);
+trait Mago {
+    fn vola(&self);
 }
 
-struct Human;
+struct Umano;
 
-impl Pilot for Human {
-    fn fly(&self) {
-        println!("This is your captain speaking.");
+impl Pilota for Umano {
+    fn vola(&self) {
+        println!("Qui parla il capitano.");
     }
 }
 
-impl Wizard for Human {
-    fn fly(&self) {
-        println!("Up!");
+impl Mago for Umano {
+    fn vola(&self) {
+        println!("Sali!");
     }
 }
 
-impl Human {
-    fn fly(&self) {
-        println!("*waving arms furiously*");
+impl Umano {
+    fn vola(&self) {
+        println!("*sbatte furiosamente le braccia*");
     }
 }
 // ANCHOR_END: here

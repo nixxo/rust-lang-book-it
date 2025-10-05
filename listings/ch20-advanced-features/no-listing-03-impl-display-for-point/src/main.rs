@@ -10,17 +10,17 @@ trait OutlinePrint: fmt::Display {
     }
 }
 
-struct Point {
+struct Punto {
     x: i32,
     y: i32,
 }
 
-impl OutlinePrint for Point {}
+impl OutlinePrint for Punto {}
 
 // ANCHOR: here
 use std::fmt;
 
-impl fmt::Display for Point {
+impl fmt::Display for Punto {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "({}, {})", self.x, self.y)
     }
@@ -28,6 +28,6 @@ impl fmt::Display for Point {
 // ANCHOR_END: here
 
 fn main() {
-    let p = Point { x: 1, y: 3 };
+    let p = Punto { x: 1, y: 3 };
     p.outline_print();
 }

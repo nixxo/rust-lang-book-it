@@ -1,12 +1,12 @@
 $ cargo run
-   Compiling traits-example v0.1.0 (file:///projects/traits-example)
-error[E0277]: `Point` doesn't implement `std::fmt::Display`
-  --> src/main.rs:20:23
+   Compiling esempio-trait v0.1.0 (file:///progetti/esempio-trait)
+error[E0277]: `Punto` doesn't implement `std::fmt::Display`
+  --> src/main.rs:21:23
    |
-20 | impl OutlinePrint for Point {}
-   |                       ^^^^^ `Point` cannot be formatted with the default formatter
+21 | impl OutlinePrint for Punto {}
+   |                       ^^^^^ `Punto` cannot be formatted with the default formatter
    |
-   = help: the trait `std::fmt::Display` is not implemented for `Point`
+   = help: the trait `std::fmt::Display` is not implemented for `Punto`
    = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
 note: required by a bound in `OutlinePrint`
   --> src/main.rs:3:21
@@ -14,13 +14,13 @@ note: required by a bound in `OutlinePrint`
 3  | trait OutlinePrint: fmt::Display {
    |                     ^^^^^^^^^^^^ required by this bound in `OutlinePrint`
 
-error[E0277]: `Point` doesn't implement `std::fmt::Display`
-  --> src/main.rs:24:7
+error[E0277]: `Punto` doesn't implement `std::fmt::Display`
+  --> src/main.rs:26:7
    |
-24 |     p.outline_print();
-   |       ^^^^^^^^^^^^^ `Point` cannot be formatted with the default formatter
+26 |     p.outline_print();
+   |       ^^^^^^^^^^^^^ `Punto` cannot be formatted with the default formatter
    |
-   = help: the trait `std::fmt::Display` is not implemented for `Point`
+   = help: the trait `std::fmt::Display` is not implemented for `Punto`
    = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
 note: required by a bound in `OutlinePrint::outline_print`
   --> src/main.rs:3:21
@@ -31,4 +31,4 @@ note: required by a bound in `OutlinePrint::outline_print`
    |        ------------- required by a bound in this associated function
 
 For more information about this error, try `rustc --explain E0277`.
-error: could not compile `traits-example` (bin "traits-example") due to 2 previous errors
+error: could not compile `esempio-trait` (bin "esempio-trait") due to 2 previous errors

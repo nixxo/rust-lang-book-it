@@ -1,18 +1,18 @@
 $ cargo run
-   Compiling traits-example v0.1.0 (file:///projects/traits-example)
+   Compiling esempio-trait v0.1.0 (file:///progetti/esempio-trait)
 error[E0790]: cannot call associated function on trait without specifying the corresponding `impl` type
-  --> src/main.rs:20:43
+  --> src/main.rs:21:47
    |
-2  |     fn baby_name() -> String;
-   |     ------------------------- `Animal::baby_name` defined here
+ 2 |     fn nomignolo() -> String;
+   |     ------------------------- `Animale::nomignolo` defined here
 ...
-20 |     println!("A baby dog is called a {}", Animal::baby_name());
-   |                                           ^^^^^^^^^^^^^^^^^^^ cannot call associated function of trait
+21 |     println!("Un piccolo di cane è detto {}", Animale::nomignolo());
+   |                                               ^^^^^^^^^^^^^^^^^^^^ cannot call associated function of trait
    |
 help: use the fully-qualified path to the only available implementation
    |
-20 |     println!("A baby dog is called a {}", <Dog as Animal>::baby_name());
-   |                                           +++++++       +
+21 |     println!("Un piccolo di cane è detto {}", <Cane as Animale>::nomignolo());
+   |                                               ++++++++        +
 
 For more information about this error, try `rustc --explain E0790`.
-error: could not compile `traits-example` (bin "traits-example") due to 1 previous error
+error: could not compile `esempio-trait` (bin "esempio-trait") due to 1 previous error

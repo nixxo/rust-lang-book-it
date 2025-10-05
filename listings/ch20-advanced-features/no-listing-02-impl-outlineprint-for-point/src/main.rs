@@ -13,15 +13,15 @@ trait OutlinePrint: fmt::Display {
 }
 
 // ANCHOR: here
-struct Point {
+struct Punto {
     x: i32,
     y: i32,
 }
 
-impl OutlinePrint for Point {}
+impl OutlinePrint for Punto {}
 // ANCHOR_END: here
 
 fn main() {
-    let p = Point { x: 1, y: 3 };
+    let p = Punto { x: 1, y: 3 };
     p.outline_print();
 }

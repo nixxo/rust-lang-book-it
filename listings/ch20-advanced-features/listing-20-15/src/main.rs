@@ -1,25 +1,25 @@
 use std::ops::Add;
 
 #[derive(Debug, Copy, Clone, PartialEq)]
-struct Point {
+struct Punto {
     x: i32,
     y: i32,
 }
 
-impl Add for Point {
-    type Output = Point;
+impl Add for Punto {
+    type Output = Punto;
 
-    fn add(self, other: Point) -> Point {
-        Point {
-            x: self.x + other.x,
-            y: self.y + other.y,
+    fn add(self, altro: Punto) -> Punto {
+        Punto {
+            x: self.x + altro.x,
+            y: self.y + altro.y,
         }
     }
 }
 
 fn main() {
     assert_eq!(
-        Point { x: 1, y: 0 } + Point { x: 2, y: 3 },
-        Point { x: 3, y: 3 }
+        Punto { x: 1, y: 0 } + Punto { x: 2, y: 3 },
+        Punto { x: 3, y: 3 }
     );
 }
