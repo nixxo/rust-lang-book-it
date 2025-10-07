@@ -1,23 +1,23 @@
-struct Counter {
-    count: u32,
+struct Contatore {
+    conteggio: u32,
 }
 
-impl Counter {
-    fn new() -> Counter {
-        Counter { count: 0 }
+impl Contatore {
+    fn new() -> Contatore {
+        Contatore { conteggio: 0 }
     }
 }
 
 // ANCHOR: ch19
-impl Iterator for Counter {
+impl Iterator for Contatore {
     type Item = u32;
 
     fn next(&mut self) -> Option<Self::Item> {
         // --taglio--
         // ANCHOR_END: ch19
-        if self.count < 5 {
-            self.count += 1;
-            Some(self.count)
+        if self.conteggio < 5 {
+            self.conteggio += 1;
+            Some(self.conteggio)
         } else {
             None
         }

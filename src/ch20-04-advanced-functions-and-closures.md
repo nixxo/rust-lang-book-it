@@ -74,7 +74,7 @@ Listing 20-30 shows what this would look like.
 </Listing>
 
 Note that we must use the fully qualified syntax that we talked about in
-[“Advanced Traits”][advanced-traits]<!-- ignore --> because there are multiple
+[“_Trait_ Avanzati”][advanced-traits]<!-- ignore --> because there are multiple
 functions available named `to_string`.
 
 Here, we’re using the `to_string` function defined in the `ToString` trait,
@@ -171,7 +171,7 @@ section [“Usare gli Oggetti _Trait_ per Astrarre Comportamenti Condivisi”][u
 
 Next, let’s look at macros!
 
-[advanced-traits]: ch20-02-advanced-traits.html#advanced-traits
+[advanced-traits]: ch20-02-advanced-traits.html#trait-avanzati
 [enum-values]: ch06-01-defining-an-enum.html#valori-di-enum
 [closure-types]: ch13-01-closures.html#inferenza-e-annotazione-del-type-delle-chiusure
 [any-number-of-futures]: ch17-03-more-futures.html

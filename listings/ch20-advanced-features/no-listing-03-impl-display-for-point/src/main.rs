@@ -1,5 +1,5 @@
-trait OutlinePrint: fmt::Display {
-    fn outline_print(&self) {
+trait StampaContorno: fmt::Display {
+    fn stampa_contorno(&self) {
         let output = self.to_string();
         let len = output.len();
         println!("{}", "*".repeat(len + 4));
@@ -15,7 +15,7 @@ struct Punto {
     y: i32,
 }
 
-impl OutlinePrint for Punto {}
+impl StampaContorno for Punto {}
 
 // ANCHOR: here
 use std::fmt;
@@ -29,5 +29,5 @@ impl fmt::Display for Punto {
 
 fn main() {
     let p = Punto { x: 1, y: 3 };
-    p.outline_print();
+    p.stampa_contorno();
 }

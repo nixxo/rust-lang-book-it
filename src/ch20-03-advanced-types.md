@@ -8,7 +8,7 @@ the `!` type and dynamically sized types.
 
 ### Type Safety and Abstraction with the Newtype Pattern
 
-This section assumes you’ve read the earlier section [“Implementing External Traits with the Newtype Pattern”][using-the-newtype-pattern]<!--
+This section assumes you’ve read the earlier section [“Implementare _Trait_ Esterni con il Modello _Newtype_”][using-the-newtype-pattern]<!--
 ignore -->. The newtype pattern is also useful for tasks beyond those we’ve
 discussed so far, including statically enforcing that values are never confused
 and indicating the units of a value. You saw an example of using newtypes to
@@ -288,4 +288,4 @@ Next, we’ll talk about functions and closures!
 [string-slices]: ch04-03-slices.html#slice-di-stringa
 [the-match-control-flow-construct]: ch06-02-match.html#controllare-il-flusso-col-costrutto-match
 [using-trait-objects-to-abstract-over-shared-behavior]: ch18-02-trait-objects.html#usare-gli-oggetti-trait-per-astrarre-comportamenti-condivisi
-[using-the-newtype-pattern]: ch20-02-advanced-traits.html#implementing-external-traits-with-the-newtype-pattern
+[using-the-newtype-pattern]: ch20-02-advanced-traits.html#implementare-trait-esterni-con-il-modello-newtype

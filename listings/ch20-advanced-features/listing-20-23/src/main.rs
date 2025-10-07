@@ -1,8 +1,8 @@
 // ANCHOR: here
 use std::fmt;
 
-trait OutlinePrint: fmt::Display {
-    fn outline_print(&self) {
+trait StampaContorno: fmt::Display {
+    fn stampa_contorno(&self) {
         let output = self.to_string();
         let len = output.len();
         println!("{}", "*".repeat(len + 4));
