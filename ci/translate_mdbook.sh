@@ -57,6 +57,9 @@ done
 
 # fix regex per supportare lettere accentate nei nomi funzione
 fname="book/highlight.js"
-sed -i 's/{className:\"title",begin:\"\[a-zA-Z_\]/{className:\"title\",begin:\"\[a-zA-Z_àèéìòù\]/g' $fname
 
-echo "> $fname DONE"
+sed -i 's/{className:"title",begin:"\[a-zA-Z_\]/{className:"title",begin:"\[a-zA-Z_àèéìòù\]/g' $fname
+echo "> $fname rust fmt DONE"
+
+# sed -i 's/g="("+\[\/\[A-Za-z0-9_-\]/g="("+\[\/\[A-Za-z0-9_-àèéìòù\]/g' $fname
+# echo "> $fname toml fmt DONE"

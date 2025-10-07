@@ -8,12 +8,12 @@ _generics_, _traits_, _macro_, attributi, commenti, tuple e parentesi.
 
 La Tabella B-1 contiene gli operatori in Rust, un esempio di come l’operatore
 appare nel contesto, una breve spiegazione e se l’operatore in questione è
-sovraccaricabile. Se un operatore è sovraccaricabile, viene elencato il relativo
-_trait_ da utilizzare per sovraccaricarlo.
+sovrascrivibile. Se un operatore è sovrascrivibile, viene elencato il relativo
+_trait_ da utilizzare per sovrascriverlo.
 
 <span class="caption">Tabella B-1: Operatori</span>
 
-| Operatore | Esempio | Spiegazione | Sovraccaricabile? |
+| Operatore | Esempio | Spiegazione | Sovrascrivibile |
 | --- | --- | --- | --- |
 | `!` | `ident!(...)`, `ident!{...}`, `ident![...]` | Espansione delle macro | |
 | `!` | `!expr` | Complemento logico o bit per bit | `Not` |
