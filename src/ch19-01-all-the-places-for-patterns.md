@@ -1,88 +1,83 @@
-## All the Places Patterns Can Be Used
+## Tutti i Posti in cui Possono Essere Utilizzati i Pattern
 
-Patterns pop up in a number of places in Rust, and you’ve been using them a lot
-without realizing it! This section discusses all the places where patterns are
-valid.
+I pattern compaiono in diversi punti di Rust e li hai usati senza rendertene conto! Questa sezione illustra tutti i posti in cui i pattern sono
+validi.
 
-### `match` Arms
+### Rami `match`
 
-As discussed in Chapter 6, we use patterns in the arms of `match` expressions.
-Formally, `match` expressions are defined as the keyword `match`, a value to
-match on, and one or more match arms that consist of a pattern and an
-expression to run if the value matches that arm’s pattern, like this:
+Come discusso nel Capitolo 6, utilizziamo i pattern nei rami delle espressioni `match`.
+Formalmente, le espressioni `match` sono definite come la parola chiave `match`, un valore
+su cui effettuare la corrispondenza e uno o più rami di corrispondenza costituiti da un pattern e un'espressione
+da eseguire se il valore corrisponde al pattern di quel ramo, in questo modo:
 
 <!--
-  Manually formatted rather than using Markdown intentionally: Markdown does not
-  support italicizing code in the body of a block like this!
--->
+Formattato manualmente anziché utilizzare intenzionalmente Markdown: Markdown non
+supporta il corsivo nel corpo di un blocco come questo! -->
 
 <pre><code>match <em>VALUE</em> {
-    <em>PATTERN</em> => <em>EXPRESSION</em>,
-    <em>PATTERN</em> => <em>EXPRESSION</em>,
-    <em>PATTERN</em> => <em>EXPRESSION</em>,
+<em>PATTERN</em> => <em>EXPRESSION</em>,
+<em>PATTERN</em> => <em>EXPRESSION</em>,
+<em>PATTERN</em> => <em>EXPRESSION</em>,
 }</code></pre>
 
-For example, here’s the `match` expression from Listing 6-5 that matches on an
-`Option<i32>` value in the variable `x`:
+Ad esempio, ecco l'espressione `match` del Listato 6-5 che corrisponde a un valore
+`Option<i32>` nella variabile `x`:
 
 ```rust,ignore
 match x {
-    None => None,
-    Some(i) => Some(i + 1),
+None => None,
+Some(i) => Some(i + 1),
 }
 ```
 
-The patterns in this `match` expression are the `None` and `Some(i)` on the
-left of each arrow.
+I pattern in questa espressione `match` sono `None` e `Some(i)` a
+sinistra di ciascuna freccia.
 
-One requirement for `match` expressions is that they need to be _exhaustive_ in
-the sense that all possibilities for the value in the `match` expression must
-be accounted for. One way to ensure you’ve covered every possibility is to have
-a catch-all pattern for the last arm: for example, a variable name matching any
-value can never fail and thus covers every remaining case.
+Un requisito per le espressioni `match` è che siano _esaustive_, nel senso che tutte le possibilità per il valore nell'espressione `match` devono
+essere considerate. Un modo per assicurarsi di aver coperto ogni possibilità è avere
+un pattern generico per l'ultimo caso: ad esempio, un nome di variabile che corrisponde a qualsiasi
+valore non può mai fallire e quindi copre tutti i casi rimanenti.
 
-The particular pattern `_` will match anything, but it never binds to a
-variable, so it’s often used in the last match arm. The `_` pattern can be
-useful when you want to ignore any value not specified, for example. We’ll cover
-the `_` pattern in more detail in [“Ignoring Values in a
-Pattern”][ignoring-values-in-a-pattern]<!-- ignore --> later in this chapter.
+Il pattern specifico `_` corrisponderà a qualsiasi cosa, ma non si vincola mai a una
+variabile, quindi viene spesso utilizzato nell'ultimo ramo di corrispondenza. Il pattern `_` può essere
+utile quando si desidera ignorare qualsiasi valore non specificato, ad esempio. Tratteremo
+il pattern `_` più dettagliatamente in ["Ignorare i valori in un
+pattern”][ignoring-values-in-a-pattern]<!-- ignore --> più avanti in questo capitolo.
 
-### `let` Statements
+### Istruzioni `let`
 
-Prior to this chapter, we had only explicitly discussed using patterns with
-`match` and `if let`, but in fact, we’ve used patterns in other places as well,
-including in `let` statements. For example, consider this straightforward
-variable assignment with `let`:
+Prima di questo capitolo, avevamo discusso esplicitamente dell'uso dei pattern solo con
+`match` e `if let`, ma in realtà abbiamo utilizzato pattern anche in altri contesti,
+anche nelle istruzioni `let`. Ad esempio, si consideri questa semplice
+assegnazione di variabile con `let`:
 
 ```rust
 let x = 5;
 ```
 
-Every time you’ve used a `let` statement like this you’ve been using patterns,
-although you might not have realized it! More formally, a `let` statement looks
-like this:
+Ogni volta che avete utilizzato un'istruzione `let` come questa, avete utilizzato dei pattern,
+anche se potreste non esservene accorti! Più formalmente, un'istruzione `let` si presenta
+così:
 
 <!--
   Manually formatted rather than using Markdown intentionally: Markdown does not
   support italicizing code in the body of a block like this!
 -->
-
 <pre>
 <code>let <em>PATTERN</em> = <em>EXPRESSION</em>;</code>
 </pre>
 
-In statements like `let x = 5;` with a variable name in the PATTERN slot, the
-variable name is just a particularly simple form of a pattern. Rust compares
-the expression against the pattern and assigns any names it finds. So, in the
-`let x = 5;` example, `x` is a pattern that means “bind what matches here to
-the variable `x`.” Because the name `x` is the whole pattern, this pattern
-effectively means “bind everything to the variable `x`, whatever the value is.”
+In istruzioni come `let x = 5;` con un nome di variabile nello slot PATTERN, il
+nome della variabile è solo una forma particolarmente semplice di pattern. Rust confronta
+l'espressione con il pattern e assegna qualsiasi nome trovi. Quindi, nell'esempio
+`let x = 5;`, `x` è un pattern che significa "associa ciò che corrisponde qui alla
+variabile `x`". Poiché il nome `x` è l'intero pattern, questo pattern
+significa effettivamente "associa tutto alla variabile `x`, qualunque sia il valore".
 
-To see the pattern-matching aspect of `let` more clearly, consider Listing
-19-1, which uses a pattern with `let` to destructure a tuple.
+Per comprendere più chiaramente l'aspetto di pattern-matching di `let`, si consideri il Listato
+19-1, che utilizza un pattern con `let` per destrutturare una tupla.
 
-
-<Listing number="19-1" caption="Using a pattern to destructure a tuple and create three variables at once">
+<Listing number="19-1" caption="Utilizzo di un pattern per destrutturare una tupla e creare tre variabili contemporaneamente">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-01/src/main.rs:here}}
@@ -90,18 +85,18 @@ To see the pattern-matching aspect of `let` more clearly, consider Listing
 
 </Listing>
 
-Here, we match a tuple against a pattern. Rust compares the value `(1, 2, 3)`
-to the pattern `(x, y, z)` and sees that the value matches the pattern, in that
-it sees that the number of elements is the same in both, so Rust binds `1` to
-`x`, `2` to `y`, and `3` to `z`. You can think of this tuple pattern as nesting
-three individual variable patterns inside it.
+Qui, confrontiamo una tupla con un pattern. Rust confronta il valore `(1, 2, 3)`
+con il pattern `(x, y, z)` e verifica che il valore corrisponde al pattern, in quanto
+vede che il numero di elementi è lo stesso in entrambi, quindi Rust associa `1` a
+`x`, `2` a `y` e `3` a `z`. Si può pensare a questo pattern di tupla come all'annidamento
+di tre pattern di variabili individuali al suo interno.
 
-If the number of elements in the pattern doesn’t match the number of elements
-in the tuple, the overall type won’t match and we’ll get a compiler error. For
-example, Listing 19-2 shows an attempt to destructure a tuple with three
-elements into two variables, which won’t work.
+Se il numero di elementi nel pattern non corrisponde al numero di elementi
+nella tupla, il tipo complessivo non corrisponderà e si verificherà un errore del compilatore. Ad esempio,
+il Listato 19-2 mostra un tentativo di destrutturare una tupla con tre
+elementi in due variabili, che non funzionerà.
 
-<Listing number="19-2" caption="Incorrectly constructing a pattern whose variables don’t match the number of elements in the tuple">
+<Listing number="19-2" caption="Costruzione errata di un pattern le cui variabili non corrispondono al numero di elementi nella tupla">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-02/src/main.rs:here}}
@@ -109,38 +104,37 @@ elements into two variables, which won’t work.
 
 </Listing>
 
-Attempting to compile this code results in this type error:
+Il tentativo di compilare questo codice genera questo tipo di errore:
 
 ```console
 {{#include ../listings/ch19-patterns-and-matching/listing-19-02/output.txt}}
 ```
 
-To fix the error, we could ignore one or more of the values in the tuple using
-`_` or `..`, as you’ll see in the [“Ignoring Values in a
-Pattern”][ignoring-values-in-a-pattern]<!-- ignore --> section. If the problem
-is that we have too many variables in the pattern, the solution is to make the
-types match by removing variables so the number of variables equals the number
-of elements in the tuple.
+Per correggere l'errore, potremmo ignorare uno o più valori nella tupla usando
+`_` o `..`, come vedrai nella sezione [“Ignorare i valori in una sezione
+Pattern”][ignoring-values-in-a-pattern]<!-- ignore -->. Se il problema
+è che abbiamo troppe variabili nel pattern, la soluzione è far corrispondere i
+tipi rimuovendo le variabili in modo che il numero di variabili sia uguale al numero
+di elementi nella tupla.
 
-### Conditional `if let` Expressions
+### Espressioni Condizionali `if let`
 
-In Chapter 6, we discussed how to use `if let` expressions mainly as a shorter
-way to write the equivalent of a `match` that only matches one case.
-Optionally, `if let` can have a corresponding `else` containing code to run if
-the pattern in the `if let` doesn’t match.
+Nel Capitolo 6, abbiamo discusso come utilizzare le espressioni `if let` principalmente come un modo più breve
+per scrivere l'equivalente di un `match` che corrisponde a un solo caso.
+Facoltativamente, `if let` può avere un `else` corrispondente contenente il codice da eseguire se
+il pattern in `if let` non corrisponde.
 
-Listing 19-3 shows that it’s also possible to mix and match `if let`, `else
-if`, and `else if let` expressions. Doing so gives us more flexibility than a
-`match` expression in which we can express only one value to compare with the
-patterns. Also, Rust doesn’t require that the conditions in a series of `if
-let`, `else if`, and `else if let` arms relate to each other.
+Il Listato 19-3 mostra che è anche possibile combinare e abbinare le espressioni `if let`, `else if` e `else if let`. Ciò offre maggiore flessibilità rispetto a un'espressione
+`match` in cui possiamo esprimere un solo valore da confrontare con i
+pattern. Inoltre, Rust non richiede che le condizioni in una serie di rami `if
+let`, `else if` e `else if let` siano correlate tra loro.
 
-The code in Listing 19-3 determines what color to make your background based on
-a series of checks for several conditions. For this example, we’ve created
-variables with hardcoded values that a real program might receive from user
-input.
+Il codice nel Listato 19-3 determina il colore da utilizzare per lo sfondo in base a
+una serie di controlli per diverse condizioni. Per questo esempio, abbiamo creato
+variabili con valori hardcoded che un programma reale potrebbe ricevere dall'input
+dell'utente.
 
-<Listing number="19-3" file-name="src/main.rs" caption="Mixing `if let`, `else if`, `else if let`, and `else`">
+<Listing number="19-3" file-name="src/main.rs" caption="Combinazione di `if let`, `else if`, `else if let` e `else`">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-03/src/main.rs}}
@@ -148,38 +142,35 @@ input.
 
 </Listing>
 
-If the user specifies a favorite color, that color is used as the background.
-If no favorite color is specified and today is Tuesday, the background color is
-green. Otherwise, if the user specifies their age as a string and we can parse
-it as a number successfully, the color is either purple or orange depending on
-the value of the number. If none of these conditions apply, the background
-color is blue.
+Se l'utente specifica un colore preferito, quel colore viene utilizzato come sfondo. Se non viene specificato alcun colore preferito e oggi è martedì, il colore di sfondo è
+verde. Altrimenti, se l'utente specifica la propria età come stringa e possiamo analizzarla
+come un numero correttamente, il colore sarà viola o arancione a seconda
+del valore del numero. Se nessuna di queste condizioni si applica, il colore di sfondo
+è blu.
 
-This conditional structure lets us support complex requirements. With the
-hardcoded values we have here, this example will print `Using purple as the
-background color`.
+Questa struttura condizionale ci consente di supportare requisiti complessi. Con i
+valori hardcoded che abbiamo qui, questo esempio stamperà `Usando il viola come
+colore di sfondo`.
 
-You can see that `if let` can also introduce new variables that shadow existing
-variables in the same way that `match` arms can: the line `if let Ok(age) = age`
-introduces a new `age` variable that contains the value inside the `Ok` variant,
-shadowing the existing `age` variable. This means we need to place the `if age >
-30` condition within that block: we can’t combine these two conditions into `if
-let Ok(age) = age && age > 30`. The new `age` we want to compare to 30 isn’t
-valid until the new scope starts with the curly bracket.
+Si può notare che `if let` può anche introdurre nuove variabili che oscurano le variabili esistenti
+allo stesso modo in cui `match` può farlo: la riga `if let Ok(eta) = eta`
+introduce una nuova variabile `eta` che contiene il valore all'interno della variante `Ok`,
+oscurando la variabile `eta` esistente. Ciò significa che dobbiamo inserire la condizione `if eta > 30` all'interno di quel blocco: non possiamo combinare queste due condizioni in `if let Ok(eta) = eta && eta > 30`. Il nuovo `eta` che vogliamo confrontare con 30 non è
+valido finché il nuovo ambito non inizia con la parentesi graffa.
 
-The downside of using `if let` expressions is that the compiler doesn’t check
-for exhaustiveness, whereas with `match` expressions it does. If we omitted the
-last `else` block and therefore missed handling some cases, the compiler would
-not alert us to the possible logic bug.
+Lo svantaggio dell'utilizzo di espressioni `if let` è che il compilatore non verifica
+l'esaustività, mentre con le espressioni `match` lo fa. Se omettessimo l'
+ultimo blocco `else` e ​​quindi non gestissimo alcuni casi, il compilatore
+non ci avviserebbe del possibile bug logico.
 
-### `while let` Conditional Loops
+### Cicli Condizionali `while let`
 
-Similar in construction to `if let`, the `while let` conditional loop allows a
-`while` loop to run for as long as a pattern continues to match. In Listing
-19-4 we show a `while let` loop that waits on messages sent between threads,
-but in this case checking a `Result` instead of an `Option`.
+Simile nella costruzione a `if let`, il ciclo condizionale `while let` consente a un ciclo
+`while` di essere eseguito finché un pattern continua a corrispondere. Nel Listato
+19-4 mostriamo un ciclo `while let` che attende i messaggi inviati tra thread,
+ma in questo caso controlla un `Result` invece di un `Option`.
 
-<Listing number="19-4" caption="Using a `while let` loop to print values for as long as `rx.recv()` returns `Ok`">
+<Listing number="19-4" caption="Utilizzo di un ciclo `while let` per stampare valori finché `rx.recv()` restituisce `Ok`">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-04/src/main.rs:here}}
@@ -187,23 +178,21 @@ but in this case checking a `Result` instead of an `Option`.
 
 </Listing>
 
-This example prints `1`, `2`, and then `3`. The `recv` method takes the first
-message out of the receiver side of the channel and returns an `Ok(value)`. When
-we first saw `recv` back in Chapter 16, we unwrapped the error directly, or
-interacted with it as an iterator using a `for` loop. As Listing 19-4 shows,
-though, we can also use while let, because the `recv` method returns an `Ok`
-each time a message arrives, as long as the sender exists, and then produces an
-`Err `once the sender side disconnects.
+Questo esempio stampa `1`, `2` e poi `3`. Il metodo `recv` prende il primo
+messaggio dal lato ricevente del canale e restituisce `Ok(value)`. Quando
+abbiamo visto per la prima volta `recv` nel Capitolo 16, abbiamo analizzato direttamente l'errore, o
+abbiamo interagito con esso come un iteratore usando un ciclo `for`. Come mostra il Listato 19-4,
+tuttavia, possiamo anche usare while let, perché il metodo `recv` restituisce `Ok`
+ogni volta che arriva un messaggio, finché il mittente esiste, e poi produce un `Err` una volta che il mittente si disconnette.
 
-### `for` Loops
+### Cicli `for`
 
-In a `for` loop, the value that directly follows the keyword `for` is a
-pattern. For example, in `for x in y`, the `x` is the pattern. Listing 19-5
-demonstrates how to use a pattern in a `for` loop to *destructure*, or break
-apart, a tuple as part of the `for` loop.
+In un ciclo `for`, il valore che segue direttamente la parola chiave `for` è un
+pattern. Ad esempio, in `for x in y`, `x` è il pattern. Il Listato 19-5
+mostra come utilizzare un pattern in un ciclo `for` per *destrutturare*, o scomporre
+una tupla come parte del ciclo `for`.
 
-
-<Listing number="19-5" caption="Using a pattern in a `for` loop to destructure a tuple">
+<Listing number="19-5" caption="Utilizzo di un pattern in un ciclo `for` per destrutturare una tupla">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-05/src/main.rs:here}}
@@ -211,26 +200,25 @@ apart, a tuple as part of the `for` loop.
 
 </Listing>
 
-The code in Listing 19-5 will print the following:
-
+Il codice nel Listato 19-5 stamperà quanto segue:
 
 ```console
 {{#include ../listings/ch19-patterns-and-matching/listing-19-05/output.txt}}
 ```
 
-We adapt an iterator using the `enumerate` method so it produces a value and
-the index for that value, placed into a tuple. The first value produced is the
-tuple `(0, 'a')`. When this value is matched to the pattern `(index, value)`,
-`index` will be `0` and `value` will be `'a'`, printing the first line of the
+Adattiamo un iteratore utilizzando il metodo `enumerate` in modo che produca un valore e
+l'indice per quel valore, inserito in una tupla. Il primo valore prodotto è la
+tupla `(0, 'a')`. Quando questo valore viene confrontato con il pattern `(indice, valore)`,
+`indice` sarà `0` e `valore` sarà ``a``, stampando la prima riga dell'
 output.
 
-### Function Parameters
+### Parametri di Funzione
 
-Function parameters can also be patterns. The code in Listing 19-6, which
-declares a function named `foo` that takes one parameter named `x` of type
-`i32`, should by now look familiar.
+Anche i parametri di funzione possono essere pattern. Il codice nel Listato 19-6, che
+dichiara una funzione chiamata `foo` che accetta un parametro chiamato `x` di tipo
+`i32`, dovrebbe ormai risultare familiare.
 
-<Listing number="19-6" caption="A function signature uses patterns in the parameters">
+<Listing number="19-6" caption="Una firma di funzione usa pattern nei parametri">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-06/src/main.rs:here}}
@@ -238,11 +226,11 @@ declares a function named `foo` that takes one parameter named `x` of type
 
 </Listing>
 
-The `x` part is a pattern! As we did with `let`, we could match a tuple in a
-function’s arguments to the pattern. Listing 19-7 splits the values in a tuple
-as we pass it to a function.
+La parte `x` è un pattern! Come abbiamo fatto con `let`, potremmo abbinare una tupla negli
+argomenti di una funzione al pattern. Il Listato 19-7 suddivide i valori in una tupla
+mentre la passiamo a una funzione.
 
-<Listing number="19-7" file-name="src/main.rs" caption="A function with parameters that destructure a tuple">
+<Listing number="19-7" file-name="src/main.rs" caption="Una funzione con parametri che destrutturano una tupla">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-07/src/main.rs}}
@@ -250,16 +238,16 @@ as we pass it to a function.
 
 </Listing>
 
-This code prints `Current location: (3, 5)`. The values `&(3, 5)` match the
-pattern `&(x, y)`, so `x` is the value `3` and `y` is the value `5`.
+Questo codice stampa `Posizione corrente: (3, 5)`. I valori `&(3, 5)` corrispondono al
+pattern `&(x, y)`, quindi `x` è il valore `3` e `y` è il valore `5`.
 
-We can also use patterns in closure parameter lists in the same way as in
-function parameter lists because closures are similar to functions, as
-discussed in Chapter 13.
+Possiamo anche usare i pattern nelle liste di parametri di chiusura allo stesso modo delle
+liste di parametri di funzione, perché le chiusure sono simili alle funzioni, come
+discusso nel Capitolo 13.
 
-At this point, you’ve seen several ways to use patterns, but patterns don’t
-work the same in every place we can use them. In some places, the patterns must
-be irrefutable; in other circumstances, they can be refutable. We’ll discuss
-these two concepts next.
+A questo punto, avete visto diversi modi per usare i pattern, ma i pattern non
+funzionano allo stesso modo in tutti i casi in cui possiamo usarli. In alcuni casi, i pattern devono
+essere inconfutabili; in altre circostanze, possono essere confutabili. Discuteremo
+questi due concetti più avanti.
 
 [ignoring-values-in-a-pattern]: ch19-03-pattern-syntax.html#ignoring-values-in-a-pattern

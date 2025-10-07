@@ -2,8 +2,8 @@ fn main() {
     // ANCHOR: here
     let v = vec!['a', 'b', 'c'];
 
-    for (index, value) in v.iter().enumerate() {
-        println!("{value} is at index {index}");
+    for (indice, valore) in v.iter().enumerate() {
+        println!("{valore} è all'indice {indice}");
     }
     // ANCHOR_END: here
 }

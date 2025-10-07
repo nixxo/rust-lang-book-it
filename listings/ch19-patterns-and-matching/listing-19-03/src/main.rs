@@ -1,19 +1,19 @@
 fn main() {
-    let favorite_color: Option<&str> = None;
-    let is_tuesday = false;
-    let age: Result<u8, _> = "34".parse();
+    let colore_preferito: Option<&str> = None;
+    let e_martedi = false;
+    let eta: Result<u8, _> = "34".parse();
 
-    if let Some(color) = favorite_color {
-        println!("Using your favorite color, {color}, as the background");
-    } else if is_tuesday {
-        println!("Tuesday is green day!");
-    } else if let Ok(age) = age {
-        if age > 30 {
-            println!("Using purple as the background color");
+    if let Some(color) = colore_preferito {
+        println!("Usando il tuo colore preferito, {color}, come sfondo");
+    } else if e_martedi {
+        println!("Martedì è il giorno verde!");
+    } else if let Ok(eta) = eta {
+        if eta > 30 {
+            println!("Usando il viola come colore di sfondo");
         } else {
-            println!("Using orange as the background color");
+            println!("Usando l'arancione come colore di sfondo");
         }
     } else {
-        println!("Using blue as the background color");
+        println!("Usando il blu come colore di sfondo");
     }
 }

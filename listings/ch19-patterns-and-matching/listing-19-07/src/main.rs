@@ -1,8 +1,8 @@
-fn print_coordinates(&(x, y): &(i32, i32)) {
-    println!("Current location: ({x}, {y})");
+fn stampa_coordinate(&(x, y): &(i32, i32)) {
+    println!("Posizione corrente: ({x}, {y})");
 }
 
 fn main() {
-    let point = (3, 5);
-    print_coordinates(&point);
+    let punto = (3, 5);
+    stampa_coordinate(&punto);
 }
