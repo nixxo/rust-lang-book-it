@@ -1,7 +1,7 @@
 // ANCHOR: here
 use std::slice;
 
-fn spezza_a_mut(valori: &mut [i32], mid: usize) -> (&mut [i32], &mut [i32]) {
+fn split_at_mut(valori: &mut [i32], mid: usize) -> (&mut [i32], &mut [i32]) {
     let len = valori.len();
     let ptr = valori.as_mut_ptr();
 
@@ -18,5 +18,5 @@ fn spezza_a_mut(valori: &mut [i32], mid: usize) -> (&mut [i32], &mut [i32]) {
 
 fn main() {
     let mut vector = vec![1, 2, 3, 4, 5, 6];
-    let (left, right) = spezza_a_mut(&mut vector, 3);
+    let (left, right) = split_at_mut(&mut vector, 3);
 }

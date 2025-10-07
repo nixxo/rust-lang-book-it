@@ -1,7 +1,7 @@
 static mut CONTATORE: u32 = 0;
 
-/// SICUREZZA: Chiamarlo da più di un unico thread alla volta è un comportamento
-/// non definito, *devi* quindi garantire cche verra chiamato da un singolo
+/// SAFETY: Chiamarlo da più di un unico thread alla volta è un comportamento
+/// non definito, *devi* quindi garantire che verra chiamato da un singolo
 /// thread alla volta
 unsafe fn aggiungi_a_contatore(inc: u32) {
     unsafe {
@@ -11,7 +11,7 @@ unsafe fn aggiungi_a_contatore(inc: u32) {
 
 fn main() {
     unsafe {
-        // SICUREZZA: È chiamato da un singolo threan in `main`.
+        // SAFETY: È chiamato da un singolo thread in `main`.
         aggiungi_a_contatore(3);
         println!("CONTATORE: {}", *(&raw const CONTATORE));
     }

@@ -3,7 +3,7 @@ $cargo run
 error[E0499]: cannot borrow `*valori` as mutable more than once at a time
  --> src/main.rs:7:31
   |
-2 | fn spezza_a_mut(valori: &mut [i32], mid: usize) -> (&mut [i32], &mut [i32]) {
+2 | fn split_at_mut(valori: &mut [i32], mid: usize) -> (&mut [i32], &mut [i32]) {
   |                         - let's call the lifetime of this reference `'1`
 ...
 7 |     (&mut valori[..mid], &mut valori[mid..])

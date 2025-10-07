@@ -1,4 +1,4 @@
-## Appendix G - How Rust is Made and “Nightly Rust”
+## Appendice G: Come è Fatto Rust e “Nightly Rust”
 
 This appendix is about how Rust is made and how that affects you as a Rust
 developer.
