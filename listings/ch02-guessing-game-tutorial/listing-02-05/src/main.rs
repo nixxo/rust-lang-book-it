@@ -22,12 +22,12 @@ fn main() {
             .read_line(&mut ipotesi)
             .expect("Errore di lettura");
 
-        // ANCHOR: ch19
+        // ANCHOR: ch20
         let ipotesi: u32 = match ipotesi.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
         };
-        // ANCHOR_END: ch19
+        // ANCHOR_END: ch20
 
         println!("Hai ipotizzato: {ipotesi}");
 

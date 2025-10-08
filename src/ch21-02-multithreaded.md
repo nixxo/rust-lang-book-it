@@ -548,7 +548,7 @@ With these changes, the code compiles! We’re getting there!
 
 Let’s finally implement the `execute` method on `ThreadPool`. We’ll also change
 `Job` from a struct to a type alias for a trait object that holds the type of
-closure that `execute` receives. As discussed in [“Type Synonyms and Type Aliases”][creating-type-synonyms-with-type-aliases]<!-- ignore --> in
+closure that `execute` receives. As discussed in [“Sinonimi e _Alias_ di _Type_”][type-aliases]<!-- ignore --> in
 Chapter 20, type aliases allow us to make long types shorter for ease of use.
 Look at Listing 21-19.
 
@@ -695,7 +695,7 @@ let` (and `if let` and `match`) does not drop temporary values until the end of
 the associated block. In Listing 21-21, the lock remains held for the duration
 of the call to `job()`, meaning other `Worker` instances cannot receive jobs.
 
-[creating-type-synonyms-with-type-aliases]: ch20-03-advanced-types.html#type-synonyms-and-type-aliases
+[type-aliases]: ch20-03-advanced-types.html#sinonimi-e-alias-di-type
 [integer-types]: ch03-02-data-types.html#il-type-intero
 [fn-traits]: ch13-01-closures.html#restituire-i-valori-catturati-dalle-chiusure
 [builder]: https://doc.rust-lang.org/stable/std/thread/struct.Builder.html
