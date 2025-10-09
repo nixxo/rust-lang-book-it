@@ -3,7 +3,7 @@
 Nella maggior parte dei sistemi operativi attuali, il codice di un programma
 viene eseguito in un _processo_ e il sistema operativo gestisce più processi
 contemporaneamente. All’interno di un programma, è possibile avere anche parti
-indipendenti che vengono eseguite simultaneamente. Le funzioni che eseguono
+indipendenti che vengono eseguite simultaneamente. Le funzionalità che eseguono
 queste parti indipendenti sono chiamate _thread_. Ad esempio, un server web
 potrebbe avere più _thread_ in modo da poter rispondere a più richieste
 contemporaneamente.
@@ -33,7 +33,7 @@ modello _1:1_ di implementazione dei _thread_, in base al quale un programma
 utilizza un _thread_ del sistema operativo per ogni _thread_ del linguaggio.
 Esistono dei _crate_ che implementano altri modelli di _threading_ che fanno dei
 compromessi diversi rispetto al modello 1:1. (Anche il sistema _async_ di Rust,
-che vedremo nel prossimo capitolo, fornisce anche un ulteriore approccio alla
+che vedremo nel prossimo capitolo, fornisce un ulteriore approccio alla
 concorrenza.)
 
 ### Creare un Nuovo _Thread_ con `spawn`
@@ -52,10 +52,9 @@ testo da un nuovo _thread_.
 
 </Listing>
 
-Note that when the main thread of a Rust program completes, all spawned threads
-are shut down, whether or not they have finished running. The output from this
-program might be a little different every time, but it will look similar to the
-following:
+Come puoi notare dall’output quando il _thread_ _main_ del programma Rust
+finisce anche il _thread_ generato viene interrotto, che abbia o meno finito di
+fare quello che doveva fare. Eccolo qui:
 
 <!-- Not extracting output because changes to this output aren't significant;
 the changes are likely to be due to the threads running differently rather than
@@ -80,7 +79,7 @@ come il sistema operativo pianifica i _thread_. In questa esecuzione, il
 _thread_ principale ha stampato per primo, anche se l’istruzione di stampa del
 _thread_ generato (_spawned_) appare per prima nel codice. E anche se abbiamo
 detto al _thread_ generato di stampare finché `i` non è `9`, è arrivato solo a
-`5` prima che il _thread_ principale si spegnesse.
+`5` prima che il _thread_ principale si concludesse.
 
 Se esegui questo codice e vedi solo l’output del _thread_ principale o non vedi
 alcuna sovrapposizione, prova ad aumentare i numeri negli intervalli per creare
@@ -95,12 +94,12 @@ possiamo nemmeno garantire che il _thread_ generato venga eseguito!
 
 Possiamo risolvere il problema del _thread_ generato che non viene eseguito o
 che termina prematuramente salvando il valore di ritorno di `thread::spawn` in
-una variabile. Il _type_ di ritorno di `thread::spawn` è `JoinHandle<T>`. Un
+una variabile. Il _type_ restituito da `thread::spawn` è `JoinHandle<T>`. Un
 `JoinHandle<T>` è un valore posseduto che, quando chiamiamo il metodo `join` su
 di esso, aspetterà che il suo _thread_ finisca. Il Listato 16-2 mostra come
 utilizzare il `JoinHandle<T>` del _thread_ creato nel Listato 16-1 e come
 chiamare `join` per assicurarsi che il _thread_ generato finisca prima che
-`main` esca.
+`main` si concluda.
 
 <Listing number="16-2" file-name="src/main.rs" caption="Salvare un `JoinHandle<T>` da `thread::spawn` per garantire che il _thread_ venga eseguito fino al completamento">
 
@@ -213,7 +212,7 @@ _thread_. Ma quando compiliamo questo esempio, otteniamo il seguente errore:
 {{#include ../listings/ch16-fearless-concurrency/listing-16-03/output.txt}}
 ```
 
-Rust _inserisce_ come catturare `v` e, poiché `println!` ha bisogno solo di un
+Rust _inferisce_ come catturare `v` e, poiché `println!` ha bisogno solo di un
 _reference_ a `v`, la chiusura cerca di prendere in prestito `v`. Tuttavia, c’è
 un problema: Rust non può sapere per quanto tempo verrà eseguito il _thread_
 generato, quindi non sa se il _reference_ a `v` sarà sempre valido.
@@ -233,9 +232,9 @@ Se Rust ci permettesse di eseguire questo codice, è possibile che il _thread_
 generato venga immediatamente messo in background senza essere eseguito affatto.
 Il _thread_ generato ha un _reference_ a `v` al suo interno, ma il _thread_
 principale libera immediatamente `v`, utilizzando la funzione `drop` di cui
-abbiamo parlato nel Capitolo 15. Poi, quando il _thread_ generato inizia viene
+abbiamo parlato nel Capitolo 15. Poi, quando il _thread_ generato viene
 eseguito, `v` non è più valido, quindi anche il _reference_ ad esso non è
-valido. Oh no!
+valido. Oh, no!
 
 Per risolvere l’errore del compilatore nel Listato 16-3, possiamo utilizzare i
 consigli del messaggio di errore:
@@ -279,7 +278,7 @@ Otterremmo invece questo errore del compilatore:
 
 Le regole di _ownership_ di Rust ci hanno salvato ancora una volta! Abbiamo
 ricevuto un errore dal codice del Listato 16-3 perché Rust era conservativo e
-prendeva in prestito solo `v` per il _thread_, il che significava che il
+prendeva solo in prestito `v` per il _thread_, il che significava che il
 _thread_ principale poteva teoricamente invalidare il _reference_ del _thread_
 generato. Dicendo a Rust di spostare la _ownership_ di `v` al _thread_ generato,
 garantiamo a Rust che il _thread_ principale non userà più `v`. Se modifichiamo

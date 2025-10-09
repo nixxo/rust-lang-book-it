@@ -14,8 +14,8 @@ prevenire i problemi di concorrenza fossero due sfide distinte da risolvere con
 metodi diversi. Con il tempo, il team ha scoperto che i sistemi di _ownership_ e
 dei _type_ sono un potente insieme di strumenti che aiutano a gestire la
 sicurezza della memoria _e_ i problemi di concorrenza! Sfruttando la _ownership_
-e il controllo dei _type_, molti errori di concorrenza sono rilevati in fase di
-compilazione in Rust piuttosto che presentarsi durante l’esecuzione. Pertanto,
+e il controllo dei _type_, molti errori di concorrenza in Rust sono rilevati in
+fase di compilazione piuttosto che presentarsi durante l’esecuzione. Pertanto,
 invece di farti perdere molto tempo a cercare di riprodurre le circostanze
 esatte in cui si verifica un bug di concorrenza in fase di esecuzione, il codice
 errato non verrà compilato e presenterà un errore che spiega il problema. Di

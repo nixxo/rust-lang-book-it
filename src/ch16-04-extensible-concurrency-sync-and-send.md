@@ -25,7 +25,7 @@ rispetto ad una maggiore sicurezza.
 Pertanto, il sistema dei _type_ di Rust e i vincoli di _trait_ assicurano che
 non si possa mai inviare accidentalmente un valore `Rc<T>` tra i _thread_ in
 modo non sicuro. Quando abbiamo provato a farlo nel Listato 16-14, abbiamo
-ottenuto l’errore `` the trait `Send` is not implemented for `Rc<Mutex<i32>>`.
+ottenuto l’errore `` the trait `Send` is not implemented for `Rc<Mutex<i32>>``.
 Quando siamo passati ad `Arc<T>`, che implementa `Send`, il codice è stato
 compilato.
 
@@ -69,7 +69,6 @@ riflessione per mantenere le garanzie di sicurezza. [“The
 Rustonomicon”][nomicon] contiene maggiori informazioni su queste garanzie e su
 come rispettarle.
 
-## Summary
 ## Riepilogo
 
 Non è l’ultima volta che vedrai la concorrenza in questo libro: il prossimo
@@ -84,9 +83,9 @@ rispetto alla libreria standard, quindi assicurati di cercare online i _crate_
 più aggiornati e all’avanguardia da utilizzare in situazioni in cui necessiti di
 elaborazioni _multi-thread_.
 
-La libreria standard di Rust fornisce canali per il passaggio di messaggi e
-_type_ di puntatori intelligenti, come `Mutex<T>` e `Arc<T>`, che sono sicuri da
-usare in contesti concorrenti. Il sistema dei _type_ e il controllo di prestiti
+La libreria standard di Rust fornisce canali per il passaggio di messaggi e i
+puntatori intelligenti, come `Mutex<T>` e `Arc<T>`, che sono sicuri da usare in
+contesti concorrenti. Il sistema dei _type_ e il controllo di prestiti
 assicurano che il codice che utilizza queste soluzioni non finisca con accessi
 ai dati conflittuali o riferimenti non validi. Una volta che avrai compilato il
 tuo codice, potrai essere certo che verrà eseguito felicemente su più _thread_

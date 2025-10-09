@@ -73,9 +73,9 @@ corrente in modo che non possa svolgere alcuna attività finché non sarà il
 nostro turno di avere il blocco.
 
 La chiamata a `lock` fallirebbe se un altro _thread_ che detiene il lock andasse
-in panico. In questo caso, nessuno sarebbe in grado di ottenere il lock, quindi
-abbiamo scelto di usare `unwrap` e di far andare in panico questo _thread_ se ci
-troviamo in quella situazione.
+in _panic_. In questo caso, nessuno sarebbe in grado di ottenere il lock, quindi
+abbiamo scelto di usare `unwrap` e di far andare in _panic_ questo _thread_ se
+ci troviamo in quella situazione.
 
 Dopo aver acquisito il blocco, possiamo trattare il valore di ritorno, chiamato
 `num` in questo caso, come un _reference_ mutabile ai dati all’interno. Il
@@ -144,7 +144,7 @@ parlato nel Capitolo 15.
 
 Nel Capitolo 15, abbiamo dato un valore a più proprietari utilizzando il
 puntatore intelligente `Rc<T>` per creare un conteggio di _reference_. Facciamo
-lo stesso qui e vediamo cosa succede. Avvolgeremo il `Mutex<T>` in `Rc<T>` nel
+lo stesso qui e vediamo cosa succede. Incapsuleremo il `Mutex<T>` in `Rc<T>` nel
 Listato 16-14 e cloneremo `Rc<T>` prima di spostare la _ownership_ al _thread_.
 
 <Listing number="16-14" file-name="src/main.rs" caption="Tentativo di utilizzare `Rc<T>` per consentire a più _thread_ di possedere il `Mutex<T>`">
@@ -176,7 +176,7 @@ Sfortunatamente, `Rc<T>` non è sicuro da condividere tra i _thread_. Quando
 chiamata a `clone` e sottrae dal conteggio quando ogni clone viene rilasciato.
 Ma non utilizza alcun _type_ primitivo di concorrenza per assicurarsi che le
 modifiche al conteggio non possano essere interrotte da un altro _thread_.
-Questo potrebbe portare a conteggi sbagliati - bug che potrebbero a loro volta
+Questo potrebbe portare a conteggi sbagliati; bug che potrebbero a loro volta
 portare a perdite di memoria o alla de-allocazione di un valore prima che
 abbiamo finito di usarlo. Ciò di cui abbiamo bisogno è un _type_ che sia
 esattamente come `Rc<T>`, ma che apporti modifiche al conteggio dei _reference_
@@ -250,16 +250,16 @@ di un `Arc<T>`.
 
 Un altro dettaglio da notare è che Rust non può proteggerti da tutti i tipi di
 errori logici quando usi `Mutex<T>`. Ricordiamo dal Capitolo 15 che l’uso di
-`Rc<T>` comporta il rischio di creare cicli di riferiemnto, in cui due valori
+`Rc<T>` comporta il rischio di creare cicli di riferimento, in cui due valori
 `Rc<T>` fanno riferimento l’uno all’altro, causando perdite di memoria. Allo
 stesso modo, `Mutex<T>` comporta il rischio di creare dei _deadlock_ (_stallo_).
-Questi si verificano quando un’operazione deve bloccare due risorse e due thread
-hanno acquisito ciascuno uno dei blocchi, facendoli attendere all’infinito l’un
-l’altro. Se ti interessano i _deadlock_, prova a creare un programma Rust che
-abbia un _deadlock_; quindi ricerca le strategie di mitigazione degli stalli per
-i _mutex_ in qualsiasi altro linguaggio e prova a implementarle in Rust. La
-documentazione API della libreria standard per `Mutex<T>` e `MutexGuard` offre
-informazioni utili.
+Questi si verificano quando un’operazione deve bloccare due risorse e due
+_thread_ hanno acquisito ciascuno uno dei blocchi, facendoli attendere
+all’infinito l’un l’altro. Se ti interessano i _deadlock_, prova a creare un
+programma Rust che abbia un _deadlock_; quindi ricerca le strategie di
+mitigazione degli stalli per i _mutex_ in qualsiasi altro linguaggio e prova a
+implementarle in Rust. La documentazione API della libreria standard per
+`Mutex<T>` e `MutexGuard` offre informazioni utili.
 
 Concluderemo questo capitolo parlando dei _trait_ `Send` e `Sync` e di come
 possiamo utilizzarli con i _type_ personalizzati.

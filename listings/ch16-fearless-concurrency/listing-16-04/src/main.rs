@@ -7,7 +7,7 @@ fn main() {
         println!("Ecco un vettore: {v:?}");
     });
 
-    drop(v); // oh no!
+    drop(v); // oh, no!
 
     handle.join().unwrap();
 }
