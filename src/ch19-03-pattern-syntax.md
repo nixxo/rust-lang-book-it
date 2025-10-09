@@ -1,35 +1,35 @@
-## Pattern Syntax
+## Sintassi dei Pattern
 
-In this section, we gather all the syntax that is valid in patterns and discuss
-why and when you might want to use each one.
+In questa sezione, raccogliamo tutta la sintassi valida nei pattern e discutiamo
+perché e quando potresti voler utilizzare ciascuna di esse.
 
-### Matching Literals
+### Corrispondenza di Letterali
 
-As you saw in Chapter 6, you can match patterns against literals directly. The
-following code gives some examples:
+Come hai visto nel Capitolo 6, puoi confrontare i pattern direttamente con i letterali. Il
+codice seguente fornisce alcuni esempi:
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/no-listing-01-literals/src/main.rs:here}}
 ```
 
-This code prints `one` because the value in `x` is `1`. This syntax is useful
-when you want your code to take an action if it gets a particular concrete
-value.
+Questo codice stampa `uno` perché il valore in `x` è `1`. Questa sintassi è utile
+quando vuoi che il codice esegua un'azione se ottiene un particolare valore
+concreto.
 
-### Matching Named Variables
+### Corrispondenza di Variabili Denominate
 
-Named variables are irrefutable patterns that match any value, and we’ve used
-them many times in this book. However, there is a complication when you use
-named variables in `match`, `if let`, or `while let` expressions. Because each
-of these kinds of expressions starts a new scope, variables declared as part of
-a pattern inside these expressions will shadow those with the same name outside
-the constructs, as is the case with all variables. In Listing 19-11, we declare
-a variable named `x` with the value `Some(5)` and a variable `y` with the value
-`10`. We then create a `match` expression on the value `x`. Look at the
-patterns in the match arms and `println!` at the end, and try to figure out
-what the code will print before running this code or reading further.
+Le variabili denominate sono pattern inconfutabili che corrispondono a qualsiasi valore e le abbiamo utilizzate
+molte volte in questo libro. Tuttavia, si verifica una complicazione quando si utilizzano
+variabili con nome nelle espressioni `match`, `if let` o `while let`. Poiché ciascuna
+di queste espressioni inizia un nuovo scope, le variabili dichiarate come parte di
+un pattern all'interno di queste espressioni copriranno quelle con lo stesso nome all'esterno
+dei costrutti, come nel caso di tutte le variabili. Nel Listato 19-11, dichiariamo
+una variabile denominata `x` con il valore `Some(5)` e una variabile `y` con il valore
+`10`. Creiamo quindi un'espressione `match` sul valore `x`. Osserviamo i
+pattern nel campo `match` e `println!` alla fine, e cerchiamo di capire
+cosa stamperà il codice prima di eseguirlo o di proseguire con la lettura.
 
-<Listing number="19-11" file-name="src/main.rs" caption="A `match` expression with an arm that introduces a new variable which shadows an existing variable `y`">
+<Listing number="19-11" file-name="src/main.rs" caption="Un'espressione `match` con un braccio che introduce una nuova variabile che oscura una variabile esistente `y`">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-11/src/main.rs:here}}
@@ -37,69 +37,67 @@ what the code will print before running this code or reading further.
 
 </Listing>
 
-Let’s walk through what happens when the `match` expression runs. The pattern
-in the first match arm doesn’t match the defined value of `x`, so the code
-continues.
+Esaminiamo cosa succede quando viene eseguita l'espressione `match`. Il pattern
+nel primo braccio di corrispondenza non corrisponde al valore definito di `x`, quindi il codice
+continua.
 
-The pattern in the second match arm introduces a new variable named `y` that
-will match any value inside a `Some` value. Because we’re in a new scope inside
-the `match` expression, this is a new `y` variable, not the `y` we declared at
-the beginning with the value `10`. This new `y` binding will match any value
-inside a `Some`, which is what we have in `x`. Therefore, this new `y` binds to
-the inner value of the `Some` in `x`. That value is `5`, so the expression for
-that arm executes and prints `Matched, y = 5`.
+Il pattern nel secondo ramo di corrispondenza introduce una nuova variabile denominata `y` che
+corrisponderà a qualsiasi valore all'interno di un valore `Some`. Poiché ci troviamo in un nuovo ambito all'interno
+dell'espressione `match`, questa è una nuova variabile `y`, non la `y` che abbiamo dichiarato
+all'inizio con il valore `10`. Questo nuovo `y` corrisponderà a qualsiasi valore
+all'interno di `Some`, che è ciò che abbiamo in `x`. Pertanto, questo nuovo `y` si lega al
+valore interno di `Some` in `x`. Quel valore è `5`, quindi l'espressione per
+quel braccio viene eseguita e stampa `Matched, y = 5`.
 
-If `x` had been a `None` value instead of `Some(5)`, the patterns in the first
-two arms wouldn’t have matched, so the value would have matched to the
-underscore. We didn’t introduce the `x` variable in the pattern of the
-underscore arm, so the `x` in the expression is still the outer `x` that hasn’t
-been shadowed. In this hypothetical case, the `match` would print `Default case,
+Se `x` fosse stato un valore `None` invece di `Some(5)`, i pattern nei primi
+due bracci non avrebbero trovato corrispondenza, quindi il valore avrebbe trovato corrispondenza con il
+trattino basso. Non abbiamo introdotto la variabile `x` nel pattern del
+braccio con trattino basso, quindi la `x` nell'espressione è ancora la `x` esterna che non è stata
+ombreggiata. In questo caso ipotetico, `match` stamperebbe `Default case,
 x = None`.
 
-When the `match` expression is done, its scope ends, and so does the scope of
-the inner `y`. The last `println!` produces `at the end: x = Some(5), y = 10`.
+Quando l'espressione `match` è terminata, il suo ambito termina, così come quello della `y` interna. L'ultimo `println!` produce `alla fine: x = Some(5), y = 10`.
 
-To create a `match` expression that compares the values of the outer `x` and
-`y`, rather than introducing a new variable that shadows the existing `y`
-variable, we would need to use a match guard conditional instead. We’ll talk
-about match guards later in [“Adding Conditionals with Match Guards”](#adding-conditionals-with-match-guards)<!-- ignore -->.
+Per creare un'espressione `match` che confronti i valori delle variabili esterne `x` e
+`y`, anziché introdurre una nuova variabile che oscura la variabile `y`
+esistente, dovremmo usare una condizione di controllo della corrispondenza. Parleremo
+delle condizioni di controllo della corrispondenza più avanti in [“Aggiungere espressioni condizionali con le condizioni di controllo della corrispondenza”](#adding-conditionals-with-match-guards)<!-- ignore -->.
 
-### Matching Multiple Patterns
+### Corrispondenza di più Pattern
 
-In `match` expressions, you can match multiple patterns using the `|` syntax,
-which is the pattern _or_ operator. For example, in the following code we match
-the value of `x` against the match arms, the first of which has an _or_ option,
-meaning if the value of `x` matches either of the values in that arm, that
-arm’s code will run:
-
+Nelle espressioni `match`, è possibile confrontare più pattern utilizzando la sintassi `|`,
+che è l'operatore di controllo della corrispondenza _or_. Ad esempio, nel codice seguente confrontiamo
+il valore di `x` con i valori corrispondenti, il primo dei quali ha un'opzione _or_,
+il che significa che se il valore di `x` corrisponde a uno dei valori in quel valore,
+verrà eseguito il codice di quel valore:
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/no-listing-02-multiple-patterns/src/main.rs:here}}
 ```
 
-This code prints `one or two`.
+Questo codice stampa `uno o due`.
 
-### Matching Ranges of Values with `..=`
+### Corrispondenza di Intervalli di Valori con `..=`
 
-The `..=` syntax allows us to match to an inclusive range of values. In the
-following code, when a pattern matches any of the values within the given
-range, that arm will execute:
+La sintassi `..=` ci consente di confrontare un intervallo di valori inclusivo. Nel
+codice seguente, quando un pattern corrisponde a uno qualsiasi dei valori all'interno dell'intervallo
+indicato, quel braccio verrà eseguito:
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/no-listing-03-ranges/src/main.rs:here}}
 ```
 
-If `x` is `1`, `2`, `3`, `4`, or `5`, the first arm will match. This syntax is
-more convenient for multiple match values than using the `|` operator to
-express the same idea; if we were to use `|`, we would have to specify `1 | 2 |
-3 | 4 | 5`. Specifying a range is much shorter, especially if we want to match,
-say, any number between 1 and 1,000!
+Se `x` è `1`, `2`, `3`, `4` o `5`, il primo braccio corrisponderà. Questa sintassi è
+più comoda per più valori di corrispondenza rispetto all'utilizzo dell'operatore `|` per
+esprimere la stessa idea; se dovessimo usare `|`, dovremmo specificare `1 | 2 |
+3 | 4 | 5`. Specificare un intervallo è molto più breve, soprattutto se vogliamo trovare una corrispondenza,
+ad esempio, con un numero qualsiasi compreso tra 1 e 1.000!
 
-The compiler checks that the range isn’t empty at compile time, and because the
-only types for which Rust can tell if a range is empty or not are `char` and
-numeric values, ranges are only allowed with numeric or `char` values.
+Il compilatore verifica che l'intervallo non sia vuoto in fase di compilazione e, poiché
+gli unici tipi per cui Rust può stabilire se un intervallo è vuoto o meno sono `char` e
+i valori numerici, gli intervalli sono consentiti solo con valori numerici o `char`.
 
-Here is an example using ranges of `char` values:
+Ecco un esempio che utilizza intervalli di valori `char`:
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/no-listing-04-ranges-of-char/src/main.rs:here}}

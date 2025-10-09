@@ -3,10 +3,10 @@ fn main() {
     let x = 1;
 
     match x {
-        1 => println!("one"),
-        2 => println!("two"),
-        3 => println!("three"),
-        _ => println!("anything"),
+        1 => println!("uno"),
+        2 => println!("due"),
+        3 => println!("tre"),
+        _ => println!("altro"),
     }
     // ANCHOR_END: here
 }
