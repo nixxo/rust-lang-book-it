@@ -11,14 +11,14 @@
   - [Hello, World!](ch01-02-hello-world.md)
   - [Hello, Cargo!](ch01-03-hello-cargo.md)
 
-- [Programmare un gioco di indovinelli](ch02-00-guessing-game-tutorial.md)
+- [Programmare un Gioco di Indovinelli](ch02-00-guessing-game-tutorial.md)
 
-- [Concetti comuni di programmazione](ch03-00-common-programming-concepts.md)
-  - [Variabili e mutabilità](ch03-01-variables-and-mutability.md)
-  - [Datatype - Tipi di dato](ch03-02-data-types.md)
+- [Concetti Comuni di Programmazione](ch03-00-common-programming-concepts.md)
+  - [Variabili e Mutabilità](ch03-01-variables-and-mutability.md)
+  - [Tipi di Dato](ch03-02-data-types.md)
   - [Funzioni](ch03-03-how-functions-work.md)
   - [Commenti](ch03-04-comments.md)
-  - [Controllare il flusso](ch03-05-control-flow.md)
+  - [Controllare il Flusso](ch03-05-control-flow.md)
 
 - [Capire la _Ownership_](ch04-00-understanding-ownership.md)
   - [Cos’è la _Ownership_?](ch04-01-what-is-ownership.md)
@@ -32,12 +32,12 @@
 
 - [Enumerazioni e Corrispondenza dei _Pattern_](ch06-00-enums.md)
   - [Definire un’_Enum_](ch06-01-defining-an-enum.md)
-  - [Controllare il Flusso col costrutto `Match`](ch06-02-match.md)
+  - [Controllare il Flusso col Costrutto `match`](ch06-02-match.md)
   - [Controllare il Flusso con `if let` e `let else`](ch06-03-if-let.md)
 
 ## Letteratura di Base Rust
 
-- [Gestione di Progetti in Crescita con Pacchetti, _Crate_, e Moduli](ch07-00-managing-growing-projects-with-packages-crates-and-modules.md)
+- [Pacchetti, _Crate_, e Moduli](ch07-00-managing-growing-projects-with-packages-crates-and-modules.md)
   - [Pacchetti e _Crate_](ch07-01-packages-and-crates.md)
   - [Controllare _Scope_ e Privacy con i Moduli](ch07-02-defining-modules-to-control-scope-and-privacy.md)
   - [Percorsi per Fare Riferimento a un Elemento nell’Albero dei Moduli](ch07-03-paths-for-referring-to-an-item-in-the-module-tree.md)

@@ -107,7 +107,7 @@ fn main() {
 Cargo ha generato per te un programma “Hello, world!”, proprio come quello che
 abbiamo scritto nel Listato 1-1! Finora, le differenze tra il nostro progetto e
 quello generato da Cargo sono che Cargo ha inserito il codice nella cartella
-_src_ e che c’è un file di configurazione _Cargo.toml_ nella directory
+_src_, e che c’è un file di configurazione _Cargo.toml_ nella directory
 principale.
 
 Cargo si aspetta che i tuoi file sorgente si trovino all’interno della cartella
@@ -181,7 +181,7 @@ $ cargo run
 Hello, world!
 ```
 
-cargo offre anche un comando chiamato `cargo check`, che controlla rapidamente
+Cargo offre anche un comando chiamato `cargo check`, che controlla rapidamente
 il tuo codice per assicurarsi che venga compilato ma che non produce un
 eseguibile:
 

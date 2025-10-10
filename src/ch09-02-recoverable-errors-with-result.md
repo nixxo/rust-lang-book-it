@@ -320,9 +320,9 @@ l’operatore `?`.
 
 <Listing number="9-7" file-name="src/main.rs" caption="Una funzione che restituisce errori al codice chiamante utilizzando l’operatore `?`">
 
-<!-- Abbiamo deliberatamente evitato di usare rustdoc_include qui; la funzione `main` nel
-file genera un errore. Vogliamo includerla a scopo di sperimentazione per i lettori, ma
-non vogliamo includerla per testare rustdoc. -->
+<!-- Abbiamo deliberatamente evitato di usare rustdoc_include qui; la funzione
+`main` nel file genera un errore. Vogliamo includerla a scopo di sperimentazione
+per i lettori, ma non vogliamo includerla per testare rustdoc. -->
 
 ```rust
 {{#include ../listings/ch09-error-handling/listing-09-07/src/main.rs:here}}
@@ -369,9 +369,9 @@ nel Listato 9-8.
 
 <Listing number="9-8" file-name="src/main.rs" caption="Concatenamento delle chiamate ai metodi dopo l’operatore `?`">
 
-<!-- Qui non si usa deliberatamente rustdoc_include; la funzione `main` nel
-file genera un errore. Vogliamo includerla a scopo di sperimentazione per i lettori, ma
-non vogliamo includerla per i test di rustdoc. -->
+<!-- Qui non si usa deliberatamente rustdoc_include; la funzione `main` nel file
+genera un errore. Vogliamo includerla a scopo di sperimentazione per i lettori,
+ma non vogliamo includerla per i test di rustdoc. -->
 
 ```rust
 {{#include ../listings/ch09-error-handling/listing-09-08/src/main.rs:here}}
@@ -394,9 +394,9 @@ Il Listato 9-9 mostra un modo per renderlo ancora più breve usando
 
 <Listing number="9-9" file-name="src/main.rs" caption="Usare `fs::read_to_string` invece di aprire e poi leggere il file">
 
-<!-- Non usiamo deliberatamente rustdoc_include qui; la funzione `main` nel
-file va in panico. Vogliamo includerla a scopo di sperimentazione del lettore, ma
-non vogliamo includerla a scopo di test di rustdoc. -->
+<!-- Non usiamo deliberatamente rustdoc_include qui; la funzione `main` nel file
+va in panico. Vogliamo includerla a scopo di sperimentazione del lettore, ma non
+vogliamo includerla a scopo di test di rustdoc. -->
 
 ```rust
 {{#include ../listings/ch09-error-handling/listing-09-09/src/main.rs:here}}
@@ -436,8 +436,8 @@ del valore su cui utilizziamo `?`.
 
 Questo codice apre un file, che potrebbe non funzionare. L’operatore `?` segue
 il valore `Result` restituito da `File::open`, ma questa funzione `main` ha come
-_type_ di ritorno `()`, non `Result`. Quando compiliamo questo codice,
-otteniamo il seguente messaggio di errore:
+_type_ di ritorno `()`, non `Result`. Quando compiliamo questo codice, otteniamo
+il seguente messaggio di errore:
 
 ```console
 {{#include ../listings/ch09-error-handling/listing-09-10/output.txt}}
@@ -518,14 +518,16 @@ di `main` in `Result<(), Box<dyn Error>>` e aggiunto un valore di ritorno
 
 </Listing>
 
-Il _type_ `Box<dyn Error>` è un _oggetto trait_, di cui parleremo nel [Capitolo
-18][trait-objects]. Per ora, puoi leggere `Box<dyn Error>` come “qualsiasi
-_type_ di errore”. L’utilizzo di `?` su un valore `Result` in una funzione
-`main` con il _type_ di errore `Box<dyn Error>` è consentito perché consente la
-restituzione anticipata di qualsiasi valore `Err`. Anche se il corpo di questa
-funzione `main` restituirà sempre e solo errori di _type_ `std::io::Error`,
-specificando `Box<dyn Error>`, questa firma continuerà a essere corretta anche
-se al corpo di `main` viene aggiunto altro codice che restituisce altri errori.
+Il _type_ `Box<dyn Error>` è un _oggetto_ _trait_, di cui parleremo in [“Usare
+gli Oggetti _Trait_ per Astrarre Comportamenti Condivisi”][trait-objects]<!--
+ignore --> nel Capitolo 18. Per ora, puoi leggere `Box<dyn Error>` come
+“qualsiasi _type_ di errore”. L’utilizzo di `?` su un valore `Result` in una
+funzione `main` con il _type_ di errore `Box<dyn Error>` è consentito perché
+consente la restituzione anticipata di qualsiasi valore `Err`. Anche se il corpo
+di questa funzione `main` restituirà sempre e solo errori di _type_
+`std::io::Error`, specificando `Box<dyn Error>`, questa firma continuerà a
+essere corretta anche se al corpo di `main` viene aggiunto altro codice che
+restituisce altri errori.
 
 Quando una funzione `main` restituisce `Result<(), E>`, l’eseguibile terminerà
 restituendo un valore di `0` se `main` restituisce `Ok(())` e uscirà con un

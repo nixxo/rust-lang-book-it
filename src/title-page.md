@@ -7,7 +7,8 @@ Questa versione del testo presuppone l’utilizzo di Rust 1.85.0 (rilasciato il
 2025-02-17) o successivo con `edition = "2024"` nel file *Cargo.toml* di tutti i
 progetti per configurarli in modo da utilizzare gli idiomi dell’edizione 2024 di
 Rust. Consulta la sezione [“Installazione” del Capitolo 1][install]<!-- ignore
---> per installare o aggiornare Rust, e vedi l’[Appendice E][appendix-e]<!-- ignore --> per informaszioni sulle varie edizioni.
+--> per installare o aggiornare Rust, e vedi l’[Appendice E][appendix-e]<!--
+ignore --> per informaszioni sulle varie edizioni.
 
 Il libro originale in inglese in formato HTML si trova su
 [https://doc.rust-lang.org/stable/book/](https://doc.rust-lang.org/stable/book/)

@@ -19,7 +19,7 @@ cui partire.
 > parte delle parole chiave ha un significato speciale e le userai per svolgere
 > varie attività nei tuoi programmi Rust; alcune non hanno alcuna funzionalità
 > correntemente associata, ma sono state riservate per le funzionalità che
-> potrebbero essere aggiunte a Rust in futuro. Puoi trovare un elenco delle
+> potrebbero essere aggiunte a Rust in futuro. Puoi trovare l’elenco delle
 > parole chiave nell’[Appendice A][appendix_a]<!-- ignore -->.
 
 [appendix_a]: appendix-01-keywords.md

@@ -1,4 +1,4 @@
-## Datatype - Tipi di Dato
+## Tipi di Dato
 
 Ogni valore in Rust è di un determinato _type_, il che dice a Rust che tipo di
 dati vengono specificati in modo che sappia come lavorare con quei dati.
@@ -27,7 +27,7 @@ vogliamo utilizzare:
 
 Potrai vedere annotazioni di _type_ diverso per altri tipi di dati.
 
-### I Type Scalari
+### I _Type_ Scalari
 
 Un _type scalare_ rappresenta un singolo valore. Rust ha quattro _type_ scalari
 primari: numeri interi, numeri in virgola mobile, booleani e caratteri. Potresti
@@ -53,7 +53,7 @@ dichiarare il _type_ di un valore intero.
 | 32-bit    | `i32`     | `u32`       |
 | 64-bit    | `i64`     | `u64`       |
 | 128-bit   | `i128`    | `u128`      |
-| in base all’architettura | `isize` | `usize` |
+| in base all’Architettura | `isize` | `usize` |
 
 Ogni variante può essere con segno o senza e ha una dimensione esplicita. Con
 _segno_ e _senza segno_ si riferisce alla possibilità che il numero sia
@@ -67,10 +67,10 @@ rappresentazione del [complemento a due][complemento-a-due]<!-- ignore -->.
 
 Ogni variante con segno può memorizzare numeri da -(2<sup>n - 1</sup>) a 2<sup>n
 - 1</sup> - 1 inclusi, dove _n_ è il numero di bit che la variante utilizza.
-Quindi un `i8` può memorizzare numeri da -(2<sup>7</sup>) a 2<sup>7</sup> - 1,
+Quindi, un `i8` può memorizzare numeri da -(2<sup>7</sup>) a 2<sup>7</sup> - 1,
 il che equivale a -128 a 127. Le varianti senza segno possono memorizzare numeri
-da 0 a 2<sup>n</sup> - 1, quindi un `u8` può memorizzare numeri da 0 a
-2<sup>8</sup> - 1, il che equivale a 0 a 255.
+da 0 a 2<sup>n</sup> - 1, quindi un `u8` può memorizzare numeri da 0 a 2
+<sup>8</sup> - 1, il che equivale a 0 a 255.
 
 Inoltre, i _type_ `isize` e `usize` dipendono dall’architettura del computer su
 cui viene eseguito il programma: 64 bit se si tratta di un’architettura a 64 bit
@@ -210,7 +210,7 @@ potrebbe non corrispondere a cosa sia effettivamente un `char` in Rust.
 Discuteremo questo argomento in dettaglio in [“Memorizzare testo codificato
 UTF-8 con le stringhe”][strings]<!-- ignore --> nel Capitolo 8.
 
-### I Type Composti
+### I _Type_ Composti
 
 I _type composti_ possono raggruppare più valori in un unico _type_. Rust ha due
 _type_ composti primitivi: le tuple e gli array.
@@ -342,7 +342,7 @@ In questo esempio, la variabile denominata `primo` otterrà il valore `1` perch�
 è il valore all’indice `[0]` dell’array. La variabile denominata `secondo`
 otterrà il valore `2` dall’indice `[1]` dell’array.
 
-#### Accedere All’Elemento Non Valido dell’Array
+#### Accedere Agli Elementi Non Validi dell’Array
 
 Vediamo cosa succede se cerchi di accedere a un elemento di un array che si
 trova oltre la fine dell’array stesso. Supponiamo di eseguire questo codice,

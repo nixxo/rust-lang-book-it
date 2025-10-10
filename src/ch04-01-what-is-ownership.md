@@ -23,6 +23,7 @@ _ownership_ lavorando su alcuni esempi che si concentrano su una struttura di
 dati molto comune: le stringhe.
 
 > ### Lo _Stack_ e l’_Heap_
+> 
 > Molti linguaggi di programmazione non richiedono di pensare allo _stack_ e
 > all’_heap_ molto spesso. Ma in un linguaggio di programmazione di sistema come
 > Rust, il fatto che un valore sia sullo _stack_ o nell’_heap_ influisce sul
@@ -136,7 +137,7 @@ A questo punto, la relazione tra _scope_ e validità delle variabili è simile a
 quella di altri linguaggi di programmazione. Ora ci baseremo su questa
 comprensione introducendo il _type_ `String`.
 
-### Il _type_ `String`
+### Il _Type_ `String`
 
 Per illustrare le regole di _ownership_, abbiamo bisogno di un tipo di dati più
 complesso di quelli trattati nel [Capitolo 3][data-types]<!-- ignore -->. I
@@ -203,7 +204,7 @@ in fase di compilazione, per contenere il contenuto. Questo significa che:
 - La memoria deve essere richiesta all’allocatore di memoria in fase di
   esecuzione.
 - Abbiamo bisogno di un modo per restituire questa memoria all’allocatore quando
-abbiamo finito con la nostra `String`.
+  abbiamo finito con la nostra `String`.
 
 La prima parte la facciamo noi: quando chiamiamo `String::from`, la sua
 implementazione richiede la memoria di cui ha bisogno. Questo è praticamente
@@ -228,6 +229,7 @@ stringa:
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-02-string-scope/src/main.rs:here}}
 ```
+
 C’è un punto naturale in cui possiamo rilasciare la memoria di cui la nostra
 `String` ha bisogno all’allocatore: quando `s` esce dallo _scope_. Quando una
 variabile esce dallo _scope_, Rust chiama per noi una funzione speciale. Questa
@@ -259,7 +261,7 @@ Il Listato 4-2 mostra un esempio che utilizza un _integer_.
 
 </Listing>
 
-Probabilmente possiamo indovinare cosa sta facendo: “associare il valore `5` a
+Probabilmente possiamo indovinare cosa sta facendo: “Associa il valore `5` a
 `x`; quindi crea una copia del valore in `x` e associala a `y`.” Ora abbiamo due
 variabili, `x` e `y`, ed entrambe uguali a `5`. Questo è effettivamente ciò che
 sta accadendo. Poiché gli _integer_ sono valori semplici con una dimensione
@@ -282,13 +284,14 @@ lunghezza (`len`) e una capienza (`capacity`). Questo gruppo di dati è
 memorizzato sullo _stack_. A destra c’è la memoria nell’_heap_ che contiene il
 contenuto.
 
-<img alt="Due tabelle: la prima tabella contiene la rappresentazione di s1 nello
-stack, composta dalla lunghezza (5), capienza (5), e un puntatore al primo
-valore della seconda tabella. La seconda tabella contiene una rappresentazione
-del contenuto della stringa nell’heap, byte per byte." src="img/trpl04-01.svg"
-class="center" style="width: 50%;" />
+<img src="img/trpl04-01.svg" class="center" style="width: 50%;" alt="Due
+tabelle: la prima tabella contiene la rappresentazione di s1 nello stack,
+composta dalla lunghezza (5), capienza (5), e un puntatore al primo valore della
+seconda tabella. La seconda tabella contiene una rappresentazione del contenuto
+della stringa nell’heap, byte per byte." />
 
-<span class="caption">Figura 4-1: Representazione in memoria di una `String` con valore `"hello"` assegnato a `s1`</span>
+<span class="caption">Figura 4-1: La representazione in memoria di una `String`
+con valore `"hello"` assegnato a `s1`</span>
 
 La lunghezza è la quantità di memoria, in byte, utilizzata attualmente dal
 contenuto della `String`. La capienza è la quantità totale di memoria, in byte,
@@ -301,11 +304,13 @@ il puntatore, la lunghezza e la capienza presenti sullo _stack_. Non copiamo i
 dati nell’_heap_ a cui fa riferimento il puntatore. In altre parole, la
 rappresentazione dei dati in memoria è simile alla Figura 4-2.
 
-<img alt="Tre tabelle: tabella s1 e s2 rappresentano quelle stringhe nello
-stack, indipendentemente, ed entrambe puntano agli stessi dati della stringa
-nell’heap." src="img/trpl04-02.svg" class="center" style="width: 50%;" />
+<img src="img/trpl04-02.svg" class="center" style="width: 50%;" alt="Tre
+tabelle: tabella s1 e s2 rappresentano quelle stringhe nello stack,
+indipendentemente, ed entrambe puntano agli stessi dati della stringa
+nell’heap." />
 
-<span class="caption">Figura 4-2: Rappresentazione in memoria della variabile `s2` che contiene una copia del puntatore, lunghezza e capienza di `s1`</span>
+<span class="caption">Figura 4-2: La rappresentazione in memoria della variabile
+`s2` che contiene una copia del puntatore, lunghezza e capienza di `s1`</span>
 
 La rappresentazione non assomiglia alla Figura 4-3, che è l’aspetto che avrebbe
 la memoria se Rust copiasse anche i dati dell’_heap_. Se Rust facesse così,
@@ -353,13 +358,14 @@ essere chiamata _copia superficiale_, questa operazione è nota come _move_
 (_spostamento_). In questo esempio, diremmo che `s1` è stata _spostata_ in `s2`.
 Quindi, ciò che accade in realtà è mostrato nella Figura 4-4.
 
-<img alt="Tre tabelle: tabelle s1 e s2 rappresentano rispettivamente le quelle
-stringhe sullo stack, ed entrambe puntano alla medesima stringa nell’heap.
-Tabella s1 è scurita perché s1 non è più valida; solo s2 può essere usata per
-accedere ai dati nell’heap." src="img/trpl04-04.svg" class="center"
-style="width: 50%;" />
+<img src="img/trpl04-04.svg" class="center" style="width: 50%;" alt="Tre
+tabelle: tabelle s1 e s2 rappresentano rispettivamente le quelle stringhe sullo
+stack, ed entrambe puntano alla medesima stringa nell’heap. Tabella s1 è scurita
+perché s1 non è più valida; solo s2 può essere usata per accedere ai dati
+nell’heap." />
 
-<span class="caption">Figura 4-4: Rappresentazione in memoria dopo che `s1` è resa non valida</span>
+<span class="caption">Figura 4-4: La rappresentazione in memoria dopo che `s1` è
+resa non valida</span>
 
 Questo risolve il nostro problema! Con la sola `s2` valida, quando essa uscirà
 dallo _scope_, solo lei rilascerà la memoria e il gioco è fatto.
@@ -387,12 +393,13 @@ valore `"hello"`. Poi creiamo immediatamente una nuova `String` con il valore
 riferimento al valore originale nell’_heap_. La Figura 4-5 mostra i dati sullo
 _stack_ e nell’_heap_ al momento:
 
-<img alt="Una tabella rappresenta la stringa sullo stack, che punta ai dati
-della stringa (ciao) nell’heap, con i dati della stringa originale (hello)
-scuriti perché non più accessibili."
-src="img/trpl04-05.svg" class="center" style="width: 50%;" />
+<img src="img/trpl04-05.svg" class="center" style="width: 50%;" alt="Una tabella
+rappresenta la stringa sullo stack, che punta ai dati della stringa (ciao)
+nell’heap, con i dati della stringa originale (hello) scuriti perché non più
+accessibili." />
 
-<span class="caption">Figura 4-5: Rappresentazione in memoria dopo che il primo valore è completamente sostituito.</span>
+<span class="caption">Figura 4-5: La rappresentazione in memoria dopo che il
+primo valore è completamente sostituito.</span>
 
 La stringa originale esce così immediatamente dallo _scope_. Rust eseguirà la
 funzione `drop` su di essa e la sua memoria verrà rilasciata immediatamente.
@@ -533,7 +540,7 @@ concetto che dovrebbe essere comune. Fortunatamente per noi, Rust ha una
 funzionalità che consente di utilizzare un valore senza trasferirne la
 _ownership_, chiamata _riferimento_ (_reference_ in inglese).
 
-[data-types]: ch03-02-data-types.html#datatype---tipi-di-dato
+[data-types]: ch03-02-data-types.html#tipi-di-dato
 [ch8]: ch08-02-strings.html
 [traits]: ch10-02-traits.html
 [derivable-traits]: appendix-03-derivable-traits.html

@@ -1,10 +1,10 @@
 ## Controllare il Flusso
 
 La possibilità di eseguire del codice a seconda che una condizione sia `vera` e
-di eseguire ripetutamente del codice finché una data condizione è `vera` sono
-elementi fondamentali della maggior parte dei linguaggi di programmazione. I
-costrutti più comuni che ti permettono di controllare il flusso di esecuzione
-del codice in Rust sono le espressioni `if` e i cicli.
+la possibilità di eseguire ripetutamente del codice finché una data condizione è
+`vera` sono elementi fondamentali della maggior parte dei linguaggi di
+programmazione. I costrutti più comuni che ti permettono di controllare il
+flusso di esecuzione del codice in Rust sono le espressioni `if` e i cicli.
 
 ### L’Espressione `if`
 
@@ -283,7 +283,7 @@ esce dal ciclo esterno. Questo codice stamperà:
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-32-5-loop-labels/output.txt}}
 ```
 
-#### Semplici Cicli Condizionali con `while`
+#### Semplificare Cicli Condizionali con `while`
 
 Spesso un programma ha bisogno di valutare una condizione all’interno di un
 ciclo. Quando la condizione è `true`, il ciclo viene eseguito. Quando la
@@ -369,8 +369,8 @@ cambierai il numero di valori nell’array, come invece faresti con il metodo
 La sicurezza e la concisione dei cicli `for` li rendono il costrutto di ciclo
 più usato in Rust. Anche nelle situazioni in cui vuoi eseguire un certo numero
 di volte il codice, come nell’esempio del conto alla rovescia che utilizzava un
-ciclo `while` nel Listato 3-3, la maggior parte dei _Rustacean_ userebbe un ciclo
-`for`. Il modo per farlo sarebbe quello di usare un `Range`, fornito dalla
+ciclo `while` nel Listato 3-3, la maggior parte dei _Rustacean_ userebbe un
+ciclo `for`. Il modo per farlo sarebbe quello di usare un `Range`, fornito dalla
 libreria standard, che genera tutti i numeri in sequenza partendo da un numero e
 finendo prima di un altro numero.
 

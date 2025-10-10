@@ -188,7 +188,6 @@ Non c’è un modo sbagliato di leggere questo libro: se vuoi andare avanti, fal
 pure! Potresti dover tornare indietro ai capitoli precedenti se ti senti
 confuso, ma fai quello che va bene per te.
 
-
 Una parte importante del processo di apprendimento di Rust consiste
 nell’imparare a leggere i messaggi di errore visualizzati dal compilatore:
 questi ti guideranno verso un codice funzionante. Per questo motivo, ti

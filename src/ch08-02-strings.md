@@ -17,7 +17,7 @@ differenze tra `String` e le altre collezioni, in particolare come
 l’indicizzazione in una `String` sia complicata dalle differenze tra il modo in
 cui le persone e i computer interpretano i dati `String`.
 
-### Definire una Stringa
+### Definire le Stringhe
 
 Definiremo innanzitutto cosa intendiamo con il termine _stringa_. Rust ha un
 solo _type_ di stringa nel linguaggio principale, ovvero la _slice_ di stringa

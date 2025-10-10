@@ -97,10 +97,10 @@ nel [Capitolo 7][public]<!-- ignore -->.
 > 
 > In C e C++ si usano due operatori diversi per accedere ai membri: si usa `.`
 > quando si lavora direttamente con un oggetto, e `->` quando si lavora con un
-> puntatore all’oggetto e prima bisogna de-referenziarlo. In C++, questi operatori
-> possono essere usati per chiamare i metodi; in C, sono usati solo per accedere
-> ai campi delle _struct_. In altre parole, se `oggetto` è un puntatore,
-> `oggetto->qualcosa()` è simile a `(*oggetto).qualcosa()`.
+> puntatore all’oggetto e prima bisogna de-referenziarlo. In C++, questi
+> operatori possono essere usati per chiamare i metodi; in C, sono usati solo
+> per accedere ai campi delle _struct_. In altre parole, se `oggetto` è un
+> puntatore, `oggetto->qualcosa()` è simile a `(*oggetto).qualcosa()`.
 >
 > Rust non ha un equivalente dell’operatore `->`; invece, Rust ha una
 > funzionalità chiamata _referenziamento e de-referenziamento automatico_

@@ -11,9 +11,9 @@ programma che stampi sullo schermo il testo `Hello, world!`
 > Molti _IDE_ ora hanno un certo grado di supporto per Rust; controlla la
 > documentazione dell’_IDE_ per maggiori dettagli. Il team di Rust si è
 > concentrato sull’integrazione ottima con gli _IDE_ tramite `rust-analyzer`.
-> Vedi > [Appendice D][devtools] per maggiori dettagli.
+> Vedi [Appendice D][devtools]<!-- ignore --> per maggiori dettagli.
 
-### Creare una Directory di Progetto
+### Impostare una Directory dei Progetti
 
 Inizierai creando una directory per memorizzare il tuo codice Rust. Per Rust non
 è importante dove si trovi il tuo codice, ma per gli esercizi e i progetti di
@@ -42,7 +42,7 @@ Per Windows con CMD, digita questo:
 > cd hello_world
 ```
 
-### Scrivere ed Eseguire un Programma Rust
+### Programma Rust Basilare
 
 Adesso crea un nuovo file sorgente e chiamalo _main.rs_. I file di Rust
 terminano sempre con l’estensione _.rs_. Se usi più di una parola nel nome del
@@ -82,8 +82,8 @@ Hello, world!
 
 Indipendentemente dal sistema operativo, la stringa `Hello, world!` dovrebbe
 essere stampata sul terminale. Se non vedi questo output, consulta la sezione
-[“Risolvere i Problemi”][risoluzione-dei-problemi]<!-- ignore --> nel
-capitolo Installazione per trovare aiuto.
+[“Risolvere i Problemi”][risoluzione-dei-problemi]<!-- ignore --> nel capitolo
+Installazione per trovare aiuto.
 
 Se `Hello, world!` è stato stampato, congratulazioni! Hai ufficialmente scritto
 un programma Rust. Questo ti rende un programmatore Rust, benvenuto!

@@ -259,9 +259,9 @@ spostare `stato` fuori dal prestito `&self` del parametro funzione.
 
 Chiamiamo poi il metodo `unwrap`, che sappiamo non andrà mai in _panic_ perché i
 metodi su `Post` assicurano che `stato` conterrà sempre un valore `Some` quando
-quei metodi sono terminati. Questo è uno di quei casi discussi in [“Quando Si
-Hanno Più Informazioni Del Compilatore”][more-info-than-rustc]<!-- ignore -->
-nel Capitolo 9 quando sappiamo che un valore `None` è impossibile, anche se il
+quei metodi sono terminati. Questo è uno di quei casi discussi in [“Quando Hai
+Più Informazioni Del Compilatore”][more-info-than-rustc]<!-- ignore --> nel
+Capitolo 9 quando sappiamo che un valore `None` è impossibile, anche se il
 compilatore non è in grado di inferirlo.
 
 A questo punto, quando chiamiamo `contenuto` su `&Box<dyn Stato>`, la
@@ -511,5 +511,5 @@ In seguito parleremo di _pattern_, un’altra delle caratteristiche di Rust che
 consente molta flessibilità. Li abbiamo visti brevemente in precedenza nel
 libro, ma non ne abbiamo ancora visto tutto il potenziale. Cominciamo!
 
-[more-info-than-rustc]: ch09-03-to-panic-or-not-to-panic.html#quando-si-hanno-più-informazioni-del-compilatore
+[more-info-than-rustc]: ch09-03-to-panic-or-not-to-panic.html#quando-hai-più-informazioni-del-compilatore
 [macros]: ch20-05-macros.html#macro

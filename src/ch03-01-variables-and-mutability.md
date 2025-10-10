@@ -88,9 +88,9 @@ Innanzitutto, non puoi usare `mut` con le costanti. Le costanti non solo sono
 immutabili come impostazione predefinita, sono sempre immutabili. Dichiari le
 costanti usando la parola chiave `const` invece della parola chiave `let` e il
 _type_ del valore _deve_ essere annotato. Tratteremo i _type_ e le annotazioni
-dei _type_ nella prossima sezione, [“Datatype - Tipi di dato”][data-types]<!--
-ignore -->, quindi non preoccuparti dei dettagli in questo momento. Sappi solo
-che devi sempre annotare il _type_.
+dei _type_ nella prossima sezione, [“Tipi di Dato”][data-types]<!-- ignore -->,
+quindi non preoccuparti dei dettagli in questo momento. Sappi solo che devi
+sempre annotare il _type_.
 
 Le costanti possono essere dichiarate in qualsiasi _scope_, compreso quello
 globale, il che le rende utili per i valori che molte parti del codice devono
@@ -166,7 +166,7 @@ Lo _shadowing_ è diverso dall’indicare una variabile come `mut` perché otter
 un errore in fase di compilazione se cercassimo accidentalmente di riassegnare
 questa variabile senza usare la parola chiave `let`. Usando `let`, possiamo
 eseguire alcune trasformazioni su un valore ma far sì che la variabile sia
-immutabile dopo che le trasformazioni sono state completate.
+immutabile dopo che le trasformazioni sono completate.
 
 L’altra differenza tra `mut` e lo _shadowing_ è che, poiché stiamo
 effettivamente creando una nuova variabile quando usiamo di nuovo la parola
@@ -199,6 +199,6 @@ Ora che abbiamo visto il funzionamento delle variabili, passiamo in rassegna le
 varie tipologie di dato, _type_, che possono essere.
 
 [numero-segreto]: ch02-00-guessing-game-tutorial.html#confrontare-lipotesi-con-il-numero-segreto
-[data-types]: ch03-02-data-types.html#datatype---tipi-di-dato
+[data-types]: ch03-02-data-types.html#tipi-di-dato
 [memorizzare-i-valori-con-le-variabili]: ch02-00-guessing-game-tutorial.html#memorizzare-i-valori-con-le-variabili
 [const-eval]: https://doc.rust-lang.org/stable/reference/const_eval.html

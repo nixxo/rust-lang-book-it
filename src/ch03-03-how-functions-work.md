@@ -110,9 +110,9 @@ espressioni, questa è una distinzione importante da capire. Altri linguaggi non
 hanno le stesse distinzioni, quindi vediamo cosa sono le dichiarazioni e le
 espressioni e come le loro differenze influenzano il corpo delle funzioni.
 
-- Le dichiarazioni sono istruzioni che eseguono un’azione e non restituiscono un
-  valore.
-- Le espressioni vengono valutate e restituiscono un valore risultante.
+- Le _dichiarazioni_ sono istruzioni che eseguono un’azione e non restituiscono
+  un valore.
+- Le _espressioni_ vengono valutate e restituiscono un valore risultante.
 
 Vediamo alcuni esempi.
 
@@ -130,7 +130,7 @@ Nel Listato 3-1, `let y = 6;` è una dichiarazione.
 
 Anche la definizione di una funzione è una dichiarazione; l’intero esempio
 precedente è, di per sé, una dichiarazione. (Come vedremo più avanti, però,
-chiamare una funzione non è una dichiarazione)
+chiamare una funzione non è una dichiarazione.)
 
 Le dichiarazioni non restituiscono valori. Pertanto, non puoi assegnare una
 dichiarazione `let` a un’altra variabile, come cerca di fare il codice seguente;

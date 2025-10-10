@@ -17,7 +17,7 @@ promemoria su come funzionano i moduli.
 
 - **Inizia dalla radice del _crate_**: Quando compili un _crate_, il compilatore
   prima cerca nel file di radice del _crate_ (di solito _src/lib.rs_ per un
-  _crate_ _libreria_ o _src/main.rs_ per un _crate_ _binario_) il codice da
+  _crate_ _libreria_ e _src/main.rs_ per un _crate_ _binario_) il codice da
   compilare.
 - **Dichiarare moduli**: Nel file di radice del _crate_, puoi dichiarare nuovi
   moduli; ad esempio, dichiari un modulo “giardino” con `mod giardino;`. Il

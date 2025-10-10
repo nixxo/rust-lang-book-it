@@ -65,7 +65,8 @@ Su Windows, vai su [https://www.rust-lang.org/tools/install][install]<!-- ignore
 dell’installazione, ti verrà richiesto di installare Visual Studio, che fornisce
 un linker e le librerie native necessarie per compilare i programmi. Se hai
 bisogno di aiuto per questo passaggio, consulta
-[https://rust-lang.github.io/rustup/installation/windows-msvc.html][msvc]
+[https://rust-lang.github.io/rustup/installation/windows-msvc.html][msvc]<!--
+ignore -->.
 
 Il resto di questo libro utilizza comandi che funzionano sia in _cmd.exe_ che in
 PowerShell. Se ci sono differenze specifiche, ti spiegheremo quale utilizzare.
@@ -140,14 +141,14 @@ Ogni qual volta hai un dubbio su un _type_ o una funzione fornita dalla libreria
 standard e non sei sicuro di cosa faccia o di come usarla, usa la documentazione
 delle _API_ per scoprirlo!
 
-### Usare Editor di Testo e Ambienti di Sviluppo Integrati (_IDE_)
+### Usare Editor di Testo e _IDE_
 
 Questo libro non fa alcuna ipotesi sugli strumenti che utilizzi per scrivere il
 codice Rust. Qualsiasi editor di testo è in grado di fare il suo lavoro!
-Tuttavia, molti editor di testo e ambienti di sviluppo integrati (_IDE_ d’ora in
-poi) hanno un supporto integrato per Rust. Puoi sempre trovare un elenco
-abbastanza aggiornato di molti editor e _IDE_ nella [pagina degli
-strumenti][tools] sul sito web di Rust.
+Tuttavia, molti editor di testo e _IDE_ (_ambienti di sviluppo integrati_) hanno
+un supporto integrato per Rust. Puoi sempre trovare un elenco abbastanza
+aggiornato di molti editor e _IDE_ nella [pagina degli strumenti][tools] sul
+sito web di Rust.
 
 ### Lavorare Offline con Questo Libro
 

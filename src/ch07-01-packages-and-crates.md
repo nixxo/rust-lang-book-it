@@ -5,11 +5,11 @@ _crate_.
 
 Un _crate_ è la quantità minima di codice che il compilatore Rust considera in
 un dato momento. Anche se esegui `rustc` invece di `cargo` e passi un singolo
-file di codice sorgente (come abbiamo fatto all’inizio in “Scrivere ed eseguire
-un programma Rust” nel Capitolo 1), il compilatore considera quel file come un
-_crate_. I _crate_ possono contenere moduli, e i moduli possono essere definiti
-in altri file che vengono compilati con il _crate_, come vedremo nelle sezioni
-successive.
+file di codice sorgente (come abbiamo fatto all’inizio in [“Programma Rust
+Basilare”][basics]<!-- ignore --> nel Capitolo 1), il compilatore considera quel
+file come un _crate_. I _crate_ possono contenere moduli, e i moduli possono
+essere definiti in altri file che vengono compilati con il _crate_, come vedremo
+nelle sezioni successive.
 
 Un _crate_ può presentarsi in una delle due forme: un _crate_ _binario_ o un
 _crate_ _libreria_. I _crate_ _binari_ sono programmi che puoi compilare in un
@@ -28,8 +28,8 @@ generale di programmazione di una “_libreria_”.
 
 La _radice del crate_ (_crate_ _root_) è un file sorgente da cui il compilatore
 Rust inizia e costituisce il modulo radice del tuo _crate_ (spiegheremo i moduli
-in dettaglio nel capitolo [“Definire Moduli per Controllare _Scope_ e
-Privacy”][modules]<!-- ignore -->).
+in dettaglio nel capitolo [“Controllare _Scope_ e Privacy con i
+Moduli”][modules]<!-- ignore -->).
 
 Un _pacchetto_ (_package_) è un insieme di uno o più _crate_ che fornisce un
 insieme di funzionalità. Un pacchetto contiene un file _Cargo.toml_ che descrive
@@ -75,5 +75,6 @@ libreria, entrambi con lo stesso nome del pacchetto. Un pacchetto può avere pi�
 _crate_ _binari_ posizionando file nella cartella _src/bin_: ogni file sarà un
 _crate_ _binario_ separato.
 
+[basics]: ch01-02-hello-world.html#programma-rust-basilare
 [modules]: ch07-02-defining-modules-to-control-scope-and-privacy.html
 [rand]: ch02-00-guessing-game-tutorial.html#generare-un-numero-casuale

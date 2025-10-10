@@ -135,14 +135,14 @@ di lunghezza di `5`.
 
 La Figura 4-7 mostra questo in un diagramma.
 
-<img alt="Tre tabelle: una tabella che rappresenta i dati dello stack di s, che
-punta al byte all’indice 0 in una tabella dei dati della stringa “hello
-world” nell’heap. La terza tabella rappresenta i dati sullo stack dello
-slice world, che ha un valore di lunghezza di 5 e punta al byte 6 della tabella
-dei dati nell’heap." src="img/trpl04-07.svg" class="center" style="width: 50%;"
-/>
+<img src="img/trpl04-07.svg" class="center" style="width: 50%;" alt="Tre
+tabelle: una tabella che rappresenta i dati dello stack di s, che punta al byte
+all’indice 0 in una tabella dei dati della stringa “hello world” nell’heap. La
+terza tabella rappresenta i dati sullo stack dello slice world, che ha un valore
+di lunghezza di 5 e punta al byte 6 della tabella dei dati nell’heap." />
 
-<span class="caption">Figura 4-7: _Slice_ di stringa che si riferisce a parte di una `String`</span>
+<span class="caption">Figura 4-7: _Slice_ di stringa che si riferisce a parte di
+una `String`</span>
 
 Con la sintassi d’intervallo `..` di Rust, se vuoi iniziare dall’indice 0, puoi
 omettere il valore prima dei due punti. In altre parole, questi sono
@@ -285,8 +285,8 @@ Se abbiamo una _slice_ di stringa, possiamo passarlo direttamente. Se abbiamo
 una `String`, possiamo passare una _slice_ della `String` o un _reference_ alla
 `String`. Questa flessibilità sfrutta la _deref coercions_ (_de-referenziazione
 forzata_), una funzionalità che tratteremo nella sezione [“Usare la
-De-Referenziazione Forzata in Funzioni e Metodi”][deref-coercions] del Capitolo
-15.
+De-Referenziazione Forzata in Funzioni e Metodi”][deref-coercions]<!--ignore-->
+del Capitolo 15.
 
 Definire una funzione che come parametro prende una _slice_ di stringa invece di
 un _reference_ a una `String` rende la nostra funzione più generica e utile

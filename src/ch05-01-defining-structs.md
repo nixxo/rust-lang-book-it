@@ -66,7 +66,7 @@ corpo di una funzione per restituire implicitamente quella nuova istanza.
 
 Il Listato 5-4 mostra la funzione `nuovo_utente` che restituisce un’istanza
 `Utente` con l’email e il nome utente indicati. Il campo `attivo` assume il
-valore di `true` e `numero_accessi` prende il valore di `1`.
+valore `true` e `numero_accessi` prende il valore di `1`.
 
 <Listing number="5-4" file-name="src/main.rs" caption="Una funzione `nuovo_utente` che prende una email e un nome utente per ritornare un’istanza `Utente`">
 
@@ -86,9 +86,9 @@ scorciatoia!
 
 Poiché i nomi dei parametri e i nomi dei campi della _struct_ sono esattamente
 gli stessi, possiamo usare la sintassi di inizializzazione abbreviata dei campi
-(_field init shorthand_) per riscrivere la funzione in modo che si comporti
-esattamente allo stesso modo ma senza la ripetizione di `nome_utente` e `email`,
-come mostrato nel Listato 5-5.
+(_field init shorthand_) per riscrivere la funzione `nuovo_utente` in modo che
+si comporti esattamente allo stesso modo ma senza la ripetizione di
+`nome_utente` e `email`, come mostrato nel Listato 5-5.
 
 <Listing number="5-5" file-name="src/main.rs" caption="Una funzione `nuovo_utente` che usa la sintassi abbreviata perché i campi e i parametri `nome_utente` e `email` hanno lo stesso nome">
 

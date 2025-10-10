@@ -103,7 +103,7 @@ e si rifiuterà di continuare. Proviamo e vediamo:
 ```
 
 Questo errore punta alla riga 4 del nostro _main.rs_, dove tentiamo di accedere
-all’indice `99` del vettore in `v`.
+all’indice 99 del vettore in `v`.
 
 La riga `note:` ci dice che possiamo impostare la variabile d’ambiente
 `RUST_BACKTRACE` per ottenere un _backtrace_ di ciò che ha causato l’errore. Un

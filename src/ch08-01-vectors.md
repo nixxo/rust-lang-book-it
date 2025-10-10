@@ -23,20 +23,20 @@ mostrato nel Listato 8-1.
 Nota che qui abbiamo aggiunto un’annotazione di _type_. Poiché non stiamo
 inserendo alcun valore in questo vettore, Rust non sa che tipo di elementi
 intendiamo memorizzare. Questo è un punto importante. I vettori vengono
-implementati utilizzando i _type_ generici; spiegheremo come utilizzare i
-_type_ generici quando si creano _type_ propri nel Capitolo 10. Per ora,
-sappiamo che il _type_ `Vec<T>` fornito dalla libreria standard può contenere
-qualsiasi _type_. Quando creiamo un vettore per contenere uno specifico _type_,
-possiamo specificarlo tra parentesi angolari. Nel Listato 8-1, abbiamo detto a
-Rust che `Vec<T>` in `v` conterrà elementi di _type_ `i32`.
+implementati utilizzando i _type_ generici; spiegheremo come utilizzare i _type_
+generici quando si creano _type_ propri nel Capitolo 10. Per ora, sappiamo che
+il _type_ `Vec<T>` fornito dalla libreria standard può contenere qualsiasi
+_type_. Quando creiamo un vettore per contenere uno specifico _type_, possiamo
+specificarlo tra parentesi angolari. Nel Listato 8-1, abbiamo detto a Rust che
+`Vec<T>` in `v` conterrà elementi di _type_ `i32`.
 
-Più spesso, si crea un `Vec<T>` con valori iniziali e Rust dedurrà il _type_
-dai valori che si desidera memorizzare, quindi raramente è necessario eseguire
+Più spesso, si crea un `Vec<T>` con valori iniziali e Rust dedurrà il _type_ dai
+valori che si desidera memorizzare, quindi raramente è necessario eseguire
 questa annotazione di _type_. Rust fornisce opportunamente la macro `vec!`, che
 creerà un nuovo vettore contenente i valori che gli vengono assegnati. Il
 Listato 8-2 crea un nuovo `Vec<i32>` che contiene i valori `1`, `2` e `3`. Il
-_type_ intero è `i32` perché è il _type_ intero predefinito, come discusso
-nella sezione [“Tipi di dati”][data-types]<!-- ignore --> del Capitolo 3.
+_type_ intero è `i32` perché è il _type_ intero predefinito, come discusso nella
+sezione [“Tipi di Dato”][data-types]<!-- ignore --> del Capitolo 3.
 
 <Listing number="8-2" caption="Creazione di un nuovo vettore contenente valori">
 
@@ -47,8 +47,8 @@ nella sezione [“Tipi di dati”][data-types]<!-- ignore --> del Capitolo 3.
 </Listing>
 
 Poiché abbiamo assegnato valori iniziali `i32`, Rust può dedurre che il _type_
-di `v` è `Vec<i32>` e l’annotazione di _type_ non è necessaria.
-Successivamente, vedremo come modificare un vettore.
+di `v` è `Vec<i32>` e l’annotazione di _type_ non è necessaria. Successivamente,
+vedremo come modificare un vettore.
 
 ### Aggiornare un Vettore
 
@@ -63,11 +63,10 @@ come mostrato nel Listato 8-3.
 
 </Listing>
 
-Come per qualsiasi variabile, se vogliamo poterne modificare il valore,
-dobbiamo renderla mutabile usando la parola chiave `mut`, come discusso nel
-Capitolo 3. I numeri che inseriamo al suo interno sono tutti di _type_ `i32`, e
-Rust lo deduce dai dati, quindi non abbiamo bisogno dell’annotazione
-`Vec<i32>`.
+Come per qualsiasi variabile, se vogliamo poterne modificare il valore, dobbiamo
+renderla mutabile usando la parola chiave `mut`, come discusso nel Capitolo 3. I
+numeri che inseriamo al suo interno sono tutti di _type_ `i32`, e Rust lo deduce
+dai dati, quindi non abbiamo bisogno dell’annotazione `Vec<i32>`.
 
 ### Leggere Elementi dei Vettori
 
@@ -87,9 +86,9 @@ con la sintassi di indicizzazione e il metodo `get`.
 
 </Listing>
 
-Sono da notare alcuni dettagli. Utilizziamo il valore di indice `2` per
-ottenere il terzo elemento poiché i vettori sono indicizzati per numero, a
-partire da zero. Utilizzando `&` e `[]` otteniamo un _reference_ all’elemento a
+Sono da notare alcuni dettagli. Utilizziamo il valore di indice `2` per ottenere
+il terzo elemento poiché i vettori sono indicizzati per numero, a partire da
+zero. Utilizzando `&` e `[]` otteniamo un _reference_ all’elemento a
 quell’indice. Quando utilizziamo il metodo `get` con l’indice passato come
 argomento, otteniamo un `Option<&T>` che possiamo utilizzare con `match`.
 
@@ -119,21 +118,19 @@ elemento oltre l’intervallo del vettore può verificarsi occasionalmente in
 circostanze normali. Il codice avrà quindi una logica per gestire sia
 `Some(&element)` che `None`, come discusso nel Capitolo 6. Ad esempio, l’indice
 potrebbe provenire da un utente che inserisce un numero. Se inserisce
-accidentalmente un numero troppo grande e il programma ottiene un valore
-`None`, è possibile indicare all’utente quanti elementi sono presenti nel
-vettore corrente e dargli un’altra possibilità di inserire un valore valido.
-Sarebbe più intuitivo che mandare in crash il programma a causa di un errore di
-battitura!
+accidentalmente un numero troppo grande e il programma ottiene un valore `None`,
+è possibile indicare all’utente quanti elementi sono presenti nel vettore
+corrente e dargli un’altra possibilità di inserire un valore valido. Sarebbe più
+intuitivo che mandare in crash il programma a causa di un errore di battitura!
 
 Quando il programma ha un _reference_ valido, il sistema applica le regole di
 _ownership_ e _borrowing_ (trattate nel Capitolo 4) per garantire che questo
 _reference_ e qualsiasi altro _reference_ al contenuto del vettore rimangano
-validi. Ricordati la regola che stabilisce che non è possibile avere
-_reference_ mutabili e immutabili nello stesso _scope_. Questa regola si
-applica al Listato 8-6, dove manteniamo un _reference_ immutabile al primo
-elemento di un vettore e proviamo ad aggiungere un elemento alla fine. Questo
-programma non funzionerà se proviamo a fare _reference_ a quell’elemento anche
-più avanti nella funzione.
+validi. Ricordati la regola che stabilisce che non è possibile avere _reference_
+mutabili e immutabili nello stesso _scope_. Questa regola si applica al Listato
+8-6, dove manteniamo un _reference_ immutabile al primo elemento di un vettore e
+proviamo ad aggiungere un elemento alla fine. Questo programma non funzionerà se
+proviamo a fare _reference_ a quell’elemento anche più avanti nella funzione.
 
 <Listing number="8-6" caption="Tentativo di aggiungere un elemento a un vettore in compresenza di un _reference_ all’oggetto">
 
@@ -191,10 +188,10 @@ Listato 8-8 aggiungerà `50` a ciascun elemento.
 </Listing>
 
 Per modificare il valore a cui punta il _reference_ mutabile, dobbiamo usare
-l’operatore di de-referenziazione `*` per arrivare al valore in `i` prima di poter
-usare l’operatore `+=`. Approfondiremo l’operatore di de-referenziazione nella
-sezione [“Seguire il _Reference_ al Valore”][deref]<!-- ignore --> del Capitolo
-15.
+l’operatore di de-referenziazione `*` per arrivare al valore in `i` prima di
+poter usare l’operatore `+=`. Approfondiremo l’operatore di de-referenziazione
+nella sezione [“Seguire il _Reference_ al Valore”][deref]<!-- ignore --> del
+Capitolo 15.
 
 L’iterazione su un vettore, sia immutabile che mutabile, è sicura grazie alle
 regole di _ownership_ e _borrowing_. Se tentassimo di inserire o rimuovere
@@ -205,22 +202,22 @@ simultanea dell’intero vettore.
 
 ### Utilizzare un’_Enum_ per Memorizzare Più _Type_
 
-I vettori possono memorizzare solo valori dello stesso _type_. Questo può
-essere scomodo; ci sono sicuramente casi d’uso in cui è necessario memorizzare
-un elenco di elementi di _type_ diverso. Fortunatamente, le varianti di
-un’_enum_ sono definite sotto lo stesso _type_ di _enum_, quindi quando abbiamo
-bisogno di un _type_ per rappresentare elementi di tipi diversi, possiamo
-definire e utilizzare un’_enum_!
+I vettori possono memorizzare solo valori dello stesso _type_. Questo può essere
+scomodo; ci sono sicuramente casi d’uso in cui è necessario memorizzare un
+elenco di elementi di _type_ diverso. Fortunatamente, le varianti di un’_enum_
+sono definite sotto lo stesso _type_ di _enum_, quindi quando abbiamo bisogno di
+un _type_ per rappresentare elementi di tipi diversi, possiamo definire e
+utilizzare un’_enum_!
 
 Ad esempio, supponiamo di voler ottenere valori da una riga di un foglio di
-calcolo in cui alcune colonne della riga contengono numeri interi, alcuni
-numeri in virgola mobile e alcune stringhe. Possiamo definire un’_enum_ le cui
-varianti conterranno i diversi tipi di valore, e tutte le varianti dell’_enum_
-saranno considerate dello stesso _type_: quello dell’_enum_. Possiamo adesso
-creare un vettore per contenere quell’_enum_ e quindi, in definitiva, contenere
-_type_ “diversi”. Lo abbiamo dimostrato nel Listato 8-9.
+calcolo in cui alcune colonne della riga contengono numeri interi, alcuni numeri
+in virgola mobile e alcune stringhe. Possiamo definire un’_enum_ le cui varianti
+conterranno i diversi tipi di valore, e tutte le varianti dell’_enum_ saranno
+considerate dello stesso _type_: quello dell’_enum_. Possiamo adesso creare un
+vettore per contenere quell’_enum_ e quindi, in definitiva, contenere _type_
+“diversi”. Lo abbiamo dimostrato nel Listato 8-9.
 
-<Listing number="8-9" caption="Definizione di un `enum` per memorizzare valori di _type_ diversi in un vettore">
+<Listing number="8-9" caption="Definizione di un _enum_ per memorizzare valori di _type_ diversi in un vettore">
 
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-09/src/main.rs:here}}
@@ -270,7 +267,7 @@ vettore stesso è valido.
 
 Passiamo al tipo di collezione successivo: `String`!
 
-[data-types]: ch03-02-data-types.html#datatype---tipi-di-dato
+[data-types]: ch03-02-data-types.html#tipi-di-dato
 [nomicon]: https://doc.rust-lang.org/stable/nomicon/vec/vec.html
 [vec-api]: https://doc.rust-lang.org/stable/std/vec/struct.Vec.html
 [deref]: ch15-02-deref.html#seguire-il-reference-al-valore

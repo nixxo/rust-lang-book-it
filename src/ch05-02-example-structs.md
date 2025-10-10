@@ -80,7 +80,7 @@ e nomi per le parti, come mostrato nel Listato 5-10.
 </Listing>
 
 Qui abbiamo definito una _struct_ e l’abbiamo chiamata `Rettangolo`. All’interno
- delle parentesi graffe, abbiamo definito i campi come `larghezza` e `altezza`,
+delle parentesi graffe, abbiamo definito i campi come `larghezza` e `altezza`,
 entrambi di _type_ `u32`. Poi, in `main`, abbiamo creato un’istanza particolare
 di `Rettangolo` che ha larghezza `30` e altezza `50`.
 

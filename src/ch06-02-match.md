@@ -1,4 +1,4 @@
-## Controllare il Flusso col Costrutto `Match`
+## Controllare il Flusso col Costrutto `match`
 
 Rust offre un costrutto di controllo del flusso estremamente potente chiamato
 `match` (_corrisponde_, _combacia_) che permette di confrontare un valore con

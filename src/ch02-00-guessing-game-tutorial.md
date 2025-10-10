@@ -363,7 +363,7 @@ funzionare:
 ```
 
 Nel file _Cargo.toml_, tutto ciò che segue un’intestazione fa parte di quella
-sezione che continua fino all’inizio di un’altra sezione. In `[dependencies]`
+sezione che continua fino all’inizio di un’altra sezione. In `[dependencies]`,
 indichi a Cargo quali sono i _crate_ esterni da cui dipende il tuo progetto e
 quali sono le versioni di tali _crate_ richieste. In questo caso, specifichiamo
 il _crate_ `rand` con lo specificatore di versione semantica `0.8.5`. Cargo
@@ -477,7 +477,7 @@ aggiornamento esplicito, grazie al file _Cargo.lock_. Poiché il file
 _Cargo.lock_ è importante per la creazione di build riproducibili, spesso viene
 inserito nel controllo sorgente insieme al resto del codice del progetto.
 
-#### Aggiornare un _crate_ per Ottenere una Nuova Versione
+#### Aggiornare un _Crate_ per Ottenere una Nuova Versione
 
 Quando _vuoi_ aggiornare un _crate_, Cargo mette a disposizione il comando
 `update`, che ignorerà il file _Cargo.lock_ e troverà tutte le ultime versioni
@@ -653,11 +653,6 @@ esaminerà l’ultimo ramo in questo scenario.
 
 Tuttavia, il codice del Listato 2-4 non viene compilato. Proviamo:
 
-<!--
-The error numbers in this output should be that of the code **WITHOUT** the
-anchor or snip comments
--->
-
 ```console
 {{#include ../listings/ch02-guessing-game-tutorial/listing-02-04/output.txt}}
 ```
@@ -677,9 +672,8 @@ dell’errore è che Rust non può confrontare una _type_ stringa e un _type_
 numerico.
 
 In definitiva, vogliamo convertire la `String` che il programma legge come input
-in un _type_ numerico in modo da poterlo confrontare numericamente con il
-numero segreto. Lo facciamo aggiungendo questa riga al corpo della funzione
-`main`:
+in un _type_ numerico in modo da poterlo confrontare numericamente con il numero
+segreto. Lo facciamo aggiungendo questa riga al corpo della funzione `main`:
 
 <span class="filename">File: src/main.rs</span>
 
