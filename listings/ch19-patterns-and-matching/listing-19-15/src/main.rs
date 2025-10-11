@@ -1,25 +1,25 @@
-enum Message {
-    Quit,
-    Move { x: i32, y: i32 },
-    Write(String),
-    ChangeColor(i32, i32, i32),
+enum Messaggio {
+    Esci,
+    Muovi { x: i32, y: i32 },
+    Scrivi(String),
+    CambiaColore(i32, i32, i32),
 }
-
+// ANCHOR: here                                         
 fn main() {
-    let msg = Message::ChangeColor(0, 160, 255);
+    let msg = Messaggio::CambiaColore(0, 160, 255);
 
     match msg {
-        Message::Quit => {
-            println!("The Quit variant has no data to destructure.");
+        Messaggio::Esci => {
+            println!("Il variante Esci non ha dati da destrutturare.");
         }
-        Message::Move { x, y } => {
-            println!("Move in the x direction {x} and in the y direction {y}");
+        Messaggio::Muovi { x, y } => {
+            println!("Muovi in direzione x {x} e in direzione y {y}");
         }
-        Message::Write(text) => {
-            println!("Text message: {text}");
+        Messaggio::Scrivi(text) => {
+            println!("Messaggio di testo: {text}");
         }
-        Message::ChangeColor(r, g, b) => {
-            println!("Change color to red {r}, green {g}, and blue {b}");
+        Messaggio::CambiaColore(r, g, b) => {
+            println!("Cambia colore in rosso {r}, verde {g}, e blu {b}");
         }
     }
 }

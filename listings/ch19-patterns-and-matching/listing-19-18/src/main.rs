@@ -1,17 +1,17 @@
 fn main() {
     // ANCHOR: here
-    let mut setting_value = Some(5);
-    let new_setting_value = Some(10);
+    let mut valore_setting = Some(5);
+    let nuovo_valore_setting = Some(10);
 
-    match (setting_value, new_setting_value) {
+    match (valore_setting, nuovo_valore_setting) {
         (Some(_), Some(_)) => {
-            println!("Can't overwrite an existing customized value");
+            println!("Non è possibile sovrascrivere un valore personalizzato esistente");
         }
         _ => {
-            setting_value = new_setting_value;
+            valore_setting = nuovo_valore_setting;
         }
     }
 
-    println!("setting is {setting_value:?}");
+    println!("Valore setting è {valore_setting:?}");
     // ANCHOR_END: here
 }

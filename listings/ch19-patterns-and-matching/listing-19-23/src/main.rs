@@ -1,15 +1,15 @@
 fn main() {
     // ANCHOR: here
-    struct Point {
+    struct Punto {
         x: i32,
         y: i32,
         z: i32,
     }
 
-    let origin = Point { x: 0, y: 0, z: 0 };
+    let origine = Punto { x: 0, y: 0, z: 0 };
 
-    match origin {
-        Point { x, .. } => println!("x is {x}"),
+    match origine {
+        Punto { x, .. } => println!("x è {x}"),
     }
     // ANCHOR_END: here
 }

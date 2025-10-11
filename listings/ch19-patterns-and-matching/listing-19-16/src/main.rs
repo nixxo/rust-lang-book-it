@@ -1,24 +1,24 @@
-enum Color {
+enum Colore {
     Rgb(i32, i32, i32),
     Hsv(i32, i32, i32),
 }
-
-enum Message {
-    Quit,
-    Move { x: i32, y: i32 },
-    Write(String),
-    ChangeColor(Color),
+    
+enum Messaggio {
+    Esci,
+    Muovi { x: i32, y: i32 },
+    Scrivi(String),
+    CambiaColore(Colore),
 }
 
 fn main() {
-    let msg = Message::ChangeColor(Color::Hsv(0, 160, 255));
+    let msg = Messaggio::CambiaColore(Colore::Hsv(0, 160, 255));
 
     match msg {
-        Message::ChangeColor(Color::Rgb(r, g, b)) => {
-            println!("Change color to red {r}, green {g}, and blue {b}");
+        Messaggio::CambiaColore(Colore::Rgb(r, g, b)) => {
+            println!("Cambia colore in rosso {r}, verde {g}, e blu {b}");
         }
-        Message::ChangeColor(Color::Hsv(h, s, v)) => {
-            println!("Change color to hue {h}, saturation {s}, value {v}");
+        Messaggio::CambiaColore(Colore::Hsv(h, s, v)) => {
+            println!("Cambia colore in tonalità {h}, saturazione {s}, valore {v}");
         }
         _ => (),
     }

@@ -3,7 +3,7 @@ $ cargo run
 error: `..` can only be used once per tuple pattern
  --> src/main.rs:5:22
   |
-5 |         (.., second, ..) => {
+5 |         (.., secondo, ..) => {
   |          --          ^^ can only be used once per tuple pattern
   |          |
   |          previously used here

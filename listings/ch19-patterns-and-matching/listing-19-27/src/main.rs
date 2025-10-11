@@ -3,10 +3,10 @@ fn main() {
     let y = 10;
 
     match x {
-        Some(50) => println!("Got 50"),
-        Some(n) if n == y => println!("Matched, n = {n}"),
-        _ => println!("Default case, x = {x:?}"),
+        Some(50) => println!("Ricevuto 50"),
+        Some(n) if n == y => println!("Corrisponde, n = {n}"),
+        _ => println!("Caso predefinito, x = {x:?}"),
     }
 
-    println!("at the end: x = {x:?}, y = {y}");
+    println!("alla fine: x = {x:?}, y = {y}");
 }
