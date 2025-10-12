@@ -181,7 +181,7 @@ che ricevono. Il Listato 9-13 mostra un modo per definire un _type_ `Ipotesi`
 che creerà un’istanza di `Ipotesi` solo se la funzione `new` riceve un valore
 compreso tra 1 e 100.
 
-<Listing number="9-13" caption="Un _type_ `Ipotesi` che continuerà solo con valori compresi tra 1 e 100" file-name="src/gioco_indovinello.rs">
+<Listing number="9-13" file-name="src/gioco_indovinello.rs" caption="Un _type_ `Ipotesi` che continuerà solo con valori compresi tra 1 e 100">
 
 ```rust
 {{#rustdoc_include ../listings/ch09-error-handling/listing-09-13/src/gioco_indovinello.rs}}

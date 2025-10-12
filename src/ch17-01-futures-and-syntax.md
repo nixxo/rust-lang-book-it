@@ -270,7 +270,7 @@ _async_ nel mondo reale), faremo più di una singola chiamata di funzione
 _async_, quindi invece passeremo un blocco `async` ed esplicitamente attendiamo
 il risultato della chiamata `titolo_pagina`, come nel Listato 17-4.
 
-<Listing number="17-4" caption="Eseguire ed attendere un blocco _async_ con `trpl::run`" file-name="src/main.rs">
+<Listing number="17-4" file-name="src/main.rs" caption="Eseguire ed attendere un blocco _async_ con `trpl::run`">
 
 <!-- should_panic,noplayground because mdbook test does not pass args -->
 
@@ -349,7 +349,7 @@ concorrente.
 Nel Listato 17-5, chiamiamo `titolo_pagina` con due URL diversi passati dalla
 riga di comando e li mettiamo a gara.
 
-<Listing number="17-5" caption="Creazione di due _future_ con chiamata a `titolo_pagina` per farle competere tra loro" file-name="src/main.rs">
+<Listing number="17-5" file-name="src/main.rs" caption="Creazione di due _future_ con chiamata a `titolo_pagina` per farle competere tra loro">
 
 <!-- should_panic,noplayground because mdbook does not pass args -->
 

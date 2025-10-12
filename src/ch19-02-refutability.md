@@ -54,7 +54,7 @@ usare `let else`. Quindi, se il pattern non corrisponde, il codice salterà semp
 il codice tra parentesi graffe, consentendogli di continuare validamente. Il Listato
 19-9 mostra come correggere il codice nel Listato 19-8.
 
-<Listing number="19-9" caption="Usare `let...else` e ​​un blocco con pattern confutabili invece di `let`">
+<Listing number="19-9" caption="Usare `let...else` e un blocco con pattern confutabili invece di `let`">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-09/src/main.rs:here}}

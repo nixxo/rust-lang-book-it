@@ -318,9 +318,9 @@ l’operazione `s2 = s1` potrebbe diventare molto dispendiosa in termini
 prestazionali e di memoria qualora i dati nell’_heap_ fossero di grandi
 dimensioni.
 
-<img alt="Quattro tabelle: due tabelle rappresentano i dati sullo stack di s1 e
-s2, ognuna delle quali punta alla propria copia di dati nell’heap."
-src="img/trpl04-03.svg" class="center" style="width: 50%;" />
+<img src="img/trpl04-03.svg" class="center" style="width: 50%;" alt="Quattro
+tabelle: due tabelle rappresentano i dati sullo stack di s1 e s2, ognuna delle
+quali punta alla propria copia di dati nell’heap." />
 
 <span class="caption">Figura 4-3: Un’altra possibilità di come potrebbe essere `s2 = s1` se Rust copiasse anche i dati dell’_heap_</span>
 

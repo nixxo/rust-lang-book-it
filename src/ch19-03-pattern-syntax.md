@@ -61,7 +61,7 @@ Quando l'espressione `match` è terminata, il suo ambito termina, così come que
 Per creare un'espressione `match` che confronti i valori delle variabili esterne `x` e
 `y`, anziché introdurre una nuova variabile che oscura la variabile `y`
 esistente, dovremmo usare una condizione di controllo della corrispondenza. Parleremo
-delle condizioni di controllo della corrispondenza più avanti in [“Aggiungere espressioni condizionali con le condizioni di controllo della corrispondenza”](#adding-conditionals-with-match-guards)<!-- ignore -->.
+delle condizioni di controllo della corrispondenza più avanti in [“Aggiungere espressioni condizionali con le condizioni di controllo della corrispondenza”](#aggiungere-istruzioni-condizionali-con-le-match-guard)<!-- ignore -->.
 
 ### Corrispondenza di più Pattern
 
@@ -253,7 +253,7 @@ i valori che ci interessano separatamente.
 La destrutturazione con i pattern è un modo comodo per utilizzare parti di valori, come
 il valore di ciascun campo in una struttura, separatamente l'uno dall'altro.
 
-### Ignorare i valori in un pattern
+### Ignorare Valori In un _Pattern_
 
 Avete visto che a volte è utile ignorare i valori in un pattern, come
 nell'ultimo ramo di un `match`, per ottenere un catch-all che in realtà non fa
@@ -509,6 +509,7 @@ pattern; la condizione di controllo si applicherà a tutti i pattern. Il Listato
 19-28 mostra la precedenza quando si combina un pattern che utilizza `|` con una clausola di controllo. La parte importante di questo esempio è che la match guard `if y`
 si applica a `4`, `5` e `6`, anche se potrebbe sembrare che `if y`
 si applichi solo a `6`.
+
 <Listing number="19-28" caption="Combinazione di più pattern con una match guard">
 
 ```rust
@@ -580,7 +581,7 @@ L'utilizzo di `@` ci consente di testare un valore e salvarlo in una variabile a
 
 I pattern di Rust sono molto utili per distinguere tra diversi tipi di
 dati. Quando vengono utilizzati nelle espressioni `match`, Rust garantisce che i pattern coprano ogni
-valore possibile, altrimenti il ​​programma non verrà compilato. I pattern nelle istruzioni `let` e
+valore possibile, altrimenti il programma non verrà compilato. I pattern nelle istruzioni `let` e
 nei parametri di funzione rendono questi costrutti più utili, consentendo la
 destrutturazione dei valori in parti più piccole e l'assegnazione di tali parti a
 variabili. Possiamo creare pattern semplici o complessi in base alle nostre esigenze.

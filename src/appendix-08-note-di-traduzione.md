@@ -15,7 +15,7 @@ della traduzione/non-traduzione con una spiegazione della scelta se necessario.
 
 ### Tipi di dato / Strutture Dati
 
-| Terminologia | Termini usati nel libro | Spiegazione Italiano |
+| Terminologia | Termini usati nel libro | Spiegazione |
 | --------- | -------- | -------- |
 | Type      | Type  | Tipo di dato.  |
 | Integer   | Intero |          |
@@ -25,14 +25,14 @@ della traduzione/non-traduzione con una spiegazione della scelta se necessario.
 | Enum      | _Enum_     | Enumerazione |
 | Tuple     | Tupla / Tuple | |
 | Collection | Collezione | |
-| Array     | _Array_    | specificatamente riferito al Type Array |
-| Vector    | Vettore | specificatamente riferito al Type Vector |
+| Array     | _Array_    | specificatamente riferito al _type_ **Array** |
+| Vector    | Vettore | specificatamente riferito al _type_ **Vec** |
 | Hash Map  | Hash Map  | Mappa hash |
 | Slice | _Slice_ | Riferimento ad una porzione di dati |
 | String Slice | _Slice_ di stringa | Riferimento ad una porzione di stringa |
 | --- | --- | --- |
 | Reference | _Reference_ / Riferimento | Riferimento ad una variabile |
-| Trait | _Trait_ | Tratto |
+| Trait | _Trait_ | Tratto, Caratteristica |
 | Trait Bound | Vincolo di _Trait_ | |
 | Handle | Handle | Puntatore ad un thread/processo |
 | String literal | Letterale stringa | |
@@ -49,6 +49,7 @@ della traduzione/non-traduzione con una spiegazione della scelta se necessario.
 | Borrowed Type | _Type_ Preso in prestito | Tipo di dato di cui si è ricevuta la _ownership_ |
 | Owned Type| _Type_ posseduto / _Type_ con _ownership_ | |
 | Borrowing Rules | Regole di prestito | |
+| Lifetime | _Lifetime_ / Longevità | Usato sia termine originale che tradotto per facilità di lettura |
 
 
 
@@ -56,14 +57,13 @@ della traduzione/non-traduzione con una spiegazione della scelta se necessario.
 
 | Terminologia | Termini usati nel libro | Italiano |
 | --------- | -------- | -------- |
-| Lifetime | _Lifetime_ / Longevità | Usato sia termine originale che tradotto per facilità di lettura |
 | Crate | _Crate_ | Contenitore. Mantenuto termine originale per semplicità |
 | Package | Pacchetto |  |
 | Path | _Path_ / Percorso | Percorso file o moduli |
 | Root | _Root_ / Radice / Cartella principale | |
 | Workspace | _Workspace_ / Spazio di lavoro | Spazio di lavoro gestito da Cargo |
 | Namespace | ??? |  |
-| Runtime | Esecuzione | Usato quando si intende l`esecuzione di un programma ecc. |
+| Runtime | Esecuzione | Usato quando si intende l’esecuzione di un programma ecc. |
 | Runtime | _Runtime_ | Usato quando si intende il gestore dei blocchi asincroni (Capitolo 16-17 ecc.) |
 | Closure | Chiusura | Termine che si trova anche in altri linguaggi |
 | Environment | Ambiente | Riferito alle chiusure |
@@ -72,8 +72,8 @@ della traduzione/non-traduzione con una spiegazione della scelta se necessario.
 | Return | Restituire / Ritornare | |
 | Return Value | Valore di ritorno / Valore restituito | |
 | Iterator | Iteratore |
-| Iterator Adapter | Adattatore | Sarebbe "Adattatore all’iteratore" |
-| Consuming Adapters | Consumatore | Sarebbe "Adattatore all’iteratore che consuma l’adattatore" |
+| Iterator Adapter | Adattatore | Sarebbe “Adattatore all’iteratore” |
+| Consuming Adapter | Consumatore | Sarebbe “Adattatore all’iteratore che consuma l’adattatore” |
 | Lazy | _Lazy_ | Pigro / Pigrizia |
 
 ### Rust Asincrono
