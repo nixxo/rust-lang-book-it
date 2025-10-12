@@ -16,8 +16,8 @@ fn main() {
         let tx1_fut = async move {
             let valori = vec![
                 String::from("ciao"),
-                String::from("dal"),
-                String::from("futuro"),
+                String::from("dalla"),
+                String::from("future"),
                 String::from("!!!"),
             ];
 

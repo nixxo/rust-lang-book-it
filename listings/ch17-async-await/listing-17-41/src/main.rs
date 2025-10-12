@@ -47,11 +47,11 @@ fn ricevi_messaggi() -> impl Stream<Item = String> {
 fn ricevi_intervalli() -> impl Stream<Item = u32> {
     let (tx, rx) = trpl::channel();
 
-    // This is *not* `trpl::spawn` but `std::thread::spawn`!
+    // Questo NON è `trpl::spawn` ma `std::thread::spawn`!
     thread::spawn(move || {
         let mut conteggio = 0;
         loop {
-            // Likewise, this is *not* `trpl::sleep` but `std::thread::sleep`!
+            // E questo NON è `trpl::sleep` ma `std::thread::sleep`!
             thread::sleep(Duration::from_millis(1));
             conteggio += 1;
 

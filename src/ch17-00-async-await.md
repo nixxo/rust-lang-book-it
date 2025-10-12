@@ -7,11 +7,11 @@ tecniche per lavorare su più operazioni contemporaneamente: parallelismo e
 concorrenza. Tuttavia, non appena iniziamo a scrivere programmi che coinvolgono
 operazioni parallele o concorrenti, ci imbattiamo rapidamente in nuove sfide
 intrinseche alla _programmazione asincrona_, dove le operazioni potrebbero non
-finire sequenzialmente nell’ordine in cui sono state avviate. Questo capitolo si
-basa sull’uso dei _thread_ per parallelismo e concorrenza del Capitolo 16,
-introducendo un approccio alternativo alla programmazione asincrona: i _Future_
-, gli _Stream_, la sintassi `async` e `await` che li supporta, e gli strumenti
-per gestire e coordinare operazioni asincrone.
+finire sequenzialmente nell’ordine in cui sono state avviate. Questo capitolo
+espande quanto spiegato nel Capitolo 16 sull’uso dei _thread_ per parallelismo e
+concorrenza, introducendo un approccio alternativo alla programmazione
+asincrona: i _Future_ , gli _Stream_, la sintassi `async` e `await` che li
+supporta, e gli strumenti per gestire e coordinare operazioni asincrone.
 
 Consideriamo un esempio. Immagina di esportare un video che hai creato di una
 celebrazione familiare, un’operazione che potrebbe durare da alcuni minuti a
@@ -60,7 +60,7 @@ progresso del programma finché i dati che stanno elaborando non sono
 completamente pronti.
 
 > Nota: È così che funzionano la _maggior parte_ delle chiamate di funzione, se
-> ci pensate. Tuttavia, il termine _bloccante_ è solitamente riservato per
+> ci pensi. Tuttavia, il termine _bloccante_ è solitamente riservato per
 > chiamate di funzioni che interagiscono con file, rete o altre risorse del
 > computer, perché questi sono i casi in cui un singolo programma trarrebbe
 > beneficio se l’operazione fosse non-bloccante.
@@ -72,8 +72,8 @@ bloccasse fin dall’inizio. Sarebbe anche meglio se potessimo scrivere nello
 stesso stile diretto che usiamo nel codice bloccante, qualcosa di simile a:
 
 ```rust,ignore,does_not_compile
-let data = fetch_data_from(url).await;
-println!("{data}");
+let dati = ricevi_dati_da(url).await;
+println!("{dati}");
 ```
 
 Proprio questo è ciò che l’astrazione _async_ di Rust ci offre. In questo
@@ -82,7 +82,7 @@ capitolo, imparerai tutto su _async_ mentre affronteremo i seguenti argomenti:
 - Come usare la sintassi `async` e `await` di Rust
 - Come usare il modello _async_ per risolvere alcune delle sfide che abbiamo
   esaminato nel Capitolo 16
-- Come multi-threading e _async_ forniscono soluzioni complementari, che in
+- Come _multi-threading_ e _async_ forniscono soluzioni complementari, che in
   molti casi puoi combinare
 
 Prima di vedere come _async_ funziona nella pratica, però, dobbiamo fare una
@@ -105,17 +105,26 @@ Sei una sola persona, quindi non puoi fare progressi su entrambi i compiti
 esattamente nello stesso momento, ma puoi fare multi-tasking, facendo progressi
 su uno alla volta passando dall’uno all’altro (vedi Figura 17-1).
 
-<img src="img/trpl17-01.svg" class="center" alt="Un diagramma con riquadri etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti. Ci sono frecce che vanno da A1 a B1, B1 a A2, A2 a B2, B2 a A3, A3 a A4, e A4 a B3. Le frecce tra i sotto-compiti attraversano i riquadri tra Compito A e Compito B." />
+<img src="img/trpl17-01.svg" class="center" alt="Un diagramma con riquadri
+etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti.
+Ci sono frecce che vanno da A1 a B1, B1 a A2, A2 a B2, B2 a A3, A3 a A4, e A4 a
+B3. Le frecce tra i sotto-compiti attraversano i riquadri tra Compito A e
+Compito B." />
 
-<span class="caption">Figura 17-1: Un flusso di lavoro concorrente, passando tra Compito A e Compito B</span>
+<span class="caption">Figura 17-1: Un flusso di lavoro concorrente, passando tra
+Compito A e Compito B</span>
 
 Quando il team divide un insieme di compiti facendo sì che ogni membro prenda un
 compito e lo porti avanti da solo, questo è _parallelismo_. Ogni persona del
 team può fare progressi esattamente nello stesso momento (vedi Figura 17-2).
 
-<img src="img/trpl17-02.svg" class="center" alt="Un diagramma con riquadri etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti. Ci sono frecce che vanno da A1 a A2, A2 a A3, A3 a A4, B1 a B2, e B2 a B3. Nessuna freccia attraversa tra i riquadri di Compito A e Compito B." />
+<img src="img/trpl17-02.svg" class="center" alt="Un diagramma con riquadri
+etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti.
+Ci sono frecce che vanno da A1 a A2, A2 a A3, A3 a A4, B1 a B2, e B2 a B3.
+Nessuna freccia attraversa tra i riquadri di Compito A e Compito B." />
 
-<span class="caption">Figura 17-2: Un flusso di lavoro parallelo, dove il lavoro avviene sui Compiti A e B indipendentemente</span>
+<span class="caption">Figura 17-2: Un flusso di lavoro parallelo, dove il lavoro
+avviene sui Compiti A e B indipendentemente</span>
 
 In entrambi questi flussi di lavoro, potresti dover coordinare tra diversi
 compiti. Forse _pensavi_ che il compito assegnato a una persona fosse totalmente
@@ -125,9 +134,15 @@ essere eseguita in parallelo, ma parte di esso sarebbe effettivamente _seriale_:
 potrebbe avvenire solo in serie, un compito dopo l’altro, come nella Figura
 17-3.
 
-<img src="img/trpl17-03.svg" class="center" alt="Un diagramma con riquadri etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti. Ci sono frecce che vanno da A1 a A2, A2 a un paio di linee verticali spesse come un simbolo di “pausa”, da quel simbolo a A3, B1 a B2, B2 a B3, che è sotto quel simbolo, B3 a A3, e B3 a B4." />
+<img src="img/trpl17-03.svg" class="center" alt="Un diagramma con riquadri
+etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti.
+Ci sono frecce che vanno da A1 a A2, A2 a un paio di linee verticali spesse come
+un simbolo di “pausa”, da quel simbolo a A3, B1 a B2, B2 a B3, che è sotto quel
+simbolo, B3 a A3, e B3 a B4." />
 
-<span class="caption">Figura 17-3: Un flusso di lavoro parzialmente parallelo, dove il lavoro sui Compiti A e B procede indipendentemente finché A3 non è bloccato aspettando i risultati di B3.</span>
+<span class="caption">Figura 17-3: Un flusso di lavoro parzialmente parallelo,
+dove il lavoro sui Compiti A e B procede indipendentemente finché A3 non è
+bloccato aspettando i risultati di B3.</span>
 
 Allo stesso modo, potresti renderti conto che uno dei tuoi compiti dipende da un
 altro dei tuoi compiti. Ora il tuo lavoro concorrente è diventato seriale.

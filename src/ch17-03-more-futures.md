@@ -1,4 +1,4 @@
-### Lavorare con un Numero Qualsiasi di _Future_
+## Lavorare con un Numero Qualsiasi di _Future_
 
 Quando siamo passati dall’usare due _future_ a tre nella sezione precedente,
 abbiamo dovuto passare da `join` a `join3`. Sarebbe fastidioso dover chiamare
@@ -19,8 +19,8 @@ di `join3`, come nel Listato 17-14.
 Questo è sicuramente un miglioramento rispetto allo scambio tra `join` e `join3`
 e `join4` e così via! Tuttavia, anche questa macro funziona solo quando
 conosciamo il numero di _future_ in anticipo. Nel mondo reale di Rust, tuttavia,
-spingere _future_ in una collezione e poi aspettare che alcune o tutte le
-_future_ si completino è una cosa comune.
+mettere le _future_ in una collezione e poi aspettare che alcune o tutte le
+_future_ si completino è il modello più comune.
 
 Per controllare tutte le _future_ in una qualche collezione, dovremo iterare e
 unire su _tutte_ loro. La funzione `trpl::join_all` accetta qualsiasi _type_ che
@@ -45,28 +45,28 @@ Purtroppo, questo codice non si compila. Invece, otteniamo questo errore:
 
 Questo potrebbe essere sorprendente. Dopotutto, nessuno dei blocchi _async_
 restituisce nulla, quindi ciascuno produce un `Future<Output = ()>`. Ricorda che
-`Future` è un _trait_, e che il compilatore crea una _enum_ unica per ogni
+`Future` è un _trait_, e che il compilatore crea una _enum_ univoca per ogni
 blocco _async_. Non puoi mettere due _struct_ scritte a mano diverse in un
 `Vec`, e la stessa regola si applica alle _enum_ diverse generate dal
 compilatore.
 
-Per farlo funzionare, dobbiamo usare oggetti _trait_, proprio come abbiamo fatto
-in [“Restituire Errori dalla Funzione `esegui`”][dyn]<!-- ignore --> nel
+Per farlo funzionare, dobbiamo usare gli oggetti _trait_, proprio come abbiamo
+fatto in [“Restituire Errori dalla Funzione `esegui`”][dyn]<!-- ignore --> nel
 Capitolo 12. (Parleremo degli oggetti _trait_ in dettaglio nel Capitolo 18.)
 Usare oggetti _trait_ ci permette di trattare ciascuna delle _future_ anonime
 prodotte da questi _type_ come fossero il medesimo _type_, perché tutti
 implementano il _trait_ `Future`.
 
-> Nota: In [“Utilizzare un’_Enum_ per Memorizzare Più _Type_”][enum-alt]<!--
-> ignore --> nel Capitolo 8, abbiamo discusso un altro modo per includere più
-> _type_ in un `Vec`: usando una _enum_ per rappresentare ciascun _type_ che può
-> apparire nel vettore. Non possiamo farlo qui, però. Per prima cosa, non
-> abbiamo modo di nominare i diversi _type_, perché sono anonimi. Inoltre, il
-> motivo per cui abbiamo aggiunto un vettore e `join_all` in primo luogo era per
-> poter lavorare con una collezione dinamica di _future_ dove ci importa solo
-> che abbiano lo stesso tipo di output.
+> Nota: In [“Utilizzare un’_Enum_ per Memorizzare Più _Type_”][enum-alt]<!--ignore -->
+> nel Capitolo 8, abbiamo discusso un altro modo per includere più _type_ in un
+> `Vec`: usando una _enum_ per rappresentare ciascun _type_ che può apparire nel
+> vettore. Non possiamo farlo qui, però. Per prima cosa, non abbiamo modo di
+> nominare i diversi _type_, perché sono anonimi. Inoltre, il motivo per cui
+> abbiamo aggiunto un vettore e `join_all` in primo luogo era per poter lavorare
+> con una collezione dinamica di _future_ dove ci importa solo che abbiano lo
+> stesso tipo di output.
 
-Iniziamo incapsulando ciascun _future_ nel `vec!` in una `Box::new`, come
+Iniziamo incapsulando ciascuna _future_ nel `vec!` in una `Box::new`, come
 mostrato nel Listato 17-16.
 
 <Listing number="17-16" caption="Usare `Box::new` per allineare i _type_ delle _future_ in un `Vec`" file-name="src/main.rs">
@@ -78,11 +78,11 @@ mostrato nel Listato 17-16.
 </Listing>
 
 Purtroppo, questo codice non si compila ancora. In realtà, otteniamo lo stesso
-errore di base che abbiamo ottenuto prima per entrambe le chiamate `Box::new`
-seconda e terza, oltre a nuovi errori che fanno riferimento al _trait_ `Unpin`.
-Torneremo agli errori `Unpin` tra un momento. Prima, correggiamo gli errori di
-_type_ sulle chiamate `Box::new` annotando esplicitamente il _type_ della
-variabile `future` come nel Listato 17-17.
+errore di base che abbiamo ottenuto prima sia per la seconda che la terza
+chiamata a `Box::new` , oltre a nuovi errori che fanno riferimento al _trait_
+`Unpin`. Torneremo sugli errori `Unpin` tra un momento. Prima, correggiamo gli
+errori di _type_ sulle chiamate `Box::new` annotando esplicitamente il _type_
+della variabile `future` come nel Listato 17-17.
 
 <Listing number="17-17" caption="Correggere il resto degli errori di _type_ non corrispondente usando una dichiarazione di _type_ esplicita" file-name="src/main.rs">
 
@@ -95,12 +95,12 @@ variabile `future` come nel Listato 17-17.
 Questa dichiarazione di _type_ è un po' complicata, quindi descriviamola pezzo
 per pezzo:
 
-1. Il _type_ più interno è il _future_ stesso. Annotiamo esplicitamente che
-   l’output del _future_ è il _type_ unitario `()` scrivendo `Future<Output =
+1. Il _type_ più interno è la _future_ stessa. Annotiamo esplicitamente che
+   l’output della _future_ è il _type_ unitario `()` scrivendo `Future<Output =
    ()>`.
-2. Quindi annotiamo il _trait_ con `dyn` per marcarlo come dinamico.
-3. L’intero riferimento al _trait_ è incapsulato in una `Box`.
-4. Infine, dichiariamo esplicitamente che `future` è un `Vec` che contiene
+1. Quindi annotiamo il _trait_ con `dyn` per marcarlo come dinamico.
+1. L’intero _reference_ al _trait_ è incapsulato in una `Box`.
+1. Infine, dichiariamo esplicitamente che `future` è un `Vec` che contiene
    questi elementi.
 
 Questo ha già fatto una grande differenza. Ora, quando eseguiamo la
@@ -134,9 +134,9 @@ Se compiliamo ed eseguiamo questo, otteniamo finalmente l’output che speravamo
 ```text
 ricevuto 'ciao'
 ricevuto 'altri'
-ricevuto 'dal'
+ricevuto 'dalla'
 ricevuto 'messaggi'
-ricevuto 'futuro'
+ricevuto 'future'
 ricevuto 'per'
 ricevuto '!!!'
 ricevuto 'te'
@@ -150,9 +150,9 @@ piccola quantità di _overhead_ perché mettiamo queste _future_ nell’_heap_ c
 non abbiamo bisogno dell’allocazione nell’_heap_: queste _future_ sono locali a
 questa particolare funzione. Come notato prima, `Pin` è esso stesso un _type_ di
 incapsulamento, quindi possiamo ottenere il beneficio di avere un singolo _type_
-nel `Vec`, la ragione originale per cui stiamo usando `Box`, senza fare
-un’allocazione nell’_heap_. Possiamo usare `Pin` direttamente con ciascuna
-_future_, usando la macro `std::pin::pin`.
+nel `Vec`, la ragione per cui abbiamo usato `Box`, senza fare un’allocazione
+nell’_heap_. Possiamo perciò usare `Pin` direttamente con ciascuna _future_,
+usando la macro `std::pin::pin`.
 
 Tuttavia, dobbiamo ancora essere espliciti sul _type_ del _reference_ fissato;
 altrimenti, Rust non saprà di interpretare questi come oggetti _trait_ dinamici,
@@ -201,7 +201,7 @@ anche se abbiamo una bella sintassi per lavorare con loro, e questo è un bene.
 Quando “uniamo” le _future_ con la famiglia di funzioni e macro `join`,
 richiediamo che _tutte_ finiscano prima di andare avanti. A volte, però, abbiamo
 bisogno che solo _alcune_ _future_ di un insieme finiscano prima di proseguire,
-un po' mettere in competizione una _future_ contro un’altra.
+un po' come mettere in competizione una _future_ contro un’altra.
 
 Nel Listato 17-21, utilizziamo di nuovo `trpl::race` per eseguire due _future_,
 `lenta` e `veloce`, l’una contro l’altra.
@@ -224,7 +224,7 @@ semplicemente l’istanza `Either` che restituisce, perché tutto il comportamen
 interessante avviene nel corpo dei blocchi _async_.
 
 Nota che se inverti l’ordine degli argomenti a `race`, l’ordine dei messaggi
-"iniziati" cambia, anche se la _future_ `veloce` si conclude sempre per prima.
+“iniziati” cambia, anche se la _future_ `veloce` si conclude sempre per prima.
 Questo perché l’implementazione di questa particolare funzione `race` non è
 equa. Esegue sempre le _future_ passate come argomenti nell’ordine in cui sono
 passate. Altre implementazioni _sono_ eque e sceglieranno casualmente quale
@@ -235,7 +235,7 @@ al primo `await` nel suo corpo prima che un’altra attività possa iniziare.
 Ricorda da [“Il Nostro Primo Programma _Async_”][async-program]<!-- ignore -->
 che ad ogni punto di attesa, Rust dà a un _runtime_ la possibilità di mettere in
 pausa l’attività e passare a un’altra se la _future_ in attesa non è pronta.
-L’inverso è anche vero: Rust _mette in pausa_ solo i blocchi _async_ e
+Anche l’inverso è vero: Rust _mette in pausa_ solo i blocchi _async_ e
 restituisce il controllo a un _runtime_ in un punto di attesa. Tutto ciò che si
 trova tra i punti di attesa è sincrono.
 
@@ -275,7 +275,7 @@ reale che sono sia a lungo termine che bloccanti.
 Nel Listato 17-23, utilizziamo `lenta` per emulare questo tipo di lavoro legato
 alla CPU in un paio di _future_.
 
-<Listing number="17-23" caption="Utilizzo di `thread::sleep` per simulare operazioni lente" file-name="src/main.rs">
+<Listing number="17-23" file-name="src/main.rs" caption="Due _future_ che utilizzano la funzione `lenta` per simulare operazioni di lunga durata">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-23/src/main.rs:slow-futures}}
@@ -283,9 +283,8 @@ alla CPU in un paio di _future_.
 
 </Listing>
 
-Per cominciare, ogni future restituisce il controllo al runtime _dopo_ aver
-eseguito un sacco di operazioni lente. Se esegui questo codice, vedrai questo
-output:
+Per cominciare, ogni future restituisce il controllo al _runtime_ _dopo_ aver
+eseguito alcune operazioni lente. Se esegui questo codice, vedrai questo output:
 
 ```text
 'a' iniziata.
@@ -301,7 +300,7 @@ output:
 ```
 
 Come nel nostro esempio precedente, `race` termina non appena `a` è completata.
-Non c’è intreccio tra le due _future_, però. La _future_ `a` fa tutto il suo
+Non c’è “intreccio” tra le due _future_, però. La _future_ `a` fa tutto il suo
 lavoro fino a quando la chiamata a `trpl::sleep` è in attesa, poi la _future_
 `b` fa tutto il suo lavoro fino a quando la sua chiamata a `trpl::sleep` è in
 attesa, e infine la _future_ `a` finisce. Per consentire a entrambe le _future_
@@ -315,7 +314,7 @@ propria esecuzione senza che la _future_ `b` nemmeno cominciasse. Proviamo a
 utilizzare la funzione `sleep` come punto di partenza per consentire alle
 operazioni di alternarsi nel fare progressi, come mostrato nel Listato 17-24.
 
-<Listing number="17-24" caption="Utilizzo di `sleep` per consentire alle operazioni di alternarsi nel fare progressi" file-name="src/main.rs">
+<Listing number="17-24" file-name="src/main.rs" caption="Utilizzo di `sleep` per consentire alle operazioni di alternarsi nel fare progressi">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-24/src/main.rs:here}}
@@ -383,6 +382,11 @@ nanosecondo a `trpl::sleep`, e lasciamo che ogni _future_ giri da sola, senza
 alternarci tra le _future_. Poi eseguiamo per 1.000 iterazioni e vediamo quanto
 tempo impiega la _future_ che utilizza `trpl::sleep` rispetto alla _future_ che
 utilizza `trpl::yield_now`.
+
+```console
+versione 'sleep' finita dopo 1.1282331 secondi.
+versione 'yield' finita dopo 0.000536924 secondi.
+```
 
 La versione con `yield_now` è _di gran lunga_ più veloce!
 
@@ -473,7 +477,7 @@ Nel Listato 17-29, facciamo il _match_ sul risultato dell’attesa di
 
 Se `future_da_testare` ha successo e otteniamo un `Left(output)`, restituiamo
 `Ok(output)`. Se invece il _timer_ finisce prima e otteniamo un `Right(())`,
-ignoriamo il `()` con `_` e restituiamo `Err(max_time)`.
+ignoriamo il `()` con `_` e restituiamo `Err(tempo_massimo)`.
 
 Con questo, abbiamo un `timeout` funzionante combinando più blocchi _async_. Se
 eseguiamo il nostro codice, stamperà la modalità di errore dopo il timeout:

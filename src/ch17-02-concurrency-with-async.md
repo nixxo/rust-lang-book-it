@@ -1,7 +1,7 @@
 ## Applicare la Concorrenza con _Async_
 
 In questa sezione, vedremo come usare _async_ per affrontare alcune sfide di
-concorrenza che abbiamo già visto con i _thread_ nel capitolo 16. Dato che
+concorrenza che abbiamo già visto con i _thread_ nel Capitolo 16. Dato che
 abbiamo già parlato dei concetti chiave, ci concentreremo sulle differenze tra
 _thread_ e _future_.
 
@@ -39,10 +39,10 @@ modo che la nostra funzione di livello superiore possa essere _async_.
 Poi scriviamo due loop all’interno di quel blocco, ciascuno contenente una
 chiamata a `trpl::sleep`, che aspetta mezzo secondo (500 millisecondi) prima di
 inviare il prossimo messaggio. Mettiamo un loop nel corpo di un
-`trpl::spawn_task` e l’altro in un ciclo `for` di livello superiore. Aggiungiamo
+`trpl::spawn_task` e l’altro è un ciclo `for` nel _task_ principale. Aggiungiamo
 anche un `await` dopo le chiamate `sleep`.
 
-Questo codice si comporta in modo simile all’implementazione basata su thread,
+Questo codice si comporta in modo simile all’implementazione basata su _thread_,
 inclusa la possibilità che tu possa vedere i messaggi apparire in un ordine
 diverso nel tuo terminale quando lo esegui:
 
@@ -63,10 +63,10 @@ principale finisce, perché il _task_ avviato da `spawn_task` viene chiuso quand
 la funzione `main` termina. Se vuoi che si esegua fino al completamento del
 _task_, dovrai usare un _join handle_ per aspettare che il primo _task_ si
 completi. Con i _thread_, abbiamo usato il metodo `join` per "bloccare" fino a
-quando il _thread_ ha finito di eseguirsi. Nel Listato 17-7, possiamo usare
+quando il _thread_ avesse finito di eseguirsi. Nel Listato 17-7, possiamo usare
 `await` per fare la stessa cosa, perché l’_handle_ del _task_ stesso è un
 _future_. Il suo _type_ `Output` è un `Result`, quindi dopo averlo atteso
-(_await_), dobbiamo anche svolgerlo (_unwrap_).
+(_await_), dobbiamo anche esporlo (_unwrap_).
 
 <Listing number="17-7" caption="Usare `await` con un _join handle_ per eseguire un _task_ fino al completamento" file-name="src/main.rs">
 
@@ -161,8 +161,8 @@ Prova alcune di queste varianti sull’attesa dei _future_ e vedi cosa fanno:
 
 - Rimuovi il blocco _async_ da uno o entrambi i loop.
 - Aspetta ogni blocco _async_ immediatamente dopo averlo definito.
-- Avvolgi solo il primo loop in un blocco async e aspetta il _future_ risultante
-  dopo il corpo del secondo loop.
+- Incapsula solo il primo loop in un blocco _async_ e aspetta il _future_
+  risultante dopo il corpo del secondo loop.
 
 Per una sfida extra, cerca di capire quale sarà l’output in ciascun caso _prima_
 di eseguire il codice!
@@ -175,7 +175,7 @@ Prenderemo una strada leggermente diversa rispetto a quella che abbiamo preso in
 [“Usare il Passaggio di Messaggi per Trasferire Dati tra
 _Thread_”][message-passing-threads]<!-- ignore --> per illustrare alcune delle
 differenze chiave tra concorrenza basata su _thread_ e concorrenza basata su
-_future_. Nel Listato 17-9, inizieremo con un singolo blocco _async_,_non_
+_future_. Nel Listato 17-9, inizieremo con un singolo blocco _async_, _non_
 creando un _task_ separato come avevamo creato un _thread_ separato.
 
 <Listing number="17-9" caption="Creare un canale _async_ e assegnare le due metà a `tx` e `rx`" file-name="src/main.rs">
@@ -190,7 +190,7 @@ Qui, usiamo `trpl::channel`, una versione _async_ dell’API del canale
 multi-produttore, singolo-consumatore che abbiamo usato con i _thread_ nel
 Capitolo 16. La versione _async_ dell’API è solo un po' diversa dalla versione
 basata su _thread_: usa un ricevitore `rx` mutabile piuttosto che immutabile, e
-il suo metodo `recv` produce un _future_ che dobbiamo aspettare piuttosto che
+il suo metodo `recv` produce una _future_ che dobbiamo aspettare piuttosto che
 produrre il valore direttamente. Ora possiamo inviare messaggi dal mittente al
 ricevitore. Nota che non dobbiamo avviare un _thread_ separato o nemmeno un
 _task_; dobbiamo solo aspettare la chiamata `rx.recv`.
@@ -198,9 +198,9 @@ _task_; dobbiamo solo aspettare la chiamata `rx.recv`.
 Il metodo sincrono `Receiver::recv` in `std::mpsc::channel` blocca fino a quando
 non riceve un messaggio. Il metodo `trpl::Receiver::recv` non lo fa, perché è
 _async_. Invece di bloccare, restituisce il controllo al _runtime_ fino a quando
-non viene ricevuto un messaggio o la metà di invio del canale si chiude. Al
+non viene ricevuto un messaggio o la estremità di invio del canale si chiude. Al
 contrario, non aspettiamo la chiamata `send`, perché non blocca. Non ne ha
-bisogno, perché il canale in cui lo stiamo inviando è illimitato.
+bisogno, perché il canale in cui lo stiamo inviando è senza vincoli.
 
 > Nota: Poiché tutto questo codice _async_ si esegue in un blocco _async_ in una
 > chiamata `trpl::run`, tutto al suo interno può evitare di bloccare. Tuttavia,
@@ -238,11 +238,12 @@ Nel Listato 16-10, abbiamo usato un ciclo `for` per elaborare tutti gli elementi
 ricevuti da un canale sincrono. Rust non ha ancora un modo per scrivere un ciclo
 `for` su una serie _asincrona_ di elementi, quindi dobbiamo usare un ciclo che
 non abbiamo visto prima: il ciclo condizionale `while let`. Questo è la versione
-ciclo della costruzione `if let` che abbiamo visto nella sezione [“Controllo di
-Flusso Conciso...”][if-let]<!-- ignore -->. Il ciclo continuerà ad eseguirsi
-finché il _pattern_ che specifica continua a corrispondere al valore.
+ciclo della costruzione `if let` che abbiamo visto nella sezione [“Controllare
+il Flusso con `if let` e `let else`”][if-let]<!-- ignore -->. Il ciclo
+continuerà ad eseguirsi finché il _pattern_ specificato continua a corrispondere
+al valore.
 
-La chiamata `rx.recv` produce una _future_, che aspettiamo. Il runtime metterà
+La chiamata `rx.recv` produce una _future_, che aspettiamo. Il _runtime_ metterà
 in pausa la _future_ fino a quando non sarà pronta. Una volta che arriva un
 messaggio, la _future_ si risolverà in `Some(messaggio)` tutte le volte che
 arriva un messaggio. Quando il canale si chiude, indipendentemente dal fatto che
@@ -261,27 +262,27 @@ ancora un paio di problemi. Innanzitutto, i messaggi non arrivano a intervalli
 di mezzo secondo. Arrivano tutti insieme, 2 secondi (2.000 millisecondi) dopo
 aver avviato il programma. In secondo luogo, questo programma non si arresta
 mai! Invece, aspetta per sempre nuovi messaggi. Dovrai interromperlo usando
-<kbd>ctrl</kbd>-<kbd>c</kbd>.
+<kbd>ctrl</kbd>-<kbd>C</kbd>.
 
 Iniziamo esaminando perché i messaggi arrivano tutti insieme dopo il ritardo
-completo, piuttosto che arrivare con ritardi tra ciascuno. All’interno di un
+cumulativo, piuttosto che arrivare con ritardi tra ciascuno. All’interno di un
 dato blocco _async_, l’ordine in cui compaiono le parole chiave `await` nel
 codice è anche l’ordine in cui vengono eseguite quando il programma si avvia.
 
-C'è solo un blocco _async_ nel Listato 17-10, quindi tutto in esso si esegue
+C’è un singolo blocco _async_ nel Listato 17-10, quindi tutto in esso si esegue
 linearmente. Non c’è ancora concorrenza. Tutti i `tx.send` accadono, intercalati
 con tutte le chiamate `trpl::sleep` e i loro punti di attesa associati. Solo
-allora il ciclo `while let` può passare attraverso alcuni dei punti di attesa
+allora il ciclo `while let` può passare in rassegna alcuni dei punti di attesa
 sulle chiamate `recv`.
 
 Per ottenere il comportamento che vogliamo, dove il ritardo accade tra ogni
 messaggio, dobbiamo mettere le operazioni `tx` e `rx` nei loro blocchi _async_
-separati, come mostrato nel Listato 17-11. Quindi il _runtime_ può eseguire
-ciascuno di essi separatamente usando `trpl::join`, proprio come nell’esempio di
-conteggio. Ancora una volta, aspettiamo il risultato della chiamata a
-`trpl::join`, non le _future_ singole. Se avessimo aspettato le _future_ singole
-in sequenza, saremmo tornati a un flusso sequenziale, proprio quello che stiamo
-cercando di _non_ fare.
+separati, come mostrato nel Listato 17-11. In questo modo il _runtime_ può
+eseguire ciascuno di essi separatamente usando `trpl::join`, proprio come
+nell’esempio del conteggio. Ancora una volta, aspettiamo il risultato della
+chiamata a `trpl::join`, non le _future_ singole. Se avessimo aspettato le
+_future_ singole in sequenza, saremmo tornati a un flusso sequenziale, proprio
+quello che stiamo cercando di _non_ fare.
 
 <!-- Non possiamo testare questo codice perché non si ferma mai! -->
 
@@ -313,8 +314,8 @@ con `trpl::join`:
   `tx`, viene eliminata.
 - Non chiamiamo `rx.close` da nessuna parte, e `tx` non verrà eliminato fino a
   quando il blocco _async_ più esterno passato a `trpl::run` non termina.
-- Il blocco non può terminare perché è bloccato su `trpl::join` che si completa,
-  il che ci riporta all’inizio di questo elenco.
+- Il blocco non può terminare perché è bloccato su `trpl::join` in attesa di
+  completamento, il che ci riporta all’inizio di questo elenco.
 
 Potremmo chiudere manualmente `rx` chiamando `rx.close` da qualche parte, ma non
 ha molto senso. Fermarsi dopo aver gestito un numero arbitrario di messaggi
@@ -379,8 +380,8 @@ vengono anche ricevuti a quegli intervalli diversi.
 ```text
 ricevuto 'ciao'
 ricevuto 'altri'
-ricevuto 'dal'
-ricevuto 'futuro'
+ricevuto 'dalla'
+ricevuto 'future'
 ricevuto 'messaggi'
 ricevuto '!!!'
 ricevuto 'per'

@@ -1,10 +1,4 @@
    Compiling async_await v0.1.0 (file:///progetti/async_await)
-error[E0425]: cannot find value `futures` in this scope
-  --> src/main.rs:47:24
-   |
-47 |         trpl::join_all(futures).await;
-   |                        ^^^^^^^ help: a local variable with a similar name exists: `future`
-
 error[E0308]: mismatched types
   --> src/main.rs:45:36
    |

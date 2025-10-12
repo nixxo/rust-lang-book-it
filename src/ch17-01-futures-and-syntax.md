@@ -15,7 +15,7 @@ significa essere "pronti".
 Puoi applicare la parola chiave `async` a blocchi e funzioni per specificare che
 possono essere interrotti e ripresi. All’interno di un blocco _async_ o di una
 funzione _async_, puoi usare la parola chiave `await` per _attendere una future_
-(cioè, aspettare che sia pronta). Ogni punto in cui attendi una future
+(cioè, aspettare che sia pronta). Ogni punto in cui attendi una _future_
 all’interno di un blocco o funzione _async_ è un potenziale punto in cui quel
 blocco o funzione _async_ può mettersi in pausa e riprendere. Il processo di
 verifica con una _future_ per vedere se il suo valore è già disponibile è
@@ -41,7 +41,7 @@ Tutto questo potrebbe sembrare un po' astratto, quindi scriviamo il nostro primo
 programma _async_: un piccolo _web scraper_ (_estrattore info da pagine web_).
 Passeremo due URL dalla riga di comando, li recupereremo contemporaneamente e
 restituiremo il risultato di quello che finisce per primo. Questo esempio avrà
-parecchia nuova sintassi, ma non preoccuparti - spiegheremo tutto ciò che serve
+parecchia nuova sintassi, ma non preoccuparti, spiegheremo tutto ciò che serve
 sapere man mano che procediamo.
 
 ## Il Nostro Primo Programma _Async_
@@ -65,7 +65,7 @@ il _crate_, ti incoraggiamo a controllare [il suo codice
 sorgente][crate-source]<!-- ignore -->. Sarai in grado di vedere da quale
 _crate_ proviene ogni riesportazione, e abbiamo lasciato commenti esaurienti che
 spiegano cosa fa il _crate_.
-4
+
 Crea un nuovo progetto binario chiamato `hello-async` e aggiungi il _crate_
 `trpl` come dipendenza:
 
@@ -106,38 +106,38 @@ essere consegnata separatamente dal corpo della risposta. Soprattutto se il
 corpo è molto grande, può volerci del tempo perché arrivi tutto. Poiché dobbiamo
 aspettare l’_intera_ risposta, anche il metodo `text` è asincrono.
 
-Dobbiamo esplicitamente attendere entrambi questi _future_, perché i _future_ in
-Rust sono _lazy_ (_pigri_): non fanno nulla finché non gli chiedi di farlo con
+Dobbiamo esplicitamente attendere entrambi queste _future_, perché le _future_
+in Rust sono _lazy_ (_pigre_): non fanno nulla finché non le chiedi di farlo con
 la parola chiave `await`. (In effetti, Rust mostrerà un avviso del compilatore
-se non usi un _future_.) Questo potrebbe ricordarti la discussione del Capitolo
+se non usi una _future_.) Questo potrebbe ricordarti la discussione del Capitolo
 13 sugli iteratori nella sezione [Elaborare una Serie di Elementi con
 Iteratori][iterators-lazy]<!-- ignore -->. Gli iteratori non fanno nulla a meno
-che non chiami il loro metodo `next` - sia direttamente che usando cicli `for` o
-metodi come `map` che usano `next` sotto il cofano. Allo stesso modo, i _future_
-non fanno nulla a meno che tu non gli chieda esplicitamente di farlo. Questa
-_pigrizia_ permette a Rust di evitare di eseguire codice asincrono finché non è
-effettivamente necessario.
+che non chiami il loro metodo `next`, sia direttamente che usando cicli `for` o
+metodi come `map` che usano `next` sotto il cofano. Allo stesso modo, le
+_future_ non fanno nulla a meno che tu non le chieda esplicitamente di farlo.
+Questa _pigrizia_ permette a Rust di evitare di eseguire codice asincrono finché
+non è effettivamente necessario.
 
 > Nota: Questo è diverso dal comportamento che abbiamo visto nel capitolo
-> precedente quando usiamo `thread::spawn` in [Creare un Nuovo _Thread_ con
-> `spawn`][thread-spawn]<!--ignore-->, dove la chiusura passata a un altro
+> precedente quando abbiamo usato `thread::spawn` in [Creare un Nuovo _Thread_
+> con `spawn`][thread-spawn]<!--ignore-->, dove la chiusura passata a un altro
 > _thread_ veniva eseguita immediatamente. È anche diverso da come molti altri
 > linguaggi gestiscono l’asincronia. Ma è importante per Rust poter fornire le
 > sue garanzie di prestazioni, proprio come accade con gli iteratori.
 
-Una volta che abbiamo `response_text`, possiamo analizzarlo in un’istanza del
+Una volta che abbiamo `testo_risposta`, possiamo analizzarlo in un’istanza del
 _type_ `Html` usando `Html::parse`. Invece di una stringa grezza, ora abbiamo un
-tipo di dati che possiamo usare per lavorare con l’HTML come una struttura dati
-più ricca. In particolare, possiamo usare il metodo `select_first` per trovare
-la prima istanza di un dato selettore CSS. Passando la stringa `"title"`,
-otterremo il primo elemento `<title>` nel documento, se presente. Poiché
-potrebbe non esserci alcun elemento corrispondente, `select_first` restituisce
-un `Option<ElementRef>`. Infine, usiamo il metodo `Option::map`, che ci permette
-di lavorare sull’elemento nell’`Option` se è presente, e non fare nulla se non
-lo è. (Potremmo anche usare un’espressione `match`, ma `map` è più idiomatico.)
-Nel corpo della funzione che forniamo a `map`, chiamiamo `inner_html` su
-`titolo` per ottenere il suo contenuto, che è una `String`. Alla fine dei conti,
-abbiamo un `Option<String>`.
+tipo di dato che possiamo usare per lavorare con l’HTML come una struttura dati
+più funzionale. In particolare, possiamo usare il metodo `select_first` per
+trovare la prima istanza di un dato selettore CSS. Passando la stringa
+`"title"`, otterremo il primo elemento `<title>` nel documento, se presente.
+Poiché potrebbe non esserci alcun elemento corrispondente, `select_first`
+restituisce un `Option<ElementRef>`. Infine, usiamo il metodo `Option::map`, che
+ci permette di lavorare sull’elemento nell’`Option` se è presente, e non fare
+nulla se non lo è. (Potremmo anche usare un’espressione `match`, ma `map` è più
+idiomatico.) Nel corpo della funzione che forniamo a `map`, chiamiamo
+`inner_html` su `titolo` per ottenere il suo contenuto, che è una `String`. Alla
+fine dei conti, abbiamo un `Option<String>`.
 
 Nota che la parola chiave `await` di Rust va _dopo_ l’espressione che stai
 attendendo, non prima. Cioè, è una parola chiave _post-fissa_. Questo potrebbe
@@ -160,14 +160,14 @@ Prima di aggiungere del codice in `main` per chiamarla, parliamo un po' di più
 di cosa abbiamo scritto e cosa significa.
 
 Quando Rust vede un blocco contrassegnato con la parola chiave `async`, lo
-compila in un _type_ anonimo e unico che implementa il _trait_ `Future`. Quando
-Rust vede una funzione contrassegnata con `async`, la compila in una funzione
-non asincrona il cui corpo è un blocco asincrono. Il _type_ di ritorno di una
-funzione asincrona è il _type_ anonimo che il compilatore crea per quel blocco
-asincrono.
+compila in un _type_ anonimo e univoco che implementa il _trait_ `Future`.
+Quando Rust vede una funzione contrassegnata con `async`, la compila in una
+funzione non asincrona il cui corpo è un blocco asincrono. Il _type_ di ritorno
+di una funzione asincrona è il _type_ anonimo che il compilatore crea per quel
+blocco asincrono.
 
 Quindi, scrivere `async fn` è equivalente a scrivere una funzione che
-restituisce un _future_ del _type_ di ritorno. Per il compilatore, una
+restituisce una _future_ del _type_ di ritorno. Per il compilatore, una
 definizione di funzione come `async fn titolo_pagina` nel Listato 17-1 è
 equivalente a una funzione non asincrona definita in questo modo:
 
@@ -190,7 +190,7 @@ Analizziamo ogni parte della versione trasformata:
 
 - Usa la sintassi `impl Trait` che abbiamo discusso nel Capitolo 10 nella
   sezione [“Usare i _Trait_ come Parametri”][impl-trait]<!-- ignore -->.
-- Il _trait_ restituito è un `Future` con un _type_ associato di `Output`. Nota
+- Il _trait_ restituito è una `Future` con un _type_ associato di `Output`. Nota
   che il _type_ `Output` è `Option<String>`, che è lo stesso _type_ di ritorno
   della versione `async fn` di `titolo_pagina`.
 - Tutto il codice chiamato nel corpo della funzione originale è racchiuso in un
@@ -205,7 +205,7 @@ Analizziamo ogni parte della versione trasformata:
 
 Ora possiamo chiamare `titolo_pagina` in `main`.
 
-### Determinare il Titolo di una Singola Pagina
+## Determinare il Titolo di una Singola Pagina
 
 Per iniziare, prenderemo il titolo di una singola pagina. Nel Listato 17-3,
 seguiamo lo stesso schema che abbiamo usato nel Capitolo 12 per [Ricevere
@@ -370,12 +370,12 @@ un valore per indicare quale delle _future_ a esso passate finisce per prima.
 > `select` può fare molte cose che la funzione `trpl::race` non può, ma ha anche
 > alcune complessità aggiuntive che possiamo tralasciare per ora.
 
-Può legittimamente "vincere" una qualsiasi delle _future_, quindi non ha senso
+Può legittimamente “vincere” una qualsiasi delle _future_, quindi non ha senso
 restituire un `Result`. Invece, `race` restituisce un _type_ che non abbiamo
 ancora visto, `trpl::Either`. Il _type_ `Either` è in qualche modo simile a un
 `Result` in quanto ha due casi. A differenza di `Result`, però, non c’è alcuna
 nozione di successo o fallimento incorporata in `Either`. Invece, usa `Left` e
-`Right` per indicare "l’uno o l’altro":
+`Right` per indicare “l’uno o l’altro”:
 
 ```rust
 enum Either<A, B> {
