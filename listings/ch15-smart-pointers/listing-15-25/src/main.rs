@@ -1,3 +1,4 @@
+// ANCHOR: here
 use crate::Lista::{Cons, Nil};
 use std::cell::RefCell;
 use std::rc::Rc;
@@ -16,5 +17,6 @@ impl Lista {
         }
     }
 }
+// ANCHOR_END: here
 
 fn main() {}

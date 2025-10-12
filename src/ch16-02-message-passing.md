@@ -176,7 +176,7 @@ Il codice del Listato 16-8 è stato compilato ed eseguito, ma non mostrava
 chiaramente che due _thread_ separati stavano parlando tra loro attraverso il
 canale.
 
-Nel Listato 16-10 abbiamo apportato alcune modifiche che dimostreranno che il
+Nel Listato 16-10, abbiamo apportato alcune modifiche che dimostreranno che il
 codice del Listato 16-8 è in esecuzione simultanea: il _thread_ generato ora
 invierà più messaggi e farà una pausa di un secondo tra un messaggio e l’altro.
 

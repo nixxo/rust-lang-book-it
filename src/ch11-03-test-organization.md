@@ -166,7 +166,8 @@ l’argomento `--test` di `cargo test` seguito dal nome del file:
 {{#include ../listings/ch11-writing-automated-tests/output-only-05-single-integration/output.txt}}
 ```
 
-Questo comando esegue solo i test presenti nel file _tests/test_integrazione.rs_.
+Questo comando esegue solo i test presenti nel file
+_tests/test_integrazione.rs_.
 
 #### Sottomoduli nei Test di Integrazione
 

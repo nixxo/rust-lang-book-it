@@ -2,7 +2,7 @@
 
 Crea un nuovo progetto con, come sempre, `cargo new`. Chiameremo il nostro
 progetto `minigrep` per distinguerlo dallo strumento `grep` che potresti già
-avere sul tuo sistema.
+avere sul tuo sistema:
 
 ```console
 $ cargo new minigrep
@@ -69,8 +69,8 @@ una funzione definita nel modulo corrente.
 > valido, utilizzare invece `std::env::args_os`. Questa funzione restituisce un
 > iteratore che produce valori `OsString` invece di valori `String`. Abbiamo
 > scelto di utilizzare `std::env::args` qui per semplicità perché i valori
-> `OsString` variano a seconda della piattaforma e sono più complessi da
-> gestire rispetto ai valori `String`.
+> `OsString` variano a seconda della piattaforma e sono più complessi da gestire
+> rispetto ai valori `String`.
 
 Nella prima riga del corpo di `main`, chiamiamo `env::args` e utilizziamo
 immediatamente `collect` per trasformare l’iteratore in un vettore contenente

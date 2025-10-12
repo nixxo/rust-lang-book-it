@@ -90,9 +90,10 @@ il _trait_ `Iterator` e restituisce valori `String`.
 Abbiamo aggiornato la firma della funzione `Config::build` in modo che il
 parametro `args` abbia un _type_ generico con i vincoli del _trait_ `impl
 Iterator<Item = String>` invece di `&[String]`. Questo utilizzo della sintassi
-`impl Trait`, discusso nella sezione [“_Trait_ come Parametri”][impl-trait]<!--
-ignore --> del Capitolo 10, significa che `args` può essere qualsiasi _type_ che
-implementi il _trait_ `Iterator` e che restituisca elementi `String`.
+`impl Trait`, discusso nella sezione [“Usare i _Trait_ come
+Parametri”][impl-trait]<!-- ignore --> del Capitolo 10, significa che `args` può
+essere qualsiasi _type_ che implementi il _trait_ `Iterator` e che restituisca
+elementi `String`.
 
 Poiché stiamo prendendo la _ownership_ di `args` e lo muteremo iterandolo,
 possiamo aggiungere la parola chiave `mut` nella specifica del parametro `args`
@@ -110,6 +111,7 @@ metodo `next`.
 ```rust,ignore,noplayground
 {{#rustdoc_include ../listings/ch13-functional-features/listing-13-20/src/main.rs:here}}
 ```
+
 </Listing>
 
 Ricorda che il primo valore restituito da `env::args` è il nome del programma.

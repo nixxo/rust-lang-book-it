@@ -1,6 +1,6 @@
 ## Come Scrivere dei Test
 
-I test sono funzioni di Rust che verificano che il codice non di test funzioni
+I _test_ sono funzioni di Rust che verificano che il codice non di test funzioni
 nel modo previsto. I corpi delle funzioni di test eseguono tipicamente queste
 tre azioni:
 
@@ -191,7 +191,7 @@ nostro test è `FAILED`. Abbiamo avuto un test superato e un test fallito.
 Ora che hai visto come appaiono i risultati dei test in diversi scenari, vediamo
 alcune macro diverse da `panic!` che sono utili nei test.
 
-## Verificare i Risultati Con la Macro `assert!`
+## Verificare i Risultati Con `assert!`
 
 La macro `assert!`, fornita dalla libreria standard, è utile quando vuoi
 assicurarti che una condizione in un test risulti essere vera, `true`. Diamo
@@ -266,8 +266,8 @@ Poiché il risultato corretto della funzione `può_contenere` in questo caso è
 
 Due test superati! Ora vediamo cosa succede ai risultati dei nostri test quando
 introduciamo un bug nel nostro codice. Cambieremo l’implementazione del metodo
-`può_contenere` sostituendo il segno maggiore con il segno minore quando
-confronta le larghezze:
+`può_contenere` sostituendo il segno maggiore (`>`) con il segno minore (`<`)
+quando confronta le larghezze:
 
 ```rust,not_desired_behavior,noplayground
 {{#rustdoc_include ../listings/ch11-writing-automated-tests/no-listing-03-introducing-a-bug/src/lib.rs:here}}
@@ -278,10 +278,11 @@ L’esecuzione dei test produce ora il seguente risultato:
 ```console
 {{#include ../listings/ch11-writing-automated-tests/no-listing-03-introducing-a-bug/output.txt}}
 ```
+
 Poiché `grande.larghezza` è `8` e `piccolo.larghezza` è `5`, il confronto delle
 larghezze in `può_contenere` ora restituisce `false`: 8 non è inferiore a 5.
 
-### Testare l’Uguaglianza Con le Macro `assert_eq!` e `assert_ne!`
+### Testare l’Uguaglianza Con `assert_eq!` e `assert_ne!`
 
 Un modo comune per verificare le funzionalità è quello di testare l’uguaglianza
 tra il risultato del codice in esame e il valore che ti aspetti che il codice
@@ -296,7 +297,8 @@ ha ottenuto un valore `false` per l’espressione `==`, senza stampare i valori
 che hanno portato al valore `false`.
 
 Nel Listato 11-7, scriviamo una funzione chiamata `aggiungi_due` che aggiunge
-`2` al suo parametro, poi testiamo questa funzione usando la macro `assert_eq!`
+`2` al suo parametro, e poi testiamo questa funzione usando la macro
+`assert_eq!`
 
 <Listing number="11-7" file-name="src/lib.rs" caption="Test della funzione `aggiungi_due` utilizzando la macro `assert_eq!`">
 
@@ -379,12 +381,11 @@ Puoi anche aggiungere un messaggio personalizzato da stampare insieme al
 messaggio di fallimento come argomenti opzionali alle macro `assert!`,
 `assert_eq!` e `assert_ne!`. Qualsiasi argomento specificato dopo gli argomenti
 obbligatori viene passato alla macro `format!` (di cui si parla in [“Concatenare
-con l’Operatore `+` o la Macro `format!`”][format-macro]<!--
-ignore --> nel Capitolo 8), quindi puoi passare una stringa di formato che
-contenga dei segnaposto `{}` e dei valori da inserire in quei segnaposto. I
-messaggi personalizzati sono utili per documentare il significato di
-un’asserzione; quando un test fallisce, avrai un’idea più precisa del problema
-del codice.
+con l’Operatore `+` o la Macro `format!`”][concatenating]<!-- ignore --> nel
+Capitolo 8), quindi puoi passare una stringa di formato che contenga dei
+segnaposto `{}` e dei valori da inserire in quei segnaposto. I messaggi
+personalizzati sono utili per documentare il significato di un’asserzione;
+quando un test fallisce, avrai un’idea più precisa del problema del codice.
 
 Ad esempio, supponiamo di avere una funzione che saluta le persone per nome e
 vogliamo verificare che il nome che passiamo nella funzione appaia nell’output:
@@ -527,15 +528,15 @@ Questa volta il test `should_panic` fallirà:
 {{#include ../listings/ch11-writing-automated-tests/no-listing-09-guess-with-panic-msg-bug/output.txt}}
 ```
 
-Il messaggio di fallimento indica che questo test è andato in panico come ci
+Il messaggio di fallimento indica che questo test è andato in _panic_ come ci
 aspettavamo, ma il messaggio di panico non includeva la stringa prevista `minore
 o uguale a 100`. Il messaggio di panico che abbiamo ottenuto in questo caso è
-stato `L’ipotesi deve essere maggiore di zero, valore fornito 200.`. Ora
-possiamo iniziare a capire dove si trova il nostro bug!
+stato `L’ipotesi deve essere maggiore di zero, valore fornito 200`. Ora possiamo
+iniziare a capire dove si trova il nostro bug!
 
 ### Utilizzare `Result<T, E>` nei Test
 
-I test che abbiamo fatto finora vanno tutti il panico quando falliscono.
+Tutti i test che abbiamo fatto finora vanno in _panic_ quando falliscono.
 Possiamo anche scrivere test che utilizzano `Result<T, E>`! Ecco il test del
 Listato 11-1, riscritto per utilizzare `Result<T, E>` e restituire un `Err`
 invece di andare in panico:
@@ -563,7 +564,7 @@ Ora che conosci diversi modi per scrivere i test, vediamo cosa succede quando li
 eseguiamo ed esploriamo le diverse opzioni che possiamo utilizzare con `cargo
 test`
 
-[format-macro]: ch08-02-strings.html#concatenare-con--o-format 
+[concatenating]: ch08-02-strings.html#concatenare-con--o-format
 [bench]: https://doc.rust-lang.org/stable/unstable-book/library-features/test.html
 [ignoring]: ch11-02-running-tests.html#ignorare-test-se-non-specificamente-richiesti
 [subset]: ch11-02-running-tests.html#eseguire-un-sottoinsieme-di-test-in-base-al-nome

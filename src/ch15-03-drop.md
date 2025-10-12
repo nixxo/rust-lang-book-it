@@ -77,9 +77,9 @@ metodo `drop` del _trait_ `Drop`; invece, è necessario chiamare la funzione
 `std::mem::drop` fornita dalla libreria standard se si desidera forzare
 l’eliminazione di un valore prima della fine del suo _scope_.
 
-Se proviamo a chiamare manualmente il metodo `drop` del _trait_ `Drop`
-modificando la funzione `main` del Listato 15-14, come mostrato nel Listato
-15-15, otterremo un errore del compilatore.
+Provare a chiamare manualmente il metodo `drop` del _trait_ `Drop` modificando
+la funzione `main` del Listato 15-14, come mostrato nel Listato 15-15, risulterà
+in un errore del compilatore.
 
 <Listing number="15-15" file-name="src/main.rs" caption="Tentativo di chiamare manualmente il metodo `drop` del _trait_ `Drop` per una de-allocazione anticipata">
 

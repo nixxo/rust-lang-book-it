@@ -19,9 +19,10 @@ _conteggio dei riferimenti_. Questo puntatore consente ai dati di avere più
 proprietari tenendo traccia del loro numero e, quando non ne rimane nessuno,
 de-allocare i dati.
 
-Rust, con il suo concetto di _ownership_ e _borrowing_, presenta un’ulteriore differenza
-tra _reference_ e i puntatori intelligenti: mentre i _reference_ prendono solo in prestito dati, in
-molti casi i puntatori intelligenti _posseggono_ i dati a cui puntano.
+Rust, con il suo concetto di _ownership_ e _borrowing_, presenta un’ulteriore
+differenza tra _reference_ e i puntatori intelligenti: mentre i _reference_
+prendono solo in prestito dati, in molti casi i puntatori intelligenti
+_posseggono_ i dati a cui puntano.
 
 I puntatori intelligenti sono solitamente implementati tramite _struct_. A
 differenza di una normale _struct_, i puntatori intelligenti implementano i
@@ -47,7 +48,7 @@ standard:
 
 Inoltre, tratteremo il modello di _mutabilità interna_, in cui un _type_
 immutabile espone un’API per la mutazione di un valore interno. Discuteremo
-anche dei _cicli di riferimento_ e di come possono causare perdite di
-memoria e come prevenirle.
+anche dei _cicli di riferimento_ e di come possono causare perdite di memoria e
+come prevenirle.
 
 Cominciamo!

@@ -9,15 +9,15 @@ rendendo più facile la lettura dell’output relativo ai risultati dei test. Pu
 tuttavia, specificare alcune opzioni della riga di comando per modificare questo
 comportamento predefinito.
 
-Alcune opzioni della riga di sono per `cargo test`, mentre altre vengono
-passate al binario di test risultante. 
+Alcune opzioni della riga di sono per `cargo test`, mentre altre vengono passate
+al binario di test risultante.
 
 Per separare questi due tipi di argomenti, devi elencare gli argomenti che vanno
 a `cargo test` seguiti dal separatore `--` e poi quelli che vanno al binario di
 test. Eseguendo `cargo test --help` vengono visualizzate le opzioni che puoi
 usare con `cargo test`, mentre eseguendo `cargo test -- --help` vengono
 visualizzate le opzioni che puoi usare dopo il separatore. Queste opzioni sono
-documentate anche nella [sezione “Tests”][tests] del libro di rustc.
+documentate anche nella [sezione “Tests” del libro di `rustc`][tests].
 
 ### Eseguire i Test in Parallelo o Sequenzialmente
 
@@ -102,7 +102,7 @@ Quando eseguiamo nuovamente i test del Listato 11-10 con il flag
 
 ### Eseguire un Sottoinsieme di Test in Base al Nome
 
-A volte, l’esecuzione di tutti i test che abbiamo definito può richiedere molto
+L’esecuzione di tutti i test che abbiamo definito a volte può richiedere molto
 tempo. Se stai lavorando sul codice di una particolare area, potresti voler
 eseguire solo i test relativi a quel codice. Puoi scegliere quali test eseguire
 passando a `cargo test` il nome o i nomi dei test che vuoi eseguire come

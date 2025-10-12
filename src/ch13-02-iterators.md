@@ -12,8 +12,6 @@ l’iteratore per utilizzarlo. Ad esempio, il codice nel Listato 13-10 crea un
 iteratore sugli elementi nel vettore `v1` chiamando il metodo `iter` definito su
 `Vec<T>`. Questo codice di per sé non fa nulla di utile.
 
-[^lazy]: [Lazy su wikipedia (ita)](https://it.wikipedia.org/wiki/Lazy_initialization)
-
 <Listing number="13-10" file-name="src/main.rs" caption="Creazione di un iteratore">
 
 ```rust
@@ -132,7 +130,8 @@ Listato 13-13 contiene un test che illustra l’uso del metodo `sum`.
 
 </Listing>
 
-Non è consentito utilizzare `v1_iter` dopo la chiamata a `sum` perché `sum` prende _ownership_ dell’iteratore su cui viene chiamato.
+Non è consentito utilizzare `v1_iter` dopo la chiamata a `sum` perché `sum`
+prende _ownership_ dell’iteratore su cui viene chiamato.
 
 ### Metodi che Producono Altri Iteratori
 
@@ -161,8 +160,8 @@ Tuttavia, questo codice genera un avviso:
 ```
 
 Il codice nel Listato 13-14 non fa nulla; la chiusura che abbiamo specificato
-non viene mai chiamata. L’avviso ci ricorda il motivo: gli adattatori sono _lazy_ e qui
-dobbiamo consumare l’iteratore.
+non viene mai chiamata. L’avviso ci ricorda il motivo: gli adattatori sono
+_lazy_ e qui dobbiamo consumare l’iteratore.
 
 Per correggere questo avviso e consumare l’iteratore, useremo il metodo
 `collect`, che abbiamo usato con `env::args` nel Listato 12-1. Questo metodo
@@ -231,3 +230,5 @@ dall’iteratore adattato in un vettore restituito dalla funzione.
 
 Il test mostra che quando chiamiamo `misura_scarpe`, otteniamo solo le scarpe
 che hanno la stessa taglia del valore specificato.
+
+[^lazy]: [Lazy su wikipedia (ita)](https://it.wikipedia.org/wiki/Lazy_initialization)

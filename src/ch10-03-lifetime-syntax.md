@@ -25,10 +25,10 @@ _lifetime_ in modo che tu possa familiarizzare con il concetto.
 ### _Reference_ Pendenti
 
 Lo scopo principale della _lifetime_ è prevenire i _riferimenti pendenti_
-(_dangling references_), che causano al programma in esecuzione di avere
-_reference_ che fanno riferimento a dati a cui non dovrebbero far riferimento.
-Considera il programma nel Listato 10-16, che ha uno _scope_ esterno e uno
-interno.
+(_dangling references_), che, se fossero presenti, causerebbere al programma in
+esecuzione di avere _reference_ che fanno riferimento a dati a cui non
+dovrebbero far riferimento. Considera il programma nel Listato 10-16, che ha uno
+_scope_ esterno e uno interno.
 
 <Listing number="10-16" caption="Tentativo di utilizzare un _reference_ il cui valore è uscito dallo _scope_">
 
@@ -198,9 +198,9 @@ longevità si relazionano tra loro nel contesto della funzione `più_lunga`.
 ### Nella Firma delle Funzioni
 
 Per utilizzare le annotazioni di longevità nelle firme delle funzioni, dobbiamo
-dichiarare i parametri _lifetime_ generici all’interno di parentesi angolari
-tra il nome della funzione e l’elenco dei parametri, proprio come abbiamo fatto
-con i parametri _type_ generici.
+dichiarare i parametri _lifetime_ generici all’interno di parentesi angolari tra
+il nome della funzione e l’elenco dei parametri, proprio come abbiamo fatto con
+i parametri _type_ generici.
 
 Vogliamo che la firma esprima la seguente restrizione: il _reference_ restituito
 sarà valido finché entrambi i parametri saranno validi. Questa è la relazione
@@ -501,8 +501,7 @@ fn prima_parola<'a>(s: &'a str) -> &str {
 
 La seconda regola si applica perché esiste esattamente un singolo parametro di
 longevità in input. La seconda regola specifica che la longevità di un parametro
-in input viene assegnata alla longevità in output, quindi la firma è ora
-questa:
+in input viene assegnata alla longevità in output, quindi la firma è ora questa:
 
 ```rust,ignore
 fn prima_parola<'a>(s: &'a str) -> &'a str {
@@ -538,8 +537,7 @@ _lifetime_ dei _reference_ nella firma.
 
 Poiché la terza regola si applica solo alle firme dei metodi, esamineremo le
 _lifetime_ in quel contesto per capire perché la terza regola ci consente di non
-dover annotare la longevità nelle firme dei metodi nella maggior parte dei
-casi.
+dover annotare la longevità nelle firme dei metodi nella maggior parte dei casi.
 
 ### Nella Definizione dei Metodi
 
@@ -569,8 +567,8 @@ _reference_ ad alcunché:
 ```
 
 La dichiarazione del parametro _lifetime_ dopo `impl` e il suo utilizzo dopo il
-nome del _type_ sono obbligatori, ma non siamo tenuti ad annotare la longevità
-del _reference_ a `self` grazie alla prima regola di elisione.
+nome del _type_ sono obbligatori ma, grazie alla prima regola di elisione, non
+siamo tenuti ad annotare la longevità del _reference_ a `self`.
 
 Ecco un esempio in cui si applica la terza regola di elisione della _lifetime_:
 
@@ -608,7 +606,7 @@ la _lifetime_ `'static` deriva dal tentativo di creare un _reference_ pendente o
 da una mancata corrispondenza delle longevità disponibili. In questi casi, la
 soluzione è risolvere questi problemi, non specificare la _lifetime_ `'static`.
 
-## Parametri di _Type_ Generico, Vincoli del _Trait_ e _Lifetime_ Insieme
+## Parametri di _Type_ Generico, Vincoli del _Trait_ e _Lifetime_
 
 Esaminiamo brevemente la sintassi per specificare parametri di _type_ generico,
 vincoli di _trait_ e _lifetime_, tutto in un’unica funzione!

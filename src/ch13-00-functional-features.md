@@ -22,4 +22,4 @@ Più specificamente, tratteremo:
 Abbiamo già trattato altre funzionalità di Rust, come il _pattern_ _matching_ e
 le _enum_, che sono anch’esse influenzate dallo stile funzionale. Poiché
 padroneggiare chiusure e iteratori è una parte importante della scrittura di
-codice Rust idiomatico e veloce, gli dedicheremo l’intero capitolo.
+codice Rust veloce e idiomatico, gli dedicheremo l’intero capitolo.

@@ -7,7 +7,7 @@ diverso. A differenza delle funzioni, le chiusure possono catturare valori dallo
 _scope_ in cui sono definite. Dimostreremo come queste funzionalità di chiusura
 consentano il riutilizzo del codice e la personalizzazione del comportamento.
 
-### Catturare l’Ambiente con le Chiusure
+### Catturare l’Ambiente
 
 Esamineremo innanzitutto come possiamo utilizzare le chiusure per catturare
 valori dall’ambiente in cui sono definite per un uso successivo. Ecco lo
@@ -139,14 +139,15 @@ _type_ verranno dedotti dal loro utilizzo. Questo è simile a `let v =
 Vec::new();` che richiede annotazioni del _type_ o valori di qualche tipo da
 inserire in `Vec` affinché Rust possa dedurne il _type_.
 
-Per le definizioni delle chiusure, il compilatore dedurrà un _type_ concreto per ciascuno dei
-loro parametri e per il loro valore di ritorno. Ad esempio, il Listato 13-3 mostra
-la definizione di una chiusura breve che restituisce semplicemente il valore ricevuto come
-parametro. Questa chiusura non è molto utile, se non per gli scopi di questo
-esempio. Nota che non abbiamo aggiunto alcuna annotazione del _type_ alla definizione.
-Poiché non ci sono annotazioni, possiamo chiamare la chiusura con qualsiasi _type_,
-come abbiamo fatto qui con `String` la prima volta. Se poi proviamo a chiamare
-`esempio_chiusura` con un intero, otterremo un errore.
+Per le definizioni delle chiusure, il compilatore dedurrà un _type_ concreto per
+ciascuno dei loro parametri e per il loro valore di ritorno. Ad esempio, il
+Listato 13-3 mostra la definizione di una chiusura breve che restituisce
+semplicemente il valore ricevuto come parametro. Questa chiusura non è molto
+utile, se non per gli scopi di questo esempio. Nota che non abbiamo aggiunto
+alcuna annotazione del _type_ alla definizione. Poiché non ci sono annotazioni,
+possiamo chiamare la chiusura con qualsiasi _type_, come abbiamo fatto qui con
+`String` la prima volta. Se poi proviamo a chiamare `esempio_chiusura` con un
+intero, otterremo un errore.
 
 <Listing number="13-3" file-name="src/main.rs" caption="Tentativo di chiamare una chiusura i cui _type_ sono inferiti con due _type_ diversi">
 
@@ -176,9 +177,9 @@ parametro: un prestito immutabile, un prestito mutabile o prendendo la
 _ownership_. La chiusura deciderà quale di questi utilizzare in base a ciò che
 il corpo della funzione fa con i valori catturati.
 
-Nel Listato 13-4, definiamo una chiusura che cattura un _reference_ immutabile al
-vettore denominato `lista` perché necessita solo di un riferimento immutabile per stampare
-il valore.
+Nel Listato 13-4, definiamo una chiusura che cattura un _reference_ immutabile
+al vettore denominato `lista` perché necessita solo di un riferimento immutabile
+per stampare il valore.
 
 <Listing number="13-4" file-name="src/main.rs" caption="Definizione e chiamata di una chiusura che cattura un _reference_ immutabile">
 
@@ -302,8 +303,8 @@ valori:
   più di una volta senza mutare il loro ambiente, il che è importante in casi
   come quando una chiusura viene chiamata più volte contemporaneamente.
 
-Diamo un’occhiata alla definizione del metodo `unwrap_or_else` su `Option<T>` che
-abbiamo usato nel Listato 13-1:
+Diamo un’occhiata alla definizione del metodo `unwrap_or_else` su `Option<T>`
+che abbiamo usato nel Listato 13-1:
 
 ```rust,ignore
 impl<T> Option<T> {
@@ -331,7 +332,7 @@ che forniamo quando chiamiamo `unwrap_or_else`.
 Il vincolo di _trait_ specificato sul _type_ generico `F` è `FnOnce() -> T`, il
 che significa che `F` deve poter essere chiamato una sola volta, non accettare
 argomenti e restituire una `T`. L’utilizzo di `FnOnce` nel vincolo del _trait_
-esprime il limite che `unwrap_or_else` chiamerà `f` al massimo una volta. Nel
+esprime il limite che `unwrap_or_else` non chiamerà `f` più di una volta. Nel
 corpo di `unwrap_or_else`, possiamo vedere che se `Option` è `Some`, `f` non
 verrà chiamata. Se `Option` è `None`, `f` verrà chiamata una volta. Poiché tutte
 le chiusure implementano `FnOnce`, `unwrap_or_else` accetta tutti e tre i tipi
@@ -410,7 +411,7 @@ contatore nell’ambiente e incrementarne il valore nel corpo della chiusura è 
 modo più semplice per contare il numero di volte in cui la chiusura viene
 chiamata. La chiusura nel Listato 13-9 funziona con `sort_by_key` perché cattura
 solo un _reference_ mutabile al contatore `numero_azioni_ordinamento` e può
-quindi essere chiamata più volte:
+quindi essere chiamata più volte.
 
 <Listing number="13-9" file-name="src/main.rs" caption="È consentito l’utilizzo di una chiusura `FnMut` con `sort_by_key`">
 

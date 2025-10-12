@@ -12,11 +12,11 @@ development_, abbreviato _TDD_) con i seguenti passaggi:
 
 1. Scrivere un test che fallisce ed eseguirlo per assicurarsi che fallisca per
    il motivo previsto.
-2. Scrivere o modificare solo il codice necessario per far passare il nuovo
+1. Scrivere o modificare solo il codice necessario per far passare il nuovo
    test.
-3. Riscrivere il codice appena aggiunto o modificato e assicurarsi che i test
+1. Riscrivere il codice appena aggiunto o modificato e assicurarsi che i test
    continuino a passare.
-4. Ripetere dal passaggio 1!
+1. Ripetere dal passaggio 1!
 
 Sebbene sia solo uno dei tanti modi per scrivere software, il TDD può aiutare a
 guidare la progettazione del codice. Scrivere il test prima di scrivere il
@@ -69,8 +69,8 @@ corrisponde a un vettore contenente la riga `"sicuro, veloce, produttivo."`
 
 Ora parliamo del perché è necessario esplicitare la longevità `'a` nella firma
 di `cerca` e utilizzare tale longevità con l’argomento `contenuto` e con il
-valore di ritorno. Ricorda che nel [Capitolo 10][ch10-lifetimes]<!-- ignore
---> i parametri di _lifetime_ specificano quale _lifetime_ dell’argomento è
+valore di ritorno. Ricorda che nel [Capitolo 10][ch10-lifetimes]<!-- ignore -->
+i parametri di _lifetime_ specificano quale _lifetime_ dell’argomento è
 collegata a quella del valore di ritorno. In questo caso, indichiamo che il
 vettore restituito deve contenere _slice_ di stringa che fanno riferimento alla
 _slice_ dell’argomento `contenuto` (piuttosto che all’argomento `query`).
@@ -111,10 +111,10 @@ Per risolvere il problema e implementare `cerca`, il nostro programma deve
 seguire questi passaggi:
 
 1. Iterare ogni riga del contenuto.
-2. Verificare che la riga contenga la nostra stringa di query.
-3. In caso affermativo, aggiungerla all’elenco dei valori ritornati.
-4. In caso contrario, non fare nulla.
-5. Ritornare l’elenco dei risultati corrispondenti.
+1. Verificare che la riga contenga la nostra stringa di query.
+1. In caso affermativo, aggiungerla all’elenco dei valori ritornati.
+1. In caso contrario, non fare nulla.
+1. Ritornare l’elenco dei risultati corrispondenti.
 
 Esaminiamo ogni passaggio, iniziando con l’iterazione delle righe.
 
@@ -133,10 +133,10 @@ Listato 12-17. Nota che questo non verrà ancora compilato.
 </Listing>
 
 Il metodo `lines` restituisce un iteratore. Parleremo degli iteratori in modo
-approfondito nel [Capitolo 13][ch13-iterators]<!-- ignore -->, ma ricorda che
+approfondito nel [Capitolo 13][ch13-iterators]<!-- ignore -->. Ma ricorda che
 hai visto questo modo di usare un iteratore nel [Listato 3-5][ch3-iter]<!--
-ignore -->, dove abbiamo usato un ciclo `for` con un iteratore per eseguire
-del codice su ogni elemento di una collezione.
+ignore -->, dove abbiamo usato un ciclo `for` con un iteratore per eseguire del
+codice su ogni elemento di una collezione.
 
 #### Ricercare la Query in Ogni Riga
 
@@ -188,9 +188,8 @@ A questo punto, potremmo valutare l’opportunità di riscrivere e migliorare
 l’implementazione della funzione di ricerca, controllando che i test continuino
 a passare per mantenere la stessa funzionalità. Il codice nella funzione di
 ricerca non è male, ma non sfrutta alcune utili funzionalità degli iteratori.
-Torneremo su questo esempio nel [Capitolo 13][ch13-iterators]<!--
-ignore -->, dove esploreremo gli iteratori in dettaglio e vedremo come
-migliorarla.
+Torneremo su questo esempio nel [Capitolo 13][ch13-iterators]<!-- ignore -->,
+dove esploreremo gli iteratori in dettaglio e vedremo come migliorarla.
 
 Ora l’intero programma dovrebbe funzionare! Proviamolo, prima con una parola che
 dovrebbe restituire esattamente una riga della poesia di Emily Dickinson:
