@@ -54,9 +54,11 @@ dipendenze del tuo _crate_) e si apre il risultato in un browser web. Naviga
 alla funzione `più_uno` per vedere che il testo nei commenti di documentazione
 apparirà come mostrato nella Figura 14-1.
 
-<img alt="Documentazione HTML renderizzata per la funzione `più_uno` di `mio_crate`" src="img/trpl14-01.png" class="center" />
+<img src="img/trpl14-01.png" class="center" alt="Documentazione HTML
+renderizzata per la funzione `più_uno` di `mio_crate`" />
 
-<span class="caption">Figura 14-1: Documentazione HTML per la funzione `più_uno`</span>
+<span class="caption">Figura 14-1: La documentazione HTML per la funzione
+`più_uno`</span>
 
 #### Sezioni Comunemente Utilizzate
 
@@ -64,10 +66,10 @@ Abbiamo usato l’intestazione Markdown `# Esempi` nel Listato 14-1 per creare u
 sezione nell’HTML con il titolo “Esempi”. Ecco altre sezioni che gli autori di
 _crate_ utilizzano comunemente nella loro documentazione:
 
-- **Panic** (_Panics_): Gli scenari in cui la funzione documentata potrebbe
-  andare in _panic_. I chiamanti della funzione che non vogliono che i loro
-  programmi vadano in _panic_ devono assicurarsi di non chiamare la funzione in
-  queste situazioni.
+- **Panic** (_Panics_): Questi sono gli scenari in cui la funzione documentata
+  potrebbe andare in _panic_. I chiamanti della funzione che non vogliono che i
+  loro programmi vadano in _panic_ devono assicurarsi di non chiamare la
+  funzione in queste situazioni.
 - **Errori** (_Errors_): Se la funzione restituisce un `Result`, descrivere la
   tipologia di errori che potrebbero verificarsi e quali condizioni potrebbero
   causare la restituzione di tali errori può essere utile ai chiamanti, in modo
@@ -125,7 +127,7 @@ Ad esempio, per aggiungere la documentazione che descrive lo scopo del _crate_
 documentazione che iniziano con `//!` all’inizio del file _src/lib.rs_, come
 mostrato nel Listato 14-2.
 
-<Listing number="14-2" file-name="src/lib.rs" caption="Documentazione generale per l’intero _crate_ `mio_crate`">
+<Listing number="14-2" file-name="src/lib.rs" caption="La documentazione generale per l’intero _crate_ `mio_crate`">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch14-more-about-cargo/listing-14-02/src/lib.rs:here}}
@@ -143,13 +145,16 @@ Quando si esegue `cargo doc --open`, questi commenti verranno visualizzati nella
 prima pagina della documentazione di `mio_crate` sopra l’elenco degli elementi
 pubblici del _crate_, come mostrato nella Figura 14-2.
 
-<img alt="Documentazione HTML renderizzata con un commento per l’intero _crate_" src="img/trpl14-02.png" class="center" />
-
-<span class="caption">Figura 14-2: Documentazione renderizzata per `mio_crate`, incluso il commento che descrive il _crate_ nel suo complesso</span>
-
 I commenti di documentazione all’interno degli elementi sono utili soprattutto
 per descrivere i _crate_ e i moduli. Utilizzali per spiegare lo scopo generale
 del contenitore per aiutare i tuoi utenti a capire l’organizzazione del _crate_.
+
+<img src="img/trpl14-02.png" class="center" alt="Documentazione HTML
+renderizzata con un commento per l’intero _crate_" />
+
+<span class="caption">Figura 14-2: La documentazione renderizzata per
+`mio_crate`, incluso il commento che descrive il _crate_ nel suo
+complesso</span>
 
 ### Esportare un API Pubblica Efficace
 
@@ -192,9 +197,11 @@ Listato 14-3.
 La Figura 14-3 mostra l’aspetto della prima pagina della documentazione di
 questo _crate_ generata da `cargo doc`.
 
-<img alt="Documentazione renderizzata per il _crate_ `arte` che elenca i moduli `tipologia` e `utilità`" src="img/trpl14-03.png" class="center" />
+<img src="img/trpl14-03.png" class="center" alt="Documentazione renderizzata per
+il _crate_ `arte` che elenca i moduli `tipologia` e `utilità`" />
 
-<span class="caption">Figura 14-3: Prima pagina della documentazione per `arte` che elenca i moduli `tipologia` e `utilità`</span>
+<span class="caption">Figura 14-3: La prima pagina della documentazione per
+`arte` che elenca i moduli `tipologia` e `utilità`</span>
 
 Nota che i _type_ `ColorePrimario` e `ColoreSecondario` non sono elencati nella
 prima pagina, così come la funzione `mix`. Dobbiamo cliccare su `tipologia` e
@@ -240,9 +247,11 @@ collegherà le riesportazioni (_Re-exports_) nella prima pagina, come mostrato
 nella Figura 14-4, rendendo più facile trovare i _type_ `ColorePrimario` e
 `ColoreSecondario` e la funzione `mix`.
 
-<img alt="Documentazione renderizzata per il _crate_ `arte` con le riesportazioni in prima pagina" src="img/trpl14-04.png" class="center" />
+<img alt="Documentazione renderizzata per il _crate_ `arte` con le
+riesportazioni in prima pagina" src="img/trpl14-04.png" class="center" />
 
-<span class="caption">Figura 14-4: La prima pagina della documentazione per `arte` che elenca le riesportazioni</span>
+<span class="caption">Figura 14-4: La prima pagina della documentazione per
+`arte` che elenca le riesportazioni</span>
 
 Gli utenti del _crate_ `arte` possono ancora vedere e usare la struttura interna
 del Listato 14-3, come dimostrato nel Listato 14-4, oppure possono usare la
@@ -461,9 +470,9 @@ generati non utilizzeranno la versione disabilitata.
 
 Per disabilitare una versione del _crate_, nella directory del _crate_ che hai
 pubblicato in precedenza, esegui `cargo yank` e specifica quale versione vuoi
-disabilitare. Ad esempio, se abbiamo pubblicato un _crate_ chiamato
-`gioco_indovinello` nella versione 1.0.1 e vogliamo disabilitarla, nella
-directory del progetto per `gioco_indovinello` eseguiamo:
+disabilitare. Ad esempio, se hai pubblicato un _crate_ chiamato
+`gioco_indovinello` nella versione 1.0.1 e vuoi disabilitarla, nella directory
+del progetto per `gioco_indovinello` dovrai eseguire:
 
 <!-- manual-regeneration:
 cargo yank carol-test --version 2.1.0

@@ -5,7 +5,7 @@ che “il testing dei programmi può essere un modo molto efficace per mostrare 
 presenza di bug, ma è irrimediabilmente inadeguato per mostrarne l’assenza.”
 Questo non significa che non dovremmo cercare di testare il più possibile!
 
-La correttezza dei nostri programmi è la misura in cui il nostro codice fa ciò
+La _correttezza_ dei nostri programmi è la misura in cui il nostro codice fa ciò
 che intendiamo fare. Rust è stato progettato con un alto grado di preoccupazione
 per la correttezza dei programmi, ma la correttezza è complessa e non facile da
 dimostrare. Il sistema dei _type_ di Rust si fa carico di gran parte di questo

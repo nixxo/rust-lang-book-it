@@ -12,15 +12,15 @@ linguaggio piuttosto che nella libreria standard ci sono i _tratti_
 
 ### Trasferire _Ownership_ tra _Thread_
 
-Il _trait_ marcatore `Send` indica che la _ownership_ dei valori del _type_
-che implementa `Send` può essere trasferita tra i _thread_. Quasi tutti i _type_
-di Rust implementano `Send`, ma ci sono alcune eccezioni, tra cui `Rc<T>`:
-questo non può implementare `Send` perché se si clona un valore `Rc<T>` e si
-cerca di trasferire la _ownership_ del clone a un altro _thread_, entrambi i
-_thread_ potrebbero aggiornare il conteggio dei _reference_ allo stesso tempo.
-Per questo motivo, `Rc<T>` è implementato per essere utilizzato in situazioni a
-_thread_ singolo in cui non si vuole pagare una penalizzazione in prestazioni
-rispetto ad una maggiore sicurezza.
+Il _trait_ marcatore `Send` indica che la _ownership_ dei valori del _type_ che
+implementa `Send` può essere trasferita tra i _thread_. Quasi tutti i _type_ di
+Rust implementano `Send`, ma ci sono alcune eccezioni, tra cui `Rc<T>`: questo
+non può implementare `Send` perché se si clona un valore `Rc<T>` e si cerca di
+trasferire la _ownership_ del clone a un altro _thread_, entrambi i _thread_
+potrebbero aggiornare il conteggio dei _reference_ allo stesso tempo. Per questo
+motivo, `Rc<T>` è implementato per essere utilizzato in situazioni a _thread_
+singolo in cui non si vuole pagare una penalizzazione in prestazioni rispetto ad
+una maggiore sicurezza.
 
 Pertanto, il sistema dei _type_ di Rust e i vincoli di _trait_ assicurano che
 non si possa mai inviare accidentalmente un valore `Rc<T>` tra i _thread_ in

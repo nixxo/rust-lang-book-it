@@ -18,15 +18,15 @@ per raggruppare le firme dei metodi per definire un insieme di comportamenti
 necessari per raggiungere un determinato scopo.
 
 Ad esempio, supponiamo di avere più _struct_ che contengono vari tipi e quantità
-di testo: una struttura `Articolo` che contiene una notizia archiviata in
-una posizione specifica e una `PostSocial` che può contenere, al massimo, 280
+di testo: una struttura `Articolo` che contiene una notizia archiviata in una
+posizione specifica e una `PostSocial` che può contenere, al massimo, 280
 caratteri insieme a metadati che indicano se si tratta di un nuovo post, una
 ripubblicazione o una risposta a un altro post.
 
 Vogliamo creare una libreria di aggregazione multimediale denominata
 `aggregatore` in grado di visualizzare riepiloghi dei dati che potrebbero essere
-memorizzati in un’istanza di `Articolo` o `PostSocial`. Per fare ciò,
-abbiamo bisogno di un riepilogo per ciascun _type_ e richiederemo tale riepilogo
+memorizzati in un’istanza di `Articolo` o `PostSocial`. Per fare ciò, abbiamo
+bisogno di un riepilogo per ciascun _type_ e richiederemo tale riepilogo
 chiamando un metodo `riassunto` su un’istanza. Il Listato 10-12 mostra la
 definizione di un _trait_ pubblico `Sommario` che esprime questo comportamento.
 
@@ -338,8 +338,8 @@ funzionerebbe:
 Restituire un `Articolo` o un `PostSocial` non è consentito a causa di
 restrizioni relative all’implementazione della sintassi `impl Trait` nel
 compilatore. Spiegheremo come scrivere una funzione con questo comportamento
-nella sezione sugli [“Oggetti _Trait_”][using-trait-objects]<!-- ignore --> del
-Capitolo 18.
+nella sezione [“Usare gli Oggetti _Trait_ per Astrarre Comportamenti
+Condivisi”][using-trait-objects]<!-- ignore --> del Capitolo 18.
 
 ### Utilizzare Vincoli di _Trait_ per Implementare Metodi in Modo Condizionale
 
@@ -404,4 +404,4 @@ verificato in fase di compilazione. Ciò migliora le prestazioni senza dover
 rinunciare alla flessibilità dei _type_ generici.
 
 [using-trait-objects]: ch18-02-trait-objects.html
-[methods]: ch05-03-method-syntax.html#metodi 
+[methods]: ch05-03-method-syntax.html#metodi

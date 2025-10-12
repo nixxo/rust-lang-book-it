@@ -373,9 +373,9 @@ che dobbiamo apportare alla firma e al corpo di `esegui`.
 </Listing>
 
 Abbiamo apportato tre modifiche significative. Innanzitutto, abbiamo cambiato il
-_type_ di ritorno della funzione `esegui` in `Result<(), Box<dyn Error>>`. Questa
-funzione in precedenza restituiva il _type_ unitario, `()`, e lo manteniamo come
-valore restituito nel caso `Ok`.
+_type_ di ritorno della funzione `esegui` in `Result<(), Box<dyn Error>>`.
+Questa funzione in precedenza restituiva il _type_ unitario, `()`, e lo
+manteniamo come valore restituito nel caso `Ok`.
 
 Per il _type_ di errore, abbiamo utilizzato l’oggetto _trait_ `Box<dyn Error>`
 (e abbiamo portato `std::error::Error` nello _scope_ con un’istruzione `use`
@@ -493,15 +493,15 @@ dimensioni, perché i risultati non vengono stampati man mano che vengono
 trovati; discuteremo un possibile modo per risolvere questo problema utilizzando
 gli iteratori nel Capitolo 13.
 
-Wow! È stato un duro lavoro, ma ci siamo preparati per il successo futuro. Ora
-è molto più facile gestire gli errori e abbiamo reso il codice più modulare.
-Quasi tutto il nostro lavoro sarà svolto in _src/lib.rs_ da ora in poi.
+Wow! È stato un duro lavoro, ma ci siamo preparati per il successo futuro. Ora è
+molto più facile gestire gli errori e abbiamo reso il codice più modulare. Quasi
+tutto il nostro lavoro sarà svolto in _src/lib.rs_ da ora in poi.
 
 Sfruttiamo questa nuova modularità facendo qualcosa che sarebbe stato difficile
 con il vecchio codice, ma è facile con il nuovo: scriveremo dei test!
 
 [ch13]: ch13-00-functional-features.html
-[ch9-custom-types]: ch09-03-to-panic-or-not-to-panic.html#type-personalizzati-per-la-convalida 
+[ch9-custom-types]: ch09-03-to-panic-or-not-to-panic.html#type-personalizzati-per-la-convalida
 [ch9-error-guidelines]: ch09-03-to-panic-or-not-to-panic.html#linee-guida-per-la-gestione-degli-errori
 [ch9-result]: ch09-02-recoverable-errors-with-result.html
 [ch18]: ch18-00-oop.html

@@ -89,7 +89,7 @@
 
 - [Puntatori Intelligenti](ch15-00-smart-pointers.md)
   - [Utilizzare `Box<T>` per Puntare ai Dati nell’Heap](ch15-01-box.md)
-  - [Trattare i Puntatori Intelligenti Come Normali _Reference_ con `Deref`](ch15-02-deref.md)
+  - [Trattare i Puntatori Intelligenti Come Normali _Reference_](ch15-02-deref.md)
   - [Eseguire del Codice Durante la Pulizia con il _Trait_ `Drop`](ch15-03-drop.md)
   - [`Rc<T>`, il Puntatore Intelligente con Conteggio dei _Reference_](ch15-04-rc.md)
   - [`RefCell<T>` e il Modello di Mutabilità Interna](ch15-05-interior-mutability.md)
@@ -99,7 +99,7 @@
   - [Usare i _Thread_ Per Eseguire Codice Simultaneamente](ch16-01-threads.md)
   - [Trasferire Dati tra _Thread_ Usando il Passaggio di Messaggi](ch16-02-message-passing.md)
   - [Concorrenza a Stato Condiviso](ch16-03-shared-state.md)
-  - [Concorrenza Estensibile con i _Trait_ `Send` e `Sync`](ch16-04-extensible-concurrency-sync-and-send.md)
+  - [Concorrenza Estensibile con `Send` e `Sync`](ch16-04-extensible-concurrency-sync-and-send.md)
 
 - [Fondamenti di Programmazione Asincrona: _Async_, _Await_, _Future_ e _Stream_](ch17-00-async-await.md)
   - [_Future_ e la Sintassi _Async_](ch17-01-futures-and-syntax.md)

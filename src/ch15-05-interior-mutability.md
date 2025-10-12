@@ -134,10 +134,10 @@ chiamate API che gli è consentito effettuare.
 La nostra libreria fornirà solo la funzionalità di tracciare quanto un valore è
 vicino al massimo e quali messaggi dovrebbero essere inviati e in quali momenti.
 Le applicazioni che utilizzano la nostra libreria dovranno fornire il meccanismo
-per l’invio dei messaggi: l’applicazione potrebbe inserire un messaggio al suo
-interno, inviare un’email, inviare un messaggio di testo o fare altro. La
-libreria non ha bisogno di conoscere questo dettaglio. Tutto ciò di cui ha
-bisogno è qualcosa che implementi un _trait_ che forniremo chiamato
+per l’invio dei messaggi: l’applicazione potrebbe mostrare il messaggio
+direttamente all’utente, inviare un’email, inviare un messaggio di testo o fare
+altro. La libreria non ha bisogno di conoscere questo dettaglio. Tutto ciò di
+cui ha bisogno è qualcosa che implementi un _trait_ che forniremo chiamato
 `Messaggero`. Il Listato 15-20 mostra il codice della libreria.
 
 <Listing number="15-20" file-name="src/lib.rs" caption="Una libreria per tenere traccia di quanto un valore sia vicino a un valore massimo e avvisare quando il valore raggiunge determinati livelli">
@@ -157,8 +157,8 @@ comportamento del metodo `setta_valore` su `TracciaLimiti`. Possiamo modificare
 ciò che passiamo per il parametro `valore`, ma `setta_valore` non restituisce
 nulla su cui fare asserzioni. Vogliamo poter dire che se creiamo un
 `TracciaLimiti` con qualcosa che implementa il _trait_ `Messaggero` e un valore
-specifico per `max`, quando passiamo numeri diversi per `valore`, al messaggero
-viene detto di inviare i messaggi appropriati.
+specifico per `max`, al messaggero viene detto di inviare i messaggi appropriati
+quando passiamo numeri diversi per `valore`.
 
 Abbiamo bisogno di un oggetto _mock_ che, invece di inviare un’email o un
 messaggio di testo quando chiamiamo `invia`, tenga traccia solo dei messaggi che
@@ -339,7 +339,7 @@ e `c`, possano entrambe fare riferimento ad `a`, come abbiamo fatto nel Listato
 Dopo aver creato le liste in `a`, `b` e `c`, vogliamo aggiungere 10 al valore in
 `valore`. Lo facciamo chiamando `borrow_mut` su `valore`, che utilizza la
 funzione di de-referenziazione automatica di cui abbiamo parlato in [“Dov’è
-l’operatore `->`?”][wheres-the---operator]<!-- ignore -->) nel Capitolo 5 per
+l’operatore `->`?”][wheres-the---operator]<!-- ignore --> nel Capitolo 5 per
 de-referenziare `Rc<T>` al valore interno `RefCell<T>`. Il metodo `borrow_mut`
 restituisce un puntatore intelligente `RefMut<T>`, su cui utilizziamo
 l’operatore di de-referenziazione e modifichiamo il valore interno.

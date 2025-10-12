@@ -26,9 +26,10 @@ migliorare le prestazioni in questa situazione, possiamo memorizzare la grande
 quantità di dati nell’_heap_ in una _box_. Quindi, solo la piccola quantità di
 dati del puntatore viene copiata sullo _stack_, mentre i dati a cui fa
 riferimento rimangono in un unico punto dell’_heap_. Il terzo caso è noto come
-_oggetto_ _trait_ (_trait object_), e [una sezione][trait-objects]<!-- ignore
---> nel Capitolo 18 è dedicata specificamente a questo argomento. Quindi, ciò
-che imparerai qui lo applicherai di nuovo in quella sezione!
+_oggetto_ _trait_ (_trait object_), e la sezione [“Usare gli Oggetti _Trait_ per
+Astrarre Comportamenti Condivisi”][trait-objects]<!-- ignore --> nel Capitolo 18
+è dedicata specificamente a questo argomento. Quindi, ciò che imparerai qui lo
+applicherai di nuovo in quella sezione!
 
 ### Memorizzare Dati nell’_Heap_
 
@@ -191,9 +192,17 @@ variante `Cons` contiene un valore di _type_ `i32` e un valore di _type_
 `Lista`, e questo processo continua all’infinito, come mostrato nella Figura
 15-1.
 
-<img alt="Una lista _Cons_ infinita: un rettangolo etichettato 'Cons' diviso in due rettangoli più piccoli. Il primo rettangolo più piccolo contiene l’etichetta 'i32', e il secondo rettangolo più piccolo contiene l’etichetta 'Cons' e una versione più piccola del rettangolo 'Cons' esterno. I rettangoli 'Cons' continuano a contenere versioni sempre più piccole di se stessi finché il rettangolo più piccolo, di dimensioni adeguate, contiene un simbolo di infinito, a indicare che questa ripetizione continua all’infinito" src="img/trpl15-01.svg" class="center" style="width: 50%;" />
+<img src="img/trpl15-01.svg" class="center" style="width: 50%;" alt="Una lista
+_Cons_ infinita: un rettangolo etichettato 'Cons' diviso in due rettangoli più
+piccoli. Il primo rettangolo più piccolo contiene l’etichetta 'i32', e il
+secondo rettangolo più piccolo contiene l’etichetta 'Cons' e una versione più
+piccola del rettangolo 'Cons' esterno. I rettangoli 'Cons' continuano a
+contenere versioni sempre più piccole di se stessi finché il rettangolo più
+piccolo, di dimensioni adeguate, contiene un simbolo di infinito, a indicare che
+questa ripetizione continua all’infinito." />
 
-<span class="caption">Figura 15-1: Una `Lista` infinita composta da infinite varianti `Cons`</span>
+<span class="caption">Figura 15-1: Una `Lista` infinita composta da infinite
+varianti `Cons`</span>
 
 #### Ottenere un _Type_ Ricorsivo con una Dimensione Nota
 
@@ -229,7 +238,7 @@ Possiamo modificare la definizione dell’_enum_ `Lista` nel Listato 15-2 e
 l’utilizzo di `Lista` nel Listato 15-3 con il codice nel Listato 15-5, che verrà
 compilato.
 
-<Listing number="15-5" file-name="src/main.rs" caption="Definire `Lista` utilizzando `Box<T>` per avere una dimensione nota">
+<Listing number="15-5" file-name="src/main.rs" caption="La definizione di `Lista` utilizzando `Box<T>` per avere una dimensione nota">
 
 ```rust
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-05/src/main.rs}}
@@ -247,9 +256,14 @@ modo che il compilatore possa calcolare la dimensione necessaria per memorizzare
 un valore `Lista`. La Figura 15-2 mostra l’aspetto attuale della variante
 `Cons`.
 
-<img alt="Un rettangolo etichettato 'Cons' diviso in due rettangoli più piccoli. Il primo rettangolo più piccolo contiene l’etichetta 'i32', e il secondo rettangolo più piccolo contiene l’etichetta 'Box' con un rettangolo interno che contiene l’etichetta 'usize', che rappresenta la dimensione finita del puntatore della box" src="img/trpl15-02.svg" class="center" />
+<img src="img/trpl15-02.svg" class="center" alt="Un rettangolo etichettato
+'Cons' diviso in due rettangoli più piccoli. Il primo rettangolo più piccolo
+contiene l’etichetta 'i32', e il secondo rettangolo più piccolo contiene
+l’etichetta 'Box' con un rettangolo interno che contiene l’etichetta 'usize',
+che rappresenta la dimensione finita del puntatore della box." />
 
-<span class="caption">Figura 15-2: Una `Lista` che non ha dimensioni infinite perché `Cons` contiene una `Box`</span>
+<span class="caption">Figura 15-2: Una `Lista` che non ha dimensioni infinite
+perché `Cons` contiene una `Box`</span>
 
 Le _box_ forniscono solo l’indirezione e l’allocazione nell’_heap_; non hanno
 altre funzionalità speciali, come quelle che vedremo con gli altri tipi di

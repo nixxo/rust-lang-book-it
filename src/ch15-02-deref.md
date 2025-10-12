@@ -279,12 +279,12 @@ Analogamente a come si usa il _trait_ `Deref` per sovrascrivere l’operatore `*
 sui _reference_ immutabili, è possibile usare il _trait_ `DerefMut` per
 sovrascrivere l’operatore `*` sui _reference_ mutabili.
 
-Rust esegue la _deref coercion_ quando trova _type_ e implementazioni di _trait_ in tre
-casi:
+Rust esegue la _deref coercion_ quando trova _type_ e implementazioni di _trait_
+in tre casi:
 
 1. Da `&T` a `&U` quando `T: Deref<Target=U>`
-2. Da `&mut T` a `&mut U` quando `T: DerefMut<Target=U>`
-3. Da `&mut T` a `&U` quando `T: Deref<Target=U>`
+1. Da `&mut T` a `&mut U` quando `T: DerefMut<Target=U>`
+1. Da `&mut T` a `&U` quando `T: Deref<Target=U>`
 
 I primi due casi sono gli stessi, tranne per il fatto che il secondo implementa
 la mutabilità. Il primo caso afferma che se si ha un `&T` e `T` implementa
@@ -306,4 +306,4 @@ scontato che sia possibile convertire un _reference_ immutabile in un
 _reference_ mutabile.
 
 [impl-trait]: ch10-02-traits.html#implementare-un-trait-su-un-type
-[tuple-structs]: ch05-01-defining-structs.html#creare-type-diversi-con-struct-tupla 
+[tuple-structs]: ch05-01-defining-structs.html#creare-type-diversi-con-struct-tupla

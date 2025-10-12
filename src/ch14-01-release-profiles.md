@@ -1,6 +1,6 @@
 ## Personalizzare le Build con i Profili di Rilascio
 
-In Rust, i _profili di rilascio_ (_release profiles_) sono profili predefiniti e
+In Rust, i _profili di rilascio_ (_release profiles_) sono profili predefiniti,
 personalizzabili con diverse configurazioni che permettono al programmatore di
 avere un maggiore controllo sulle varie opzioni di compilazione del codice. Ogni
 profilo è configurato in modo indipendente dagli altri.

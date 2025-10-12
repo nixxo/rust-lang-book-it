@@ -36,7 +36,7 @@ I _mutex_ hanno la reputazione di essere difficili da usare perché devi
 ricordare due regole:
 
 1. Devi cercare di acquisire il blocco prima di utilizzare i dati.
-2. Quando hai finito di utilizzare i dati che il _mutex_ custodisce, devi
+1. Quando hai finito di utilizzare i dati che il _mutex_ custodisce, devi
    sbloccare i dati in modo che altri _thread_ possano acquisirne il blocco.
 
 Per una metafora del mondo reale di un _mutex_, immagina una tavola rotonda a

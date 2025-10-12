@@ -161,7 +161,7 @@ qualsiasi riga che contenga la parola _che_ in minuscolo:
 ```
 
 Sembra che funzioni ancora! Ora eseguiamo il programma con `IGNORA_MAIUSCOLE`
-impostato a `1` ma con la stessa query _che_:
+impostato a `1` ma con la stessa query `che`:
 
 ```console
 $ IGNORA_MAIUSCOLE=1 cargo run -- che poesia.txt

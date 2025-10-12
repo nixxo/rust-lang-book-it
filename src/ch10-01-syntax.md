@@ -37,9 +37,9 @@ nome al parametro di _type_, proprio come facciamo per i parametri di valore di
 una funzione. È possibile utilizzare qualsiasi identificatore come nome di
 parametro di _type_. Ma useremo `T` perché, per convenzione, i nomi dei
 parametri di _type_ in Rust sono brevi, spesso di una sola lettera, e la
-convenzione di denominazione dei _type_ di Rust è CamelCase[^cc]. Abbreviazione
-di _type_, `T` è la scelta predefinita della maggior parte dei programmatori
-Rust.
+convenzione di denominazione dei _type_ di Rust è CamelCase[^cc] (_nello
+specifico UpperCamelCase_). Abbreviazione di _type_, `T` è la scelta predefinita
+della maggior parte dei programmatori Rust.
 
 Quando utilizziamo un parametro nel corpo della funzione, dobbiamo dichiarare il
 nome del parametro nella firma in modo che il compilatore ne conosca il
@@ -53,8 +53,8 @@ della funzione e l’elenco dei parametri, in questo modo:
 fn maggiore<T>(lista: &[T]) -> &T {
 ```
 
-Leggiamo questa definizione come: la funzione `maggiore` è generica su un certo
-_type_ `T`. Questa funzione ha un parametro denominato `lista`, che è una
+Leggiamo questa definizione come “La funzione `maggiore` è generica su un certo
+_type_ `T`”. Questa funzione ha un parametro denominato `lista`, che è una
 _slice_ di valori di _type_ `T`. La funzione `maggiore` restituirà un
 _reference_ a un valore dello stesso _type_ `T`.
 
@@ -77,17 +77,17 @@ Se compiliamo questo codice adesso, otterremo questo errore:
 {{#include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-05/output.txt}}
 ```
 
-Il testo di aiuto menziona `std::cmp::PartialOrd`, che è un _trait_, e
-parleremo dei _trait_ nella prossima sezione. Per ora, sappi che questo errore
-indica che il corpo di `maggiore` non funzionerà per tutti i possibili _type_ di
-`T`. Poiché vogliamo confrontare valori di _type_ `T` nel corpo, possiamo
-utilizzare solo _type_ i cui valori possono essere ordinati. Per abilitare i
-confronti, la libreria standard include il _trait_ `std::cmp::PartialOrd` che è
-possibile implementare sui _type_ (vedere l’[Appendice C][app-c] per maggiori
-informazioni su questo _trait_). Per correggere il Listato 10-5, possiamo
-seguire il suggerimento del testo di aiuto e limitare i _type_ validi per `T`
-solo a quelli che implementano `PartialOrd`. Il Listato verrà quindi compilato,
-poiché la libreria standard implementa `PartialOrd` sia su `i32` che su `char`.
+Il testo di aiuto menziona `std::cmp::PartialOrd`, che è un _trait_, e parleremo
+dei _trait_ nella prossima sezione. Per ora, sappi che questo errore indica che
+il corpo di `maggiore` non funzionerà per tutti i possibili _type_ di `T`.
+Poiché vogliamo confrontare valori di _type_ `T` nel corpo, possiamo utilizzare
+solo _type_ i cui valori possono essere ordinati. Per abilitare i confronti, la
+libreria standard include il _trait_ `std::cmp::PartialOrd` che è possibile
+implementare sui _type_ (vedere l’[Appendice C][app-c] per maggiori informazioni
+su questo _trait_). Per correggere il Listato 10-5, possiamo seguire il
+suggerimento del testo di aiuto e limitare i _type_ validi per `T` solo a quelli
+che implementano `PartialOrd`. Il Listato verrà quindi compilato, poiché la
+libreria standard implementa `PartialOrd` sia su `i32` che su `char`.
 
 ### Nella Definizione delle _Struct_
 
@@ -255,7 +255,7 @@ metodo crea una nuova istanza di `Punto` con il valore `x` dal `self` `Punto`
 (di _type_ `X1`) e il valore `y` dal `Punto` passato come argomento (di _type_
 `Y2`).
 
-<Listing number="10-11" file-name="src/main.rs" caption="Un metodo che utilizza _type_ generici diversi dalla definizione della sua _struct_">
+<Listing number="10-11" file-name="src/main.rs" caption="Un metodo che utilizza _type_ generici che sono diversi dalla definizione della sua _struct_">
 
 ```rust
 {{#rustdoc_include ../listings/ch10-generic-types-traits-and-lifetimes/listing-10-11/src/main.rs}}

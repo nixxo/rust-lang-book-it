@@ -35,7 +35,7 @@ configurerà l’intero _workspace_. Questo file non avrà una sezione `[package
 ma inizierà con una sezione `[workspace]` che ci permetterà di aggiungere membri
 al _workspace_. Inoltre, esplicitiamo di voler usare l’ultima versione
 dell’algoritmo di risoluzione delle dipendenze di Cargo nel nostro spazio di
-lavoro, impostando il valore `resolver` a `"3"`.
+lavoro, impostando il valore `resolver` a `"3"`:
 
 <span class="filename">File: Cargo.toml</span>
 
@@ -357,8 +357,7 @@ di documentazione nel _crate_ `piu_uno`.
 
 Possiamo anche eseguire i test per un particolare _crate_ in un _workspace_
 dalla directory di primo livello utilizzando il _flag_ `-p` e specificando il
-nome
-del _crate_ che vogliamo testare:
+nome del _crate_ che vogliamo testare:
 
 <!-- manual-regeneration
 cd listings/ch14-more-about-cargo/no-listing-04-workspace-with-tests/somma
