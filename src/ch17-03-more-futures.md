@@ -8,7 +8,7 @@ numero arbitrario di argomenti. Gestisce anche l’attesa delle _future_ stessa.
 Quindi, potremmo riscrivere il codice del Listato 17-13 per usare `join!` invece
 di `join3`, come nel Listato 17-14.
 
-<Listing number="17-14" caption="Usare `join!` per aspettare più _future_" file-name="src/main.rs">
+<Listing number="17-14" file-name="src/main.rs" caption="Usare `join!` per aspettare più _future_">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-14/src/main.rs:here}}
@@ -69,7 +69,7 @@ implementano il _trait_ `Future`.
 Iniziamo incapsulando ciascuna _future_ nel `vec!` in una `Box::new`, come
 mostrato nel Listato 17-16.
 
-<Listing number="17-16" caption="Usare `Box::new` per allineare i _type_ delle _future_ in un `Vec`" file-name="src/main.rs">
+<Listing number="17-16" file-name="src/main.rs" caption="Usare `Box::new` per allineare i _type_ delle _future_ in un `Vec`">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-16/src/main.rs:here}}
@@ -84,7 +84,7 @@ chiamata a `Box::new` , oltre a nuovi errori che fanno riferimento al _trait_
 errori di _type_ sulle chiamate `Box::new` annotando esplicitamente il _type_
 della variabile `future` come nel Listato 17-17.
 
-<Listing number="17-17" caption="Correggere il resto degli errori di _type_ non corrispondente usando una dichiarazione di _type_ esplicita" file-name="src/main.rs">
+<Listing number="17-17" file-name="src/main.rs" caption="Correggere il resto degli errori di _type_ non corrispondente usando una dichiarazione di _type_ esplicita">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-17/src/main.rs:here}}
@@ -121,7 +121,7 @@ compilatore per sbloccarci. Nel Listato 17-18, iniziamo importando `Pin` da
 `Pin` che incapsula ogni `Box`. Infine, usiamo `Box::pin` per sistemare le
 stesse _future_.
 
-<Listing number="17-18" caption="Usare `Pin` e `Box::pin` per far sì che il _type_ `Vec` superi il controllo" file-name="src/main.rs">
+<Listing number="17-18" file-name="src/main.rs" caption="Usare `Pin` e `Box::pin` per far sì che il _type_ `Vec` superi il controllo">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-18/src/main.rs:here}}
@@ -162,7 +162,7 @@ ciascuna _future_ quando la definiamo per poi definire `future` come un `Vec`
 che contiene _reference_ mutabili fissati ai _type_ _future_ dinamici, come nel
 Listato 17-19.
 
-<Listing number="17-19" caption="Usare `Pin` direttamente con la macro `pin!` per evitare allocazioni nell’_heap_ non necessarie" file-name="src/main.rs">
+<Listing number="17-19" file-name="src/main.rs" caption="Usare `Pin` direttamente con la macro `pin!` per evitare allocazioni nell’_heap_ non necessarie">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-19/src/main.rs:here}}
@@ -175,7 +175,7 @@ diversi. Ad esempio, nel Listato 17-20, la _future_ anonima per `a` implementa
 `Future<Output = u32>`, la _future_ anonima per `b` implementa `Future<Output =
 &str>`, e la _future_ anonima per `c` implementa `Future<Output = bool>`.
 
-<Listing number="17-20" caption="Tre _future_ con _type_ distinti" file-name="src/main.rs">
+<Listing number="17-20" file-name="src/main.rs" caption="Tre _future_ con _type_ distinti">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-20/src/main.rs:here}}
@@ -206,7 +206,7 @@ un po' come mettere in competizione una _future_ contro un’altra.
 Nel Listato 17-21, utilizziamo di nuovo `trpl::race` per eseguire due _future_,
 `lenta` e `veloce`, l’una contro l’altra.
 
-<Listing number="17-21" caption="Utilizzo di `race` per ottenere il risultato di quale _future_ finisce prima" file-name="src/main.rs">
+<Listing number="17-21" file-name="src/main.rs" caption="Utilizzo di `race` per ottenere il risultato di quale _future_ finisce prima">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-21/src/main.rs:here}}
@@ -259,7 +259,7 @@ Ma _come_ restituiresti il controllo al _runtime_ in quei casi?
 Simuliamo un’operazione a lungo termine. Il Listato 17-22 introduce una funzione
 `lenta`.
 
-<Listing number="17-22" caption="Utilizzo di `thread::sleep` per simulare operazioni lente" file-name="src/main.rs">
+<Listing number="17-22" file-name="src/main.rs" caption="Utilizzo di `thread::sleep` per simulare operazioni lente">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-22/src/main.rs:slow}}
@@ -349,7 +349,7 @@ quando possibile. Possiamo farlo direttamente, utilizzando la funzione
 `yield_now`. Nel Listato 17-25, sostituiamo tutte quelle chiamate a `sleep` con
 `yield_now`.
 
-<Listing number="17-25" caption="Utilizzo di `yield_now` per consentire alle operazioni di alternarsi nel fare progressi" file-name="src/main.rs">
+<Listing number="17-25" file-name="src/main.rs" caption="Utilizzo di `yield_now` per consentire alle operazioni di alternarsi nel fare progressi">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-25/src/main.rs:yields}}
@@ -369,7 +369,7 @@ Puoi vedere questo di persona impostando un piccolo _benchmark_, come quello nel
 Listato 17-26. (Questo non è un modo particolarmente rigoroso per fare test di
 prestazioni, ma è sufficiente a mostrare la differenza qui.)
 
-<Listing number="17-26" caption="Confronto delle prestazioni di `sleep` e `yield_now`" file-name="src/main.rs">
+<Listing number="17-26" file-name="src/main.rs" caption="Confronto delle prestazioni di `sleep` e `yield_now`">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-26/src/main.rs:here}}
@@ -420,7 +420,7 @@ potremmo usare per creare ancora più astrazioni _async_.
 Il Listato 17-27 mostra come ci aspettiamo che funzioni questo `timeout` con una
 _future_ lenta.
 
-<Listing number="17-27" caption="Utilizzo del nostro immaginato `timeout` per eseguire un’operazione lenta con un limite di tempo" file-name="src/main.rs">
+<Listing number="17-27" file-name="src/main.rs" caption="Utilizzo del nostro immaginato `timeout` per eseguire un’operazione lenta con un limite di tempo">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-27/src/main.rs:here}}
@@ -443,7 +443,7 @@ Il Listato 17-28 mostra questa dichiarazione.
 
 <!-- Non testato, perché scritto intenzionalmente per non compoilarsi. -->
 
-<Listing number="17-28" caption="Definire la firma di `timeout`" file-name="src/main.rs">
+<Listing number="17-28" file-name="src/main.rs" caption="Definire la firma di `timeout`">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-28/src/main.rs:declaration}}
@@ -467,7 +467,7 @@ restituirà `Right` con l’output del timer di `()`.
 Nel Listato 17-29, facciamo il _match_ sul risultato dell’attesa di
 `trpl::race`.
 
-<Listing number="17-29" caption="Definire `timeout` con `race` e `sleep`" file-name="src/main.rs">
+<Listing number="17-29" file-name="src/main.rs" caption="Definire `timeout` con `race` e `sleep`">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-29/src/main.rs:implementation}}

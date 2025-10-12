@@ -20,7 +20,7 @@ Facciamo la stessa cosa usando _async_. Il _crate_ `trpl` fornisce una funzione
 `sleep` che è una versione _async_ dell’API `thread::sleep`. Possiamo usarle
 insieme per implementare l’esempio di conteggio, come mostrato nel Listato 17-6.
 
-<Listing number="17-6" caption="Creare un nuovo _task_ per stampare una cosa mentre il _task_ principale ne stampa un’altra" file-name="src/main.rs">
+<Listing number="17-6" file-name="src/main.rs" caption="Creare un nuovo _task_ per stampare una cosa mentre il _task_ principale ne stampa un’altra">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-06/src/main.rs:all}}
@@ -68,7 +68,7 @@ quando il _thread_ avesse finito di eseguirsi. Nel Listato 17-7, possiamo usare
 _future_. Il suo _type_ `Output` è un `Result`, quindi dopo averlo atteso
 (_await_), dobbiamo anche esporlo (_unwrap_).
 
-<Listing number="17-7" caption="Usare `await` con un _join handle_ per eseguire un _task_ fino al completamento" file-name="src/main.rs">
+<Listing number="17-7" file-name="src/main.rs" caption="Usare `await` con un _join handle_ per eseguire un _task_ fino al completamento">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-07/src/main.rs:handle}}
@@ -116,7 +116,7 @@ finiscano. Non aspettiamo `fut1` e `fut2` ma invece la nuova _future_ prodotta
 da `trpl::join`. Ignoriamo l’output, perché è solo una tupla che contiene due
 valori unitari.
 
-<Listing number="17-8" caption="Usare `trpl::join` per aspettare due _future_ anonime" file-name="src/main.rs">
+<Listing number="17-8" file-name="src/main.rs" caption="Usare `trpl::join` per aspettare due _future_ anonime">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-08/src/main.rs:join}}
@@ -178,7 +178,7 @@ differenze chiave tra concorrenza basata su _thread_ e concorrenza basata su
 _future_. Nel Listato 17-9, inizieremo con un singolo blocco _async_, _non_
 creando un _task_ separato come avevamo creato un _thread_ separato.
 
-<Listing number="17-9" caption="Creare un canale _async_ e assegnare le due metà a `tx` e `rx`" file-name="src/main.rs">
+<Listing number="17-9" file-name="src/main.rs" caption="Creare un canale _async_ e assegnare le due metà a `tx` e `rx`">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-09/src/main.rs:channel}}
@@ -220,7 +220,7 @@ loro, come mostrato nel Listato 17-10.
 
 <!-- Non possiamo testare questo codice perché non si ferma mai! -->
 
-<Listing number="17-10" caption="Inviare e ricevere più messaggi sul canale _async_ e dormire con un `await` tra ogni messaggio" file-name="src/main.rs">
+<Listing number="17-10" file-name="src/main.rs" caption="Inviare e ricevere più messaggi sul canale _async_ e dormire con un `await` tra ogni messaggio">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-10/src/main.rs:many-messages}}
@@ -286,7 +286,7 @@ quello che stiamo cercando di _non_ fare.
 
 <!-- Non possiamo testare questo codice perché non si ferma mai! -->
 
-<Listing number="17-11" caption="Separare `send` e `recv` nei loro blocchi `async` e aspettare le _future_ per quei blocchi" file-name="src/main.rs">
+<Listing number="17-11" file-name="src/main.rs" caption="Separare `send` e `recv` nei loro blocchi `async` e aspettare le _future_ per quei blocchi">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-11/src/main.rs:futures}}
@@ -339,7 +339,7 @@ Nel Listato 17-12, cambiamo il blocco usato per inviare messaggi da `async` a
 `async move`. Quando eseguiamo _questa_ versione del codice, si chiude
 correttamente dopo che l’ultimo messaggio è stato inviato e ricevuto.
 
-<Listing number="17-12" caption="Una revisione del codice nel Listato 17-11 che si chiude correttamente al completamento" file-name="src/main.rs">
+<Listing number="17-12" file-name="src/main.rs" caption="Una revisione del codice nel Listato 17-11 che si chiude correttamente al completamento">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-12/src/main.rs:with-move}}
@@ -351,7 +351,7 @@ Questo canale _async_ è anche un canale multi-produttore, quindi possiamo
 chiamare `clone` su `tx` se vogliamo inviare messaggi da più _future_, come
 mostrato nel Listato 17-13.
 
-<Listing number="17-13" caption="Usare più produttori con blocchi _async_" file-name="src/main.rs">
+<Listing number="17-13" file-name="src/main.rs" caption="Usare più produttori con blocchi _async_">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-13/src/main.rs:here}}

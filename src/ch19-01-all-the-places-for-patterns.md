@@ -41,8 +41,7 @@ valore non può mai fallire e quindi copre tutti i casi rimanenti.
 Il pattern specifico `_` corrisponderà a qualsiasi cosa, ma non si vincola mai a una
 variabile, quindi viene spesso utilizzato nell'ultimo ramo di corrispondenza. Il pattern `_` può essere
 utile quando si desidera ignorare qualsiasi valore non specificato, ad esempio. Tratteremo
-il pattern `_` più dettagliatamente in ["Ignorare i valori in un
-pattern”][ignoring-values-in-a-pattern]<!-- ignore --> più avanti in questo capitolo.
+il pattern `_` più dettagliatamente in [“Ignorare Valori In un _Pattern_”][ignoring-values-in-a-pattern]<!-- ignore --> più avanti in questo capitolo.
 
 ### Istruzioni `let`
 
@@ -111,8 +110,7 @@ Il tentativo di compilare questo codice genera questo tipo di errore:
 ```
 
 Per correggere l'errore, potremmo ignorare uno o più valori nella tupla usando
-`_` o `..`, come vedrai nella sezione [“Ignorare i valori in una sezione
-Pattern”][ignoring-values-in-a-pattern]<!-- ignore -->. Se il problema
+`_` o `..`, come vedrai nella sezione [“Ignorare Valori In un _Pattern_”][ignoring-values-in-a-pattern]<!-- ignore -->. Se il problema
 è che abbiamo troppe variabili nel pattern, la soluzione è far corrispondere i
 tipi rimuovendo le variabili in modo che il numero di variabili sia uguale al numero
 di elementi nella tupla.
@@ -160,7 +158,7 @@ valido finché il nuovo ambito non inizia con la parentesi graffa.
 
 Lo svantaggio dell'utilizzo di espressioni `if let` è che il compilatore non verifica
 l'esaustività, mentre con le espressioni `match` lo fa. Se omettessimo l'
-ultimo blocco `else` e ​​quindi non gestissimo alcuni casi, il compilatore
+ultimo blocco `else` e quindi non gestissimo alcuni casi, il compilatore
 non ci avviserebbe del possibile bug logico.
 
 ### Cicli Condizionali `while let`
@@ -250,4 +248,4 @@ funzionano allo stesso modo in tutti i casi in cui possiamo usarli. In alcuni ca
 essere inconfutabili; in altre circostanze, possono essere confutabili. Discuteremo
 questi due concetti più avanti.
 
-[ignoring-values-in-a-pattern]: ch19-03-pattern-syntax.html#ignoring-values-in-a-pattern
+[ignoring-values-in-a-pattern]: ch19-03-pattern-syntax.html#ignorare-valori-in-un-pattern

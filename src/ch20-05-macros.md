@@ -173,7 +173,7 @@ complesse che si spera di eliminare in futuro. Nel Listato 20-36 mostriamo come
 definire una macro procedurale, dove `qualche_attributo` è un segnaposto per
 l'uso di una specifica varietà di macro.
 
-<Listato number="20-36" file-name="src/lib.rs" caption="Un esempio di definizione di una macro procedurale">
+<Listing number="20-36" file-name="src/lib.rs" caption="Un esempio di definizione di una macro procedurale">
 
 ```rust,ignore
 use proc_macro;
@@ -183,7 +183,7 @@ pub fn qualche_attributo(input: TokenStream) -> TokenStream {
 }
 ```
 
-</Listato>
+</Listing>
 
 La funzione che definisce una macro procedurale prende un `TokenStream` come
 input e produce un `TokenStream` come output. Il _type_ `TokenStream` è definito
@@ -211,13 +211,13 @@ definito. In altre parole, scriveremo un _crate_ che permette a un altro
 programmatore di scrivere codice come nel Listato 20-37 usando il nostro
 _crate_.
 
-<Listato number="20-37" file-name="src/main.rs" caption="Il codice che un utente del nostro crate potrà scrivere usando la nostra macro procedurale">
+<Listing number="20-37" file-name="src/main.rs" caption="Il codice che un utente del nostro crate potrà scrivere usando la nostra macro procedurale">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch20-advanced-features/listing-20-37/src/main.rs}}
 ```
 
-</Listato>
+</Listing>
 
 Questo codice stamperà `Ciao, Macro! Il mio nome è Pancake!` quando sarà
 eseguito. Il primo passo è creare un nuovo _crate_ libreria come segue:
@@ -229,25 +229,25 @@ $ cargo new ciao_macro --lib
 Successivamente, nel Listato 20-38, definiremo il _trait_ `CiaoMacro` e la sua
 funzione associata.
 
-<Listato file-name="src/lib.rs" number="20-38" caption="Un semplice _trait_ che useremo con la macro `derive`">
+<Listing number="20-38" file-name="src/lib.rs" caption="Un semplice _trait_ che useremo con la macro `derive`">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch20-advanced-features/listing-20-38/ciao_macro/src/lib.rs}}
 ```
 
-</Listato>
+</Listing>
 
 Abbiamo un _trait_ e la sua funzione. A questo punto, l'utente del nostro
 _crate_ potrebbe implementare il _trait_ per ottenere la funzionalità
 desiderata, come mostrato nel Listato 20-39.
 
-<Listato number="20-39" file-name="src/main.rs" caption="Come apparirebbe se gli utenti scrivessero manualmente l'implementazione del _trait_ `CiaoMacro`">
+<Listing number="20-39" file-name="src/main.rs" caption="Come apparirebbe se gli utenti scrivessero manualmente l'implementazione del _trait_ `CiaoMacro`">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch20-advanced-features/listing-20-39/pancake/src/main.rs}}
 ```
 
-</Listato>
+</Listing>
 
 Tuttavia, gli utenti dovrebbero scrivere il blocco di implementazione per ogni
 _type_ su cui vogliono usare `ciao_macro`; vogliamo risparmiarli da questo
@@ -287,26 +287,26 @@ procedurali. Avremo anche bisogno della funzionalità dai _crate_ `syn` e
 `quote`, come vedremo a breve, quindi dobbiamo aggiungerli come dipendenze.
 Aggiungi quanto segue al file _Cargo.toml_ di `ciao_macro_derive`:
 
-<Listato file-name="ciao_macro_derive/Cargo.toml">
+<Listing file-name="ciao_macro_derive/Cargo.toml">
 
 ```toml
 {{#include ../listings/ch20-advanced-features/listing-20-40/ciao_macro/ciao_macro_derive/Cargo.toml:6:12}}
 ```
 
-</Listato>
+</Listing>
 
 Per iniziare a definire la macro procedurale, inserisci il codice del Listato
 20-40 nel file _src/lib.rs_ del crate `ciao_macro_derive`. Nota che questo
 codice non si compila fino a quando non aggiungiamo una definizione per la
 funzione `impl_ciao_macro`.
 
-<Listato number="20-40" file-name="ciao_macro_derive/src/lib.rs" caption="Codice che la maggior parte dei _crate_ di macro procedurali richiederà per processare codice Rust">
+<Listing number="20-40" file-name="ciao_macro_derive/src/lib.rs" caption="Codice che la maggior parte dei _crate_ di macro procedurali richiederà per processare codice Rust">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch20-advanced-features/listing-20-40/ciao_macro/ciao_macro_derive/src/lib.rs}}
 ```
 
-</Listato>
+</Listing>
 
 Nota che abbiamo diviso il codice in una funzione `ciao_macro_derive`,
 responsabile del parsing del `TokenStream`, e una funzione `impl_ciao_macro`,
@@ -342,7 +342,7 @@ La funzione `parse` di `syn` prende un `TokenStream` e restituisce una struttura
 le parti rilevanti della struttura `DeriveInput` ottenuta analizzando la stringa
 `struct Pancake;`.
 
-<Listato number="20-41" caption="L'istanza `DeriveInput` che otteniamo analizzando il codice con l'attributo macro del Listato 20-37">
+<Listing number="20-41" caption="L'istanza `DeriveInput` che otteniamo analizzando il codice con l'attributo macro del Listato 20-37">
 
 ```rust,ignore
 DeriveInput {
@@ -364,7 +364,7 @@ DeriveInput {
 }
 ```
 
-</Listato>
+</Listing>
 
 I campi di questa struttura mostrano che il codice Rust che abbiamo analizzato è
 una _struct_ _unit_ con `ident` (identificatore, cioè il nome) `Pancake`. Ci
@@ -390,13 +390,13 @@ Ora che abbiamo il codice per trasformare il codice Rust annotato da un
 `TokenStream` a un'istanza `DeriveInput`, generiamo il codice che implementa il
 _trait_ `CiaoMacro` sul _type_ annotato, come mostrato nel Listato 20-42.
 
-<Listato number="20-42" file-name="hello_macro_derive/src/lib.rs" caption="Implementazione del _trait_ `CiaoMacro` usando il codice Rust analizzato">
+<Listing number="20-42" file-name="hello_macro_derive/src/lib.rs" caption="Implementazione del _trait_ `CiaoMacro` usando il codice Rust analizzato">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch20-advanced-features/listing-20-42/ciao_macro/ciao_macro_derive/src/lib.rs:here}}
 ```
 
-</Listato>
+</Listing>
 
 Otteniamo un'istanza `Ident` contenente il nome (identificatore) del _type_
 annotato usando `ast.ident`. La _struct_ nel Listato 20-41 mostra che quando

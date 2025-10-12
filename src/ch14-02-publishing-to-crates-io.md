@@ -247,8 +247,8 @@ collegherà le riesportazioni (_Re-exports_) nella prima pagina, come mostrato
 nella Figura 14-4, rendendo più facile trovare i _type_ `ColorePrimario` e
 `ColoreSecondario` e la funzione `mix`.
 
-<img alt="Documentazione renderizzata per il _crate_ `arte` con le
-riesportazioni in prima pagina" src="img/trpl14-04.png" class="center" />
+<img src="img/trpl14-04.png" class="center" alt="Documentazione renderizzata per
+il _crate_ `arte` con le riesportazioni in prima pagina" />
 
 <span class="caption">Figura 14-4: La prima pagina della documentazione per
 `arte` che elenca le riesportazioni</span>
