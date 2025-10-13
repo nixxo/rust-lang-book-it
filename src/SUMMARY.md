@@ -109,10 +109,10 @@
   - [Uno Sguardo Più Da Vicino ai _Trait_ per _Async_](ch17-05-traits-for-async.md)
   - [_Future_, _Task_ e _Thread_](ch17-06-futures-tasks-threads.md)
 
-- [Object Oriented Programming Features of Rust](ch18-00-oop.md)
-  - [Characteristics of Object-Oriented Languages](ch18-01-what-is-oo.md)
-  - [Using Trait Objects That Allow for Values of Different Types](ch18-02-trait-objects.md)
-  - [Implementing an Object-Oriented Design Pattern](ch18-03-oo-design-patterns.md)
+- [Funzionalità della Programmazione Orientata agli Oggetti](ch18-00-oop.md)
+  - [Caratteristiche dei Linguaggi Orientati agli Oggetti](ch18-01-what-is-oo.md)
+  - [Usare gli Oggetti _Trait_ per Astrarre Comportamenti Condivisi](ch18-02-trait-objects.md)
+  - [Implementare un Modello di Design Orientato agli Oggetti](ch18-03-oo-design-patterns.md)
 
 ## Tematiche Avanzate
 

@@ -13,7 +13,7 @@ cosa significa ognuna di queste caratteristiche e se Rust le supporta.
 Il libro _Design Patterns: Elements of Reusable Object-Oriented Software_ di
 Erich Gamma, Richard Helm, Ralph Johnson e John Vlissides (Addison-Wesley, 1994)
 (traduzione in italiano pubblicata da Pearson, 2002), noto come il libro della
-_Gang of Four_ (_Banda dei quattro_) , è un catalogo di modelli di progettazione
+_Gang of Four_ (_Banda dei quattro_), è un catalogo di modelli di progettazione
 orientati agli oggetti. Definisce la _OOP_ in questo modo:
 
 > I programmi orientati agli oggetti sono composti da oggetti. Un **oggetto**
@@ -27,7 +27,7 @@ la stessa funzionalità, secondo la definizione della _Gang of Four_.
 
 ### Incapsulamento che Nasconde i Dettagli di Implementazione
 
-Un altro aspetto comunemente associato alla OOP è l’idea di _incapsulamento_,
+Un altro aspetto comunemente associato alla _OOP_ è l’idea di _incapsulamento_,
 che significa che i dettagli di implementazione di un oggetto non sono
 accessibili al codice che usa quell’oggetto. Quindi, l’unico modo per interagire
 con un oggetto è attraverso la sua API pubblica; il codice che usa l’oggetto non
@@ -39,11 +39,11 @@ Abbiamo visto come controllare l’incapsulamento nel Capitolo 7: possiamo usare
 la parola chiave `pub` per decidere quali moduli, _type_, funzioni e metodi del
 nostro codice devono essere pubblici e, di default, tutto il resto è privato.
 Per esempio, possiamo definire una _struct_ `CollezioneConMedia` che ha un campo
-contenente un vettore di valori `i32`. La `struct` può avere anche un campo che
+contenente un vettore di valori `i32`. La _struct_ può avere anche un campo che
 contiene la media dei valori nel vettore, quindi la media non deve essere
 calcolata ogni volta che serve. In altre parole, `CollezioneConMedia` tiene
-memorizzata la media calcolata per noi. Il Listato 18-1 mostra la definizione
-della _struct_ `CollezioneConMedia`.
+memorizzata la media calcolata di volta in volta al posto nostro. Il Listato
+18-1 mostra la definizione della _struct_ `CollezioneConMedia`.
 
 <Listing number="18-1" file-name="src/lib.rs" caption="Una _struct_ `CollezioneConMedia` che mantiene una lista di interi e la media degli elementi nella collezione">
 
@@ -57,7 +57,7 @@ La _struct_ è marcata `pub` così il resto del codice può usarla, ma i campi
 interni restano privati. Questo è importante perché vogliamo assicurarci che
 ogni volta che un valore viene aggiunto o rimosso dalla lista, anche la media
 venga aggiornata. Lo facciamo implementando i metodi `aggiungi`, `rimuovi` e
-`media` sulla struct, come nel Listato 18-2.
+`media` sulla _struct_, come nel Listato 18-2.
 
 <Listing number="18-2" file-name="src/lib.rs" caption="Implementazioni dei metodi pubblici `aggiungi`, `rimuovi` e `media` su `CollezioneConMedia`">
 
@@ -73,9 +73,9 @@ aggiunge un elemento alla `lista` usando `aggiungi` o si rimuove con `rimuovi`,
 questi metodi chiamano il metodo privato `aggiorna_media` che si occupa di
 aggiornare il campo `media`.
 
-Lasciamo i campi `lista` e `media` privati così il codice esterno non può
-aggiungere o rimuovere elementi direttamente dalla lista; altrimenti, il campo
-`media` potrebbe diventare non più corrispondente a quello che rappresenta
+Lasciamo i campi `lista` e `media` privati, in questo modo il codice esterno non
+può aggiungere o rimuovere elementi direttamente dalla lista; altrimenti, il
+campo `media` potrebbe diventare non più corrispondente a quello che rappresenta
 rispetto alla lista. Il metodo `media` restituisce il valore nel campo `media`,
 permettendo al codice esterno di leggere la media ma non di modificarla.
 
@@ -102,7 +102,7 @@ genitore senza doverli ridefinire.
 
 Se un linguaggio deve avere l’ereditarietà per essere orientato agli oggetti,
 allora Rust non lo è. Non c’è modo di definire una _struct_ che erediti i campi
-e i metodi del genitore senza usare macro.
+e i metodi del genitore senza usare una macro.
 
 Tuttavia, se sei abituato a usare l’ereditarietà, puoi usare in Rust altre
 soluzioni a seconda del motivo per cui la vorresti usare.
@@ -133,9 +133,9 @@ oggetti diversi durante l’esecuzione se hanno certe caratteristiche in comune.
 > più generale che si riferisce a codice in grado di lavorare con dati di tipi
 > diversi. Per l’ereditarietà, questi tipi sono solitamente sottoclassi.
 >
-> Rust invece usa i generici per astrarre su tipi diversi e i vincoli di _trait_
-> per imporre cosa questi tipi devono fornire. Questo si chiama a volte
-> _polimorfismo parametrico vincolato_.
+> Rust invece usa i generici per astrarre su _type_ diversi e i vincoli di
+> _trait_ per imporre cosa questi _type_ devono fornire. Questo viene
+> solitamente chiamato _polimorfismo parametrico vincolato_.
 
 Rust ha scelto un set di compromessi diverso non offrendo ereditarietà.
 L’ereditarietà spesso condivide più codice del necessario. Le sottoclassi non
@@ -148,5 +148,5 @@ applicano. Inoltre, alcuni linguaggi permettono solo _l’ereditarietà singola_
 ulteriormente la flessibilità nel design.
 
 Per questi motivi, Rust usa un approccio diverso basato sugli oggetti _trait_
-invece dell’ereditarietà per abilitare il polimorfismo. Vediamo come funzionano
-gli oggetti _trait_.
+invece dell’ereditarietà per ottenere il polimorfismo durante l’esecuzione.
+Vediamo come funzionano gli oggetti _trait_.

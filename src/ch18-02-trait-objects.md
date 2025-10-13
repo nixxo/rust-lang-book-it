@@ -10,10 +10,10 @@ noti a tempo di compilazione.
 
 Però a volte vogliamo che chi usa la nostra libreria possa estendere l’insieme
 di _type_ validi in una situazione. Per mostrare come farlo, creeremo un esempio
-di interfaccia grafica (GUI) che scorre una lista di elementi, chiamando per
+di interfaccia grafica (_GUI_) che scorre una lista di elementi, chiamando per
 ognuno un metodo `disegna` per disegnarlo a schermo, una tecnica comune negli
-strumenti GUI. Creeremo un _crate_ libreria chiamato `gui` che contiene la
-struttura base di una libreria GUI. Questo _crate_ includerà _type_ da usare,
+strumenti _GUI_. Creeremo un _crate_ libreria chiamato `gui` che contiene la
+struttura base di una libreria _GUI_. Questo _crate_ includerà _type_ da usare,
 come `Bottone` o `CampoTesto`. Inoltre, gli utenti della libreria vorranno
 creare i propri _type_ disegnabili: per esempio, uno aggiungerà un `Immagine` e
 un altro una `BoxSelezione`.
@@ -40,26 +40,29 @@ chiamato `Disegna` con un metodo `disegna`. Poi definiamo un vettore che
 contiene oggetti _trait_. Un oggetto _trait_ punta sia a un’istanza di un _type_
 che implementa il _trait_, sia a una tabella usata per cercare durante
 l’esecuzione i metodi _trait_ su quel _type_. Creiamo un oggetto _trait_
-specificando un puntatore (come un _reference_ `&` o uno puntatore intelligente
-`Box<T>`), poi la parola chiave `dyn` e infine il _trait_ rilevante. (Parleremo
-del motivo per cui gli oggetti _trait_ devono usare un puntatore in [“_Type_ a
-Dimensione Dinamica e il _Trait_ `Sized`”][dynamically-sized]<!-- ignore --> nel
-Capitolo 20.) Possiamo usare oggetti _trait_ al posto di _type_ generici o
-concreti. Ovunque usiamo un oggetto _trait_, il sistema dei _type_ di Rust
-garantisce durante la compilazione che ogni valore in quel contesto implementi
-il _trait_ dell’oggetto _trait_, quindi non serve conoscere tutti i _type_
-possibili al momento della compilazione.
+specificando un puntatore, come un _reference_ `&` o uno puntatore intelligente
+`Box<T>`, poi la parola chiave `dyn` e infine specifichiamo il _trait_
+rilevante. (Parleremo del motivo per cui gli oggetti _trait_ devono usare un
+puntatore in [“_Type_ a Dimensione Dinamica e il _Trait_
+`Sized`”][dynamically-sized]<!-- ignore --> nel Capitolo 20.) Possiamo usare
+oggetti _trait_ al posto di _type_ generici o concreti. Ovunque usiamo un
+oggetto _trait_, il sistema dei _type_ di Rust garantisce durante la
+compilazione che ogni valore in quel contesto implementi il _trait_ dell’oggetto
+_trait_, quindi non serve conoscere tutti i _type_ possibili al momento della
+compilazione.
 
-Abbiamo detto che in Rust evitiamo di chiamare “oggetti” `struct` ed `enum` per
+Abbiamo detto che in Rust evitiamo di chiamare “oggetti” _struct_ ed _enum_ per
 distinguerli dagli oggetti di altri linguaggi. In una _struct_ o _enum_, dati e
 comportamento in blocchi `impl` sono separati, mentre in altri linguaggi dati e
-comportamento uniti formano un oggetto. Gli oggetti _trait_ differiscono dagli
-oggetti in altri linguaggi perché non possono contenere dati. Gli oggetti
-_trait_ servono specificamente per astrarre comportamenti comuni.
+comportamento uniti formano un oggetto. E quindi gli oggetti _trait_ sono in
+qualche modo simili agli oggetti in altri linguaggi nel senso che combinano dati
+e comportamento. Ma gli oggetti _trait_ differiscono dalla tradizionale
+definizione di oggetto in altri linguaggi perché non possono contenere dati. Gli
+oggetti _trait_ non hanno la completezza che si trova in altri linguaggi:
+servono specificamente solo per astrarre comportamenti comuni.
 
 Il Listato 18-3 mostra come definire un _trait_ `Disegna` con un metodo
 `disegna`.
-
 
 <Listing number="18-3" file-name="src/lib.rs" caption="Definizione del _trait_ `Disegna`">
 
@@ -71,9 +74,9 @@ Il Listato 18-3 mostra come definire un _trait_ `Disegna` con un metodo
 
 La sintassi dovrebbe essere familiare dalle discussioni sui _trait_ nel Capitolo
 10. Poi, nel Listato 18-4, definiamo una _struct_ `Schermo` che contiene un
-vettore `componenti`. Questo vettore è di _type_ `Box<dyn Disegna>`, un oggetto
-_trait_; è un contenitore per qualunque _type_ in una `Box` che implementi il
-_trait_ `Disegna`.
+vettore `componenti`. Questo vettore è di _type_ `Box<dyn Disegna>`, che è un
+oggetto _trait_; è un contenitore per qualunque _type_ in una `Box` che
+implementi il _trait_ `Disegna`.
 
 <Listing number="18-4" file-name="src/lib.rs" caption="Definizione della _struct_ `Schermo` con una campo `componenti` contenente un vettore di oggetti _trait_ che implementano `Disegna`">
 
@@ -83,8 +86,8 @@ _trait_ `Disegna`.
 
 </Listing>
 
-Definiamo un metodo `esegui` su `Schermo` che chiama `disegna` su ogni
-componente, come nel Listato 18-5.
+Definiamo un metodo `esegui` su `Schermo` che chiama `disegna` su ogni elemento
+di `componenti`, come nel Listato 18-5.
 
 <Listing number="18-5" file-name="src/lib.rs" caption="Un metodo `esegui` in `Schermo` che chiama `disegna` per ogni componente">
 
@@ -122,10 +125,10 @@ l’esecuzione.
 ### Implementare il _Trait_
 
 Ora aggiungiamo _type_ che implementano il _trait_ `Disegna`. Aggiungiamo un
-_type_ `Bottone`. Scrivere una vera e propria libreria GUI va oltre lo scopo del
-libro, quindi il metodo `disegna` in `Bottone` non contiene nulla di utile nel
-corpo. Per farsi un’idea, un `Bottone` potrebbe avere campi `larghezza`,
-`altezza` e `etichetta`, come nel Listato 18-7.
+_type_ `Bottone`. Scrivere una vera e propria libreria _GUI_ va oltre lo scopo
+del libro, quindi il metodo `disegna` in non contiene nulla di utile nel corpo.
+Per farsi un’idea di una possibile implementazione, un `Bottone` potrebbe avere
+campi `larghezza`, `altezza` e `etichetta`, come nel Listato 18-7.
 
 <Listing number="18-7" file-name="src/lib.rs" caption="La _struct_ `Bottone` che implementa il _trait_ `Disegna`">
 
@@ -139,9 +142,9 @@ I campi `larghezza`, `altezza` e `etichetta` su `Bottone` sono diversi dagli
 altri componenti; per esempio, un _type_ `CampoTesto` potrebbe avere gli stessi
 campi più un campo `temporaneo`. Ogni _type_ che vogliamo disegnare implementerà
 il _trait_ `Disegna` usando codice diverso in `disegna` per definire come
-disegnarsi, come fa `Bottone` (senza codice GUI reale). `Bottone` potrebbe anche
-avere altri metodi nel suo `impl`, per esempio cosa succede al _click_, metodi
-che non si applicano a _type_ come `CampoTesto`.
+disegnarsi, come fa `Bottone` (senza codice _GUI_ reale). `Bottone` potrebbe
+anche avere altri metodi nel suo blocco `impl`, ad esempio per gestire cosa
+succede al _click_, metodi che non si applicano a _type_ come `CampoTesto`.
 
 Se qualcuno che usa la libreria definisce una `BoxSelezione` con campi
 `larghezza`, `altezza` e `opzioni`, implementerà il _trait_ `Disegna` anche su
@@ -156,10 +159,10 @@ Se qualcuno che usa la libreria definisce una `BoxSelezione` con campi
 </Listing>
 
 Chi userà la nostra libreria può quindi scrivere la funzione `main` creando
-un’istanza di `Schermo`. Aggiunge una `BoxSelezione` e un `Bottone` mettendoli
-in `Box<T>`, facendoli diventare oggetti _trait_. Poi chiama `esegui` su
-`Schermo`, che a sua volta chiama `disegna` su ogni componente, come nel Listato
-18-9.
+un’istanza di `Schermo`. All’istanza di `Schermo` aggiunge una `BoxSelezione` e
+un `Bottone` mettendoli in `Box<T>`, facendoli diventare oggetti _trait_. Poi
+chiama `esegui` sull’istanza di `Schermo`, che a sua volta chiama `disegna` su
+ogni componente. Il Listato 18-9 mostra l’implementazione:
 
 <Listing number="18-9" file-name="src/main.rs" caption="Uso di oggetti _trait_ per memorizzare valori di differente _type_ che implementano il medesimo _trait_">
 
@@ -178,21 +181,22 @@ Questo concetto, preoccuparsi solo dei messaggi a cui un valore risponde invece
 che del _type_ concreto, somiglia al _duck typing_ (_tipizzazione ad anatra_)
 nei linguaggi a tipizzazione dinamica: _se cammina come un’anatra e fa “qua
 qua”, allora è un’anatra_! Nel metodo `esegui` di `Schermo` nel Listato 18-5,
-`esegui` non sa che _type_ concreto è ogni componente, non controlla se è
-un’istanza di `Bottone` o `BoxSelezione`, chiama semplicemente `disegna`.
-Specificando `Box<dyn Disegna>` come _type_ dei valori in `componenti`, abbiamo
-definito `Schermo` per accettare valori su cui si può chiamare `disegna`.
+`esegui` non sa di che _type_ concreto è ogni componente, non controlla se è
+un’istanza di `Bottone` o `BoxSelezione`, chiama semplicemente `disegna` sul
+componente. Specificando `Box<dyn Disegna>` come _type_ dei valori nel vettore
+`componenti`, abbiamo definito `Schermo` per accettare solo valori su cui si può
+chiamare `disegna`.
 
 Il vantaggio di usare oggetti _trait_ e il sistema dei _type_ di Rust per
 scrivere codice simile a quello con _duck typing_ è che non dobbiamo mai
 controllare durante l’esecuzione se un valore implementa un metodo o temere
-errori se non l’implementa ma lo chiamiamo. Rust non compila il codice se i
-valori non implementano i _trait_ richiesti dagli oggetti _trait_.
+errori se non l’implementa ma lo chiamiamo comunque. Rust non compila il codice
+se i valori non implementano i _trait_ richiesti dagli oggetti _trait_.
 
 Per esempio, il Listato 18-10 mostra cosa succede se proviamo a creare uno
 `Schermo` con una `String` come componente.
 
-<Listing number="18-10" file-name="src/main.rs" caption="Tentativo di usare un _type_ che non implementa il _trait_ dell’oggetto">
+<Listing number="18-10" file-name="src/main.rs" caption="Tentativo di usare un _type_ che non implementa il _trait_ dell’oggetto _trait_">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch18-oop/listing-18-10/src/main.rs}}
