@@ -1,4 +1,4 @@
-# Caratteristiche dei Linguaggi Funzionali: Iteratori e Chiusure
+# Funzionalità dei Linguaggi Funzionali: Iteratori e Chiusure
 
 Il design di Rust si è ispirato a molti linguaggi e tecniche esistenti, e
 un’influenza significativa è la _programmazione funzionale_. La programmazione

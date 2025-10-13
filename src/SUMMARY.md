@@ -74,7 +74,7 @@
 
 ## Pensare in Rust
 
-- [Caratteristiche dei Linguaggi Funzionali: Iteratori e Chiusure](ch13-00-functional-features.md)
+- [Funzionalità dei Linguaggi Funzionali: Iteratori e Chiusure](ch13-00-functional-features.md)
   - [Chiusure](ch13-01-closures.md)
   - [Elaborare una Serie di Elementi con Iteratori](ch13-02-iterators.md)
   - [Migliorare il Nostro Progetto I/O](ch13-03-improving-our-io-project.md)
