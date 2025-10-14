@@ -1,6 +1,6 @@
 fn main() {
-    let some_option_value: Option<i32> = None;
+    let un_valore_option: Option<i32> = None;
     // ANCHOR: here
-    let Some(x) = some_option_value;
+    let Some(x) = un_valore_option;
     // ANCHOR_END: here
 }

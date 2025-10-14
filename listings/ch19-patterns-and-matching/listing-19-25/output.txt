@@ -1,10 +1,10 @@
-$ cargo run
-   Compiling patterns v0.1.0 (file:///projects/patterns)
+$cargo run
+   Compiling patterns v0.1.0 (file:///progetti/patterns)
 error: `..` can only be used once per tuple pattern
- --> src/main.rs:5:22
+ --> src/main.rs:5:23
   |
 5 |         (.., secondo, ..) => {
-  |          --          ^^ can only be used once per tuple pattern
+  |          --           ^^ can only be used once per tuple pattern
   |          |
   |          previously used here
 

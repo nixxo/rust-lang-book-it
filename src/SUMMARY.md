@@ -116,10 +116,10 @@
 
 ## Tematiche Avanzate
 
-- [Patterns and Matching](ch19-00-patterns.md)
-  - [All the Places Patterns Can Be Used](ch19-01-all-the-places-for-patterns.md)
-  - [Refutability: Whether a Pattern Might Fail to Match](ch19-02-refutability.md)
-  - [Pattern Syntax](ch19-03-pattern-syntax.md)
+- [_Pattern_ e Corrispondenza](ch19-00-patterns.md)
+  - [Tutti i Posti Dove Possiamo Utilizzare i _Pattern_](ch19-01-all-the-places-for-patterns.md)
+  - [Confutabilità: Quando un _Pattern_ Potrebbe non Corrispondere](ch19-02-refutability.md)
+  - [Sintassi dei _Pattern_](ch19-03-pattern-syntax.md)
 
 - [Advanced Features](ch20-00-advanced-features.md)
   - [Unsafe Rust](ch20-01-unsafe-rust.md)

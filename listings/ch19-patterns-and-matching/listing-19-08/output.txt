@@ -1,9 +1,9 @@
 $ cargo run
-   Compiling patterns v0.1.0 (file:///projects/patterns)
+   Compiling patterns v0.1.0 (file:///progetti/patterns)
 error[E0005]: refutable pattern in local binding
  --> src/main.rs:3:9
   |
-3 |     let Some(x) = some_option_value;
+3 |     let Some(x) = un_valore_option;
   |         ^^^^^^^ pattern `None` not covered
   |
   = note: `let` bindings require an "irrefutable pattern", like a `struct` or an `enum` with only one variant
@@ -11,8 +11,8 @@ error[E0005]: refutable pattern in local binding
   = note: the matched value is of type `Option<i32>`
 help: you might want to use `let else` to handle the variant that isn't matched
   |
-3 |     let Some(x) = some_option_value else { todo!() };
-  |                                     ++++++++++++++++
+3 |     let Some(x) = un_valore_option else { todo!() };
+  |                                    ++++++++++++++++
 
 For more information about this error, try `rustc --explain E0005`.
 error: could not compile `patterns` (bin "patterns") due to 1 previous error

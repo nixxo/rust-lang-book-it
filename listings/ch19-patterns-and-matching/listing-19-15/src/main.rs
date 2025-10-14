@@ -10,7 +10,7 @@ fn main() {
 
     match msg {
         Messaggio::Esci => {
-            println!("Il variante Esci non ha dati da destrutturare.");
+            println!("La variante Esci non ha dati da destrutturare.");
         }
         Messaggio::Muovi { x, y } => {
             println!("Muovi in direzione x {x} e in direzione y {y}");

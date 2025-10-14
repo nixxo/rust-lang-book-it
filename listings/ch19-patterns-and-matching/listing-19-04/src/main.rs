@@ -7,8 +7,8 @@ fn main() {
         }
     });
 
-    while let Ok(value) = rx.recv() {
-        println!("{value}");
+    while let Ok(valore) = rx.recv() {
+        println!("{valore}");
     }
     // ANCHOR_END: here
 }

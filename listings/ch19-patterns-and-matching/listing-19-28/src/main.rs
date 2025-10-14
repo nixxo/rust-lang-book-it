@@ -4,7 +4,7 @@ fn main() {
     let y = false;
 
     match x {
-        4 | 5 | 6 if y => println!("si"),
+        4 | 5 | 6 if y => println!("sì"),
         _ => println!("no"),
     }
     // ANCHOR_END: here

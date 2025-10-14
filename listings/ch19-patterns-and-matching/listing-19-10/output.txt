@@ -1,5 +1,5 @@
 $ cargo run
-   Compiling patterns v0.1.0 (file:///projects/patterns)
+   Compiling patterns v0.1.0 (file:///progetti/patterns)
 warning: irrefutable `let...else` pattern
  --> src/main.rs:2:5
   |
