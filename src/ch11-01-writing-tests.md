@@ -372,7 +372,7 @@ l’asserzione fallisce. Poiché entrambi i _trait_ sono derivabili, come
 menzionato nel Listato 5-12 nel Capitolo 5, questo è solitamente semplice come
 aggiungere l’annotazione `#[derive(PartialEq, Debug)]` alla definizione della
 _struct_ o dell’_enum_. Vedi l’Appendice C, [“_Trait_
-derivabili”][derivable-traits]<!-- ignore -->, per ulteriori dettagli su questi
+Derivabili”][derivable-traits]<!-- ignore -->, per ulteriori dettagli su questi
 e altri _trait_ derivabili.
 
 ### Aggiungere Messaggi di Errore Personalizzati

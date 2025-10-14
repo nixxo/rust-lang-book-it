@@ -1,11 +1,11 @@
-## Appendice D - Utili Strumenti di sviluppo
+## Appendice D - Utili Strumenti di Sviluppo
 
 In questa appendice parliamo di alcuni utili strumenti di sviluppo che il
 progetto Rust mette a disposizione: la formattazione automatica, i modi rapidi
-per applicare le correzioni degli avvisi, un linter e l’integrazione con gli
-IDE.
+per applicare le correzioni degli avvisi, un _linter_ e l’integrazione con gli
+_IDE_.
 
-### Formattazione automatica con `rustfmt
+### Formattazione Automatica con `rustfmt`
 
 Lo strumento `rustfmt` riformatta il tuo codice secondo lo stile di codice della
 comunità. Molti progetti collaborativi utilizzano `rustfmt` per evitare
@@ -17,8 +17,8 @@ quindi dovresti già avere i programmi `rustfmt` e `cargo-fmt` sul tuo sistema.
 Questi due comandi hanno lo stesso rapporto che esiste tre `rustc` e `cargo`,
 nel senso che `rustfmt` è il _formattatore_ vero e proprio mentre `cargo-fmt`
 usa e comprende le convenzioni di un progetto che utilizza Cargo per quanto
-riguarda la forattazione di quel progetto. Per formattare un qualsiasi progetto,
-inserisci quanto segue:
+riguarda la formattazione di quel progetto. Per formattare un qualsiasi
+progetto, inserisci quanto segue:
 
 ```console
 $ cargo fmt
@@ -29,7 +29,7 @@ corrente. Questo dovrebbe cambiare solo lo stile del codice, non la sua
 semantica. Per maggiori informazioni su `rustfmt`, consulta [la sua
 documentazione][rustfmt].
 
-### Correggere il Tuo Codice con `rustfix
+### Correggere il Tuo Codice con `rustfix`
 
 Lo strumento `rustfix` è incluso nelle installazioni di Rust ed è in grado di
 correggere automaticamente gli avvertimenti del compilatore in cui è specificato
@@ -90,7 +90,7 @@ Puoi anche usare il comando `cargo fix` per far passare il tuo codice tra
 diverse edizioni di Rust. Le edizioni sono trattate nell’[Appendice
 E][editions].
 
-### Altri strumenti di analisi del codice con Clippy
+### Altri Strumenti di Analisi del Codice con Clippy
 
 Lo strumento _Clippy_ è una raccolta di strumenti di analisi, _lint_ in inglese,
 per analizzare il tuo codice in modo da individuare gli errori più comuni e
@@ -153,25 +153,24 @@ fn main() {
 
 Per maggiori informazioni su Clippy, consulta [la sua documentazione][clippy].
 
-### Integrazione nell’IDE con `rust-analyzer
+### Integrazione nell’_IDE_ con `rust-analyzer`
 
-Per aiutare l’integrazione con l’IDE, la comunità di Rust raccomanda l’uso di
+Per aiutare l’integrazione con l’_IDE_, la comunità di Rust raccomanda l’uso di
 [`rust-analyzer`][rust-analyzer]<!-- ignore -->. Questo strumento è un insieme
 di utility incentrate sul compilatore che _parlano_ in [Language Server
-Protocol][lsp]<!-- ignore -->, che è una specifica per gli IDE e i linguaggi di
-programmazione per comunicare tra loro. Diversi client possono usare
+Protocol][lsp]<!-- ignore -->, che è una specifica per gli _IDE_ e i linguaggi
+di programmazione per comunicare tra loro. Diversi _client_ possono usare
 `rust-analyzer`, come ad esempio [il plug-in Rust Analyzer per Visual Studio
 Code][vscode].
 
 Visita la [home page] del progetto `rust-analyzer`[rust-analyzer]<!-- ignore -->
 per le istruzioni di installazione, quindi installa il supporto per il server
-linguistico nel tuo IDE specifico. Il tuo IDE otterrà funzionalità come
-l’autocompletamento, il salto alla definizione e gli errori in linea.
+linguistico nel tuo _IDE_ specifico. Il tuo _IDE_ otterrà funzionalità come
+l’auto-completamento, il salto alla definizione e gli errori in linea.
 
 [rustfmt]: https://rust-lang.github.io/rustfmt/
 [editions]: appendix-05-editions.md
 [clippy]: https://doc.rust-lang.org/clippy/
 [rust-analyzer]: https://rust-analyzer.github.io
 [lsp]: http://langserver.org/
-[vscode]:
-    https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
+[vscode]: https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer

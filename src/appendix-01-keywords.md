@@ -54,8 +54,8 @@ loro funzionalità descritta.
 - `trait` - definire un _trait_
 - `true` - letterale booleano vero
 - `type` - definire un alias di _type_ o un _type_ associato
-- `union` - definire un’[unione][union]<!-- ignore -->; è solo una parola chiave
-  quando utilizzata in una dichiarazione di unione
+- `union` - definire un’[unione][union]<!-- ignore -->; è una parola chiave solo
+  quando usata in una dichiarazione di unione
 - `unsafe` - denotare codice, funzioni, _trait_ o implementazioni non sicure
 - `use` - portare simboli in _scope_; specificare catture precise per vincoli
   generici e di _lifetime_

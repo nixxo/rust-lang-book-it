@@ -4,8 +4,7 @@ Per le risorse in lingue diverse dall’inglese, la maggior parte sono ancora in
 traduzione; consulta [l’etichetta Traduzioni][label] per aiutarci o segnalarci
 una nuova traduzione!
 
-[label]:
-    https://github.com/rust-lang/book/issues?q=is%3Aopen+is%3Aissue+label%3ATranslations
+[label]: https://github.com/rust-lang/book/issues?q=is%3Aopen+is%3Aissue+label%3ATranslations
 
 - [Original English](https://github.com/rust-lang/book)
 - [Português](https://github.com/rust-br/rust-book-pt-br) (BR)

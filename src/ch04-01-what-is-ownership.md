@@ -458,7 +458,7 @@ qualsiasi delle sue parti, ha implementato il _tratto_ `Drop`. Se il _type_ ha
 bisogno che accada qualcosa di speciale quando il valore esce dallo _scope_ e
 aggiungiamo l’annotazione `Copy` a quel _type_, otterremo un errore in fase di
 compilazione. Per sapere come aggiungere l’annotazione `Copy` al tuo _type_,
-consulta [“Tratti derivabili”][derivable-traits]<!-- ignore --> nell’Appendice
+consulta [“_Trait_ Derivabili”][derivable-traits]<!-- ignore --> nell’Appendice
 C.
 
 Quindi, quali _type_ implementano il tratto `Copy`? Puoi controllare la

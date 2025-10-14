@@ -4,9 +4,9 @@
 In questa appendice verranno raccolte note e indicazioni sulle scelte di
 traduzione usate nel corso di questo lavoro.
 
-Come regola generale è stato scelto di tradure in italiano termini tecnici che
+Come regola generale è stato scelto di tradurre in italiano termini tecnici che
 sono di uso comune nella programmazione o in altri linguaggi di programmazione
-(funzioni, muduli, ecc...) e mantenere in inglese termini che sono specifici del
+(funzioni, moduli, ecc...) e mantenere in inglese termini che sono specifici del
 linguaggio Rust.
 
 Segue un elenco, si spera esaustivo, della terminologia usata in questo libro e
@@ -36,7 +36,7 @@ della traduzione/non-traduzione con una spiegazione della scelta se necessario.
 | Trait Bound | Vincolo di _Trait_ | |
 | Handle | Handle | Puntatore ad un thread/processo |
 | String literal | Letterale stringa | |
-| Numeric literal | Lettarale numerico | |
+| Numeric literal | Letterale numerico | |
 
 
 
