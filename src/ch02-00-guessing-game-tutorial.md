@@ -688,8 +688,8 @@ let ipotesi: u32 = ipotesi.trim().parse().expect("Inserisci un numero!");
 ```
 
 Creiamo una variabile di nome `ipotesi`. Ma aspetta, il programma non ha già una
-variabile di nome `ipotesi`? Sì, ma Rust ci permette di _mettere in ombra_, il
-valore precedente di `ipotesi` con uno nuovo. Lo _Shadowing_ ci permette di
+variabile di nome `ipotesi`? Sì, ma Rust ci permette di _oscurare_, il valore
+precedente di `ipotesi` con uno nuovo. Lo _Shadowing_ ci permette di
 riutilizzare il nome della variabile `ipotesi` invece di costringerci a creare
 due variabili uniche, come `ipotesi_str` e `ipotesi`, per esempio. Ne parleremo
 in modo più dettagliato nel [Capitolo 3][shadowing]<!-- ignore -->, ma per ora,

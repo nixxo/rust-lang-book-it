@@ -18,7 +18,7 @@ celebrazione familiare, un’operazione che potrebbe durare da alcuni minuti a
 ore. L’esportazione del video userà tutta la potenza disponibile di CPU e GPU.
 Se avessi solo un core CPU e il tuo sistema operativo non mettesse in pausa
 quell’esportazione fino al suo completamento - cioè, se la eseguisse
-_sincronicamente_ - non potresti fare nient'altro sul tuo computer mentre quel
+_sincronicamente_ - non potresti fare nient’altro sul tuo computer mentre quel
 compito è in esecuzione. Sarebbe un’esperienza davvero frustrante.
 Fortunatamente, il sistema operativo del tuo computer può, e lo fa, interrompere
 invisibilmente l’esportazione abbastanza spesso da permetterti di fare altro

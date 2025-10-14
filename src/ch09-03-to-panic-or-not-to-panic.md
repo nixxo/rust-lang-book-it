@@ -124,9 +124,9 @@ Tuttavia, avere molti controlli di errore in tutte le funzioni sarebbe prolisso
 e fastidioso. Fortunatamente, è possibile utilizzare il sistema dei _type_ di
 Rust (e quindi il controllo dei _type_ effettuato dal compilatore) per eseguire
 molti dei controlli al tuo posto. Se la tua funzione ha un _type_ particolare
-come parametro, potete procedere con la logica del codice sapendo che il
+come parametro, puoi procedere con la logica del codice sapendo che il
 compilatore ha già verificato la presenza di un valore valido. Ad esempio, se
-avete un _type_ anziché un’`Option`, il tuo programma si aspetta di avere
+hai un _type_ anziché un’`Option`, il tuo programma si aspetta di avere
 _qualcosa_ anziché _niente_. Il codice non dovrà quindi gestire due casi per le
 varianti `Some` e `None`: gestirà solo il caso che ha sicuramente un valore. Il
 codice che tenta di non passare nulla alla funzione non verrà nemmeno compilato,

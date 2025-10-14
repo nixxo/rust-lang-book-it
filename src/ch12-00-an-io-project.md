@@ -28,7 +28,7 @@ visualizzare i messaggi di errore sullo schermo.
 
 Un membro della community Rust, Andrew Gallant, ha già creato una versione
 completa e molto veloce di `grep`, chiamata `ripgrep`. In confronto, la nostra
-versione sarà piuttosto semplice, ma questo capitolo vi fornirà alcune
+versione sarà piuttosto semplice, ma questo capitolo ti fornirà alcune
 conoscenze di base necessarie per comprendere un progetto reale come `ripgrep`.
 
 Il nostro progetto `grep` combinerà diversi concetti che hai imparato finora:

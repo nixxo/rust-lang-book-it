@@ -8,11 +8,11 @@
 [nsp]: https://nostarch.com/
 
 Benvenuti a _Il Linguaggio di Programmazione Rust_, un libro introduttivo su
-Rust. Il linguaggio di programmazione Rust vi aiuta a scrivere software più
+Rust. Il linguaggio di programmazione Rust ti aiuta a scrivere software più
 veloce e affidabile. L’ergonomia di alto livello e il controllo di basso livello
 sono spesso in contrasto nella progettazione dei linguaggi di programmazione;
 Rust sfida questo conflitto. Grazie al bilanciamento tra potenti capacità
-tecniche e un’ottima esperienza di sviluppo, Rust vi offre la possibilità di
+tecniche e un’ottima esperienza di sviluppo, Rust ti offre la possibilità di
 controllare i dettagli di basso livello (come l’utilizzo della memoria) senza
 tutte le difficoltà tradizionalmente associate a tale controllo.
 

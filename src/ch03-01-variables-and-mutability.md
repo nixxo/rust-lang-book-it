@@ -135,13 +135,13 @@ codificato deve essere aggiornato in futuro.
 Come hai visto nel tutorial sul gioco dell’indovinello nel [Capitolo
 2][numero-segreto]<!-- ignore -->, puoi dichiarare una nuova variabile con lo
 stesso nome di una variabile precedente. I _Rustacean_ dicono che la prima
-variabile è _messa in ombra_, _shadowing_, dalla seconda, il che significa che
-la seconda variabile è quella che il compilatore vedrà quando userai il nome
-della variabile. In effetti, la seconda variabile mette in ombra la prima,
-portando a sé qualsiasi uso del nome della variabile fino a quando non sarà essa
-stessa messa in ombra o lo _scope_ terminerà. Possiamo fare _shadowing_ di una
-variabile usando lo stesso nome della variabile e ripetendo l’uso della parola
-chiave `let` come segue:
+variabile è _oscurata_, _shadowing_, dalla seconda, il che significa che la
+seconda variabile è quella che il compilatore vedrà quando userai il nome della
+variabile. In effetti, la seconda variabile oscura la prima, portando a sé
+qualsiasi uso del nome della variabile fino a quando non sarà essa stessa
+oscurata o lo _scope_ terminerà. Possiamo fare _shadowing_ di una variabile
+usando lo stesso nome della variabile e ripetendo l’uso della parola chiave
+`let` come segue:
 
 <span class="filename">File: src/main.rs</span>
 
@@ -152,11 +152,11 @@ chiave `let` come segue:
 Questo programma vincola innanzitutto `x` a un valore di `5`. Poi crea una nuova
 variabile `x` ripetendo `let x =`, prendendo il valore originale e aggiungendo
 `1` in modo che il valore di `x` sia `6`. Quindi, all’interno di uno _scope_
-interno creato con le parentesi graffe, la terza istruzione `let` _mette in
-ombra_ `x` e crea una nuova variabile, moltiplicando il valore precedente per
-`2` per dare a `x` un valore di `12`. Quando lo _scope_ termina, finisce pure lo
-_shadowing_ e `x` torna a essere `6`. Quando si esegue questo programma, si
-ottiene il seguente risultato:
+interno creato con le parentesi graffe, la terza istruzione `let` _oscura_ `x` e
+crea una nuova variabile, moltiplicando il valore precedente per `2` per dare a
+`x` un valore di `12`. Quando lo _scope_ termina, finisce pure lo _shadowing_ e
+`x` torna a essere `6`. Quando si esegue questo programma, si ottiene il
+seguente risultato:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-03-shadowing/output.txt}}

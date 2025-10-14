@@ -105,17 +105,17 @@ Questo si chiama “modello ferroviario” perché ogni sei settimane un rilasci
 “parte dalla stazione”, ma deve ancora viaggiare attraverso il canale _beta_
 prima di arrivare come rilascio stabile.
 
-Rust rilascia ogni sei settimane, come un orologio. Se conoscete la data di un
-rilascio Rust, potete conoscere la data del prossimo: è sei settimane dopo. Un
+Rust rilascia ogni sei settimane, come un orologio. Se conosci la data di un
+rilascio Rust, puoi conoscere la data del prossimo: è sei settimane dopo. Un
 aspetto piacevole di avere rilasci programmati ogni sei settimane è che il
 prossimo treno arriverà a breve. Se una funzionalità salta un rilascio, non c’è
 bisogno di preoccuparsi: ce n’è un altro in arrivo a breve! Questo aiuta a
 ridurre la pressione di inserire funzionalità possibilmente non finite vicino
 alla scadenza del rilascio.
 
-Grazie a questo processo, potete sempre scaricare la prossima build di Rust e
+Grazie a questo processo, puoi sempre scaricare la prossima build di Rust e
 verificare di persona che è facile da aggiornare: se un rilascio _beta_ non
-funziona come previsto, potete segnalarlo al team e farlo correggere prima che
+funziona come previsto, puoi segnalarlo al team e farlo correggere prima che
 avvenga il prossimo rilascio stabile! I problemi in un rilascio _beta_ sono
 relativamente rari, ma `rustc` è comunque un software, e i bug esistono.
 
@@ -146,21 +146,21 @@ Stabilità senza stagnazione.
 Questo libro contiene solo informazioni sulle funzionalità stabili, poiché
 quelle in sviluppo sono ancora in cambiamento e sicuramente saranno diverse tra
 il momento in cui questo libro è stato scritto e quando saranno abilitate nei
-build stabili. Potete trovare la documentazione per funzionalità presenti solo
-in rilasci _nightly_ online.
+build stabili. Puoi trovare la documentazione per funzionalità presenti solo in
+rilasci _nightly_ online.
 
 ### Rustup e il Ruolo di Rust Nightly
 
 Rustup rende facile passare tra i diversi canali di rilascio di Rust, a livello
-globale o per progetto. Di default, avrete installato Rust stabile. Per
-installare nightly, ad esempio:
+globale o per progetto. Di default verrà installato Rust stabile. Per installare
+_nightly_, ad esempio:
 
 ```console
 $ rustup toolchain install nightly
 ```
 
-Potete vedere tutte le _toolchain_ (versioni di Rust e componenti associati) che
-avete installato con `rustup`. Ecco un esempio sul computer Windows di uno degli
+Puoi vedere tutte le _toolchain_ (versioni di Rust e componenti associati) che
+hai installato con `rustup`. Ecco un esempio sul computer Windows di uno degli
 autori:
 
 ```powershell
@@ -170,12 +170,12 @@ beta-x86_64-pc-windows-msvc
 nightly-x86_64-pc-windows-msvc
 ```
 
-Come vedete, la toolchain _stable_ è quella predefinita. La maggior parte degli
-utenti Rust usa _stable_ la maggior parte del tempo. Potreste voler usare
+Come vedi, la toolchain _stable_ è quella predefinita. La maggior parte degli
+utenti Rust usa _stable_ la maggior parte del tempo. Potresti voler usare
 _stable_ la maggior parte del tempo, ma usare _nightly_ su un progetto
-specifico, perché vi interessa una funzionalità all’avanguardia. Per farlo,
-potete usare `rustup override` nella directory di quel progetto per impostare la
-_toolchain_ _nightly_ come quella che `rustup` deve usare quando siete in quella
+specifico, perché ti interessa una funzionalità all’avanguardia. Per farlo, puoi
+usare `rustup override` nella directory di quel progetto per impostare la
+_toolchain_ _nightly_ come quella che `rustup` deve usare quando sei in quella
 directory:
 
 ```console
@@ -183,16 +183,15 @@ $ cd ~/progetti/usare-nightly
 $ rustup override set nightly
 ```
 
-Ora, ogni volta che chiamate `rustc` o `cargo` dentro
-_~/progetti/usare-nightly_, `rustup` si assicurerà che state usando Rust nightly
-invece del default _stable_. Questo è molto comodo quando avete molti progetti
-Rust!
+Ora, ogni volta che chiami `rustc` o `cargo` dentro _~/progetti/usare-nightly_,
+`rustup` si assicurerà che stai usando Rust _nightly_ invece del default
+_stable_. Questo è molto comodo quando hai molti progetti Rust!
 
 ### Il Processo RFC e i Team
 
 Come si viene a sapere di queste nuove funzionalità? Il modello di sviluppo di
-Rust segue il processo _Request For Comments (RFC)_. Se volete un miglioramento
-in Rust, potete scrivere una proposta chiamata _RFC_.
+Rust segue il processo _Request For Comments (RFC)_. Se vuoi un miglioramento in
+Rust, puoi scrivere una proposta chiamata _RFC_.
 
 Chiunque può scrivere _RFC_ per migliorare Rust, e le proposte vengono
 revisionate e discusse dal team Rust, che è composto da molti sotto-team

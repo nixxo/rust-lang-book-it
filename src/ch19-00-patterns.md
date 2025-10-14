@@ -21,9 +21,9 @@ particolare porzione di codice.
 Per utilizzare un _pattern_, lo confrontiamo con un valore. Se il _pattern_
 corrisponde al valore, utilizziamo le parti del valore nel nostro codice.
 Ricorda le espressioni `match` nel Capitolo 6 che utilizzavano _pattern_, come
-l’esempio della macchina smistatrice di monete. Se il valore corrisponde alla
-forma del _pattern_, possiamo usare i pezzi indicati. In caso contrario, il
-codice associato al _pattern_ non verrà eseguito.
+l’esempio della macchina smista monete. Se il valore corrisponde alla forma del
+_pattern_, possiamo usare i pezzi indicati. In caso contrario, il codice
+associato al _pattern_ non verrà eseguito.
 
 Questo capitolo è un riferimento su tutto ciò che riguarda i _pattern_.
 Tratteremo le situazioni valide in cui utilizzare i _pattern_, la differenza tra

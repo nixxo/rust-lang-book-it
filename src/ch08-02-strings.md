@@ -262,7 +262,7 @@ Innanzitutto, questo:
 
 In questo caso, `len` sarà `4`, il che significa che il vettore che memorizza la
 stringa `"Hola"` è lungo 4 byte. Ognuna di queste lettere occupa 1 byte se
-codificata in UTF-8. La riga seguente, tuttavia, potrebbe sorprendervi (nota che
+codificata in UTF-8. La riga seguente, tuttavia, potrebbe sorprenderti (nota che
 questa stringa inizia con la lettera maiuscola cirillica _Ze_, non con il numero
 3):
 
@@ -270,9 +270,9 @@ questa stringa inizia con la lettera maiuscola cirillica _Ze_, non con il numero
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-14/src/main.rs:russian}}
 ```
 
-Se vi chiedessero quanto è lunga la stringa, potreste dire 12. In realtà, la
+Se ti chiedessero quanto è lunga la stringa, potresti dire 12. In realtà, la
 risposta di Rust è 24: questo è il numero di byte necessari per codificare
-"Здравствуйте" in UTF-8, perché ogni valore scalare Unicode in quella stringa
+“Здравствуйте” in UTF-8, perché ogni valore scalare Unicode in quella stringa
 occupa 2 byte di spazio. Pertanto, un indice nei byte della stringa non sarà
 sempre correlato a un valore scalare Unicode valido. Per dimostrarlo,
 consideriamo questo codice Rust non valido:
@@ -282,7 +282,7 @@ let saluto = "Здравствуйте";
 let risposta = &hello[0];
 ```
 
-Sapete già che `risposta` non sarà `З`, la prima lettera. Quando codificato in
+Sai già che `risposta` non sarà `З`, la prima lettera. Quando codificato in
 UTF-8, il primo byte di `З` è `208` e il secondo è `151`, quindi sembrerebbe che
 `risposta` dovrebbe in effetti essere `208`, ma `208` non è un carattere valido
 da solo. Restituire `208` probabilmente non è ciò che un utente vorrebbe se
@@ -415,7 +415,7 @@ Ma ricorda che i valori scalari Unicode validi possono essere composti da più d
 Ottenere _cluster_ di grafemi dalle stringhe, come con l’alfabeto Devanagari, è
 complesso, quindi questa funzionalità non è fornita dalla libreria standard. I
 _crate_ sono disponibili su [crates.io](https://crates.io/search?q=grapheme)<!--
-ignore --> se questa è la funzionalità di cui avete bisogno.
+ignore --> se questa è la funzionalità di cui hai bisogno.
 
 ### Gestire le Complessità delle Stringhe
 

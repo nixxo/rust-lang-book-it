@@ -64,7 +64,7 @@ controlleremo se la riga contiene la query.
 </Listing>
 
 Per prima cosa, rendiamo minuscola la stringa `query` e la memorizziamo in una
-nuova variabile con lo stesso nome, adombrando la `query` originale. La chiamata
+nuova variabile con lo stesso nome, oscurando la `query` originale. La chiamata
 a `to_lowercase` sulla query è necessaria affinché, indipendentemente dal fatto
 che la query dell’utente sia `"rust"`, `"RUST"`, `"Rust"` o `"rUsT"`, la query
 verrà trattata come se fosse `"rust"` e non sarà _case-sensitive_. Sebbene
