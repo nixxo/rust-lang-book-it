@@ -1,9 +1,9 @@
 ## Appendice A: Parole chiave
 
-Il seguente elenco contiene parole chiave che sono riservate per l’uso attuale o
-futuro del linguaggio Rust. In quanto tali, non possono essere utilizzate come
+I seguenti elenchi contengono parole chiave che sono riservate per l’uso attuale
+o futuro del linguaggio Rust. In quanto tali, non possono essere utilizzate come
 identificatori (tranne che come _identificatori grezzi_, come discuteremo nella
-sezione [dedicata](#identificatori-grezzi)<!-- ignore -->). Gli identificatori
+sezione [dedicata](#identificatori-grezzi)<!-- ignore -->). Gli *identificatori*
 sono nomi di funzioni, variabili, parametri, elementi di struct, moduli,
 _crate_, costanti, macro, valori statici, attributi, _type_, _trait_ o
 _lifetime_.
@@ -13,56 +13,57 @@ _lifetime_.
 Di seguito è riportato un elenco di parole chiave attualmente in uso, con la
 loro funzionalità descritta.
 
-- `as` - eseguire un casting primitivo, disambiguare il _trait_ specifico che
-  contiene un elemento o rinominare elementi nelle dichiarazioni `use`
-- `async` - restituire un `Future` invece di bloccare il _thread_ corrente
-- `await` - sospendere l’esecuzione fino a quando il risultato di un `Future` è
-  pronto
-- `break` - uscire immediatamente da un ciclo
-- `const` - definire elementi costanti o puntatori raw costanti
-- `continue` - continuare all’iterazione successiva del ciclo
-- `crate` - in un percorso di modulo, si riferisce alla radice del _crate_
-- `dyn` - dispatch dinamico a un oggetto _trait_
-- `else` - alternativa per i costrutti di controllo di flusso `if` e `if let`
-- `enum` - definire un’enumerazione
-- `extern` - collegare una funzione o una variabile esterna
-- `false` - letterale booleano falso
-- `fn` - definire una funzione o il tipo di puntatore a funzione
-- `for` - iterare su elementi da un iteratore, implementare un _trait_ o
-  specificare una _lifetime_ di rango superiore
-- `if` - ramificazione in base al risultato di un’espressione condizionale
-- `impl` - implementare funzionalità innate o di _trait_
-- `in` - parte della sintassi del ciclo `for`
-- `let` - inizializzare una variabile
-- `loop` - ciclo senza condizioni
-- `match` - abbinare un valore a _pattern_
-- `mod` - definire un modulo
-- `move` - fare in modo che una _closure_ prenda possesso di tutte le sue
-  catture
-- `mut` - denotare mutabilità in _reference_, puntatori raw o binding di
-  _pattern_
-- `pub` - denotare visibilità pubblica nei campi delle strutture, nei blocchi
-  `impl` o nei moduli
-- `ref` - inizializzare per _reference_
-- `return` - ritorno dalla funzione
-- `Self` - un alias di _type_ per il _type_ che stiamo definendo o implementando
-- `self` - soggetto del metodo o modulo corrente
-- `static` - variabile globale o _lifetime_ che dura per l’intera esecuzione del
-  programma
-- `struct` - definire una struttura
-- `super` - modulo genitore del modulo corrente
-- `trait` - definire un _trait_
-- `true` - letterale booleano vero
-- `type` - definire un alias di _type_ o un _type_ associato
-- `union` - definire un’[unione][union]<!-- ignore -->; è una parola chiave solo
-  quando usata in una dichiarazione di unione
-- `unsafe` - denotare codice, funzioni, _trait_ o implementazioni non sicure
-- `use` - portare simboli in _scope_; specificare catture precise per vincoli
-  generici e di _lifetime_
-- `where` - denotare clausole che vincolano un _type_
-- `while` - ciclo condizionato al risultato di un’espressione
-
-[union]: https://doc.rust-lang.org/stable/reference/items/unions.html
+- **`as`** - Eseguire un casting primitivo, disambiguare il _trait_ specifico.
+  che contiene un elemento o rinominare elementi nelle dichiarazioni `use`.
+- **`async`** - Restituire un `Future` invece di bloccare il _thread_ corrente.
+- **`await`** - Sospendere l’esecuzione fino a quando il risultato di un
+  `Future` è pronto.
+- **`break`** - Uscire immediatamente da un ciclo.
+- **`const`** - Definire elementi costanti o puntatori raw costanti.
+- **`continue`** - Continuare all’iterazione successiva del ciclo.
+- **`crate`** - In un percorso di modulo, si riferisce alla radice del _crate_.
+- **`dyn`** - _Dispatch_ dinamico a un oggetto _trait_.
+- **`else`** - Alternativa per i costrutti di controllo di flusso `if` e `if
+  let`.
+- **`enum`** - Definire un’enumerazione.
+- **`extern`** - Collegare una funzione o una variabile esterna.
+- **`false`** - Letterale booleano falso.
+- **`fn`** - Definire una funzione o il tipo di puntatore a funzione.
+- **`for`** - Iterare su elementi da un iteratore, implementare un _trait_ o
+  specificare una _lifetime_ di rango superiore.
+- **`if`** - Ramificazione in base al risultato di un’espressione condizionale.
+- **`impl`** - Implementare funzionalità innate o di _trait_.
+- **`in`** - Parte della sintassi del ciclo `for`.
+- **`let`** - Inizializzare una variabile.
+- **`loop`** - Ciclo senza condizioni.
+- **`match`** - Abbinare un valore a _pattern_.
+- **`mod`** - Definire un modulo.
+- **`move`** - Fare in modo che una _closure_ prenda possesso di tutte le sue
+  catture.
+- **`mut`** - Denotare mutabilità in _reference_, puntatori raw o binding di
+  _pattern_.
+- **`pub`** - Denotare visibilità pubblica nei campi delle strutture, nei
+  blocchi `impl` o nei moduli.
+- **`ref`** - Inizializzare per _reference_.
+- **`return`** - Ritorno dalla funzione.
+- **`Self`** - Un alias di _type_ per il _type_ che stiamo definendo o
+  implementando.
+- **`self`** - Soggetto del metodo o modulo corrente.
+- **`static`** - Variabile globale o _lifetime_ che dura per l’intera esecuzione
+  del programma.
+- **`struct`** - Definire una struttura.
+- **`super`** - Modulo genitore del modulo corrente.
+- **`trait`** - Definire un _trait_.
+- **`true`** - Letterale booleano vero.
+- **`type`** - Definire un alias di _type_ o un _type_ associato.
+- **`union`** - Definire un’unione; è una parola chiave solo quando usata in una
+  dichiarazione di unione.
+- **`unsafe`** - Annotare codice, funzioni, _trait_ o implementazioni come non
+  sicure.
+- **`use`** - Portare simboli in _scope_; specificare catture precise per
+  vincoli generici e di _lifetime_.
+- **`where`** - Denotare clausole che vincolano un _type_.
+- **`while`** - Ciclo condizionato al risultato di un’espressione.
 
 ### Parole Chiave Riservate per Usi Futuri
 

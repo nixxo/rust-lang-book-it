@@ -1,4 +1,4 @@
-## Appendice D - Utili Strumenti di Sviluppo
+## Appendice D: Utili Strumenti di Sviluppo
 
 In questa appendice parliamo di alcuni utili strumenti di sviluppo che il
 progetto Rust mette a disposizione: la formattazione automatica, i modi rapidi
@@ -88,7 +88,7 @@ La variabile `x` è ora immutabile e l’avviso non appare più.
 
 Puoi anche usare il comando `cargo fix` per far passare il tuo codice tra
 diverse edizioni di Rust. Le edizioni sono trattate nell’[Appendice
-E][editions].
+E][editions]<!-- ignore -->.
 
 ### Altri Strumenti di Analisi del Codice con Clippy
 

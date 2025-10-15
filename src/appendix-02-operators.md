@@ -39,7 +39,7 @@ _trait_ da utilizzare per sovrascriverlo.
 | `->`  | `fn(...) -> type`, <code>&vert;...&vert; -> type</code> | _Type_ di ritorno per funzioni e chiusure | |
 | `.`   | `expr.ident` | Accesso a campo | |
 | `.`   | `expr.ident(expr, ...)` | Chiamata a metodo | |
-| `.`   | `expr.0`, `expr.1`, etc. | Indicizzazione tupla | |
+| `.`   | `expr.0`, `expr.1`, e così via | Indicizzazione tupla | |
 | `..`  | `..`, `expr..`, `..expr`, `expr..expr` | Range esclusivo | `PartialOrd` |
 | `..=` | `..=expr`, `expr..=expr` | Range inclusivo | `PartialOrd` |
 | `..`  | `..expr` | Aggiornamento _struct_ | |
@@ -74,7 +74,7 @@ _trait_ da utilizzare per sovrascriverlo.
 
 ### Simboli
 
-L’elenco seguente contiene tutti i simboli che non funzionano come operatori,
+La tabella seguente contiene tutti i simboli che non funzionano come operatori,
 cioè non si comportano come una funzione o una chiamata di metodo.
 
 La Tabella B-2 mostra i simboli che appaiono da soli e sono validi in diverse
@@ -85,11 +85,11 @@ posizioni.
 | Simbolo  | Spiegazione |
 | -------- | --- |
 | `'ident` | _Lifetime_ nominale o _etichetta loop_ |
-| Numeri immediatamente seguiti da `u8`, `i32`, `f64`, `usize`, ecc. | Letterale numerico di un _type_ specifico |
+| Numeri immediatamente seguiti da `u8`, `i32`, `f64`, `usize`, e così via | Letterale numerico di un _type_ specifico |
 | `"..."`  | Letterale stringa |
-| `r"..."`, `r#"..."#`, `r##"..."##`, etc. | Letterale stringa grezzo, senza elaborazione dei caratteri di _escape_ |
+| `r"..."`, `r#"..."#`, `r##"..."##`, e così via | Letterale stringa grezzo, senza elaborazione dei caratteri di _escape_ |
 | `b"..."` | Letterale byte di stringa; costituisce un vettore di byte anziché una stringa |
-| `br"..."`, `br#"..."#`, `br##"..."##`, etc. | Letterale byte di stringa grezzo |
+| `br"..."`, `br#"..."#`, `br##"..."##`, e così via | Letterale byte di stringa grezzo |
 | `'...'`  | Letterale carattere |
 | `b'...'` | Letterale byte ASCII |
 | <code>&vert;...&vert; expr</code> | Chiusure |
@@ -106,11 +106,11 @@ un elemento nella gerarchia dei moduli.
 | Simbolo              | Spiegazione |
 | -------------------- | --- |
 | `ident::ident`       | Nomenclatura percorso |
-| `::path`             | Percorso relativo al preludio esterno, dove sono tutti gli altri _crate_ (es., un percorso assoluto esplicito che include il nome del _crate_) |
-| `self::path`         | Percorso relativo al modulo corrente (es., un percorso relativo esplicito). |
+| `::path`             | Percorso relativo alla radice del _crate_ (cioè un percorso assoluto esplicito) |
+| `self::path`         | Percorso relativo al modulo corrente (cioè un percorso relativo esplicito). |
 | `super::path`        | Percorso relativo al genitore del modulo corrente |
 | `type::ident`, `<type as trait>::ident` | Costanti, funzioni o _type_ associati |
-| `<type>::...`        | Elemento associato per un _type_ generico (es, `<&T>::...`, `<[T]>::...`, etc.) |
+| `<type>::...`        | Elemento associato per un _type_ generico (ad esempio, `<&T>::...`, `<[T]>::...`, e così via) |
 | `trait::method(...)` | Disambiguare una chiamata a un metodi specificando il _trait_ che lo definisce |
 | `type::method(...)`  | Disambiguare una chiamata a un metodo specificando il _type_ in cui per cui è definito |
 | `<type as trait>::method(...)` | Disambiguare una chiamata a un metodo specificando il _trait_ e il _type_ |
@@ -124,14 +124,14 @@ come parametri.
 
 | Simbolo                 | Spiegazione |
 | ----------------------- | --- |
-| `percorso<...>`         | Specifica parametri a _type_ generici in u n _type_ (es., `Vec<u8>`) |
-| `percorso::<...>`, `metodo::<...>` | Specifica parametri a _type_, funzioni, metodi generici in un’espressione; spesso chiamato operatore _turbofish_ (e.g., `"42".parse::<i32>()`) |
+| `percorso<...>`         | Specifica parametri a _type_ generici in u n _type_ (per esempio, `Vec<u8>`) |
+| `percorso::<...>`, `metodo::<...>` | Specifica parametri a _type_, funzioni o metodi generici in un’espressione; spesso chiamato operatore _turbofish_ (per esempio, `"42".parse::<i32>()`) |
 | `fn ident<...> ...`     | Definizione di funzione generica |
 | `struct ident<...> ...` | Definizione di _struct_ generica |
 | `enum ident<...> ...`   | Definizione di _enum_ generica |
 | `impl<...> ...`         | Definizione di implementazione generica |
 | `for<...> type`         | Vincolo di _lifetime_ prioritario |
-| `type<ident=type>`      | Un _type_ generico dove uno o più _type_ associati hanno assegnazioni specifiche (es., `Iteratore<Elemento=T>`) |
+| `type<ident=type>`      | Un _type_ generico dove uno o più _type_ associati hanno assegnazioni specifiche (per esempio, `Iteratore<Elemento=T>`) |
 
 ----
 
@@ -218,5 +218,5 @@ La Tabella B-10 mostra i contesti in cui vengono utilizzate le parentesi quadre.
 | `[...]`         | Vettore letterale |
 | `[x; n]`        | Vettore letterale contenente `n` copie di `x` |
 | `[type; n]`     | Vettore tipizzato contenente `n` istanze di  `type` |
-| `collezione[i]` | Indicizzazione di una collezione. Sovrascrivibile (`Index`, `IndexMut`) |
+| `collezione[i]` | Indicizzazione di una collezione; sovrascrivibile (`Index`, `IndexMut`) |
 | `expr[..]`, `expr[a..]`, `expr[..b]`, `expr[a..b]` | Indicizzazione in collezioni per estrazione _slice_, usando `Range`, `RangeFrom`, `RangeTo`, o `RangeFull` come “indici” |

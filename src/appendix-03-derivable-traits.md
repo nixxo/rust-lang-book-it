@@ -34,8 +34,8 @@ fornire un comportamento predefinito adeguato per voi.
 Questa lista di _trait_ derivabili non è esaustiva: le librerie possono
 implementare `derive` per i propri _trait_, rendendo la lista di _trait_ che si
 possono derivare praticamente aperta. L’implementazione di `derive` coinvolge
-l’uso di macro procedurali, trattate nella sezione [“Macro”][macro] del Capitolo
-20.
+l’uso di macro procedurali, trattate nella sezione [“Macro `derive`
+Personalizzate”][custom-derive-macro]<!-- ignore --> del Capitolo 20.
 
 ### `Debug` per Output da Programmatore
 
@@ -113,8 +113,9 @@ all’ordinamento dei valori.
 
 Il _trait_ `Clone` permette di creare esplicitamente una copia profonda di un
 valore, e il processo di duplicazione può coinvolgere l’esecuzione di codice
-arbitrario e la copia di dati nell’_heap_. Consultare [“Interazione tra
-Variabili e Dati con _Clone_”][clone] per ulteriori informazioni.
+arbitrario e la copia di dati nell’_heap_. Consulta la sezione [“Interazione tra
+Variabili e Dati con _Clone_”][clone]<!-- ignore --> nel capitolo 4 per
+ulteriori informazioni.
 
 Derivare `Clone` implementa il metodo `clone`, che per il _type_ chiama `clone`
 su ciascuna parte del _type_. Questo significa che tutti i campi o valori del
@@ -127,9 +128,9 @@ chiama `clone` su ogni elemento. Di conseguenza, il _type_ contenuto nella
 _slice_ deve implementare `Clone`.
 
 Il _trait_ `Copy` permette di duplicare un valore copiando solo i dati
-memorizzati sullo _stack_; non è necessario eseguire codice arbitrario.
-Consultare [“Duplicare Dati Sullo _Stack_”][copy-stack] per ulteriori
-informazioni.
+memorizzati sullo _stack_; non è necessario eseguire codice arbitrario. Consulta
+la sezione [“Duplicare Dati Sullo _Stack_”][copy-stack]<!-- ignore --> del
+Capitolo 4 er ulteriori informazioni su `Copy`.
 
 Il _trait_ `Copy` non definisce alcun metodo, per prevenire che i programmatori
 ne sovrascrivano i metodi e violino l’assunto che nessun codice arbitrario venga
@@ -170,9 +171,10 @@ derivare `Default`.
 
 La funzione `Default::default` è comunemente usata in combinazione con la
 sintassi di aggiornamento delle _struct_ discussa in [“Creare Istanze con la
-Sintassi di Aggiornamento delle _Struct_”][agg-struct] nel Capitolo 5. Si
-possono personalizzare alcuni campi di una _struct_ e poi impostare un valore
-predefinito per gli altri campi usando `..Default::default()`.
+Sintassi di Aggiornamento delle _Struct_”][agg-struct]<!-- ignore --> nel
+Capitolo 5. Si possono personalizzare alcuni campi di una _struct_ e poi
+impostare un valore predefinito per gli altri campi usando
+`..Default::default()`.
 
 Il _trait_ `Default` è richiesto per esempio quando si usa il metodo
 `unwrap_or_default` su istanze `Option<T>`. Se l’`Option<T>` è `None`, il metodo
@@ -180,7 +182,7 @@ Il _trait_ `Default` è richiesto per esempio quando si usa il metodo
 `T` contenuto nell’`Option<T>`.
 
 [std]: https://doc.rust-lang.org/stable/std/index.html
-[macro]: ch20-05-macros.html
+[custom-derive-macro]: ch20-05-macros.html#macro-derive-personalizzate
 [clone]: ch04-01-what-is-ownership.html#interazione-tra-variabili-e-dati-con-clone
 [copy-stack]: ch04-01-what-is-ownership.html#duplicare-dati-sullo-stack
 [agg-struct]: ch05-01-defining-structs.html#creare-istanze-con-la-sintassi-di-aggiornamento-delle-struct
