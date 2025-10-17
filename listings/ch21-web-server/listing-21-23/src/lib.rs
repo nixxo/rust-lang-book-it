@@ -6,7 +6,7 @@ use std::{
 // ANCHOR: here
 pub struct ThreadPool {
     workers: Vec<Worker>,
-    sender: Option<mpsc::Sender<Job>>,
+    mittente: Option<mpsc::Sender<Job>>,
 }
 // --taglio--
 // ANCHOR_END: here
@@ -24,26 +24,26 @@ impl ThreadPool {
     ///
     /// La funzione `new` genera panic se la dimensione é zero.
     // ANCHOR: here
-    pub fn new(size: usize) -> ThreadPool {
+    pub fn new(dimensione: usize) -> ThreadPool {
         // --taglio--
 
         // ANCHOR_END: here
-        assert!(size > 0);
+        assert!(dimensione > 0);
 
-        let (sender, receiver) = mpsc::channel();
+        let (mittente, ricevitore) = mpsc::channel();
 
-        let receiver = Arc::new(Mutex::new(receiver));
+        let ricevitore = Arc::new(Mutex::new(ricevitore));
 
-        let mut workers = Vec::with_capacity(size);
+        let mut workers = Vec::with_capacity(dimensione);
 
-        for id in 0..size {
-            workers.push(Worker::new(id, Arc::clone(&receiver)));
+        for id in 0..dimensione {
+            workers.push(Worker::new(id, Arc::clone(&ricevitore)));
         }
 
         // ANCHOR: here
         ThreadPool {
             workers,
-            sender: Some(sender),
+            mittente: Some(mittente),
         }
     }
 
@@ -53,13 +53,13 @@ impl ThreadPool {
     {
         let job = Box::new(f);
 
-        self.sender.as_ref().unwrap().send(job).unwrap();
+        self.mittente.as_ref().unwrap().send(job).unwrap();
     }
 }
 
 impl Drop for ThreadPool {
     fn drop(&mut self) {
-        drop(self.sender.take());
+        drop(self.mittente.take());
 
         for worker in self.workers.drain(..) {
             println!("Spegnimento worker {}", worker.id);
@@ -76,10 +76,10 @@ struct Worker {
 }
 
 impl Worker {
-    fn new(id: usize, receiver: Arc<Mutex<mpsc::Receiver<Job>>>) -> Worker {
+    fn new(id: usize, ricevitore: Arc<Mutex<mpsc::Receiver<Job>>>) -> Worker {
         let thread = thread::spawn(move || {
             loop {
-                let job = receiver.lock().unwrap().recv().unwrap();
+                let job = ricevitore.lock().unwrap().recv().unwrap();
 
                 println!("Worker {id} ha un lavoro; in esecuzione.");
 

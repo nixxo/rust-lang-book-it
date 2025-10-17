@@ -1,4 +1,4 @@
-use hello::ThreadPool;
+use ciao::ThreadPool;
 use std::{
     fs,
     io::{BufReader, prelude::*},
@@ -35,11 +35,11 @@ fn gestisci_connessione(mut stream: TcpStream) {
         _ => ("HTTP/1.1 404 NOT FOUND", "404.html"),
     };
 
-    let contents = fs::read_to_string(filename).unwrap();
-    let length = contents.len();
+    let contenuto = fs::read_to_string(filename).unwrap();
+    let lunghezza = contenuto.len();
 
-    let response =
-        format!("{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}");
+    let risposta =
+        format!("{status_line}\r\nContent-Length: {lunghezza}\r\n\r\n{contenuto}");
 
-    stream.write_all(response.as_bytes()).unwrap();
+    stream.write_all(risposta.as_bytes()).unwrap();
 }

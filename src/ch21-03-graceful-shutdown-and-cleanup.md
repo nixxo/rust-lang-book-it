@@ -1,32 +1,35 @@
-## Graceful Shutdown and Cleanup
+## Arresto Ordinato e Pulizia
 
-The code in Listing 21-20 is responding to requests asynchronously through the
-use of a thread pool, as we intended. We get some warnings about the `workers`,
-`id`, and `thread` fields that we’re not using in a direct way that reminds us
-we’re not cleaning up anything. When we use the less elegant
-<kbd>ctrl</kbd>-<kbd>C</kbd> method to halt the main thread, all other threads
-are stopped immediately as well, even if they’re in the middle of serving a
-request.
+Il codice nel Listato 21-20 risponde alle richieste in modo asincrono attraverso
+l’uso di un _thread_ _pool_, come volevamo. Riceviamo alcuni avvisi sui campi
+`workers`, `id` e `thread` che non stiamo utilizzando in modo diretto, il che ci
+ricorda che non stiamo ripulendo alcunché. Quando utilizziamo il metodo meno
+elegante <kbd>ctrl</kbd>-<kbd>C</kbd> per arrestare il _thread_ principale,
+anche tutti gli altri _thread_ vengono immediatamente arrestati, anche se sono
+nel mezzo dell’elaborazione di una richiesta.
 
-Next, then, we’ll implement the `Drop` trait to call `join` on each of the
-threads in the pool so they can finish the requests they’re working on before
-closing. Then we’ll implement a way to tell the threads they should stop
-accepting new requests and shut down. To see this code in action, we’ll modify
-our server to accept only two requests before gracefully shutting down its
-thread pool.
+Successivamente, implementeremo il _trait_ `Drop` per chiamare `join` su
+ciascuno dei _thread_ nel gruppo in modo che possano completare le richieste su
+cui stanno lavorando prima della chiusura. Quindi implementeremo un modo per
+comunicare ai _thread_ che devono smettere di accettare nuove richieste e
+chiudersi. Per vedere questo codice in azione, modificheremo il nostro server in
+modo che accetti solo due richieste prima di chiudere correttamente il suo
+gruppo di _thread_.
 
-One thing to notice as we go: none of this affects the parts of the code that
-handle executing the closures, so everything here would be just the same if we
-were using a thread pool for an async runtime.
+Una cosa da notare mentre procediamo: nulla di tutto ciò influisce sulle parti
+del codice che gestiscono l’esecuzione delle chiusure, quindi tutto qui sarebbe
+esattamente lo stesso se utilizzassimo un _thread_ _pool_ per un _runtime_
+asincrono.
 
-### Implementing the `Drop` Trait on `ThreadPool`
+### Implementare  il _Trait_ `Drop` su `ThreadPool`
 
-Let’s start with implementing `Drop` on our thread pool. When the pool is
-dropped, our threads should all join to make sure they finish their work.
-Listing 21-22 shows a first attempt at a `Drop` implementation; this code won’t
-quite work yet.
+Iniziamo con l’implementazione di `Drop` sul nostro _thread_ _pool_. Quando il
+gruppo viene eliminato, tutti i nostri _thread_ dovrebbero unirsi per
+assicurarsi di completare il loro lavoro. Il Listato 21-22 mostra un primo
+tentativo di implementazione di `Drop`; questo codice non funziona ancora
+perfettamente.
 
-<Listing number="21-22" file-name="src/lib.rs" caption="Joining each thread when the thread pool goes out of scope">
+<Listing number="21-22" file-name=“src/lib.rs” caption="Unire ogni _thread_ quando il _thread_ _pool_ esce dallo _scope_">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch21-web-server/listing-21-22/src/lib.rs:here}}
@@ -34,45 +37,49 @@ quite work yet.
 
 </Listing>
 
-First we loop through each of the thread pool `workers`. We use `&mut` for this
-because `self` is a mutable reference, and we also need to be able to mutate
-`worker`. For each `worker`, we print a message saying that this particular
-`Worker` instance is shutting down, and then we call `join` on that `Worker`
-instance’s thread. If the call to `join` fails, we use `unwrap` to make Rust
-panic and go into an ungraceful shutdown.
+Per prima cosa, eseguiamo un ciclo su ciascuno dei _thread_ del gruppo
+`workers`. Usiamo `&mut` per questo perché `self` è un _reference_ mutabile e
+abbiamo anche bisogno di poter mutare `worker`. Per ogni `worker`, stampiamo un
+messaggio che dice che questa particolare istanza di `Worker` si sta chiudendo,
+quindi chiamiamo `join` sul _thread_ di quell’istanza di `Worker`. Se la
+chiamata a `join` fallisce, utilizziamo `unwrap` per far andare Rust in _panic_
+e procedere a uno spegnimento non corretto.
 
-Here is the error we get when we compile this code:
+Ecco l’errore che otteniamo quando compiliamo questo codice:
 
 ```console
 {{#include ../listings/ch21-web-server/listing-21-22/output.txt}}
 ```
 
-The error tells us we can’t call `join` because we only have a mutable borrow of
-each `worker` and `join` takes ownership of its argument. To solve this issue,
-we need to move the thread out of the `Worker` instance that owns `thread` so
-`join` can consume the thread. One way to do this is by taking the same approach
-we did in Listing 18-15. If `Worker` held an `Option<thread::JoinHandle<()>>`,
-we could call the `take` method on the `Option` to move the value out of the
-`Some` variant and leave a `None` variant in its place. In other words, a
-`Worker` that is running would have a `Some` variant in `thread`, and when we
-wanted to clean up a `Worker`, we’d replace `Some` with `None` so the `Worker`
-wouldn’t have a thread to run.
+L’errore ci dice che non possiamo chiamare `join` perché abbiamo solo un
+prestito mutabile di ogni `worker` e `join` assume la _ownership_ del suo
+argomento. Per risolvere questo problema, dobbiamo spostare il _thread_ fuori
+dall’istanza `Worker` che possiede `thread` in modo che `join` possa consumare
+il _thread_. Un modo per farlo è quello di adottare lo stesso approccio che
+abbiamo usato nel Listato 18-15. Se `Worker` contenesse un
+`Option<thread::JoinHandle<()>>`, potremmo chiamare il metodo `take` su `Option`
+per spostare il valore fuori dalla variante `Some` e lasciare una variante
+`None` al suo posto. In altre parole, un `Worker` in esecuzione avrebbe una
+variante `Some` in `thread` e, quando volessimo ripulire un `Worker`,
+sostituiremmo `Some` con `None` in modo che il `Worker` non abbia più un
+_thread_ da eseguire.
 
-However, the _only_ time this would come up would be when dropping the `Worker`.
-In exchange, we’d have to deal with an `Option<thread::JoinHandle<()>>` anywhere
-we accessed `worker.thread`. Idiomatic Rust uses `Option` quite a bit, but when
-you find yourself wrapping something you know will always be present in an
-`Option` as a workaround like this, it’s a good idea to look for alternative
-approaches to make your code cleaner and less error-prone.
+Tuttavia, l’_unico_ caso in cui ciò si verificherebbe sarebbe quando si elimina
+`Worker`. In cambio, dovremmo gestire un `Option<thread::JoinHandle<()>>`
+ovunque accedessimo a `worker.thread`. Il Rust idiomatico usa abbastanza spesso
+`Option`, ma quando ti ritrovi a incapsulare qualcosa che sai sarà sempre
+presente in un `Option` come scappatoia, è una buona idea cercare approcci
+alternativi per rendere il tuo codice più pulito e meno soggetto a errori.
 
-In this case, a better alternative exists: the `Vec::drain` method. It accepts
-a range parameter to specify which items to remove from the vector and returns
-an iterator of those items. Passing the `..` range syntax will remove *every*
-value from the vector.
+In questo caso, esiste un’alternativa migliore: il metodo `Vec::drain`. Accetta
+un parametro di intervallo per specificare quali elementi rimuovere dal vettore
+e restituisce un iteratore di tali elementi. Passando la sintassi
+dell’intervallo `..` si rimuoveranno *tutti* i valori dal vettore.
 
-So we need to update the `ThreadPool` `drop` implementation like this:
+Quindi, dobbiamo aggiornare l’implementazione `drop` di `ThreadPool` in questo
+modo:
 
-<Listing file-name="src/lib.rs">
+<Listing file-name=“src/lib.rs”>
 
 ```rust
 {{#rustdoc_include ../listings/ch21-web-server/no-listing-04-update-drop-definition/src/lib.rs:here}}
@@ -80,32 +87,35 @@ So we need to update the `ThreadPool` `drop` implementation like this:
 
 </Listing>
 
-This resolves the compiler error and does not require any other changes to our
-code. Note that, because drop can be called when panicking, the unwrap
-could also panic and cause a double panic, which immediately crashes the
-program and ends any cleanup in progress. This is fine for an example program,
-but isn’t recommended for production code.
+Questo risolve l’errore del compilatore e non richiede altre modifiche al nostro
+codice. Nota che, poiché _drop_ può essere chiamato in caso di _panic_, anche
+_unwrap_ potrebbe andare in _panic_ e causare un doppio _panic_, che blocca
+immediatamente il programma e interrompe qualsiasi operazione di pulizia in
+corso. Questo va bene per un programma di esempio, ma non è consigliabile per il
+codice di produzione.
 
-### Signaling to the Threads to Stop Listening for Jobs
+### Segnalare ai _Thread_ di Interrompere l’Ascolto per i Lavori
 
-With all the changes we’ve made, our code compiles without any warnings.
-However, the bad news is that this code doesn’t function the way we want it to
-yet. The key is the logic in the closures run by the threads of the `Worker`
-instances: at the moment, we call `join`, but that won’t shut down the threads,
-because they `loop` forever looking for jobs. If we try to drop our
-`ThreadPool` with our current implementation of `drop`, the main thread will
-block forever, waiting for the first thread to finish.
+Con tutte le modifiche apportate, il nostro codice viene compilato senza alcun
+avviso. Tuttavia, la cattiva notizia è che questo codice non funziona ancora nel
+modo desiderato. La chiave è la logica nelle chiusure eseguite dai _thread_
+delle istanze `Worker`: al momento, chiamiamo `join`, ma questo non chiude i
+_thread_, perché il `loop` che eseguono cerca continuamente lavori. Se proviamo
+a cancellare il nostro `ThreadPool` con la nostra attuale implementazione di
+`drop`, il _thread_ principale rimarrà bloccato per sempre, in attesa che il
+primo _thread_ finisca.
 
-To fix this problem, we’ll need a change in the `ThreadPool` `drop`
-implementation and then a change in the `Worker` loop.
+Per risolvere questo problema, dovremo modificare l’implementazione di `drop` in
+`ThreadPool` e poi modificare il ciclo `Worker`.
 
-First we’ll change the `ThreadPool` `drop` implementation to explicitly drop
-the `sender` before waiting for the threads to finish. Listing 21-23 shows the
-changes to `ThreadPool` to explicitly drop `sender`. Unlike with the thread,
-here we _do_ need to use an `Option` to be able to move `sender` out of
-`ThreadPool` with `Option::take`.
+Per prima cosa, modificheremo l’implementazione di `drop` in `ThreadPool` per
+eliminare esplicitamente il `mittente` prima di attendere il completamento dei
+_thread_. Il Listato 21-23 mostra le modifiche apportate a `ThreadPool` per
+eliminare esplicitamente il `mittente`. A differenza del _thread_, qui abbiamo
+_bisogno_ di usare un `Option` per poter spostare `mittente` fuori da
+`ThreadPool` con `Option::take`.
 
-<Listing number="21-23" file-name="src/lib.rs" caption="Explicitly dropping `sender` before joining the `Worker` threads">
+<Listing number="21-23" file-name=“src/lib.rs” caption="Eliminazione esplicita di `mittente` prima di unire i _thread_ `Worker`">
 
 ```rust,noplayground,not_desired_behavior
 {{#rustdoc_include ../listings/ch21-web-server/listing-21-23/src/lib.rs:here}}
@@ -113,13 +123,14 @@ here we _do_ need to use an `Option` to be able to move `sender` out of
 
 </Listing>
 
-Dropping `sender` closes the channel, which indicates no more messages will be
-sent. When that happens, all the calls to `recv` that the `Worker` instances do
-in the infinite loop will return an error. In Listing 21-24, we change the
-`Worker` loop to gracefully exit the loop in that case, which means the threads
-will finish when the `ThreadPool` `drop` implementation calls `join` on them.
+L’eliminazione di `mittente` chiude il canale, indicando che non verranno più
+inviati messaggi. Quando ciò accade, tutte le chiamate a `recv` che le istanze
+`Worker` eseguono nel ciclo infinito restituiranno un errore. Nel Listato 21-24,
+modifichiamo il ciclo `Worker` per uscire correttamente dal ciclo in tal caso,
+il che significa che i _thread_ termineranno quando l’implementazione `drop` di
+`ThreadPool` chiamerà `join` su di essi.
 
-<Listing number="21-24" file-name="src/lib.rs" caption="Explicitly breaking out of the loop when `recv` returns an error">
+<Listing number="21-24" file-name=“src/lib.rs” caption="Uscita esplicita dal ciclo quando `recv` restituisce un errore">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch21-web-server/listing-21-24/src/lib.rs:here}}
@@ -127,10 +138,11 @@ will finish when the `ThreadPool` `drop` implementation calls `join` on them.
 
 </Listing>
 
-To see this code in action, let’s modify `main` to accept only two requests
-before gracefully shutting down the server, as shown in Listing 21-25.
+Per vedere questo codice in azione, modifichiamo `main` in modo che accetti solo
+due richieste prima di chiudere correttamente il server, come mostrato nel
+Listato 21-25.
 
-<Listing number="21-25" file-name="src/main.rs" caption="Shutting down the server after serving two requests by exiting the loop">
+<Listing number="21-25" file-name=“src/main.rs” caption="Chiusura del server dopo aver servito due richieste uscendo dal ciclo">
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch21-web-server/listing-21-25/src/main.rs:here}}
@@ -138,16 +150,17 @@ before gracefully shutting down the server, as shown in Listing 21-25.
 
 </Listing>
 
-You wouldn’t want a real-world web server to shut down after serving only two
-requests. This code just demonstrates that the graceful shutdown and cleanup is
-in working order.
+Non vorresti che un server web reale si spegnesse dopo aver servito solo due
+richieste. Questo codice dimostra semplicemente che lo spegnimento avviente
+ordinatamente e la pulizia funziona correttamente.
 
-The `take` method is defined in the `Iterator` trait and limits the iteration
-to the first two items at most. The `ThreadPool` will go out of scope at the
-end of `main`, and the `drop` implementation will run.
+Il metodo `take` è definito nel _trait_ `Iterator` e limita l’iterazione al
+massimo ai primi due elementi. Il `ThreadPool` uscirà dallo _scope_ alla fine di
+`main` e verrà eseguita l’implementazione `drop`.
 
-Start the server with `cargo run`, and make three requests. The third request
-should error, and in your terminal you should see output similar to this:
+Avvia il server con `cargo run` ed effettua tre richieste. La terza richiesta
+dovrebbe generare un errore e nel terminale dovresti vedere un output simile a
+questo:
 
 <!-- manual-regeneration
 cd listings/ch21-web-server/listing-21-25
@@ -162,46 +175,49 @@ Can't automate because the output depends on making requests
 
 ```console
 $ cargo run
-   Compiling hello v0.1.0 (file:///projects/hello)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.41s
-     Running `target/debug/hello`
-Worker 0 got a job; executing.
-Shutting down.
-Shutting down worker 0
-Worker 3 got a job; executing.
-Worker 1 disconnected; shutting down.
-Worker 2 disconnected; shutting down.
-Worker 3 disconnected; shutting down.
-Worker 0 disconnected; shutting down.
-Shutting down worker 1
-Shutting down worker 2
-Shutting down worker 3
+   Compiling ciao v0.1.0 (file:///progetti/ciao)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.52s
+     Running `target/debug/ciao`
+Worker 0 ha un lavoro; in esecuzione.
+Spegnimento.
+Spegnimento worker 0
+Worker 3 ha un lavoro; in esecuzione.
+Worker 1 disconnesso; spegnimento.
+Worker 2 disconnesso; spegnimento.
+Worker 3 disconnesso; spegnimento.
+Worker 0 disconnesso; spegnimento.
+Spegnimento worker 1
+Spegnimento worker 2
+Spegnimento worker 3
 ```
 
-You might see a different ordering of `Worker` IDs and messages printed. We can
-see how this code works from the messages: `Worker` instances 0 and 3 got the
-first two requests. The server stopped accepting connections after the second
-connection, and the `Drop` implementation on `ThreadPool` starts executing
-before `Worker` 3 even starts its job. Dropping the `sender` disconnects all the
-`Worker` instances and tells them to shut down. The `Worker` instances each
-print a message when they disconnect, and then the thread pool calls `join` to
-wait for each `Worker` thread to finish.
+Potresti vedere un ordine diverso degli ID `Worker` e dei messaggi stampati.
+Possiamo vedere come funziona questo codice dai messaggi: le istanze `Worker` 0
+e 3 hanno ricevuto le prime due richieste. Il server ha smesso di accettare
+connessioni dopo la seconda connessione e l’implementazione `Drop` su
+`ThreadPool` inizia l’esecuzione prima ancora che `Worker 3` inizi il suo
+lavoro. L’eliminazione di `mittente` disconnette tutte le istanze `Worker` e
+dice loro di chiudersi. Ciascuna istanza `Worker` stampa un messaggio quando si
+disconnette, quindi il _thread_ _pool_ chiama `join` per attendere che ogni
+_thread_ `Worker` finisca.
 
-Notice one interesting aspect of this particular execution: the `ThreadPool`
-dropped the `sender`, and before any `Worker` received an error, we tried to
-join `Worker` 0. `Worker` 0 had not yet gotten an error from `recv`, so the main
-thread blocked, waiting for `Worker` 0 to finish. In the meantime, `Worker` 3
-received a job and then all threads received an error. When `Worker` 0 finished,
-the main thread waited for the rest of the `Worker` instances to finish. At that
-point, they had all exited their loops and stopped.
+Nota un aspetto interessante di questa particolare esecuzione: il `ThreadPool`
+ha eliminato il `mittente` e, prima che qualsiasi `Worker` ricevesse un errore,
+abbiamo provato a unire `Worker 0`. `Worker 0` non aveva ancora ricevuto un
+errore da `recv`, quindi il _thread_ principale si è bloccato, in attesa che
+`Worker 0` terminasse. Nel frattempo, `Worker 3` ha ricevuto un lavoro e poi
+tutti i _thread_ hanno ricevuto un errore. Quando `Worker 0` ha terminato, il
+_thread_ principale ha atteso che le restanti istanze `Worker` terminassero. A
+quel punto, tutte erano uscite dai loro cicli e si erano fermate.
 
-Congrats! We’ve now completed our project; we have a basic web server that uses
-a thread pool to respond asynchronously. We’re able to perform a graceful
-shutdown of the server, which cleans up all the threads in the pool.
+Congratulazioni! Abbiamo completato il nostro progetto: ora abbiamo un server
+web di base che utilizza un _thread_ _pool_ per rispondere in modo asincrono.
+Siamo in grado di eseguire un arresto oridnato del server, che pulisce tutti i
+_thread_ nel _pool_.
 
-Here’s the full code for reference:
+Ecco il codice completo come riferimento:
 
-<Listing file-name="src/main.rs">
+<Listing file-name=“src/main.rs”>
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch21-web-server/no-listing-07-final-code/src/main.rs}}
@@ -209,7 +225,7 @@ Here’s the full code for reference:
 
 </Listing>
 
-<Listing file-name="src/lib.rs">
+<Listing file-name=“src/lib.rs”>
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch21-web-server/no-listing-07-final-code/src/lib.rs}}
@@ -217,21 +233,23 @@ Here’s the full code for reference:
 
 </Listing>
 
-We could do more here! If you want to continue enhancing this project, here are
-some ideas:
+Potremmo fare di più qui! Se vuoi continuare a migliorare questo progetto, ecco
+alcune idee:
 
-- Add more documentation to `ThreadPool` and its public methods.
-- Add tests of the library’s functionality.
-- Change calls to `unwrap` to more robust error handling.
-- Use `ThreadPool` to perform some task other than serving web requests.
-- Find a thread pool crate on [crates.io](https://crates.io/) and implement a
-  similar web server using the crate instead. Then compare its API and
-  robustness to the thread pool we implemented.
+- Aggiungi altra documentazione a `ThreadPool` e ai suoi metodi pubblici.
+- Aggiungi dei test delle funzionalità della libreria.
+- Modifica le chiamate a `unwrap` per una gestione degli errori più robusta.
+- Utilizza `ThreadPool` per eseguire alcune attività diverse dalla gestione
+  delle richieste web.
+- Trova un _crate_ che gestisce _thread_ _pool_ su
+  [crates.io](https://crates.io/) e implementa un server web simile utilizzando
+  il _crate_. Quindi, confronta la sua API e la sua robustezza con il _thread_
+  _pool_ che abbiamo implementato.
 
-## Summary
+## Riepilogo
 
-Well done! You’ve made it to the end of the book! We want to thank you for
-joining us on this tour of Rust. You’re now ready to implement your own Rust
-projects and help with other people’s projects. Keep in mind that there is a
-welcoming community of other Rustaceans who would love to help you with any
-challenges you encounter on your Rust journey.
+Complimenti! Sei arrivato alla fine del libro! Ti ringraziamo per averci
+accompagnato in questo viaggio alla scoperta di Rust. Ora sei pronto per
+implementare i tuoi progetti Rust e aiutare gli altri nei loro. Ricorda che
+esiste una comunità accogliente di altri Rustaceans che saranno felici di
+aiutarti con qualsiasi sfida incontrerai nel tuo viaggio con Rust.
