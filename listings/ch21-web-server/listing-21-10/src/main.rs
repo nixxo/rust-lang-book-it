@@ -30,7 +30,7 @@ fn gestisci_connessione(mut stream: TcpStream) {
     // ANCHOR: here
     let (status_line, filename) = match &request_line[..] {
         "GET / HTTP/1.1" => ("HTTP/1.1 200 OK", "ciao.html"),
-        "GET /sleep HTTP/1.1" => {
+        "GET /attesa HTTP/1.1" => {
             thread::sleep(Duration::from_secs(5));
             ("HTTP/1.1 200 OK", "ciao.html")
         }
@@ -40,13 +40,13 @@ fn gestisci_connessione(mut stream: TcpStream) {
     // --taglio--
     // ANCHOR_END: here
 
-    let contents = fs::read_to_string(filename).unwrap();
-    let length = contents.len();
+    let contenuto = fs::read_to_string(filename).unwrap();
+    let lunghezza = contenuto.len();
 
-    let response =
-        format!("{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}");
+    let risposta =
+        format!("{status_line}\r\nContent-Length: {lunghezza}\r\n\r\n{contenuto}");
 
-    stream.write_all(response.as_bytes()).unwrap();
+    stream.write_all(risposta.as_bytes()).unwrap();
     // ANCHOR: here
 }
 // ANCHOR_END: here

@@ -9,8 +9,8 @@ impl ThreadPool {
     /// # Panics
     ///
     /// La funzione `new` genera panic se la dimensione é zero.
-    pub fn new(size: usize) -> ThreadPool {
-        assert!(size > 0);
+    pub fn new(dimensione: usize) -> ThreadPool {
+        assert!(dimensione > 0);
 
         ThreadPool
     }

@@ -16,12 +16,12 @@ impl ThreadPool {
     ///
     /// La funzione `new` genera panic se la dimensione é zero.
     // ANCHOR: here
-    pub fn new(size: usize) -> ThreadPool {
-        assert!(size > 0);
+    pub fn new(dimensione: usize) -> ThreadPool {
+        assert!(dimensione > 0);
 
-        let mut threads = Vec::with_capacity(size);
+        let mut threads = Vec::with_capacity(dimensione);
 
-        for _ in 0..size {
+        for _ in 0..dimensione {
             // crea qualche thread e memorizzali in un vettore
         }
 

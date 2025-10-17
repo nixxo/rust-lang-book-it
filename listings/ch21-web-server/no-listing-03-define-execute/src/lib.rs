@@ -4,7 +4,7 @@ pub struct ThreadPool;
 impl ThreadPool {
     // --taglio--
     // ANCHOR_END: here
-    pub fn new(size: usize) -> ThreadPool {
+    pub fn new(dimensione: usize) -> ThreadPool {
         ThreadPool
     }
 

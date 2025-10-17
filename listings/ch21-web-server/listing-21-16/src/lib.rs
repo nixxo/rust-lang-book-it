@@ -3,7 +3,7 @@ use std::{sync::mpsc, thread};
 
 pub struct ThreadPool {
     workers: Vec<Worker>,
-    sender: mpsc::Sender<Job>,
+    mittente: mpsc::Sender<Job>,
 }
 
 struct Job;
@@ -19,18 +19,18 @@ impl ThreadPool {
     ///
     /// La funzione `new` genera panic se la dimensione é zero.
     // ANCHOR: here
-    pub fn new(size: usize) -> ThreadPool {
-        assert!(size > 0);
+    pub fn new(dimensione: usize) -> ThreadPool {
+        assert!(dimensione > 0);
 
-        let (sender, receiver) = mpsc::channel();
+        let (mittente, ricevitore) = mpsc::channel();
 
-        let mut workers = Vec::with_capacity(size);
+        let mut workers = Vec::with_capacity(dimensione);
 
-        for id in 0..size {
+        for id in 0..dimensione {
             workers.push(Worker::new(id));
         }
 
-        ThreadPool { workers, sender }
+        ThreadPool { workers, mittente }
     }
     // --taglio--
     // ANCHOR_END: here
