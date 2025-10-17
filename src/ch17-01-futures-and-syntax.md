@@ -120,7 +120,7 @@ non è effettivamente necessario.
 
 > Nota: Questo è diverso dal comportamento che abbiamo visto nel capitolo
 > precedente quando abbiamo usato `thread::spawn` in [Creare un Nuovo _Thread_
-> con `spawn`][thread-spawn]<!--ignore-->, dove la chiusura passata a un altro
+> con `spawn`][thread-spawn]<!-- ignore -->, dove la chiusura passata a un altro
 > _thread_ veniva eseguita immediatamente. È anche diverso da come molti altri
 > linguaggi gestiscono l’asincronia. Ma è importante per Rust poter fornire le
 > sue garanzie di prestazioni, proprio come accade con gli iteratori.

@@ -16,7 +16,7 @@ codice. In questi casi, puoi usare codice _unsafe_ per dire al compilatore:
 tuo: se usi codice _unsafe_ in modo sbagliato, possono succedere problemi legati
 alla sicurezza della memoria, tipo il de-referenziamento di puntatori nulli.
 
-Un altro motivo per cui Rust ha un alter ego _unsafe_ è che l'hardware del
+Un altro motivo per cui Rust ha un alter ego _unsafe_ è che l’hardware del
 computer è intrinsecamente _unsafe_. Se Rust non ti permettesse di fare
 operazioni _unsafe_, non potresti fare certi compiti. Rust deve permetterti di
 fare programmazione di sistema a basso livello, tipo interagire direttamente con
@@ -31,17 +31,17 @@ blocco dove metti il codice _unsafe_. Ci sono cinque azioni che puoi fare in
 _unsafe Rust_ che non puoi fare in _safe Rust_, che chiamiamo _superpoteri
 unsafe_. Questi superpoteri includono la possibilità di:
 
-1. De-referenziare un puntatore grezzo
-1. Chiamare una funzione o un metodo _unsafe_
-1. Accedere o modificare una variabile statica mutabile
-1. Implementare un _trait_ _unsafe_
-1. Accedere ai campi di `union`
+1. De-referenziare un puntatore grezzo.
+1. Chiamare una funzione o un metodo _unsafe_.
+1. Accedere o modificare una variabile statica mutabile.
+1. Implementare un _trait_ _unsafe_.
+1. Accedere ai campi di `union`.
 
 È importante capire che `unsafe` non disabilita il _borrow checker_ né gli altri
 controlli di sicurezza di Rust: se usi un _reference_ in codice _unsafe_, esso
 verrà comunque controllato. La parola chiave `unsafe` ti dà solo accesso a
 queste cinque caratteristiche che non sono controllate dal compilatore
-nell'aspetto della sicurezza della memoria. Avrai comunque un certo grado di
+nell’aspetto della sicurezza della memoria. Avrai comunque un certo grado di
 sicurezza dentro un blocco _unsafe_.
 
 Inoltre, `unsafe` non significa che il codice dentro il blocco sia
@@ -56,7 +56,7 @@ dentro un blocco `unsafe`. Mantieni i blocchi `unsafe` piccoli; ne sarai
 contento quando dovrai cercare bug di memoria.
 
 Per isolare il codice _unsafe_ il più possibile, è meglio racchiuderlo in
-un'astrazione _safe_ e offrire un’API _safe_, di cui parleremo più avanti nel
+un’astrazione _safe_ e offrire un’API _safe_, di cui parleremo più avanti nel
 capitolo quando esamineremo funzioni e metodi _unsafe_. Parti della libreria
 standard sono implementate come astrazioni _safe_ su codice _unsafe_ che è stato
 controllato. Racchiudere il codice _unsafe_ in un’astrazione _safe_ evita che
@@ -331,7 +331,7 @@ la responsabilità è del programmatore.
 
 Dentro il blocco `unsafe extern "C"`, elenchiamo nomi e firme delle funzioni
 esterne di un altro linguaggio che vogliamo chiamare. La parte `"C"` definisce
-quale _interfaccia binaria dell'applicazione_, abbreviato in _ABI_ (_application
+quale _interfaccia binaria dell’applicazione_, abbreviato in _ABI_ (_application
 binary interface_), quella funzione usa: l’_ABI_ definisce come chiamare la
 funzione a livello assembly. L’_ABI_ `"C"` è il più comune ed è l’_ABI_ del
 linguaggio C. Informazioni su tutte le _ABI_ supportate da Rust sono disponibili
@@ -506,12 +506,12 @@ Quando scrivi codice _unsafe_, potresti voler controllare che quello che hai
 scritto sia davvero sicuro e corretto. Uno dei modi migliori per farlo è usare
 _Miri_, uno strumento ufficiale Rust per rilevare comportamenti indefiniti.
 Mentre il _borrow checker_ è uno strumento _statico_ che lavora durante la
-compilazione, _Miri_ è uno strumento _dinamico_ che lavora durante l'esecuzione.
+compilazione, _Miri_ è uno strumento _dinamico_ che lavora durante l’esecuzione.
 Controlla il tuo codice eseguendo il programma o i vari test e rilevando quando
 violi le regole che conosce su come dovrebbe funzionare Rust.
 
 Usare _Miri_ richiede una build _nightly_ di Rust (di cui parliamo di più
-nell'[Appendice G: Come è Fatto Rust e “Nightly Rust”][nightly]<!-- ignore -->).
+nell’[Appendice G][nightly]<!-- ignore -->).
 Puoi installare sia la versione _nightly_ di Rust che lo strumento _Miri_
 digitando `rustup +nightly component add miri`. Questo non cambia la versione di
 Rust che usa il tuo progetto; aggiunge solo lo strumento al tuo sistema per
@@ -525,8 +525,7 @@ Per esempio, guarda cosa succede se lo usiamo con il codice nel Listato 20-7.
 ```
 
 Miri ci avverte correttamente che stiamo facendo un _cast_ da intero a
-puntatore, che potrebbe essere un problema, ma _Miri_ non può sapere se lo è
-dato che non conosce l’origine del puntatore. Poi _Miri_ segnala un errore
+puntatore, che potrebbe essere un problema, ma _Miri_ non può determinare se è un problema perchè non conosce l’origine del puntatore. Poi _Miri_ segnala un errore
 perché il Listato 20-7 ha un comportamento indefinito dovuto a un puntatore
 pendente. Grazie a _Miri_, sappiamo che c’è un rischio di comportamento
 indefinito e possiamo pensare a come mettere in sicurezza il codice. In certi
@@ -546,7 +545,7 @@ in questo capitolo e vedi cosa dice!
 
 Puoi saperne di più su _Miri_ nel [suo repository GitHub][miri].
 
-### Quando Usare il Codice _Unsafe_
+### Usare il Codice _Unsafe_ Correttamente
 
 Usare `unsafe` per sfruttare uno dei cinque superpoteri appena visti non è
 sbagliato o malvisto, ma è più difficile scrivere codice _unsafe_ corretto
@@ -557,7 +556,7 @@ quando capitano. Ogni volta che scrivi codice _unsafe_, puoi usare _Miri_ per
 essere più sicuro che il codice scritto rispetti le regole di Rust.
 
 Per una trattazione molto più approfondita su come lavorare efficacemente con
-_unsafe Rust_, leggi la guida ufficiale di Rust sull’argomento, il
+_unsafe Rust_, leggi la guida ufficiale di Rust per `unsafe`, il
 [Rustonomicon][nomicon].
 
 [dangling-references]: ch04-02-references-and-borrowing.html#reference-pendenti

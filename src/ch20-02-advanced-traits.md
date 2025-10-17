@@ -1,9 +1,9 @@
 ## _Trait_ Avanzati
 
-Abbiamo già visto i _trait_ in [“_Trait_: Definire il Comportamento Condiviso
-con i _Trait_”][traits-defining-shared-behavior] nel Capitolo 10, ma non abbiamo
-trattato i dettagli più avanzati. Ora che sai di più su Rust, possiamo mettere
-le mani in pasta in certi dettagli più complessi.
+Abbiamo già visto i _trait_ in [“Definire il Comportamento Condiviso con i
+_Trait_”][traits] nel Capitolo 10, ma non abbiamo trattato i dettagli più
+avanzati. Ora che sai di più su Rust, possiamo mettere le mani in pasta in certi
+dettagli più complessi.
 
 ### Definire _Trait_ con _Type_ Associati
 
@@ -95,7 +95,7 @@ particolari.
 
 Rust non permette di creare operatori propri o sovrascrivere operatori
 arbitrari. Ma puoi sovrascrivere le operazioni e i _trait_ corrispondenti
-elencati in `std::ops` implementando i _trait_ associati all'operatore. Per
+elencati in `std::ops` implementando i _trait_ associati all’operatore. Per
 esempio, nel Listato 20-15 sovrascriviamo l’operatore `+` per sommare due
 istanze di `Punto`. Lo facciamo implementando il _trait_ `Add` per la _struct_
 `Punto`.
@@ -157,7 +157,7 @@ impostare il valore del parametro di _type_ `Rhs` invece di usare il default
 Userai i _type_ di default per i parametri in due modi principali:
 
 1. Per estendere un _type_ senza rompere il codice esistente
-2. Per permettere personalizzazioni in casi specifici che la maggior parte degli
+1. Per permettere personalizzazioni in casi specifici che la maggior parte degli
    utenti non userà
 
 Il _trait_ `Add` della libreria standard è un esempio del secondo punto: di
@@ -447,6 +447,6 @@ a delle tecniche avanzate per interagire col sistema dei _type_ di Rust.
 
 [newtype]: ch20-02-advanced-traits.html#implementare-trait-esterni-con-il-modello-newtype
 [implementing-a-trait-on-a-type]: ch10-02-traits.html#implementare-un-trait-su-un-type
-[traits-defining-shared-behavior]: ch10-02-traits.html#definire-il-comportamento-condiviso-con-i-trait
+[traits]: ch10-02-traits.html#definire-il-comportamento-condiviso-con-i-trait
 [smart-pointer-deref]: ch15-02-deref.html#trattare-i-puntatori-intelligenti-come-normali-reference
 [tuple-structs]: ch05-01-defining-structs.html#creare-type-diversi-con-struct-tupla

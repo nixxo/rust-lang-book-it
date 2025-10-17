@@ -85,13 +85,13 @@ elaborazioni _multi-thread_.
 
 La libreria standard di Rust fornisce canali per il passaggio di messaggi e i
 puntatori intelligenti, come `Mutex<T>` e `Arc<T>`, che sono sicuri da usare in
-contesti concorrenti. Il sistema dei _type_ e il controllo di prestiti
-assicurano che il codice che utilizza queste soluzioni non finisca con accessi
-ai dati conflittuali o riferimenti non validi. Una volta che avrai compilato il
-tuo codice, potrai essere certo che verrà eseguito felicemente su più _thread_
-senza i tipi di bug difficili da rintracciare comuni in altri linguaggi. La
-programmazione concorrente non è più un concetto di cui aver paura: vai avanti e
-rendi i tuoi programmi concorrenti, senza paura!
+contesti concorrenti (detti _thread-safe_). Il sistema dei _type_ e il controllo
+di prestiti assicurano che il codice che utilizza queste soluzioni non finisca
+con accessi ai dati conflittuali o riferimenti non validi. Una volta che avrai
+compilato il tuo codice, potrai essere certo che verrà eseguito felicemente su
+più _thread_ senza i tipi di bug difficili da rintracciare comuni in altri
+linguaggi. La programmazione concorrente non è più un concetto di cui aver
+paura: vai avanti e rendi i tuoi programmi concorrenti, senza paura!
 
 [sharing-a-mutext]: ch16-03-shared-state.html#condividere-accesso-a-mutext
 [nomicon]: https://doc.rust-lang.org/stable/nomicon/index.html

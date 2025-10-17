@@ -56,8 +56,8 @@ stesso modo di quelli di _type_ `i32`:
 ```
 
 Poiché `Chilometri` e `i32` sono lo stesso _type_, possiamo sommare valori di
-entrambi i _type_ e possiamo passare valori di _type_ `Chilometri` a funzioni
-che accettano parametri `i32`. Tuttavia, usando questo metodo non otteniamo i
+entrambi i _type_ e passare valori di _type_ `Chilometri` a funzioni che
+accettano parametri `i32`. Tuttavia, usando questo metodo non otteniamo i
 benefici di controllo dei _type_ che otteniamo con il modello _newtype_ discusso
 prima. In altre parole, se confondiamo valori di _type_ `Chilometri` e `i32` da
 qualche parte, il compilatore non ci darà errore.
@@ -161,10 +161,11 @@ pezzo qui nel Listato 20-27.
 
 </Listing>
 
-All’epoca abbiamo trascurato alcuni dettagli di questo codice. In [“Controllare
-il Flusso con il costrutto `match`”][the-match-control-flow-construct] nel
-Capitolo 6 abbiamo spiegato che tutti i rami di un `match` devono ritornare lo
-stesso _type_. Quindi, per esempio, il seguente codice non funziona:
+All’epoca abbiamo trascurato alcuni dettagli di questo codice. Nella sezione
+[“Controllare il Flusso con il costrutto
+`match`”][the-match-control-flow-construct] del Capitolo 6 abbiamo spiegato che
+tutti i rami di un `match` devono ritornare lo stesso _type_. Quindi, per
+esempio, il seguente codice non funziona:
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-08-match-arms-different-types/src/main.rs:here}}
@@ -235,16 +236,16 @@ tutti i valori di quel _type_ devono occupare la stessa quantità di memoria. Se
 Rust ci permettesse di scrivere questo codice, quei due valori `str` dovrebbero
 occupare la stessa quantità di spazio, ma hanno lunghezze diverse: `s1`
 necessita di 12 byte, `s2` di 15. Ecco perché non è possibile creare una
-variabile di _type_ `str`.
+variabile contenente un _type_ a dimensione dinamica.
 
 Quindi cosa facciamo? La risposta la conosci già: cambiamo i _type_ di `s1` e
-`s2` da `str` a `&str`. Ricorda da [“_Slice_ di Stringa”][string-slices] nel
+`s2` in _slice_ di stringa (`&str`) anzichè `str`. Ricorda dalla sezione [“_Slice_ di Stringa”][string-slices] nel
 Capitolo 4 che la struttura dati _slice_ memorizza solo l’indirizzo di partenza
 e la lunghezza della _slice_. Perciò, anche se un `&T` è un singolo valore che
-memorizza l’indirizzo di memoria di `T`, un `&str` è _due_ valori: l’indirizzo
+memorizza l’indirizzo di memoria di `T`, una _slice_ è _due_ valori: l’indirizzo
 di `str` e la sua lunghezza. Perciò sappiamo sempre la dimensione statica di un
-valore `&str`: è doppia rispetto alla lunghezza di un `usize`. E quindi,
-conosciamo sempre la dimensione di una `&str` indipendentemente dalla lunghezza
+valore _slice_ stringa durante la compilazione: è doppia rispetto alla lunghezza di un `usize`. E quindi,
+conosciamo sempre la dimensione di una _slice_ indipendentemente dalla lunghezza
 della stringa. In generale, questo è il modo in cui si usano i _type_
 dimensionati dinamicamente in Rust: hanno un pezzettino di metadati in più per
 memorizzare la dimensione dell’informazione dinamica. La regola d’oro dei _DST_
@@ -285,7 +286,7 @@ questa restrizione:
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-14-generic-maybe-sized/src/lib.rs}}
 ```
 
-Un vincolo `?Sized` significa “`T` può essere o no di dimensione fissa” e questa
+Un vincolo `?Sized` significa “`T` può essere o no di dimensione fissa”, e questa
 notazione sovrascrive il comportamento predefinito che i generici debbano avere
 dimensione nota a tempo di compilazione. La sintassi `?Trait` con questo
 significato è disponibile solo per `Sized` e non per altri _trait_.

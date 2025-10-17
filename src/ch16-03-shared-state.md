@@ -185,13 +185,13 @@ in modo sicuro quando usato con i _thread_.
 #### Conteggio di _Reference_ Atomico con `Arc<T>`
 
 Fortunatamente, `Arc<T>` _è_ un _type_ come `Rc<T>` che è sicuro da usare in
-situazioni di concorrenza. La _A_ sta per _atomico_, cioè è un _type_ contatore
-di _reference_ _atomico_. Gli _atomici_ sono un ulteriore _type_ di primitivo di
-concorrenza che non tratteremo in dettaglio in questa sede: per maggiori
-dettagli, consulta la documentazione della libreria standard per
-[`std::sync::atomic`][atomic]<!-- ignore -->. A questo punto, ti basterà sapere
-che gli atomici funzionano come i _type_ primitivi ma sono sicuri da condividere
-tra i _thread_.
+situazioni di concorrenza (_thread-safe_). La _A_ sta per _atomico_, cioè è un
+_type_ contatore di _reference_ _atomico_. Gli _atomici_ sono un ulteriore
+_type_ di primitivo di concorrenza che non tratteremo in dettaglio in questa
+sede: per maggiori dettagli, consulta la documentazione della libreria standard
+per [`std::sync::atomic`][atomic]<!-- ignore -->. A questo punto, ti basterà
+sapere che gli atomici funzionano come i _type_ primitivi ma sono sicuri da
+condividere tra i _thread_.
 
 Potresti chiederti perché tutti i _type_ primitivi non sono atomici e perché i
 _type_ della libreria standard non sono implementati in modo da utilizzare

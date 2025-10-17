@@ -285,8 +285,8 @@ Se abbiamo una _slice_ di stringa, possiamo passarlo direttamente. Se abbiamo
 una `String`, possiamo passare una _slice_ della `String` o un _reference_ alla
 `String`. Questa flessibilità sfrutta la _deref coercions_ (_de-referenziazione
 forzata_), una funzionalità che tratteremo nella sezione [“Usare la
-De-Referenziazione Forzata in Funzioni e Metodi”][deref-coercions]<!--ignore-->
-del Capitolo 15.
+De-Referenziazione Forzata in Funzioni e Metodi”][deref-coercions]<!-- ignore
+--> del Capitolo 15.
 
 Definire una funzione che come parametro prende una _slice_ di stringa invece di
 un _reference_ a una `String` rende la nostra funzione più generica e utile
