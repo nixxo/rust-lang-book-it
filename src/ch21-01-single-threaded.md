@@ -1,40 +1,41 @@
-## Building a Single-Threaded Web Server
+## Costruire un Server Web Single-_Thread_
 
-We’ll start by getting a single-threaded web server working. Before we begin,
-let’s look at a quick overview of the protocols involved in building web
-servers. The details of these protocols are beyond the scope of this book, but
-a brief overview will give you the information you need.
+Inizieremo facendo funzionare un server web con un singolo thread. Prima di
+cominciare, vediamo una breve panoramica dei protocolli coinvolti nella
+costruzione di un server web. I dettagli di questi protocolli sono oltre lo
+scopo di questo libro, ma una breve panoramica ti fornirà le informazioni di cui
+hai bisogno.
 
-The two main protocols involved in web servers are _Hypertext Transfer
-Protocol_ _(HTTP)_ and _Transmission Control Protocol_ _(TCP)_. Both protocols
-are _request-response_ protocols, meaning a _client_ initiates requests and a
-_server_ listens to the requests and provides a response to the client. The
-contents of those requests and responses are defined by the protocols.
+I due protocolli principali coinvolti nei server web sono _Hypertext Transfer
+Protocol_ _(HTTP)_ e _Transmission Control Protocol_ _(TCP)_. Entrambi i
+protocolli sono protocolli _request-response_, il che significa che un _client_
+avvia le richieste e un _server_ ascolta le richieste e fornisce una risposta al
+client. I contenuti di quelle richieste e risposte sono definiti dai protocolli.
 
-TCP is the lower-level protocol that describes the details of how information
-gets from one server to another but doesn’t specify what that information is.
-HTTP builds on top of TCP by defining the contents of the requests and
-responses. It’s technically possible to use HTTP with other protocols, but in
-the vast majority of cases, HTTP sends its data over TCP. We’ll work with the
-raw bytes of TCP and HTTP requests and responses.
+TCP è il protocollo di livello inferiore che descrive i dettagli su come le
+informazioni vengono trasferite da un server all’altro, ma non specifica cosa
+siano quelle informazioni. HTTP si basa su TCP definendo i contenuti delle
+richieste e delle risposte. Tecnicamente è possibile utilizzare HTTP con altri
+protocolli, ma nella stragrande maggioranza dei casi, HTTP invia i suoi dati su
+TCP. Lavoreremo con i byte grezzi delle richieste e risposte TCP e HTTP.
 
-### Listening to the TCP Connection
+### Ascoltare la Connessione TCP
 
-Our web server needs to listen to a TCP connection, so that’s the first part
-we’ll work on. The standard library offers a `std::net` module that lets us do
-this. Let’s make a new project in the usual fashion:
+Il nostro server web deve ascoltare una connessione TCP, quindi questa è la
+prima parte su cui lavoreremo. La libreria standard offre un modulo `std::net`
+che ci permette di farlo. Creiamo un nuovo progetto nel modo abituale:
 
 ```console
-$ cargo new hello
-     Created binary (application) `hello` project
-$ cd hello
+$ cargo new ciao
+     Created binary (application) `ciao` project
+$ cd ciao
 ```
 
-Now enter the code in Listing 21-1 in _src/main.rs_ to start. This code will
-listen at the local address `127.0.0.1:7878` for incoming TCP streams. When it
-gets an incoming stream, it will print `Connection established!`.
+Ora inserisci il codice nel Listato 21-1 in _src/main.rs_ per iniziare. Questo
+codice ascolterà all’indirizzo locale `127.0.0.1:7878` per flussi TCP in arrivo.
+Quando riceve un flusso in arrivo, stamperà `Connessione stabilita!`.
 
-<Listing number="21-1" file-name="src/main.rs" caption="Listening for incoming streams and printing a message when we receive a stream">
+<Listing number="21-1" file-name="src/main.rs" caption="Ascolto per flussi in arrivo e stampa di un messaggio quando si riceve un flusso">
 
 ```rust,no_run
 {{#rustdoc_include ../listings/ch21-web-server/listing-21-01/src/main.rs}}
@@ -42,97 +43,102 @@ gets an incoming stream, it will print `Connection established!`.
 
 </Listing>
 
-Using `TcpListener`, we can listen for TCP connections at the address
-`127.0.0.1:7878`. In the address, the section before the colon is an IP address
-representing your computer (this is the same on every computer and doesn’t
-represent the authors’ computer specifically), and `7878` is the port. We’ve
-chosen this port for two reasons: HTTP isn’t normally accepted on this port, so
-our server is unlikely to conflict with any other web server you might have
-running on your machine, and 7878 is _rust_ typed on a telephone.
+Utilizzando `TcpListener`, possiamo ascoltare le connessioni TCP all’indirizzo
+`127.0.0.1:7878`. Nell’indirizzo, la sezione prima dei due punti è un indirizzo
+IP che rappresenta il tuo computer (è lo stesso su ogni computer e non
+rappresenta specificamente il computer degli autori), e `7878` è la porta.
+Abbiamo scelto questa porta per due motivi: HTTP non è normalmente accettato su
+questa porta, quindi il nostro server è improbabile che entri in conflitto con
+qualsiasi altro server web che potresti avere in esecuzione sulla tua macchina,
+e 7878 è _rust_ digitato sul tastierino numerico di un telefono.
 
-The `bind` function in this scenario works like the `new` function in that it
-will return a new `TcpListener` instance. The function is called `bind`
-because, in networking, connecting to a port to listen to is known as “binding
-to a port.”
+La funzione `bind` in questo scenario funziona come la funzione `new` nel senso
+che restituirà una nuova istanza di `TcpListener`. La funzione si chiama `bind`
+perché, in ambito di connessioni di rete, connettersi a una porta per ascoltare
+è noto come _“binding_ a una porta”.
 
-The `bind` function returns a `Result<T, E>`, which indicates that it’s
-possible for binding to fail. For example, if we ran two instances of our
-program and so had two programs listening to the same port. Because we’re
-writing a basic server just for learning purposes, we won’t worry about
-handling these kinds of errors; instead, we use `unwrap` to stop the program if
-errors happen.
+La funzione `bind` restituisce un `Result<T, E>`, il che indica che è possibile
+che il _binding_ fallisca, ad esempio, se eseguissimo due istanze del nostro
+programma e quindi avessimo due programmi che ascoltano sulla stessa porta.
+Poiché stiamo scrivendo un server di base solo per scopi di apprendimento, non
+ci preoccuperemo di gestire questi tipi di errori; invece, usiamo `unwrap` per
+interrompere il programma se si verificano errori.
 
-The `incoming` method on `TcpListener` returns an iterator that gives us a
-sequence of streams (more specifically, streams of type `TcpStream`). A single
-_stream_ represents an open connection between the client and the server. A
-_connection_ is the name for the full request and response process in which a
-client connects to the server, the server generates a response, and the server
-closes the connection. As such, we will read from the `TcpStream` to see what
-the client sent and then write our response to the stream to send data back to
-the client. Overall, this `for` loop will process each connection in turn and
-produce a series of streams for us to handle.
+Il metodo `incoming` su `TcpListener` restituisce un iteratore che ci fornisce
+una sequenza di _stream_ (più specificamente, _stream_ di _type_ `TcpStream`).
+Un singolo _stream_ rappresenta una connessione aperta tra il _client_ e il
+_server_. _Connessione_ è il nome per l’intero processo di richiesta e risposta
+in cui un _client_ si connette al _server_, il _server_ genera una risposta e il
+_server_ chiude la connessione. Di conseguenza, leggeremo dal `TcpStream` per
+vedere cosa il _client_ ha inviato e poi scriveremo la nostra risposta sullo
+_stream_ per inviare dati indietro al _client_. Nel complesso, questo ciclo
+`for` elaborerà ogni connessione a turno e produrrà per noi una serie di
+_stream_ da gestire.
 
-For now, our handling of the stream consists of calling `unwrap` to terminate
-our program if the stream has any errors; if there aren’t any errors, the
-program prints a message. We’ll add more functionality for the success case in
-the next listing. The reason we might receive errors from the `incoming` method
-when a client connects to the server is that we’re not actually iterating over
-connections. Instead, we’re iterating over _connection attempts_. The
-connection might not be successful for a number of reasons, many of them
-operating system specific. For example, many operating systems have a limit to
-the number of simultaneous open connections they can support; new connection
-attempts beyond that number will produce an error until some of the open
-connections are closed.
+Per ora, la nostra gestione dello _stream_ consiste nel chiamare `unwrap` per
+terminare il nostro programma se lo _stream_ ha errori; se non ci sono errori,
+il programma stampa un messaggio. Aggiungeremo più funzionalità per il caso di
+successo nel prossimo Listato. Il motivo per cui potremmo ricevere errori dal
+metodo `incoming` quando un _client_ si connette al _server_ è che non stiamo
+effettivamente iterando sulle connessioni. Invece, stiamo iterando sui
+_tentativi di connessione_. La connessione potrebbe non riuscire per un certo
+numero di motivi, molti dei quali specifici del sistema operativo. Ad esempio,
+molti sistemi operativi hanno un limite al numero di connessioni aperte
+simultanee che possono supportare; i nuovi tentativi di connessione oltre quel
+numero produrranno un errore finché alcune delle connessioni aperte non vengono
+chiuse.
 
-Let’s try running this code! Invoke `cargo run` in the terminal and then load
-_127.0.0.1:7878_ in a web browser. The browser should show an error message
-like “Connection reset” because the server isn’t currently sending back any
-data. But when you look at your terminal, you should see several messages that
-were printed when the browser connected to the server!
+Proviamo a eseguire questo codice! Invoca `cargo run` nel terminale e poi apri
+_127.0.0.1:7878_ in un browser web. Il browser dovrebbe mostrare un messaggio di
+errore come “Connection reset” perché il server non sta attualmente inviando
+indietro alcun dato. Ma quando guardi il tuo terminale, dovresti vedere diversi
+messaggi che sono stati stampati quando il browser si è connesso al server!
 
 ```text
      Running `target/debug/hello`
-Connection established!
-Connection established!
-Connection established!
+Connessione stabilita!
+Connessione stabilita!
+Connessione stabilita!
 ```
 
-Sometimes you’ll see multiple messages printed for one browser request; the
-reason might be that the browser is making a request for the page as well as a
-request for other resources, like the _favicon.ico_ icon that appears in the
-browser tab.
+A volte vedrai più messaggi stampati per una singola richiesta del browser; il
+motivo potrebbe essere che il browser sta facendo una richiesta per la pagina
+nonché una richiesta per altre risorse, come l’icona _favicon.ico_ che appare
+nella scheda del browser.
 
-It could also be that the browser is trying to connect to the server multiple
-times because the server isn’t responding with any data. When `stream` goes out
-of scope and is dropped at the end of the loop, the connection is closed as
-part of the `drop` implementation. Browsers sometimes deal with closed
-connections by retrying, because the problem might be temporary.
+Potrebbe anche essere che il browser stia cercando di connettersi al server più
+volte perché il server non sta rispondendo con alcun dato. Quando `stream` esce
+dallo _scope_ e viene de-allocato alla fine del ciclo, la connessione viene
+chiusa come parte dell’implementazione di `drop`. I browser a volte gestiscono
+le connessioni chiuse tentando di ristabilirle, perché il problema potrebbe
+essere temporaneo.
 
-Browsers also sometimes open multiple connections to the server without sending
-any requests, so that if they *do* later send requests, those requests can
-happen faster. When this happens, our server will see each connection,
-regardless of whether there are any requests over that connection. Many
-versions of Chrome-based browsers do this, for example; you can disable that
-optimization by using private browsing mode or using a different browser.
+I browser aprono anche a volte più connessioni al server senza inviare alcuna
+richiesta, in modo che se devono poi *fare* delle richieste, quelle richieste
+possano avvenire più rapidamente. Quando ciò accade, il nostro server vedrà ogni
+connessione, indipendentemente dal fatto che ci siano richieste su quella
+connessione. Molte versioni di browser basati su Chrome fanno questo, ad
+esempio; puoi disabilitare quell’ ottimizzazione utilizzando la modalità di
+navigazione privata o utilizzando un browser diverso.
 
-The important factor is that we’ve successfully gotten a handle to a TCP
-connection!
+Il fattore importante è che abbiamo ottenuto con successo un _handle_ a una
+connessione TCP!
 
-Remember to stop the program by pressing <kbd>ctrl</kbd>-<kbd>C</kbd> when
-you’re done running a particular version of the code. Then restart the program
-by invoking the `cargo run` command after you’ve made each set of code changes
-to make sure you’re running the newest code.
+Ricorda di fermare il programma premendo <kbd>ctrl</kbd>-<kbd>C</kbd> quando hai
+finito di eseguire una versione particolare del codice. Poi, riavvia il
+programma invocando il comando `cargo run` dopo aver apportato ogni modifica al
+codice per assicurarti di eseguire il codice più recente.
 
-### Reading the Request
+### Leggere la Richiesta
 
-Let’s implement the functionality to read the request from the browser! To
-separate the concerns of first getting a connection and then taking some action
-with the connection, we’ll start a new function for processing connections. In
-this new `handle_connection` function, we’ll read data from the TCP stream and
-print it so we can see the data being sent from the browser. Change the code to
-look like Listing 21-2.
+Implementiamo ora la funzionalità per leggere la richiesta dal browser! Per
+separare le responsabilità di ottenere prima una connessione e poi intraprendere
+qualche azione con la connessione, inizieremo una nuova funzione per elaborare
+le connessioni. In questa nuova funzione `gestisci_connessione`, leggeremo dati
+dal flusso TCP e li stamperemo in modo da poter vedere i dati inviati dal
+browser. Modifica il codice per essere come nel Listato 21-2.
 
-<Listing number="21-2" file-name="src/main.rs" caption="Reading from the `TcpStream` and printing the data">
+<Listing number="21-2" file-name="src/main.rs" caption="Lettura dal `TcpStream` e stampa dei dati">
 
 ```rust,no_run
 {{#rustdoc_include ../listings/ch21-web-server/listing-21-02/src/main.rs}}
@@ -140,43 +146,51 @@ look like Listing 21-2.
 
 </Listing>
 
-We bring `std::io::prelude` and `std::io::BufReader` into scope to get access
-to traits and types that let us read from and write to the stream. In the `for`
-loop in the `main` function, instead of printing a message that says we made a
-connection, we now call the new `handle_connection` function and pass the
-`stream` to it.
+Portiamo `std::io::BufReader` e `std::io::prelude` nello _scope_ per ottenere
+accesso a _trait_ e _type_ che ci permettono di “leggere da” e “scrivere sullo”
+_stream_. Nel ciclo `for` nella funzione `main`, invece di stampare un messaggio
+che dice che abbiamo fatto una connessione, ora chiamiamo la nuova funzione
+`gestisci_connessione` e le passiamo lo `stream`.
 
-In the `handle_connection` function, we create a new `BufReader` instance that
-wraps a reference to the `stream`. The `BufReader` adds buffering by managing
-calls to the `std::io::Read` trait methods for us.
+Nella funzione `gestisci_connessione`, creiamo una nuova istanza di `BufReader`
+che incapsula un _reference_ allo `stream`. Il `BufReader` aggiunge _buffering_
+gestendo le chiamate ai metodi del _trait_ `std::io::Read` per noi.
 
-We create a variable named `http_request` to collect the lines of the request
-the browser sends to our server. We indicate that we want to collect these
-lines in a vector by adding the `Vec<_>` type annotation.
+Creiamo una variabile chiamata `http_request` per raccogliere le righe della
+richiesta che il browser invia al nostro server. Indichiamo che vogliamo
+raccogliere queste righe in un vettore aggiungendo l’annotazione `Vec<_>`.
 
-`BufReader` implements the `std::io::BufRead` trait, which provides the `lines`
-method. The `lines` method returns an iterator of `Result<String,
-std::io::Error>` by splitting the stream of data whenever it sees a newline
-byte. To get each `String`, we map and `unwrap` each `Result`. The `Result`
-might be an error if the data isn’t valid UTF-8 or if there was a problem
-reading from the stream. Again, a production program should handle these errors
-more gracefully, but we’re choosing to stop the program in the error case for
-simplicity.
+`BufReader` implementa il _trait_ `std::io::BufRead`, che fornisce il metodo
+`lines`. Il metodo `lines` restituisce un iteratore di `Result<String,
+std::io::Error>` dividendo lo _stream_ di dati ogni volta che vede un byte
+_newline_ (_nuova riga_). Per ottenere ogni `String`, usiamo `map` e `unwrap` su
+ogni `Result`. Il `Result` potrebbe essere un errore se i dati non sono UTF-8
+validi o se c’è stato un problema durante la lettura dallo _stream_. Di nuovo,
+un programma di produzione dovrebbe gestire questi errori in modo più elegante,
+ma stiamo scegliendo di fermare il programma nel caso di errore per semplicità.
 
-The browser signals the end of an HTTP request by sending two newline
-characters in a row, so to get one request from the stream, we take lines until
-we get a line that is the empty string. Once we’ve collected the lines into the
-vector, we’re printing them out using pretty debug formatting so we can take a
-look at the instructions the web browser is sending to our server.
+Il browser segnala la fine di una richiesta HTTP inviando due caratteri
+_newline_ di seguito, quindi per ottenere una richiesta dallo _stream_,
+prendiamo righe fino a ottenere una riga che è una stringa vuota. Una volta che
+abbiamo raccolto le righe nel vettore, le stampiamo usando una formattazione
+_debug_ in modo da poter dare un’occhiata alle istruzioni che il browser web sta
+inviando al nostro server.
 
-Let’s try this code! Start the program and make a request in a web browser
-again. Note that we’ll still get an error page in the browser, but our
-program’s output in the terminal will now look similar to this:
+Proviamo questo codice! Avvia il programma e fai una richiesta nel browser web
+di nuovo. Nota che otterremo ancora una pagina di errore nel browser, ma
+l’output del nostro programma nel terminale ora apparirà simile a questo:
+
+<!-- manual-regeneration
+cd listings/ch21-web-server/listing-21-02
+cargo run
+make a request to 127.0.0.1:7878
+Can't automate because the output depends on making requests
+-->
 
 ```console
 $ cargo run
    Compiling hello v0.1.0 (file:///projects/hello)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.42s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.42s
      Running `target/debug/hello`
 Request: [
     "GET / HTTP/1.1",
@@ -196,88 +210,91 @@ Request: [
 ]
 ```
 
-Depending on your browser, you might get slightly different output. Now that
-we’re printing the request data, we can see why we get multiple connections
-from one browser request by looking at the path after `GET` in the first line
-of the request. If the repeated connections are all requesting _/_, we know the
-browser is trying to fetch _/_ repeatedly because it’s not getting a response
-from our program.
+A seconda del tuo browser, potresti ottenere un output leggermente diverso. Ora
+che stiamo stampando i dati della richiesta, possiamo vedere perché otteniamo
+più connessioni da una singola richiesta del browser guardando il percorso dopo
+`GET` nella prima riga della richiesta. Se le connessioni ripetute stanno tutte
+richiedendo _/_, sappiamo che il browser sta cercando di recuperare _/_
+ripetutamente perché non sta ottenendo una risposta dal nostro programma.
 
-Let’s break down this request data to understand what the browser is asking of
-our program.
+Scomponiamo questi dati di richiesta per capire cosa il browser sta chiedendo al
+nostro programma.
 
-### Looking Closer at an HTTP Request
+### Guardare Più da Vicino una Richiesta HTTP
 
-HTTP is a text-based protocol, and a request takes this format:
-
-```text
-Method Request-URI HTTP-Version CRLF
-headers CRLF
-message-body
-```
-
-The first line is the _request line_ that holds information about what the
-client is requesting. The first part of the request line indicates the _method_
-being used, such as `GET` or `POST`, which describes how the client is making
-this request. Our client used a `GET` request, which means it is asking for
-information.
-
-The next part of the request line is _/_, which indicates the _uniform resource
-identifier_ _(URI)_ the client is requesting: a URI is almost, but not quite,
-the same as a _uniform resource locator_ _(URL)_. The difference between URIs
-and URLs isn’t important for our purposes in this chapter, but the HTTP spec
-uses the term _URI_, so we can just mentally substitute _URL_ for _URI_ here.
-
-The last part is the HTTP version the client uses, and then the request line
-ends in a CRLF sequence. (CRLF stands for _carriage return_ and _line feed_,
-which are terms from the typewriter days!) The CRLF sequence can also be
-written as `\r\n`, where `\r` is a carriage return and `\n` is a line feed. The
-_CRLF sequence_ separates the request line from the rest of the request data.
-Note that when the CRLF is printed, we see a new line start rather than `\r\n`.
-
-Looking at the request line data we received from running our program so far,
-we see that `GET` is the method, _/_ is the request URI, and `HTTP/1.1` is the
-version.
-
-After the request line, the remaining lines starting from `Host:` onward are
-headers. `GET` requests have no body.
-
-Try making a request from a different browser or asking for a different
-address, such as _127.0.0.1:7878/test_, to see how the request data changes.
-
-Now that we know what the browser is asking for, let’s send back some data!
-
-### Writing a Response
-
-We’re going to implement sending data in response to a client request.
-Responses have the following format:
+HTTP è un protocollo basato su testo, e una richiesta assume questo formato:
 
 ```text
-HTTP-Version Status-Code Reason-Phrase CRLF
+Metodo URI-Richiesto Versione-HTTP CRLF
 headers CRLF
-message-body
+corpo-messaggio
 ```
 
-The first line is a _status line_ that contains the HTTP version used in the
-response, a numeric status code that summarizes the result of the request, and
-a reason phrase that provides a text description of the status code. After the
-CRLF sequence are any headers, another CRLF sequence, and the body of the
-response.
+La prima riga è la _request line_ che contiene informazioni su cosa il _client_
+sta richiedendo. La prima parte della _request line_ indica il metodo usato,
+come `GET` o `POST`, che descrive come il _client_ sta facendo questa richiesta.
+Il nostro _client_ ha usato una richiesta `GET`, che significa che sta chiedendo
+informazioni.
 
-Here is an example response that uses HTTP version 1.1, and has a status code of
-200, an OK reason phrase, no headers, and no body:
+La parte successiva della _request line_ è _/_, che indica l’_uniform resource
+identifier_ _(URI)_ che il _client_ sta richiedendo: un URI è quasi, ma non del
+tutto, lo stesso di un _uniform resource locator_ _(URL)_. La differenza tra URI
+e URL non è importante per i nostri scopi in questo capitolo, ma la specifica
+HTTP usa il termine _URI_, quindi possiamo sostituire mentalmente _URL_ per
+_URI_ qui.
+
+L’ultima parte è la versione HTTP che il client usa, e poi la _request line_
+termina con una sequenza CRLF. (_CRLF_ sta per _carriage return_ e _line feed_,
+che sono termini dai giorni della macchina da scrivere!) La sequenza CRLF può
+anche essere scritta come `\r\n`, dove `\r` è un “ritorno a capo” e `\n` è un
+“nuova linea”. La _sequenza CRLF_ separa la _request line_ dal resto dei dati
+della richiesta. Nota che quando la CRLF viene stampata, vediamo iniziare una
+nuova riga piuttosto che `\r\n`.
+
+Guardando i dati della _request line_ che abbiamo ricevuto eseguendo il nostro
+programma finora, vediamo che `GET` è il metodo, _/_ è l’URI della richiesta, e
+`HTTP/1.1` è la versione.
+
+Dopo la _request line_, le righe rimanenti a partire da `Host:` in poi sono
+_header_ (_intestazioni_). Le richieste `GET` non hanno corpo.
+
+Prova a fare una richiesta da un browser diverso o chiedendo un indirizzo
+diverso, come _127.0.0.1:7878/test_, per vedere come cambiano i dati della
+richiesta.
+
+Ora che sappiamo cosa il browser sta chiedendo, rispondiamo con qualche dato!
+
+### Scrivere una Risposta
+
+Stiamo per implementare l’invio di dati in risposta a una richiesta del
+_client_. Le risposte hanno il seguente formato:
+
+```text
+Versione-HTTP Codice-di-Stato Enunciazione CRLF
+headers CRLF
+corpo-messaggio
+```
+
+La prima riga è una _status line_ che contiene la versione HTTP usata nella
+risposta, un _codice di stato_ numerico che riassume il risultato della
+richiesta, e una _enunciazione_ che fornisce una descrizione testuale del codice
+di stato. Dopo la sequenza CRLF ci sono eventuali _header_, un’altra sequenza
+CRLF, e il corpo della risposta.
+
+Ecco un esempio di risposta che usa la versione HTTP 1.1 e ha un codice di stato
+di 200, una _enunciazione_ OK, nessun _header_, e nessun corpo:
 
 ```text
 HTTP/1.1 200 OK\r\n\r\n
 ```
 
-The status code 200 is the standard success response. The text is a tiny
-successful HTTP response. Let’s write this to the stream as our response to a
-successful request! From the `handle_connection` function, remove the
-`println!` that was printing the request data and replace it with the code in
-Listing 21-3.
+Il codice di stato 200 è la risposta standard di successo. Il testo è una
+minuscola risposta HTTP di successo. Scriviamola sullo _stream_ come nostra
+risposta a una richiesta di successo! Dalla funzione `gestisci_connessione`,
+rimuovi il `println!` che stava stampando i dati della richiesta e sostituiscilo
+con il codice nel Listato 21-3.
 
-<Listing number="21-3" file-name="src/main.rs" caption="Writing a tiny successful HTTP response to the stream">
+<Listing number="21-3" file-name="src/main.rs" caption="Scrivere una minuscola risposta HTTP di successo sullo _stream_">
 
 ```rust,no_run
 {{#rustdoc_include ../listings/ch21-web-server/listing-21-03/src/main.rs:here}}
@@ -285,27 +302,29 @@ Listing 21-3.
 
 </Listing>
 
-The first new line defines the `response` variable that holds the success
-message’s data. Then we call `as_bytes` on our `response` to convert the string
-data to bytes. The `write_all` method on `stream` takes a `&[u8]` and sends
-those bytes directly down the connection. Because the `write_all` operation
-could fail, we use `unwrap` on any error result as before. Again, in a real
-application you would add error handling here.
+La prima nuova riga definisce la variabile `risposta` che contiene i dati del
+messaggio di successo. Poi, chiamiamo `as_bytes` sulla nostra `risposta` per
+convertire i dati della stringa in byte. Il metodo `write_all` su `stream`
+prende un `&[u8]` e invia quei byte direttamente sulla connessione. Poiché
+l’operazione `write_all` potrebbe fallire, usiamo `unwrap` su qualsiasi
+risultato di errore come prima. Di nuovo, in un’applicazione reale,
+aggiungeresti la gestione degli errori qui.
 
-With these changes, let’s run our code and make a request. We’re no longer
-printing any data to the terminal, so we won’t see any output other than the
-output from Cargo. When you load _127.0.0.1:7878_ in a web browser, you should
-get a blank page instead of an error. You’ve just handcoded receiving an HTTP
-request and sending a response!
+Con questi cambiamenti, eseguiamo il nostro codice e facciamo una richiesta. Non
+stiamo più stampando alcun dato sul terminale, quindi non vedremo alcun output
+diverso dall’ output di Cargo. Quando carichi _127.0.0.1:7878_ in un browser
+web, dovresti ottenere una pagina vuota invece di un errore. Hai appena
+codificato manualmente la ricezione di una richiesta HTTP e l’invio di una
+risposta!
 
-### Returning Real HTML
+### Restituire Vero HTML
 
-Let’s implement the functionality for returning more than a blank page. Create
-the new file _hello.html_ in the root of your project directory, not in the
-_src_ directory. You can input any HTML you want; Listing 21-4 shows one
-possibility.
+Implementiamo la funzionalità per restituire qualcosa più di una pagina vuota.
+Crea il nuovo file _ciao.html_ nella radice della directory del tuo progetto,
+non nella directory _src_. Puoi inserire qualsiasi HTML tu voglia; il Listato
+21-4 mostra una possibilità.
 
-<Listing number="21-4" file-name="ciao.html" caption="A sample HTML file to return in a response">
+<Listing number="21-4" file-name="ciao.html" caption="Un file HTML di esempio da restituire in una risposta">
 
 ```html
 {{#include ../listings/ch21-web-server/listing-21-05/ciao.html}}
@@ -313,12 +332,12 @@ possibility.
 
 </Listing>
 
-This is a minimal HTML5 document with a heading and some text. To return this
-from the server when a request is received, we’ll modify `handle_connection` as
-shown in Listing 21-5 to read the HTML file, add it to the response as a body,
-and send it.
+Questo è un documento HTML5 minimale con un’intestazione e del testo. Per
+restituire questo dal _server_ quando viene ricevuta una richiesta,
+modificheremo `gestisci_connessione` come mostrato nel Listato 21-5 per leggere
+il file HTML, aggiungerlo alla risposta come corpo, e inviarlo.
 
-<Listing number="21-5" file-name="src/main.rs" caption="Sending the contents of *hello.html* as the body of the response">
+<Listing number="21-5" file-name="src/main.rs" caption="Invio del contenuto di *ciao.html* come corpo della risposta">
 
 ```rust,no_run
 {{#rustdoc_include ../listings/ch21-web-server/listing-21-05/src/main.rs:here}}
@@ -326,38 +345,39 @@ and send it.
 
 </Listing>
 
-We’ve added `fs` to the `use` statement to bring the standard library’s
-filesystem module into scope. The code for reading the contents of a file to a
-string should look familiar; we used it when we read the contents of a file for
-our I/O project in Listing 12-4.
+Abbiamo aggiunto `fs` all’istruzione `use` per portare il modulo _filesystem_
+della libreria standard nellO _scope_. Il codice per leggere i contenuti di un
+file in una stringa dovrebbe apparire familiare; l’abbiamo usato quando abbiamo
+letto i contenuti di un file per il nostro progetto I/O nel Listato 12-4.
 
-Next, we use `format!` to add the file’s contents as the body of the success
-response. To ensure a valid HTTP response, we add the `Content-Length` header
-which is set to the size of our response body, in this case the size of
-`hello.html`.
+Poi usiamo `format!` per aggiungere il contenuto del file come corpo della
+risposta di successo. Per garantire una risposta HTTP valida, aggiungiamo
+l’_header_ `Content-Length`, che è impostato alla dimensione del nostro corpo
+della risposta, in questo caso la dimensione di `ciao.html`.
 
-Run this code with `cargo run` and load _127.0.0.1:7878_ in your browser; you
-should see your HTML rendered!
+Esegui questo codice con `cargo run` e carica _127.0.0.1:7878_ nel tuo browser;
+dovresti vedere il tuo HTML renderizzato!
 
-Currently, we’re ignoring the request data in `http_request` and just sending
-back the contents of the HTML file unconditionally. That means if you try
-requesting _127.0.0.1:7878/something-else_ in your browser, you’ll still get
-back this same HTML response. At the moment, our server is very limited and
-does not do what most web servers do. We want to customize our responses
-depending on the request and only send back the HTML file for a well-formed
-request to _/_.
+Attualmente, stiamo ignorando i dati della richiesta in `http_request` e stiamo
+solo inviando indietro i contenuti del file HTML incondizionatamente. Questo
+significa che se provi a richiedere _127.0.0.1:7878/altra-pagina_ nel tuo
+browser, otterrai ancora questa stessa risposta HTML. Al momento, il nostro
+server è molto limitato e non fa quello che fanno la maggior parte dei server
+web. Vogliamo personalizzare le nostre risposte a seconda della richiesta e
+rispondere con il file HTML solo alle richieste corrette a _/_.
 
-### Validating the Request and Selectively Responding
+### Validare la Richiesta e Rispondere Selettivamente
 
-Right now, our web server will return the HTML in the file no matter what the
-client requested. Let’s add functionality to check that the browser is
-requesting _/_ before returning the HTML file, and return an error if the
-browser requests anything else. For this we need to modify `handle_connection`,
-as shown in Listing 21-6. This new code checks the content of the request
-received against what we know a request for _/_ looks like and adds `if` and
-`else` blocks to treat requests differently.
+Al momento, il nostro server web restituirà l’HTML nel file indipendentemente da
+cosa il _client_ abbia richiesto. Aggiungiamo funzionalità per controllare che
+il browser stia richiedendo _/_ prima di restituire il file HTML e per
+restituire un errore se il browser richiede qualcos’altro. Per questo dobbiamo
+modificare `gestisci_connessione`, come mostrato nel Listato 21-6. Questo nuovo
+codice controlla il contenuto della richiesta ricevuta rispetto a quello che
+sappiamo essere una richiesta per _/_, e aggiunge blocchi `if` e `else` per
+trattare le richieste in modo diverso.
 
-<Listing number="21-6" file-name="src/main.rs" caption="Handling requests to */* differently from other requests">
+<Listing number="21-6" file-name="src/main.rs" caption="Gestione delle richieste a */* in modo diverso dalle altre richieste">
 
 ```rust,no_run
 {{#rustdoc_include ../listings/ch21-web-server/listing-21-06/src/main.rs:here}}
@@ -365,32 +385,32 @@ received against what we know a request for _/_ looks like and adds `if` and
 
 </Listing>
 
-We’re only going to be looking at the first line of the HTTP request, so rather
-than reading the entire request into a vector, we’re calling `next` to get the
-first item from the iterator. The first `unwrap` takes care of the `Option` and
-stops the program if the iterator has no items. The second `unwrap` handles the
-`Result` and has the same effect as the `unwrap` that was in the `map` added in
-Listing 21-2.
+Guarderemo solo alla prima riga della richiesta HTTP, quindi piuttosto che
+leggere l’intera richiesta in un vettore, stiamo chiamando `next` per ottenere
+il primo elemento dall’iteratore. Il primo `unwrap` si occupa dell’`Option` e
+ferma il programma se l’iteratore non ha elementi. Il secondo `unwrap` gestisce
+il `Result` e ha lo stesso effetto dell’`unwrap` che era nella `map` aggiunta
+nel Listato 21-2.
 
-Next, we check the `request_line` to see if it equals the request line of a GET
-request to the _/_ path. If it does, the `if` block returns the contents of our
-HTML file.
+Successivamente, controlliamo la `request_line` per vedere se è uguale alla
+_request line_ di una richiesta GET al percorso _/_ . Se lo è, il blocco `if`
+restituisce i contenuti del nostro file HTML.
 
-If the `request_line` does _not_ equal the GET request to the _/_ path, it
-means we’ve received some other request. We’ll add code to the `else` block in
-a moment to respond to all other requests.
+Se la `request_line` _non_ è uguale alla richiesta GET al percorso _/_ ,
+significa che abbiamo ricevuto qualche altra richiesta. Aggiungeremo codice al
+blocco `else` tra un momento per rispondere a tutte le altre richieste.
 
-Run this code now and request _127.0.0.1:7878_; you should get the HTML in
-_hello.html_. If you make any other request, such as
-_127.0.0.1:7878/something-else_, you’ll get a connection error like those you
-saw when running the code in Listing 21-1 and Listing 21-2.
+Esegui questo codice ora e richiedi _127.0.0.1:7878_; dovresti ottenere l’HTML
+in _ciao.html_. Se fai qualsiasi altra richiesta, come
+_127.0.0.1:7878/altra-pagina_, otterrai un errore di connessione come quelli che
+hai visto eseguendo il codice dei Listati 21-1 e 21-2.
 
-Now let’s add the code in Listing 21-7 to the `else` block to return a response
-with the status code 404, which signals that the content for the request was
-not found. We’ll also return some HTML for a page to render in the browser
-indicating the response to the end user.
+Ora aggiungiamo il codice nel Listato 21-7 al blocco `else` per restituire una
+risposta con il codice di stato 404, che segnala che il contenuto per la
+richiesta non è stato trovato. Restituiremo anche un po’ di HTML per una pagina
+da renderizzare nel browser indicando la risposta all’utente finale.
 
-<Listing number="21-7" file-name="src/main.rs" caption="Responding with status code 404 and an error page if anything other than */* was requested">
+<Listing number="21-7" file-name="src/main.rs" caption="Risposta con codice di stato 404 e una pagina di errore se è stato richiesto qualcosa di diverso da */*">
 
 ```rust,no_run
 {{#rustdoc_include ../listings/ch21-web-server/listing-21-07/src/main.rs:here}}
@@ -398,13 +418,13 @@ indicating the response to the end user.
 
 </Listing>
 
-Here, our response has a status line with status code 404 and the reason phrase
-`NOT FOUND`. The body of the response will be the HTML in the file _404.html_.
-You’ll need to create a _404.html_ file next to _hello.html_ for the error
-page; again feel free to use any HTML you want, or use the example HTML in
-Listing 21-8.
+Qui, la nostra risposta ha una _status line_ con codice di stato `404` ed
+enunciazione `NOT FOUND`. Il corpo della risposta sarà l’HTML nel file
+_404.html_. Dovrai creare un file _404.html_ accanto a _ciao.html_ per la pagina
+di errore; di nuovo, sentiti libero di usare qualsiasi HTML tu voglia, o usa
+l’esempio HTML nel Listato 21-8.
 
-<Listing number="21-8" file-name="404.html" caption="Sample content for the page to send back with any 404 response">
+<Listing number="21-8" file-name="404.html" caption="Contenuto di esempio per la pagina da inviare come risposta con codice 404">
 
 ```html
 {{#include ../listings/ch21-web-server/listing-21-07/404.html}}
@@ -412,22 +432,23 @@ Listing 21-8.
 
 </Listing>
 
-With these changes, run your server again. Requesting _127.0.0.1:7878_ should
-return the contents of _hello.html_, and any other request, like
-_127.0.0.1:7878/foo_, should return the error HTML from _404.html_.
+Con questi cambiamenti, esegui di nuovo il tuo server. Richiedere
+_127.0.0.1:7878_ dovrebbe restituire i contenuti di _ciao.html_, e qualsiasi
+altra richiesta, come _127.0.0.1:7878/foo_, dovrebbe restituire l’HTML di errore
+da _404.html_.
 
-### Refactoring
+### Riscrittura
 
-At the moment, the `if` and `else` blocks have a lot of repetition: they’re both
-reading files and writing the contents of the files to the stream. The only
-differences are the status line and the filename. Let’s make the code more
-concise by pulling out those differences into separate `if` and `else` lines
-that will assign the values of the status line and the filename to variables; we
-can then use those variables unconditionally in the code to read the file and
-write the response. Listing 21-9 shows the resultant code after replacing the
-large `if` and `else` blocks.
+Al momento, i blocchi `if` e `else` hanno molta ripetizione: entrambi stanno
+leggendo file e scrivendo i contenuti dei file sullo _stream_. Le uniche
+differenze sono la _status line_ e il nome del file. Rendiamo il codice più
+conciso estraendo quelle differenze in righe `if` e `else` separate che
+assegneranno i valori della _status line_ e del nome del file a variabili;
+possiamo poi usare quelle variabili incondizionatamente nel codice per leggere
+il file e scrivere la risposta. Il Listato 21-9 mostra il codice risultante dopo
+aver sostituito i blocchi `if` e `else`.
 
-<Listing number="21-9" file-name="src/main.rs" caption="Refactoring the `if` and `else` blocks to contain only the code that differs between the two cases">
+<Listing number="21-9" file-name="src/main.rs" caption="Riscrittura dei blocchi `if` e `else` per contenere solo il codice che differisce tra i due casi">
 
 ```rust,no_run
 {{#rustdoc_include ../listings/ch21-web-server/listing-21-09/src/main.rs:here}}
@@ -435,23 +456,23 @@ large `if` and `else` blocks.
 
 </Listing>
 
-Now the `if` and `else` blocks only return the appropriate values for the
-status line and filename in a tuple; we then use destructuring to assign these
-two values to `status_line` and `filename` using a pattern in the `let`
-statement, as discussed in Chapter 19.
+Ora i blocchi `if` e `else` restituiscono solo i valori appropriati per la
+_status line_ e il nome del file in una tupla; poi usiamo la destrutturazione
+per assegnare questi due valori a `status_line` e `filename` usando un _pattern_
+nella dichiarazione `let`, come discusso nel Capitolo 19.
 
-The previously duplicated code is now outside the `if` and `else` blocks and
-uses the `status_line` and `filename` variables. This makes it easier to see
-the difference between the two cases, and it means we have only one place to
-update the code if we want to change how the file reading and response writing
-work. The behavior of the code in Listing 21-9 will be the same as that in
-Listing 21-7.
+Il codice precedentemente duplicato è ora fuori dai blocchi `if` e `else` e usa
+le variabili `status_line` e `filename`. Questo rende più facile vedere la
+differenza tra i due casi, e significa che abbiamo solo un posto per aggiornare
+il codice se vogliamo cambiare come funziona la lettura del file e la scrittura
+della risposta. Il comportamento del codice nel Listato 21-9 sarà lo stesso di
+quello nel Listato 21-7.
 
-Awesome! We now have a simple web server in approximately 40 lines of Rust code
-that responds to one request with a page of content and responds to all other
-requests with a 404 response.
+Fantastico! Ora abbiamo un semplice server web in circa 40 righe di codice Rust
+che risponde a una richiesta con una pagina di contenuto e risponde a tutte le
+altre richieste con una risposta 404.
 
-Currently, our server runs in a single thread, meaning it can only serve one
-request at a time. Let’s examine how that can be a problem by simulating some
-slow requests. Then we’ll fix it so our server can handle multiple requests at
-once.
+Attualmente, il nostro server gira in un singolo _thread_, il che significa che
+può servire solo una richiesta alla volta. Esaminiamo come questo possa essere
+un problema simulando alcune richieste lente. Poi, lo risolveremo in modo che il
+nostro server possa gestire più richieste contemporaneamente.

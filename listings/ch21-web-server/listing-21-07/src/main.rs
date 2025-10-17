@@ -20,26 +20,26 @@ fn gestisci_connessione(mut stream: TcpStream) {
 
     if request_line == "GET / HTTP/1.1" {
         let status_line = "HTTP/1.1 200 OK";
-        let contents = fs::read_to_string("ciao.html").unwrap();
-        let length = contents.len();
+        let contenuto = fs::read_to_string("ciao.html").unwrap();
+        let lunghezza = contenuto.len();
 
-        let response = format!(
-            "{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}"
+        let risposta = format!(
+            "{status_line}\r\nContent-Length: {lunghezza}\r\n\r\n{contenuto}"
         );
 
-        stream.write_all(response.as_bytes()).unwrap();
+        stream.write_all(risposta.as_bytes()).unwrap();
     // ANCHOR: here
     // --taglio--
     } else {
         let status_line = "HTTP/1.1 404 NOT FOUND";
-        let contents = fs::read_to_string("404.html").unwrap();
-        let length = contents.len();
+        let contenuto = fs::read_to_string("404.html").unwrap();
+        let lunghezza = contenuto.len();
 
-        let response = format!(
-            "{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}"
+        let risposta = format!(
+            "{status_line}\r\nContent-Length: {lunghezza}\r\n\r\n{contenuto}"
         );
 
-        stream.write_all(response.as_bytes()).unwrap();
+        stream.write_all(risposta.as_bytes()).unwrap();
     }
     // ANCHOR_END: here
 }
