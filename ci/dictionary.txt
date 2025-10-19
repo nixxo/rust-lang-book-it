@@ -168,6 +168,7 @@ eprintln
 Erlang
 ErrorKind
 Español
+ETAPS
 eval
 executables
 ExitCode
@@ -601,6 +602,7 @@ unsynchronized
 Unyank
 UpperCamelCase
 URIs
+urls
 UsefulType
 username
 USERPROFILE
@@ -624,6 +626,7 @@ wasi
 wasn
 weakt
 WeatherForecast
+webpage
 WebSocket
 whitespace
 wildcard
