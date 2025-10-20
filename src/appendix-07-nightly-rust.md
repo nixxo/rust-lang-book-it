@@ -136,7 +136,7 @@ _feature flag_. Se tu, come utente, vuoi provare questa funzionalità ancora in
 sviluppo, puoi farlo, ma devi usare un rilascio _nightly_ di Rust e annotare il
 codice sorgente con il flag appropriato per abilitare la funzionalità.
 
-Se state usando una versione _beta_ o _stable_ di Rust, non puoi usare alcuna
+Se stai usando una versione _beta_ o _stable_ di Rust, non puoi usare alcuna
 _feature flag_. Questa è la chiave che ci permette di usare praticamente le
 nuove funzionalità prima di dichiararle stabili per sempre. Chi vuole provare le
 funzionalità più avanzate avanzate può farlo, e chi vuole un’esperienza solida

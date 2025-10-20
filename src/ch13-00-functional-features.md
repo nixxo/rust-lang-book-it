@@ -17,7 +17,7 @@ Più specificamente, tratteremo:
 - _Iteratori_, un modo per elaborare una serie di elementi
 - Come usare chiusure e iteratori per migliorare il progetto I/O del Capitolo 12
 - Le prestazioni di chiusure e iteratori (spoiler: sono più veloci di quanto
-  possiate pensare!)
+  potresti pensare!)
 
 Abbiamo già trattato altre funzionalità di Rust, come il _pattern_ _matching_ e
 le _enum_, che sono anch’esse influenzate dallo stile funzionale. Poiché
