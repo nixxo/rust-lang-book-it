@@ -135,14 +135,18 @@ di lunghezza di `5`.
 
 La Figura 4-7 mostra questo in un diagramma.
 
+<figure>
+
 <img src="img/trpl04-07.svg" class="center" style="width: 50%;" alt="Tre
 tabelle: una tabella che rappresenta i dati dello stack di s, che punta al byte
 all’indice 0 in una tabella dei dati della stringa “hello world” nell’heap. La
 terza tabella rappresenta i dati sullo stack dello slice world, che ha un valore
 di lunghezza di 5 e punta al byte 6 della tabella dei dati nell’heap." />
 
-<span class="caption">Figura 4-7: _Slice_ di stringa che si riferisce a parte di
-una `String`</span>
+<figcaption>Figura 4-7: _Slice_ di stringa che si riferisce a parte di una
+`String`</figcaption>
+
+</figure>
 
 Con la sintassi d’intervallo `..` di Rust, se vuoi iniziare dall’indice 0, puoi
 omettere il valore prima dei due punti. In altre parole, questi sono
