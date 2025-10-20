@@ -10,22 +10,21 @@ volte sotto altri nomi come _task_ o _promise_.) Rust fornisce un _trait_
 essere implementate con strutture dati diverse ma con un’interfaccia comune. In
 Rust, le _future_ sono _type_ che implementano il _trait_ `Future`. Ogni
 _future_ contiene le proprie informazioni sui progressi fatti e su cosa
-significa essere "pronti".
+significa essere “pronti”.
 
 Puoi applicare la parola chiave `async` a blocchi e funzioni per specificare che
 possono essere interrotti e ripresi. All’interno di un blocco _async_ o di una
 funzione _async_, puoi usare la parola chiave `await` per _attendere una future_
 (cioè, aspettare che sia pronta). Ogni punto in cui attendi una _future_
 all’interno di un blocco o funzione _async_ è un potenziale punto in cui quel
-blocco o funzione _async_ può mettersi in pausa e riprendere. Il processo di
-verifica con una _future_ per vedere se il suo valore è già disponibile è
-chiamato _polling_.
+blocco o funzione può mettersi in pausa e riprendere. Il processo di verifica
+con una _future_ per vedere se il suo valore è già disponibile è chiamato
+_polling_.
 
 Alcuni altri linguaggi, come C# e JavaScript, usano parole chiave `async` e
 `await` per la programmazione asincrona. Se hai familiarità con questi
 linguaggi, potresti notare alcune differenze significative nel modo in cui Rust
-fa le cose, incluso come gestisce la sintassi. E questo è per una buona ragione,
-come vedremo!
+gestisce la sintassi. E questo è per una buona ragione, come vedremo!
 
 Quando scriviamo codice _async_ in Rust, usiamo la maggior parte delle volte le
 parole chiave `async` e `await`. Rust le compila in codice equivalente usando il
@@ -62,9 +61,9 @@ utilizzato.
 In alcuni casi, `trpl` rinomina o incapsula le API originali per mantenerti
 concentrato sui dettagli rilevanti per questo capitolo. Se vuoi capire cosa fa
 il _crate_, ti incoraggiamo a controllare [il suo codice
-sorgente][crate-source]<!-- ignore -->. Sarai in grado di vedere da quale
-_crate_ proviene ogni riesportazione, e abbiamo lasciato commenti esaurienti che
-spiegano cosa fa il _crate_.
+sorgente][crate-source]. Sarai in grado di vedere da quale _crate_ proviene ogni
+riesportazione, e abbiamo lasciato commenti esaurienti che spiegano cosa fa il
+_crate_.
 
 Crea un nuovo progetto binario chiamato `hello-async` e aggiungi il _crate_
 `trpl` come dipendenza:
@@ -83,9 +82,9 @@ titolo della pagina che completa per prima l’intero processo.
 ### Definire la Funzione `titolo_pagina`
 
 Iniziamo scrivendo una funzione che prende un URL di una pagina come parametro,
-la scarica e restituisce il testo dell’elemento del titolo (vedi Listato 17-1).
+la scarica e restituisce il testo dell’elemento `<title>` (vedi Listato 17-1).
 
-<Listing number="17-1" file-name="src/main.rs" caption="Definizione di una funzione asincrona per ottenere l’elemento del titolo da una pagina HTML">
+<Listing number="17-1" file-name="src/main.rs" caption="Definizione di una funzione asincrona per ottenere l’elemento `title` da una pagina HTML">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-01/src/main.rs:all}}
@@ -96,7 +95,7 @@ la scarica e restituisce il testo dell’elemento del titolo (vedi Listato 17-1)
 Per prima cosa, definiamo una funzione chiamata `titolo_pagina` e la
 contrassegniamo con la parola chiave `async`. Poi usiamo la funzione `trpl::get`
 per recuperare l’URL passato e aggiungiamo la parola chiave `await` per
-aspettare la risposta. Per ottenere il testo della risposta, chiamiamo il suo
+aspettare la risposta. Per ottenere il testo di `risposta`, chiamiamo il suo
 metodo `text` e di nuovo aspettiamo con la parola chiave `await`. Entrambi
 questi passaggi sono asincroni.
 
@@ -109,21 +108,22 @@ aspettare l’_intera_ risposta, anche il metodo `text` è asincrono.
 Dobbiamo esplicitamente attendere entrambi queste _future_, perché le _future_
 in Rust sono _lazy_ (_pigre_): non fanno nulla finché non le chiedi di farlo con
 la parola chiave `await`. (In effetti, Rust mostrerà un avviso del compilatore
-se non usi una _future_.) Questo potrebbe ricordarti la discussione del Capitolo
-13 sugli iteratori nella sezione [Elaborare una Serie di Elementi con
-Iteratori][iterators-lazy]<!-- ignore -->. Gli iteratori non fanno nulla a meno
-che non chiami il loro metodo `next`, sia direttamente che usando cicli `for` o
-metodi come `map` che usano `next` sotto il cofano. Allo stesso modo, le
-_future_ non fanno nulla a meno che tu non le chieda esplicitamente di farlo.
-Questa _pigrizia_ permette a Rust di evitare di eseguire codice asincrono finché
-non è effettivamente necessario.
+se non usi una _future_.) Questo potrebbe ricordarti la discussione sugli
+iteratori nella sezione [“Elaborare una Serie di Elementi con
+Iteratori”][iterators-lazy]<!-- ignore --> del Capitolo 13. Gli iteratori non
+fanno nulla a meno che non chiami il loro metodo `next`, sia direttamente che
+usando cicli `for` o metodi come `map` che usano `next` sotto il cofano. Allo
+stesso modo, le _future_ non fanno nulla a meno che tu non le chieda
+esplicitamente di farlo. Questa _pigrizia_ permette a Rust di evitare di
+eseguire codice asincrono finché non è effettivamente necessario.
 
-> Nota: Questo è diverso dal comportamento che abbiamo visto nel capitolo
-> precedente quando abbiamo usato `thread::spawn` in [Creare un Nuovo _Thread_
-> con `spawn`][thread-spawn]<!-- ignore -->, dove la chiusura passata a un altro
-> _thread_ veniva eseguita immediatamente. È anche diverso da come molti altri
-> linguaggi gestiscono l’asincronia. Ma è importante per Rust poter fornire le
-> sue garanzie di prestazioni, proprio come accade con gli iteratori.
+> Nota: Questo è diverso dal comportamento che abbiamo visto quando abbiamo
+> usato `thread::spawn` nella sezione [“Creare un Nuovo _Thread_ con
+> `spawn`”][thread-spawn]<!-- ignore --> del Capitolo 16, dove la chiusura
+> passata a un altro _thread_ veniva eseguita immediatamente. È anche diverso da
+> come molti altri linguaggi gestiscono l’asincronia. Ma è importante per Rust
+> poter fornire le sue garanzie di prestazioni, proprio come accade con gli
+> iteratori.
 
 Una volta che abbiamo `testo_risposta`, possiamo analizzarlo in un’istanza del
 _type_ `Html` usando `Html::parse`. Invece di una stringa grezza, ora abbiamo un
@@ -143,7 +143,7 @@ Nota che la parola chiave `await` di Rust va _dopo_ l’espressione che stai
 attendendo, non prima. Cioè, è una parola chiave _post-fissa_. Questo potrebbe
 differire da ciò a cui sei abituato se hai usato `async` in altri linguaggi, ma
 in Rust rende le catene di metodi molto più gradevoli da gestire. Di
-conseguenza, possiamo modificare il corpo di `titolo_pagina` per concatenare le
+conseguenza, potremmo modificare il corpo di `titolo_pagina` per concatenare le
 chiamate di funzione `trpl::get` e `text` con `await` in mezzo, come mostrato
 nel Listato 17-2.
 
@@ -159,17 +159,17 @@ Con questo, abbiamo scritto con successo la nostra prima funzione asincrona!
 Prima di aggiungere del codice in `main` per chiamarla, parliamo un po' di più
 di cosa abbiamo scritto e cosa significa.
 
-Quando Rust vede un blocco contrassegnato con la parola chiave `async`, lo
+Quando Rust vede un _blocco_ contrassegnato con la parola chiave `async`, lo
 compila in un _type_ anonimo e univoco che implementa il _trait_ `Future`.
-Quando Rust vede una funzione contrassegnata con `async`, la compila in una
+Quando Rust vede una _funzione_ contrassegnata con `async`, la compila in una
 funzione non asincrona il cui corpo è un blocco asincrono. Il _type_ di ritorno
 di una funzione asincrona è il _type_ anonimo che il compilatore crea per quel
 blocco asincrono.
 
 Quindi, scrivere `async fn` è equivalente a scrivere una funzione che
 restituisce una _future_ del _type_ di ritorno. Per il compilatore, una
-definizione di funzione come `async fn titolo_pagina` nel Listato 17-1 è
-equivalente a una funzione non asincrona definita in questo modo:
+definizione di funzione come `async fn titolo_pagina` nel Listato 17-1 è più o
+meno equivalente a una funzione non asincrona definita in questo modo:
 
 ```rust
 # extern crate trpl; // necessario per test mdbook
@@ -190,9 +190,9 @@ Analizziamo ogni parte della versione trasformata:
 
 - Usa la sintassi `impl Trait` che abbiamo discusso nel Capitolo 10 nella
   sezione [“Usare i _Trait_ come Parametri”][impl-trait]<!-- ignore -->.
-- Il _trait_ restituito è una `Future` con un _type_ associato di `Output`. Nota
-  che il _type_ `Output` è `Option<String>`, che è lo stesso _type_ di ritorno
-  della versione `async fn` di `titolo_pagina`.
+- Il valore restituito implementa il _trait_ `Future` con un _type_ associato di
+  `Output`. Nota che il _type_ `Output` è `Option<String>`, che è lo stesso
+  _type_ di ritorno della versione `async fn` di `titolo_pagina`.
 - Tutto il codice chiamato nel corpo della funzione originale è racchiuso in un
   blocco `async move`. Ricorda che i blocchi sono espressioni. Questo intero
   blocco è l’espressione restituita dalla funzione.
@@ -205,14 +205,10 @@ Analizziamo ogni parte della versione trasformata:
 
 Ora possiamo chiamare `titolo_pagina` in `main`.
 
-## Determinare il Titolo di una Singola Pagina
+### Eseguire un Funzione Asincrona con un _Runtime_
 
-Per iniziare, prenderemo il titolo di una singola pagina. Nel Listato 17-3,
-seguiamo lo stesso schema che abbiamo usato nel Capitolo 12 per [Ricevere
-Argomenti dalla Riga di Comando][cli-args]<!-- ignore -->. Poi passiamo il primo
-URL a `titolo_pagina` e attendiamo il risultato. Poiché il valore prodotto dalla
-_future_ è un `Option<String>`, usiamo un’espressione `match` per stampare
-messaggi diversi a seconda che la pagina abbia o meno un `<title>`.
+Per iniziare, prenderemo il titolo di una singola pagina come mostrato nel
+Listato 17-3. Purtroppo, questo codice non si compila per adesso.
 
 <Listing number="17-3" file-name="src/main.rs" caption="Chiamare la funzione `titolo_pagina` da `main` con un argomento fornito dall’utente">
 
@@ -222,9 +218,15 @@ messaggi diversi a seconda che la pagina abbia o meno un `<title>`.
 
 </Listing>
 
-Purtroppo, questo codice non si compila. L’unico posto in cui possiamo usare la
-parola chiave `await` è in funzioni o blocchi _async_, e Rust non ci permette di
-contrassegnare la funzione `main` speciale come `async`.
+Seguiamo lo stesso schema che abbiamo usato nella sezione [“Ricevere Argomenti
+dalla Riga di Comando”][cli-args]<!-- ignore --> del Capitolo 12. Poi passiamo
+il primo URL a `titolo_pagina` e attendiamo il risultato. Poiché il valore
+prodotto dalla _future_ è un `Option<String>`, usiamo un’espressione `match` per
+stampare messaggi diversi a seconda che la pagina abbia o meno un `<title>`.
+
+L’unico posto in cui possiamo usare la parola chiave `await` è in funzioni o
+blocchi _async_, e Rust non ci permette di contrassegnare la funzione `main`
+speciale come `async`.
 
 <!-- manual-regeneration
 cd listings/ch17-async-await/listing-17-03
@@ -245,7 +247,7 @@ _async_ ha bisogno di un _runtime_: un _crate_ Rust che gestisce i dettagli
 dell’esecuzione del codice asincrono. La funzione `main` di un programma può
 _inizializzare_ un _runtime_, ma non è un _runtime_ _in sé_. (Vedremo più avanti
 perché è così.) Ogni programma Rust che esegue codice asincrono ha almeno un
-punto in cui configura un _runtime_ ed esegue le _future_.
+punto in cui configura un _runtime_ che esegue le _future_.
 
 La maggior parte dei linguaggi che supportano _async_ includono un _runtime_, ma
 Rust no. Invece, ci sono molti _runtime_ asincroni disponibili, ognuno dei quali
@@ -256,21 +258,24 @@ singolo core, poca RAM e nessuna capacità di allocazione nell’_heap_. I _crat
 che forniscono questi _runtime_ spesso forniscono anche versioni _async_ di
 funzionalità comuni come I/O su file o di rete.
 
-Qui, e nel resto di questo capitolo, useremo la funzione `run` del _crate_
-`trpl`, che prende una _future_ come argomento e la esegue fino al
-completamento. Dietro le quinte, chiamare `run` configura un _runtime_ usato per
-eseguire la _future_ passata. Una volta che la _future_ è completata, `run`
-restituisce qualsiasi valore che la _future_ ha prodotto.
+Qui, e nel resto di questo capitolo, useremo la funzione `block_on` del _crate_
+`trpl`, che prende una _future_ come argomento e blocca il _thread_ corrente
+fino al completamento di questa _future_. Dietro le quinte, chiamare `block_on`
+configura un _runtime_ usando il _crate_ `tokio` usato per eseguire la _future_
+passata (il comportamento di `block_on` del crate `trpl` è simile a come si
+comportano funzioni `block_on` di altri _crate_ _runtime_). Una volta che la
+_future_ è completata, `block_on` restituisce qualsiasi valore che la _future_
+ha prodotto.
 
-Potremmo passare direttamente la _future_ restituita da `titolo_pagina` a `run`,
-e una volta completata, potremmo fare il _match_ sul risultante
+Potremmo passare direttamente la _future_ restituita da `titolo_pagina` a
+`block_on`, e una volta completata, potremmo fare il _match_ sul risultante
 `Option<String>`, come abbiamo provato a fare nel Listato 17-3. Tuttavia, per la
 maggior parte degli esempi in questo capitolo (e per la maggior parte del codice
 _async_ nel mondo reale), faremo più di una singola chiamata di funzione
 _async_, quindi invece passeremo un blocco `async` ed esplicitamente attendiamo
 il risultato della chiamata `titolo_pagina`, come nel Listato 17-4.
 
-<Listing number="17-4" file-name="src/main.rs" caption="Eseguire ed attendere un blocco _async_ con `trpl::run`">
+<Listing number="17-4" file-name="src/main.rs" caption="Eseguire ed attendere un blocco _async_ con `trpl::block_on`">
 
 <!-- should_panic,noplayground because mdbook test does not pass args -->
 
@@ -286,12 +291,12 @@ inizialmente previsto:
 <!-- manual-regeneration
 cd listings/ch17-async-await/listing-17-04
 cargo build # skip all the build noise
-cargo run https://www.rust-lang.org
+cargo run -- "https://www.rust-lang.org"
 # copy the output here
 -->
 
 ```console
-$ cargo run -- https://www.rust-lang.org
+$ cargo run -- "https://www.rust-lang.org"
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.05s
      Running `target/debug/async_await 'https://www.rust-lang.org'`
 Il titolo per https://www.rust-lang.org era
@@ -324,7 +329,7 @@ la verifica di quelle per noi e fornisce messaggi di errore utili. Ne
 esamineremo alcuni più avanti in questo capitolo.
 
 Alla fine, qualcosa deve eseguire questa macchina a stati, e quella cosa è un
-_runtime_. (Questo è il motivo per cui potresti imbatterti in riferimenti a
+_runtime_. (Questo è il motivo per cui potresti imbatterti in menzioni a
 _executor_ quando cerchi informazioni sui _runtime_: un _executor_ è la parte di
 un _runtime_ responsabile dell’esecuzione del codice _async_.)
 
@@ -332,14 +337,15 @@ Ora puoi vedere perché il compilatore ci ha impedito di rendere `main` stesso
 una funzione _async_ nel Listato 17-3. Se `main` fosse una funzione _async_,
 qualcos’altro dovrebbe gestire la macchina a stati per qualsiasi _future_ che
 `main` restituisse, ma `main` è il punto di partenza del programma! Invece,
-abbiamo chiamato la funzione `trpl::run` in `main` per configurare un _runtime_
-ed eseguire la _future_ restituita dal blocco `async` fino al suo completamento.
+abbiamo chiamato la funzione `trpl::block_on` in `main` per configurare un
+_runtime_ ed eseguire la _future_ restituita dal blocco `async` fino al suo
+completamento.
 
 > Nota: Alcuni _runtime_ forniscono macro in modo che tu _possa_ scrivere una
 > funzione `main` _async_. Quelle macro riscrivono `async fn main() { ... }` per
 > essere un normale `fn main`, che fa la stessa cosa che abbiamo fatto a mano
 > nel Listato 17-4: chiamare una funzione che esegue una _future_ fino al
-> completamento proprio come fa `trpl::run`.
+> completamento proprio come fa `trpl::block_on`.
 
 Ora mettiamo insieme questi pezzi e vediamo come possiamo scrivere codice
 concorrente.
@@ -347,9 +353,9 @@ concorrente.
 ### Mettere a Gara i Due URL l’Uno Contro l’Altro
 
 Nel Listato 17-5, chiamiamo `titolo_pagina` con due URL diversi passati dalla
-riga di comando e li mettiamo a gara.
+riga di comando e li mettiamo a gara selezionando la _future_ che finisce prima.
 
-<Listing number="17-5" file-name="src/main.rs" caption="Creazione di due _future_ con chiamata a `titolo_pagina` per farle competere tra loro">
+<Listing number="17-5" file-name="src/main.rs" caption="Chiamata a `titolo_pagina` per due URL per vedere quale ritorna per prima">
 
 <!-- should_panic,noplayground because mdbook does not pass args -->
 
@@ -362,20 +368,20 @@ riga di comando e li mettiamo a gara.
 Iniziamo chiamando `titolo_pagina` per ciascuno degli URL forniti dall’utente.
 Salviamo le _future_ risultanti come `titolo_fut_1` e `titolo_fut_2`. Ricorda,
 queste non fanno ancora nulla, perché le _future_ sono _lazy_ e non le abbiamo
-ancora messe in coda. Poi passiamo le _future_ a `trpl::race`, che restituisce
+ancora messe in coda. Poi passiamo le _future_ a `trpl::select`, che restituisce
 un valore per indicare quale delle _future_ a esso passate finisce per prima.
 
-> Nota: Sotto il cofano, `race` è costruito su una funzione più generale,
-> `select`, che incontrerai più spesso nel codice Rust reale. Una funzione
-> `select` può fare molte cose che la funzione `trpl::race` non può, ma ha anche
-> alcune complessità aggiuntive che possiamo tralasciare per ora.
+> Nota: Sotto il cofano, `trpl::select` è costruito su una funzione più
+> generale, `select`, definita nel _crate_ `futures`. Questa funzione `select`
+> può fare molte cose che la funzione `trpl::select` non può, ma ha anche alcune
+> complessità aggiuntive che possiamo tralasciare per ora.
 
 Può legittimamente “vincere” una qualsiasi delle _future_, quindi non ha senso
-restituire un `Result`. Invece, `race` restituisce un _type_ che non abbiamo
-ancora visto, `trpl::Either`. Il _type_ `Either` è in qualche modo simile a un
-`Result` in quanto ha due casi. A differenza di `Result`, però, non c’è alcuna
-nozione di successo o fallimento incorporata in `Either`. Invece, usa `Left` e
-`Right` per indicare “l’uno o l’altro”:
+restituire un `Result`. Invece, `trpl::select` restituisce un _type_ che non
+abbiamo ancora visto, `trpl::Either`. Il _type_ `Either` è in qualche modo
+simile a un `Result` in quanto ha due casi. A differenza di `Result`, però, non
+c’è alcuna nozione di successo o fallimento incorporata in `Either`. Invece, usa
+`Left` e `Right` per indicare “l’uno o l’altro”:
 
 ```rust
 enum Either<A, B> {
@@ -384,7 +390,7 @@ enum Either<A, B> {
 }
 ```
 
-La funzione `race` restituisce `Left` con l’output dalla prima _future_ che
+La funzione `select` restituisce `Left` con l’output dalla prima _future_ che
 finisce, o `Right` con l’output della seconda _future_ se quella finisce per
 prima. Questo corrisponde all’ordine in cui appaiono gli argomenti quando si
 chiama la funzione: il primo argomento è a sinistra del secondo argomento.

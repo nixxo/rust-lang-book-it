@@ -1,40 +1,22 @@
 extern crate trpl; // necessario per test mdbook
 
+// ANCHOR: all
 use std::{thread, time::Duration};
 
 fn main() {
-    trpl::run(async {
-        // ANCHOR: yields
-        let a = async {
-            println!("'a' iniziata.");
-            lenta("a", 30);
-            trpl::yield_now().await;
-            lenta("a", 10);
-            trpl::yield_now().await;
-            lenta("a", 20);
-            trpl::yield_now().await;
-            println!("'a' finita.");
-        };
+    let (tx, mut rx) = trpl::channel();
 
-        let b = async {
-            println!("'b' iniziata.");
-            lenta("b", 75);
-            trpl::yield_now().await;
-            lenta("b", 10);
-            trpl::yield_now().await;
-            lenta("b", 15);
-            trpl::yield_now().await;
-            lenta("b", 350);
-            trpl::yield_now().await;
-            println!("'b' finita.");
-        };
-        // ANCHOR_END: yields
+    thread::spawn(move || {
+        for i in 1..11 {
+            tx.send(i).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
 
-        trpl::race(a, b).await;
+    trpl::block_on(async {
+        while let Some(messaggio) = rx.recv().await {
+            println!("{messaggio}");
+        }
     });
 }
-
-fn lenta(nome: &str, ms: u64) {
-    thread::sleep(Duration::from_millis(ms));
-    println!("'{nome}' eseguita per {ms}ms");
-}
+// ANCHOR_END: all

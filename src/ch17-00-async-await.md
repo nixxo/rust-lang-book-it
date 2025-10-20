@@ -4,14 +4,20 @@ Molte operazioni che chiediamo al computer di fare possono richiedere del tempo
 per completarsi. Sarebbe bello poter fare altro mentre aspettiamo che questi
 processi che richiedo molto tempo finiscano. I computer moderni offrono due
 tecniche per lavorare su più operazioni contemporaneamente: parallelismo e
-concorrenza. Tuttavia, non appena iniziamo a scrivere programmi che coinvolgono
-operazioni parallele o concorrenti, ci imbattiamo rapidamente in nuove sfide
-intrinseche alla _programmazione asincrona_, dove le operazioni potrebbero non
-finire sequenzialmente nell’ordine in cui sono state avviate. Questo capitolo
-espande quanto spiegato nel Capitolo 16 sull’uso dei _thread_ per parallelismo e
-concorrenza, introducendo un approccio alternativo alla programmazione
-asincrona: i _Future_ , gli _Stream_, la sintassi `async` e `await` che li
-supporta, e gli strumenti per gestire e coordinare operazioni asincrone.
+concorrenza. La logica dei nostri programmi, tuttavia, è scritta in modo
+prevalentemente lineare. Ci piacerebbe poter specificare le operazioni che un
+programma dovrebbe eseguire e i punti in cui una funzione potrebbe mettersi in
+pausa e un’altra parte del programma potrebbe essere eseguita al suo posto,
+senza dover specificare in anticipo l’ordine e il modo esatto in cui ogni parte
+di codice dovrebbe essere eseguita. La programmazione asincrona è un’astrazione
+che ci permette di esprimere il nostro codice in termini di potenziali punti di
+pausa e risultati finali, occupandosi per noi dei dettagli di coordinamento.
+Questo capitolo espande quanto spiegato nel Capitolo 16 sull’uso dei _thread_
+per parallelismo e concorrenza, introducendo un approccio alternativo alla
+scrittura del codice: i _Future_ , gli _Stream_, la sintassi `async` e `await`,
+ci consente di esprimere il modo in cui un’operazione possa essere asincrona, e
+_crate_ di terze parti che implementano _runtime_ asincrone: codice che gestisce
+e coordina l’esecuzione di operazioni asincrone.
 
 Consideriamo un esempio. Immagina di esportare un video che hai creato di una
 celebrazione familiare, un’operazione che potrebbe durare da alcuni minuti a
@@ -66,20 +72,17 @@ completamente pronti.
 > beneficio se l’operazione fosse non-bloccante.
 
 Potremmo evitare di bloccare il nostro _thread_ principale creando un _thread_
-dedicato per scaricare ogni file. Tuttavia, l’_overhead_ di questi _thread_
-diventerebbe presto un problema. Sarebbe preferibile se la chiamata non
-bloccasse fin dall’inizio. Sarebbe anche meglio se potessimo scrivere nello
-stesso stile diretto che usiamo nel codice bloccante, qualcosa di simile a:
-
-```rust,ignore,does_not_compile
-let dati = ricevi_dati_da(url).await;
-println!("{dati}");
-```
+dedicato per scaricare ogni file. Tuttavia, l’_overhead_ delle risorse usate da
+questi _thread_ diventerebbe presto un problema. Sarebbe preferibile se la
+chiamata non bloccasse fin dall’inizio, e invece potessimo definire un numero di
+compiti che vogliamo che il nostro programma porti a termine e lasciamo al
+_runtime_ di scegliere l’ordine migliore per eseguirli.
 
 Proprio questo è ciò che l’astrazione _async_ di Rust ci offre. In questo
 capitolo, imparerai tutto su _async_ mentre affronteremo i seguenti argomenti:
 
-- Come usare la sintassi `async` e `await` di Rust
+- Come usare la sintassi `async` e `await` di Rust ed eseguire funzioni
+  asincrone
 - Come usare il modello _async_ per risolvere alcune delle sfide che abbiamo
   esaminato nel Capitolo 16
 - Come _multi-threading_ e _async_ forniscono soluzioni complementari, che in
@@ -88,7 +91,7 @@ capitolo, imparerai tutto su _async_ mentre affronteremo i seguenti argomenti:
 Prima di vedere come _async_ funziona nella pratica, però, dobbiamo fare una
 breve deviazione per discutere le differenze tra parallelismo e concorrenza.
 
-### Parallelismo e Concorrenza
+## Parallelismo e Concorrenza
 
 Finora abbiamo trattato parallelismo e concorrenza come quasi intercambiabili.
 Ora dobbiamo distinguerli più precisamente, perché le differenze emergeranno man
@@ -99,50 +102,63 @@ progetto software. Potresti assegnare a un singolo membro più compiti, assegnar
 a ciascun membro un compito, o usare un mix dei due approcci.
 
 Quando un individuo lavora su diversi compiti prima che uno di essi sia
-completato, questo è _concorrenza_. Magari hai due progetti diversi aperti sul
-tuo computer, e quando ti annoi o ti blocchi su un progetto, passi all’altro.
-Sei una sola persona, quindi non puoi fare progressi su entrambi i compiti
-esattamente nello stesso momento, ma puoi fare multi-tasking, facendo progressi
-su uno alla volta passando dall’uno all’altro (vedi Figura 17-1).
+completato, questo è _concorrenza_. Un modo di implementare la concorrenza è
+simile ad avere due progetti diversi aperti sul tuo computer, e quando ti annoi
+o ti blocchi su un progetto, passi all’altro. Sei una sola persona, quindi non
+puoi fare progressi su entrambi i compiti esattamente nello stesso momento, ma
+puoi fare multi-tasking, facendo progressi su uno alla volta passando dall’uno
+all’altro (vedi Figura 17-1).
+
+<figure>
 
 <img src="img/trpl17-01.svg" class="center" alt="Un diagramma con riquadri
 etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti.
-Ci sono frecce che vanno da A1 a B1, B1 a A2, A2 a B2, B2 a A3, A3 a A4, e A4 a
-B3. Le frecce tra i sotto-compiti attraversano i riquadri tra Compito A e
-Compito B." />
+Frecce vanno da A1 a B1, B1 a A2, A2 a B2, B2 a A3, A3 a A4, e A4 a B3. Le
+frecce tra i sotto-compiti attraversano i riquadri tra Compito A e Compito B."
+/>
 
-<span class="caption">Figura 17-1: Un flusso di lavoro concorrente, passando tra
-Compito A e Compito B</span>
+<figcaption>Figura 17-1: Un flusso di lavoro concorrente, passando tra Compito A
+e Compito B</figcaption>
+
+</figure>
 
 Quando il team divide un insieme di compiti facendo sì che ogni membro prenda un
 compito e lo porti avanti da solo, questo è _parallelismo_. Ogni persona del
 team può fare progressi esattamente nello stesso momento (vedi Figura 17-2).
 
+<figure>
+
 <img src="img/trpl17-02.svg" class="center" alt="Un diagramma con riquadri
 etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti.
-Ci sono frecce che vanno da A1 a A2, A2 a A3, A3 a A4, B1 a B2, e B2 a B3.
-Nessuna freccia attraversa tra i riquadri di Compito A e Compito B." />
+Frecce vanno da A1 a A2, A2 a A3, A3 a A4, B1 a B2, e B2 a B3. Nessuna freccia
+attraversa tra i riquadri di Compito A e Compito B." />
 
-<span class="caption">Figura 17-2: Un flusso di lavoro parallelo, dove il lavoro
-avviene sui Compiti A e B indipendentemente</span>
+<figcaption>Figura 17-2: Un flusso di lavoro parallelo, dove il lavoro avviene
+sui Compiti A e B indipendentemente</figcaption>
+
+</figure>
 
 In entrambi questi flussi di lavoro, potresti dover coordinare tra diversi
-compiti. Forse _pensavi_ che il compito assegnato a una persona fosse totalmente
+compiti. Forse pensavi che il compito assegnato a una persona fosse totalmente
 indipendente dal lavoro di tutti gli altri, ma in realtà richiede che un’altra
 persona del team completi prima il proprio compito. Parte del lavoro potrebbe
 essere eseguita in parallelo, ma parte di esso sarebbe effettivamente _seriale_:
 potrebbe avvenire solo in serie, un compito dopo l’altro, come nella Figura
 17-3.
 
+<figure>
+
 <img src="img/trpl17-03.svg" class="center" alt="Un diagramma con riquadri
 etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti.
-Ci sono frecce che vanno da A1 a A2, A2 a un paio di linee verticali spesse come
-un simbolo di “pausa”, da quel simbolo a A3, B1 a B2, B2 a B3, che è sotto quel
-simbolo, B3 a A3, e B3 a B4." />
+In Compito A, frecce vanno da A1 a A2, da A2 a un paio di linee verticali spesse
+come un simbolo di “pausa”, e da quel simbolo a A3. In Compito B, frecce vanno
+da B1 a B2, da B2 a B3, da B3 a A3, e da B3 a B4." />
 
-<span class="caption">Figura 17-3: Un flusso di lavoro parzialmente parallelo,
-dove il lavoro sui Compiti A e B procede indipendentemente finché A3 non è
-bloccato aspettando i risultati di B3.</span>
+<figcaption>Figura 17-3: Un flusso di lavoro parzialmente parallelo, dove il
+lavoro sui Compiti A e B procede indipendentemente finché A3 non è bloccato
+aspettando i risultati di B3.</figcaption>
+
+</figure>
 
 Allo stesso modo, potresti renderti conto che uno dei tuoi compiti dipende da un
 altro dei tuoi compiti. Ora il tuo lavoro concorrente è diventato seriale.
@@ -162,10 +178,10 @@ macchina con più core CPU, può anche eseguire lavoro in parallelo. Un core pu�
 eseguire un compito mentre un altro core esegue un compito completamente
 indipendente, e quelle operazioni accadono effettivamente nello stesso momento.
 
-Quando si lavora con _async_ in Rust, stiamo sempre trattando con la
-concorrenza. A seconda dell’hardware, del sistema operativo e del _runtime_
-_async_ che stiamo utilizzando (parleremo presto dei _runtime_ _async_), quella
-concorrenza potrebbe anche star utilizzando in realtà il parallelismo.
+L’esecuzione di codice _async_ in Rust solitamente avviene concorrentemente. A
+seconda dell’hardware, del sistema operativo e del _runtime_ _async_ che stiamo
+utilizzando (parleremo presto dei _runtime_ _async_), quella concorrenza
+potrebbe anche star utilizzando in realtà il parallelismo.
 
 Ora, immergiamoci in come funziona effettivamente la programmazione asincrona in
 Rust.

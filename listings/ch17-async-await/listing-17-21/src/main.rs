@@ -1,23 +1,15 @@
 extern crate trpl; // necessario per test mdbook
 
-use std::time::Duration;
-
 fn main() {
-    trpl::run(async {
-        // ANCHOR: here
-        let lenta = async {
-            println!("'lenta' iniziato.");
-            trpl::sleep(Duration::from_millis(100)).await;
-            println!("'lenta' finito.");
-        };
+    trpl::block_on(async {
+        // ANCHOR: stream
+        let valori = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        let iter = valori.iter().map(|n| n * 2);
+        let mut stream = trpl::stream_from_iter(iter);
 
-        let veloce = async {
-            println!("'veloce' iniziato.");
-            trpl::sleep(Duration::from_millis(50)).await;
-            println!("'veloce' finito.");
-        };
-
-        trpl::race(lenta, veloce).await;
-        // ANCHOR_END: here
+        while let Some(valore) = stream.next().await {
+            println!("Il valore era: {valore}");
+        }
+        // ANCHOR_END: stream
     });
 }

@@ -6,12 +6,12 @@ use trpl::{Either, Html};
 fn main() {
     let args: Vec<String> = std::env::args().collect();
 
-    trpl::run(async {
+    trpl::block_on(async {
         let titolo_fut_1 = titolo_pagina(&args[1]);
         let titolo_fut_2 = titolo_pagina(&args[2]);
 
         let (url, forse_titolo) =
-            match trpl::race(titolo_fut_1, titolo_fut_2).await {
+            match trpl::select(titolo_fut_1, titolo_fut_2).await {
                 Either::Left(left) => left,
                 Either::Right(right) => right,
             };

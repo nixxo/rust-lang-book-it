@@ -3,11 +3,13 @@ extern crate trpl; // necessario per test mdbook
 use std::time::Duration;
 
 fn main() {
-    trpl::run(async {
+    trpl::block_on(async {
         // ANCHOR: with-move
         let (tx, mut rx) = trpl::channel();
 
         let tx_fut = async move {
+            // --taglio--
+            // ANCHOR_END: with-move
             let valori = vec![
                 String::from("ciao"),
                 String::from("dalla"),
@@ -28,6 +30,5 @@ fn main() {
         };
 
         trpl::join(tx_fut, rx_fut).await;
-        // ANCHOR_END: with-move
     });
 }

@@ -1,35 +1,54 @@
 extern crate trpl; // necessario per test mdbook
 
-use std::{thread, time::Duration};
+use std::time::Duration;
 
 fn main() {
-    trpl::run(async {
-        // ANCHOR: slow-futures
-        let a = async {
-            println!("'a' iniziata.");
-            lenta("a", 30);
-            lenta("a", 10);
-            lenta("a", 20);
-            trpl::sleep(Duration::from_millis(50)).await;
-            println!("'a' finita.");
+    trpl::block_on(async {
+        let (tx, mut rx) = trpl::channel();
+
+        let tx1 = tx.clone();
+        let tx1_fut = async move {
+            let valori = vec![
+                String::from("ciao"),
+                String::from("dalla"),
+                String::from("future"),
+                String::from("!!!"),
+            ];
+
+            for val in valori {
+                tx1.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
         };
 
-        let b = async {
-            println!("'b' iniziata.");
-            lenta("b", 75);
-            lenta("b", 10);
-            lenta("b", 15);
-            lenta("b", 350);
-            trpl::sleep(Duration::from_millis(50)).await;
-            println!("'b' finita.");
+        let rx_fut = async {
+            while let Some(valore) = rx.recv().await {
+                println!("ricevuto '{valore}'");
+            }
         };
 
-        trpl::race(a, b).await;
-        // ANCHOR_END: slow-futures
+        // ANCHOR: here
+        let tx_fut = async move {
+            // --taglio--
+            // ANCHOR_END: here
+            let valori = vec![
+                String::from("altri"),
+                String::from("messaggi"),
+                String::from("per"),
+                String::from("te"),
+            ];
+
+            for val in valori {
+                tx.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
+        // ANCHOR: here
+        };
+
+        let future: Vec<Box<dyn Future<Output = ()>>> =
+            vec![Box::new(tx1_fut), Box::new(rx_fut), Box::new(tx_fut)];
+
+        trpl::join_all(future).await;
+        // ANCHOR_END: here
     });
-}
-
-fn lenta(nome: &str, ms: u64) {
-    thread::sleep(Duration::from_millis(ms));
-    println!("'{nome}' eseguita per {ms}ms");
 }

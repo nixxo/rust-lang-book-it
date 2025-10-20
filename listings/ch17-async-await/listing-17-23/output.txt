@@ -1,8 +1,8 @@
    Compiling async_await v0.1.0 (file:///progetti/async_await)
 error[E0277]: `dyn Future<Output = ()>` cannot be unpinned
-   --> src/main.rs:49:24
+   --> src/main.rs:51:24
     |
- 49 |         trpl::join_all(future).await;
+ 51 |         trpl::join_all(future).await;
     |         -------------- ^^^^^^ the trait `Unpin` is not implemented for `dyn Future<Output = ()>`
     |         |
     |         required by a bound introduced by this call
@@ -20,9 +20,9 @@ note: required by a bound in `join_all`
     |              ^^^^^^ required by this bound in `join_all`
 
 error[E0277]: `dyn Future<Output = ()>` cannot be unpinned
-  --> src/main.rs:49:9
+  --> src/main.rs:51:9
    |
-49 |         trpl::join_all(future).await;
+51 |         trpl::join_all(future).await;
    |         ^^^^^^^^^^^^^^^^^^^^^^ the trait `Unpin` is not implemented for `dyn Future<Output = ()>`
    |
    = note: consider using the `pin!` macro
@@ -38,9 +38,9 @@ note: required by a bound in `futures_util::future::join_all::JoinAll`
    |        ^^^^^^ required by this bound in `JoinAll`
 
 error[E0277]: `dyn Future<Output = ()>` cannot be unpinned
-  --> src/main.rs:49:32
+  --> src/main.rs:51:32
    |
-49 |         trpl::join_all(future).await;
+51 |         trpl::join_all(future).await;
    |                                ^^^^^ the trait `Unpin` is not implemented for `dyn Future<Output = ()>`
    |
    = note: consider using the `pin!` macro

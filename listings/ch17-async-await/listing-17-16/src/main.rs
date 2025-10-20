@@ -1,51 +1,42 @@
 extern crate trpl; // necessario per test mdbook
 
-use std::time::Duration;
+use std::{thread, time::Duration};
 
 fn main() {
-    trpl::run(async {
-        let (tx, mut rx) = trpl::channel();
-
-        let tx1 = tx.clone();
-        let tx1_fut = async move {
-            let valori = vec![
-                String::from("ciao"),
-                String::from("dalla"),
-                String::from("future"),
-                String::from("!!!"),
-            ];
-
-            for val in valori {
-                tx1.send(val).unwrap();
-                trpl::sleep(Duration::from_secs(1)).await;
-            }
-        };
-
-        let rx_fut = async {
-            while let Some(valore) = rx.recv().await {
-                println!("ricevuto '{valore}'");
-            }
-        };
-
-        let tx_fut = async move {
-            let valori = vec![
-                String::from("altri"),
-                String::from("messaggi"),
-                String::from("per"),
-                String::from("te"),
-            ];
-
-            for val in valori {
-                tx.send(val).unwrap();
-                trpl::sleep(Duration::from_secs(1)).await;
-            }
-        };
-
+    trpl::block_on(async {
         // ANCHOR: here
-        let future =
-            vec![Box::new(tx1_fut), Box::new(rx_fut), Box::new(tx_fut)];
+        let un_ms = Duration::from_millis(1);
 
-        trpl::join_all(future).await;
+        let a = async {
+            println!("'a' iniziata.");
+            lenta("a", 30);
+            trpl::sleep(un_ms).await;
+            lenta("a", 10);
+            trpl::sleep(un_ms).await;
+            lenta("a", 20);
+            trpl::sleep(un_ms).await;
+            println!("'a' finita.");
+        };
+
+        let b = async {
+            println!("'b' iniziata.");
+            lenta("b", 75);
+            trpl::sleep(un_ms).await;
+            lenta("b", 10);
+            trpl::sleep(un_ms).await;
+            lenta("b", 15);
+            trpl::sleep(un_ms).await;
+            lenta("b", 350);
+            trpl::sleep(un_ms).await;
+            println!("'b' finita.");
+        };
         // ANCHOR_END: here
+
+        trpl::select(a, b).await;
     });
+}
+
+fn lenta(nome: &str, ms: u64) {
+    thread::sleep(Duration::from_millis(ms));
+    println!("'{nome}' eseguita per {ms}ms");
 }
