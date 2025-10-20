@@ -16,15 +16,11 @@ Ecco il nostro piano per la costruzione del server web:
 1. Creare una risposta HTTP appropriata.
 1. Migliorare le prestazioni del server implementando un _pool_ di _thread_.
 
-<figure>
-
 <img src="img/trpl21-01.png" class="center" style="width: 50%;" alt="Screenshot
 di un browser web che visita l’indirizzo 127.0.0.1:8080 e visualizza una pagina
 web con il contenuto testuale “Ciao! Un saluto da Rust”" />
 
-<figcaption>Figura 21-1: Il nostro progetto finale condiviso</figcaption>
-
-</figure>
+<span class="caption">Figura 21-1: Il nostro progetto finale condiviso</span>
 
 Prima di iniziare, dovremmo menzionare due dettagli. Primo, il metodo che
 useremo non sarà il modo migliore per costruire un server web con Rust. I membri

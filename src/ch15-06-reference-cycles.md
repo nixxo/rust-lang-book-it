@@ -77,18 +77,14 @@ ad essa. La memoria allocata alla lista rimarrà non utilizzata per sempre. Per
 visualizzare questo ciclo di riferimento, abbiamo creato il diagramma in Figura
 15-4.
 
-<figure>
-
 <img src="img/trpl15-04.svg" class="center" alt="Un rettangolo etichettato 'a'
 che punta a un rettangolo contenente l’intero 5. Un rettangolo etichettato 'b'
 che punta a un rettangolo contenente l’intero 10. Il rettangolo contenente 5
 punta al rettangolo contenente 10, e il rettangolo contenente 10 punta a sua
 volta al rettangolo contenente 5, creando un ciclo." />
 
-<figcaption>Figura 15-4: Un ciclo di riferimento delle liste `a` e `b` che
-puntano l’una all’altra</figcaption>
-
-</figure>
+<span class="caption">Figura 15-4: Un ciclo di riferimento delle liste `a` e `b`
+che puntano l’una all’altra</span>
 
 Se si rimuove il commento dall’ultimo `println!` e si esegue il programma, Rust
 proverà a stampare questo ciclo con `a` che punta a `b` che punta a `a` e così

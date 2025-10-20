@@ -252,16 +252,12 @@ crea per i blocchi _async_ possono finire con riferimenti a se stesse nei campi
 di una data variante, come mostrato nell’illustrazione semplificata nella Figura
 17-4.
 
-<figure>
-
 <img src="img/trpl17-04.svg" class="center" alt="Una tabella a colonna singola e
 tre righe che rappresenta una `future`, fut1, che ha valori di dati 0 e 1 nelle
 prime due righe e una freccia che punta dalla terza riga di nuovo alla seconda
 riga, rappresentando un riferimento interno all’interno della `future`." />
 
-<figcaption>Figura 17-4: Un tipo di dato auto-referenziale</figcaption>
-
-</figure>
+<span class="caption">Figura 17-4: Un tipo di dato auto-referenziale</span>
 
 Per impostazione predefinita, però, qualsiasi oggetto che ha un riferimento a se
 stesso è insicuro da spostare, perché i riferimenti puntano sempre all’indirizzo
@@ -273,8 +269,6 @@ struttura dati. Per un altro e più importante motivo, il computer è ora libero
 di riutilizzare quella memoria per altri scopi! Potresti finire per leggere dati
 completamente non correlati in seguito.
 
-<figure>
-
 <img src="img/trpl17-05.svg" class="center" alt="Due tabelle, che raffigurano
 due `future`, fut1 e fut2, ciascuna delle quali ha una colonna e tre righe,
 rappresentando il risultato di aver spostato una `future` da fut1 a fut2. La
@@ -284,10 +278,8 @@ nella seconda riga e una freccia che punta dalla sua terza riga di nuovo alla
 seconda riga di fut1, rappresentando un puntatore che fa riferimento alla
 vecchia posizione in memoria della `future` prima che fosse spostata." />
 
-<figcaption>Figura 17-5: Il risultato non sicuro di spostare un tipo di dato
-auto-referenziale</figcaption>
-
-</figure>
+<span class="caption">Figura 17-5: Il risultato non sicuro di spostare un tipo
+di dato auto-referenziale</span>
 
 Teoricamente, il compilatore Rust potrebbe cercare di aggiornare ogni
 riferimento a un oggetto ogni volta che viene spostato, ma ciò potrebbe
@@ -304,8 +296,6 @@ può più muoversi. Quindi, se hai `Pin<Box<QualcheType>>`, in realtà fissi il
 valore `QualcheType`, _non_ il puntatore `Box`. La Figura 17-6 illustra questo
 processo.
 
-<figure>
-
 <img src="img/trpl17-06.svg" class="center" alt="Tre scatole disposte
 affiancate. La prima è etichettata “Pin”, la seconda “b1”, e la terza “pinned”.
 All’interno di “pinned” c’è una tabella etichettata “fut”, con una singola
@@ -318,10 +308,8 @@ una `future` che è auto-referenziale. Una freccia esce dalla scatola etichettat
 “Pin”, passa attraverso la scatola etichettata “b1” e termina all’interno della
 scatola “pinned” nella tabella “fut”." />
 
-<figcaption>Figura 17-6: _Pinning_ di una `Box` che punta a un _type_ di
-_future_ auto-referenziale</figcaption>
-
-</figure>
+<span class="caption">Figura 17-6: _Pinning_ di una `Box` che punta a un _type_
+di _future_ auto-referenziale</span>
 
 In effetti, il puntatore `Box` può ancora muoversi liberamente. Ricorda: ci
 interessa assicurarci che i dati a cui si fa riferimento rimangano al loro
@@ -332,8 +320,6 @@ come a quella del modulo `std::pin` e prova a capire come faresti questo con un
 `Pin` che incapsula una `Box`.) La chiave è che il _type_ auto-referenziale
 stesso non può muoversi, perché è ancora fissato.
 
-<figure>
-
 <img src="img/trpl17-07.svg" class="center" alt="Quattro scatole disposte in tre
 colonne approssimative, identiche al diagramma precedente con una modifica alla
 seconda colonna. Ora ci sono due scatole nella seconda colonna, etichettate “b1”
@@ -341,10 +327,8 @@ e “b2”, “b1” è grigia, e la freccia da “Pin” passa attraverso “b2
 “b1”, indicando che il puntatore si è spostato da “b1” a “b2”, ma i dati in
 “pinned” non si sono mossi." />
 
-<figcaption>Figura 17-7: Spostare una `Box` che punta a un _type_ di _future_
-auto-referenziale</figcaption>
-
-</figure>
+<span class="caption">Figura 17-7: Spostare una `Box` che punta a un _type_ di
+_future_ auto-referenziale</span>
 
 Tuttavia, la maggior parte dei _type_ è perfettamente sicura da spostare, anche
 se sono incapsulati da `Pin`. Dobbiamo pensare al _pinning_ solo quando gli
@@ -384,8 +368,6 @@ Unicode che la compongono. Possiamo incapsulare una `String` in `Pin`, come
 visto nella Figura 17-8. Tuttavia, `String` implementa automaticamente `Unpin`,
 così come la maggior parte degli altri _type_ in Rust.
 
-<figure>
-
 <img src="img/trpl17-08.svg" class="center" alt="Un contenitore etichettato
 “Pin” sulla sinistra con una feccia che parte da esso e punta ad un contenitore
 etichettato “String” sulla destra. Il contenitore “String” contiene il dato
@@ -394,19 +376,15 @@ etichettato “String” sulla destra. Il contenitore “String” contiene il d
 questa istanza di String. Un rettangolo punteggiato circonda il contenitore
 “String” e la sua etichetta, ma non il contenitore “Pin”." />
 
-<figcaption>Figura 17-8: _Pinning_ di una `String`; la linea tratteggiata indica
-che la `String` implementa il _trait_ `Unpin` e quindi non è
-fissata</figcaption>
-
-</figure>
+<span class="caption">Figura 17-8: _Pinning_ di una `String`; la linea
+tratteggiata indica che la `String` implementa il _trait_ `Unpin` e quindi non è
+fissata</span>
 
 Di conseguenza, possiamo fare cose che sarebbero illegali se `String`
 implementasse `!Unpin`, come sostituire una stringa con un’altra nella stessa
 posizione in memoria, come nella Figura 17-9. Questo non viola il contratto di
 `Pin`, perché `String` non ha riferimenti interni che la rendano insicura da
 spostare. È proprio per questo che implementa `Unpin` piuttosto che `!Unpin`.
-
-<figure>
 
 <img src="img/trpl17-09.svg" class="center" alt="La medesima stringa “hello”
 dell'esempio precedente, ora etichettata “s1” e sbiadita. Il contenitore “Pin”
@@ -415,10 +393,8 @@ etichettata “s2”, valida, con lunghezza 7usize, e contenente i caratteri del
 stringa “goodbye”. s2 è circondata da un rettangolo puntinato perché, anch'essa,
 implementa il trait Unpin." />
 
-<figcaption>Figura 17-9: Sostituzione della `String` con un’altra `String`
-completamente diversa in memoria</figcaption>
-
-</figure>
+<span class="caption">Figura 17-9: Sostituzione della `String` con un’altra
+`String` completamente diversa in memoria</span>
 
 Ora sappiamo abbastanza per comprendere gli errori segnalati per quella chiamata
 a `join_all` dal Listato 17-23. Inizialmente abbiamo cercato di spostare le

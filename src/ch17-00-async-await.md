@@ -109,34 +109,26 @@ puoi fare progressi su entrambi i compiti esattamente nello stesso momento, ma
 puoi fare multi-tasking, facendo progressi su uno alla volta passando dall’uno
 all’altro (vedi Figura 17-1).
 
-<figure>
-
 <img src="img/trpl17-01.svg" class="center" alt="Un diagramma con riquadri
 etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti.
 Frecce vanno da A1 a B1, B1 a A2, A2 a B2, B2 a A3, A3 a A4, e A4 a B3. Le
 frecce tra i sotto-compiti attraversano i riquadri tra Compito A e Compito B."
 />
 
-<figcaption>Figura 17-1: Un flusso di lavoro concorrente, passando tra Compito A
-e Compito B</figcaption>
-
-</figure>
+<span class="caption">Figura 17-1: Un flusso di lavoro concorrente, passando tra
+Compito A e Compito B</span>
 
 Quando il team divide un insieme di compiti facendo sì che ogni membro prenda un
 compito e lo porti avanti da solo, questo è _parallelismo_. Ogni persona del
 team può fare progressi esattamente nello stesso momento (vedi Figura 17-2).
-
-<figure>
 
 <img src="img/trpl17-02.svg" class="center" alt="Un diagramma con riquadri
 etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti.
 Frecce vanno da A1 a A2, A2 a A3, A3 a A4, B1 a B2, e B2 a B3. Nessuna freccia
 attraversa tra i riquadri di Compito A e Compito B." />
 
-<figcaption>Figura 17-2: Un flusso di lavoro parallelo, dove il lavoro avviene
-sui Compiti A e B indipendentemente</figcaption>
-
-</figure>
+<span class="caption">Figura 17-2: Un flusso di lavoro parallelo, dove il lavoro
+avviene sui Compiti A e B indipendentemente</span>
 
 In entrambi questi flussi di lavoro, potresti dover coordinare tra diversi
 compiti. Forse pensavi che il compito assegnato a una persona fosse totalmente
@@ -146,19 +138,15 @@ essere eseguita in parallelo, ma parte di esso sarebbe effettivamente _seriale_:
 potrebbe avvenire solo in serie, un compito dopo l’altro, come nella Figura
 17-3.
 
-<figure>
-
 <img src="img/trpl17-03.svg" class="center" alt="Un diagramma con riquadri
 etichettati Compito A e Compito B, con diamanti che rappresentano sotto-compiti.
 In Compito A, frecce vanno da A1 a A2, da A2 a un paio di linee verticali spesse
 come un simbolo di “pausa”, e da quel simbolo a A3. In Compito B, frecce vanno
 da B1 a B2, da B2 a B3, da B3 a A3, e da B3 a B4." />
 
-<figcaption>Figura 17-3: Un flusso di lavoro parzialmente parallelo, dove il
-lavoro sui Compiti A e B procede indipendentemente finché A3 non è bloccato
-aspettando i risultati di B3.</figcaption>
-
-</figure>
+<span class="caption">Figura 17-3: Un flusso di lavoro parzialmente parallelo,
+dove il lavoro sui Compiti A e B procede indipendentemente finché A3 non è
+bloccato aspettando i risultati di B3.</span>
 
 Allo stesso modo, potresti renderti conto che uno dei tuoi compiti dipende da un
 altro dei tuoi compiti. Ora il tuo lavoro concorrente è diventato seriale.

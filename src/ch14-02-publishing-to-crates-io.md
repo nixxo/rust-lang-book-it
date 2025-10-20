@@ -54,15 +54,11 @@ dipendenze del tuo _crate_) e si apre il risultato in un browser web. Naviga
 alla funzione `più_uno` per vedere che il testo nei commenti di documentazione
 apparirà come mostrato nella Figura 14-1.
 
-<figure>
-
 <img src="img/trpl14-01.png" class="center" alt="Documentazione HTML
 renderizzata per la funzione `più_uno` di `mio_crate`" />
 
-<figcaption>Figura 14-1: La documentazione HTML per la funzione
-`più_uno`</figcaption>
-
-<figure>
+<span class="caption">Figura 14-1: La documentazione HTML per la funzione
+`più_uno`</span>
 
 #### Sezioni Comunemente Utilizzate
 
@@ -153,15 +149,12 @@ I commenti di documentazione all’interno degli elementi sono utili soprattutto
 per descrivere i _crate_ e i moduli. Utilizzali per spiegare lo scopo generale
 del contenitore per aiutare i tuoi utenti a capire l’organizzazione del _crate_.
 
-<figure>
-
 <img src="img/trpl14-02.png" class="center" alt="Documentazione HTML
 renderizzata con un commento per l’intero _crate_" />
 
-<figcaption>Figura 14-2: La documentazione renderizzata per `mio_crate`, incluso
-il commento che descrive il _crate_ nel suo complesso</figcaption>
-
-<figure>
+<span class="caption">Figura 14-2: La documentazione renderizzata per
+`mio_crate`, incluso il commento che descrive il _crate_ nel suo
+complesso</span>
 
 ### Esportare un API Pubblica Efficace
 
@@ -204,15 +197,11 @@ Listato 14-3.
 La Figura 14-3 mostra l’aspetto della prima pagina della documentazione di
 questo _crate_ generata da `cargo doc`.
 
-<figure>
-
 <img src="img/trpl14-03.png" class="center" alt="Documentazione renderizzata per
 il _crate_ `arte` che elenca i moduli `tipologia` e `utilità`" />
 
-<figcaption>Figura 14-3: La prima pagina della documentazione per `arte` che
-elenca i moduli `tipologia` e `utilità`</figcaption>
-
-</figure>
+<span class="caption">Figura 14-3: La prima pagina della documentazione per
+`arte` che elenca i moduli `tipologia` e `utilità`</span>
 
 Nota che i _type_ `ColorePrimario` e `ColoreSecondario` non sono elencati nella
 prima pagina, così come la funzione `mix`. Dobbiamo cliccare su `tipologia` e
@@ -258,15 +247,11 @@ collegherà le riesportazioni (_Re-exports_) nella prima pagina, come mostrato
 nella Figura 14-4, rendendo più facile trovare i _type_ `ColorePrimario` e
 `ColoreSecondario` e la funzione `mix`.
 
-<figure>
-
 <img src="img/trpl14-04.png" class="center" alt="Documentazione renderizzata per
 il _crate_ `arte` con le riesportazioni in prima pagina" />
 
-<figcaption>Figura 14-4: La prima pagina della documentazione per `arte` che
-elenca le riesportazioni</figcaption>
-
-</figure>
+<span class="caption">Figura 14-4: La prima pagina della documentazione per
+`arte` che elenca le riesportazioni</span>
 
 Gli utenti del _crate_ `arte` possono ancora vedere e usare la struttura interna
 del Listato 14-3, come dimostrato nel Listato 14-4, oppure possono usare la

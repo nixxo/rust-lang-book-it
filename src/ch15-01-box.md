@@ -192,8 +192,6 @@ variante `Cons` contiene un valore di _type_ `i32` e un valore di _type_
 `Lista`, e questo processo continua all’infinito, come mostrato nella Figura
 15-1.
 
-<figure>
-
 <img src="img/trpl15-01.svg" class="center" style="width: 50%;" alt="Una lista
 _Cons_ infinita: un rettangolo etichettato 'Cons' diviso in due rettangoli più
 piccoli. Il primo rettangolo più piccolo contiene l’etichetta 'i32', e il
@@ -203,10 +201,8 @@ contenere versioni sempre più piccole di se stessi finché il rettangolo più
 piccolo, di dimensioni adeguate, contiene un simbolo di infinito, a indicare che
 questa ripetizione continua all’infinito." />
 
-<figcaption>Figura 15-1: Una `Lista` infinita composta da infinite varianti
-`Cons`</figcaption>
-
-</figure>
+<span class="caption">Figura 15-1: Una `Lista` infinita composta da infinite
+varianti `Cons`</span>
 
 #### Ottenere un _Type_ Ricorsivo con una Dimensione Nota
 
@@ -260,18 +256,14 @@ modo che il compilatore possa calcolare la dimensione necessaria per memorizzare
 un valore `Lista`. La Figura 15-2 mostra l’aspetto attuale della variante
 `Cons`.
 
-<figure>
-
 <img src="img/trpl15-02.svg" class="center" alt="Un rettangolo etichettato
 'Cons' diviso in due rettangoli più piccoli. Il primo rettangolo più piccolo
 contiene l’etichetta 'i32', e il secondo rettangolo più piccolo contiene
 l’etichetta 'Box' con un rettangolo interno che contiene l’etichetta 'usize',
 che rappresenta la dimensione finita del puntatore della box." />
 
-<figcaption>Figura 15-2: Una `Lista` che non ha dimensioni infinite perché
-`Cons` contiene una `Box`</figcaption>
-
-</figure>
+<span class="caption">Figura 15-2: Una `Lista` che non ha dimensioni infinite
+perché `Cons` contiene una `Box`</span>
 
 Le _box_ forniscono solo l’indirezione e l’allocazione nell’_heap_; non hanno
 altre funzionalità speciali, come quelle che vedremo con gli altri tipi di
