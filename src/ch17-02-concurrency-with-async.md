@@ -14,12 +14,12 @@ differenti.
 ### Creare un Nuovo _Task_ con `spawn_task`
 
 La prima operazione che abbiamo affrontato nella sezione [“Creare un Nuovo
-_Thread_ con `spawn`”][thread-spawn]<!-- ignore --> del Capitolo 16 era contare
-su due _thread_ separati. Facciamo la stessa cosa usando _async_. Il _crate_
-`trpl` fornisce una funzione `spawn_task` che sembra molto simile all’API
-`thread::spawn`, e una funzione `sleep` che è una versione _async_ dell’API
-`thread::sleep`. Possiamo usarle insieme per implementare l’esempio di
-conteggio, come mostrato nel Listato 17-6.
+_Thread_ con `spawn`”][thread-spawn]<!-- ignore --> del Capitolo 16 era
+effettuare un conteggio su due _thread_ separati. Facciamo la stessa cosa usando
+_async_. Il _crate_ `trpl` fornisce una funzione `spawn_task` che sembra molto
+simile all’API `thread::spawn`, e una funzione `sleep` che è una versione
+_async_ dell’API `thread::sleep`. Possiamo usarle insieme per implementare
+l’esempio di conteggio, come mostrato nel Listato 17-6.
 
 <Listing number="17-6" file-name="src/main.rs" caption="Creare un nuovo _task_ per stampare una cosa mentre il _task_ principale ne stampa un’altra">
 
@@ -40,7 +40,7 @@ essere _async_.
 
 Poi scriviamo due loop all’interno di quel blocco, ciascuno contenente una
 chiamata a `trpl::sleep`, che aspetta mezzo secondo (500 millisecondi) prima di
-inviare il prossimo messaggio. Mettiamo un loop nel corpo di un
+inviare il prossimo messaggio. Mettiamo un ciclo nel corpo di un
 `trpl::spawn_task` e l’altro è un ciclo `for` nel _task_ principale. Aggiungiamo
 anche un `await` dopo le chiamate `sleep`.
 
@@ -66,7 +66,7 @@ la funzione `main` termina. Se vuoi che si esegua fino al completamento del
 _task_, dovrai usare un _join handle_ per aspettare che il primo _task_ si
 completi. Con i _thread_, abbiamo usato il metodo `join` per "bloccare" fino a
 quando il _thread_ avesse finito di eseguirsi. Nel Listato 17-7, possiamo usare
-`await` per fare la stessa cosa, perché l’_handle_ del _task_ stesso è un
+`await` per fare la stessa cosa, perché l’_handle_ del _task_ stesso è una
 _future_. Il suo _type_ `Output` è un `Result`, quindi dopo averlo atteso
 (_await_), dobbiamo anche esporlo (_unwrap_).
 
@@ -78,7 +78,7 @@ _future_. Il suo _type_ `Output` è un `Result`, quindi dopo averlo atteso
 
 </Listing>
 
-Questa versione aggiornata si esegue fino a quando _entrambi_ i loop finiscono:
+Questa versione aggiornata si esegue fino a quando _entrambi_ i cicli finiscono:
 
 ```text
 ciao numero 1 dal secondo task!
@@ -103,7 +103,7 @@ aspettando le chiamate `sleep`.
 La differenza più grande è che non abbiamo dovuto avviare un altro _thread_ del
 sistema operativo per farlo. In realtà, non dobbiamo nemmeno avviare un _task_
 qui. Poiché i blocchi _async_ si compilano in _future_ anonime, possiamo mettere
-ogni loop in un blocco _async_ e far eseguire al _runtime_ entrambe fino al
+ogni ciclo in un blocco _async_ e far eseguire al _runtime_ entrambe fino al
 completamento usando la funzione `trpl::join`.
 
 Nella sezione [“Attendere Che Tutti i _Thread_ Finiscano”][join-handles]<!--
@@ -158,29 +158,29 @@ garantire l’equità può essere più lavoro per un _runtime_, ma è comunque
 possibile!) I _runtime_ non devono garantire l’equità per qualsiasi operazione
 data, e spesso offrono diverse API per farti scegliere se vuoi l’equità o meno.
 
-Prova alcune di queste varianti sull’attesa dei _future_ e vedi cosa fanno:
+Prova alcune di queste varianti sull’attesa delle _future_ e vedi cosa fanno:
 
-- Rimuovi il blocco _async_ da uno o entrambi i loop.
+- Rimuovi il blocco _async_ da uno o entrambi i cicli.
 - Aspetta ogni blocco _async_ immediatamente dopo averlo definito.
-- Incapsula solo il primo loop in un blocco _async_ e aspetta il _future_
-  risultante dopo il corpo del secondo loop.
+- Incapsula solo il primo ciclo in un blocco _async_ e aspetta la _future_
+  risultante dopo il corpo del secondo ciclo.
 
 Per una sfida extra, cerca di capire quale sarà l’output in ciascun caso _prima_
 di eseguire il codice!
 
 ### Inviare Dati Tra Due _Task_ Usando il Passaggio di Messaggi
 
-Condividere dati tra _future_ sarà familiare: useremo di nuovo il passaggio di
-messaggi, ma questa volta con le versioni _async_ dei _type_ e delle funzioni.
-Prenderemo una strada leggermente diversa rispetto a quella che abbiamo preso
-nella sezione [“Usare il Passaggio di Messaggi per Trasferire Dati tra
-_Thread_”][message-passing-threads]<!-- ignore --> del Capitolo 16 per
+Condividere dati tra _future_ sarà anch’esso familiare: useremo di nuovo il
+passaggio di messaggi, ma questa volta con le versioni _async_ dei _type_ e
+delle funzioni. Prenderemo una strada leggermente diversa rispetto a quella che
+abbiamo preso nella sezione [“Trasferire Dati tra _Thread_ Usando il Passaggio
+di Messaggi”][message-passing-threads]<!-- ignore --> del Capitolo 16 per
 illustrare alcune delle differenze chiave tra concorrenza basata su _thread_ e
 concorrenza basata su _future_. Nel Listato 17-9, inizieremo con un singolo
 blocco _async_, _non_ creando un _task_ separato come avevamo creato un _thread_
 separato.
 
-<Listing number="17-9" file-name="src/main.rs" caption="Creare un canale _async_ e assegnare le due metà a `tx` e `rx`">
+<Listing number="17-9" file-name="src/main.rs" caption="Creare un canale _async_ e assegnare le due estremità a `tx` e `rx`">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-09/src/main.rs:channel}}
@@ -238,8 +238,8 @@ aspettare fino a quando non determiniamo che non ci sono più messaggi.
 Nel Listato 16-10, abbiamo usato un ciclo `for` per elaborare tutti gli elementi
 ricevuti da un canale sincrono. Rust non ha ancora un modo per scrivere un ciclo
 `for` su una serie di elementi _prodotta asincronamente_, quindi dobbiamo usare
-un ciclo che non abbiamo visto prima: il ciclo condizionale `while let`. Questo
-è la versione ciclo della costruzione `if let` che abbiamo visto nella sezione
+un ciclo che non avevamo ancora visto: il ciclo condizionale `while let`. Questo
+è la versione ciclo del costrutto `if let` che abbiamo visto nella sezione
 [“Controllare il Flusso con `if let` e `let else`”][if-let]<!-- ignore
 --> del Capitolo 6. Il ciclo continuerà ad eseguirsi finché il _pattern_
 specificato continua a corrispondere al valore.
@@ -273,10 +273,10 @@ dato blocco _async_, l’ordine in cui compaiono le parole chiave `await` nel
 codice è anche l’ordine in cui vengono eseguite quando il programma si avvia.
 
 C’è un singolo blocco _async_ nel Listato 17-10, quindi tutto in esso si esegue
-linearmente. Non c’è ancora concorrenza. Tutti i `tx.send` accadono, intercalati
-con tutte le chiamate `trpl::sleep` e i loro punti di attesa associati. Solo
-allora il ciclo `while let` può passare in rassegna alcuni dei punti di attesa
-sulle chiamate `recv`.
+linearmente. Non c’è ancora concorrenza. Tutte le chiamate a `tx.send` accadono,
+intercalate con tutte le chiamate `trpl::sleep` e i loro punti di attesa
+associati. Solo allora il ciclo `while let` può passare in rassegna alcuni dei
+punti di attesa sulle chiamate `recv`.
 
 Per ottenere il comportamento che vogliamo, dove il ritardo accade tra ogni
 messaggio, dobbiamo mettere le operazioni `tx` e `rx` nei loro blocchi _async_
@@ -302,8 +302,8 @@ intervalli di 500 millisecondi, piuttosto che tutti insieme dopo 2 secondi.
 
 #### Spostare la _Ownership_ Dentro un Blocco _Async_
 
-Il programma non si arresta comunque, perché il ciclo `while let` interagisce
-con `trpl::join`:
+Il programma non si arresta comunque, per il modo in cui il ciclo `while let`
+interagisce con `trpl::join`:
 
 - La _future_ restituita da `trpl::join` si completa solo una volta che
   _entrambe_ le _future_ passate ad esso si sono completate.
@@ -315,14 +315,14 @@ con `trpl::join`:
   `None`.
 - L’attesa di `rx.recv` restituirà `None` solo una volta che l’altra estremità
   del canale è chiusa.
-- Il canale si chiuderà solo se chiamiamo `rx.close` o quando l’estremità invio,
-  `tx`, viene eliminata.
+- Il canale si chiuderà solo se chiamiamo `rx.close` o quando l’estremità di
+  invio, `tx`, viene eliminata.
 - Non chiamiamo `rx.close` da nessuna parte, e `tx` non verrà eliminato fino a
   quando il blocco _async_ più esterno passato a `trpl::block_on` non termina.
 - Il blocco non può terminare perché è bloccato su `trpl::join` in attesa di
   completamento, il che ci riporta all’inizio di questo elenco.
 
-Al momento, il blocco _async_ in cui inviamo i messaggi prende in prestito solo
+Al momento, il blocco _async_ in cui inviamo i messaggi prende solo in prestito
 `tx` perché inviare un messaggio non richiede la _ownership_, ma se potessimo
 spostare `tx` in quel blocco _async_, verrebbe eliminato una volta che quel
 blocco termina. Nella sezione [“Catturare i _Reference_ o Trasferire la
@@ -366,7 +366,7 @@ mostrato nel Listato 17-13.
 Prima di tutto, cloniamo `tx`, creando `tx1` fuori dal primo blocco _async_.
 Spostiamo `tx1` in quel blocco proprio come abbiamo fatto prima con `tx`. Poi,
 in seguito, spostiamo l’originale `tx` in un _nuovo_ blocco _async_, dove
-inviamo più messaggi con un ritardo leggermente minore. Abbiamo messo questo
+inviamo più messaggi con un ritardo leggermente maggiore. Abbiamo messo questo
 nuovo blocco _async_ dopo il blocco _async_ per ricevere messaggi, ma andrebbe
 bene anche se messo prima. La chiave è l’ordine in cui le _future_ vengono
 attese, non quello in cui vengono create.

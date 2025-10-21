@@ -104,7 +104,7 @@
 - [Fondamenti di Programmazione Asincrona: _Async_, _Await_, _Future_ e _Stream_](ch17-00-async-await.md)
   - [_Future_ e la Sintassi _Async_](ch17-01-futures-and-syntax.md)
   - [Applicare la Concorrenza con _Async_](ch17-02-concurrency-with-async.md)
-  - [Lavorare con un Numero Qualsiasi di _Future_](ch17-03-more-futures.md)
+  - [Restituire il Controllo al _Runtime_](ch17-03-more-futures.md)
   - [_Stream_: _Future_ in Sequenza](ch17-04-streams.md)
   - [Uno Sguardo Più Da Vicino ai _Trait_ per _Async_](ch17-05-traits-for-async.md)
   - [_Future_, _Task_ e _Thread_](ch17-06-futures-tasks-threads.md)

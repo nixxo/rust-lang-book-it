@@ -8,7 +8,7 @@ la scelta non è tra _thread_ __o__ _async_, ma piuttosto tra _thread_ __e__
 _async_.
 
 Molti sistemi operativi hanno fornito modelli di concorrenza basati su _thread_
-per decenni, e molti linguaggi di programmazione li supportano di conseguenza.
+per decenni, e molti linguaggi di programmazione di conseguenza li supportano.
 Tuttavia, questi modelli non sono privi di compromessi. Su molti sistemi
 operativi, utilizzano una buona quantità di memoria per ogni _thread_. I
 _thread_ sono anche un’opzione solo quando il tuo sistema operativo e hardware
@@ -59,7 +59,7 @@ Quando si pensa a quale metodo utilizzare, considera queste regole pratiche:
   come l’elaborazione di un insieme di dati in cui ogni parte può essere
   elaborata separatamente, i _thread_ sono una scelta migliore.
 - Se il lavoro è _molto concorrente_ (limitato da I/O), come gestire messaggi
-  provenienti da diverse fonti che possono arrivare a intervalli o tassi
+  provenienti da diverse fonti che possono arrivare a intervalli o velocità
   diversi, _async_ è una scelta migliore.
 
 E se hai bisogno sia di parallelismo che di concorrenza, non devi scegliere tra
@@ -76,7 +76,7 @@ piuttosto comune di questo tipo di mix nel codice Rust reale.
 </Listing>
 
 Iniziamo creando un canale _async_, quindi avviamo un _thread_ che prende
-possesso della estremità del mittente del canale usando la parola chiave `move`.
+possesso dell’estremità del mittente del canale usando la parola chiave `move`.
 All’interno del _thread_, inviamo i numeri da 1 a 10, dormendo per un secondo
 tra ciascuno. Infine, eseguiamo una _future_ creata con un blocco _async_
 passato a `trpl::block_on`, proprio come abbiamo fatto in tutto il capitolo. In

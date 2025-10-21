@@ -1,8 +1,8 @@
 ## _Stream_: _Future_ in Sequenza
 
 Ricorda come abbiamo utilizzato il ricevitore per il nostro canale _async_ in
-precedenza in questo capitolo nella sezione [“Inviare Dati Tra Due _Task_ Usando
-il Passaggio di Messaggi”][17-02-messages]<!-- ignore -->. Il metodo _async_
+precedenza nella sezione [“Inviare Dati Tra Due _Task_ Usando il Passaggio di
+Messaggi”][17-02-messages]<!-- ignore --> di questo capitolo. Il metodo _async_
 `recv` produce una sequenza di elementi nel tempo. Questo è un esempio di un
 modello molto più generale noto come _stream_. Molti concetti sono naturalmente
 rappresentati come _stream_: elementi che diventano disponibili in una coda,
@@ -34,7 +34,7 @@ effettivamente creare uno _stream_ da qualsiasi iteratore. Come con un
 iteratore, possiamo lavorare con uno _stream_ chiamando il suo metodo `next` e
 poi aspettare l’output, come nel Listato 17-21, che per ora non si compilerà.
 
-<Listing number="17-21" file-name="src/main.rs" caption="Creare uno _stream_ da un iteratore e stampare i suoi valori">
+<Listing number="17-21" file-name="src/main.rs" caption="Creazione di uno _stream_ da un iteratore e stampa dei suoi valori">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-21/src/main.rs:stream}}
@@ -51,7 +51,7 @@ let`.
 Sfortunatamente, quando proviamo a eseguire il codice, non si compila ma invece
 riporta che non c’è alcun metodo `next` disponibile:
 
-```console
+```text
 {{#include ../listings/ch17-async-await/listing-17-21/output.txt:2:18}}
 ```
 
@@ -67,12 +67,12 @@ efficacemente i _trait_ `Iterator` e `Future`. `StreamExt` fornisce un insieme
 di API di livello superiore costruite sulla base di `Stream`, inclusi il metodo
 `next` e altri metodi utili simili a quelli forniti dal _trait_ `Iterator`.
 `Stream` e `StreamExt` non fanno ancora parte della libreria standard di Rust,
-ma la maggior parte dei _crate_ dell’ecosistema utilizza una definizione simile.
+ma la maggior parte dei _crate_ dell’ecosistema utilizza definizioni simili.
 
 La soluzione all’errore del compilatore è aggiungere una dichiarazione `use` per
 `trpl::StreamExt`, come nel Listato 17-22.
 
-<Listing number="17-22" file-name="src/main.rs" caption="Utilizzare con successo un iteratore come base per uno _stream_">
+<Listing number="17-22" file-name="src/main.rs" caption="Utilizzo con successo di un iteratore come base per uno _stream_">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-22/src/main.rs:all}}

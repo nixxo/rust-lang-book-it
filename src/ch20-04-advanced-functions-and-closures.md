@@ -154,8 +154,8 @@ dettagli di come Rust l’ha costruito né sapere il _type_ generato. Quindi anc
 se queste funzioni ritornano chiusure che implementano lo stesso _trait_, i
 _type_ opachi che Rust genera sono diversi. (Questo è simile a come Rust genera
 _type_ concreti distinti per blocchi _async_ diversi anche se hanno lo stesso
-_type_ di output, come abbiamo visto in [“Lavorare con un Numero Qualsiasi di
-_Future_”][any-number-of-futures]<!-- ignore --> nel Capitolo 17.) Abbiamo già
+_type_ di output, come abbiamo visto nella sezione [“Il _Type_ `Pin` e il
+_Trait_ `Unpin`”][future-types]<!-- ignore --> del Capitolo 17.) Abbiamo già
 visto una soluzione a questo problema: possiamo usare un oggetto _trait_, come
 nel Listato 20-34.
 
@@ -176,5 +176,5 @@ Passiamo ora a vedere le macro!
 [advanced-traits]: ch20-02-advanced-traits.html#trait-avanzati
 [enum-values]: ch06-01-defining-an-enum.html#valori-di-enum
 [closure-types]: ch13-01-closures.html#inferenza-e-annotazione-del-type-delle-chiusure
-[any-number-of-futures]: ch17-03-more-futures.html
+[future-types]: ch17-05-traits-for-async.html#il-type-pin-e-il-trait-unpin
 [using-trait-objects]: ch18-02-trait-objects.html#usare-gli-oggetti-trait-per-astrarre-comportamenti-condivisi

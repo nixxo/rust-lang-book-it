@@ -2,14 +2,14 @@
 
 Ricorda da [“Il Nostro Primo Programma _Async_”][async-program]<!-- ignore -->
 che ad ogni punto di attesa, Rust dà a un _runtime_ la possibilità di mettere in
-pausa l’attività e passare a un’altra se la _future_ in attesa non è pronta.
+pausa il compito e passare a un altro se la _future_ in attesa non è pronta.
 Anche l’inverso è vero: Rust _mette in pausa_ solo i blocchi _async_ e
 restituisce il controllo a un _runtime_ in un punto di attesa. Tutto ciò che si
 trova tra i punti di attesa è sincrono.
 
 Questo significa che se fai un sacco di lavoro in un blocco _async_ senza un
 punto di attesa, quella _future_ bloccherà qualsiasi altra _future_ dal fare
-progressi. A volte potresti sentire questo comportamento riferito come una
+progressi. A volte potresti sentire menzionato questo comportamento come ad una
 _future_ che _affama_ (_starving_) altre _future_. In alcuni casi, potrebbe non
 essere un grosso problema. Tuttavia, se stai facendo qualche tipo di
 elaborazione dispendiosa o lavoro a lungo termine, o se hai una _future_ che
@@ -63,12 +63,12 @@ alcune operazioni lente. Se esegui questo codice, vedrai questo output:
 Come per il Listato 17-5 dove abbiamo usato `trpl::select` per mettere a gara
 due _future_ che elaboravano un URL, `select` termina non appena `a` è
 completata. Non c’è “intreccio” tra le due _future_, però. La _future_ `a` fa
-tutto il suo lavoro fino a quando la chiamata a `trpl::sleep` è in attesa, poi
-la _future_ `b` fa tutto il suo lavoro fino a quando la sua chiamata a
-`trpl::sleep` è in attesa, e infine la _future_ `a` finisce. Per consentire a
-entrambe le _future_ lente di fare progressi, abbiamo bisogno di punti di attesa
-in modo da poter restituire il controllo al _runtime_ di tanto in tanto per
-consentire anche all’altra di proseguire!
+tutto il suo lavoro fino a quando la chiamata a `trpl::sleep` viene attesa con
+`await`, poi la _future_ `b` fa tutto il suo lavoro fino a quando la sua
+chiamata a `trpl::sleep` viene attesa, e infine la _future_ `a` finisce. Per
+consentire a entrambe le _future_ lente di fare progressi, abbiamo bisogno di
+punti di attesa in modo da poter restituire il controllo al _runtime_ di tanto
+in tanto per consentire anche all’altra di proseguire!
 
 Possiamo già vedere questo tipo di passaggio avvenire nel Listato 17-15: se
 rimuovessimo `trpl::sleep` alla fine della _future_ `a`, essa completerebbe la
@@ -150,15 +150,15 @@ avvenisse in parallelo!
 
 ###  Costruire le Nostre Astrazioni _Async_
 
-Possiamo anche comporre le _future_ insieme per creare nuovi schemi. Ad esempio,
-possiamo costruire una funzione `timeout` con i blocchi _async_ che abbiamo già.
-Quando abbiamo finito, il risultato sarà un altro blocco di costruzione che
-potremmo usare per creare ancora più astrazioni _async_.
+Possiamo anche comporre le _future_ insieme per creare nuovi modelli. Ad
+esempio, possiamo costruire una funzione `timeout` con i blocchi _async_ che
+abbiamo già. Quando abbiamo finito, il risultato sarà un altro blocco di
+costruzione che potremmo usare per creare ancora più astrazioni _async_.
 
 Il Listato 17-18 mostra come ci aspettiamo che funzioni questo `timeout` con una
-_future_ lenta.
+_future_ `lento`.
 
-<Listing number="17-18" file-name="src/main.rs" caption="Utilizzo del nostro immaginato `timeout` per eseguire un’operazione lenta con un limite di tempo">
+<Listing number="17-18" file-name="src/main.rs" caption="Utilizzo del nostro `timeout` per eseguire un’operazione lenta con un limite di tempo">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-18/src/main.rs:here}}
@@ -181,7 +181,7 @@ Il Listato 17-19 mostra questa dichiarazione.
 
 <!-- Non testato, perché scritto intenzionalmente per non compoilarsi. -->
 
-<Listing number="17-19" file-name="src/main.rs" caption="Definire la firma di `timeout`">
+<Listing number="17-19" file-name="src/main.rs" caption="Definizione della firma di `timeout`">
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-19/src/main.rs:declaration}}
@@ -198,7 +198,7 @@ chiamante passa.
 Nel Listato 17-20, implementiamo `timeout` facendo il _match_ sul risultato
 dell’attesa di `trpl::select`.
 
-<Listing number="17-20" file-name="src/main.rs" caption="Definire `timeout` con `select` e `sleep`">
+<Listing number="17-20" file-name="src/main.rs" caption="Definizione di `timeout` con `select` e `sleep`">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-20/src/main.rs:implementation}}

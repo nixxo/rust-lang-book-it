@@ -12,12 +12,13 @@ senza dover specificare in anticipo l’ordine e il modo esatto in cui ogni part
 di codice dovrebbe essere eseguita. La programmazione asincrona è un’astrazione
 che ci permette di esprimere il nostro codice in termini di potenziali punti di
 pausa e risultati finali, occupandosi per noi dei dettagli di coordinamento.
+
 Questo capitolo espande quanto spiegato nel Capitolo 16 sull’uso dei _thread_
 per parallelismo e concorrenza, introducendo un approccio alternativo alla
-scrittura del codice: i _Future_ , gli _Stream_, la sintassi `async` e `await`,
-ci consente di esprimere il modo in cui un’operazione possa essere asincrona, e
-_crate_ di terze parti che implementano _runtime_ asincrone: codice che gestisce
-e coordina l’esecuzione di operazioni asincrone.
+scrittura del codice: le _Future_ , gli _Stream_, la sintassi `async` e `await`
+che ci consente di esprimere il modo in cui un’operazione possa essere
+asincrona, e _crate_ di terze parti che implementano _runtime_ asincrone: codice
+che gestisce e coordina l’esecuzione di operazioni asincrone.
 
 Consideriamo un esempio. Immagina di esportare un video che hai creato di una
 celebrazione familiare, un’operazione che potrebbe durare da alcuni minuti a
@@ -82,7 +83,7 @@ Proprio questo è ciò che l’astrazione _async_ di Rust ci offre. In questo
 capitolo, imparerai tutto su _async_ mentre affronteremo i seguenti argomenti:
 
 - Come usare la sintassi `async` e `await` di Rust ed eseguire funzioni
-  asincrone
+  asincrone con un _runtime_
 - Come usare il modello _async_ per risolvere alcune delle sfide che abbiamo
   esaminato nel Capitolo 16
 - Come _multi-threading_ e _async_ forniscono soluzioni complementari, che in

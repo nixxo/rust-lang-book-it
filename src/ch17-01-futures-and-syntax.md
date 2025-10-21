@@ -37,11 +37,11 @@ fine del capitolo e approfondiremo come funziona, ma questi dettagli sono
 sufficienti per procedere.
 
 Tutto questo potrebbe sembrare un po' astratto, quindi scriviamo il nostro primo
-programma _async_: un piccolo _web scraper_ (_estrattore info da pagine web_).
-Passeremo due URL dalla riga di comando, li recupereremo contemporaneamente e
-restituiremo il risultato di quello che finisce per primo. Questo esempio avrà
-parecchia nuova sintassi, ma non preoccuparti, spiegheremo tutto ciò che serve
-sapere man mano che procediamo.
+programma _async_: un piccolo _web scraper_ (_estrattore di informazioni da
+pagine web_). Passeremo due URL dalla riga di comando, li recupereremo
+contemporaneamente e restituiremo il risultato di quello che finisce per primo.
+Questo esempio avrà parecchia nuova sintassi, ma non preoccuparti, spiegheremo
+tutto ciò che serve sapere man mano che procediamo.
 
 ## Il Nostro Primo Programma _Async_
 
@@ -50,9 +50,9 @@ piuttosto che sulla gestione di parti dell’ecosistema, abbiamo creato il _crat
 `trpl` (`trpl` è abbreviazione di "**T**he **R**ust **P**rogramming
 **L**anguage"). Riesporta tutti i _type_, i _trait_ e le funzioni di cui avrai
 bisogno, principalmente dai _crate_ [`futures`][futures-crate]<!-- ignore --> e
-[`tokio`][tokio]<!-- ignore -->. Il _crate_ `futures` è la sede ufficiale per la
-sperimentazione Rust del codice _async_, ed è in realtà dove il _trait_ `Future`
-è stato originariamente progettato. _Tokio_ è il _runtime_ _async_ più
+[`tokio`][tokio]<!-- ignore -->. Il _crate_ `futures` è una sede ufficiale per
+la sperimentazione Rust del codice _async_, ed è in realtà dove il _trait_
+`Future` è stato originariamente progettato. _Tokio_ è il _runtime_ _async_ più
 utilizzato in Rust oggi, specialmente per applicazioni web. Ci sono altri ottimi
 _runtime_ là fuori, e potrebbero essere più adatti ai tuoi scopi. Usiamo il
 _crate_ `tokio` come base per `trpl` perché è ben testato e ampiamente
@@ -62,7 +62,7 @@ In alcuni casi, `trpl` rinomina o incapsula le API originali per mantenerti
 concentrato sui dettagli rilevanti per questo capitolo. Se vuoi capire cosa fa
 il _crate_, ti incoraggiamo a controllare [il suo codice
 sorgente][crate-source]. Sarai in grado di vedere da quale _crate_ proviene ogni
-riesportazione, e abbiamo lasciato commenti esaurienti che spiegano cosa fa il
+riesportazione, e abbiamo lasciato commenti esaustivi che spiegano cosa fa il
 _crate_.
 
 Crea un nuovo progetto binario chiamato `hello-async` e aggiungi il _crate_
@@ -105,7 +105,7 @@ essere consegnata separatamente dal corpo della risposta. Soprattutto se il
 corpo è molto grande, può volerci del tempo perché arrivi tutto. Poiché dobbiamo
 aspettare l’_intera_ risposta, anche il metodo `text` è asincrono.
 
-Dobbiamo esplicitamente attendere entrambi queste _future_, perché le _future_
+Dobbiamo esplicitamente attendere entrambe queste _future_, perché le _future_
 in Rust sono _lazy_ (_pigre_): non fanno nulla finché non le chiedi di farlo con
 la parola chiave `await`. (In effetti, Rust mostrerà un avviso del compilatore
 se non usi una _future_.) Questo potrebbe ricordarti la discussione sugli
@@ -390,10 +390,11 @@ enum Either<A, B> {
 }
 ```
 
-La funzione `select` restituisce `Left` con l’output dalla prima _future_ che
-finisce, o `Right` con l’output della seconda _future_ se quella finisce per
-prima. Questo corrisponde all’ordine in cui appaiono gli argomenti quando si
-chiama la funzione: il primo argomento è a sinistra del secondo argomento.
+La funzione `select` restituisce `Left` con l’output dalla _future_ del primo
+argomento se è la più veloce a terminare, o `Right` con l’output della _future_
+del secondo argomento se è invece quella che è stata più veloce. Questo
+corrisponde all’ordine in cui appaiono gli argomenti quando si chiama la
+funzione: il primo argomento è a sinistra del secondo argomento.
 
 Aggiorniamo anche `titolo_pagina` per restituire lo stesso URL passato. In modo
 che, se la pagina che restituisce per prima non ha un `<title>` che possiamo

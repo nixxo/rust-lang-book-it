@@ -45,7 +45,7 @@ pub enum Poll<T> {
 ```
 
 Questo _type_ `Poll` è simile a un `Option`. Ha una variante che ha un valore,
-`Ready(T)`, e una che non ce l’ha, `Pending` (_in attesa_). Tuttavia, `Poll`
+`Ready(T)`, e una che non ce l’ha, `Pending` (_occupata_). Tuttavia, `Poll`
 significa qualcosa di molto diverso da `Option`! La variante `Pending` indica
 che la _future_ ha ancora lavoro da fare, quindi il chiamante dovrà controllare
 di nuovo più tardi. La variante `Ready` indica che la `Future` ha finito il suo
@@ -59,9 +59,9 @@ lavoro e il valore `T` è disponibile.
 > documentazione. Questo è simile a come si comporta `Iterator::next`.
 
 Quando vedi codice che usa `await`, Rust lo compila dietro le quinte in codice
-che chiama `poll`. Se guardi indietro al Listato 17-4, dove abbiamo stampato il
-titolo della pagina per un singolo URL, Rust lo compila in qualcosa di simile
-(anche se non esattamente) a questo:
+che chiama `poll`. Ritornando per un attimo al Listato 17-4, dove abbiamo
+stampato il titolo della pagina per un singolo URL, Rust lo compila in qualcosa
+di simile (anche se non esattamente) a questo:
 
 ```rust,ignore
 match titolo_pagina(url).poll() {
@@ -106,7 +106,7 @@ Nella sezione [“Inviare Dati Tra Due _Task_ Usando il Passaggio di
 Messaggi”][message-passing]<!-- ignore -->, abbiamo descritto l’attesa su
 `rx.recv`. La chiamata `recv` restituisce una _future_, e attendere la _future_
 la richiama. Abbiamo notato che un _runtime_ metterà in pausa la _future_ fino a
-quando non è pronta con `Some(messaggio)` o `None` quando il canale si chiude.
+quando è pronta o con `Some(messaggio)` o con `None` quando il canale si chiude.
 Ora che comprendi meglio il _trait_ `Future`, e specificamente `Future::poll`,
 possiamo vedere come funziona. Il _runtime_ sa che la _future_ non è pronta
 quando restituisce `Poll::Pending`. Al contrario, il _runtime_ sa che la
@@ -157,12 +157,11 @@ parte rilevante dei messaggi di errore:
 {{#include ../listings/ch17-async-await/listing-17-23/output.txt:40:47}}
 ```
 
-La nota in questo messaggio di errore ci dice non solo che dobbiamo usare la
-macro `pin!` per fissare i valori, il che significa incapsularli nel _type_
-`Pin` che garantisce il fatto che questi valori non vengano spostati nella
-memoria. Il messaggio di errore dice che il _pinning_ è richiesto perché `dyn
-Future<Output = ()>` deve implementare il _trait_ `Unpin`, cosa che al momento
-non fa.
+La nota in questo messaggio di errore ci dice che dovremmo usare la macro `pin!`
+per _fissare_ i valori, il che significa incapsularli nel _type_ `Pin` che
+garantisce il fatto che questi valori non vengano spostati nella memoria. Il
+messaggio di errore dice che il _pinning_ è richiesto perché `dyn Future<Output
+= ()>` deve implementare il _trait_ `Unpin`, cosa che al momento non fa.
 
 La funzione `trpl::join_all` restituisce una _struct_ chiamata `JoinAll`. Quella
 _struct_ è generica su un _type_ `F`, che è vincolato a implementare il _trait_
@@ -171,8 +170,8 @@ la _future_. Ecco perché non abbiamo bisogno di usare `pin!` ovunque vogliamo
 attendere le _future_.
 
 Tuttavia, qui non stiamo attendendo direttamente una _future_. Invece,
-costruiamo un nuova _future_, JoinAll, passando una collezione di _future_ alla
-funzione `join_all`. La firma per `join_all` richiede che i _type_ degli
+costruiamo un nuova _future_, `JoinAll`, passando una collezione di _future_
+alla funzione `join_all`. La firma per `join_all` richiede che i _type_ degli
 elementi nella collezione implementino tutti il _trait_ `Future`, e `Box<T>`
 implementa `Future` solo se il `T` che incapsula è una _future_ che implementa
 il _trait_ `Unpin`.
@@ -203,23 +202,23 @@ ha un’annotazione di _type_. Un’annotazione di _type_ per `self` funziona co
 le annotazioni di _type_ per altri parametri di funzione ma con due differenze
 chiave:
 
-- Indica a Rust quale _type_ deve essere `self` affinché il metodo possa essere
-  chiamato.
+- Indica a Rust di quale _type_ deve essere `self` affinché il metodo possa
+  essere chiamato.
 - Non può essere semplicemente qualsiasi _type_. È limitato al _type_ su cui il
   metodo è implementato, a un _reference_ o a un puntatore intelligente a quel
   _type_, o a un `Pin` che incapsula un _reference_ a quel _type_.
 
-Vedremo di più su questa sintassi nel [Capitolo 18][ch-18]<!-- ignore -->. Per
-ora, è sufficiente sapere che se vogliamo interrogare una _future_ per
+Esploreremo maggiormente questa sintassi nel [Capitolo 18][ch-18]<!-- ignore
+-->. Per ora, è sufficiente sapere che se vogliamo interrogare una _future_ per
 controllare se è `Pending` o `Ready(Output)`, abbiamo bisogno di un _reference_
 mutabile al _type_ incapsulato in `Pin`.
 
 `Pin` è un _wrapper_ per _type_ simili a puntatori come `&`, `&mut`, `Box` e
 `Rc`. (Tecnicamente, `Pin` funziona con _type_ che implementano i _trait_
 `Deref` o `DerefMut`, ma questo è effettivamente equivalente a lavorare solo con
-_reference_ e puntatori intelligenti.) `Pin` non è un puntatore e non ha alcun
-comportamento proprio, come invece `Rc` e `Arc` fanno con il conteggio dei
-_reference_; è puramente uno strumento che il compilatore può utilizzare per
+_reference_ e puntatori intelligenti.) `Pin` di per sé non è un puntatore e non
+ha alcun comportamento proprio, come invece `Rc` e `Arc` fanno con il conteggio
+dei _reference_; è puramente uno strumento che il compilatore può utilizzare per
 imporre vincoli sull’uso dei puntatori.
 
 Ricordando che `await` è implementato in termini di chiamate a `poll`, iniziamo
@@ -235,12 +234,12 @@ inclusi il prestito e la _ownership_. Per far funzionare tutto ciò, Rust guarda
 quali dati sono necessari tra un punto di attesa e l’altro, o tra il punto di
 attesa e la fine del blocco _async_. Crea quindi una variante corrispondente
 nella macchina a stati compilata. Ogni variante ottiene l’accesso di cui ha
-bisogno ai dati che verranno utilizzati in quella sezione del codice sorgente,
-sia prendendo possesso di quei dati sia ottenendo un _reference_ mutabile o
-immutabile ad essi.
+bisogno ai dati che verranno utilizzati in quella sezione del codice sorgente, o
+prendendo possesso di quei dati o ottenendo un _reference_ mutabile o immutabile
+ad essi.
 
 Finora, tutto bene: se commettiamo errori riguardo alla _ownership_ o ai
-riferimenti in un dato blocco _async_, il _borrow checker_ ce lo dirà. Quando
+_reference_ in un dato blocco _async_, il _borrow checker_ ce lo dirà. Quando
 vogliamo spostare la _future_ che corrisponde a quel blocco, come spostarla in
 un `Vec` da passare a `join_all`, le cose diventano più complicate.
 
@@ -248,9 +247,9 @@ Quando spostiamo una _future_, sia mettendola in una struttura dati da
 utilizzare come iteratore con `join_all` o restituendola da una funzione,
 significa effettivamente spostare la macchina a stati che Rust crea per noi. E a
 differenza della maggior parte degli altri _type_ in Rust, le _future_ che Rust
-crea per i blocchi _async_ possono finire con riferimenti a se stesse nei campi
-di una data variante, come mostrato nell’illustrazione semplificata nella Figura
-17-4.
+crea per i blocchi _async_ può capitare abbiano riferimenti a se stesse nei
+campi di una data variante, come mostrato nell’illustrazione semplificata nella
+Figura 17-4.
 
 <img src="img/trpl17-04.svg" class="center" alt="Una tabella a colonna singola e
 tre righe che rappresenta una `future`, fut1, che ha valori di dati 0 e 1 nelle
@@ -283,16 +282,16 @@ di dato auto-referenziale</span>
 
 Teoricamente, il compilatore Rust potrebbe cercare di aggiornare ogni
 riferimento a un oggetto ogni volta che viene spostato, ma ciò potrebbe
-aggiungere un notevole sovraccarico di prestazioni, specialmente se un’intera
-rete di riferimenti deve essere aggiornata. Se potessimo invece assicurarci che
-la struttura dati in questione _non si muova in memoria_, non dovremmo
-aggiornare alcun riferimento. Questo è esattamente a ciò che serve il _borrow
-checker_ di Rust: nel codice sicuro, impedisce di spostare qualsiasi elemento
-con un riferimento attivo.
+aggiungere un notevole sovraccarico di operazioni impattando le prestazioni,
+specialmente se un’intera rete di riferimenti deve essere aggiornata. Se
+potessimo invece assicurarci che la struttura dati in questione _non si muova in
+memoria_, non dovremmo aggiornare alcun riferimento. Questo è esattamente a ciò
+che serve il _borrow checker_ di Rust: nel codice sicuro, impedisce di spostare
+qualsiasi elemento con un riferimento attivo.
 
 `Pin` si basa su questo per darci la garanzia esatta di cui abbiamo bisogno.
-Quando fissiamo un valore incapsulando un puntatore a quel valore in `Pin`, non
-può più muoversi. Quindi, se hai `Pin<Box<QualcheType>>`, in realtà fissi il
+Quando _fissiamo_ un valore incapsulando un puntatore a quel valore in `Pin`,
+non può più muoversi. Quindi, se hai `Pin<Box<QualcheType>>`, in realtà fissi il
 valore `QualcheType`, _non_ il puntatore `Box`. La Figura 17-6 illustra questo
 processo.
 
@@ -309,7 +308,7 @@ una `future` che è auto-referenziale. Una freccia esce dalla scatola etichettat
 scatola “pinned” nella tabella “fut”." />
 
 <span class="caption">Figura 17-6: _Pinning_ di una `Box` che punta a un _type_
-di _future_ auto-referenziale</span>
+_future_ auto-referenziale</span>
 
 In effetti, il puntatore `Box` può ancora muoversi liberamente. Ricorda: ci
 interessa assicurarci che i dati a cui si fa riferimento rimangano al loro
@@ -327,7 +326,7 @@ e “b2”, “b1” è grigia, e la freccia da “Pin” passa attraverso “b2
 “b1”, indicando che il puntatore si è spostato da “b1” a “b2”, ma i dati in
 “pinned” non si sono mossi." />
 
-<span class="caption">Figura 17-7: Spostare una `Box` che punta a un _type_ di
+<span class="caption">Figura 17-7: Spostare una `Box` che punta a un _type_
 _future_ auto-referenziale</span>
 
 Tuttavia, la maggior parte dei _type_ è perfettamente sicura da spostare, anche
@@ -365,16 +364,16 @@ _importa solo_ quando stai usando un puntatore fissato a quel _type_ come
 
 Per andare nel concreto, pensa a una `String`: ha una lunghezza e i caratteri
 Unicode che la compongono. Possiamo incapsulare una `String` in `Pin`, come
-visto nella Figura 17-8. Tuttavia, `String` implementa automaticamente `Unpin`,
+vedi nella Figura 17-8. Tuttavia, `String` implementa automaticamente `Unpin`,
 così come la maggior parte degli altri _type_ in Rust.
 
 <img src="img/trpl17-08.svg" class="center" alt="Un contenitore etichettato
 “Pin” sulla sinistra con una feccia che parte da esso e punta ad un contenitore
 etichettato “String” sulla destra. Il contenitore “String” contiene il dato
 5usize, che rappresenta la lunghezza della stringa, e le lettere “h”, “e”, “l”,
-“l” e “o” rappresentanti il caratteri della stringa “hello” memorizzata in
-questa istanza di String. Un rettangolo punteggiato circonda il contenitore
-“String” e la sua etichetta, ma non il contenitore “Pin”." />
+“l” e “o” rappresentanti i caratteri della stringa “hello” memorizzata in questa
+istanza di String. Un rettangolo tratteggiato circonda il contenitore “String” e
+la sua etichetta, ma non il contenitore “Pin”." />
 
 <span class="caption">Figura 17-8: _Pinning_ di una `String`; la linea
 tratteggiata indica che la `String` implementa il _trait_ `Unpin` e quindi non è
@@ -390,8 +389,8 @@ spostare. È proprio per questo che implementa `Unpin` piuttosto che `!Unpin`.
 dell'esempio precedente, ora etichettata “s1” e sbiadita. Il contenitore “Pin”
 dell'esempio precedente ora punta ad una differente istanza di String,
 etichettata “s2”, valida, con lunghezza 7usize, e contenente i caratteri della
-stringa “goodbye”. s2 è circondata da un rettangolo puntinato perché, anch'essa,
-implementa il trait Unpin." />
+stringa “goodbye”. s2 è circondata da un rettangolo tratteggiato perché,
+anch'essa, implementa il trait Unpin." />
 
 <span class="caption">Figura 17-9: Sostituzione della `String` con un’altra
 `String` completamente diversa in memoria</span>
@@ -400,7 +399,7 @@ Ora sappiamo abbastanza per comprendere gli errori segnalati per quella chiamata
 a `join_all` dal Listato 17-23. Inizialmente abbiamo cercato di spostare le
 _future_ prodotte dai blocchi _async_ in un `Vec<Box<dyn Future<Output = ()>>>`,
 ma come abbiamo visto, quelle _future_ possono avere riferimenti interni, quindi
-non implementano automaticamente `Unpin`. Una volta _fissate_, e poi possiamo
+non implementano automaticamente `Unpin`. Una volta _fissate_, poi possiamo
 passare il risultante _type_ `Pin` nel `Vec`, certi che i dati sottostanti nelle
 _future_ _non_ verranno spostati. Il Listato 17-24 mostra come sistemare il
 codice chiamando la macro `pin!` dove ognuna delle tre future è definita e
@@ -418,8 +417,8 @@ Questo esempio ora si compila ed esegue, e possiamo aggiungere o togliere
 _future_ dal vettore durante l’esecuzione aspettandole tutte.
 
 `Pin` e `Unpin` sono principalmente importanti per costruire librerie di basso
-livello, o quando stai costruendo un _runtime_ stesso, piuttosto che per il
-codice Rust quotidiano. Tuttavia, quando vedi questi _trait_ nei messaggi di
+livello, o quando stai costruendo un vero e proprio _runtime_, piuttosto che per
+il codice Rust quotidiano. Tuttavia, quando vedi questo _trait_ nei messaggi di
 errore, ora avrai un’idea migliore di come correggere il tuo codice!
 
 > Nota: Questa combinazione di `Pin` e `Unpin` rende possibile implementare in
@@ -439,7 +438,7 @@ errore, ora avrai un’idea migliore di come correggere il tuo codice!
 
 ### Il _Trait_ `Stream`
 
-Ora che hai una comprensione più profonda dei _trait_ `Future`, `Pin` e `Unpin`,
+Ora che hai una comprensione più profonda dei _trait_ `Future` e `Unpin`,
 possiamo rivolgere la nostra attenzione al _trait_ `Stream`. Come hai appreso in
 precedenza nel capitolo, gli _stream_ sono simili agli iteratori asincroni. A
 differenza di `Iterator` e `Future`, tuttavia, `Stream` non ha una definizione
@@ -447,12 +446,12 @@ nella libreria standard al momento della scrittura, ma c’è _una_ definizione
 molto comune dal _crate_ `futures` utilizzata in tutto l’ecosistema.
 
 Rivediamo le definizioni dei _trait_ `Iterator` e `Future` prima di vedere come
-un _trait_ `Stream` potrebbe unirli. Da `Iterator`, abbiamo l’idea di una
-sequenza: il suo metodo `next` fornisce un `Option<Self::Item>`. Da `Future`,
-abbiamo l’idea di prontezza nel tempo: il suo metodo `poll` fornisce un
-`Poll<Self::Output>`. Per rappresentare una sequenza di elementi che diventano
-pronti nel tempo, definiamo un _trait_ `Stream` che mette insieme queste
-caratteristiche:
+un _trait_ `Stream` potrebbe unirne le caratteristiche. Da `Iterator`, abbiamo
+l’idea di una sequenza: il suo metodo `next` fornisce un `Option<Self::Item>`.
+Da `Future`, abbiamo l’idea di prontezza nel tempo: il suo metodo `poll`
+fornisce un `Poll<Self::Output>`. Per rappresentare una sequenza di elementi che
+diventano pronti nel tempo, definiamo un _trait_ `Stream` che mette insieme
+queste caratteristiche:
 
 ```rust
 use std::pin::Pin;
@@ -470,8 +469,8 @@ trait Stream {
 
 Il _trait_ `Stream` definisce un _type_ associato chiamato `Item` per il _type_
 degli elementi prodotti dallo _stream_. Questo è simile a `Iterator`, dove
-possono esserci da zero a molti elementi, e a differenza di `Future`, dove c’è
-sempre un singolo `Output`, anche se è il _type_ unitario `()`.
+possono esserci da zero a molti elementi, e diverso da `Future`, dove c’è sempre
+un singolo `Output`, anche se è il _type_ unitario `()`.
 
 `Stream` definisce anche un metodo per ottenere quegli elementi. Lo chiamiamo
 `poll_next`, per chiarire che interroga nello stesso modo in cui fa
@@ -536,6 +535,7 @@ _trait_. Per concludere, vedremo come _future_ (inclusi gli _stream_), _task_ e
 _thread_ si integrano tutti insieme!
 
 [message-passing]: ch17-02-concurrency-with-async.html#inviare-dati-tra-due-task-usando-il-passaggio-di-messaggi
+[dyn]: ch12-03-improving-error-handling-and-modularity.html#restituire-errori-dalla-funzione-esegui
 [ch-18]: ch18-00-oop.html
 [async-book]: https://rust-lang.github.io/async-book/
 [under-the-hood]: https://rust-lang.github.io/async-book/02_execution/01_chapter.html
