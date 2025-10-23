@@ -15,8 +15,8 @@ _pacchetto_ cresce, puoi estrarne parti in _crate_ separate che diventeranno
 dipendenze esterne. Questo capitolo copre tutte queste tecniche. Per progetti
 molto grandi che comprendono un insieme di _pacchetti_ interconnessi che
 evolvono insieme, Cargo fornisce degli _spazi di lavoro_ (_workspace_), che
-tratteremo in [“Cargo Workspace”](ch14-03-cargo-workspaces.html)<!-- ignore -->
-nel Capitolo 14.
+tratteremo nella sezione [“Cargo Workspace”](ch14-03-cargo-workspaces.html)<!--
+ignore --> del Capitolo 14.
 
 Discuteremo anche l’incapsulamento dei dettagli di implementazione, che ti
 consente di riutilizzare il codice a un livello più alto: una volta implementata

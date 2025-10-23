@@ -221,13 +221,14 @@ _tests/comune/mod.rs_. La cartella del progetto ora ha questo aspetto:
 ```
 
 Questa è la vecchia convenzione di denominazione comunque compresa da Rust, di
-cui abbiamo parlato in [“Percorsi di File Alternativi”][alt-paths]<!-- ignore
---> nel Capitolo 7. Nominare il file in questo modo indica a Rust di non
-trattare il modulo `comune` come un file di test di integrazione. Quando
-spostiamo il codice della funzione `inizializzazione` in _tests/comune/mod.rs_ e
-cancelliamo il file _tests/comune.rs_, la sezione nell’output del test non
-apparirà più. I file nelle sottocartelle della cartella _tests_ non vengono
-compilati come _crate_ separati né hanno sezioni nell’output del test.
+cui abbiamo parlato nella sezione [“Percorsi di File
+Alternativi”][alt-paths]<!-- ignore --> del Capitolo 7. Nominare il file in
+questo modo indica a Rust di non trattare il modulo `comune` come un file di
+test di integrazione. Quando spostiamo il codice della funzione
+`inizializzazione` in _tests/comune/mod.rs_ e cancelliamo il file
+_tests/comune.rs_, la sezione nell’output del test non apparirà più. I file
+nelle sottocartelle della cartella _tests_ non vengono compilati come _crate_
+separati né hanno sezioni nell’output del test.
 
 Dopo aver creato _tests/comune/mod.rs_, possiamo utilizzarlo da qualsiasi file
 di test di integrazione come modulo. Ecco un esempio di chiamata della funzione

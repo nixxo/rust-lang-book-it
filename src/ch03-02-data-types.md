@@ -107,8 +107,8 @@ _type integer_ di default è `i32`. La situazione principale in cui puoi usare
 > che fanno sì che il tuo programma vada in _panico_ (_panic_ d’ora in poi) in
 > fase di esecuzione se si verifica questo comportamento. Rust usa il termine
 > _panic_ quando un programma termina con un errore; parleremo in modo più
-> approfondito di _panic_ nella sezione [“Errori irreversibili con
-> `panic!`”][panic]<!-- ignore --> nel Capitolo 9.
+> approfondito di _panic_ nella sezione [“Errori Irreversibili con
+> `panic!`”][panic]<!-- ignore --> del Capitolo 9.
 >
 > Quando si compila in modalità release con il flag `--release`, Rust _non_
 > include i controlli per l’overflow degli integer che causano il _panic_.
@@ -207,8 +207,8 @@ valori scalari Unicode vanno da `U+0000` a `U+D7FF` e da `U+E000` a `U+10FFFF`
 inclusi. Tuttavia, un “carattere” non è un concetto vero e proprio in Unicode,
 quindi quello che tu potresti concettualmente pensare essere un “carattere”
 potrebbe non corrispondere a cosa sia effettivamente un `char` in Rust.
-Discuteremo questo argomento in dettaglio in [“Memorizzare testo codificato
-UTF-8 con le stringhe”][strings]<!-- ignore --> nel Capitolo 8.
+Discuteremo questo argomento in dettaglio nella sezione [“Memorizzare Testo
+Codificato UTF-8 con le Stringhe”][strings]<!-- ignore --> del Capitolo 8.
 
 ### I _Type_ Composti
 

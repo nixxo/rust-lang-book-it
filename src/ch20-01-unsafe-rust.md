@@ -406,12 +406,12 @@ _slice_ di stringa come valore.
 
 </Listing>
 
-Le variabili statiche sono simili alle costanti, di cui abbiamo parlato in
-[“Dichiarare le Costanti”][constants]<!-- ignore --> nel Capitolo 3. I nomi
-delle variabili statiche sono, per convenzione, in `SNAKE_CASE_MAIUSCOLO`. Le
-variabili statiche possono contenere solo _reference_ con longevità `'static`,
-quindi il compilatore Rust può ricavarne la _lifetime_ e non serve annotarla
-esplicitamente. Accedere a una variabile statica immutabile è sicuro.
+Le variabili statiche sono simili alle costanti, di cui abbiamo parlato nella
+sezione [“Dichiarare le Costanti”][constants]<!-- ignore --> del Capitolo 3. I
+nomi delle variabili statiche sono, per convenzione, in `SNAKE_CASE_MAIUSCOLO`.
+Le variabili statiche possono contenere solo _reference_ con longevità
+`'static`, quindi il compilatore Rust può ricavarne la _lifetime_ e non serve
+annotarla esplicitamente. Accedere a una variabile statica immutabile è sicuro.
 
 Una sottile differenza tra costanti e variabili statiche immutabili è che i
 valori in una variabile statica hanno un indirizzo fisso in memoria. Usare quel
@@ -480,8 +480,8 @@ Usando `unsafe impl` promettiamo che rispetteremo le proprietà che il
 compilatore non può verificare.
 
 Per esempio, ricordiamo i _trait_ marcatori `Send` e `Sync` di cui abbiamo
-parlato in [“Concorrenza Estensibile con `Send` e
-`Sync`”][extensible-concurrency]<!-- ignore --> nel Capitolo 16: il compilatore
+parlato nella sezione [“Concorrenza Estensibile con `Send` e
+`Sync`”][extensible-concurrency]<!-- ignore --> del Capitolo 16: il compilatore
 implementa automaticamente questi _trait_ se i nostri _type_ sono composti solo
 da _type_ che implementano `Send` e `Sync`. Se implementiamo un _type_ che
 contiene un _type_ che non implementa `Send` o `Sync`, come i puntatori grezzi

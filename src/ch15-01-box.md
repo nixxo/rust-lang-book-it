@@ -27,7 +27,7 @@ quantità di dati nell’_heap_ in una _box_. Quindi, solo la piccola quantità 
 dati del puntatore viene copiata sullo _stack_, mentre i dati a cui fa
 riferimento rimangono in un unico punto dell’_heap_. Il terzo caso è noto come
 _oggetto_ _trait_ (_trait object_), e la sezione [“Usare gli Oggetti _Trait_ per
-Astrarre Comportamenti Condivisi”][trait-objects]<!-- ignore --> nel Capitolo 18
+Astrarre Comportamenti Condivisi”][trait-objects]<!-- ignore --> del Capitolo 18
 è dedicata specificamente a questo argomento. Quindi, ciò che imparerai qui lo
 applicherai di nuovo in quella sezione!
 

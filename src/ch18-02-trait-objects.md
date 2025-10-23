@@ -43,8 +43,8 @@ l’esecuzione i metodi _trait_ su quel _type_. Creiamo un oggetto _trait_
 specificando un puntatore, come un _reference_ `&` o uno puntatore intelligente
 `Box<T>`, poi la parola chiave `dyn` e infine specifichiamo il _trait_
 rilevante. (Parleremo del motivo per cui gli oggetti _trait_ devono usare un
-puntatore in [“_Type_ a Dimensione Dinamica e il _Trait_
-`Sized`”][dynamically-sized]<!-- ignore --> nel Capitolo 20.) Possiamo usare
+puntatore nella sezione [“_Type_ a Dimensione Dinamica e il _Trait_
+`Sized`”][dynamically-sized]<!-- ignore --> del Capitolo 20.) Possiamo usare
 oggetti _trait_ al posto di _type_ generici o concreti. Ovunque usiamo un
 oggetto _trait_, il sistema dei _type_ di Rust garantisce durante la
 compilazione che ogni valore in quel contesto implementi il _trait_ dell’oggetto
@@ -216,8 +216,8 @@ chiami `disegna` anche su quel _type_.
 
 ### Eseguire il Dynamic Dispatch
 
-Come detto in [“Prestazioni del Codice utilizzando _Type_
-Generici”][performance-of-code-using-generics]<!-- ignore --> nel Capitolo 10
+Come detto nella sezione [“Prestazioni del Codice utilizzando _Type_
+Generici”][performance-of-code-using-generics]<!-- ignore --> del Capitolo 10
 sulla monomorfizzazione eseguita dal compilatore per i _type_ generici: il
 compilatore genera implementazioni non generiche di funzioni e metodi per ogni
 _type_ concreto usato al posto del _type_ generico. Il codice che risulta dalla

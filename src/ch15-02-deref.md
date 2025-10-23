@@ -132,13 +132,13 @@ de-referenziazione con l’operatore `*`, implementiamo il _trait_ `Deref`.
 
 ### Implementare il _Trait_ `Deref`
 
-Come discusso in [“Implementare un _Trait_ su un _Type_”][impl-trait]<!-- ignore
---> nel Capitolo 10, per implementare un _trait_ dobbiamo fornire le
-implementazioni per i metodi richiesti dal _trait_. Il _trait_ `Deref`, fornito
-dalla libreria standard, richiede l’implementazione di un metodo chiamato
-`deref` che prende in prestito `self` e restituisce un _reference_ ai dati
-interni. Il Listato 15-10 contiene un’implementazione di `Deref` da aggiungere
-alla definizione di `MioBox<T>`.
+Come discusso nella sezione [“Implementare un _Trait_ su un
+_Type_”][impl-trait]<!-- ignore --> del Capitolo 10, per implementare un _trait_
+dobbiamo fornire le implementazioni per i metodi richiesti dal _trait_. Il
+_trait_ `Deref`, fornito dalla libreria standard, richiede l’implementazione di
+un metodo chiamato `deref` che prende in prestito `self` e restituisce un
+_reference_ ai dati interni. Il Listato 15-10 contiene un’implementazione di
+`Deref` da aggiungere alla definizione di `MioBox<T>`.
 
 <Listing number="15-10" file-name="src/main.rs" caption="Implementazione di `Deref` su `MioBox<T>`">
 
@@ -155,10 +155,10 @@ preoccuparsene; li tratteremo più dettagliatamente nel Capitolo 20.
 
 Nel corpo del metodo `deref` inseriamo `&self.0` in modo che `deref` restituisca
 un _reference_ al valore a cui vogliamo accedere con l’operatore `*`; come detto
-in [“Creare _Type_ Diversi con _Struct_ Tupla ”][tuple-structs]<!-- ignore -->
-nel Capitolo 5, `.0` accede al primo valore in una _struct_ tupla. La funzione
-`main` nel Listato 15-10 che chiama `*` sul valore `MioBox<T>` ora si compila e
-le asserzioni vengono verificate!
+nella sezione [“Creare _Type_ Diversi con _Struct_ Tupla ”][tuple-structs]<!--
+ignore --> del Capitolo 5, `.0` accede al primo valore in una _struct_ tupla. La
+funzione `main` nel Listato 15-10 che chiama `*` sul valore `MioBox<T>` ora si
+compila e le asserzioni vengono verificate!
 
 Senza il _trait_ `Deref`, il compilatore può de-referenziare solo i _reference_
 `&`. Il metodo `deref` consente al compilatore di accettare un valore di

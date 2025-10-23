@@ -6,8 +6,8 @@ facilmente interpretabile e a cui è possibile rispondere. Ad esempio, se si
 tenta di aprire un file e l’operazione fallisce perché il file non esiste,
 potrebbe essere opportuno crearlo anziché terminare il processo.
 
-Come menzionato in [“Gestire i potenziali errori con
-`Result`”][handle_failure]<!-- ignore --> nel Capitolo 2 l’_enum_ `Result` è
+Come menzionato nella sezione [“Gestire i potenziali errori con
+`Result`”][handle_failure]<!-- ignore --> del Capitolo 2, l’_enum_ `Result` è
 definito come avente due varianti, `Ok` ed `Err`, come segue:
 
 ```rust
@@ -518,16 +518,16 @@ di `main` in `Result<(), Box<dyn Error>>` e aggiunto un valore di ritorno
 
 </Listing>
 
-Il _type_ `Box<dyn Error>` è un _oggetto_ _trait_, di cui parleremo in [“Usare
-gli Oggetti _Trait_ per Astrarre Comportamenti Condivisi”][trait-objects]<!--
-ignore --> nel Capitolo 18. Per ora, puoi leggere `Box<dyn Error>` come
-“qualsiasi _type_ di errore”. L’utilizzo di `?` su un valore `Result` in una
-funzione `main` con il _type_ di errore `Box<dyn Error>` è consentito perché
-consente la restituzione anticipata di qualsiasi valore `Err`. Anche se il corpo
-di questa funzione `main` restituirà sempre e solo errori di _type_
-`std::io::Error`, specificando `Box<dyn Error>`, questa firma continuerà a
-essere corretta anche se al corpo di `main` viene aggiunto altro codice che
-restituisce altri errori.
+Il _type_ `Box<dyn Error>` è un _oggetto_ _trait_, di cui parleremo nella
+sezione [“Usare gli Oggetti _Trait_ per Astrarre Comportamenti
+Condivisi”][trait-objects]<!-- ignore --> del Capitolo 18. Per ora, puoi leggere
+`Box<dyn Error>` come “qualsiasi _type_ di errore”. L’utilizzo di `?` su un
+valore `Result` in una funzione `main` con il _type_ di errore `Box<dyn Error>`
+è consentito perché consente la restituzione anticipata di qualsiasi valore
+`Err`. Anche se il corpo di questa funzione `main` restituirà sempre e solo
+errori di _type_ `std::io::Error`, specificando `Box<dyn Error>`, questa firma
+continuerà a essere corretta anche se al corpo di `main` viene aggiunto altro
+codice che restituisce altri errori.
 
 Quando una funzione `main` restituisce `Result<(), E>`, l’eseguibile terminerà
 restituendo un valore di `0` se `main` restituisce `Ok(())` e uscirà con un

@@ -1,7 +1,7 @@
 ## _Trait_ Avanzati
 
-Abbiamo già visto i _trait_ in [“Definire il Comportamento Condiviso con i
-_Trait_”][traits] nel Capitolo 10, ma non abbiamo trattato i dettagli più
+Abbiamo già visto i _trait_ nella sezione [“Definire il Comportamento Condiviso
+con i _Trait_”][traits] del Capitolo 10, ma non abbiamo trattato i dettagli più
 avanzati. Ora che sai di più su Rust, possiamo mettere le mani in pasta in certi
 dettagli più complessi.
 
@@ -398,18 +398,19 @@ stamparlo con un contorno di asterischi.
 
 ### Implementare _Trait_ Esterni con il Modello _Newtype_
 
-In [“Implementare un _Trait_ su un _Type_”][implementing-a-trait-on-a-type]<!--
-ignore --> nel Capitolo 10 abbiamo parlato della _orphan rule_ che dice che
-possiamo implementare un _trait_ su un _type_ solo se il _trait_ o il _type_ (o
-entrambi) sono locali al _crate_. Si può aggirare questa restrizione usando il
-modello _newtype_, che consiste nel creare un nuovo _type_ come _struct_ tupla.
-(Ne abbiamo già parlato in [“Creare _Type_ Diversi con _Struct_
-Tupla”][tuple-structs]<!-- ignore --> del Capitolo 5.) La _struct_ tupla avrà un
-solo campo e sarà un “incapsulamento sottile” attorno al _type_ su cui vuoi
-implementare un _trait_. L’incapsulamento è locale al _crate_ e puoi
-implementare il _trait_ sull’incapsulatore. La parola _newtype_ deriva dal
-linguaggio Haskell. Non c’è alcuna penalità in prestazioni nell’uso di questo
-modello, e il _type_ dell’involucro viene eliso in fase di compilazione.
+Nella sezione [“Implementare un _Trait_ su un
+_Type_”][implementing-a-trait-on-a-type]<!-- ignore --> del Capitolo 10 abbiamo
+parlato della _orphan rule_ che dice che possiamo implementare un _trait_ su un
+_type_ solo se il _trait_ o il _type_ (o entrambi) sono locali al _crate_. Si
+può aggirare questa restrizione usando il modello _newtype_, che consiste nel
+creare un nuovo _type_ come _struct_ tupla. (Ne abbiamo già parlato in [“Creare
+_Type_ Diversi con _Struct_ Tupla”][tuple-structs]<!-- ignore --> del Capitolo
+5.) La _struct_ tupla avrà un solo campo e sarà un “incapsulamento sottile”
+attorno al _type_ su cui vuoi implementare un _trait_. L’incapsulamento è locale
+al _crate_ e puoi implementare il _trait_ sull’incapsulatore. La parola
+_newtype_ deriva dal linguaggio Haskell. Non c’è alcuna penalità in prestazioni
+nell’uso di questo modello, e il _type_ dell’involucro viene eliso in fase di
+compilazione.
 
 Per esempio, supponiamo di voler implementare `Display` su `Vec<T>`, cosa che la
 _orphan rule_ ci impedisce perché sia il _trait_ `Display` che il _type_

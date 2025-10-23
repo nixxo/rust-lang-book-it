@@ -338,11 +338,11 @@ e `c`, possano entrambe fare riferimento ad `a`, come abbiamo fatto nel Listato
 
 Dopo aver creato le liste in `a`, `b` e `c`, vogliamo aggiungere 10 al valore in
 `valore`. Lo facciamo chiamando `borrow_mut` su `valore`, che utilizza la
-funzione di de-referenziazione automatica di cui abbiamo parlato in [“Dov’è
-l’operatore `->`?”][wheres-the---operator]<!-- ignore --> nel Capitolo 5 per
-de-referenziare `Rc<T>` al valore interno `RefCell<T>`. Il metodo `borrow_mut`
-restituisce un puntatore intelligente `RefMut<T>`, su cui utilizziamo
-l’operatore di de-referenziazione e modifichiamo il valore interno.
+funzione di de-referenziazione automatica di cui abbiamo parlato nella sezione
+[“Dov’è l’operatore `->`?”][wheres-the---operator]<!-- ignore --> del Capitolo 5
+per de-referenziare `Rc<T>` al valore interno `RefCell<T>`. Il metodo
+`borrow_mut` restituisce un puntatore intelligente `RefMut<T>`, su cui
+utilizziamo l’operatore di de-referenziazione e modifichiamo il valore interno.
 
 Quando stampiamo `a`, `b` e `c`, possiamo vedere che hanno tutti il valore
 modificato di `15` anziché `5`:

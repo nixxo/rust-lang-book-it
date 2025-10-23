@@ -102,8 +102,8 @@ state spostate nella _hash map_ con la chiamata a `insert`.
 Se inseriamo _reference_ a valori nella _hash map_, i valori non verranno
 spostati nella _hash map_. I valori a cui puntano i _reference_ devono essere
 validi almeno per il tempo in cui è valida la _hash map_. Approfondiremo questi
-argomenti in [“Validare i _Reference_ con la
-_Lifetime_”][validating-references-with-lifetimes]<!-- ignore --> nel Capitolo
+argomenti nella sezione [“Validare i _Reference_ con la
+_Lifetime_”][validating-references-with-lifetimes]<!-- ignore --> del Capitolo
 10.
 
 ### Aggiornare una _Hash Map_

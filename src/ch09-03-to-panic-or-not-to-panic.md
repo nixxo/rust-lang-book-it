@@ -83,8 +83,9 @@ contraddittori o valori mancanti, più almeno una delle seguenti cose:
   trovarsi in questo stato non valido, piuttosto che verificare la presenza del
   problema a ogni passaggio.
 - Non esiste un buon modo per codificare queste informazioni nei _type_
-  utilizzati. Faremo un esempio di ciò che intendiamo in [“Codifica di Stati e
-  Comportamenti Come _Type_”][encoding]<!-- ignore --> nel Capitolo 18.
+  utilizzati. Faremo un esempio di ciò che intendiamo nella sezione [“Codifica
+  di Stati e Comportamenti Come _Type_”][encoding]<!-- ignore --> del Capitolo
+  18.
 
 Se qualcuno chiama il tuo codice e passa valori che non hanno senso, è meglio
 restituire un errore, se possibile, in modo che l’utente della libreria possa

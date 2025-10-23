@@ -82,12 +82,12 @@ più funzioni con nome `to_string`.
 Qui usiamo la funzione `to_string` definita nel _trait_ `ToString`, che la
 libreria standard ha implementato per ogni _type_ che implementa `Display`.
 
-Ricorda da [“Valori di _Enum_”][enum-values]<!-- ignore --> nel Capitolo 6 che
-il nome di ogni variante _enum_ diventa anche una funzione inizializzatrice.
-Possiamo usare queste funzioni inizializzatrici come puntatori a funzione che
-implementano i _trait_ delle chiusure, il che significa che possiamo specificare
-le funzioni inizializzatrici come argomenti per metodi che accettano chiusure,
-come nel Listato 20-31.
+Ricorda dalla sezione [“Valori di _Enum_”][enum-values]<!-- ignore --> del
+Capitolo 6 che il nome di ogni variante _enum_ diventa anche una funzione
+inizializzatrice. Possiamo usare queste funzioni inizializzatrici come puntatori
+a funzione che implementano i _trait_ delle chiusure, il che significa che
+possiamo specificare le funzioni inizializzatrici come argomenti per metodi che
+accettano chiusure, come nel Listato 20-31.
 
 <Listing number="20-31" caption="Uso di una funzione inizializzatrice di un _enum_ con il metodo `map` per creare un’istanza `Stato` dai numeri">
 
@@ -125,9 +125,9 @@ senza problemi.
 
 </Listing>
 
-Tuttavia, come abbiamo notato in [“Inferenza e Annotazione del _Type_ delle
-Chiusure”][closure-types]<!-- ignore --> nel Capitolo 13, ogni chiusura è anche
-il suo _type_ distinto. Se ti serve lavorare con più funzioni che hanno la
+Tuttavia, come abbiamo notato nella sezione [“Inferenza e Annotazione del _Type_
+delle Chiusure”][closure-types]<!-- ignore --> del Capitolo 13, ogni chiusura è
+anche il suo _type_ distinto. Se ti serve lavorare con più funzioni che hanno la
 stessa firma ma implementazioni diverse, dovrai usare un oggetto _trait_ per
 loro. Considera cosa succede se scrivi un codice come nel Listato 20-33.
 
@@ -169,7 +169,7 @@ nel Listato 20-34.
 
 Questo codice si compila correttamente. Per più informazioni sugli oggetti
 _trait_, vedi la sezione [“Usare gli Oggetti _Trait_ per Astrarre Comportamenti
-Condivisi”][using-trait-objects]<!-- ignore --> nel Capitolo 18.
+Condivisi”][using-trait-objects]<!-- ignore --> del Capitolo 18.
 
 Passiamo ora a vedere le macro!
 

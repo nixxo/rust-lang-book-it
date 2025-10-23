@@ -101,7 +101,7 @@ Altri linguaggi di programmazione non richiedono di collegare gli argomenti ai
 valori di ritorno nella firma, ma questa pratica diventerà più semplice col
 tempo. Potresti confrontare questo esempio con gli esempi nella sezione
 [“Validare i _Reference_ con la
-_Lifetime_”][validating-references-with-lifetimes]<!-- ignore --> nel Capitolo
+_Lifetime_”][validating-references-with-lifetimes]<!-- ignore --> del Capitolo
 10.
 
 ### Scrivere Codice per Superare il Test

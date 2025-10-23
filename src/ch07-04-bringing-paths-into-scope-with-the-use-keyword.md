@@ -172,8 +172,8 @@ probabilmente non penseranno alle parti del ristorante in questi termini. Con
 una struttura diversa. Ciò rende la nostra libreria ben organizzata sia per i
 programmatori che lavorano sulla libreria sia per i programmatori che la usano.
 Vedremo un altro esempio di `pub use` e di come influisce sulla documentazione
-del _crate_ in [“Esportare un API Pubblica Efficace”][ch14-pub-use]<!-- ignore
---> nel Capitolo 14.
+del _crate_ nella sezione [“Esportare un API Pubblica
+Efficace”][ch14-pub-use]<!-- ignore -->del Capitolo 14.
 
 ### Usare Pacchetti Esterni
 
@@ -201,9 +201,9 @@ rendere `rand` disponibile al nostro progetto.
 
 Poi, per portare le definizioni di `rand` nello _scope_ del nostro pacchetto,
 abbiamo aggiunto una riga `use` che cominciava con il nome del _crate_, `rand`,
-e elencava gli elementi che volevamo portare nello _scope_. Ricorda che in
-[“Generare un Numero Casuale”][rand]<!-- ignore --> nel Capitolo 2, abbiamo
-portato il _trait_ `Rng` nello _scope_ e chiamato la funzione
+e elencava gli elementi che volevamo portare nello _scope_. Ricorda come nella
+sezione [“Generare un Numero Casuale”][rand]<!-- ignore --> del Capitolo 2
+abbiamo portato il _trait_ `Rng` nello _scope_ e chiamato la funzione
 `rand::thread_rng`:
 
 ```rust,ignore
@@ -306,11 +306,11 @@ aggiunge una definizione con lo stesso nome di una tua definizione nello stesso
 _scope_, per esempio.
 
 L’operatore _glob_ viene spesso usato durante i test per portare tutto ciò che è
-sotto test nel modulo `tests`; parleremo di questo in [“Come Scrivere dei
-Test”][writing-tests]<!-- ignore --> nel Capitolo 11. L’operatore _glob_ è anche
-a volte usato come parte del _pattern_ _prelude_: vedi [la documentazione della
-libreria standard][prelude]<!-- ignore --> per ulteriori informazioni su quel
-_pattern_.
+sotto test nel modulo `tests`; parleremo di questo nella sezione [“Come Scrivere
+dei Test”][writing-tests]<!-- ignore --> del Capitolo 11. L’operatore _glob_ è
+anche a volte usato come parte del _pattern_ _prelude_: vedi [la documentazione
+della libreria standard][prelude]<!-- ignore --> per ulteriori informazioni su
+quel _pattern_.
 
 [ch14-pub-use]: ch14-02-publishing-to-crates-io.html#esportare-un-api-pubblica-efficace
 [rand]: ch02-00-guessing-game-tutorial.html#generare-un-numero-casuale

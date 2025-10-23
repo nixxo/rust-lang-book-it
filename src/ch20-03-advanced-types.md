@@ -255,11 +255,11 @@ a qualche tipo di puntatore.
 Possiamo combinare `str` con tanti _type_ di puntatori: ad esempio, `Box<str>` o
 `Rc<str>`. Hai già visto questo ma con un altro _type_ a dimensione dinamica: i
 _trait_. Ogni _trait_ è un _type_ dimensionato dinamicamente che può essere
-indicato usando il nome del _trait_. In [“Usare Oggetti _Trait_ per Astrarre
-Comportamenti Condivisi”][using-trait-objects]<!-- ignore --> nel Capitolo 18
-abbiamo menzionato che per usare _trait_ come oggetti _trait_ dobbiamo metterli
-dietro a un puntatore, come `&dyn Trait` o `Box<dyn Trait>` (anche `Rc<dyn
-Trait>` andrebbe bene).
+indicato usando il nome del _trait_. Nella sezione [“Usare Oggetti _Trait_ per
+Astrarre Comportamenti Condivisi”][using-trait-objects]<!-- ignore --> del
+Capitolo 18 abbiamo menzionato che per usare _trait_ come oggetti _trait_
+dobbiamo metterli dietro a un puntatore, come `&dyn Trait` o `Box<dyn Trait>`
+(anche `Rc<dyn Trait>` andrebbe bene).
 
 Per lavorare con i _DST_, Rust fornisce il _trait_ `Sized`, che determina se la
 dimensione di un _type_ è nota a tempo di compilazione. Questo _trait_ è

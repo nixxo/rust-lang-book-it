@@ -126,9 +126,9 @@ stampare `La stringa più lunga è abcd`.
 
 Nota che vogliamo che la funzione accetti _slice_, che sono _reference_,
 piuttosto che stringhe, perché non vogliamo che la funzione `più_lunga` prenda
-possesso dei suoi parametri. Fai riferimento a [“_Slice_ di Stringa come
-Parametri”][string-slices-as-parameters]<!-- ignore --> nel Capitolo 4 per una
-disamina più approfondita sul motivo per cui i parametri che utilizziamo nel
+possesso dei suoi parametri. Fai riferimento alla sezione [“_Slice_ di Stringa
+come Parametri”][string-slices-as-parameters]<!-- ignore --> del Capitolo 4 per
+una disamina più approfondita sul motivo per cui i parametri che utilizziamo nel
 Listato 10-19 sono quelli che desideriamo.
 
 Se proviamo a implementare la funzione `più_lunga` come mostrato nel Listato

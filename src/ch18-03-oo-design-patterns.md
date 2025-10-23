@@ -370,7 +370,7 @@ all’implementazione del metodo con lo stesso nome del valore incapsulato e
 impostano il nuovo valore del campo `stato` al risultato. Se avessimo molti
 metodi su `Post` che seguono questo schema, potremmo considerare di definire una
 macro per eliminare la ripetizione (vedi la sezione [“Macro”][macros]<!-- ignore
---> nel Capitolo 20).
+--> del Capitolo 20).
 
 Implementando lo _state pattern_ esattamente come definito per i linguaggi
 orientati agli oggetti, non sfruttiamo appieno i punti di forza di Rust come

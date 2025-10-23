@@ -5,11 +5,11 @@ _crate_.
 
 Un _crate_ è la quantità minima di codice che il compilatore Rust considera in
 un dato momento. Anche se esegui `rustc` invece di `cargo` e passi un singolo
-file di codice sorgente (come abbiamo fatto all’inizio in [“Programma Rust
-Basilare”][basics]<!-- ignore --> nel Capitolo 1), il compilatore considera quel
-file come un _crate_. I _crate_ possono contenere moduli, e i moduli possono
-essere definiti in altri file che vengono compilati con il _crate_, come vedremo
-nelle sezioni successive.
+file di codice sorgente (come abbiamo fatto all’inizio nella sezione [“Programma
+Rust Basilare”][basics]<!-- ignore --> del Capitolo 1), il compilatore considera
+quel file come un _crate_. I _crate_ possono contenere moduli, e i moduli
+possono essere definiti in altri file che vengono compilati con il _crate_, come
+vedremo nelle sezioni successive.
 
 Un _crate_ può presentarsi in una delle due forme: un _crate_ _binario_ o un
 _crate_ _libreria_. I _crate_ _binari_ sono programmi che puoi compilare in un

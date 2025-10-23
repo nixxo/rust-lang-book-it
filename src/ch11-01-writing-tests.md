@@ -229,9 +229,9 @@ istanza di `Rettangolo` che ha una larghezza di 5 e un’altezza di 1.
 
 Nota la riga `use super::*;` all’interno del modulo `tests`. Il modulo `tests` è
 un modulo normale che segue le solite regole di visibilità che abbiamo trattato
-nel Capitolo 7 nella sezione [“Percorsi per Fare Riferimento a un Elemento
-nell’Albero dei Moduli”][paths-for-referring-to-an-item-in-the-module-tree]<!--
-ignore -->. Poiché il modulo `tests` è un modulo interno, dobbiamo portare il
+nella sezione [“Percorsi per Fare Riferimento a un Elemento nell’Albero dei
+Moduli”][paths-for-referring-to-an-item-in-the-module-tree]<!-- ignore --> del
+Capitolo 7. Poiché il modulo `tests` è un modulo interno, dobbiamo portare il
 codice del modulo esterno che vogliamo testare nello _scope_ del modulo interno.
 Usiamo un _glob_ in questo caso, in modo che tutto ciò che definiamo nel modulo
 esterno sia disponibile per questo modulo `tests`.
@@ -369,7 +369,7 @@ standard implementano questi _trait_. Per le _struct_ e le _enum_ che definisci
 tu stesso, dovrai implementare `PartialEq` per asserire l’uguaglianza di tali
 _type_. Dovrai anche implementare `Debug` per stampare i valori quando
 l’asserzione fallisce. Poiché entrambi i _trait_ sono derivabili, come
-menzionato nel Listato 5-12 nel Capitolo 5, questo è solitamente semplice come
+menzionato nel Listato 5-12 del Capitolo 5, questo è solitamente semplice come
 aggiungere l’annotazione `#[derive(PartialEq, Debug)]` alla definizione della
 _struct_ o dell’_enum_. Vedi l’Appendice C, [“_Trait_
 Derivabili”][derivable-traits]<!-- ignore -->, per ulteriori dettagli su questi
