@@ -99,7 +99,7 @@ a `lenta`. Ora il lavoro delle due _future_ è intervallato:
 'a' finita.
 ```
 
-La _future_ `a` continua a lavorare per un po' prima di restituire il controllo
+La _future_ `a` continua a lavorare per un po’ prima di restituire il controllo
 a `b`, perché chiama `lenta` prima di chiamare `trpl::sleep`, ma dopo ciò le
 _future_ si alternano ogni volta che una di esse incontra un punto di attesa. In
 questo caso, abbiamo fatto ciò dopo ogni chiamata a `lenta`, ma potremmo

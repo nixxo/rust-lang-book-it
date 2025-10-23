@@ -149,7 +149,7 @@ Se tutto è andato bene, `Hello, world!` dovrebbe essere stampato sul terminale.
 L’esecuzione di `cargo build` per la prima volta fa sì che Cargo crei anche un
 nuovo file nella directory principale: _Cargo.lock_. Questo file tiene traccia
 delle versioni esatte delle dipendenze nel tuo progetto. Questo progetto non ha
-dipendenze, quindi il file è un po' scarno. Non dovrai mai modificare questo
+dipendenze, quindi il file è un po’ scarno. Non dovrai mai modificare questo
 file manualmente; Cargo gestisce il suo contenuto per te.
 
 Abbiamo appena costruito un progetto con `cargo build` e lo abbiamo eseguito con

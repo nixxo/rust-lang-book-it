@@ -13,7 +13,7 @@ delle caratteristiche di _ownership_ rallenterà il tuo programma mentre è in
 esecuzione.
 
 Poiché la _ownership_ è un concetto nuovo per molti programmatori, ci vuole un
-po' di tempo per abituarsi. La buona notizia è che più si acquisisce esperienza
+po’ di tempo per abituarsi. La buona notizia è che più si acquisisce esperienza
 con Rust e con le regole del sistema di _ownership_, più sarà facile sviluppare
 naturalmente codice sicuro ed efficiente. Non mollare!
 
@@ -103,7 +103,7 @@ mentre lavoriamo agli esempi che le illustrano:
 Ora che abbiamo visto e imparato la sintassi di base di Rust, non includeremo
 tutto il codice `fn main() {` negli esempi, quindi se stai seguendo, assicurati
 di inserire manualmente i seguenti esempi all’interno di una funzione `main`. Di
-conseguenza, i nostri esempi saranno un po' più concisi, permettendoci di
+conseguenza, i nostri esempi saranno un po’ più concisi, permettendoci di
 concentrarci sui dettagli reali piuttosto che sul codice di base.
 
 Come primo esempio di _ownership_, analizzeremo lo _scope_ di alcune variabili.

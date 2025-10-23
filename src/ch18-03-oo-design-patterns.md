@@ -355,7 +355,7 @@ dovremmo modificare il codice in `AttesaRevisione` per passare a `Programmato`.
 Sarebbe meno lavoro se `AttesaRevisione` non dovesse cambiare con l’aggiunta di
 un nuovo stato, ma ciò significherebbe passare a un altro modello di design.
 
-Un altro lato negativo è che abbiamo duplicato un po' di logica. Per eliminare
+Un altro lato negativo è che abbiamo duplicato un po’ di logica. Per eliminare
 la duplicazione, potremmo provare a fare implementazioni predefinite per i
 metodi `richiedi_revisione` e `approva` sul _trait_ `Stato` che restituiscono
 `self`. Tuttavia, questo non funzionerebbe: quando usiamo `Stato` come oggetto
@@ -509,7 +509,7 @@ oggetti non hanno.
 Indipendentemente dal fatto che tu pensi che Rust sia un linguaggio orientato
 agli oggetti dopo aver letto questo capitolo, ora sai che puoi usare oggetti
 _trait_ per ottenere alcune funzionalità orientate agli oggetti in Rust. Il
-_dynamic dispatch_ può dare al tuo codice un po' di flessibilità in cambio di
+_dynamic dispatch_ può dare al tuo codice un po’ di flessibilità in cambio di
 una piccola perdita in prestazioni durante l’esecuzione. Puoi usare questa
 flessibilità per implementare modelli orientati agli oggetti che possono aiutare
 nella manutenibilità del tuo codice. Rust ha anche altre caratteristiche, come

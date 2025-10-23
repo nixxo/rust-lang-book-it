@@ -59,7 +59,7 @@ ignore -->. Per ora, sappi che `iter` è un metodo che restituisce ogni elemento
 in una collezione e che `enumerate` prende il risultato di `iter` e restituisce
 ogni elemento come parte di una tupla. Il primo elemento della tupla restituita
 da `enumerate` è l’indice, e il secondo elemento è un riferimento all’elemento.
-Questo è un po' più conveniente rispetto a calcolarci l’indice da soli.
+Questo è un po’ più conveniente rispetto a calcolarci l’indice da soli.
 
 Poiché il metodo `enumerate` restituisce una tupla, possiamo usare i _pattern_
 per destrutturare quella tupla. Discuteremo meglio i _pattern_ nel [Capitolo

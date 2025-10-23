@@ -177,7 +177,7 @@ implementa `Future` solo se il `T` che incapsula è una _future_ che implementa
 il _trait_ `Unpin`.
 
 Sono un sacco di informazioni da assorbire! Per capire davvero, approfondiamo un
-po' di più come funziona effettivamente il _trait_ `Future`, in particolare
+po’ di più come funziona effettivamente il _trait_ `Future`, in particolare
 riguardo al _pinning_. Guarda di nuovo la definizione del _trait_ `Future`:
 
 ```rust

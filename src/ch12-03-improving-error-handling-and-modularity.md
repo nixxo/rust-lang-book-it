@@ -139,7 +139,7 @@ violeremmo le regole di Rust sui prestiti se `Config` tentasse di prendere la
 _ownership_ dei valori in `args`.
 
 Ci sono diversi modi per gestire i dati `String`; il modo più semplice, anche se
-un po' inefficiente, è chiamare il metodo `clone` sui valori. Questo creerà una
+un po’ inefficiente, è chiamare il metodo `clone` sui valori. Questo creerà una
 copia completa dei dati per l’istanza di `Config`, che ne diverrà proprietaria,
 il che richiede più tempo e memoria rispetto alla memorizzazione di un
 _reference_ ai dati stringa. Tuttavia, clonare i dati rende anche il nostro

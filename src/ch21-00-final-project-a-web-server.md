@@ -10,7 +10,7 @@ appare come nella Figura 21-1 in un browser web.
 
 Ecco il nostro piano per la costruzione del server web:
 
-1. Imparare un po' su TCP e HTTP.
+1. Imparare un po’ su TCP e HTTP.
 1. Ascoltare le connessioni TCP su un socket.
 1. Analizzare un numero limitato di richieste HTTP.
 1. Creare una risposta HTTP appropriata.

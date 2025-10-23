@@ -36,7 +36,7 @@ proprie implementazioni di `Future`. Torneremo alla definizione del _trait_ alla
 fine del capitolo e approfondiremo come funziona, ma questi dettagli sono
 sufficienti per procedere.
 
-Tutto questo potrebbe sembrare un po' astratto, quindi scriviamo il nostro primo
+Tutto questo potrebbe sembrare un po’ astratto, quindi scriviamo il nostro primo
 programma _async_: un piccolo _web scraper_ (_estrattore di informazioni da
 pagine web_). Passeremo due URL dalla riga di comando, li recupereremo
 contemporaneamente e restituiremo il risultato di quello che finisce per primo.
@@ -156,7 +156,7 @@ nel Listato 17-2.
 </Listing>
 
 Con questo, abbiamo scritto con successo la nostra prima funzione asincrona!
-Prima di aggiungere del codice in `main` per chiamarla, parliamo un po' di più
+Prima di aggiungere del codice in `main` per chiamarla, parliamo un po’ di più
 di cosa abbiamo scritto e cosa significa.
 
 Quando Rust vede un _blocco_ contrassegnato con la parola chiave `async`, lo

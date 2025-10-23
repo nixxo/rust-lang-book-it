@@ -78,7 +78,7 @@ valore `true` e `numero_accessi` prende il valore di `1`.
 
 Ha senso chiamare i parametri della funzione con lo stesso nome dei campi della
 _struct_, ma dover ripetere i nomi dei campi `email` e `nome_utente` e delle
-variabili è un po' noioso. Se la _struct_ avesse più campi, la ripetizione di
+variabili è un po’ noioso. Se la _struct_ avesse più campi, la ripetizione di
 ogni nome diventerebbe ancora più fastidiosa. Per fortuna esiste una comoda
 scorciatoia!
 

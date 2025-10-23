@@ -177,7 +177,7 @@ La domanda logica successiva è quale stile scegliere nel proprio codice e
 perché: l’implementazione originale nel Listato 13-21 o la versione che utilizza
 gli iteratori nel Listato 13-22 (supponendo che stiamo raccogliendo tutti i
 risultati prima di restituirli piuttosto che restituire l’iteratore). La maggior
-parte dei programmatori Rust preferisce usare lo stile iteratore. È un po' più
+parte dei programmatori Rust preferisce usare lo stile iteratore. È un po’ più
 difficile da capire all’inizio, ma una volta che si è presa familiarità con i
 vari adattatori e con il loro funzionamento, gli iteratori possono essere più
 facili da capire. Invece di armeggiare con i vari pezzi del ciclo e creare nuovi

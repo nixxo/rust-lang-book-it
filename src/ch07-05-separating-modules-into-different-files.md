@@ -47,7 +47,7 @@ elemento nell’albero dei moduli”][paths]<!-- ignore -->. In altre parole, `m
 _non_ è un’operazione di “include” come potresti aver visto in altri linguaggi.
 
 Successivamente, sposteremo il modulo `accoglienza` in un suo file. Il processo
-è un po' diverso perché `accoglienza` è un modulo figlio di `sala`, non della
+è un po’ diverso perché `accoglienza` è un modulo figlio di `sala`, non della
 radice. Metteremo il file per `accoglienza` in una nuova cartella che sarà
 chiamata come i suoi antenati nell’albero dei moduli, in questo caso _src/sala_.
 

@@ -435,4 +435,4 @@ situazioni complesse. Assicuratevi di consultare la documentazione per metodi
 utili come `contains` per la ricerca in una stringa e `replace` per sostituire
 parti di una stringa con un’altra stringa.
 
-Passiamo a qualcosa di un po' meno complesso: le _mappe hash_!
+Passiamo a qualcosa di un po’ meno complesso: le _mappe hash_!

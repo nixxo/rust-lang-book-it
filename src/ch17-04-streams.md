@@ -7,12 +7,12 @@ Messaggi”][17-02-messages]<!-- ignore --> di questo capitolo. Il metodo _async
 modello molto più generale noto come _stream_. Molti concetti sono naturalmente
 rappresentati come _stream_: elementi che diventano disponibili in una coda,
 blocchi di dati che vengono estratti in modo incrementale dal filesystem quando
-l'intero set di dati è troppo grande per la memoria del computer, o dati che
+l’intero set di dati è troppo grande per la memoria del computer, o dati che
 arrivano attraverso la rete nel tempo. Poiché gli _stream_ sono _future_,
 possiamo usarli con qualsiasi altro tipo di _future_ e combinarli in modi
 interessanti. Ad esempio, possiamo raggruppare gli eventi per evitare di
 innescare troppe chiamate di rete, impostare timeout su sequenze di operazioni
-di lunga durata o limitare gli eventi dell'interfaccia utente per evitare di
+di lunga durata o limitare gli eventi dell’interfaccia utente per evitare di
 svolgere lavori inutili.
 
 Abbiamo visto una sequenza di elementi nel Capitolo 13, quando abbiamo esaminato

@@ -114,7 +114,7 @@ né vediamo il testo `numero non è divisibile per 4, 3 o 2` del blocco `else`.
 Questo perché Rust esegue il blocco solo per la prima condizione `true` e una
 volta che ne trova una, le restanti non vengono controllate.
 
-L’uso di troppe espressioni `else if` può rendere il codice un po' confusionario
+L’uso di troppe espressioni `else if` può rendere il codice un po’ confusionario
 e difficile da leggere, quindi se ne hai più di una, potresti valutare di
 riscrivere il codice. Il Capitolo 6 descrive un potente costrutto di
 ramificazione di Rust chiamato `match` per gestire casi del genere.
@@ -384,7 +384,7 @@ l’intervallo.
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-34-for-range/src/main.rs}}
 ```
 
-Questo codice è un po' più carino, vero?
+Questo codice è un po’ più carino, vero?
 
 ## Riepilogo
 

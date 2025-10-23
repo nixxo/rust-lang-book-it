@@ -1,6 +1,6 @@
 ## Appendice E - Edizioni
 
-Nel Capitolo 1, hai visto visto che il comando `cargo new` aggiunge un po' di
+Nel Capitolo 1, hai visto visto che il comando `cargo new` aggiunge un po’ di
 metadata al tuo file _Cargo.toml_ riguardo a un’edizione. Questa appendice parla
 di cosa significhi!
 
@@ -8,7 +8,7 @@ Il linguaggio Rust e il suo compilatore hanno un ciclo di rilascio di sei
 settimane, il che significa che gli utenti ricevono un flusso continuo di nuove
 funzionalità. Altri linguaggi di programmazione rilasciano cambiamenti più
 grandi meno frequentemente; Rust rilascia aggiornamenti più piccoli più
-frequentemente. Dopo un po', tutti questi piccoli cambiamenti si sommano. Ma da
+frequentemente. Dopo un po’, tutti questi piccoli cambiamenti si sommano. Ma da
 una versione all’altra, può essere difficile guardare indietro e dire: “Wow, tra
 Rust 1.10 e Rust 1.31, Rust è cambiato molto!”
 

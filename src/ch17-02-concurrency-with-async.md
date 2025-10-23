@@ -190,7 +190,7 @@ separato.
 
 Qui, usiamo `trpl::channel`, una versione _async_ dell’API del canale
 multi-produttore, singolo-consumatore che abbiamo usato con i _thread_ nel
-Capitolo 16. La versione _async_ dell’API è solo un po' diversa dalla versione
+Capitolo 16. La versione _async_ dell’API è solo un po’ diversa dalla versione
 basata su _thread_: usa un ricevitore `rx` mutabile piuttosto che immutabile, e
 il suo metodo `recv` produce una _future_ che dobbiamo aspettare piuttosto che
 produrre il valore direttamente. Ora possiamo inviare messaggi dal mittente al

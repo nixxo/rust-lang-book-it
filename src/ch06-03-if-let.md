@@ -18,7 +18,7 @@ Se il valore è `Some`, stampiamo il valore contenuto nella variante `Some`
 legandolo alla variabile `max` nel _pattern_. Non vogliamo fare nulla per il
 valore `None`. Per soddisfare l’espressione `match` dobbiamo aggiungere `_ =>
 ()` dopo aver processato una sola variante, il che, a ben vedere, sembra codice
-un po' inutile.
+un po’ inutile.
 
 Invece, possiamo scrivere questo in modo più breve usando `if let`. Il codice
 seguente si comporta allo stesso modo del `match` nel Listato 6-6:
@@ -102,7 +102,7 @@ simile anche con un `match`.)
 
 </Listing>
 
-Questo però è un po' scomodo da seguire: un ramo dell’`if let` produce un valore
+Questo però è un po’ scomodo da seguire: un ramo dell’`if let` produce un valore
 e l’altro ritorna dalla funzione completamente.
 
 Per rendere più esprimibile questo _pattern_ comune, Rust ha `let...else`. La

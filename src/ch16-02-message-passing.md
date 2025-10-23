@@ -116,7 +116,7 @@ Il metodo `try_recv` invece non aspetterà, ma restituisce immediatamente un
 valore `Err` se non ci sono messaggi questa volta. L’uso di `try_recv` è utile
 se questo _thread_ ha altro lavoro da fare mentre aspetta i messaggi: potremmo
 scrivere un ciclo che chiama `try_recv` di tanto in tanto, gestisce un messaggio
-se è disponibile e altrimenti svolge altro lavoro per un po' di tempo fino a
+se è disponibile e altrimenti svolge altro lavoro per un po’ di tempo fino a
 quando non viene controllato di nuovo.
 
 In questo esempio abbiamo usato `recv` per semplicità; non abbiamo altro lavoro

@@ -166,7 +166,7 @@ qualsiasi errore diverso dall’errore di file mancante.
 
 #### Scorciatoie per _Panic_ in Caso di Errore
 
-L’uso di `match` funziona abbastanza bene, ma può essere un po' prolisso e non
+L’uso di `match` funziona abbastanza bene, ma può essere un po’ prolisso e non
 sempre comunica bene l’intento. Il _type_ `Result<T, E>` ha molti metodi utili
 definiti al suo interno per svolgere varie attività più specifiche. Ad esempio
 `unwrap` è un metodo di scelta rapida implementato proprio come l’espressione

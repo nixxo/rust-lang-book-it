@@ -53,7 +53,7 @@ Il Listato 5-9 mostra un’altra versione del nostro programma che usa le tuple.
 </Listing>
 
 Da un lato, questo programma è migliore. Le tuple ci permettono di aggiungere un
-po' di struttura, e ora stiamo passando un solo argomento. Ma dall’altro, questa
+po’ di struttura, e ora stiamo passando un solo argomento. Ma dall’altro, questa
 versione è meno chiara: le tuple non nominano i loro elementi, quindi dobbiamo
 indicizzare le parti della tupla, rendendo il nostro calcolo meno ovvio.
 
@@ -183,7 +183,7 @@ output:
 
 Bene! Non è l’output più bello, ma mostra i valori di tutti i campi per questa
 istanza, il che aiuterebbe sicuramente durante lo sviluppo e il debug del
-programma. Quando abbiamo _struct_ più grandi, è utile avere un output un po'
+programma. Quando abbiamo _struct_ più grandi, è utile avere un output un po’
 più facile da leggere; in quei casi, possiamo usare `{:#?}` invece di `{:?}`
 nella stringa di `println!`. In questo esempio, usare lo stile `{:#?}` produrrà
 il seguente output:

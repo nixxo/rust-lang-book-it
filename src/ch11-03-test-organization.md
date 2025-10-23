@@ -204,7 +204,7 @@ di test né abbiamo chiamato la funzione `inizializzazione` da nessuna parte:
 ```
 
 Il fatto che `comune` appaia nei risultati dei test con `running 0 tests`
-(_eseguiti 0 test_) non è quello che volevamo. Volevamo solo condividere un po'
+(_eseguiti 0 test_) non è quello che volevamo. Volevamo solo condividere un po’
 di codice con gli altri file dei test di integrazione. Per evitare che `comune`
 appaia nell’output dei test, invece di creare _tests/comune.rs_, creeremo
 _tests/comune/mod.rs_. La cartella del progetto ora ha questo aspetto:

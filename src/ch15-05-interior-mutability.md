@@ -356,7 +356,7 @@ valore `Lista` esternamente immutabile. Ma possiamo usare i metodi su
 `RefCell<T>` che forniscono l’accesso alla sua mutabilità interna, così da poter
 modificare i nostri dati quando necessario. I controlli durante l’esecuzione
 delle regole di prestito ci proteggono dalle _data race_, e a volte vale la pena
-sacrificare un po' di prestazioni per questa flessibilità nelle nostre strutture
+sacrificare un po’ di prestazioni per questa flessibilità nelle nostre strutture
 dati. Nota che `RefCell<T>` non funziona per il codice _multi-thread_!
 `Mutex<T>` è la versione di `RefCell<T>` che funzioni ai ambito _multi-thread_ e
 ne parleremo nel Capitolo 16.

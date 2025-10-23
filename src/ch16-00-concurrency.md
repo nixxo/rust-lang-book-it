@@ -37,7 +37,7 @@ la concomitanza con il passaggio di messaggi, ma mette a disposizione solo
 metodi astrusi per condividere lo stato tra i _thread_. Supportare solo un
 sottoinsieme di soluzioni possibili è una strategia ragionevole per i linguaggi
 di livello superiore, perché un linguaggio di livello superiore promette di
-trarre vantaggio dalla rinuncia a un po' di controllo per ottenere astrazioni.
+trarre vantaggio dalla rinuncia a un po’ di controllo per ottenere astrazioni.
 Tuttavia, i linguaggi di livello inferiore devono fornire la soluzione con le
 migliori prestazioni in ogni situazione e hanno meno astrazioni sull’hardware.
 Per questo motivo, Rust offre una varietà di strumenti per modellare i problemi
