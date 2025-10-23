@@ -27,9 +27,9 @@ _pattern_ all’interno di queste espressioni oscureranno quelle con lo stesso
 nome all’esterno dei costrutti, come è il caso di tutte le variabili. Nel
 Listato 19-11, dichiariamo una variabile denominata `x` con il valore `Some(5)`
 e una variabile `y` con il valore `10`. Creiamo quindi un’espressione `match`
-sul valore `x`. Osserviamo i _pattern_ nel campo `match` e `println!` alla fine,
-e cerchiamo di capire cosa stamperà il codice prima di eseguirlo o di proseguire
-con la lettura.
+sul valore `x`. Osserva i _pattern_ nel campo `match` e `println!` alla fine, e
+cerca di capire cosa stamperà il codice prima di eseguirlo o di proseguire con
+la lettura.
 
 <Listing number="19-11" file-name="src/main.rs" caption="Un’espressione `match` con un ramo che introduce una nuova variabile che oscura una variabile esistente `y`">
 
@@ -65,8 +65,9 @@ della `y` interna. L’ultimo `println!` produce `alla fine: x = Some(5), y = 10
 Per creare un’espressione `match` che confronti i valori delle variabili esterne
 `x` e `y`, anziché introdurre una nuova variabile che oscura la variabile `y`
 esistente, dovremmo usare una condizione di controllo della corrispondenza. Ne
-parleremo più avanti in [“Aggiungere Istruzioni Condizionali con le Match
-Guard”](#aggiungere-istruzioni-condizionali-con-le-match-guard)<!-- ignore -->.
+parleremo più avanti nella sezione [“Aggiungere Istruzioni Condizionali con le
+Match Guard”](#aggiungere-istruzioni-condizionali-con-le-match-guard)<!-- ignore
+-->.
 
 ### Corrispondenza di Più _Pattern_
 
@@ -74,8 +75,8 @@ Nelle espressioni `match`, è possibile confrontare più _pattern_ utilizzando l
 sintassi `|`, che è l’operatore _OR_ di controllo della corrispondenza. Ad
 esempio, nel codice seguente confrontiamo il valore di `x` con i valori
 corrispondenti, il primo dei quali ha un’opzione _or_, il che significa che se
-il valore di `x` corrisponde a uno dei valori in quel valore, verrà eseguito il
-codice di quel valore:
+il valore di `x` corrisponde a l’uno o l’altro dei valori del ramo, verrà
+eseguito il codice di quel ramo:
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/no-listing-02-multiple-patterns/src/main.rs:here}}
@@ -85,9 +86,9 @@ Questo codice stampa `uno o due`.
 
 ### Corrispondenza di Intervalli di Valori con `..=`
 
-La sintassi `..=` ci consente di confrontare un intervallo di valori inclusivo.
-Nel codice seguente, quando un _pattern_ corrisponde a uno qualsiasi dei valori
-all’interno dell’intervallo indicato, quel ramo verrà eseguito:
+La sintassi `..=` ci consente di confrontare con un intervallo di valori
+inclusivo. Nel codice seguente, quando un _pattern_ corrisponde a uno qualsiasi
+dei valori all’interno dell’intervallo indicato, quel ramo verrà eseguito:
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/no-listing-03-ranges/src/main.rs:here}}
@@ -197,10 +198,10 @@ a 0`.
 
 Abbiamo destrutturato gli _enum_ in questo libro (ad esempio, Listato 6-5 nel
 Capitolo 6), ma non abbiamo ancora spiegato esplicitamente che il _pattern_ per
-destrutturare un _enum_ corrisponde al modo in cui sono definiti i dati
-memorizzati all’interno dell’enum. Ad esempio, nel Listato 19-15 utilizziamo
-l’_enum_ `Messaggio` del Listato 6-2 e scriviamo un `match` con _pattern_ che
-destruttureranno ogni valore interno.
+destrutturare un’_enum_ corrisponde al modo in cui sono definiti i dati
+memorizzati all’interno dell’_enum_ stesso. Ad esempio, nel Listato 19-15
+utilizziamo l’_enum_ `Messaggio` del Listato 6-2 e scriviamo un `match` con
+_pattern_ che destruttureranno ogni valore interno.
 
 <Listing number="19-15" file-name="src/main.rs" caption="Destrutturazione delle varianti di _enum_ che contengono diversi tipi di valori">
 
@@ -286,8 +287,8 @@ perché utilizzare ciascuno di questi _pattern_.
 
 #### Un Intero Valore con `_`
 
-Abbiamo utilizzato il trattino basso come _pattern_ jolly che corrisponde a
-qualsiasi valore ma non si lega al valore. Questo è particolarmente utile come
+Abbiamo utilizzato il trattino basso come _pattern_ pigliatutto che corrisponde
+a qualsiasi valore ma non si lega al valore. Questo è particolarmente utile come
 ultimo ramo in un’espressione `match` , ma possiamo utilizzarlo anche in
 qualsiasi _pattern_, inclusi i parametri di funzione, come mostrato nel Listato
 19-17.
@@ -331,16 +332,16 @@ annullarla e assegnarle un valore se è attualmente non impostata.
 </Listing>
 
 Questo codice stamperà `Non è possibile sovrascrivere un valore personalizzato
-esistente` e poi `Valore setting è Some(5)`. Nel primo ramo di corrispondenza,
-non è necessario abbinare o utilizzare i valori all’interno di una delle
-varianti `Some`, ma è necessario testare il caso in cui `valore_setting` e
-`nuovo_valore_setting` siano la variante `Some`. In tal caso, stampiamo il
-motivo della mancata modifica di `valore_setting`, e quindi non viene
-modificato.
+esistente` e poi `Valore impostazioni è Some(5)`. Nel primo ramo di
+corrispondenza, non è necessario abbinare o utilizzare i valori all’interno di
+una delle varianti `Some`, ma è necessario testare il caso in cui
+`val_impostazioni` e `nuovo_val_impostazioni` siano la variante `Some`. In tal
+caso, stampiamo il motivo della mancata modifica di `val_impostazioni`, e quindi
+non viene modificato.
 
-In tutti gli altri casi (se `valore_setting` o `nuovo_valore_setting` è `None`)
-espressi dal _pattern_ `_` nel secondo ramo, vogliamo consentire a
-`nuovo_valore_setting` di diventare `valore_setting`.
+In tutti gli altri casi (se `val_impostazioni` o `nuovo_val_impostazioni` è
+`None`) espressi dal _pattern_ `_` nel secondo ramo, vogliamo consentire a
+`nuovo_val_impostazioni` di diventare `val_impostazioni`.
 
 Possiamo anche utilizzare il trattino basso in più punti all’interno di un
 _pattern_ per ignorare valori specifici. Il Listato 19-19 mostra un esempio di
@@ -364,11 +365,11 @@ genera un avviso perché una variabile inutilizzata potrebbe essere un bug.
 Tuttavia, a volte è utile poter creare una variabile che non si utilizzerà
 ancora, ad esempio quando si sta realizzando un prototipo o si è nelle prime
 fasi di un progetto. In questa situazione, puoi dire a Rust di non avvisarti
-della variabile inutilizzata iniziando il nome della variabile con un trattino
-basso. Nel Listato 19-20, creiamo due variabili inutilizzate, ma quando
+della variabile inutilizzata facendo iniziare il nome della variabile con un
+trattino basso. Nel Listato 19-20, creiamo due variabili inutilizzate, ma quando
 compiliamo questo codice, dovremmo ricevere un avviso solo per una di esse.
 
-<Listing number="19-20" file-name="src/main.rs" caption="Iniziare il nome di una variabile con un trattino basso per evitare di ricevere avvisi di variabili inutilizzate">
+<Listing number="19-20" file-name="src/main.rs" caption="Far iniziare il nome di una variabile con un trattino basso per evitare di ricevere avvisi di variabili inutilizzate">
 
 ```rust
 {{#rustdoc_include ../listings/ch19-patterns-and-matching/listing-19-20/src/main.rs}}
@@ -478,7 +479,7 @@ particolare in Rust, quindi otteniamo un errore del compilatore perché usare
 Una _match guard_ è una condizione `if` aggiuntiva, specificata dopo il
 _pattern_ in un ramo `match`, che deve corrispondere affinché quel ramo venga
 scelto. Le _match guard_ sono utili per esprimere idee più complesse di quelle
-consentite da un solo _pattern_. Nota, tuttavia, che sono disponibili solo nelle
+consentite dal solo _pattern_. Nota, tuttavia, che sono disponibili solo nelle
 espressioni `match`, non nelle espressioni `if let` o `while let`.
 
 La condizione può utilizzare variabili create nel _pattern_. Il Listato 19-26
@@ -509,9 +510,9 @@ logica. Lo svantaggio di questa espressività aggiuntiva è che il compilatore n
 cerca di verificare l’esaustività quando sono coinvolte espressioni con _match
 guard_.
 
-Nel Listato 19-11, abbiamo accennato alla possibilità di utilizzare le _match
-guard_ per risolvere il nostro problema di oscuramento della variabili.
-Ricordiamo che abbiamo creato una nuova variabile all’interno del _pattern_
+Nel Listato 19-11, avevamo accennato alla possibilità di utilizzare le _match
+guard_ per risolvere il nostro problema di oscuramento della variabili. Ricorda
+che avevamo creato una nuova variabile all’interno del _pattern_
 nell’espressione `match` invece di utilizzare la variabile esterna a `match`.
 Questa nuova variabile ci impediva di testare il valore della variabile esterna.
 Il Listato 19-27 mostra come possiamo usare una _match guard_ per risolvere

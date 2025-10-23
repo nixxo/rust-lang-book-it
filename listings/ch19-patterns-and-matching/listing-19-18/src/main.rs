@@ -1,17 +1,17 @@
 fn main() {
     // ANCHOR: here
-    let mut valore_setting = Some(5);
-    let nuovo_valore_setting = Some(10);
+    let mut val_impostazioni = Some(5);
+    let nuovo_val_impostazioni = Some(10);
 
-    match (valore_setting, nuovo_valore_setting) {
+    match (val_impostazioni, nuovo_val_impostazioni) {
         (Some(_), Some(_)) => {
             println!("Non è possibile sovrascrivere un valore personalizzato esistente");
         }
         _ => {
-            valore_setting = nuovo_valore_setting;
+            val_impostazioni = nuovo_val_impostazioni;
         }
     }
 
-    println!("Valore setting è {valore_setting:?}");
+    println!("Valore impostazioni è {val_impostazioni:?}");
     // ANCHOR_END: here
 }

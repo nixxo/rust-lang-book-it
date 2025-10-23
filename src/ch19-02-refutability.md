@@ -1,13 +1,13 @@
 ## Confutabilità: Quando un _Pattern_ Potrebbe non Corrispondere
 
-I _pattern_ si presentano in due forme: confutabili e inconfutabili. I _pattern_
-che corrispondono per qualsiasi possibile valore passato sono _inconfutabili_.
-Un esempio sarebbe `x` nella dichiarazione `let x = 5;` perché `x` corrisponde a
-qualsiasi cosa e quindi non può non corrispondere. I _pattern_ che possono non
-corrispondere per un possibile valore sono _confutabili_. Un esempio sarebbe
-`Some(x)` nell’espressione `if let Some(x) = un_valore` perché se il valore
-nella variabile `un_valore` è `None` anziché `Some`, il _pattern_ `Some(x)` non
-corrisponderà.
+I _pattern_ si presentano in due forme: confutabili e inconfutabili
+(_refutable/irrefutable_). I _pattern_ che corrispondono per qualsiasi possibile
+valore passato sono _inconfutabili_. Un esempio sarebbe `x` nella dichiarazione
+`let x = 5;` perché `x` corrisponde a qualsiasi cosa e quindi non può non
+corrispondere. I _pattern_ che possono non corrispondere per un possibile valore
+sono _confutabili_. Un esempio sarebbe `Some(x)` nell’espressione `if let
+Some(x) = un_valore` perché se il valore nella variabile `un_valore` è `None`
+anziché `Some`, il _pattern_ `Some(x)` non corrisponderà.
 
 I parametri di funzione, le dichiarazioni `let` e i cicli `for` possono
 accettare solo _pattern_ inconfutabili perché il programma non può fare nulla di
@@ -55,7 +55,7 @@ _pattern_ `Some(x)`, Rust genera giustamente un errore di compilazione.
 
 Se abbiamo un _pattern_ confutabile laddove è necessario un _pattern_
 inconfutabile, possiamo correggerlo modificando il codice che utilizza il
-_pattern_: invece di usare `let`, possiamo usare `let else`. Quindi, se il
+_pattern_: invece di usare `let`, possiamo usare `let...else`. Quindi, se il
 _pattern_ non corrisponde, il codice salterà semplicemente il codice tra
 parentesi graffe, consentendogli di continuare validamente. Il Listato 19-9
 mostra come correggere il codice nel Listato 19-8.
@@ -89,12 +89,12 @@ inconfutabile:
 {{#include ../listings/ch19-patterns-and-matching/listing-19-10/output.txt}}
 ```
 
-Per questo motivo, i rami di corrispondenza devono utilizzare _pattern_
-inconfutabili, ad eccezione dell’ultimo ramo, che dovrebbe corrispondere a tutti
-i valori rimanenti con un _pattern_ inconfutabile. Rust ci consente di
-utilizzare un _pattern_ inconfutabile in un `match` con singolo ramo, ma questa
-sintassi non è particolarmente utile e potrebbe essere sostituita con una più
-semplice dichiarazione `let`.
+Per questo motivo, i rami di `match` devono utilizzare _pattern_ inconfutabili,
+ad eccezione dell’ultimo ramo, che dovrebbe corrispondere a tutti i valori
+rimanenti con un _pattern_ inconfutabile. Rust ci consente di utilizzare un
+_pattern_ inconfutabile in un `match` con singolo ramo, ma questa sintassi non è
+particolarmente utile e potrebbe essere sostituita con una più semplice
+dichiarazione `let`.
 
 Ora che sappiamo dove usare i _pattern_ e la differenza tra _pattern_
 confutabili e inconfutabili, esaminiamo tutta la sintassi che possiamo usare per

@@ -3,7 +3,7 @@
 I _pattern_ compaiono in diversi punti di Rust e li hai usati senza rendertene
 conto! Questa sezione illustra tutti i posti in cui i _pattern_ sono validi.
 
-### Rami `match`
+### Rami di `match`
 
 Come discusso nel Capitolo 6, utilizziamo i _pattern_ nei rami delle espressioni
 `match`. Formalmente, le espressioni `match` sono definite come la parola chiave
@@ -20,8 +20,8 @@ un blocco come questo! -->
     <em>PATTERN</em> => <em>ESPRESSIONE</em>,
 }</code></pre>
 
-Ad esempio, ecco l’espressione `match` del Listato 6-5 che corrisponde a un
-valore `Option<i32>` nella variabile `x`:
+Ad esempio, ecco l’espressione `match` del Listato 6-5 che fa la corrispondenza
+su un valore `Option<i32>` nella variabile `x`:
 
 ```rust,ignore
 match x {
@@ -163,11 +163,11 @@ come colore di sfondo`.
 
 Si può notare che `if let` può anche introdurre nuove variabili che oscurano le
 variabili esistenti allo stesso modo in cui `match` può farlo: la riga `if let
-Ok(eta) = eta` introduce una nuova variabile `eta` che contiene il valore
-all’interno della variante `Ok`, oscurando la variabile `eta` esistente. Ciò
-significa che dobbiamo inserire la condizione `if eta > 30` all’interno di quel
-blocco: non possiamo combinare queste due condizioni in `if let Ok(eta) = eta &&
-eta > 30`. Il nuovo `eta` che vogliamo confrontare con 30 non è valido finché il
+Ok(età) = età` introduce una nuova variabile `età` che contiene il valore
+all’interno della variante `Ok`, oscurando la variabile `età` esistente. Ciò
+significa che dobbiamo inserire la condizione `if età > 30` all’interno di quel
+blocco: non possiamo combinare queste due condizioni in `if let Ok(età) = età &&
+età > 30`. Il nuovo `età` che vogliamo confrontare con 30 non è valido finché il
 nuovo _scope_ non inizia con la parentesi graffa.
 
 Lo svantaggio dell’utilizzo di espressioni `if let` è che il compilatore non
@@ -192,7 +192,7 @@ un `Option`.
 </Listing>
 
 Questo esempio stampa `1`, `2` e poi `3`. Il metodo `recv` prende il primo
-messaggio dall’estremità ricevente del canale e restituisce `Ok(value)`. Quando
+messaggio dall’estremità ricevente del canale e restituisce `Ok(valore)`. Quando
 abbiamo visto per la prima volta `recv` nel Capitolo 16, abbiamo analizzato
 direttamente l’errore, o abbiamo interagito con esso come un iteratore usando un
 ciclo `for`. Come mostra il Listato 19-4, tuttavia, possiamo anche usare `while
@@ -205,7 +205,7 @@ mittente si disconnette.
 In un ciclo `for`, il valore che segue direttamente la parola chiave `for` è un
 _pattern_. Ad esempio, in `for x in y`, `x` è il _pattern_. Il Listato 19-5
 mostra come utilizzare un _pattern_ in un ciclo `for` per *destrutturare*, o
-scomporre una tupla come parte del ciclo `for`.
+scomporre, una tupla come parte del ciclo `for`.
 
 <Listing number="19-5" caption="Utilizzo di un _pattern_ in un ciclo `for` per destrutturare una tupla">
 
@@ -264,6 +264,6 @@ alle funzioni, come discusso nel Capitolo 13.
 A questo punto, hai visto diversi modi per usare i _pattern_, ma i _pattern_ non
 funzionano allo stesso modo in tutti i casi in cui possiamo usarli. In alcuni
 casi, i _pattern_ devono essere inconfutabili; in altre circostanze, possono
-essere confutabili. Discuteremo questi due concetti più avanti.
+essere confutabili. Discuteremo questi due concetti nella prossima sezione.
 
 [ignoring-values-in-a-pattern]: ch19-03-pattern-syntax.html#ignorare-valori-in-un-pattern
