@@ -1,4 +1,4 @@
-$cargo run
+$ cargo run
    Compiling esempio-unsafe v0.1.0 (file:///progetti/esempio-unsafe)
 error[E0499]: cannot borrow `*valori` as mutable more than once at a time
  --> src/main.rs:7:31

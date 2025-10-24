@@ -2,7 +2,7 @@ fn main() {
     // ANCHOR: here
     type Thunk = Box<dyn Fn() + Send + 'static>;
 
-    let f: Thunk = Box::new(|| println!("hi"));
+    let f: Thunk = Box::new(|| println!("ciao"));
 
     fn prende_type_lungo(f: Thunk) {
         // --taglio--

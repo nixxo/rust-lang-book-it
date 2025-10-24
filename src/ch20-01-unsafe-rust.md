@@ -165,13 +165,13 @@ di astrazione _safe_ che usa codice _unsafe_.
 ### Chiamare una Funzione o Metodo _Unsafe_
 
 Il secondo tipo di operazione che puoi fare in un blocco _unsafe_ è chiamare
-funzioni _unsafe_. Le funzioni e i metodi _unsafe_ sembrano esattamente normali
-funzioni e metodi, ma hanno `unsafe` prima della definizione. La parola chiave
-`unsafe` qui indica che la funzione ha dei requisiti che dobbiamo rispettare
-quando la chiamiamo, perché Rust non può garantire che li rispettiamo. Chiamando
-una funzione _unsafe_ dentro un blocco _unsafe_ stiamo dicendo che abbiamo letto
-la documentazione di quella funzione e ci assumiamo la responsabilità di
-rispettarne i contratti.
+funzioni _unsafe_. Le funzioni e i metodi _unsafe_ appaiono esattamente come
+normali funzioni e metodi, ma hanno `unsafe` prima della definizione. La parola
+chiave `unsafe` qui indica che la funzione ha dei requisiti che dobbiamo
+rispettare quando la chiamiamo, perché Rust non può garantire che li
+rispettiamo. Chiamando una funzione _unsafe_ dentro un blocco _unsafe_ stiamo
+dicendo che abbiamo letto la documentazione di quella funzione e ci assumiamo la
+responsabilità di rispettarne i contratti.
 
 Ecco una funzione _unsafe_ chiamata `pericolosa` che non fa nulla nel corpo:
 
@@ -188,7 +188,7 @@ Se proviamo a chiamarla senza il blocco _unsafe_, avremo un errore:
 
 Con il blocco _unsafe_, stiamo dicendo a Rust che abbiamo letto la
 documentazione della funzione, sappiamo come usarla correttamente e abbiamo
-verificato di rispettare il contratto.
+verificato di rispettarne il contratto.
 
 Per fare operazioni _unsafe_ dentro una funzione _unsafe_, serve comunque un
 blocco _unsafe_ anche dentro il corpo, e il compilatore ti avvertirà se lo
@@ -226,10 +226,10 @@ _slice_ di `i32`, non per un _type_ generico `T`.
 
 </Listing>
 
-Questa funzione prima prende la lunghezza totale della _slice_. Poi assicura che
-l’indice passato sia entro la _slice_, verificando che sia minore o uguale alla
-lunghezza. Questa asserzione significa che se passiamo un indice maggiore della
-lunghezza, la funzione farà _panic_ prima di usare quell’indice.
+Questa funzione prima prende la lunghezza totale della _slice_. Poi si assicura
+che l’indice passato stia dentro la _slice_, verificando che sia minore o uguale
+alla lunghezza. Questa asserzione significa che se passiamo un indice maggiore
+della lunghezza, la funzione farà _panic_ prima di usare quell’indice.
 
 Poi ritorna due _slice_ mutabili in una tupla: una dalla parte iniziale fino a
 `mid` e l’altra da `mid` fino alla fine della _slice_.
@@ -258,12 +258,12 @@ alcune chiamate a funzioni _unsafe_ per far funzionare `split_at_mut`.
 
 </Listing>
 
-Ricordiamo da ["Il _Type_ _Slice_"][the-slice-type]<!-- ignore --> nel capitolo
-4 che una _slice_ è un puntatore a un dato e la sua lunghezza. Usiamo il metodo
-`len` per avere la lunghezza e il metodo `as_mut_ptr` per accedere al puntatore
-grezzo della _slice_. In questo caso, poiché abbiamo una _slice_ mutabile di
-`i32`, `as_mut_ptr` ritorna un puntatore grezzo di _type_ `*mut i32` che
-conserviamo nella variabile `ptr`.
+Ricorda dalle sezione ["Il _Type_ _Slice_"][the-slice-type]<!-- ignore --> del
+capitolo 4 che una _slice_ è un puntatore a un dato e la sua lunghezza. Usiamo
+il metodo `len` per avere la lunghezza e il metodo `as_mut_ptr` per accedere al
+puntatore grezzo della _slice_. In questo caso, poiché abbiamo una _slice_
+mutabile di `i32`, `as_mut_ptr` ritorna un puntatore grezzo di _type_ `*mut i32`
+che conserviamo nella variabile `ptr`.
 
 Manteniamo l’asserzione che `mid` stia dentro la _slice_. Poi arriviamo al
 codice _unsafe_: la funzione `slice::from_raw_parts_mut` prende un puntatore
@@ -375,7 +375,7 @@ librerie, quindi sta a noi scegliere un nome sicuro da esportare senza
 _mangling_.
 
 Nell’esempio seguente rendiamo la funzione `call_from_c` accessibile da codice
-C, dopo essere stata compilata in una libreria condivisa e collegata dal C:
+C, dopo essere stata compilata in una libreria condivisa e collegata da C:
 
 ```rust
 #[unsafe(no_mangle)]
@@ -510,13 +510,13 @@ compilazione, _Miri_ è uno strumento _dinamico_ che lavora durante l’esecuzio
 Controlla il tuo codice eseguendo il programma o i vari test e rilevando quando
 violi le regole che conosce su come dovrebbe funzionare Rust.
 
-Usare _Miri_ richiede una build _nightly_ di Rust (di cui parliamo di più
-nell’[Appendice G][nightly]<!-- ignore -->).
-Puoi installare sia la versione _nightly_ di Rust che lo strumento _Miri_
-digitando `rustup +nightly component add miri`. Questo non cambia la versione di
-Rust che usa il tuo progetto; aggiunge solo lo strumento al tuo sistema per
-poterlo usare quando vuoi. Puoi far girare _Miri_ su un progetto digitando
-`cargo +nightly miri run` o `cargo +nightly miri test`.
+Usare _Miri_ richiede una build _nightly_ di Rust (di cui parleremo più
+approfonditamente nell’[Appendice G][nightly]<!-- ignore -->). Puoi installare
+sia la versione _nightly_ di Rust che lo strumento _Miri_ digitando `rustup
++nightly component add miri`. Questo non cambia la versione di Rust che usa il
+tuo progetto; aggiunge solo lo strumento al tuo sistema per poterlo usare quando
+vuoi. Puoi far girare _Miri_ su un progetto digitando `cargo +nightly miri run`
+o `cargo +nightly miri test`.
 
 Per esempio, guarda cosa succede se lo usiamo con il codice nel Listato 20-7.
 
@@ -525,11 +525,12 @@ Per esempio, guarda cosa succede se lo usiamo con il codice nel Listato 20-7.
 ```
 
 Miri ci avverte correttamente che stiamo facendo un _cast_ da intero a
-puntatore, che potrebbe essere un problema, ma _Miri_ non può determinare se è un problema perchè non conosce l’origine del puntatore. Poi _Miri_ segnala un errore
-perché il Listato 20-7 ha un comportamento indefinito dovuto a un puntatore
-pendente. Grazie a _Miri_, sappiamo che c’è un rischio di comportamento
-indefinito e possiamo pensare a come mettere in sicurezza il codice. In certi
-casi _Miri_ può perfino suggerire come correggere gli errori.
+puntatore, che potrebbe essere un problema, ma _Miri_ non può determinare se è
+un problema perché non conosce l’origine del puntatore. Poi _Miri_ segnala un
+errore perché il Listato 20-7 ha un comportamento indefinito dovuto a un
+puntatore pendente. Grazie a _Miri_, sappiamo che c’è un rischio di
+comportamento indefinito e possiamo pensare a come mettere in sicurezza il
+codice. In certi casi _Miri_ può perfino suggerire come correggere gli errori.
 
 _Miri_ non cattura tutto quello che potresti sbagliare scrivendo codice
 _unsafe_. È uno strumento di analisi dinamica, quindi cattura solo i problemi

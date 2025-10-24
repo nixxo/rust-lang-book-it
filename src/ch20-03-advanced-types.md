@@ -31,7 +31,7 @@ che associa l’ID di una persona al nome. Il codice che usa `Persone`
 interagirebbe solo con l’API pubblica che definiamo, ad esempio un metodo per
 aggiungere un nome alla collezione `Persone`; quel codice non avrebbe bisogno di
 sapere che internamente associamo un ID `i32` ai nomi. Il modello _newtype_ è un
-modo leggero per ottenere l’incapsulamento per nasconde dettagli di
+modo leggero di ottenere l’incapsulamento per nasconde dettagli di
 implementazione, come abbiamo discusso in [“Incapsulamento che Nasconde i
 Dettagli di Implementazione”][encapsulation-that-hides]<!-- ignore --> nel
 Capitolo 18.
@@ -58,9 +58,9 @@ stesso modo di quelli di _type_ `i32`:
 Poiché `Chilometri` e `i32` sono lo stesso _type_, possiamo sommare valori di
 entrambi i _type_ e passare valori di _type_ `Chilometri` a funzioni che
 accettano parametri `i32`. Tuttavia, usando questo metodo non otteniamo i
-benefici di controllo dei _type_ che otteniamo con il modello _newtype_ discusso
-prima. In altre parole, se confondiamo valori di _type_ `Chilometri` e `i32` da
-qualche parte, il compilatore non ci darà errore.
+benefici di controllo dei _type_ che otterremmo con il modello _newtype_
+discusso prima. In altre parole, se confondiamo valori di _type_ `Chilometri` e
+`i32` da qualche parte, il compilatore non ci darà errore.
 
 Il caso d’uso principale per i sinonimi di _type_ è ridurre la ripetizione. Ad
 esempio, potremmo avere una definizione di _type_ un po’ lunga:
@@ -208,14 +208,14 @@ Un’ultima espressione che ha _type_ `!` è un `loop`:
 ```
 
 Qui il _loop_ non termina mai, per cui il valore dell’espressione è `!`. Questo
-non varrebbe se usassimo un `break` perché il ciclo terminerebbe quando
-incontrasse `break`.
+non varrebbe se usassimo un `break` perché il ciclo terminerebbe quando incontra
+`break`.
 
 ### _Type_ a Dimensione Dinamica e il _Trait_ `Sized`
 
 Rust ha bisogno di conoscere alcune informazioni sui _type_, tipo quanto spazio
 allocare per un valore di quel _type_. Questo rende un po’ complicato il
-concetto di _type_ a dimensione dinamica_. Detti anche _DST_ o _type_ _non
+concetto di _type_ _a dimensione dinamica_. Detti anche _DST_ o _type_ _non
 dimensionati_, consentono di scrivere codice che usa valori la cui dimensione è
 nota solo in fase di esecuzione.
 
@@ -235,37 +235,38 @@ Rust deve sapere quanto spazio allocare per un valore di un qualsiasi _type_ e
 tutti i valori di quel _type_ devono occupare la stessa quantità di memoria. Se
 Rust ci permettesse di scrivere questo codice, quei due valori `str` dovrebbero
 occupare la stessa quantità di spazio, ma hanno lunghezze diverse: `s1`
-necessita di 12 byte, `s2` di 15. Ecco perché non è possibile creare una
-variabile contenente un _type_ a dimensione dinamica.
+necessita di 5 byte, `s2` di 8. Ecco perché non è possibile creare una variabile
+contenente un _type_ a dimensione dinamica.
 
 Quindi cosa facciamo? La risposta la conosci già: cambiamo i _type_ di `s1` e
-`s2` in _slice_ di stringa (`&str`) anzichè `str`. Ricorda dalla sezione [“_Slice_ di Stringa”][string-slices] nel
-Capitolo 4 che la struttura dati _slice_ memorizza solo l’indirizzo di partenza
-e la lunghezza della _slice_. Perciò, anche se un `&T` è un singolo valore che
-memorizza l’indirizzo di memoria di `T`, una _slice_ è _due_ valori: l’indirizzo
-di `str` e la sua lunghezza. Perciò sappiamo sempre la dimensione statica di un
-valore _slice_ stringa durante la compilazione: è doppia rispetto alla lunghezza di un `usize`. E quindi,
+`s2` in _slice_ di stringa (`&str`) anziché `str`. Come detto nella sezione
+[“_Slice_ di Stringa”][string-slices] del Capitolo 4, la struttura dati _slice_
+memorizza solo l’indirizzo di partenza e la lunghezza della _slice_. Perciò,
+anche se un `&T` è un singolo valore che memorizza l’indirizzo di memoria di
+`T`, una _slice_ è _due_ valori: l’indirizzo di `str` e la sua lunghezza. Perciò
+sappiamo sempre la dimensione statica di un valore _slice_ stringa durante la
+compilazione: è doppia rispetto alla lunghezza di un `usize`. E quindi,
 conosciamo sempre la dimensione di una _slice_ indipendentemente dalla lunghezza
-della stringa. In generale, questo è il modo in cui si usano i _type_
-dimensionati dinamicamente in Rust: hanno un pezzettino di metadati in più per
+della stringa. In generale, questo è il modo in cui si usano i _type_ a
+dimensione dinamica in Rust: hanno un pezzettino di metadati in più per
 memorizzare la dimensione dell’informazione dinamica. La regola d’oro dei _DST_
-è che dobbiamo sempre mettere valori di _type_ dimensionato dinamicamente dietro
-a qualche tipo di puntatore.
+è che dobbiamo sempre mettere valori di _type_ a dimensione dinamica dietro a
+qualche tipo di puntatore.
 
 Possiamo combinare `str` con tanti _type_ di puntatori: ad esempio, `Box<str>` o
-`Rc<str>`. Hai già visto questo ma con un altro _type_ a dimensione dinamica: i
-_trait_. Ogni _trait_ è un _type_ dimensionato dinamicamente che può essere
-indicato usando il nome del _trait_. Nella sezione [“Usare Oggetti _Trait_ per
-Astrarre Comportamenti Condivisi”][using-trait-objects]<!-- ignore --> del
-Capitolo 18 abbiamo menzionato che per usare _trait_ come oggetti _trait_
-dobbiamo metterli dietro a un puntatore, come `&dyn Trait` o `Box<dyn Trait>`
-(anche `Rc<dyn Trait>` andrebbe bene).
+`Rc<str>`. È una cosa che hai già visto, ma con un altro _type_ a dimensione
+dinamica: i _trait_. Ogni _trait_ è un _type_ a dimensione dinamica che può
+essere indicato usando il nome del _trait_. Nella sezione [“Usare Oggetti
+_Trait_ per Astrarre Comportamenti Condivisi”][using-trait-objects]<!-- ignore
+--> del Capitolo 18 abbiamo menzionato che per usare _trait_ come oggetti
+_trait_ dobbiamo metterli dietro a un puntatore, come `&dyn Trait` o `Box<dyn
+Trait>` (anche `Rc<dyn Trait>` andrebbe bene).
 
 Per lavorare con i _DST_, Rust fornisce il _trait_ `Sized`, che determina se la
 dimensione di un _type_ è nota a tempo di compilazione. Questo _trait_ è
-implementato automaticamente per tutto ciò che ha dimensione nota a
-compilazione. Inoltre, Rust aggiunge implicitamente un vincolo su `Sized` per
-ogni funzione generica: questo vuol dire che la definizione di una funzione
+implementato automaticamente per tutto ciò che ha dimensione nota nel momento
+della compilazione. Inoltre, Rust aggiunge implicitamente un vincolo su `Sized`
+per ogni funzione generica: questo vuol dire che la definizione di una funzione
 generica come questa:
 
 ```rust,ignore
@@ -279,17 +280,18 @@ viene trattata come se fosse scritta così:
 ```
 
 Per default, le funzioni generiche funzionano solo su _type_ con dimensione nota
-a tempo di compilazione. Però puoi usare questa sintassi speciale per allentare
-questa restrizione:
+nel momento della compilazione. Però puoi usare questa sintassi speciale per
+allentare questa restrizione:
 
 ```rust,ignore
 {{#rustdoc_include ../listings/ch20-advanced-features/no-listing-14-generic-maybe-sized/src/lib.rs}}
 ```
 
-Un vincolo `?Sized` significa “`T` può essere o no di dimensione fissa”, e questa
-notazione sovrascrive il comportamento predefinito che i generici debbano avere
-dimensione nota a tempo di compilazione. La sintassi `?Trait` con questo
-significato è disponibile solo per `Sized` e non per altri _trait_.
+Un vincolo `?Sized` significa “`T` può essere o non essere di dimensione fissa”,
+e questa notazione sovrascrive il comportamento predefinito che i generici
+debbano avere dimensione nota nel momento della compilazione. La sintassi
+`?Trait` con questo significato è disponibile solo per `Sized` e non per altri
+_trait_.
 
 Nota anche che abbiamo cambiato il _type_ del parametro `t` da `T` a `&T`.
 Poiché il _type_ potrebbe non essere `Sized`, dobbiamo usarlo dietro a un

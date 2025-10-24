@@ -125,7 +125,7 @@ trait Add<Rhs=Self> {
 
 Questo codice dovrebbe sembrarti familiare: un _trait_ con un metodo e un _type_
 associato. La novità è `Rhs=Self`: questa sintassi si chiama _default type
-parameters_ ( _type_ _di default dei parametri_). Il parametro generico `Rhs`
+parameters_ (_parametri per_ _type_ _di default_). Il parametro generico `Rhs`
 (abbreviazione di _right-hand side_, lato destro) definisce il _type_ del
 parametro `rhs` nel metodo `add`. Se non specifichiamo un _type_ concreto per
 `Rhs` nell’implementazione di `Add`, il _type_ di `Rhs` di default sarà `Self`,
@@ -140,7 +140,10 @@ Abbiamo due _struct_, `Millimetri` e `Metri`, che contengono valori in unità
 diverse. Questo tipo di “incapsulamento sottile” attorno a un _type_ esistente è
 chiamato _newtype pattern_, di cui parleremo più avanti nella sezione
 [“Implementare _Trait_ Esterni con il Modello _Newtype_”][newtype]<!-- ignore
--->. Vogliamo sommare valori in millimetri a valori in metri e far sì che l’implementazione di `Add` si occupi di fare la conversione corretta. Possiamo implementare `Add` per `Millimetri` con `Metri` come `Rhs`, come mostrato nel Listato 20-16.
+-->. Vogliamo sommare valori in millimetri a valori in metri e far sì che
+l’implementazione di `Add` si occupi di fare la conversione corretta. Possiamo
+implementare `Add` per `Millimetri` con `Metri` come `Rhs`, come mostrato nel
+Listato 20-16.
 
 <Listing number="20-16" file-name="src/lib.rs" caption="Implementazione del _trait_ `Add` su `Millimetri` per sommare `Millimetri` con `Metri`">
 
@@ -181,8 +184,8 @@ stesso nome di un metodo del _trait_.
 Quando chiami metodi con lo stesso nome devi indicare a Rust quale vuoi usare.
 Considera il codice nel Listato 20-17, dove sono definiti due _trait_, `Pilota`
 e `Mago`, entrambi con un metodo chiamato `vola`. Entrambi i _trait_ sono
-implementati su un _type_ `Umano`, che ha anche un metodo `vola` definito
-direttamente.
+implementati su un _type_ `Umano`, in cui è già definito un metodo `vola`. Ogni
+metodo `vola` fa qualcosa di diverso.
 
 <Listing number="20-17" file-name="src/main.rs" caption="Due _trait_ con un metodo `vola` implementati sul _type_ `Umano`, e un metodo `vola` definito direttamente su `Umano`">
 
@@ -343,14 +346,14 @@ un’istanza di `Punto` con `x=1` e `y=3`, dovrebbe stampare:
 **********
 ```
 
-Nell’implementazione di `stampa_contorno` vogliamo usare la funzionalità del
+Nell’implementazione di `stampa_contorno` vogliamo usare le funzionalità del
 _trait_ `Display`. Quindi il _trait_ `StampaContorno` dovrebbe funzionare solo
 per _type_ che implementano anche `Display`. Lo specifichiamo nella definizione
 con `StampaContorno: Display`. Questo è simile ad aggiungere un vincolo di
 _trait_ al _trait_ in questione. Il Listato 20-23 mostra un implementazione del
 _trait_ `StampaContorno`.
 
-<Listing number="20-23" file-name="src/main.rs" caption="Implementazione del _trait_ `StampaContorno` che richiede la funzionalità di `Display`">
+<Listing number="20-23" file-name="src/main.rs" caption="Implementazione del _trait_ `StampaContorno` che richiede le funzionalità di `Display`">
 
 ```rust
 {{#rustdoc_include ../listings/ch20-advanced-features/listing-20-23/src/main.rs:here}}

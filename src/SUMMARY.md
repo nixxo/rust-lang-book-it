@@ -121,12 +121,12 @@
   - [Confutabilità: Quando un _Pattern_ Potrebbe non Corrispondere](ch19-02-refutability.md)
   - [Sintassi dei _Pattern_](ch19-03-pattern-syntax.md)
 
-- [Advanced Features](ch20-00-advanced-features.md)
-  - [Unsafe Rust](ch20-01-unsafe-rust.md)
-  - [Advanced Traits](ch20-02-advanced-traits.md)
-  - [Advanced Types](ch20-03-advanced-types.md)
-  - [Advanced Functions and Closures](ch20-04-advanced-functions-and-closures.md)
-  - [Macros](ch20-05-macros.md)
+- [Funzionalità Avanzate](ch20-00-advanced-features.md)
+  - [_Unsafe_ Rust](ch20-01-unsafe-rust.md)
+  - [_Trait_ Avanzati](ch20-02-advanced-traits.md)
+  - [_Type_ Avanzati](ch20-03-advanced-types.md)
+  - [Funzioni e Chiusure Avanzate ](ch20-04-advanced-functions-and-closures.md)
+  - [Macro](ch20-05-macros.md)
 
 - [Final Project: Building a Multithreaded Web Server](ch21-00-final-project-a-web-server.md)
   - [Building a Single-Threaded Web Server](ch21-01-single-threaded.md)

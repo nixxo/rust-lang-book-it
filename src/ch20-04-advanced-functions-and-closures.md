@@ -76,8 +76,8 @@ chiusura. Il Listato 20-30 mostra come sarebbe.
 </Listing>
 
 Nota che dobbiamo usare la sintassi completamente qualificata di cui abbiamo
-parlato in [“_Trait_ Avanzati”][advanced-traits]<!-- ignore --> perché ci sono
-più funzioni con nome `to_string`.
+parlato nella sezione [“_Trait_ Avanzati”][advanced-traits]<!-- ignore -->
+perché ci sono più funzioni con nome `to_string`.
 
 Qui usiamo la funzione `to_string` definita nel _trait_ `ToString`, che la
 libreria standard ha implementato per ogni _type_ che implementa `Display`.
@@ -89,7 +89,7 @@ a funzione che implementano i _trait_ delle chiusure, il che significa che
 possiamo specificare le funzioni inizializzatrici come argomenti per metodi che
 accettano chiusure, come nel Listato 20-31.
 
-<Listing number="20-31" caption="Uso di una funzione inizializzatrice di un _enum_ con il metodo `map` per creare un’istanza `Stato` dai numeri">
+<Listing number="20-31" caption="Uso di una funzione inizializzatrice di un’_enum_ con il metodo `map` per creare un’istanza `Stato` dai numeri">
 
 ```rust
 {{#rustdoc_include ../listings/ch20-advanced-features/listing-20-31/src/main.rs:here}}
@@ -112,10 +112,10 @@ non puoi fare questo con le chiusure perché non hanno un _type_ concreto
 restituibile; per esempio, non puoi usare il puntatore a funzione `fn` come
 _type_ di ritorno se la chiusura cattura qualche valore dal suo _scope_.
 
-Al contrario, normalmente userai la sintassi `impl Trait` che abbiamo imparato
-nel Capitolo 10. Puoi restituire qualsiasi tipo di funzione usando `Fn`,
-`FnOnce` e `FnMut`. Per esempio, il codice nel Listato 20-32 verrà compilato
-senza problemi.
+Al contrario, normalmente userai la sintassi `impl Trait` che hai imparato nel
+Capitolo 10. Puoi restituire qualsiasi tipo di funzione usando `Fn`, `FnOnce` e
+`FnMut`. Per esempio, il codice nel Listato 20-32 verrà compilato senza
+problemi.
 
 <Listing number="20-32" caption="Restituire una chiusura da una funzione usando la sintassi `impl Trait`">
 
@@ -129,7 +129,7 @@ Tuttavia, come abbiamo notato nella sezione [“Inferenza e Annotazione del _Typ
 delle Chiusure”][closure-types]<!-- ignore --> del Capitolo 13, ogni chiusura è
 anche il suo _type_ distinto. Se ti serve lavorare con più funzioni che hanno la
 stessa firma ma implementazioni diverse, dovrai usare un oggetto _trait_ per
-loro. Considera cosa succede se scrivi un codice come nel Listato 20-33.
+loro. Considera cosa succede se scrivi del codice come nel Listato 20-33.
 
 <Listing number="20-33" file-name="src/main.rs" caption="Creazione di un `Vec<T>` di chiusure definite tramite funzioni che restituiscono _type_ `impl Fn`">
 

@@ -1,9 +1,9 @@
-use ciao_macro::CiaoMacro;
-use ciao_macro_derive::CiaoMacro;
+use hello_macro::HelloMacro;
+use hello_macro_derive::HelloMacro;
 
-#[derive(CiaoMacro)]
+#[derive(HelloMacro)]
 struct Pancake;
 
 fn main() {
-    Pancake::ciao_macro();
+    Pancake::hello_macro();
 }

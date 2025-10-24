@@ -4,5 +4,5 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-ciao_macro = { path = "../ciao_macro" }
-ciao_macro_derive = { path = "../ciao_macro/ciao_macro_derive" }
+hello_macro = { path = "../hello_macro" }
+hello_macro_derive = { path = "../hello_macro/hello_macro_derive" }
