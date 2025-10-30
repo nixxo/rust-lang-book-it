@@ -5,7 +5,7 @@ capitolo, realizzeremo insieme un ultimo progetto per dimostrare alcuni dei
 concetti trattati negli ultimi capitoli, oltre a ripassare alcune lezioni
 precedenti.
 
-Per il nostro progetto finale, realizzeremo un server web che dice “ciao” e
+Per il nostro progetto finale, realizzeremo un server web che dice “Ciao!” e
 appare come nella Figura 21-1 in un browser web.
 
 Ecco il nostro piano per la costruzione del server web:
@@ -17,7 +17,7 @@ Ecco il nostro piano per la costruzione del server web:
 1. Migliorare le prestazioni del server implementando un _pool_ di _thread_.
 
 <img src="img/trpl21-01.png" class="center" style="width: 50%;" alt="Screenshot
-di un browser web che visita l’indirizzo 127.0.0.1:8080 e visualizza una pagina
+di un browser web che visita l’indirizzo 127.0.0.1:7878 e visualizza una pagina
 web con il contenuto testuale “Ciao! Un saluto da Rust”" />
 
 <span class="caption">Figura 21-1: Il nostro progetto finale condiviso</span>
@@ -35,9 +35,9 @@ altri linguaggi.
 
 Secondo, non useremo _async_ e _await_ qui. Costruire un _pool_ di _thread_ è
 già una sfida abbastanza grande da sola, senza aggiungere la costruzione di un
-runtime _async_! Tuttavia, noteremo come _async_ e _await_ potrebbero essere
+_runtime_ _async_! Tuttavia, noteremo come _async_ e _await_ potrebbero essere
 applicabili ad alcuni dei stessi problemi che vedremo in questo capitolo. In
-definitiva, come abbiamo notato nel Capitolo 17, molti runtime _async_ usano
+definitiva, come abbiamo notato nel Capitolo 17, molti _runtime_ _async_ usano
 _pool_ di _thread_ per gestire il loro lavoro.
 
 Scriveremo quindi il server HTTP di base e il _pool_ di _thread_ manualmente in

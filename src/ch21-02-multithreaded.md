@@ -6,15 +6,15 @@ finito di essere elaborata. Se il server riceve sempre più richieste, questa
 esecuzione seriale sarebbe sempre meno ottimale. Se il server riceve una
 richiesta che richiede molto tempo per essere elaborata, le richieste successive
 dovranno aspettare fino a quando la richiesta lunga non sarà finita, anche se le
-nuove richieste possono essere elaborate rapidamente. Dovremo risolvere questo
-problema, ma prima osserviamo il problema in azione.
+nuove richieste potrebbero essere elaborate rapidamente. Dovremo risolvere
+questo problema, ma prima osserviamo il problema in azione.
 
 ### Simulare una Richiesta Lenta
 
 Vedremo come una richiesta che impiega molto tempo a essere processata possa
 influenzare le altre richieste fatte alla nostra implementazione attuale del
-server. Il Listato 21-10 implementa la gestione di una richiesta a _/attesa_ con
-una risposta lenta simulata, che farà attendere il server per cinque secondi
+server. Il Listato 21-10 implementa la gestione di una richiesta ad _/attesa_
+con una risposta lenta simulata, che farà attendere il server per cinque secondi
 prima di rispondere.
 
 <Listing number="21-10" file-name="src/main.rs" caption="Simulare una richiesta lenta aspettando per 5 secondi">
@@ -26,14 +26,14 @@ prima di rispondere.
 </Listing>
 
 Siamo passati da `if` a `match` ora che abbiamo tre casi. Dobbiamo
-esplicitamente fare match su una _slice_ di `request_line` per pattern-match
-contro i valori letterali stringa; `match` non fa riferimenti e
-dereferenziamenti automatici, come fa il metodo di uguaglianza.
+esplicitamente fare _match_ su una _slice_ di `request_line` per trovare
+corrispondenza con dei valori letterali stringa; `match` non fa riferimenti e
+de-referenziamenti automatici, come fa il metodo di uguaglianza.
 
 Il primo ramo è uguale al blocco `if` del Listato 21-9. Il secondo ramo fa
-_match_ di una richiesta a _/attesa_. Quando viene ricevuta quella richiesta, il
-server attende per cinque secondi prima di inviare la pagina HTML di successo.
-Il terzo ramo è lo stesso del blocco `else` del Listato 21-9.
+_match_ di una richiesta ad _/attesa_. Quando viene ricevuta quella richiesta,
+il server attende per cinque secondi prima di inviare la pagina HTML di
+successo. Il terzo ramo è lo stesso del blocco `else` del Listato 21-9.
 
 Puoi vedere quanto sia primitivo il nostro server: librerie reali gestirebbero
 il riconoscimento di richieste multiple in un modo molto meno verboso!
@@ -71,7 +71,7 @@ Quindi, invece di generare _thread_ illimitati, avremo un numero fisso di
 _thread_ in attesa nel gruppo. Le richieste in arrivo vengono mandate al gruppo
 per l’elaborazione. Il gruppo manterrà una coda di richieste in arrivo. Ogni
 _thread_ del gruppo prenderà una richiesta da questa coda, la gestirà e poi
-chiederà un’altra richiesta dalla coda. Con questo design, possiamo elaborare
+chiederà un’altra richiesta dalla coda. Con questo modello, possiamo elaborare
 fino a _`N`_ richieste simultaneamente, dove _`N`_ è il numero di _thread_. Se
 ogni _thread_ sta rispondendo a una richiesta a lungo termine, le richieste
 successive possono ancora accumularsi nella coda, ma abbiamo aumentato il numero
@@ -81,9 +81,9 @@ punto.
 Questa tecnica è solo una delle molte maniere per migliorare la produttività di
 un server web. Altre opzioni che potresti esplorare sono il modello _fork/join_,
 il modello _I/O_ _async_ _a singolo_ _thread_, e il modello _I/O_ _async_
-_multi_-_thread_. Se sei interessato a questo argomento, puoi leggere di più su
-altre soluzioni e provare a implementarle; con un linguaggio di basso livello
-come Rust, tutte queste opzioni sono possibili.
+_multi_-_thread_. Se sei interessato a questo argomento, puoi leggere ed
+informarti su queste ed altre soluzioni e provare a implementarle; con un
+linguaggio di basso livello come Rust, tutte queste opzioni sono possibili.
 
 Prima di iniziare a implementare un _pool_ di _thread_, parliamo prima di come
 dovrebbe essere usato un _pool_. Quando stai cercando di progettare codice,
@@ -105,7 +105,7 @@ Per prima cosa, esploriamo come potrebbe apparire il nostro codice se creasse un
 nuovo _thread_ per ogni connessione. Come detto, questa non è la nostra
 soluzione finale a causa dei problemi legati al numero illimitato di _thread_
 che potrebbero essere creati, ma è un punto di partenza per avere un server
-multithread funzionante. Poi, aggiungeremo il _thread_ _pool_ come
+multi-_thread_ funzionante. Poi, aggiungeremo il _thread_ _pool_ come
 miglioramento, e confrontare le due soluzioni sarà più facile.
 
 Il Listato 21-11 mostra le modifiche da fare a `main` per generare un nuovo
@@ -133,10 +133,11 @@ _thread_ _pool_ e pensa a come le cose sarebbero diverse o uguali con _async_.
 
 #### Creare un Numero Finito di _Thread_
 
-Vogliamo che il nostro thread pool funzioni in un modo simile e familiare in
-modo che passare dai thread a un thread pool non richieda grandi cambiamenti al
-codice che usa la nostra API. Il Listato 21-12 mostra l’interfaccia ipotetica
-per una struct `ThreadPool` che vogliamo usare invece di `thread::spawn`.
+Vogliamo che il nostro _thread_ _pool_ funzioni in un modo simile e familiare in
+modo che passare dai _thread_ a un _thread_ _pool_ non richieda grandi
+cambiamenti al codice che usa la nostra API. Il Listato 21-12 mostra
+l’interfaccia ipotetica per una struct `ThreadPool` che vogliamo usare invece di
+`thread::spawn`.
 
 <Listing number="21-12" file-name="src/main.rs" caption="La nostra interfaccia ideale per `ThreadPool`">
 
@@ -146,13 +147,13 @@ per una struct `ThreadPool` che vogliamo usare invece di `thread::spawn`.
 
 </Listing>
 
-Usiamo `ThreadPool::new` per creare un nuovo gruppo di thread con un numero
-configurabile di thread, in questo caso 4. Poi, nel ciclo `for`, `pool.execute`
-ha un interfaccia simile a `thread::spawn` nel senso che prende una chiusura che
-il gruppo dovrebbe eseguire per ogni _stream_. Dobbiamo implementare
-`pool.execute` in modo che prenda la chiusura e la dia a un thread nel gruppo
-per eseguirla. Questo codice non si compilerà ancora, ma lo proveremo in modo
-che il compilatore ci guidi su come sistemarlo.
+Usiamo `ThreadPool::new` per creare un nuovo gruppo di _thread_ con un numero
+configurabile di _thread_, in questo caso 4. Poi, nel ciclo `for`,
+`pool.execute` ha un interfaccia simile a `thread::spawn` nel senso che prende
+una chiusura che il gruppo dovrebbe eseguire per ogni _stream_. Dobbiamo
+implementare `pool.execute` in modo che prenda la chiusura e la dia a un
+_thread_ nel gruppo per eseguirla. Questo codice non si compilerà ancora, ma lo
+proveremo in modo che il compilatore ci guidi su come sistemarlo.
 
 #### Costruire `ThreadPool` Usando lo Sviluppo Guidato dal Compilatore
 
@@ -216,10 +217,10 @@ Implementiamo la funzione `new` più semplice che abbia queste caratteristiche:
 
 </Listing>
 
-Abbiamo scelto `usize` come _type_ del parametro `size` perché sappiamo che un
-numero negativo di _thread_ non ha alcun senso. Sappiamo anche che useremo
-questo `4` come numero di elementi in una collezione di _thread_, che è lo scopo
-del _type_ `usize`, come discusso nella sezione [“Il _Type_
+Abbiamo scelto `usize` come _type_ del parametro `dimensione` perché sappiamo
+che un numero negativo di _thread_ non ha alcun senso. Sappiamo anche che
+useremo questo `4` come numero di elementi in una collezione di _thread_, che è
+lo scopo del _type_ `usize`, come discusso nella sezione [“Il _Type_
 Intero”][integer-types]<!-- ignore -->del Capitolo 3.
 
 Controlliamo nuovamente il codice:
@@ -236,9 +237,9 @@ aggiunta, implementeremo la funzione `execute` in modo che prenda la chiusura
 che riceve e la dia a un thread inattivo nel gruppo per eseguirla.
 
 Definiremo il metodo `execute` su `ThreadPool` in modo che accetti una chiusura
-come parametro. Ricordiamo dalla sezione [“Restituire i Valori Catturati dalle
+come parametro. Ricorda dalla sezione [“Restituire i Valori Catturati dalle
 Chiusure”][moving-out-of-closures]<!-- ignore --> del Capitolo 13 che possiamo
-accettare chiusure come parametri con tre diversi tratti: `Fn`, `FnMut` e
+accettare chiusure come parametri con tre diversi _trait_: `Fn`, `FnMut` e
 `FnOnce`. Dobbiamo decidere quale tipo di chiusura utilizzare in questo caso.
 Sappiamo che finiremo per fare qualcosa di simile all’implementazione della
 libreria standard `thread::spawn`, quindi possiamo guardare quali sono i vincoli
@@ -265,7 +266,7 @@ richiesta, il che corrisponde a `Once` in `FnOnce`.
 Il parametro di _type_ `F` ha anche il vincolo di _trait_ `Send` e il vincolo di
 _lifetime_ `'static`, che sono utili nella nostra situazione: abbiamo bisogno di
 `Send` per trasferire la chiusura da un _thread_ all’altro e di `'static` perché
-non sappiamo quanto tempo impiegherà il _thread_ per esecguire quanto richiesto.
+non sappiamo quanto tempo impiegherà il _thread_ per eseguire quanto richiesto.
 Creiamo un metodo `execute` su `ThreadPool` che prenderà un parametro generico
 di _type_ `F` con questi vincoli:
 
@@ -293,8 +294,7 @@ Controlliamo di nuovo:
 
 Si compila! Ma nota che se provi `cargo run` e fai una richiesta nel browser,
 vedrai gli errori nel browser che abbiamo visto all’inizio del capitolo. La
-nostra libreria non sta ancora chiamando la chiusura passata a `execute`
-!
+nostra libreria non sta ancora chiamando la chiusura passata a `execute`!
 
 > Nota: un detto che potreste sentire riguardo ai linguaggi con compilatori
 > rigorosi, come Haskell e Rust, è “Se il codice si compila, funziona”. Ma
@@ -312,14 +312,14 @@ una chiusura?
 Non stiamo facendo nulla con i parametri di `new` e `execute`. Implementiamo il
 corpo di queste funzioni con il comportamento desiderato. Per iniziare, pensiamo
 a `new`. In precedenza abbiamo scelto un _type_ senza segno per il parametro
-`size` perché un gruppo con un numero negativo di _thread_ non ha senso.
+`dimensione` perché un gruppo con un numero negativo di _thread_ non ha senso.
 Tuttavia, anche un gruppo con zero _thread_ non ha senso, ma zero è un `usize`
-perfettamente valido. Aggiungeremo del codice per verificare che `size` sia
-maggiore di zero prima di restituire un’istanza `ThreadPool` e faremo andare in
-_panic_ il programma se riceve uno zero utilizzando la macro `assert!`, come
+perfettamente valido. Aggiungeremo del codice per verificare che `dimensione`
+sia maggiore di zero prima di restituire un’istanza `ThreadPool` e faremo andare
+in _panic_ il programma se riceve uno zero utilizzando la macro `assert!`, come
 mostrato nel Listato 21-13.
 
-<Listing number="21-13" file-name=“src/lib.rs” caption="Implementazione di `ThreadPool::new` per generare un errore se `size` è zero">
+<Listing number="21-13" file-name=“src/lib.rs” caption="Implementazione di `ThreadPool::new` per generare un errore se `dimensione` è zero">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch21-web-server/listing-21-13/src/lib.rs:here}}
@@ -343,7 +343,7 @@ funzione chiamata `build` con la seguente firma per confrontarla con la funzione
 `new`:
 
 ```rust,ignore
-pub fn build(size: usize) -> Result<ThreadPool, PoolCreationError> {
+pub fn build(size: usize) -> Result<ThreadPool, ErroreCreazionePool>
 ```
 
 #### Creare Spazio per Memorizzare i _Thread_
@@ -370,8 +370,8 @@ unitario `()`.
 Il codice nel Listato 21-14 verrà compilato, ma non creerà ancora alcun
 _thread_. Abbiamo modificato la definizione di `ThreadPool` per contenere un
 vettore di istanze `thread::JoinHandle<()>`, inizializzato il vettore con una
-capacità di `size`, impostato un ciclo `for` che eseguirà del codice per creare
-i _thread_ e restituito un’istanza `ThreadPool` che li contiene.
+capacità di `dimensione`, impostato un ciclo `for` che eseguirà del codice per
+creare i _thread_ e restituito un’istanza `ThreadPool` che li contiene.
 
 <Listing number="21-14" file-name=“src/lib.rs” caption="Creazione di un vettore per `ThreadPool` per contenere i _thread_">
 
@@ -381,8 +381,8 @@ i _thread_ e restituito un’istanza `ThreadPool` che li contiene.
 
 </Listing>
 
-Abbiamo portato `std::thread` nello _scope_ della libreria crate perché stiamo
-utilizzando `thread::JoinHandle` come tipo degli elementi nel vettore in
+Abbiamo portato `std::thread` nello _scope_ della libreria _crate_ perché stiamo
+utilizzando `thread::JoinHandle` come _type_ degli elementi nel vettore in
 `ThreadPool`.
 
 Una volta ricevuta una dimensione valida, il nostro `ThreadPool` crea un nuovo
@@ -468,8 +468,8 @@ _thread_ utilizzando una chiusura vuota.
 > _thread_ potrebbe avere esito positivo. Per semplicità, questo comportamento
 > va bene, ma in un’implementazione di _thread_ _pool_ di produzione,
 > probabilmente si preferirà utilizzare
-> [`std::thread::Builder`][builder]<!-- ignore --> e il suo
-> [`spawn`][builder-spawn]<!-- ignore --> che restituisce invece `Result`.
+>[`std::thread::Builder`][builder]<!-- > ignore --> e il suo
+>[`spawn`][builder-spawn]<!-- ignore --> che restituisce invece `Result`.
 
 Questo codice verrà compilato e memorizzerà il numero di istanze `Worker` che
 abbiamo specificato come argomento di `ThreadPool::new`. Ma non stiamo ancora
@@ -575,10 +575,10 @@ ricevitore.
 
 Con queste modifiche, il codice viene compilato! Ci siamo quasi!
 
-#### Implementazione del metodo `execute`
+#### Implementare il Metodo `execute`
 
 Implementiamo infine il metodo `execute` su `ThreadPool`. Modificheremo anche
-`Job` da una _strucy_ a un _alias_ di _type_ per un oggetto _trait_ che contiene
+`Job` da una _struct_ a un _alias_ di _type_ per un oggetto _trait_ che contiene
 il _type_ della chiusura che `execute` riceve. Come discusso nella sezione
 [“Sinonimi e _Alias_ di _Type_”][type-aliases]<!-- ignore --> nel Capitolo 20,
 gli _alias_ di _type_ ci consentono di abbreviare i _type_ lunghi per
@@ -593,11 +593,11 @@ facilitarne l’uso. Guarda il Listato 21-19.
 </Listing>
 
 Dopo aver creato una nuova istanza `Job` utilizzando la chiusura ottenuta in
-`execute`, inviamo quel lavoro dall’estremità di invio del canale. Chiamiamo
-`unwrap` su `send` nel caso in cui l’invio fallisca. Ciò potrebbe accadere se,
-ad esempio, interrompiamo l’esecuzione di tutti i nostri _thread_, il che
-significa che l’estremità ricevente ha smesso di ricevere nuovi messaggi. Al
-momento, non possiamo interrompere l’esecuzione dei nostri _thread_: i nostri
+`execute`, inviamo quel lavoro tramite l’estremità mittente del canale.
+Chiamiamo `unwrap` su `send` nel caso in cui l’invio fallisca. Ciò potrebbe
+accadere se, ad esempio, interrompiamo l’esecuzione di tutti i nostri _thread_,
+il che significa che l’estremità ricevente ha smesso di ricevere nuovi messaggi.
+Al momento, non possiamo interrompere l’esecuzione dei nostri _thread_: i nostri
 _thread_ continuano a essere eseguiti finché esiste il _pool_. Il motivo per cui
 utilizziamo `unwrap` è che sappiamo che il caso di errore non si verificherà, ma
 il compilatore non lo sa.
@@ -608,7 +608,7 @@ canale. Invece, abbiamo bisogno che la chiusura continui a girare all’infinito
 chiedendo all’estremità ricevente del canale un lavoro ed eseguendolo quando lo
 riceve. Apportiamo la modifica mostrata nel Listato 21-20 a `Worker::new`.
 
-<Listing number="21-20" file-name=“src/lib.rs” caption="Ricezione ed esecuzione dei lavori nel thread dell’istanza `Worker`">
+<Listing number="21-20" file-name=“src/lib.rs” caption="Ricezione ed esecuzione dei lavori nel _thread_ dell’istanza `Worker`">
 
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch21-web-server/listing-21-20/src/lib.rs:here}}
@@ -718,7 +718,6 @@ cui non è possibile accedere a una risorsa protetta da un `Mutex` a meno che no
 si detenga il blocco. Tuttavia, questa implementazione può anche comportare il
 mantenimento del blocco più a lungo del previsto se non si presta attenzione
 alla _lifetime_ del `MutexGuard<T>`.
-
 
 Il codice nel Listato 21-20 che utilizza `let job =
 ricevitore.lock().unwrap().recv().unwrap();` funziona perché con `let`,

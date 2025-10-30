@@ -61,7 +61,7 @@ La funzione `bind` restituisce un `Result<T, E>`, il che indica che è possibile
 che il _binding_ fallisca, ad esempio, se eseguissimo due istanze del nostro
 programma e quindi avessimo due programmi che ascoltano sulla stessa porta.
 Poiché stiamo scrivendo un server di base solo per scopi di apprendimento, non
-ci preoccuperemo di gestire questi tipi di errori; invece, usiamo `unwrap` per
+ci preoccuperemo di gestire questo tipi di errori; invece, usiamo `unwrap` per
 interrompere il programma se si verificano errori.
 
 Il metodo `incoming` su `TcpListener` restituisce un iteratore che ci fornisce
@@ -95,7 +95,7 @@ indietro alcun dato. Ma quando guardi il tuo terminale, dovresti vedere diversi
 messaggi che sono stati stampati quando il browser si è connesso al server!
 
 ```text
-     Running `target/debug/hello`
+     Running `target/debug/ciao`
 Connessione stabilita!
 Connessione stabilita!
 Connessione stabilita!
@@ -113,12 +113,12 @@ chiusa come parte dell’implementazione di `drop`. I browser a volte gestiscono
 le connessioni chiuse tentando di ristabilirle, perché il problema potrebbe
 essere temporaneo.
 
-I browser aprono anche a volte più connessioni al server senza inviare alcuna
+A volte i browser aprono più connessioni al server senza inviare alcuna
 richiesta, in modo che se devono poi *fare* delle richieste, quelle richieste
 possano avvenire più rapidamente. Quando ciò accade, il nostro server vedrà ogni
 connessione, indipendentemente dal fatto che ci siano richieste su quella
 connessione. Molte versioni di browser basati su Chrome fanno questo, ad
-esempio; puoi disabilitare quell’ ottimizzazione utilizzando la modalità di
+esempio; puoi disabilitare quell’ottimizzazione utilizzando la modalità di
 navigazione privata o utilizzando un browser diverso.
 
 Il fattore importante è che abbiamo ottenuto con successo un _handle_ a una
@@ -167,7 +167,7 @@ _newline_ (_nuova riga_). Per ottenere ogni `String`, usiamo `map` e `unwrap` su
 ogni `Result`. Il `Result` potrebbe essere un errore se i dati non sono UTF-8
 validi o se c’è stato un problema durante la lettura dallo _stream_. Di nuovo,
 un programma di produzione dovrebbe gestire questi errori in modo più elegante,
-ma stiamo scegliendo di fermare il programma nel caso di errore per semplicità.
+ma stiamo scegliendo di fermare il programma in caso di errore per semplicità.
 
 Il browser segnala la fine di una richiesta HTTP inviando due caratteri
 _newline_ di seguito, quindi per ottenere una richiesta dallo _stream_,
@@ -189,24 +189,23 @@ Can't automate because the output depends on making requests
 
 ```console
 $ cargo run
-   Compiling hello v0.1.0 (file:///projects/hello)
+   Compiling ciao v0.1.0 (file:///progetti/ciao)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.42s
-     Running `target/debug/hello`
+     Running `target/debug/ciao`
 Request: [
     "GET / HTTP/1.1",
     "Host: 127.0.0.1:7878",
-    "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:99.0) Gecko/20100101 Firefox/99.0",
-    "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-    "Accept-Language: en-US,en;q=0.5",
-    "Accept-Encoding: gzip, deflate, br",
-    "DNT: 1",
+    "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:144.0) Gecko/20100101 Firefox/144.0",
+    "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language: it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3",
+    "Accept-Encoding: gzip, deflate, br, zstd",
+    "Sec-GPC: 1",
     "Connection: keep-alive",
     "Upgrade-Insecure-Requests: 1",
     "Sec-Fetch-Dest: document",
     "Sec-Fetch-Mode: navigate",
-    "Sec-Fetch-Site: none",
-    "Sec-Fetch-User: ?1",
-    "Cache-Control: max-age=0",
+    "Sec-Fetch-Site: cross-site",
+    "Priority: u=0, i",
 ]
 ```
 
@@ -214,7 +213,7 @@ A seconda del tuo browser, potresti ottenere un output leggermente diverso. Ora
 che stiamo stampando i dati della richiesta, possiamo vedere perché otteniamo
 più connessioni da una singola richiesta del browser guardando il percorso dopo
 `GET` nella prima riga della richiesta. Se le connessioni ripetute stanno tutte
-richiedendo _/_, sappiamo che il browser sta cercando di recuperare _/_
+richiedendo `/`, sappiamo che il browser sta cercando di recuperare `/`
 ripetutamente perché non sta ottenendo una risposta dal nostro programma.
 
 Scomponiamo questi dati di richiesta per capire cosa il browser sta chiedendo al
@@ -233,10 +232,10 @@ corpo-messaggio
 La prima riga è la _request line_ che contiene informazioni su cosa il _client_
 sta richiedendo. La prima parte della _request line_ indica il metodo usato,
 come `GET` o `POST`, che descrive come il _client_ sta facendo questa richiesta.
-Il nostro _client_ ha usato una richiesta `GET`, che significa che sta chiedendo
-informazioni.
+Il nostro _client_ ha usato una richiesta `GET`, che significa che sta
+richiedendo informazioni.
 
-La parte successiva della _request line_ è _/_, che indica l’_uniform resource
+La parte successiva della _request line_ è `/`, che indica l’_uniform resource
 identifier_ _(URI)_ che il _client_ sta richiedendo: un URI è quasi, ma non del
 tutto, lo stesso di un _uniform resource locator_ _(URL)_. La differenza tra URI
 e URL non è importante per i nostri scopi in questo capitolo, ma la specifica
@@ -252,7 +251,7 @@ della richiesta. Nota che quando la CRLF viene stampata, vediamo iniziare una
 nuova riga piuttosto che `\r\n`.
 
 Guardando i dati della _request line_ che abbiamo ricevuto eseguendo il nostro
-programma finora, vediamo che `GET` è il metodo, _/_ è l’URI della richiesta, e
+programma finora, vediamo che `GET` è il metodo, `/` è l’URI della richiesta, e
 `HTTP/1.1` è la versione.
 
 Dopo la _request line_, le righe rimanenti a partire da `Host:` in poi sono
@@ -312,15 +311,14 @@ aggiungeresti la gestione degli errori qui.
 
 Con questi cambiamenti, eseguiamo il nostro codice e facciamo una richiesta. Non
 stiamo più stampando alcun dato sul terminale, quindi non vedremo alcun output
-diverso dall’ output di Cargo. Quando carichi _127.0.0.1:7878_ in un browser
-web, dovresti ottenere una pagina vuota invece di un errore. Hai appena
-codificato manualmente la ricezione di una richiesta HTTP e l’invio di una
-risposta!
+diverso dall’output di Cargo. Quando carichi _127.0.0.1:7878_ in un browser web,
+dovresti ottenere una pagina vuota invece di un errore. Hai appena codificato
+manualmente la ricezione di una richiesta HTTP e l’invio di una risposta!
 
 ### Restituire Vero HTML
 
 Implementiamo la funzionalità per restituire qualcosa più di una pagina vuota.
-Crea il nuovo file _ciao.html_ nella radice della directory del tuo progetto,
+Crea un nuovo file _ciao.html_ nella radice della directory del tuo progetto,
 non nella directory _src_. Puoi inserire qualsiasi HTML tu voglia; il Listato
 21-4 mostra una possibilità.
 
@@ -346,7 +344,7 @@ il file HTML, aggiungerlo alla risposta come corpo, e inviarlo.
 </Listing>
 
 Abbiamo aggiunto `fs` all’istruzione `use` per portare il modulo _filesystem_
-della libreria standard nellO _scope_. Il codice per leggere i contenuti di un
+della libreria standard nello _scope_. Il codice per leggere i contenuti di un
 file in una stringa dovrebbe apparire familiare; l’abbiamo usato quando abbiamo
 letto i contenuti di un file per il nostro progetto I/O nel Listato 12-4.
 
@@ -364,18 +362,18 @@ significa che se provi a richiedere _127.0.0.1:7878/altra-pagina_ nel tuo
 browser, otterrai ancora questa stessa risposta HTML. Al momento, il nostro
 server è molto limitato e non fa quello che fanno la maggior parte dei server
 web. Vogliamo personalizzare le nostre risposte a seconda della richiesta e
-rispondere con il file HTML solo alle richieste corrette a _/_.
+rispondere con il file HTML solo alle richieste corrette a `/`.
 
 ### Validare la Richiesta e Rispondere Selettivamente
 
 Al momento, il nostro server web restituirà l’HTML nel file indipendentemente da
-cosa il _client_ abbia richiesto. Aggiungiamo funzionalità per controllare che
-il browser stia richiedendo _/_ prima di restituire il file HTML e per
-restituire un errore se il browser richiede qualcos’altro. Per questo dobbiamo
-modificare `gestisci_connessione`, come mostrato nel Listato 21-6. Questo nuovo
-codice controlla il contenuto della richiesta ricevuta rispetto a quello che
-sappiamo essere una richiesta per _/_, e aggiunge blocchi `if` e `else` per
-trattare le richieste in modo diverso.
+cosa il _client_ abbia richiesto. Aggiungiamo funzionalità al nostro codice per
+controllare che il browser stia richiedendo `/` prima di restituire il file HTML
+e per restituire un errore se il browser richiede qualcos’altro. Per questo
+dobbiamo modificare `gestisci_connessione`, come mostrato nel Listato 21-6.
+Questo nuovo codice controlla il contenuto della richiesta ricevuta rispetto a
+quello che sappiamo essere una richiesta per _/_, e aggiunge blocchi `if` e
+`else` per trattare le richieste in modo diverso.
 
 <Listing number="21-6" file-name="src/main.rs" caption="Gestione delle richieste a */* in modo diverso dalle altre richieste">
 
@@ -434,8 +432,8 @@ l’esempio HTML nel Listato 21-8.
 
 Con questi cambiamenti, esegui di nuovo il tuo server. Richiedere
 _127.0.0.1:7878_ dovrebbe restituire i contenuti di _ciao.html_, e qualsiasi
-altra richiesta, come _127.0.0.1:7878/foo_, dovrebbe restituire l’HTML di errore
-da _404.html_.
+altra richiesta, come _127.0.0.1:7878/altra-pagina_, dovrebbe restituire l’HTML
+di errore da _404.html_.
 
 ### Riscrittura
 
@@ -463,10 +461,10 @@ nella dichiarazione `let`, come discusso nel Capitolo 19.
 
 Il codice precedentemente duplicato è ora fuori dai blocchi `if` e `else` e usa
 le variabili `status_line` e `filename`. Questo rende più facile vedere la
-differenza tra i due casi, e significa che abbiamo solo un posto per aggiornare
-il codice se vogliamo cambiare come funziona la lettura del file e la scrittura
-della risposta. Il comportamento del codice nel Listato 21-9 sarà lo stesso di
-quello nel Listato 21-7.
+differenza tra i due casi, e significa che abbiamo solo un posto dove guardare
+per aggiornare il codice se vogliamo cambiare come funziona la lettura del file
+e la scrittura della risposta. Il comportamento del codice nel Listato 21-9 sarà
+lo stesso di quello nel Listato 21-7.
 
 Fantastico! Ora abbiamo un semplice server web in circa 40 righe di codice Rust
 che risponde a una richiesta con una pagina di contenuto e risponde a tutte le

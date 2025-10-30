@@ -128,10 +128,10 @@
   - [Funzioni e Chiusure Avanzate ](ch20-04-advanced-functions-and-closures.md)
   - [Macro](ch20-05-macros.md)
 
-- [Final Project: Building a Multithreaded Web Server](ch21-00-final-project-a-web-server.md)
-  - [Building a Single-Threaded Web Server](ch21-01-single-threaded.md)
-  - [Turning Our Single-Threaded Server into a Multithreaded Server](ch21-02-multithreaded.md)
-  - [Graceful Shutdown and Cleanup](ch21-03-graceful-shutdown-and-cleanup.md)
+- [Progetto Finale: Costruire un Server Web Multi-_Thread_](ch21-00-final-project-a-web-server.md)
+  - [Costruire un Server Web Single-_Thread_](ch21-01-single-threaded.md)
+  - [Da Server Single-_Thread_ a Server Multi-_Thread_](ch21-02-multithreaded.md)
+  - [Arresto Ordinato e Pulizia](ch21-03-graceful-shutdown-and-cleanup.md)
 
 - [Appendice](appendix-00.md)
   - [A - Parole Chiave](appendix-01-keywords.md)

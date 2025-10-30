@@ -8,13 +8,13 @@ elegante <kbd>ctrl</kbd>-<kbd>C</kbd> per arrestare il _thread_ principale,
 anche tutti gli altri _thread_ vengono immediatamente arrestati, anche se sono
 nel mezzo dell’elaborazione di una richiesta.
 
-Successivamente, implementeremo il _trait_ `Drop` per chiamare `join` su
-ciascuno dei _thread_ nel gruppo in modo che possano completare le richieste su
-cui stanno lavorando prima della chiusura. Quindi implementeremo un modo per
-comunicare ai _thread_ che devono smettere di accettare nuove richieste e
-chiudersi. Per vedere questo codice in azione, modificheremo il nostro server in
-modo che accetti solo due richieste prima di chiudere correttamente il suo
-gruppo di _thread_.
+A seguire, implementeremo il _trait_ `Drop` per chiamare `join` su ciascuno dei
+_thread_ nel gruppo in modo che possano completare le richieste su cui stanno
+lavorando prima della chiusura. Quindi implementeremo un modo per comunicare ai
+_thread_ che devono smettere di accettare nuove richieste e chiudersi. Per
+vedere questo codice in azione, modificheremo il nostro server in modo che
+accetti solo due richieste prima di chiudere correttamente il suo gruppo di
+_thread_.
 
 Una cosa da notare mentre procediamo: nulla di tutto ciò influisce sulle parti
 del codice che gestiscono l’esecuzione delle chiusure, quindi tutto qui sarebbe
@@ -40,10 +40,10 @@ perfettamente.
 Per prima cosa, eseguiamo un ciclo su ciascuno dei _thread_ del gruppo
 `workers`. Usiamo `&mut` per questo perché `self` è un _reference_ mutabile e
 abbiamo anche bisogno di poter mutare `worker`. Per ogni `worker`, stampiamo un
-messaggio che dice che questa particolare istanza di `Worker` si sta chiudendo,
+messaggio che dice che questa particolare istanza di `Worker` si sta spegnendo,
 quindi chiamiamo `join` sul _thread_ di quell’istanza di `Worker`. Se la
 chiamata a `join` fallisce, utilizziamo `unwrap` per far andare Rust in _panic_
-e procedere a uno spegnimento non corretto.
+e procedere a uno spegnimento non ordinato.
 
 Ecco l’errore che otteniamo quando compiliamo questo codice:
 
@@ -94,7 +94,7 @@ immediatamente il programma e interrompe qualsiasi operazione di pulizia in
 corso. Questo va bene per un programma di esempio, ma non è consigliabile per il
 codice di produzione.
 
-### Segnalare ai _Thread_ di Interrompere l’Ascolto per i Lavori
+### Segnalare ai _Thread_ di Interrompere l’Attesa di Lavori
 
 Con tutte le modifiche apportate, il nostro codice viene compilato senza alcun
 avviso. Tuttavia, la cattiva notizia è che questo codice non funziona ancora nel
@@ -151,7 +151,7 @@ Listato 21-25.
 </Listing>
 
 Non vorresti che un server web reale si spegnesse dopo aver servito solo due
-richieste. Questo codice dimostra semplicemente che lo spegnimento avviente
+richieste. Questo codice dimostra semplicemente che lo spegnimento avviene
 ordinatamente e la pulizia funziona correttamente.
 
 Il metodo `take` è definito nel _trait_ `Iterator` e limita l’iterazione al
@@ -212,7 +212,7 @@ quel punto, tutte erano uscite dai loro cicli e si erano fermate.
 
 Congratulazioni! Abbiamo completato il nostro progetto: ora abbiamo un server
 web di base che utilizza un _thread_ _pool_ per rispondere in modo asincrono.
-Siamo in grado di eseguire un arresto oridnato del server, che pulisce tutti i
+Siamo in grado di eseguire un arresto ordinato del server, che pulisce tutti i
 _thread_ nel _pool_.
 
 Ecco il codice completo come riferimento:
@@ -251,5 +251,5 @@ alcune idee:
 Complimenti! Sei arrivato alla fine del libro! Ti ringraziamo per averci
 accompagnato in questo viaggio alla scoperta di Rust. Ora sei pronto per
 implementare i tuoi progetti Rust e aiutare gli altri nei loro. Ricorda che
-esiste una comunità accogliente di altri Rustaceans che saranno felici di
+esiste una comunità accogliente di altri Rustacean che saranno felici di
 aiutarti con qualsiasi sfida incontrerai nel tuo viaggio con Rust.
