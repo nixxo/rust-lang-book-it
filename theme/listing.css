@@ -16,3 +16,12 @@ span.filename {
   font-size: 0.8em;
   font-weight: 600;
 }
+
+/* code tag in headings */
+h2 a code, h3 a code, h4 a code, h5 a code {
+  display: inline;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  color: var(--fg);
+  background: var(--quote-bg);
+}
