@@ -3,8 +3,8 @@
 _di Steve Klabnik, Carol Nichols, and Chris Krycho, con contributi della
 Community Rust_
 
-Questa versione del testo presuppone l’utilizzo di Rust 1.85.0 (rilasciato il
-2025-02-17) o successivo con `edition = "2024"` nel file *Cargo.toml* di tutti i
+Questa versione del testo presuppone l’utilizzo di Rust 1.90.0 (rilasciato il
+2025-09-18) o successivo con `edition = "2024"` nel file *Cargo.toml* di tutti i
 progetti per configurarli in modo da utilizzare gli idiomi dell’edizione 2024 di
 Rust. Consulta la sezione [“Installazione” del Capitolo 1][install]<!-- ignore
 --> per installare o aggiornare Rust, e vedi l’[Appendice E][appendix-e]<!--

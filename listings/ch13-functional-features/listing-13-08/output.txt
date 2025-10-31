@@ -1,20 +1,27 @@
 $ cargo run
-   Compiling rettangoli v0.1.0 (file:///progetti/rettangoli)
+   Compiling rettangoli v0.1.0 (/file:///progetti/rettangoli)
 error[E0507]: cannot move out of `valore`, a captured variable in an `FnMut` closure
    --> src/main.rs:18:33
-   |
-15 |     let valore = String::from("chiusura chiamata");
-   |         ------ captured outer variable
-16 |
-17 |     lista.sort_by_key(|r| {
-   |                       --- captured by this `FnMut` closure
-18 |         azioni_ordinamento.push(valore);
-   |                                 ^^^^^^ move occurs because `valore` has type `String`, which does not implement the `Copy` trait
-   |
+    |
+ 15 |     let valore = String::from("chiusura chiamata");
+    |         ------   --------------------------------- move occurs because `valore` has type `String`, which does not implement the `Copy` trait
+    |         |
+    |         captured outer variable
+ 16 |
+ 17 |     lista.sort_by_key(|r| {
+    |                       --- captured by this `FnMut` closure
+ 18 |         azioni_ordinamento.push(valore);
+    |                                 ^^^^^^ `valore` is moved here
+    |
+help: `Fn` and `FnMut` closures require captured values to be able to be consumed multiple times, but `FnOnce` closures may consume them only once
+   --> /rust/library/alloc/src/slice.rs:247:12
+    |
+247 |         F: FnMut(&T) -> K,
+    |            ^^^^^^^^^^^^^^
 help: consider cloning the value if the performance cost is acceptable
-   |
-18 |         azioni_ordinamento.push(valore.clone());
-   |                                       ++++++++
+    |
+ 18 |         azioni_ordinamento.push(valore.clone());
+    |                                       ++++++++
 
 For more information about this error, try `rustc --explain E0507`.
 error: could not compile `rettangoli` (bin "rettangoli") due to 1 previous error

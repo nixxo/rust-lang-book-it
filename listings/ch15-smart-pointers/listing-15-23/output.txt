@@ -11,7 +11,7 @@ failures:
 ---- tests::invia_un_messaggio_di_avviso_di_superamento_del_75_percento stdout ----
 
 thread 'tests::invia_un_messaggio_di_avviso_di_superamento_del_75_percento' panicked at src/lib.rs:61:56:
-already borrowed: BorrowMutError
+RefCell already borrowed
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 
 

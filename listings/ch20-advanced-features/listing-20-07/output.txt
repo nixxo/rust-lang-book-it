@@ -1,7 +1,7 @@
 $ cargo +nightly miri run
    Compiling esempio-unsafe v0.1.0 (file:///progetti/esempio-unsafe)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.41s
-     Running `/home/utente/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner target/miri/x86_64-unknown-linux-gnu/debug/esempio-unsafe`
+     Running `/bin/cargo-miri runner target/miri/x86_64-unknown-linux-gnu/debug/esempio-unsafe`
 warning: integer-to-pointer cast
  --> src/main.rs:6:13
   |

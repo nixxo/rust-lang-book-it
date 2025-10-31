@@ -4,8 +4,6 @@
 [Prefazione](foreword.md)
 [Introduzione](ch00-00-introduction.md)
 
-## Primi Passi
-
 - [Primi Passi](ch01-00-getting-started.md)
   - [Installazione](ch01-01-installation.md)
   - [Hello, World!](ch01-02-hello-world.md)
@@ -34,8 +32,6 @@
   - [Definire un’_Enum_](ch06-01-defining-an-enum.md)
   - [Controllare il Flusso col Costrutto `match`](ch06-02-match.md)
   - [Controllare il Flusso con `if let` e `let else`](ch06-03-if-let.md)
-
-## Letteratura di Base Rust
 
 - [Pacchetti, _Crate_, e Moduli](ch07-00-managing-growing-projects-with-packages-crates-and-modules.md)
   - [Pacchetti e _Crate_](ch07-01-packages-and-crates.md)
@@ -71,8 +67,6 @@
   - [Aggiungere Funzionalità con il Test-Driven Development](ch12-04-testing-the-librarys-functionality.md)
   - [Lavorare con le Variabili d’Ambiente](ch12-05-working-with-environment-variables.md)
   - [Scrivere Messaggi di Errore su _Standard Error_](ch12-06-writing-to-stderr-instead-of-stdout.md)
-
-## Pensare in Rust
 
 - [Funzionalità dei Linguaggi Funzionali: Iteratori e Chiusure](ch13-00-functional-features.md)
   - [Chiusure](ch13-01-closures.md)
@@ -113,8 +107,6 @@
   - [Caratteristiche dei Linguaggi Orientati agli Oggetti](ch18-01-what-is-oo.md)
   - [Usare gli Oggetti _Trait_ per Astrarre Comportamenti Condivisi](ch18-02-trait-objects.md)
   - [Implementare un Modello di Design Orientato agli Oggetti](ch18-03-oo-design-patterns.md)
-
-## Tematiche Avanzate
 
 - [_Pattern_ e Corrispondenza](ch19-00-patterns.md)
   - [Tutti i Posti Dove Possiamo Utilizzare i _Pattern_](ch19-01-all-the-places-for-patterns.md)

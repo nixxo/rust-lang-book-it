@@ -4,30 +4,36 @@ error[E0277]: `Punto` doesn't implement `std::fmt::Display`
   --> src/main.rs:21:25
    |
 21 | impl StampaContorno for Punto {}
-   |                         ^^^^^ `Punto` cannot be formatted with the default formatter
+   |                         ^^^^^ unsatisfied trait bound
    |
-   = help: the trait `std::fmt::Display` is not implemented for `Punto`
-   = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
+help: the trait `std::fmt::Display` is not implemented for `Punto`
+  --> src/main.rs:16:1
+   |
+16 | struct Punto {
+   | ^^^^^^^^^^^^
 note: required by a bound in `StampaContorno`
   --> src/main.rs:3:23
    |
-3  | trait StampaContorno: fmt::Display {
+ 3 | trait StampaContorno: fmt::Display {
    |                       ^^^^^^^^^^^^ required by this bound in `StampaContorno`
 
 error[E0277]: `Punto` doesn't implement `std::fmt::Display`
   --> src/main.rs:26:7
    |
 26 |     p.stampa_contorno();
-   |       ^^^^^^^^^^^^^^^ `Punto` cannot be formatted with the default formatter
+   |       ^^^^^^^^^^^^^^^ unsatisfied trait bound
    |
-   = help: the trait `std::fmt::Display` is not implemented for `Punto`
-   = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
+help: the trait `std::fmt::Display` is not implemented for `Punto`
+  --> src/main.rs:16:1
+   |
+16 | struct Punto {
+   | ^^^^^^^^^^^^
 note: required by a bound in `StampaContorno::stampa_contorno`
   --> src/main.rs:3:23
    |
-3  | trait StampaContorno: fmt::Display {
+ 3 | trait StampaContorno: fmt::Display {
    |                       ^^^^^^^^^^^^ required by this bound in `StampaContorno::stampa_contorno`
-4  |     fn stampa_contorno(&self) {
+ 4 |     fn stampa_contorno(&self) {
    |        --------------- required by a bound in this associated function
 
 For more information about this error, try `rustc --explain E0277`.

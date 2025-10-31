@@ -1,4 +1,4 @@
-$cargo run
+$ cargo run
    Compiling patterns v0.1.0 (file:///progetti/patterns)
 error: `..` can only be used once per tuple pattern
  --> src/main.rs:5:23
