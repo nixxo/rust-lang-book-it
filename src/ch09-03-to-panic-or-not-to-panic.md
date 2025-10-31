@@ -132,7 +132,7 @@ _qualcosa_ anziché _niente_. Il codice non dovrà quindi gestire due casi per l
 varianti `Some` e `None`: gestirà solo il caso che ha sicuramente un valore. Il
 codice che tenta di non passare nulla alla funzione non verrà nemmeno compilato,
 quindi la funzione non dovrà verificare quel caso in fase di esecuzione. Un
-altro esempio è l’utilizzo di un _type_ _integer_ senza segno come `u32`, che
+altro esempio è l’utilizzo di un _type_ intero senza segno come `u32`, che
 garantisce che il parametro non sia mai negativo.
 
 ### _Type_ Personalizzati per la Convalida

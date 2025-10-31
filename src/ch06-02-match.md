@@ -33,7 +33,7 @@ Analizziamo il `match` nella funzione `valore_in_cent`. Prima troviamo la parola
 chiave `match` seguita da un’espressione, che in questo caso è il valore
 `moneta`. Questo sembra molto simile a un’espressione condizionale usata con
 `if`, ma c’è una grande differenza: con `if` la condizione deve valutarsi a un
-valore Booleano, mentre qui può essere di qualsiasi _type_. Il _type_ di
+valore booleano, mentre qui può essere di qualsiasi _type_. Il _type_ di
 `moneta` in questo esempio è l’_enum_ `Moneta` che abbiamo definito nella prima
 riga.
 

@@ -292,7 +292,7 @@ valori:
 * `FnOnce` si applica alle chiusure che possono essere chiamate una sola volta.
   Tutte le chiusure implementano almeno questo trait perché tutte le chiusure
   possono essere chiamate. Una chiusura che sposta i valori catturati fuori dal
-  suo corpo implementerà solo `FnOnce` e nessuno degli altri tratti `Fn` perché
+  suo corpo implementerà solo `FnOnce` e nessuno degli altri _trait_ `Fn` perché
   può essere chiamata una sola volta.
 * `FnMut` si applica alle chiusure che non spostano i valori catturati fuori dal
   loro corpo, ma che potrebbero mutarli. Queste chiusure possono essere chiamate

@@ -7,7 +7,7 @@ linguaggio o alla libreria standard; puoi scrivere le tue funzioni di
 concorrenza o usare quelle scritte da altri.
 
 Tuttavia, tra i concetti chiave della concorrenza che sono incorporati nel
-linguaggio piuttosto che nella libreria standard ci sono i _tratti_
+linguaggio piuttosto che nella libreria standard ci sono i _trait_
 `std::marker`, `Send` e `Sync`.
 
 ### Trasferire _Ownership_ tra _Thread_

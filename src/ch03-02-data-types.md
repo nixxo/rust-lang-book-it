@@ -36,16 +36,17 @@ funzionano in Rust.
 
 #### Il _Type_ Intero
 
-Un intero, _integer_ d’ora in poi, è un numero senza una componente frazionaria.
-Nel Capitolo 2 abbiamo utilizzato un tipo _integer_, il _type_ `u32`. Questa
-dichiarazione del _type_ indica che il valore a cui è associato deve essere un
-_integer_ senza segno (i _type integer_ con segno iniziano con `i` invece che
-con `u`) che occupa 32 bit di spazio. La Tabella 3-1 mostra i _type integer_
-incorporati in Rust. Possiamo usare una qualsiasi di queste varianti per
-dichiarare il _type_ di un valore intero.
+Un intero (_integer_) è un numero senza una componente frazionaria. Nel Capitolo
+2 abbiamo utilizzato un tipo _integer_, il _type_ `u32`. Questa dichiarazione
+del _type_ indica che il valore a cui è associato deve essere un _integer_ senza
+segno (i _type integer_ con segno iniziano con `i` invece che con `u`) che
+occupa 32 bit di spazio. La Tabella 3-1 mostra i _type integer_ incorporati in
+Rust. Possiamo usare una qualsiasi di queste varianti per dichiarare il _type_
+di un valore intero.
 
 
-<span class="caption">Tabella 3-1: Type Integer in Rust</span>
+<span class="caption">Tabella 3-1: _Type_ _Integer_ in Rust</span>
+
 | Lunghezza | Con Segno | Senza Segno |
 | --------- | --------- | ----------- |
 | 8-bit     | `i8`      | `u8`        |
@@ -103,7 +104,7 @@ _type integer_ di default è `i32`. La situazione principale in cui puoi usare
 > compresi tra 0 e 255. Se provi a cambiare la variabile con un valore al di
 > fuori di questo intervallo, ad esempio 256, si verificherà un _integer
 > overflow_, che può portare a uno dei due comportamenti seguenti. Quando stai
-> compilando in modalità debug, Rust include controlli per l’integer overflow
+> compilando in modalità debug, Rust include controlli per l’_integer overflow_
 > che fanno sì che il tuo programma vada in _panico_ (_panic_ d’ora in poi) in
 > fase di esecuzione se si verifica questo comportamento. Rust usa il termine
 > _panic_ quando un programma termina con un errore; parleremo in modo più
@@ -111,17 +112,17 @@ _type integer_ di default è `i32`. La situazione principale in cui puoi usare
 > `panic!`”][panic]<!-- ignore --> del Capitolo 9.
 >
 > Quando si compila in modalità release con il flag `--release`, Rust _non_
-> include i controlli per l’overflow degli integer che causano il _panic_.
-> Invece, se si verifica l’overflow, Rust esegue l’_avvolgimento del complemento
-> a due_. In pratica, i valori maggiori del valore massimo che il _type_ può
-> contenere si “avvolgono” fino al minimo dei valori che il _type_ può
-> contenere. Nel caso di un `u8`, il valore 256 diventa 0, il valore 257 diventa
-> 1 e così via. Il programma non andrà in _panic_, ma la variabile avrà un
-> valore che probabilmente non è quello che ci si aspettava che avesse.
-> Affidarsi all’_avvolgimento del complemento a due_ degli _integer_ è
-> considerato un errore. Per gestire esplicitamente la possibilità di overflow,
-> puoi utilizzare queste famiglie di metodi forniti dalla libreria standard per
-> i _type_ numerici primitivi:
+> include i controlli per l’_integer overflow_ che causano il _panic_. Invece,
+> se si verifica l’overflow, Rust esegue l’_avvolgimento del complemento a due_.
+> In pratica, i valori maggiori del valore massimo che il _type_ può contenere
+> si “avvolgono” fino al minimo dei valori che il _type_ può contenere. Nel caso
+> di un `u8`, il valore 256 diventa 0, il valore 257 diventa 1 e così via. Il
+> programma non andrà in _panic_, ma la variabile avrà un valore che
+> probabilmente non è quello che ci si aspettava che avesse. Affidarsi
+> all’_avvolgimento del complemento a due_ degli _integer_ è considerato un
+> errore. Per gestire esplicitamente la possibilità di overflow, puoi utilizzare
+> queste famiglie di metodi forniti dalla libreria standard per i _type_
+> numerici primitivi:
 > - Racchiudere tutte le modalità con i metodi `wrapping_*`, come ad esempio
 >   `wrapping_add`.
 > - Restituire il valore `None` se c’è overflow con i metodi `checked_*`.

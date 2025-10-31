@@ -253,7 +253,7 @@ alcune di queste situazioni.
 In Rust, più variabili possono interagire con gli stessi dati in modi diversi.
 Il Listato 4-2 mostra un esempio che utilizza un _integer_.
 
-<Listing number="4-2" caption="Assegnazione del valore integer della variabile `x` a `y`">
+<Listing number="4-2" caption="Assegnazione del valore _integer_ della variabile `x` a `y`">
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-02/src/main.rs:here}}
@@ -446,22 +446,22 @@ variabile `y`. In altre parole, qui non c’è differenza tra copia profonda e
 superficiale, quindi chiamare `clone` non farebbe nulla di diverso dalla solita
 copia superficiale e possiamo tralasciarlo.
 
-Rust ha un’annotazione speciale chiamata _tratto_ `Copy` che possiamo
-appiccicare sui _type_ memorizzati sullo _stack_, come lo sono gli _integer_
-(parleremo meglio dei _tratti_ nel [Capitolo 10][traits]<!-- ignore -->). Se un
-_type_ implementa il _tratto_ `Copy`, le variabili che lo utilizzano non si
-spostano, ma vengono semplicemente copiate, rendendole ancora valide dopo
-l’assegnazione ad un’altra variabile.
+Rust ha un’annotazione speciale chiamata _trait_ `Copy` che possiamo appiccicare
+sui _type_ memorizzati sullo _stack_, come lo sono gli _integer_ (parleremo
+meglio dei _trait_ nel [Capitolo 10][traits]<!-- ignore -->). Se un _type_
+implementa il _trait_ `Copy`, le variabili che lo utilizzano non si spostano,
+ma vengono semplicemente copiate, rendendole ancora valide dopo l’assegnazione
+ad un’altra variabile.
 
 Rust non ci permette di annotare un _type_ con `Copy` se il _type_, o una
-qualsiasi delle sue parti, ha implementato il _tratto_ `Drop`. Se il _type_ ha
+qualsiasi delle sue parti, ha implementato il _trait_ `Drop`. Se il _type_ ha
 bisogno che accada qualcosa di speciale quando il valore esce dallo _scope_ e
 aggiungiamo l’annotazione `Copy` a quel _type_, otterremo un errore in fase di
 compilazione. Per sapere come aggiungere l’annotazione `Copy` al tuo _type_,
 consulta [“_Trait_ Derivabili”][derivable-traits]<!-- ignore --> nell’Appendice
 C.
 
-Quindi, quali _type_ implementano il tratto `Copy`? Puoi controllare la
+Quindi, quali _type_ implementano il _trait_ `Copy`? Puoi controllare la
 documentazione del _type_ in questione per esserne sicuro, ma come regola
 generale, qualsiasi gruppo di valori scalari semplici può implementare `Copy` e
 niente che richieda l’allocazione o che sia una qualche forma di risorsa può

@@ -142,13 +142,13 @@ di dati comuni che la libreria standard mette a disposizione, come vettori,
 stringhe e mappe hash. Il Capitolo 9 esplora la filosofia e le tecniche di
 gestione degli errori di Rust.
 
-Il **Capitolo 10** approfondisce i generici, i tratti e la longevità (_traits_ e
-_lifetime_ d’ora in poi), che ti danno la possibilità di definire codice
-applicabile a più tipologie di dato. Il *Capitolo 11* è dedicato ai test, che
-anche con le garanzie di sicurezza di Rust sono necessari per garantire la
-correttezza della logica del tuo programma. Nel **Capitolo 12**, costruiremo la
-nostra implementazione di un sottoinsieme di funzionalità dello strumento da
-riga di comando `grep`, che cerca il testo all’interno dei file. Per questo,
+Il **Capitolo 10** approfondisce i generici, i tratti e la longevità (_trait_ e
+_lifetime_), che ti danno la possibilità di definire codice applicabile a più
+tipologie di dato. Il *Capitolo 11* è dedicato ai test, che anche con le
+garanzie di sicurezza di Rust sono necessari per garantire la correttezza della
+logica del tuo programma. Nel **Capitolo 12**, costruiremo la nostra
+implementazione di un sottoinsieme di funzionalità dello strumento da riga di
+comando `grep`, che cerca il testo all’interno dei file. Per questo,
 utilizzeremo molti dei concetti discussi nei capitoli precedenti.
 
 Il **Capitolo 13** esplora le chiusure e gli iteratori: caratteristiche di Rust

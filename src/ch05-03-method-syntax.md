@@ -178,7 +178,7 @@ senso perché abbiamo solo bisogno di leggere `rettangolo2` (invece di
 modificarlo, il che richiederebbe un _reference_ mutabile), e vogliamo che
 `main` mantenga l’_ownership_ di `rettangolo2` così da poterlo usare di nuovo
 dopo la chiamata a `può_contenere`. Il valore di ritorno di `può_contenere` sarà
-un Booleano, e l’implementazione verificherà se la larghezza e l’altezza di
+un booleano, e l’implementazione verificherà se la larghezza e l’altezza di
 `self` sono maggiori rispetto alla larghezza e all’altezza dell’altra
 `Rettangolo`, rispettivamente. Aggiungiamo il nuovo metodo `può_contenere` al
 blocco `impl` del Listato 5-13, come mostrato nel Listato 5-15.

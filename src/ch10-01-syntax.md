@@ -124,9 +124,9 @@ diversi, come nel Listato 10-7, il nostro codice non verrà compilato.
 
 </Listing>
 
-In questo esempio, quando assegniamo il valore _integer_ `5` a `x`, comunichiamo
-al compilatore che il _type_ generico `T` sarà un _integer_ per questa istanza
-di `Punto<T>`. Quindi, quando specifichiamo `4.0` per `y`, che abbiamo definito
+In questo esempio, quando assegniamo il valore intero `5` a `x`, comunichiamo al
+compilatore che il _type_ generico `T` sarà un intero per questa istanza di
+`Punto<T>`. Quindi, quando specifichiamo `4.0` per `y`, che abbiamo definito
 come dello stesso _type_ di `x`, otterremo un errore di mancata corrispondenza
 di _type_ come questo:
 

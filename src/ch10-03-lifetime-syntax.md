@@ -25,7 +25,7 @@ _lifetime_ in modo che tu possa familiarizzare con il concetto.
 ### _Reference_ Pendenti
 
 Lo scopo principale della _lifetime_ è prevenire i _riferimenti pendenti_
-(_dangling references_), che, se fossero presenti, causerebbere al programma in
+(_dangling references_), che, se fossero presenti, causerebbe al programma in
 esecuzione di avere _reference_ che fanno riferimento a dati a cui non
 dovrebbero far riferimento. Considera il programma nel Listato 10-16, che ha uno
 _scope_ esterno e uno interno.
