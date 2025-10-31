@@ -130,7 +130,7 @@ _slice_ deve implementare `Clone`.
 Il _trait_ `Copy` permette di duplicare un valore copiando solo i dati
 memorizzati sullo _stack_; non è necessario eseguire codice arbitrario. Consulta
 la sezione [“Duplicare Dati Sullo _Stack_”][copy-stack]<!-- ignore --> del
-Capitolo 4 er ulteriori informazioni su `Copy`.
+Capitolo 4 per ulteriori informazioni su `Copy`.
 
 Il _trait_ `Copy` non definisce alcun metodo, per prevenire che i programmatori
 ne sovrascrivano i metodi e violino l’assunto che nessun codice arbitrario venga

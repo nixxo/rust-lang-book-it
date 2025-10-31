@@ -163,7 +163,7 @@ di programmazione per comunicare tra loro. Diversi _client_ possono usare
 `rust-analyzer`, come ad esempio [il plug-in Rust Analyzer per Visual Studio
 Code][vscode].
 
-Visita la [home page] del progetto `rust-analyzer`[rust-analyzer]<!-- ignore -->
+Visita la [home page del progetto `rust-analyzer`][rust-analyzer]<!-- ignore -->
 per le istruzioni di installazione, quindi installa il supporto per il server
 linguistico nel tuo _IDE_ specifico. Il tuo _IDE_ otterrà funzionalità come
 l’auto-completamento, il salto alla definizione e gli errori in linea.

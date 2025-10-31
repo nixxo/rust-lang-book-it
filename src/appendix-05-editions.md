@@ -57,9 +57,9 @@ alcuni casi, principalmente quando vengono aggiunte nuove parole chiave, alcune
 funzionalità nuove potrebbero essere disponibili solo nelle edizioni successive.
 Sarà necessario cambiare edizione se si vuole usufruire di tali funzionalità.
 
-Per ulteriori dettagli, la [_Guida alle edizioni_][edition-guide] è un libro
-completo sulle edizioni che elenca le differenze tra le edizioni e spiega come
-aggiornare automaticamente il vostro codice a una nuova edizione tramite `cargo
-fix`.
+Per ulteriori dettagli, la [_Guida alle edizioni_][edition-guide] è un libro (in
+inglese) completo sulle edizioni che elenca le differenze tra le edizioni e
+spiega come aggiornare automaticamente il vostro codice a una nuova edizione
+tramite `cargo fix`.
 
 [edition-guide]: https://doc.rust-lang.org/stable/edition-guide

@@ -4,7 +4,7 @@ I seguenti elenchi contengono parole chiave che sono riservate per l’uso attua
 o futuro del linguaggio Rust. In quanto tali, non possono essere utilizzate come
 identificatori (tranne che come _identificatori grezzi_, come discuteremo nella
 sezione [dedicata](#identificatori-grezzi)<!-- ignore -->). Gli *identificatori*
-sono nomi di funzioni, variabili, parametri, elementi di struct, moduli,
+sono nomi di funzioni, variabili, parametri, elementi di _struct_, moduli,
 _crate_, costanti, macro, valori statici, attributi, _type_, _trait_ o
 _lifetime_.
 

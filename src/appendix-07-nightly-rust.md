@@ -20,8 +20,8 @@ veloci.
 ### Choo, Choo! I Canali di Rilascio e Viaggiare sui Treni
 
 Lo sviluppo di Rust segue un _orario ferroviario_. Cioè, tutto lo sviluppo
-avviene sul ramo `master` del repository di Rust. I rilasci seguono un “modello
-ferroviario” del rilascio software, usato da Cisco IOS e altri progetti
+avviene sul ramo principale del repository di Rust. I rilasci seguono un
+“modello ferroviario” del rilascio software, usato da Cisco IOS e altri progetti
 software. Ci sono tre _canali di rilascio_ per Rust:
 
 - Nightly
@@ -36,7 +36,7 @@ Ecco un esempio di come funziona il processo di sviluppo e rilascio: supponiamo
 che il team di Rust stia lavorando al rilascio di Rust 1.5. Quel rilascio è
 avvenuto nel dicembre 2015, ma ci fornisce numeri di versione realistici. Viene
 aggiunta una nuova funzionalità a Rust: un nuovo _commit_ arriva sul _branch_
-`master`. Ogni notte, viene prodotto un nuovo rilascio _nightly_ di Rust. Ogni
+principale. Ogni notte, viene prodotto un nuovo rilascio _nightly_ di Rust. Ogni
 giorno è un giorno di rilascio, e questi rilasci sono creati automaticamente
 dalla nostra infrastruttura. Quindi, col passare del tempo, i nostri rilasci
 appaiono così, una volta per notte:
@@ -46,7 +46,7 @@ nightly: * - - * - - *
 ```
 
 Ogni sei settimane, è il momento di preparare un nuovo rilascio! Il _branch_
-`beta` del repository Rust si dirama dal _branch_ `master` usato da _nightly_.
+`beta` del repository Rust si dirama dal _branch_ principale usato da _nightly_.
 Ora, ci sono due rilasci:
 
 ```text
@@ -67,9 +67,9 @@ beta:                *
 
 Supponiamo che venga trovata una regressione. È un bene aver avuto tempo per
 testare la _beta_ prima che la regressione entrasse in un rilascio stabile! La
-correzione viene applicata a `master`, così _nightly_ viene sistemato, poi la
-correzione viene portata anche sul _branch_ `beta`, e viene prodotto un nuovo
-rilascio _beta_:
+correzione viene applicata a al _branch_ principale, così _nightly_ viene
+sistemato, poi la correzione viene portata anche sul _branch_ `beta`, e viene
+prodotto un nuovo rilascio _beta_:
 
 ```text
 nightly: * - - * - - * - - * - - * - - *
@@ -131,16 +131,17 @@ settimane.
 C’è un altro aspetto in questo modello di rilascio: le funzionalità instabili.
 Rust utilizza una tecnica chiamata “feature flags” per determinare quali
 funzionalità sono abilitate in un certo rilascio. Se una nuova funzionalità è in
-sviluppo attivo, arriva su `master` e quindi in _nightly_, ma dietro a una
-_feature flag_. Se tu, come utente, vuoi provare questa funzionalità ancora in
-sviluppo, puoi farlo, ma devi usare un rilascio _nightly_ di Rust e annotare il
-codice sorgente con il flag appropriato per abilitare la funzionalità.
+sviluppo attivo, arriva sul _branch_ principale e quindi in _nightly_, ma dietro
+a una _feature flag_. Se tu, come utente, vuoi provare questa funzionalità
+ancora in sviluppo, puoi farlo, ma devi usare un rilascio _nightly_ di Rust e
+annotare il codice sorgente con il _flag_ appropriato per abilitare la
+funzionalità.
 
 Se stai usando una versione _beta_ o _stable_ di Rust, non puoi usare alcuna
 _feature flag_. Questa è la chiave che ci permette di usare praticamente le
 nuove funzionalità prima di dichiararle stabili per sempre. Chi vuole provare le
-funzionalità più avanzate avanzate può farlo, e chi vuole un’esperienza solida
-può restare sul canale stabile sapendo che il proprio codice non si romperà.
+funzionalità più avanzate può farlo, e chi vuole un’esperienza solida può
+restare sul canale stabile sapendo che il proprio codice non si romperà.
 Stabilità senza stagnazione.
 
 Questo libro contiene solo informazioni sulle funzionalità stabili, poiché
@@ -205,12 +206,12 @@ raggiunge un consenso per accettare o rifiutare la funzionalità.
 Se la funzionalità è accettata, viene aperta una _issue_ sul _repository_ Rust,
 e qualcuno la implementa. Chi implementa potrebbe non essere la stessa persona
 che ha proposto la funzionalità! Quando l’implementazione è pronta, viene
-inserita nel _branch_ `master` dietro a un _feature flag_, come discusso nella
-sezione [“Funzionalità Instabili”](#funzionalità-instabili).
+inserita nel _branch_ principale dietro a una _feature flag_, come discusso
+nella sezione [“Funzionalità Instabili”](#funzionalità-instabili).
 
 Dopo un po’ di tempo, quando gli sviluppatori Rust che usano i rilasci _nightly_
 hanno potuto provare la nuova funzionalità, i membri del team discutono la
 funzionalità, come è andata su _nightly_, e decidono se inserirla in Rust
-stabile o no. Se la decisione è di andare avanti, il _feature flag_ viene
-rimosso, e la funzionalità è ora considerata stabile! Viaggia sul treno verso un
+stabile o no. Se la decisione è di andare avanti, la _feature flag_ viene
+rimossa, e la funzionalità è ora considerata stabile! Viaggia sul treno verso un
 nuovo rilascio _stable_ di Rust.
