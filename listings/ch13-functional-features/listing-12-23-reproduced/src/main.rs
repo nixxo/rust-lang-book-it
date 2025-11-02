@@ -19,10 +19,10 @@ fn main() {
     }
 }
 
-pub struct Config {
-    pub query: String,
-    pub percorso_file: String,
-    pub ignora_maiuscole: bool,
+struct Config {
+    query: String,
+    percorso_file: String,
+    ignora_maiuscole: bool,
 }
 
 // ANCHOR: ch13

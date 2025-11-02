@@ -25,10 +25,10 @@ fn main() {
 }
 
 // ANCHOR: here
-pub struct Config {
-    pub query: String,
-    pub percorso_file: String,
-    pub ignora_maiuscole: bool,
+struct Config {
+    query: String,
+    percorso_file: String,
+    ignora_maiuscole: bool,
 }
 // ANCHOR_END: here
 
