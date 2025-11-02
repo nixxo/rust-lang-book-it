@@ -190,9 +190,9 @@ In questo esempio, il valore `p` corrisponde al secondo ramo in virtù del fatto
 che `x` contiene uno `0`, quindi questo codice stamperà `Sull’asse y a 7`.
 
 Ricorda che un’espressione `match` interrompe il controllo dei rami una volta
-trovato il primo _pattern_ corrispondente, quindi anche se `Punto { x: 0, y: 0}`
-si trova sull’asse `x` e sull’asse `y`, questo codice stamperà solo `Sull'asse x
-a 0`.
+trovato il primo _pattern_ corrispondente, quindi anche se `Punto { x: 0, y: 0
+}` si trova sull’asse `x` e sull’asse `y`, questo codice stamperà solo
+`Sull'asse x a 0`.
 
 #### _Enum_
 
