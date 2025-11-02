@@ -51,6 +51,9 @@ for fname in "${book_path[@]}"; do
         value="${text_pairs[$key]}"
         sed -i "s/$key/$value/g" "$fname"
     done
+    # add hljs class to code tag in headings
+    #sed -i 's/\(<h[2-5].*\)<code>/\1<code class="hljs">/' "$fname"
+    #sed -i 's/\(<h[2-5].*\)<code>/\1<code class="hljs">/' "$fname"
     echo "> $fname DONE"
 done
 
@@ -61,5 +64,6 @@ fname="book/highlight.js"
 sed -i 's/{className:"title",begin:"\[a-zA-Z_\]/{className:"title",begin:"\[a-zA-Z_àèéìòù\]/g' $fname
 echo "> $fname rust fmt DONE"
 
+# add accent to crate names; deprecated
 # sed -i 's/g="("+\[\/\[A-Za-z0-9_-\]/g="("+\[\/\[A-Za-z0-9_-àèéìòù\]/g' $fname
 # echo "> $fname toml fmt DONE"
