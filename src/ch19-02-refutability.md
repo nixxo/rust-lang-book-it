@@ -56,9 +56,8 @@ _pattern_ `Some(x)`, Rust genera giustamente un errore di compilazione.
 Se abbiamo un _pattern_ confutabile laddove è necessario un _pattern_
 inconfutabile, possiamo correggerlo modificando il codice che utilizza il
 _pattern_: invece di usare `let`, possiamo usare `let...else`. Quindi, se il
-_pattern_ non corrisponde, il codice salterà semplicemente il codice tra
-parentesi graffe, consentendogli di continuare validamente. Il Listato 19-9
-mostra come correggere il codice nel Listato 19-8.
+_pattern_ non corrisponde, il codice tra parentesi graffe gestirà il valore. Il
+Listato 19-9 mostra come correggere il codice nel Listato 19-8.
 
 <Listing number="19-9" caption="Usare `let...else` e un blocco con _pattern_ confutabili invece di `let`">
 

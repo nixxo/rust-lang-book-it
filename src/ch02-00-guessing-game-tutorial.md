@@ -483,7 +483,7 @@ Quando _vuoi_ aggiornare un _crate_, Cargo mette a disposizione il comando
 `update`, che ignorerà il file _Cargo.lock_ e troverà tutte le ultime versioni
 che corrispondono alle tue specifiche in _Cargo.toml_. Cargo scriverà quindi
 queste versioni nel file _Cargo.lock_. Altrimenti, di default, Cargo cercherà
-solo le versioni maggiori di 0.8.5 e minori di 0.9.0. Se il _crate_ `rand` ha
+solo le versioni maggiori di 0.8.5 e minori di 0.999.0. Se il _crate_ `rand` ha
 rilasciato nuove versioni sia per la versione 0.8 che per la 0.9, vedrai quanto
 segue se eseguirai `cargo update`:
 
@@ -497,18 +497,19 @@ as a guide to creating the hypothetical output shown here -->
 $ cargo update
     Updating crates.io index
      Locking 1 package to latest Rust 1.85.0 compatible version
-    Updating rand v0.8.5 -> v0.8.6 (available: v0.9.0)
+    Updating rand v0.8.5 -> v0.8.6 (available: v0.999.0)
 ```
 
-Cargo ignora la versione 0.9.0. A questo punto, noterai anche un cambiamento nel
-tuo file _Cargo.lock_ che indica che la versione del _crate_ `rand` che stai
-utilizzando è la 0.8.6. Per utilizzare la versione 0.9.0 di `rand` o qualsiasi
-altra versione della serie 0.9._x_, dovrai aggiornare il file _Cargo.toml_ in
-questo modo:
+Cargo ignora la versione 0.999.0. A questo punto, noterai anche un cambiamento
+nel tuo file _Cargo.lock_ che indica che la versione del _crate_ `rand` che stai
+utilizzando è la 0.8.6. Per utilizzare la versione 0.999.0 di `rand` o qualsiasi
+altra versione della serie 0.999._x_, dovrai aggiornare il file _Cargo.toml_ in
+questo modo (non effettuare realmente questa modifica perché gli esempi sono
+scritti per essere compatibili con la versione 0.8 di `rand`):
 
 ```toml
 [dependencies]
-rand = "0.9.0"
+rand = "0.999.0"
 ```
 
 La prossima volta che eseguirai `cargo build`, Cargo aggiornerà il registro dei
