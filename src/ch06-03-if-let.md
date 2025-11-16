@@ -1,4 +1,4 @@
-## Controllare il Flusso con `if let` e `let else`
+## Controllare il Flusso con `if let` e `let...else`
 
 La sintassi `if let` consente di combinare `if` e `let` in un modo meno verboso
 per gestire i valori che corrispondono a un singolo _pattern_, ignorando gli

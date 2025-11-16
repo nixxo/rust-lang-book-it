@@ -31,7 +31,7 @@
 - [Enumerazioni e Corrispondenza dei _Pattern_](ch06-00-enums.md)
   - [Definire un’_Enum_](ch06-01-defining-an-enum.md)
   - [Controllare il Flusso col Costrutto `match`](ch06-02-match.md)
-  - [Controllare il Flusso con `if let` e `let else`](ch06-03-if-let.md)
+  - [Controllare il Flusso con `if let` e `let...else`](ch06-03-if-let.md)
 
 - [Pacchetti, _Crate_, e Moduli](ch07-00-managing-growing-projects-with-packages-crates-and-modules.md)
   - [Pacchetti e _Crate_](ch07-01-packages-and-crates.md)

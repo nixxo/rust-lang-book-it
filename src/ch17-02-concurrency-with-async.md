@@ -240,9 +240,9 @@ ricevuti da un canale sincrono. Rust non ha ancora un modo per scrivere un ciclo
 `for` su una serie di elementi _prodotta asincronamente_, quindi dobbiamo usare
 un ciclo che non avevamo ancora visto: il ciclo condizionale `while let`. Questo
 è la versione ciclo del costrutto `if let` che abbiamo visto nella sezione
-[“Controllare il Flusso con `if let` e `let else`”][if-let]<!-- ignore
---> del Capitolo 6. Il ciclo continuerà ad eseguirsi finché il _pattern_
-specificato continua a corrispondere al valore.
+[“Controllare il Flusso con `if let` e `let...else`”][if-let]<!-- ignore --> del
+Capitolo 6. Il ciclo continuerà ad eseguirsi finché il _pattern_ specificato
+continua a corrispondere al valore.
 
 La chiamata `rx.recv` produce una _future_, che aspettiamo. Il _runtime_ metterà
 in pausa la _future_ fino a quando non sarà pronta. Una volta che arriva un
