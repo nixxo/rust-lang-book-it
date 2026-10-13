@@ -66,8 +66,9 @@ tuttavia, quando è lecito ritenere che il numero sia positivo, viene
 visualizzato senza segno. I numeri con segno vengono memorizzati utilizzando la
 rappresentazione del [complemento a due][complemento-a-due]<!-- ignore -->.
 
-Ogni variante con segno può memorizzare numeri da -(2<sup>n - 1</sup>) a 2<sup>n
-- 1</sup> - 1 inclusi, dove _n_ è il numero di bit che la variante utilizza.
+Ogni variante con segno può memorizzare numeri da -(2<sup>n - 1</sup>) 
+a 2<sup>n - 1</sup> - 1 inclusi, 
+dove _n_ è il numero di bit che la variante utilizza.
 Quindi, un `i8` può memorizzare numeri da -(2<sup>7</sup>) a 2<sup>7</sup> - 1,
 il che equivale a -128 a 127. Le varianti senza segno possono memorizzare numeri
 da 0 a 2<sup>n</sup> - 1, quindi un `u8` può memorizzare numeri da 0 a 2
